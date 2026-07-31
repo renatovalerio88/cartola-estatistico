@@ -17,35 +17,60 @@
 
   <title>Cartola Estatístico</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 </head>
 
 <body>
+
   <div class="app">
 
-    <!-- MENU LATERAL -->
-    <aside class="sidebar" id="sidebar">
+    <!-- =====================================================
+         MENU LATERAL
+         ===================================================== -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
 
       <div class="logo-area">
+
         <div class="logo-symbol">
           CE
         </div>
 
         <div class="logo-text">
-          <strong>Cartola Estatístico</strong>
-          <span>Decisões orientadas por dados</span>
+          <strong>
+            Cartola Estatístico
+          </strong>
+
+          <span>
+            Decisões orientadas por dados
+          </span>
         </div>
+
       </div>
 
-      <nav class="menu" aria-label="Navegação principal">
+      <nav
+        class="menu"
+        aria-label="Navegação principal"
+      >
 
         <button
           class="menu-item active"
           type="button"
           data-tab="recomendacoes"
         >
-          <span class="menu-icon">★</span>
-          <span>Recomendações</span>
+          <span class="menu-icon">
+            ★
+          </span>
+
+          <span>
+            Recomendações
+          </span>
         </button>
 
         <button
@@ -53,8 +78,13 @@
           type="button"
           data-tab="times"
         >
-          <span class="menu-icon">♟</span>
-          <span>Times sugeridos</span>
+          <span class="menu-icon">
+            ♟
+          </span>
+
+          <span>
+            Times sugeridos
+          </span>
         </button>
 
         <button
@@ -62,8 +92,13 @@
           type="button"
           data-tab="metodologia"
         >
-          <span class="menu-icon">∑</span>
-          <span>Metodologia</span>
+          <span class="menu-icon">
+            ∑
+          </span>
+
+          <span>
+            Metodologia
+          </span>
         </button>
 
         <button
@@ -71,27 +106,44 @@
           type="button"
           data-tab="analise"
         >
-          <span class="menu-icon">⚔</span>
-          <span>Análise da rodada</span>
+          <span class="menu-icon">
+            ⚔
+          </span>
+
+          <span>
+            Análise da rodada
+          </span>
         </button>
 
       </nav>
 
       <div class="sidebar-info">
-        <strong>Versão inicial</strong>
+
+        <strong>
+          Modelo em evolução
+        </strong>
 
         <p>
-          O projeto ainda está sendo estruturado.
-          Os primeiros dados serão demonstrativos.
+          Os dados atuais são demonstrativos.
+          As notas, pesos e projeções serão
+          recalculados a cada rodada.
         </p>
+
       </div>
 
     </aside>
 
-    <!-- ÁREA PRINCIPAL -->
+
+    <!-- =====================================================
+         ÁREA PRINCIPAL
+         ===================================================== -->
+
     <div class="main-area">
 
-      <!-- CABEÇALHO -->
+      <!-- ===================================================
+           CABEÇALHO
+           =================================================== -->
+
       <header class="topbar">
 
         <div class="topbar-left">
@@ -106,6 +158,7 @@
           </button>
 
           <div>
+
             <p class="topbar-label">
               PAINEL DA RODADA
             </p>
@@ -113,6 +166,7 @@
             <h1 id="pageTitle">
               Recomendações
             </h1>
+
           </div>
 
         </div>
@@ -120,8 +174,15 @@
         <div class="topbar-right">
 
           <div class="round-box">
-            <span>Rodada</span>
-            <strong id="roundNumber">--</strong>
+
+            <span>
+              Rodada
+            </span>
+
+            <strong id="roundNumber">
+              --
+            </strong>
+
           </div>
 
           <button
@@ -137,17 +198,27 @@
 
       </header>
 
-      <!-- CONTEÚDO -->
+
+      <!-- ===================================================
+           CONTEÚDO
+           =================================================== -->
+
       <main class="content">
+
+        <!-- =================================================
+             BARRA DE STATUS
+             ================================================= -->
 
         <section class="status-bar">
 
           <div>
+
             <span class="status-dot"></span>
 
             <strong id="statusText">
               Carregando informações...
             </strong>
+
           </div>
 
           <span id="lastUpdate">
@@ -156,7 +227,11 @@
 
         </section>
 
-        <!-- ABA RECOMENDAÇÕES -->
+
+        <!-- =================================================
+             ABA RECOMENDAÇÕES
+             ================================================= -->
+
         <section
           class="tab-content active"
           id="recomendacoes"
@@ -175,8 +250,9 @@
               </h2>
 
               <p>
-                Ranking por posição com projeção, piso,
-                teto, risco, confiança e justificativa
+                Ranking por posição com projeção,
+                piso, teto, risco, confiança,
+                custo-benefício e justificativa
                 individual para cada escolha.
               </p>
 
@@ -185,30 +261,62 @@
             <div class="hero-summary">
 
               <article class="summary-card">
-                <span>Maior projeção</span>
-                <strong id="bestProjection">--</strong>
-                <small id="bestProjectionName">Aguardando dados</small>
+
+                <span>
+                  Maior projeção
+                </span>
+
+                <strong id="bestProjection">
+                  --
+                </strong>
+
+                <small id="bestProjectionName">
+                  Aguardando dados
+                </small>
+
               </article>
 
               <article class="summary-card">
-                <span>Maior confiança</span>
-                <strong id="bestConfidence">--</strong>
-                <small id="bestConfidenceName">Aguardando dados</small>
+
+                <span>
+                  Maior confiança
+                </span>
+
+                <strong id="bestConfidence">
+                  --
+                </strong>
+
+                <small id="bestConfidenceName">
+                  Aguardando dados
+                </small>
+
               </article>
 
               <article class="summary-card">
-                <span>Melhor custo-benefício</span>
-                <strong id="bestValue">--</strong>
-                <small id="bestValueName">Aguardando dados</small>
+
+                <span>
+                  Melhor custo-benefício
+                </span>
+
+                <strong id="bestValue">
+                  --
+                </strong>
+
+                <small id="bestValueName">
+                  Aguardando dados
+                </small>
+
               </article>
 
             </div>
 
           </div>
 
+
           <div class="section-header">
 
             <div>
+
               <p class="section-label">
                 RANKING POR POSIÇÃO
               </p>
@@ -216,6 +324,7 @@
               <h2>
                 Jogadores recomendados
               </h2>
+
             </div>
 
             <div
@@ -226,23 +335,34 @@
 
           </div>
 
+
           <div
             class="players-grid"
             id="playersGrid"
           >
+
             <div class="empty-state">
-              <strong>Recomendações em construção</strong>
+
+              <strong>
+                Carregando recomendações
+              </strong>
 
               <p>
-                Na próxima etapa, adicionaremos os jogadores,
-                projeções e justificativas.
+                O sistema está organizando
+                jogadores, projeções e justificativas.
               </p>
+
             </div>
+
           </div>
 
         </section>
 
-        <!-- ABA TIMES SUGERIDOS -->
+
+        <!-- =================================================
+             ABA TIMES SUGERIDOS
+             ================================================= -->
+
         <section
           class="tab-content"
           id="times"
@@ -251,6 +371,7 @@
           <div class="section-header">
 
             <div>
+
               <p class="section-label">
                 OTIMIZAÇÃO DE ESCALAÇÃO
               </p>
@@ -258,156 +379,2547 @@
               <h2>
                 Times sugeridos
               </h2>
+
             </div>
 
           </div>
 
+
           <div class="strategy-grid">
 
             <article class="strategy-card">
-              <span class="strategy-tag">Segurança</span>
 
-              <h3>Conservador</h3>
+              <span class="strategy-tag">
+                Segurança
+              </span>
+
+              <h3>
+                Conservador
+              </h3>
 
               <p>
-                Prioriza jogadores regulares, com bom piso,
-                alta confiança e menor risco de pontuação negativa.
+                Prioriza jogadores regulares,
+                com bom piso, alta confiança,
+                provável titularidade e menor
+                risco de pontuação negativa.
               </p>
+
             </article>
 
             <article class="strategy-card">
-              <span class="strategy-tag">Equilíbrio</span>
 
-              <h3>Equilibrado</h3>
+              <span class="strategy-tag">
+                Equilíbrio
+              </span>
+
+              <h3>
+                Equilibrado
+              </h3>
 
               <p>
-                Combina segurança, teto, custo-benefício
-                e exposição moderada aos favoritos.
+                Combina segurança, projeção,
+                teto, custo-benefício e exposição
+                moderada aos clubes favoritos.
               </p>
+
             </article>
 
             <article class="strategy-card">
-              <span class="strategy-tag">Teto</span>
 
-              <h3>Agressivo</h3>
+              <span class="strategy-tag">
+                Teto
+              </span>
+
+              <h3>
+                Agressivo
+              </h3>
 
               <p>
-                Busca jogadores de alto teto, diferenciais
-                e confrontos com maior possibilidade de pontuação.
+                Busca jogadores de alto teto,
+                diferenciais, bolas paradas
+                e confrontos com maior possibilidade
+                de pontuação elevada.
               </p>
+
             </article>
 
           </div>
 
+
           <div class="empty-state">
-            <strong>Escalações em construção</strong>
+
+            <strong>
+              Escalações em construção
+            </strong>
 
             <p>
-              Cada escalação terá formação, custo, projeção,
-              piso, teto, capitão, banco, Reserva de Luxo
+              Cada escalação terá formação,
+              custo, projeção, piso, teto,
+              capitão, banco, Reserva de Luxo
               e justificativas.
             </p>
+
           </div>
 
         </section>
 
-        <!-- ABA METODOLOGIA -->
+
+        <!-- =================================================
+             ABA METODOLOGIA
+             ================================================= -->
+
         <section
           class="tab-content"
           id="metodologia"
         >
 
+          <!-- INTRODUÇÃO -->
+
           <div class="methodology-intro">
 
             <p class="section-label">
-              TRANSPARÊNCIA
+              TRANSPARÊNCIA DO MODELO
             </p>
 
             <h2>
-              Como o modelo fará as recomendações
+              Como o Cartola Estatístico
+              chega às recomendações
             </h2>
 
             <p>
-              O sistema não recomendará jogadores apenas
-              pela média geral. Cada atleta será analisado
-              a partir de diferentes fatores estatísticos.
+              O sistema não recomenda jogadores
+              apenas pela média geral ou pelo nome.
+              Cada atleta é avaliado por diferentes
+              indicadores de desempenho, regularidade,
+              confronto, titularidade, risco e potencial
+              de pontuação.
             </p>
 
           </div>
 
-          <div class="methodology-grid">
 
-            <article class="methodology-card">
-              <span>01</span>
+          <!-- INDICADORES GERAIS -->
 
-              <h3>Desempenho recente</h3>
+          <div class="methodology-summary">
 
-              <p>
-                Média, mediana, regularidade e evolução
-                nas últimas rodadas.
-              </p>
+            <article class="methodology-summary-card">
+
+              <span>
+                Blocos principais
+              </span>
+
+              <strong>
+                12
+              </strong>
+
+              <small>
+                Áreas de análise do modelo
+              </small>
+
             </article>
 
-            <article class="methodology-card">
-              <span>02</span>
+            <article class="methodology-summary-card">
 
-              <h3>Confronto</h3>
+              <span>
+                Indicadores avaliados
+              </span>
 
-              <p>
-                Mando, força do adversário e pontos cedidos
-                para cada posição.
-              </p>
+              <strong>
+                30+
+              </strong>
+
+              <small>
+                Variáveis individuais e coletivas
+              </small>
+
             </article>
 
-            <article class="methodology-card">
-              <span>03</span>
+            <article class="methodology-summary-card">
 
-              <h3>Scouts</h3>
+              <span>
+                Resultados por jogador
+              </span>
 
-              <p>
-                Gols, assistências, finalizações, desarmes,
-                faltas sofridas e demais ações.
-              </p>
+              <strong>
+                6
+              </strong>
+
+              <small>
+                Nota, projeção, piso, teto,
+                risco e confiança
+              </small>
+
             </article>
 
-            <article class="methodology-card">
-              <span>04</span>
+            <article class="methodology-summary-card">
 
-              <h3>Risco e confiança</h3>
+              <span>
+                Estratégias de escalação
+              </span>
 
-              <p>
-                Chance de negativar, titularidade,
-                minutos esperados e qualidade dos dados.
-              </p>
-            </article>
+              <strong>
+                3
+              </strong>
 
-            <article class="methodology-card">
-              <span>05</span>
+              <small>
+                Conservadora, equilibrada
+                e agressiva
+              </small>
 
-              <h3>Projeção</h3>
-
-              <p>
-                Estimativa central, piso esperado
-                e teto possível para a rodada.
-              </p>
-            </article>
-
-            <article class="methodology-card">
-              <span>06</span>
-
-              <h3>Justificativa</h3>
-
-              <p>
-                Cada escolha mostrará os fatores positivos
-                e os principais pontos de atenção.
-              </p>
             </article>
 
           </div>
 
+
+          <!-- AVISO -->
+
+          <div class="methodology-notice">
+
+            <div class="methodology-notice-icon">
+              i
+            </div>
+
+            <div>
+
+              <strong>
+                Modelo em evolução
+              </strong>
+
+              <p>
+                Os pesos apresentados nesta primeira
+                versão são uma proposta inicial.
+                Eles serão testados e calibrados
+                com o histórico real do Cartola.
+                Os pesos também poderão variar
+                de acordo com a posição.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- FLUXO DA ANÁLISE -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                01
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  FLUXO COMPLETO
+                </p>
+
+                <h3>
+                  Da coleta dos dados
+                  até a recomendação
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-flow">
+
+              <article class="methodology-flow-step">
+
+                <span>
+                  1
+                </span>
+
+                <strong>
+                  Dados da rodada
+                </strong>
+
+                <p>
+                  Jogadores disponíveis, preços,
+                  status, partidas e mandos.
+                </p>
+
+              </article>
+
+              <div class="methodology-flow-arrow">
+                →
+              </div>
+
+              <article class="methodology-flow-step">
+
+                <span>
+                  2
+                </span>
+
+                <strong>
+                  Histórico
+                </strong>
+
+                <p>
+                  Pontuações, minutos,
+                  scouts e desempenho recente.
+                </p>
+
+              </article>
+
+              <div class="methodology-flow-arrow">
+                →
+              </div>
+
+              <article class="methodology-flow-step">
+
+                <span>
+                  3
+                </span>
+
+                <strong>
+                  Confronto
+                </strong>
+
+                <p>
+                  Força do adversário,
+                  mando e pontos cedidos.
+                </p>
+
+              </article>
+
+              <div class="methodology-flow-arrow">
+                →
+              </div>
+
+              <article class="methodology-flow-step">
+
+                <span>
+                  4
+                </span>
+
+                <strong>
+                  Cálculos
+                </strong>
+
+                <p>
+                  Notas parciais, projeção,
+                  piso, teto, risco e confiança.
+                </p>
+
+              </article>
+
+              <div class="methodology-flow-arrow">
+                →
+              </div>
+
+              <article class="methodology-flow-step">
+
+                <span>
+                  5
+                </span>
+
+                <strong>
+                  Resultado
+                </strong>
+
+                <p>
+                  Ranking, escalações
+                  e justificativas.
+                </p>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+          <!-- OS 12 BLOCOS -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                02
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  MOTOR ESTATÍSTICO
+                </p>
+
+                <h3>
+                  Os 12 blocos de análise
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-details-grid">
+
+              <!-- BLOCO 1 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    01
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Forma recente
+                    </strong>
+
+                    <small>
+                      Momento atual do jogador
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    O sistema compara o desempenho
+                    das últimas rodadas para identificar
+                    se o jogador está evoluindo,
+                    mantendo regularidade ou apresentando
+                    queda de rendimento.
+                  </p>
+
+                  <h4>
+                    Dados considerados
+                  </h4>
+
+                  <ul>
+                    <li>
+                      Últimas 3 rodadas.
+                    </li>
+
+                    <li>
+                      Últimas 5 rodadas.
+                    </li>
+
+                    <li>
+                      Últimas 10 rodadas.
+                    </li>
+
+                    <li>
+                      Média recente.
+                    </li>
+
+                    <li>
+                      Tendência de crescimento ou queda.
+                    </li>
+                  </ul>
+
+                  <div class="methodology-example">
+
+                    <strong>
+                      Exemplo
+                    </strong>
+
+                    <p>
+                      Um jogador com sequência
+                      3, 5, 7, 8 e 10 está crescendo.
+                      Outro com 10, 8, 7, 5 e 3
+                      está caindo, embora os dois
+                      tenham média semelhante.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 2 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    02
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Média, mediana e regularidade
+                    </strong>
+
+                    <small>
+                      Estabilidade da pontuação
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    A média sozinha pode esconder
+                    oscilações. Por isso, o sistema
+                    também observa mediana,
+                    frequência de pontuações ruins
+                    e estabilidade.
+                  </p>
+
+                  <h4>
+                    Dados considerados
+                  </h4>
+
+                  <ul>
+                    <li>
+                      Média geral.
+                    </li>
+
+                    <li>
+                      Média recente.
+                    </li>
+
+                    <li>
+                      Mediana.
+                    </li>
+
+                    <li>
+                      Desvio das pontuações.
+                    </li>
+
+                    <li>
+                      Frequência de negativação.
+                    </li>
+
+                    <li>
+                      Frequência acima de 5 e 10 pontos.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 3 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    03
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Pontuação básica
+                    </strong>
+
+                    <small>
+                      Pontos sem scouts decisivos
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    A pontuação básica mede quanto
+                    o jogador consegue produzir
+                    sem depender diretamente de gol,
+                    assistência ou saldo de gols.
+                  </p>
+
+                  <h4>
+                    Exemplos por posição
+                  </h4>
+
+                  <ul>
+                    <li>
+                      Goleiros: defesas.
+                    </li>
+
+                    <li>
+                      Laterais: desarmes,
+                      cruzamentos e faltas sofridas.
+                    </li>
+
+                    <li>
+                      Zagueiros: desarmes
+                      e ações defensivas.
+                    </li>
+
+                    <li>
+                      Meias: desarmes,
+                      finalizações e faltas sofridas.
+                    </li>
+
+                    <li>
+                      Atacantes: finalizações
+                      e faltas sofridas.
+                    </li>
+                  </ul>
+
+                  <p>
+                    Esse bloco tem grande influência
+                    no cálculo do piso.
+                  </p>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 4 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    04
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Scouts decisivos
+                    </strong>
+
+                    <small>
+                      Potencial de pontuação alta
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    Scouts decisivos aumentam
+                    significativamente o teto
+                    do jogador.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Gols.
+                    </li>
+
+                    <li>
+                      Assistências.
+                    </li>
+
+                    <li>
+                      Pênaltis defendidos.
+                    </li>
+
+                    <li>
+                      Saldo de gols.
+                    </li>
+
+                    <li>
+                      Participação direta em gols.
+                    </li>
+
+                    <li>
+                      Bolas paradas.
+                    </li>
+
+                    <li>
+                      Cobranças de pênalti.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 5 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    05
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Casa e fora
+                    </strong>
+
+                    <small>
+                      Efeito real do mando
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    O modelo não considera apenas
+                    que um jogador atua em casa.
+                    Ele compara o desempenho real
+                    do atleta e do clube em cada contexto.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Média do jogador em casa.
+                    </li>
+
+                    <li>
+                      Média do jogador fora.
+                    </li>
+
+                    <li>
+                      Ataque do clube como mandante.
+                    </li>
+
+                    <li>
+                      Defesa do clube como visitante.
+                    </li>
+
+                    <li>
+                      Comportamento do adversário
+                      no mesmo contexto.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 6 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    06
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Força do adversário
+                    </strong>
+
+                    <small>
+                      Dificuldade do confronto
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    Um jogador em boa fase pode perder
+                    posições no ranking caso enfrente
+                    um adversário muito forte.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Força ofensiva.
+                    </li>
+
+                    <li>
+                      Força defensiva.
+                    </li>
+
+                    <li>
+                      Gols marcados e sofridos.
+                    </li>
+
+                    <li>
+                      Finalizações permitidas.
+                    </li>
+
+                    <li>
+                      Desarmes permitidos.
+                    </li>
+
+                    <li>
+                      Desempenho recente.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 7 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    07
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Pontos cedidos por posição
+                    </strong>
+
+                    <small>
+                      Fragilidades específicas
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    O sistema mede quanto cada clube
+                    costuma permitir para jogadores
+                    adversários de cada posição.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Pontos cedidos a goleiros.
+                    </li>
+
+                    <li>
+                      Pontos cedidos a laterais.
+                    </li>
+
+                    <li>
+                      Pontos cedidos a zagueiros.
+                    </li>
+
+                    <li>
+                      Pontos cedidos a meias.
+                    </li>
+
+                    <li>
+                      Pontos cedidos a atacantes.
+                    </li>
+
+                    <li>
+                      Pontos cedidos a treinadores.
+                    </li>
+                  </ul>
+
+                  <div class="methodology-example">
+
+                    <strong>
+                      Exemplo
+                    </strong>
+
+                    <p>
+                      Um clube pode defender bem
+                      no geral, mas permitir muitos
+                      desarmes e cruzamentos
+                      aos laterais adversários.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 8 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    08
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Probabilidade de SG
+                    </strong>
+
+                    <small>
+                      Chance de não sofrer gol
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    A estimativa de saldo de gols
+                    combina informações defensivas
+                    e ofensivas dos dois clubes.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Força defensiva do clube.
+                    </li>
+
+                    <li>
+                      Força ofensiva adversária.
+                    </li>
+
+                    <li>
+                      Mando de campo.
+                    </li>
+
+                    <li>
+                      Gols marcados e sofridos.
+                    </li>
+
+                    <li>
+                      Desfalques.
+                    </li>
+
+                    <li>
+                      Provável escalação.
+                    </li>
+                  </ul>
+
+                  <p>
+                    Esse fator pesa mais para goleiros,
+                    laterais, zagueiros e treinadores.
+                  </p>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 9 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    09
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Titularidade e minutos
+                    </strong>
+
+                    <small>
+                      Tempo provável em campo
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    Um jogador projetado para atuar
+                    60 minutos não deve receber
+                    a mesma expectativa de outro
+                    que costuma jogar a partida inteira.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Status provável.
+                    </li>
+
+                    <li>
+                      Histórico como titular.
+                    </li>
+
+                    <li>
+                      Média de minutos.
+                    </li>
+
+                    <li>
+                      Chance de substituição.
+                    </li>
+
+                    <li>
+                      Retorno de lesão.
+                    </li>
+
+                    <li>
+                      Disputa pela posição.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 10 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    10
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Custo-benefício
+                    </strong>
+
+                    <small>
+                      Pontuação esperada por preço
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <p>
+                    O cálculo inicial compara a projeção
+                    do jogador com seu preço.
+                  </p>
+
+                  <div class="methodology-formula">
+
+                    <span>
+                      Custo-benefício
+                    </span>
+
+                    <strong>
+                      Projeção ÷ Preço
+                    </strong>
+
+                  </div>
+
+                  <p>
+                    O resultado não será usado sozinho.
+                    Também serão observados piso,
+                    risco, confiança e titularidade.
+                  </p>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 11 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    11
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Projeção, piso e teto
+                    </strong>
+
+                    <small>
+                      Três cenários possíveis
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <div class="methodology-scenarios">
+
+                    <article>
+
+                      <span>
+                        Piso
+                      </span>
+
+                      <strong>
+                        Cenário ruim
+                      </strong>
+
+                      <p>
+                        Pontuação básica,
+                        regularidade, minutos
+                        e risco de negativação.
+                      </p>
+
+                    </article>
+
+                    <article>
+
+                      <span>
+                        Projeção
+                      </span>
+
+                      <strong>
+                        Cenário central
+                      </strong>
+
+                      <p>
+                        Resultado mais provável
+                        considerando todos os fatores.
+                      </p>
+
+                    </article>
+
+                    <article>
+
+                      <span>
+                        Teto
+                      </span>
+
+                      <strong>
+                        Cenário excelente
+                      </strong>
+
+                      <p>
+                        Scouts decisivos,
+                        favoritismo e fragilidade
+                        do adversário.
+                      </p>
+
+                    </article>
+
+                  </div>
+
+                </div>
+
+              </details>
+
+
+              <!-- BLOCO 12 -->
+
+              <details class="methodology-detail-card">
+
+                <summary>
+
+                  <span class="methodology-detail-number">
+                    12
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      Risco e confiança
+                    </strong>
+
+                    <small>
+                      Conceitos diferentes
+                    </small>
+
+                  </div>
+
+                  <span class="methodology-detail-plus">
+                    +
+                  </span>
+
+                </summary>
+
+                <div class="methodology-detail-content">
+
+                  <h4>
+                    Risco
+                  </h4>
+
+                  <p>
+                    Mede a possibilidade de o jogador
+                    pontuar muito abaixo da projeção.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Oscilação elevada.
+                    </li>
+
+                    <li>
+                      Dependência de gol.
+                    </li>
+
+                    <li>
+                      Confronto difícil.
+                    </li>
+
+                    <li>
+                      Poucos minutos esperados.
+                    </li>
+
+                    <li>
+                      Histórico de cartões.
+                    </li>
+                  </ul>
+
+                  <h4>
+                    Confiança
+                  </h4>
+
+                  <p>
+                    Mede a qualidade e a estabilidade
+                    das informações disponíveis.
+                  </p>
+
+                  <ul>
+                    <li>
+                      Quantidade de partidas analisadas.
+                    </li>
+
+                    <li>
+                      Segurança da titularidade.
+                    </li>
+
+                    <li>
+                      Qualidade dos dados.
+                    </li>
+
+                    <li>
+                      Mudanças recentes de função.
+                    </li>
+                  </ul>
+
+                </div>
+
+              </details>
+
+            </div>
+
+          </section>
+
+
+          <!-- MÉDIA E MEDIANA -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                03
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  EXEMPLO PRÁTICO
+                </p>
+
+                <h3>
+                  Por que média e mediana
+                  devem ser analisadas juntas
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="average-example-grid">
+
+              <article class="average-example-card volatile">
+
+                <span class="average-example-label">
+                  Jogador A
+                </span>
+
+                <div class="average-values">
+
+                  <span>
+                    2
+                  </span>
+
+                  <span>
+                    2
+                  </span>
+
+                  <span>
+                    2
+                  </span>
+
+                  <span>
+                    2
+                  </span>
+
+                  <span>
+                    17
+                  </span>
+
+                </div>
+
+                <div class="average-results">
+
+                  <p>
+                    Média
+                    <strong>
+                      5
+                    </strong>
+                  </p>
+
+                  <p>
+                    Mediana
+                    <strong>
+                      2
+                    </strong>
+                  </p>
+
+                </div>
+
+                <small>
+                  Alta dependência de uma pontuação fora da curva.
+                </small>
+
+              </article>
+
+
+              <article class="average-example-card regular">
+
+                <span class="average-example-label">
+                  Jogador B
+                </span>
+
+                <div class="average-values">
+
+                  <span>
+                    5
+                  </span>
+
+                  <span>
+                    5
+                  </span>
+
+                  <span>
+                    5
+                  </span>
+
+                  <span>
+                    5
+                  </span>
+
+                  <span>
+                    5
+                  </span>
+
+                </div>
+
+                <div class="average-results">
+
+                  <p>
+                    Média
+                    <strong>
+                      5
+                    </strong>
+                  </p>
+
+                  <p>
+                    Mediana
+                    <strong>
+                      5
+                    </strong>
+                  </p>
+
+                </div>
+
+                <small>
+                  Pontuação mais estável e previsível.
+                </small>
+
+              </article>
+
+            </div>
+
+
+            <div class="methodology-conclusion">
+
+              <strong>
+                Conclusão
+              </strong>
+
+              <p>
+                Os dois jogadores têm média 5,
+                mas o Jogador B é mais regular.
+                O Jogador A tem teto alto,
+                porém maior risco de pontuação baixa.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- PESOS -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                04
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  NOTA FINAL
+                </p>
+
+                <h3>
+                  Pesos iniciais do MVP
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-weights">
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Forma recente e regularidade
+                  </span>
+
+                  <strong>
+                    24%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 24%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Confronto e mando
+                  </span>
+
+                  <strong>
+                    20%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 20%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Scouts básicos
+                  </span>
+
+                  <strong>
+                    18%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 18%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Participação ofensiva ou defensiva
+                  </span>
+
+                  <strong>
+                    14%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 14%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Titularidade e minutos
+                  </span>
+
+                  <strong>
+                    10%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 10%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Probabilidade de SG
+                  </span>
+
+                  <strong>
+                    7%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 7%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Custo-benefício
+                  </span>
+
+                  <strong>
+                    4%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 4%;"></span>
+
+                </div>
+
+              </article>
+
+              <article class="methodology-weight-row">
+
+                <div>
+
+                  <span>
+                    Bolas paradas e pênaltis
+                  </span>
+
+                  <strong>
+                    3%
+                  </strong>
+
+                </div>
+
+                <div class="methodology-weight-track">
+
+                  <span style="width: 3%;"></span>
+
+                </div>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+          <!-- EXEMPLO MATEMÁTICO -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                05
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  CÁLCULO DEMONSTRATIVO
+                </p>
+
+                <h3>
+                  Exemplo de nota ponderada
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-calculation">
+
+              <div class="calculation-table">
+
+                <div class="calculation-header">
+
+                  <span>
+                    Componente
+                  </span>
+
+                  <span>
+                    Nota
+                  </span>
+
+                  <span>
+                    Peso
+                  </span>
+
+                  <span>
+                    Resultado
+                  </span>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Forma recente
+                  </span>
+
+                  <span>
+                    90
+                  </span>
+
+                  <span>
+                    24%
+                  </span>
+
+                  <strong>
+                    21,60
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Confronto
+                  </span>
+
+                  <span>
+                    85
+                  </span>
+
+                  <span>
+                    20%
+                  </span>
+
+                  <strong>
+                    17,00
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Scouts básicos
+                  </span>
+
+                  <span>
+                    80
+                  </span>
+
+                  <span>
+                    18%
+                  </span>
+
+                  <strong>
+                    14,40
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Participação
+                  </span>
+
+                  <span>
+                    88
+                  </span>
+
+                  <span>
+                    14%
+                  </span>
+
+                  <strong>
+                    12,32
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Titularidade
+                  </span>
+
+                  <span>
+                    95
+                  </span>
+
+                  <span>
+                    10%
+                  </span>
+
+                  <strong>
+                    9,50
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Chance de SG
+                  </span>
+
+                  <span>
+                    60
+                  </span>
+
+                  <span>
+                    7%
+                  </span>
+
+                  <strong>
+                    4,20
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Custo-benefício
+                  </span>
+
+                  <span>
+                    75
+                  </span>
+
+                  <span>
+                    4%
+                  </span>
+
+                  <strong>
+                    3,00
+                  </strong>
+
+                </div>
+
+                <div class="calculation-row">
+
+                  <span>
+                    Bolas paradas
+                  </span>
+
+                  <span>
+                    100
+                  </span>
+
+                  <span>
+                    3%
+                  </span>
+
+                  <strong>
+                    3,00
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="calculation-result">
+
+                <span>
+                  Nota final
+                </span>
+
+                <strong>
+                  85,02
+                </strong>
+
+                <small>
+                  em uma escala de 0 a 100
+                </small>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-formula-explanation">
+
+              <strong>
+                Como funciona
+              </strong>
+
+              <p>
+                Cada componente recebe uma nota
+                entre 0 e 100. Essa nota é multiplicada
+                pelo peso correspondente. A soma
+                de todos os resultados forma
+                a nota final do jogador.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- RANKING -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                06
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  CLASSIFICAÇÃO
+                </p>
+
+                <h3>
+                  Como o ranking é formado
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="ranking-rules">
+
+              <article>
+
+                <span>
+                  1
+                </span>
+
+                <p>
+                  Excluir jogadores sem segurança
+                  mínima de titularidade.
+                </p>
+
+              </article>
+
+              <article>
+
+                <span>
+                  2
+                </span>
+
+                <p>
+                  Separar os atletas por posição.
+                </p>
+
+              </article>
+
+              <article>
+
+                <span>
+                  3
+                </span>
+
+                <p>
+                  Ordenar pela nota final.
+                </p>
+
+              </article>
+
+              <article>
+
+                <span>
+                  4
+                </span>
+
+                <p>
+                  Usar projeção e confiança
+                  como critérios de desempate.
+                </p>
+
+              </article>
+
+              <article>
+
+                <span>
+                  5
+                </span>
+
+                <p>
+                  Aplicar o limite de recomendações
+                  de cada posição.
+                </p>
+
+              </article>
+
+              <article>
+
+                <span>
+                  6
+                </span>
+
+                <p>
+                  Gerar justificativas e pontos
+                  de atenção.
+                </p>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+          <!-- TIMES -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                07
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  ESCALAÇÕES
+                </p>
+
+                <h3>
+                  Como os três times serão montados
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="lineup-methodology-grid">
+
+              <article class="lineup-methodology-card conservative">
+
+                <span class="lineup-methodology-tag">
+                  Conservador
+                </span>
+
+                <h4>
+                  Prioriza segurança
+                </h4>
+
+                <ul>
+                  <li>
+                    Piso alto.
+                  </li>
+
+                  <li>
+                    Regularidade.
+                  </li>
+
+                  <li>
+                    Alta confiança.
+                  </li>
+
+                  <li>
+                    Titularidade segura.
+                  </li>
+
+                  <li>
+                    Menor risco.
+                  </li>
+
+                  <li>
+                    Boa chance de SG.
+                  </li>
+                </ul>
+
+              </article>
+
+              <article class="lineup-methodology-card balanced">
+
+                <span class="lineup-methodology-tag">
+                  Equilibrado
+                </span>
+
+                <h4>
+                  Combina segurança e teto
+                </h4>
+
+                <ul>
+                  <li>
+                    Boa projeção.
+                  </li>
+
+                  <li>
+                    Custo-benefício.
+                  </li>
+
+                  <li>
+                    Piso competitivo.
+                  </li>
+
+                  <li>
+                    Teto relevante.
+                  </li>
+
+                  <li>
+                    Distribuição entre clubes.
+                  </li>
+
+                  <li>
+                    Patrimônio equilibrado.
+                  </li>
+                </ul>
+
+              </article>
+
+              <article class="lineup-methodology-card aggressive">
+
+                <span class="lineup-methodology-tag">
+                  Agressivo
+                </span>
+
+                <h4>
+                  Prioriza pontuação máxima
+                </h4>
+
+                <ul>
+                  <li>
+                    Teto elevado.
+                  </li>
+
+                  <li>
+                    Scouts decisivos.
+                  </li>
+
+                  <li>
+                    Diferenciais.
+                  </li>
+
+                  <li>
+                    Jogos abertos.
+                  </li>
+
+                  <li>
+                    Cobradores de pênalti.
+                  </li>
+
+                  <li>
+                    Maior variação aceita.
+                  </li>
+                </ul>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+          <!-- CAPITÃO E BANCO -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                08
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  ESCOLHAS ESPECIAIS
+                </p>
+
+                <h3>
+                  Capitão, banco e Reserva de Luxo
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="special-choices-grid">
+
+              <article>
+
+                <div class="special-choice-icon">
+                  C
+                </div>
+
+                <h4>
+                  Capitão
+                </h4>
+
+                <p>
+                  Combina projeção, teto,
+                  confiança, favoritismo,
+                  participação ofensiva
+                  e minutos esperados.
+                </p>
+
+              </article>
+
+              <article>
+
+                <div class="special-choice-icon">
+                  R
+                </div>
+
+                <h4>
+                  Banco
+                </h4>
+
+                <p>
+                  Prioriza titularidade,
+                  preço, segurança,
+                  cobertura das posições
+                  e capacidade de substituição.
+                </p>
+
+              </article>
+
+              <article>
+
+                <div class="special-choice-icon">
+                  ★
+                </div>
+
+                <h4>
+                  Reserva de Luxo
+                </h4>
+
+                <p>
+                  Busca um reserva com boa projeção,
+                  preço permitido e capacidade real
+                  de substituir um titular.
+                </p>
+
+              </article>
+
+            </div>
+
+          </section>
+
+
+          <!-- JUSTIFICATIVAS -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                09
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  EXPLICAÇÕES AUTOMÁTICAS
+                </p>
+
+                <h3>
+                  Como as justificativas serão geradas
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="justification-methodology">
+
+              <div class="justification-methodology-positive">
+
+                <h4>
+                  Por que foi recomendado
+                </h4>
+
+                <ul>
+                  <li>
+                    Está entre os melhores
+                    em forma recente.
+                  </li>
+
+                  <li>
+                    Possui confronto favorável.
+                  </li>
+
+                  <li>
+                    Tem alta probabilidade
+                    de titularidade.
+                  </li>
+
+                  <li>
+                    Participa de bolas paradas.
+                  </li>
+
+                  <li>
+                    Apresenta bom custo-benefício.
+                  </li>
+                </ul>
+
+              </div>
+
+              <div class="justification-methodology-warning">
+
+                <h4>
+                  Pontos de atenção
+                </h4>
+
+                <ul>
+                  <li>
+                    Preço elevado.
+                  </li>
+
+                  <li>
+                    Dependência de scouts decisivos.
+                  </li>
+
+                  <li>
+                    Oscilação recente.
+                  </li>
+
+                  <li>
+                    Dúvida de minutos.
+                  </li>
+
+                  <li>
+                    Confronto de maior risco.
+                  </li>
+                </ul>
+
+              </div>
+
+            </div>
+
+
+            <div class="methodology-conclusion">
+
+              <strong>
+                Regra central
+              </strong>
+
+              <p>
+                As justificativas serão criadas
+                diretamente a partir dos fatores
+                usados nos cálculos. Por isso,
+                os textos mudarão junto com
+                os dados de cada rodada.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- ATUALIZAÇÃO DA RODADA -->
+
+          <section class="methodology-section">
+
+            <div class="methodology-section-header">
+
+              <span class="methodology-section-number">
+                10
+              </span>
+
+              <div>
+
+                <p class="section-label">
+                  NOVA RODADA
+                </p>
+
+                <h3>
+                  Tudo será recalculado
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="round-update-grid">
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Jogadores disponíveis e preços.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Partidas, mandos e adversários.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Prováveis titulares e minutos.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Forma recente e regularidade.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Scouts e desempenho das equipes.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Força ofensiva e defensiva.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Projeção, piso e teto.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Risco e confiança.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Rankings por posição.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Três escalações sugeridas.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Capitão, banco e Reserva de Luxo.
+                </p>
+              </article>
+
+              <article>
+                <span>
+                  ✓
+                </span>
+
+                <p>
+                  Todas as justificativas.
+                </p>
+              </article>
+
+            </div>
+
+
+            <div class="methodology-final-message">
+
+              <span>
+                ∑
+              </span>
+
+              <div>
+
+                <strong>
+                  Nenhuma rodada será apenas copiada
+                  da anterior
+                </strong>
+
+                <p>
+                  Confrontos, jogadores, preços
+                  e momento das equipes mudam.
+                  Por isso, todas as notas,
+                  recomendações e escalações
+                  deverão ser processadas novamente.
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
         </section>
 
-        <!-- ABA ANÁLISE DA RODADA -->
+
+        <!-- =================================================
+             ABA ANÁLISE DA RODADA
+             ================================================= -->
+
         <section
           class="tab-content"
           id="analise"
@@ -416,6 +2928,7 @@
           <div class="section-header">
 
             <div>
+
               <p class="section-label">
                 LEITURA DOS CONFRONTOS
               </p>
@@ -423,46 +2936,93 @@
               <h2>
                 Análise da rodada
               </h2>
+
             </div>
 
           </div>
 
+
           <div class="analysis-summary">
 
             <article class="analysis-card">
-              <span>Melhor ataque</span>
-              <strong>--</strong>
-              <small>Aguardando dados</small>
+
+              <span>
+                Melhor ataque
+              </span>
+
+              <strong>
+                --
+              </strong>
+
+              <small>
+                Aguardando dados
+              </small>
+
             </article>
 
             <article class="analysis-card">
-              <span>Maior chance de SG</span>
-              <strong>--</strong>
-              <small>Aguardando dados</small>
+
+              <span>
+                Maior chance de SG
+              </span>
+
+              <strong>
+                --
+              </strong>
+
+              <small>
+                Aguardando dados
+              </small>
+
             </article>
 
             <article class="analysis-card">
-              <span>Jogo mais aberto</span>
-              <strong>--</strong>
-              <small>Aguardando dados</small>
+
+              <span>
+                Jogo mais aberto
+              </span>
+
+              <strong>
+                --
+              </strong>
+
+              <small>
+                Aguardando dados
+              </small>
+
             </article>
 
             <article class="analysis-card">
-              <span>Posição em destaque</span>
-              <strong>--</strong>
-              <small>Aguardando dados</small>
+
+              <span>
+                Posição em destaque
+              </span>
+
+              <strong>
+                --
+              </strong>
+
+              <small>
+                Aguardando dados
+              </small>
+
             </article>
 
           </div>
 
+
           <div class="empty-state">
-            <strong>Análise dos jogos em construção</strong>
+
+            <strong>
+              Análise dos jogos em construção
+            </strong>
 
             <p>
-              Aqui serão exibidos os confrontos, mandos,
-              forças ofensivas e defensivas, chance de SG
-              e posições favorecidas.
+              Aqui serão exibidos os confrontos,
+              mandos, forças ofensivas e defensivas,
+              chance de SG e posições favorecidas.
             </p>
+
           </div>
 
         </section>
@@ -473,13 +3033,19 @@
 
   </div>
 
-  <!-- FUNDO ESCURO DO MENU NO CELULAR -->
+
+  <!-- =====================================================
+       FUNDO DO MENU NO CELULAR
+       ===================================================== -->
+
   <div
     class="sidebar-overlay"
     id="sidebarOverlay"
   >
   </div>
 
+
   <script src="js/app.js"></script>
+
 </body>
 </html>
