@@ -1,7 +1,13 @@
+/* =========================================================
+   CARTOLA ESTATÍSTICO
+   Inicialização principal da aplicação
+   ========================================================= */
+
 document.addEventListener(
   "DOMContentLoaded",
   inicializarAplicacao
 );
+
 
 async function inicializarAplicacao() {
   configurarInterface();
@@ -11,4 +17,8 @@ async function inicializarAplicacao() {
     carregarJogadores(),
     carregarEscalacoes()
   ]);
+
+  console.info(
+    "Cartola Estatístico inicializado com sucesso."
+  );
 }
