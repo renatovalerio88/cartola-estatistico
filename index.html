@@ -8,23 +8,477 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+  <meta
+    name="description"
+    content="Cartola Estatístico: recomendações, escalações e análises estatísticas do Cartola."
+  >
+
+  <meta name="theme-color" content="#10281d">
+
   <title>Cartola Estatístico</title>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <main>
-    <h1>Cartola Estatístico</h1>
+  <div class="app">
 
-    <p>
-      Projeto criado com sucesso.
-    </p>
+    <!-- MENU LATERAL -->
+    <aside class="sidebar" id="sidebar">
 
-    <p>
-      Em breve: recomendações, escalações e análise da rodada.
-    </p>
-  </main>
+      <div class="logo-area">
+        <div class="logo-symbol">
+          CE
+        </div>
+
+        <div class="logo-text">
+          <strong>Cartola Estatístico</strong>
+          <span>Decisões orientadas por dados</span>
+        </div>
+      </div>
+
+      <nav class="menu" aria-label="Navegação principal">
+
+        <button
+          class="menu-item active"
+          type="button"
+          data-tab="recomendacoes"
+        >
+          <span class="menu-icon">★</span>
+          <span>Recomendações</span>
+        </button>
+
+        <button
+          class="menu-item"
+          type="button"
+          data-tab="times"
+        >
+          <span class="menu-icon">♟</span>
+          <span>Times sugeridos</span>
+        </button>
+
+        <button
+          class="menu-item"
+          type="button"
+          data-tab="metodologia"
+        >
+          <span class="menu-icon">∑</span>
+          <span>Metodologia</span>
+        </button>
+
+        <button
+          class="menu-item"
+          type="button"
+          data-tab="analise"
+        >
+          <span class="menu-icon">⚔</span>
+          <span>Análise da rodada</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-info">
+        <strong>Versão inicial</strong>
+
+        <p>
+          O projeto ainda está sendo estruturado.
+          Os primeiros dados serão demonstrativos.
+        </p>
+      </div>
+
+    </aside>
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="main-area">
+
+      <!-- CABEÇALHO -->
+      <header class="topbar">
+
+        <div class="topbar-left">
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+            aria-label="Abrir menu"
+          >
+            ☰
+          </button>
+
+          <div>
+            <p class="topbar-label">
+              PAINEL DA RODADA
+            </p>
+
+            <h1 id="pageTitle">
+              Recomendações
+            </h1>
+          </div>
+
+        </div>
+
+        <div class="topbar-right">
+
+          <div class="round-box">
+            <span>Rodada</span>
+            <strong id="roundNumber">--</strong>
+          </div>
+
+          <button
+            class="theme-button"
+            id="themeButton"
+            type="button"
+            aria-label="Alternar modo claro e escuro"
+          >
+            ☾
+          </button>
+
+        </div>
+
+      </header>
+
+      <!-- CONTEÚDO -->
+      <main class="content">
+
+        <section class="status-bar">
+
+          <div>
+            <span class="status-dot"></span>
+
+            <strong id="statusText">
+              Carregando informações...
+            </strong>
+          </div>
+
+          <span id="lastUpdate">
+            Última atualização: --
+          </span>
+
+        </section>
+
+        <!-- ABA RECOMENDAÇÕES -->
+        <section
+          class="tab-content active"
+          id="recomendacoes"
+        >
+
+          <div class="hero">
+
+            <div class="hero-text">
+
+              <p class="section-label">
+                MODELO ESTATÍSTICO
+              </p>
+
+              <h2>
+                Melhores opções da rodada
+              </h2>
+
+              <p>
+                Ranking por posição com projeção, piso,
+                teto, risco, confiança e justificativa
+                individual para cada escolha.
+              </p>
+
+            </div>
+
+            <div class="hero-summary">
+
+              <article class="summary-card">
+                <span>Maior projeção</span>
+                <strong id="bestProjection">--</strong>
+                <small id="bestProjectionName">Aguardando dados</small>
+              </article>
+
+              <article class="summary-card">
+                <span>Maior confiança</span>
+                <strong id="bestConfidence">--</strong>
+                <small id="bestConfidenceName">Aguardando dados</small>
+              </article>
+
+              <article class="summary-card">
+                <span>Melhor custo-benefício</span>
+                <strong id="bestValue">--</strong>
+                <small id="bestValueName">Aguardando dados</small>
+              </article>
+
+            </div>
+
+          </div>
+
+          <div class="section-header">
+
+            <div>
+              <p class="section-label">
+                RANKING POR POSIÇÃO
+              </p>
+
+              <h2>
+                Jogadores recomendados
+              </h2>
+            </div>
+
+            <div
+              class="position-filters"
+              id="positionFilters"
+            >
+            </div>
+
+          </div>
+
+          <div
+            class="players-grid"
+            id="playersGrid"
+          >
+            <div class="empty-state">
+              <strong>Recomendações em construção</strong>
+
+              <p>
+                Na próxima etapa, adicionaremos os jogadores,
+                projeções e justificativas.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ABA TIMES SUGERIDOS -->
+        <section
+          class="tab-content"
+          id="times"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <p class="section-label">
+                OTIMIZAÇÃO DE ESCALAÇÃO
+              </p>
+
+              <h2>
+                Times sugeridos
+              </h2>
+            </div>
+
+          </div>
+
+          <div class="strategy-grid">
+
+            <article class="strategy-card">
+              <span class="strategy-tag">Segurança</span>
+
+              <h3>Conservador</h3>
+
+              <p>
+                Prioriza jogadores regulares, com bom piso,
+                alta confiança e menor risco de pontuação negativa.
+              </p>
+            </article>
+
+            <article class="strategy-card">
+              <span class="strategy-tag">Equilíbrio</span>
+
+              <h3>Equilibrado</h3>
+
+              <p>
+                Combina segurança, teto, custo-benefício
+                e exposição moderada aos favoritos.
+              </p>
+            </article>
+
+            <article class="strategy-card">
+              <span class="strategy-tag">Teto</span>
+
+              <h3>Agressivo</h3>
+
+              <p>
+                Busca jogadores de alto teto, diferenciais
+                e confrontos com maior possibilidade de pontuação.
+              </p>
+            </article>
+
+          </div>
+
+          <div class="empty-state">
+            <strong>Escalações em construção</strong>
+
+            <p>
+              Cada escalação terá formação, custo, projeção,
+              piso, teto, capitão, banco, Reserva de Luxo
+              e justificativas.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ABA METODOLOGIA -->
+        <section
+          class="tab-content"
+          id="metodologia"
+        >
+
+          <div class="methodology-intro">
+
+            <p class="section-label">
+              TRANSPARÊNCIA
+            </p>
+
+            <h2>
+              Como o modelo fará as recomendações
+            </h2>
+
+            <p>
+              O sistema não recomendará jogadores apenas
+              pela média geral. Cada atleta será analisado
+              a partir de diferentes fatores estatísticos.
+            </p>
+
+          </div>
+
+          <div class="methodology-grid">
+
+            <article class="methodology-card">
+              <span>01</span>
+
+              <h3>Desempenho recente</h3>
+
+              <p>
+                Média, mediana, regularidade e evolução
+                nas últimas rodadas.
+              </p>
+            </article>
+
+            <article class="methodology-card">
+              <span>02</span>
+
+              <h3>Confronto</h3>
+
+              <p>
+                Mando, força do adversário e pontos cedidos
+                para cada posição.
+              </p>
+            </article>
+
+            <article class="methodology-card">
+              <span>03</span>
+
+              <h3>Scouts</h3>
+
+              <p>
+                Gols, assistências, finalizações, desarmes,
+                faltas sofridas e demais ações.
+              </p>
+            </article>
+
+            <article class="methodology-card">
+              <span>04</span>
+
+              <h3>Risco e confiança</h3>
+
+              <p>
+                Chance de negativar, titularidade,
+                minutos esperados e qualidade dos dados.
+              </p>
+            </article>
+
+            <article class="methodology-card">
+              <span>05</span>
+
+              <h3>Projeção</h3>
+
+              <p>
+                Estimativa central, piso esperado
+                e teto possível para a rodada.
+              </p>
+            </article>
+
+            <article class="methodology-card">
+              <span>06</span>
+
+              <h3>Justificativa</h3>
+
+              <p>
+                Cada escolha mostrará os fatores positivos
+                e os principais pontos de atenção.
+              </p>
+            </article>
+
+          </div>
+
+        </section>
+
+        <!-- ABA ANÁLISE DA RODADA -->
+        <section
+          class="tab-content"
+          id="analise"
+        >
+
+          <div class="section-header">
+
+            <div>
+              <p class="section-label">
+                LEITURA DOS CONFRONTOS
+              </p>
+
+              <h2>
+                Análise da rodada
+              </h2>
+            </div>
+
+          </div>
+
+          <div class="analysis-summary">
+
+            <article class="analysis-card">
+              <span>Melhor ataque</span>
+              <strong>--</strong>
+              <small>Aguardando dados</small>
+            </article>
+
+            <article class="analysis-card">
+              <span>Maior chance de SG</span>
+              <strong>--</strong>
+              <small>Aguardando dados</small>
+            </article>
+
+            <article class="analysis-card">
+              <span>Jogo mais aberto</span>
+              <strong>--</strong>
+              <small>Aguardando dados</small>
+            </article>
+
+            <article class="analysis-card">
+              <span>Posição em destaque</span>
+              <strong>--</strong>
+              <small>Aguardando dados</small>
+            </article>
+
+          </div>
+
+          <div class="empty-state">
+            <strong>Análise dos jogos em construção</strong>
+
+            <p>
+              Aqui serão exibidos os confrontos, mandos,
+              forças ofensivas e defensivas, chance de SG
+              e posições favorecidas.
+            </p>
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- FUNDO ESCURO DO MENU NO CELULAR -->
+  <div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+  >
+  </div>
 
   <script src="js/app.js"></script>
 </body>
