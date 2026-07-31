@@ -1,0 +1,1303 @@
+[
+  {
+    "id": 1,
+    "nome": "Caio Muralha",
+    "apelido": "Caio Muralha",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "GOL",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 8.5,
+    "projecao": 7.3,
+    "piso": 4.0,
+    "teto": 11.0,
+    "mediaGeral": 6.8,
+    "mediaRecente": 7.5,
+    "mediana": 7.1,
+    "regularidade": 82,
+    "riscoNegativar": 8,
+    "confianca": "Alta",
+    "confiancaNumerica": 88,
+    "risco": "Baixo",
+    "custoBeneficio": 0.86,
+    "notaFinal": 87,
+    "titularidade": 96,
+    "minutosEsperados": 90,
+    "chanceSG": 48,
+    "scouts": {
+      "defesas": 4.8,
+      "defesasDificeis": 1.2,
+      "golsSofridos": 0.9,
+      "penaltisDefendidos": 0.1
+    },
+    "justificativas": [
+      "Boa combinação entre chance de saldo de gols e volume provável de defesas.",
+      "O adversário finaliza com frequência, criando oportunidades de scouts para o goleiro.",
+      "Atua em casa e possui alta probabilidade de jogar os 90 minutos."
+    ],
+    "pontosAtencao": [
+      "Um gol sofrido cedo reduz parte importante do piso.",
+      "A projeção depende de manter bom volume de defesas."
+    ],
+    "componentes": {
+      "Forma recente": 84,
+      "Confronto": 86,
+      "Scouts básicos": 88,
+      "Titularidade": 96,
+      "Custo-benefício": 82
+    }
+  },
+  {
+    "id": 2,
+    "nome": "Rafael Seguro",
+    "apelido": "Rafael Seguro",
+    "clube": "Aurora",
+    "siglaClube": "AUR",
+    "posicao": "GOL",
+    "adversario": "Estrela",
+    "mando": "Fora",
+    "preco": 7.0,
+    "projecao": 6.8,
+    "piso": 3.4,
+    "teto": 10.7,
+    "mediaGeral": 6.3,
+    "mediaRecente": 7.0,
+    "mediana": 6.6,
+    "regularidade": 77,
+    "riscoNegativar": 12,
+    "confianca": "Alta",
+    "confiancaNumerica": 84,
+    "risco": "Médio",
+    "custoBeneficio": 0.97,
+    "notaFinal": 82,
+    "titularidade": 95,
+    "minutosEsperados": 90,
+    "chanceSG": 31,
+    "scouts": {
+      "defesas": 5.2,
+      "defesasDificeis": 1.4,
+      "golsSofridos": 1.1,
+      "penaltisDefendidos": 0.0
+    },
+    "justificativas": [
+      "Apresenta bom volume médio de defesas e custo acessível.",
+      "O confronto tende a ser aberto, aumentando a chance de pontuação por defesas.",
+      "Tem sequência consistente como titular."
+    ],
+    "pontosAtencao": [
+      "Atua fora de casa.",
+      "A chance de saldo de gols é apenas moderada."
+    ],
+    "componentes": {
+      "Forma recente": 80,
+      "Confronto": 76,
+      "Scouts básicos": 90,
+      "Titularidade": 95,
+      "Custo-benefício": 91
+    }
+  },
+  {
+    "id": 3,
+    "nome": "Bruno Reflexo",
+    "apelido": "Bruno Reflexo",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "GOL",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 6.2,
+    "projecao": 6.5,
+    "piso": 2.8,
+    "teto": 11.2,
+    "mediaGeral": 5.9,
+    "mediaRecente": 6.6,
+    "mediana": 5.8,
+    "regularidade": 69,
+    "riscoNegativar": 17,
+    "confianca": "Média",
+    "confiancaNumerica": 76,
+    "risco": "Médio",
+    "custoBeneficio": 1.05,
+    "notaFinal": 78,
+    "titularidade": 91,
+    "minutosEsperados": 90,
+    "chanceSG": 39,
+    "scouts": {
+      "defesas": 4.4,
+      "defesasDificeis": 1.5,
+      "golsSofridos": 1.0,
+      "penaltisDefendidos": 0.1
+    },
+    "justificativas": [
+      "Possui o melhor custo-benefício entre os goleiros demonstrativos.",
+      "Atua em casa e enfrenta um adversário que permite pontuação por defesas.",
+      "Tem teto interessante para o preço."
+    ],
+    "pontosAtencao": [
+      "Apresenta regularidade inferior aos dois primeiros colocados.",
+      "Tem maior risco de pontuação abaixo da projeção."
+    ],
+    "componentes": {
+      "Forma recente": 75,
+      "Confronto": 79,
+      "Scouts básicos": 83,
+      "Titularidade": 91,
+      "Custo-benefício": 95
+    }
+  },
+  {
+    "id": 4,
+    "nome": "Léo Apoiador",
+    "apelido": "Léo Apoiador",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "LAT",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 9.8,
+    "projecao": 8.2,
+    "piso": 4.1,
+    "teto": 13.4,
+    "mediaGeral": 7.4,
+    "mediaRecente": 8.6,
+    "mediana": 7.9,
+    "regularidade": 80,
+    "riscoNegativar": 9,
+    "confianca": "Alta",
+    "confiancaNumerica": 89,
+    "risco": "Médio",
+    "custoBeneficio": 0.84,
+    "notaFinal": 91,
+    "titularidade": 95,
+    "minutosEsperados": 87,
+    "chanceSG": 48,
+    "scouts": {
+      "desarmes": 2.7,
+      "finalizacoes": 1.4,
+      "assistencias": 0.3,
+      "cruzamentos": 4.8
+    },
+    "justificativas": [
+      "Participa intensamente do ataque e possui bom volume de cruzamentos.",
+      "Atua em casa contra uma defesa que permite avanços pelos lados.",
+      "Combina possibilidade de saldo de gols com scouts ofensivos."
+    ],
+    "pontosAtencao": [
+      "Preço acima da média da posição.",
+      "A perda do saldo de gols reduz parte importante da projeção."
+    ],
+    "componentes": {
+      "Forma recente": 90,
+      "Confronto": 91,
+      "Scouts básicos": 86,
+      "Titularidade": 95,
+      "Custo-benefício": 79
+    }
+  },
+  {
+    "id": 5,
+    "nome": "Matheus Linha",
+    "apelido": "Matheus Linha",
+    "clube": "Nacional",
+    "siglaClube": "NAC",
+    "posicao": "LAT",
+    "adversario": "União",
+    "mando": "Casa",
+    "preco": 8.6,
+    "projecao": 7.7,
+    "piso": 3.9,
+    "teto": 12.5,
+    "mediaGeral": 7.1,
+    "mediaRecente": 7.9,
+    "mediana": 7.3,
+    "regularidade": 84,
+    "riscoNegativar": 7,
+    "confianca": "Alta",
+    "confiancaNumerica": 91,
+    "risco": "Baixo",
+    "custoBeneficio": 0.9,
+    "notaFinal": 89,
+    "titularidade": 97,
+    "minutosEsperados": 90,
+    "chanceSG": 55,
+    "scouts": {
+      "desarmes": 3.1,
+      "finalizacoes": 0.8,
+      "assistencias": 0.2,
+      "cruzamentos": 3.9
+    },
+    "justificativas": [
+      "Possui alta regularidade e bom volume de desarmes.",
+      "Joga em casa no confronto com maior chance de saldo de gols.",
+      "Tem ótima estabilidade de titularidade e minutos."
+    ],
+    "pontosAtencao": [
+      "Seu teto ofensivo é um pouco menor que o do primeiro colocado.",
+      "Depende parcialmente da manutenção do saldo."
+    ],
+    "componentes": {
+      "Forma recente": 86,
+      "Confronto": 94,
+      "Scouts básicos": 89,
+      "Titularidade": 97,
+      "Custo-benefício": 84
+    }
+  },
+  {
+    "id": 6,
+    "nome": "Igor Cruzamento",
+    "apelido": "Igor Cruzamento",
+    "clube": "Aurora",
+    "siglaClube": "AUR",
+    "posicao": "LAT",
+    "adversario": "Estrela",
+    "mando": "Fora",
+    "preco": 7.4,
+    "projecao": 7.4,
+    "piso": 3.2,
+    "teto": 12.8,
+    "mediaGeral": 6.8,
+    "mediaRecente": 7.7,
+    "mediana": 6.9,
+    "regularidade": 74,
+    "riscoNegativar": 13,
+    "confianca": "Média",
+    "confiancaNumerica": 81,
+    "risco": "Médio",
+    "custoBeneficio": 1.0,
+    "notaFinal": 85,
+    "titularidade": 94,
+    "minutosEsperados": 86,
+    "chanceSG": 31,
+    "scouts": {
+      "desarmes": 2.4,
+      "finalizacoes": 1.0,
+      "assistencias": 0.3,
+      "cruzamentos": 5.3
+    },
+    "justificativas": [
+      "Apresenta alto volume de cruzamentos e participação ofensiva.",
+      "O jogo tende a ser aberto e favorável aos laterais.",
+      "Possui bom custo-benefício."
+    ],
+    "pontosAtencao": [
+      "Atua fora de casa.",
+      "A chance de saldo de gols é limitada."
+    ],
+    "componentes": {
+      "Forma recente": 83,
+      "Confronto": 81,
+      "Scouts básicos": 87,
+      "Titularidade": 94,
+      "Custo-benefício": 92
+    }
+  },
+  {
+    "id": 7,
+    "nome": "Davi Motor",
+    "apelido": "Davi Motor",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "LAT",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 6.8,
+    "projecao": 7.0,
+    "piso": 3.6,
+    "teto": 11.7,
+    "mediaGeral": 6.5,
+    "mediaRecente": 7.2,
+    "mediana": 6.7,
+    "regularidade": 81,
+    "riscoNegativar": 9,
+    "confianca": "Alta",
+    "confiancaNumerica": 86,
+    "risco": "Baixo",
+    "custoBeneficio": 1.03,
+    "notaFinal": 84,
+    "titularidade": 96,
+    "minutosEsperados": 89,
+    "chanceSG": 39,
+    "scouts": {
+      "desarmes": 3.4,
+      "finalizacoes": 0.6,
+      "assistencias": 0.2,
+      "cruzamentos": 3.2
+    },
+    "justificativas": [
+      "Entrega pontuação básica consistente por meio de desarmes.",
+      "Atua em casa e tem boa estabilidade de minutos.",
+      "Está entre os melhores custos-benefícios da posição."
+    ],
+    "pontosAtencao": [
+      "Participa menos das ações ofensivas decisivas.",
+      "Seu teto é inferior ao dos laterais mais ofensivos."
+    ],
+    "componentes": {
+      "Forma recente": 81,
+      "Confronto": 83,
+      "Scouts básicos": 91,
+      "Titularidade": 96,
+      "Custo-benefício": 94
+    }
+  },
+  {
+    "id": 8,
+    "nome": "Ramon Intensidade",
+    "apelido": "Ramon Intensidade",
+    "clube": "Estrela",
+    "siglaClube": "EST",
+    "posicao": "LAT",
+    "adversario": "Aurora",
+    "mando": "Casa",
+    "preco": 6.1,
+    "projecao": 6.8,
+    "piso": 2.7,
+    "teto": 12.1,
+    "mediaGeral": 6.0,
+    "mediaRecente": 6.9,
+    "mediana": 5.8,
+    "regularidade": 66,
+    "riscoNegativar": 19,
+    "confianca": "Média",
+    "confiancaNumerica": 74,
+    "risco": "Alto",
+    "custoBeneficio": 1.11,
+    "notaFinal": 80,
+    "titularidade": 89,
+    "minutosEsperados": 82,
+    "chanceSG": 25,
+    "scouts": {
+      "desarmes": 2.6,
+      "finalizacoes": 1.3,
+      "assistencias": 0.2,
+      "cruzamentos": 4.0
+    },
+    "justificativas": [
+      "Tem preço baixo e teto interessante.",
+      "Participa de um confronto com expectativa elevada de gols.",
+      "Pode funcionar como diferencial."
+    ],
+    "pontosAtencao": [
+      "Apresenta risco alto e baixa chance de saldo de gols.",
+      "Possui menor regularidade e minutos esperados."
+    ],
+    "componentes": {
+      "Forma recente": 75,
+      "Confronto": 82,
+      "Scouts básicos": 79,
+      "Titularidade": 89,
+      "Custo-benefício": 96
+    }
+  },
+  {
+    "id": 9,
+    "nome": "André Xerife",
+    "apelido": "André Xerife",
+    "clube": "Nacional",
+    "siglaClube": "NAC",
+    "posicao": "ZAG",
+    "adversario": "União",
+    "mando": "Casa",
+    "preco": 8.2,
+    "projecao": 7.6,
+    "piso": 4.5,
+    "teto": 11.4,
+    "mediaGeral": 7.0,
+    "mediaRecente": 7.8,
+    "mediana": 7.4,
+    "regularidade": 88,
+    "riscoNegativar": 5,
+    "confianca": "Alta",
+    "confiancaNumerica": 93,
+    "risco": "Baixo",
+    "custoBeneficio": 0.93,
+    "notaFinal": 92,
+    "titularidade": 98,
+    "minutosEsperados": 90,
+    "chanceSG": 55,
+    "scouts": {
+      "desarmes": 2.1,
+      "finalizacoes": 0.6,
+      "gols": 0.1,
+      "cortes": 5.4
+    },
+    "justificativas": [
+      "Possui a maior chance de saldo de gols entre os zagueiros.",
+      "Apresenta elevada regularidade e ótimo piso.",
+      "Tem titularidade praticamente confirmada."
+    ],
+    "pontosAtencao": [
+      "Preço elevado para um defensor.",
+      "Seu teto depende da manutenção do saldo ou de participação em bola aérea."
+    ],
+    "componentes": {
+      "Forma recente": 89,
+      "Confronto": 95,
+      "Scouts básicos": 87,
+      "Titularidade": 98,
+      "Custo-benefício": 85
+    }
+  },
+  {
+    "id": 10,
+    "nome": "Henrique Área",
+    "apelido": "Henrique Área",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "ZAG",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 7.1,
+    "projecao": 7.2,
+    "piso": 4.0,
+    "teto": 11.0,
+    "mediaGeral": 6.7,
+    "mediaRecente": 7.4,
+    "mediana": 6.9,
+    "regularidade": 84,
+    "riscoNegativar": 7,
+    "confianca": "Alta",
+    "confiancaNumerica": 90,
+    "risco": "Baixo",
+    "custoBeneficio": 1.01,
+    "notaFinal": 89,
+    "titularidade": 97,
+    "minutosEsperados": 90,
+    "chanceSG": 48,
+    "scouts": {
+      "desarmes": 2.4,
+      "finalizacoes": 0.4,
+      "gols": 0.1,
+      "cortes": 5.0
+    },
+    "justificativas": [
+      "Combina boa chance de saldo com scouts defensivos consistentes.",
+      "Atua em casa e tem excelente histórico de minutos.",
+      "Apresenta bom custo-benefício."
+    ],
+    "pontosAtencao": [
+      "O adversário possui volume ofensivo suficiente para ameaçar o saldo.",
+      "Tem menor participação ofensiva."
+    ],
+    "componentes": {
+      "Forma recente": 86,
+      "Confronto": 89,
+      "Scouts básicos": 88,
+      "Titularidade": 97,
+      "Custo-benefício": 92
+    }
+  },
+  {
+    "id": 11,
+    "nome": "Lucas Corte",
+    "apelido": "Lucas Corte",
+    "clube": "Aurora",
+    "siglaClube": "AUR",
+    "posicao": "ZAG",
+    "adversario": "Estrela",
+    "mando": "Fora",
+    "preco": 6.4,
+    "projecao": 6.9,
+    "piso": 3.6,
+    "teto": 10.8,
+    "mediaGeral": 6.3,
+    "mediaRecente": 7.1,
+    "mediana": 6.5,
+    "regularidade": 77,
+    "riscoNegativar": 11,
+    "confianca": "Média",
+    "confiancaNumerica": 82,
+    "risco": "Médio",
+    "custoBeneficio": 1.08,
+    "notaFinal": 85,
+    "titularidade": 95,
+    "minutosEsperados": 90,
+    "chanceSG": 31,
+    "scouts": {
+      "desarmes": 2.8,
+      "finalizacoes": 0.3,
+      "gols": 0.0,
+      "cortes": 5.7
+    },
+    "justificativas": [
+      "Possui alto volume de cortes e desarmes.",
+      "Consegue pontuar mesmo sem saldo de gols.",
+      "Tem bom preço para sua projeção."
+    ],
+    "pontosAtencao": [
+      "Atua fora de casa em um jogo aberto.",
+      "A chance de saldo é apenas moderada."
+    ],
+    "componentes": {
+      "Forma recente": 82,
+      "Confronto": 77,
+      "Scouts básicos": 92,
+      "Titularidade": 95,
+      "Custo-benefício": 95
+    }
+  },
+  {
+    "id": 12,
+    "nome": "Pedro Antecipação",
+    "apelido": "Pedro Antecipação",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "ZAG",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 5.9,
+    "projecao": 6.7,
+    "piso": 3.8,
+    "teto": 10.0,
+    "mediaGeral": 6.2,
+    "mediaRecente": 6.8,
+    "mediana": 6.4,
+    "regularidade": 82,
+    "riscoNegativar": 8,
+    "confianca": "Alta",
+    "confiancaNumerica": 86,
+    "risco": "Baixo",
+    "custoBeneficio": 1.14,
+    "notaFinal": 84,
+    "titularidade": 96,
+    "minutosEsperados": 90,
+    "chanceSG": 39,
+    "scouts": {
+      "desarmes": 3.0,
+      "finalizacoes": 0.2,
+      "gols": 0.0,
+      "cortes": 4.8
+    },
+    "justificativas": [
+      "É o melhor custo-benefício entre os zagueiros.",
+      "Tem pontuação básica forte por desarmes.",
+      "Atua em casa e possui boa segurança de minutos."
+    ],
+    "pontosAtencao": [
+      "Seu teto é mais limitado.",
+      "Possui baixa participação ofensiva."
+    ],
+    "componentes": {
+      "Forma recente": 79,
+      "Confronto": 82,
+      "Scouts básicos": 91,
+      "Titularidade": 96,
+      "Custo-benefício": 98
+    }
+  },
+  {
+    "id": 13,
+    "nome": "Samuel Jogo Aéreo",
+    "apelido": "Samuel Jogo Aéreo",
+    "clube": "Estrela",
+    "siglaClube": "EST",
+    "posicao": "ZAG",
+    "adversario": "Aurora",
+    "mando": "Casa",
+    "preco": 5.5,
+    "projecao": 6.4,
+    "piso": 2.9,
+    "teto": 10.7,
+    "mediaGeral": 5.9,
+    "mediaRecente": 6.5,
+    "mediana": 5.7,
+    "regularidade": 68,
+    "riscoNegativar": 18,
+    "confianca": "Média",
+    "confiancaNumerica": 75,
+    "risco": "Médio",
+    "custoBeneficio": 1.16,
+    "notaFinal": 79,
+    "titularidade": 90,
+    "minutosEsperados": 88,
+    "chanceSG": 25,
+    "scouts": {
+      "desarmes": 1.9,
+      "finalizacoes": 0.8,
+      "gols": 0.2,
+      "cortes": 4.6
+    },
+    "justificativas": [
+      "Possui presença ofensiva relevante em bolas aéreas.",
+      "Tem preço baixo e bom teto relativo ao custo.",
+      "Pode funcionar como diferencial."
+    ],
+    "pontosAtencao": [
+      "Baixa chance de saldo de gols.",
+      "Regularidade inferior à dos demais zagueiros recomendados."
+    ],
+    "componentes": {
+      "Forma recente": 74,
+      "Confronto": 70,
+      "Scouts básicos": 80,
+      "Titularidade": 90,
+      "Custo-benefício": 98
+    }
+  },
+  {
+    "id": 14,
+    "nome": "Felipe Maestro",
+    "apelido": "Felipe Maestro",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "MEI",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 10.9,
+    "projecao": 9.0,
+    "piso": 4.6,
+    "teto": 15.0,
+    "mediaGeral": 8.1,
+    "mediaRecente": 9.2,
+    "mediana": 8.5,
+    "regularidade": 83,
+    "riscoNegativar": 7,
+    "confianca": "Alta",
+    "confiancaNumerica": 92,
+    "risco": "Médio",
+    "custoBeneficio": 0.83,
+    "notaFinal": 94,
+    "titularidade": 96,
+    "minutosEsperados": 88,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": true,
+    "scouts": {
+      "gols": 0.3,
+      "assistencias": 0.4,
+      "finalizacoes": 2.6,
+      "desarmes": 2.1,
+      "faltasSofridas": 2.4
+    },
+    "justificativas": [
+      "Possui múltiplas rotas de pontuação, com criação, finalização e desarmes.",
+      "É responsável por bolas paradas.",
+      "Atua em casa contra uma defesa que concede oportunidades aos meias."
+    ],
+    "pontosAtencao": [
+      "Preço elevado.",
+      "Pode ter pontuação abaixo do esperado caso o time não domine a posse ofensiva."
+    ],
+    "componentes": {
+      "Forma recente": 94,
+      "Confronto": 92,
+      "Scouts básicos": 91,
+      "Titularidade": 96,
+      "Custo-benefício": 77
+    }
+  },
+  {
+    "id": 15,
+    "nome": "Gustavo Passe",
+    "apelido": "Gustavo Passe",
+    "clube": "Nacional",
+    "siglaClube": "NAC",
+    "posicao": "MEI",
+    "adversario": "União",
+    "mando": "Casa",
+    "preco": 9.2,
+    "projecao": 8.4,
+    "piso": 4.2,
+    "teto": 14.0,
+    "mediaGeral": 7.7,
+    "mediaRecente": 8.6,
+    "mediana": 8.0,
+    "regularidade": 87,
+    "riscoNegativar": 5,
+    "confianca": "Alta",
+    "confiancaNumerica": 94,
+    "risco": "Baixo",
+    "custoBeneficio": 0.91,
+    "notaFinal": 92,
+    "titularidade": 98,
+    "minutosEsperados": 90,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.2,
+      "assistencias": 0.5,
+      "finalizacoes": 1.8,
+      "desarmes": 2.8,
+      "faltasSofridas": 2.1
+    },
+    "justificativas": [
+      "Apresenta alta regularidade e piso sólido.",
+      "Tem participação constante em assistências e scouts básicos.",
+      "Atua no time com melhor favoritismo defensivo e ofensivo da rodada."
+    ],
+    "pontosAtencao": [
+      "Seu teto depende de participação direta em gols.",
+      "Possui menos finalizações que o primeiro colocado."
+    ],
+    "componentes": {
+      "Forma recente": 91,
+      "Confronto": 94,
+      "Scouts básicos": 93,
+      "Titularidade": 98,
+      "Custo-benefício": 85
+    }
+  },
+  {
+    "id": 16,
+    "nome": "Renan Bola Parada",
+    "apelido": "Renan Bola Parada",
+    "clube": "Aurora",
+    "siglaClube": "AUR",
+    "posicao": "MEI",
+    "adversario": "Estrela",
+    "mando": "Fora",
+    "preco": 8.0,
+    "projecao": 8.0,
+    "piso": 3.5,
+    "teto": 14.5,
+    "mediaGeral": 7.3,
+    "mediaRecente": 8.2,
+    "mediana": 7.4,
+    "regularidade": 76,
+    "riscoNegativar": 10,
+    "confianca": "Alta",
+    "confiancaNumerica": 87,
+    "risco": "Médio",
+    "custoBeneficio": 1.0,
+    "notaFinal": 89,
+    "titularidade": 95,
+    "minutosEsperados": 86,
+    "chanceSG": 0,
+    "cobraPenalti": true,
+    "cobraBolaParada": true,
+    "scouts": {
+      "gols": 0.3,
+      "assistencias": 0.4,
+      "finalizacoes": 2.1,
+      "desarmes": 1.6,
+      "faltasSofridas": 2.8
+    },
+    "justificativas": [
+      "Cobra pênaltis e bolas paradas.",
+      "Participa de um confronto com expectativa alta de gols.",
+      "Possui bom custo-benefício e teto elevado."
+    ],
+    "pontosAtencao": [
+      "Atua fora de casa.",
+      "Apresenta maior variação entre as pontuações recentes."
+    ],
+    "componentes": {
+      "Forma recente": 87,
+      "Confronto": 86,
+      "Scouts básicos": 88,
+      "Titularidade": 95,
+      "Custo-benefício": 92
+    }
+  },
+  {
+    "id": 17,
+    "nome": "Thiago Box-to-box",
+    "apelido": "Thiago Box-to-box",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "MEI",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 7.2,
+    "projecao": 7.6,
+    "piso": 4.0,
+    "teto": 12.6,
+    "mediaGeral": 7.0,
+    "mediaRecente": 7.8,
+    "mediana": 7.3,
+    "regularidade": 85,
+    "riscoNegativar": 6,
+    "confianca": "Alta",
+    "confiancaNumerica": 90,
+    "risco": "Baixo",
+    "custoBeneficio": 1.06,
+    "notaFinal": 88,
+    "titularidade": 97,
+    "minutosEsperados": 90,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.2,
+      "assistencias": 0.2,
+      "finalizacoes": 1.4,
+      "desarmes": 3.4,
+      "faltasSofridas": 1.9
+    },
+    "justificativas": [
+      "Possui ótima pontuação básica por desarmes.",
+      "É regular e tem alta segurança de minutos.",
+      "Apresenta bom custo-benefício."
+    ],
+    "pontosAtencao": [
+      "Tem menor teto ofensivo que os três primeiros.",
+      "Depende mais de scouts básicos para pontuar."
+    ],
+    "componentes": {
+      "Forma recente": 86,
+      "Confronto": 84,
+      "Scouts básicos": 94,
+      "Titularidade": 97,
+      "Custo-benefício": 96
+    }
+  },
+  {
+    "id": 18,
+    "nome": "Murilo Diferencial",
+    "apelido": "Murilo Diferencial",
+    "clube": "Estrela",
+    "siglaClube": "EST",
+    "posicao": "MEI",
+    "adversario": "Aurora",
+    "mando": "Casa",
+    "preco": 6.4,
+    "projecao": 7.3,
+    "piso": 2.8,
+    "teto": 13.8,
+    "mediaGeral": 6.5,
+    "mediaRecente": 7.5,
+    "mediana": 6.2,
+    "regularidade": 65,
+    "riscoNegativar": 18,
+    "confianca": "Média",
+    "confiancaNumerica": 76,
+    "risco": "Alto",
+    "custoBeneficio": 1.14,
+    "notaFinal": 83,
+    "titularidade": 88,
+    "minutosEsperados": 78,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.3,
+      "assistencias": 0.3,
+      "finalizacoes": 2.4,
+      "desarmes": 1.2,
+      "faltasSofridas": 2.0
+    },
+    "justificativas": [
+      "Tem teto alto em um confronto aberto.",
+      "Preço acessível e bom custo-benefício.",
+      "Pode ser usado como diferencial em estratégia agressiva."
+    ],
+    "pontosAtencao": [
+      "Possui risco alto e menor regularidade.",
+      "Pode não permanecer em campo durante os 90 minutos."
+    ],
+    "componentes": {
+      "Forma recente": 81,
+      "Confronto": 88,
+      "Scouts básicos": 77,
+      "Titularidade": 88,
+      "Custo-benefício": 98
+    }
+  },
+  {
+    "id": 19,
+    "nome": "Arthur Decisivo",
+    "apelido": "Arthur Decisivo",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "ATA",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 12.5,
+    "projecao": 10.1,
+    "piso": 4.3,
+    "teto": 17.2,
+    "mediaGeral": 8.9,
+    "mediaRecente": 10.4,
+    "mediana": 9.2,
+    "regularidade": 79,
+    "riscoNegativar": 8,
+    "confianca": "Alta",
+    "confiancaNumerica": 95,
+    "risco": "Médio",
+    "custoBeneficio": 0.81,
+    "notaFinal": 97,
+    "titularidade": 97,
+    "minutosEsperados": 89,
+    "chanceSG": 0,
+    "cobraPenalti": true,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.7,
+      "assistencias": 0.3,
+      "finalizacoes": 4.2,
+      "finalizacoesNoAlvo": 2.0,
+      "faltasSofridas": 2.5
+    },
+    "justificativas": [
+      "Possui a maior projeção e o maior teto da rodada.",
+      "É o principal finalizador e cobrador de pênaltis do time.",
+      "Atua em casa contra uma defesa que permite chances dentro da área."
+    ],
+    "pontosAtencao": [
+      "É o jogador mais caro entre os recomendados.",
+      "Depende de scouts ofensivos decisivos para justificar o investimento."
+    ],
+    "componentes": {
+      "Forma recente": 97,
+      "Confronto": 95,
+      "Scouts básicos": 93,
+      "Titularidade": 97,
+      "Custo-benefício": 75
+    }
+  },
+  {
+    "id": 20,
+    "nome": "Vitor Finalizador",
+    "apelido": "Vitor Finalizador",
+    "clube": "Nacional",
+    "siglaClube": "NAC",
+    "posicao": "ATA",
+    "adversario": "União",
+    "mando": "Casa",
+    "preco": 10.4,
+    "projecao": 9.3,
+    "piso": 4.0,
+    "teto": 16.0,
+    "mediaGeral": 8.3,
+    "mediaRecente": 9.6,
+    "mediana": 8.5,
+    "regularidade": 81,
+    "riscoNegativar": 7,
+    "confianca": "Alta",
+    "confiancaNumerica": 93,
+    "risco": "Médio",
+    "custoBeneficio": 0.89,
+    "notaFinal": 94,
+    "titularidade": 98,
+    "minutosEsperados": 90,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.6,
+      "assistencias": 0.2,
+      "finalizacoes": 3.8,
+      "finalizacoesNoAlvo": 1.8,
+      "faltasSofridas": 2.0
+    },
+    "justificativas": [
+      "Atua no time favorito do confronto.",
+      "Tem alto volume de finalizações e boa presença dentro da área.",
+      "Apresenta excelente sequência recente."
+    ],
+    "pontosAtencao": [
+      "Preço elevado.",
+      "Não é o cobrador principal de pênaltis."
+    ],
+    "componentes": {
+      "Forma recente": 94,
+      "Confronto": 96,
+      "Scouts básicos": 90,
+      "Titularidade": 98,
+      "Custo-benefício": 83
+    }
+  },
+  {
+    "id": 21,
+    "nome": "Daniel Mobilidade",
+    "apelido": "Daniel Mobilidade",
+    "clube": "Aurora",
+    "siglaClube": "AUR",
+    "posicao": "ATA",
+    "adversario": "Estrela",
+    "mando": "Fora",
+    "preco": 9.1,
+    "projecao": 8.7,
+    "piso": 3.5,
+    "teto": 15.2,
+    "mediaGeral": 7.8,
+    "mediaRecente": 8.9,
+    "mediana": 8.0,
+    "regularidade": 75,
+    "riscoNegativar": 11,
+    "confianca": "Alta",
+    "confiancaNumerica": 88,
+    "risco": "Médio",
+    "custoBeneficio": 0.96,
+    "notaFinal": 91,
+    "titularidade": 96,
+    "minutosEsperados": 87,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.5,
+      "assistencias": 0.4,
+      "finalizacoes": 3.2,
+      "finalizacoesNoAlvo": 1.5,
+      "faltasSofridas": 2.7
+    },
+    "justificativas": [
+      "Participa de um dos jogos mais abertos da rodada.",
+      "Contribui com gols e assistências.",
+      "Possui bom custo-benefício para um atacante de teto alto."
+    ],
+    "pontosAtencao": [
+      "Atua fora de casa.",
+      "Apresenta maior oscilação que os dois primeiros atacantes."
+    ],
+    "componentes": {
+      "Forma recente": 90,
+      "Confronto": 90,
+      "Scouts básicos": 88,
+      "Titularidade": 96,
+      "Custo-benefício": 89
+    }
+  },
+  {
+    "id": 22,
+    "nome": "João Referência",
+    "apelido": "João Referência",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "ATA",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 7.9,
+    "projecao": 8.1,
+    "piso": 3.8,
+    "teto": 13.5,
+    "mediaGeral": 7.4,
+    "mediaRecente": 8.2,
+    "mediana": 7.6,
+    "regularidade": 84,
+    "riscoNegativar": 8,
+    "confianca": "Alta",
+    "confiancaNumerica": 89,
+    "risco": "Baixo",
+    "custoBeneficio": 1.03,
+    "notaFinal": 89,
+    "titularidade": 97,
+    "minutosEsperados": 90,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.5,
+      "assistencias": 0.2,
+      "finalizacoes": 2.9,
+      "finalizacoesNoAlvo": 1.4,
+      "faltasSofridas": 1.8
+    },
+    "justificativas": [
+      "Apresenta boa regularidade e segurança de minutos.",
+      "Joga em casa e possui custo equilibrado.",
+      "Tem bom piso para a posição."
+    ],
+    "pontosAtencao": [
+      "Seu teto é inferior ao dos atacantes mais explosivos.",
+      "Participa menos da criação de assistências."
+    ],
+    "componentes": {
+      "Forma recente": 87,
+      "Confronto": 85,
+      "Scouts básicos": 86,
+      "Titularidade": 97,
+      "Custo-benefício": 94
+    }
+  },
+  {
+    "id": 23,
+    "nome": "Enzo Ousadia",
+    "apelido": "Enzo Ousadia",
+    "clube": "Estrela",
+    "siglaClube": "EST",
+    "posicao": "ATA",
+    "adversario": "Aurora",
+    "mando": "Casa",
+    "preco": 6.8,
+    "projecao": 7.8,
+    "piso": 2.6,
+    "teto": 15.0,
+    "mediaGeral": 6.9,
+    "mediaRecente": 8.0,
+    "mediana": 6.5,
+    "regularidade": 63,
+    "riscoNegativar": 21,
+    "confianca": "Média",
+    "confiancaNumerica": 77,
+    "risco": "Alto",
+    "custoBeneficio": 1.15,
+    "notaFinal": 85,
+    "titularidade": 89,
+    "minutosEsperados": 79,
+    "chanceSG": 0,
+    "cobraPenalti": false,
+    "cobraBolaParada": false,
+    "scouts": {
+      "gols": 0.5,
+      "assistencias": 0.2,
+      "finalizacoes": 3.5,
+      "finalizacoesNoAlvo": 1.6,
+      "faltasSofridas": 1.9
+    },
+    "justificativas": [
+      "Possui ótimo teto para o preço.",
+      "Participa de um confronto com expectativa elevada de gols.",
+      "É uma opção de diferencial para times agressivos."
+    ],
+    "pontosAtencao": [
+      "Tem risco alto e baixa regularidade.",
+      "Existe possibilidade de substituição antes do fim da partida."
+    ],
+    "componentes": {
+      "Forma recente": 84,
+      "Confronto": 90,
+      "Scouts básicos": 82,
+      "Titularidade": 89,
+      "Custo-benefício": 99
+    }
+  },
+  {
+    "id": 24,
+    "nome": "Carlos Estratégia",
+    "apelido": "Carlos Estratégia",
+    "clube": "Verde FC",
+    "siglaClube": "VER",
+    "posicao": "TEC",
+    "adversario": "Atlético Azul",
+    "mando": "Casa",
+    "preco": 7.8,
+    "projecao": 6.2,
+    "piso": 4.2,
+    "teto": 8.0,
+    "mediaGeral": 5.8,
+    "mediaRecente": 6.4,
+    "mediana": 6.0,
+    "regularidade": 86,
+    "riscoNegativar": 4,
+    "confianca": "Alta",
+    "confiancaNumerica": 92,
+    "risco": "Baixo",
+    "custoBeneficio": 0.79,
+    "notaFinal": 91,
+    "titularidade": 100,
+    "minutosEsperados": 90,
+    "chanceSG": 48,
+    "scouts": {
+      "favoritismo": 84,
+      "forcaAtaque": 88,
+      "forcaDefesa": 78
+    },
+    "justificativas": [
+      "Comanda um dos maiores favoritos da rodada.",
+      "O time apresenta alta força ofensiva e boa chance de saldo.",
+      "É a opção de maior confiança entre os treinadores."
+    ],
+    "pontosAtencao": [
+      "Preço mais elevado da posição.",
+      "Uma surpresa no resultado afeta diretamente sua pontuação."
+    ],
+    "componentes": {
+      "Forma recente": 89,
+      "Confronto": 94,
+      "Scouts básicos": 86,
+      "Titularidade": 100,
+      "Custo-benefício": 73
+    }
+  },
+  {
+    "id": 25,
+    "nome": "Marcos Controle",
+    "apelido": "Marcos Controle",
+    "clube": "Nacional",
+    "siglaClube": "NAC",
+    "posicao": "TEC",
+    "adversario": "União",
+    "mando": "Casa",
+    "preco": 6.9,
+    "projecao": 5.9,
+    "piso": 3.8,
+    "teto": 7.8,
+    "mediaGeral": 5.5,
+    "mediaRecente": 6.1,
+    "mediana": 5.7,
+    "regularidade": 84,
+    "riscoNegativar": 5,
+    "confianca": "Alta",
+    "confiancaNumerica": 90,
+    "risco": "Baixo",
+    "custoBeneficio": 0.86,
+    "notaFinal": 89,
+    "titularidade": 100,
+    "minutosEsperados": 90,
+    "chanceSG": 55,
+    "scouts": {
+      "favoritismo": 87,
+      "forcaAtaque": 82,
+      "forcaDefesa": 84
+    },
+    "justificativas": [
+      "Comanda o time com maior chance de saldo de gols.",
+      "Tem ótimo favoritismo e defesa consistente.",
+      "Possui preço inferior ao primeiro colocado."
+    ],
+    "pontosAtencao": [
+      "A força ofensiva é ligeiramente inferior à do Verde FC.",
+      "A pontuação depende fortemente do resultado coletivo."
+    ],
+    "componentes": {
+      "Forma recente": 87,
+      "Confronto": 96,
+      "Scouts básicos": 88,
+      "Titularidade": 100,
+      "Custo-benefício": 80
+    }
+  },
+  {
+    "id": 26,
+    "nome": "Paulo Reação",
+    "apelido": "Paulo Reação",
+    "clube": "Imperial",
+    "siglaClube": "IMP",
+    "posicao": "TEC",
+    "adversario": "Litoral",
+    "mando": "Casa",
+    "preco": 5.8,
+    "projecao": 5.6,
+    "piso": 3.4,
+    "teto": 7.6,
+    "mediaGeral": 5.1,
+    "mediaRecente": 5.8,
+    "mediana": 5.4,
+    "regularidade": 76,
+    "riscoNegativar": 9,
+    "confianca": "Média",
+    "confiancaNumerica": 82,
+    "risco": "Médio",
+    "custoBeneficio": 0.97,
+    "notaFinal": 84,
+    "titularidade": 100,
+    "minutosEsperados": 90,
+    "chanceSG": 39,
+    "scouts": {
+      "favoritismo": 72,
+      "forcaAtaque": 75,
+      "forcaDefesa": 76
+    },
+    "justificativas": [
+      "É a opção de melhor custo-benefício entre os treinadores.",
+      "Atua em casa e possui confronto equilibrado.",
+      "Permite economizar patrimônio para outras posições."
+    ],
+    "pontosAtencao": [
+      "O favoritismo é inferior ao dos dois primeiros.",
+      "Apresenta menor projeção e confiança."
+    ],
+    "componentes": {
+      "Forma recente": 80,
+      "Confronto": 82,
+      "Scouts básicos": 81,
+      "Titularidade": 100,
+      "Custo-benefício": 91
+    }
+  }
+]
