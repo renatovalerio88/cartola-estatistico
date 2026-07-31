@@ -1,1 +1,1276 @@
+/* =========================================================
+   CARTOLA ESTATÍSTICO
+   Arquivo principal de estilos
+   ========================================================= */
 
+
+/* =========================================================
+   1. VARIÁVEIS DO TEMA
+   ========================================================= */
+
+:root {
+  --background: #f3f6f3;
+  --surface: #ffffff;
+  --surface-soft: #edf3ee;
+  --surface-dark: #10281d;
+
+  --text: #18231d;
+  --text-soft: #6b766e;
+  --text-light: #edf5ef;
+
+  --primary: #1c7a4a;
+  --primary-dark: #125333;
+  --primary-light: #dcefe3;
+
+  --gold: #c5a34d;
+  --gold-light: #f0dfac;
+
+  --success: #238455;
+  --warning: #b87420;
+  --danger: #b74747;
+
+  --border: #dde5df;
+
+  --shadow-small:
+    0 4px 16px rgba(18, 42, 29, 0.06);
+
+  --shadow-medium:
+    0 12px 35px rgba(18, 42, 29, 0.09);
+
+  --sidebar-width: 270px;
+
+  --radius-small: 10px;
+  --radius-medium: 15px;
+  --radius-large: 20px;
+
+  --transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   2. TEMA ESCURO
+   ========================================================= */
+
+body.dark-theme {
+  --background: #0d1511;
+  --surface: #142019;
+  --surface-soft: #19291f;
+  --surface-dark: #07120c;
+
+  --text: #edf5ef;
+  --text-soft: #a8b6ac;
+  --text-light: #f4faf6;
+
+  --primary: #43b978;
+  --primary-dark: #2d8d59;
+  --primary-light: #183c29;
+
+  --gold: #d2ad51;
+  --gold-light: #4b4024;
+
+  --border: #293c31;
+
+  --shadow-small:
+    0 4px 16px rgba(0, 0, 0, 0.18);
+
+  --shadow-medium:
+    0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   3. RESET E CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  background: var(--background);
+  color: var(--text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   4. ESTRUTURA PRINCIPAL
+   ========================================================= */
+
+.app {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns:
+    var(--sidebar-width)
+    minmax(0, 1fr);
+}
+
+.main-area {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   5. MENU LATERAL
+   ========================================================= */
+
+.sidebar {
+  position: sticky;
+  top: 0;
+
+  width: var(--sidebar-width);
+  height: 100vh;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  color: var(--text-light);
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(197, 163, 77, 0.13),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #10281d,
+      #0b1d15
+    );
+
+  z-index: 30;
+}
+
+.logo-area {
+  padding: 0 8px 28px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-symbol {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  display: grid;
+  place-items: center;
+
+  color: #16231b;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--gold),
+      var(--gold-light)
+    );
+
+  font-size: 0.94rem;
+  font-weight: 900;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.logo-text strong,
+.logo-text span {
+  display: block;
+}
+
+.logo-text strong {
+  font-size: 0.96rem;
+}
+
+.logo-text span {
+  margin-top: 4px;
+
+  color: #a9b9af;
+
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   6. ITENS DO MENU
+   ========================================================= */
+
+.menu {
+  display: grid;
+  gap: 8px;
+}
+
+.menu-item {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 0;
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #b8cabf;
+  background: transparent;
+
+  text-align: left;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    transform var(--transition);
+}
+
+.menu-item:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  transform: translateX(2px);
+}
+
+.menu-item.active {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.11);
+
+  box-shadow:
+    inset 3px 0 0 var(--gold);
+}
+
+.menu-icon {
+  width: 24px;
+
+  flex-shrink: 0;
+
+  color: var(--gold);
+
+  text-align: center;
+  font-size: 1rem;
+}
+
+.sidebar-info {
+  margin-top: auto;
+
+  padding: 16px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-info strong {
+  font-size: 0.83rem;
+}
+
+.sidebar-info p {
+  margin: 7px 0 0;
+
+  color: #a9b9af;
+
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   7. CABEÇALHO SUPERIOR
+   ========================================================= */
+
+.topbar {
+  position: sticky;
+  top: 0;
+
+  min-height: 86px;
+
+  padding: 17px 32px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--background) 88%,
+      transparent
+    );
+
+  backdrop-filter: blur(15px);
+
+  z-index: 20;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-label {
+  margin: 0;
+
+  color: var(--primary);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.topbar h1 {
+  margin: 3px 0 0;
+
+  font-size: 1.42rem;
+  line-height: 1.2;
+}
+
+.round-box {
+  min-width: 104px;
+
+  padding: 8px 14px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-small);
+}
+
+.round-box span {
+  color: var(--text-soft);
+
+  font-size: 0.76rem;
+}
+
+.round-box strong {
+  color: var(--primary);
+
+  font-size: 1.1rem;
+}
+
+.theme-button,
+.mobile-menu-button {
+  width: 42px;
+  height: 42px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 13px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--text);
+  background: var(--surface);
+
+  box-shadow: var(--shadow-small);
+
+  transition:
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.theme-button:hover,
+.mobile-menu-button:hover {
+  transform: translateY(-2px);
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+
+/* =========================================================
+   8. CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.content {
+  width: 100%;
+  max-width: 1540px;
+
+  margin: 0 auto;
+  padding: 26px 32px 52px;
+}
+
+.status-bar {
+  margin-bottom: 24px;
+  padding: 12px 16px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  color: var(--text-soft);
+  background: var(--surface);
+
+  box-shadow: var(--shadow-small);
+
+  font-size: 0.84rem;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+
+  margin-right: 8px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+
+  background: var(--success);
+
+  box-shadow:
+    0 0 0 5px
+    color-mix(
+      in srgb,
+      var(--success) 18%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   9. SISTEMA DE ABAS
+   ========================================================= */
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+
+  animation: tabFade 0.28s ease;
+}
+
+@keyframes tabFade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   10. TEXTOS DE SEÇÃO
+   ========================================================= */
+
+.section-label {
+  margin: 0;
+
+  color: var(--primary);
+
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.section-header {
+  margin: 34px 0 18px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.section-header h2 {
+  margin: 7px 0 0;
+
+  font-size: 1.45rem;
+}
+
+
+/* =========================================================
+   11. DESTAQUE DA ABA RECOMENDAÇÕES
+   ========================================================= */
+
+.hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(430px, 1fr);
+
+  gap: 20px;
+}
+
+.hero-text {
+  min-height: 230px;
+
+  padding: 31px;
+
+  border-radius: var(--radius-large);
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(197, 163, 77, 0.25),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #10281d,
+      #1a432f
+    );
+
+  box-shadow: var(--shadow-medium);
+}
+
+.hero-text .section-label {
+  color: #dfc474;
+}
+
+.hero-text h2 {
+  max-width: 610px;
+
+  margin: 13px 0 12px;
+
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      2.55rem
+    );
+
+  line-height: 1.1;
+}
+
+.hero-text > p:last-child {
+  max-width: 700px;
+
+  margin-bottom: 0;
+
+  color: #c6d4cb;
+
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   12. CARDS DE RESUMO
+   ========================================================= */
+
+.hero-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.summary-card {
+  padding: 19px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: var(--radius-large);
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-medium);
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--primary) 40%,
+      var(--border)
+    );
+}
+
+.summary-card span,
+.summary-card small {
+  display: block;
+
+  color: var(--text-soft);
+}
+
+.summary-card span {
+  min-height: 34px;
+
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.summary-card strong {
+  display: block;
+
+  margin: 16px 0 6px;
+
+  color: var(--primary);
+
+  font-size: 1.55rem;
+}
+
+.summary-card small {
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   13. FILTROS DE POSIÇÃO
+   ========================================================= */
+
+.position-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.position-filter-button {
+  padding: 9px 13px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 999px;
+
+  color: var(--text-soft);
+  background: var(--surface);
+
+  font-size: 0.78rem;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.position-filter-button:hover {
+  color: var(--primary);
+
+  border-color: var(--primary);
+}
+
+.position-filter-button.active {
+  color: #ffffff;
+
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+
+/* =========================================================
+   14. ÁREA DOS JOGADORES
+   ========================================================= */
+
+.players-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+}
+
+
+/* =========================================================
+   15. ESTADO VAZIO
+   ========================================================= */
+
+.empty-state {
+  grid-column: 1 / -1;
+
+  min-height: 220px;
+
+  padding: 36px 24px;
+
+  border:
+    1px dashed
+    color-mix(
+      in srgb,
+      var(--primary) 35%,
+      var(--border)
+    );
+
+  border-radius: var(--radius-large);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-soft);
+  background: var(--surface);
+
+  text-align: center;
+}
+
+.empty-state::before {
+  content: "CE";
+
+  width: 54px;
+  height: 54px;
+
+  margin-bottom: 15px;
+
+  border-radius: 17px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--primary);
+  background: var(--primary-light);
+
+  font-weight: 900;
+}
+
+.empty-state strong {
+  color: var(--text);
+
+  font-size: 1rem;
+}
+
+.empty-state p {
+  max-width: 570px;
+
+  margin: 8px 0 0;
+
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   16. ABA TIMES SUGERIDOS
+   ========================================================= */
+
+.strategy-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.strategy-card {
+  padding: 23px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: var(--radius-large);
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-medium);
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.strategy-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--primary) 40%,
+      var(--border)
+    );
+}
+
+.strategy-tag {
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  display: inline-block;
+
+  color: var(--primary);
+  background: var(--primary-light);
+
+  font-size: 0.69rem;
+  font-weight: 800;
+}
+
+.strategy-card h3 {
+  margin: 15px 0 8px;
+
+  font-size: 1.1rem;
+}
+
+.strategy-card p {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   17. ABA METODOLOGIA
+   ========================================================= */
+
+.methodology-intro {
+  padding: 31px;
+
+  border-radius: var(--radius-large);
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(197, 163, 77, 0.24),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #10281d,
+      #1a432f
+    );
+
+  box-shadow: var(--shadow-medium);
+}
+
+.methodology-intro .section-label {
+  color: #dfc474;
+}
+
+.methodology-intro h2 {
+  margin: 12px 0 10px;
+
+  font-size:
+    clamp(
+      1.65rem,
+      3vw,
+      2.3rem
+    );
+}
+
+.methodology-intro > p:last-child {
+  max-width: 850px;
+
+  margin-bottom: 0;
+
+  color: #c6d4cb;
+
+  line-height: 1.65;
+}
+
+.methodology-grid {
+  margin-top: 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+}
+
+.methodology-card {
+  padding: 22px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: var(--radius-large);
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-medium);
+}
+
+.methodology-card > span {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--gold);
+  background:
+    color-mix(
+      in srgb,
+      var(--gold) 13%,
+      var(--surface)
+    );
+
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.methodology-card h3 {
+  margin: 16px 0 8px;
+
+  font-size: 1.02rem;
+}
+
+.methodology-card p {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   18. ABA ANÁLISE DA RODADA
+   ========================================================= */
+
+.analysis-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+}
+
+.analysis-card {
+  padding: 19px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: var(--radius-medium);
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow-small);
+}
+
+.analysis-card span,
+.analysis-card small {
+  display: block;
+
+  color: var(--text-soft);
+}
+
+.analysis-card span {
+  font-size: 0.75rem;
+}
+
+.analysis-card strong {
+  display: block;
+
+  margin: 10px 0 4px;
+
+  color: var(--primary);
+
+  font-size: 1.22rem;
+}
+
+.analysis-card small {
+  font-size: 0.73rem;
+}
+
+
+/* =========================================================
+   19. FUNDO DO MENU NO CELULAR
+   ========================================================= */
+
+.sidebar-overlay {
+  display: none;
+}
+
+
+/* =========================================================
+   20. RESPONSIVIDADE — TELAS MÉDIAS
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-summary {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+  }
+
+  .players-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .methodology-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .analysis-summary {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+
+/* =========================================================
+   21. RESPONSIVIDADE — TABLET E MENU MÓVEL
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--sidebar-width) - 20px);
+
+    transition: left var(--transition);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .mobile-menu-button {
+    display: grid;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 25;
+
+    background:
+      rgba(0, 0, 0, 0.48);
+  }
+
+  .sidebar-overlay.visible {
+    display: block;
+  }
+
+  .strategy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   22. RESPONSIVIDADE — CELULAR
+   ========================================================= */
+
+@media (max-width: 680px) {
+  .topbar {
+    min-height: 76px;
+
+    padding: 13px 15px;
+  }
+
+  .topbar h1 {
+    font-size: 1.12rem;
+  }
+
+  .topbar-label {
+    font-size: 0.62rem;
+  }
+
+  .round-box {
+    display: none;
+  }
+
+  .content {
+    padding: 17px 14px 40px;
+  }
+
+  .status-bar {
+    align-items: flex-start;
+    flex-direction: column;
+
+    font-size: 0.78rem;
+  }
+
+  .hero-text {
+    min-height: auto;
+
+    padding: 23px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.75rem;
+  }
+
+  .hero-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card span {
+    min-height: auto;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .position-filters {
+    justify-content: flex-start;
+  }
+
+  .players-grid,
+  .methodology-grid,
+  .analysis-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .methodology-intro {
+    padding: 23px;
+  }
+
+  .empty-state {
+    min-height: 190px;
+
+    padding: 28px 18px;
+  }
+}
+
+
+/* =========================================================
+   23. TELAS MUITO PEQUENAS
+   ========================================================= */
+
+@media (max-width: 390px) {
+  .logo-area {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .theme-button,
+  .mobile-menu-button {
+    width: 39px;
+    height: 39px;
+  }
+
+  .topbar-left,
+  .topbar-right {
+    gap: 9px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.55rem;
+  }
+}
