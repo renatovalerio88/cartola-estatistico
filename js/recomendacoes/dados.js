@@ -42,6 +42,32 @@ async function carregarJogadores() {
   exibirCarregamentoJogadores();
 
   try {
+      
+      const statusResposta =
+        await fetch(
+          CAMINHO_STATUS,
+          {
+            cache: "no-store"
+          }
+        );
+      
+      if (!statusResposta.ok) {
+        throw new Error(
+          "Não foi possível carregar status.json"
+        );
+      }
+      
+      const status =
+        await statusResposta.json();
+      
+      const rodada =
+        Number(
+          status.rodada_atual
+        );
+      
+      CAMINHO_JOGADORES =
+        `data/api/rodada-${String(rodada).padStart(2,"0")}/jogadores.json`;  
+     
     const resposta = await fetch(
       CAMINHO_JOGADORES,
       {
