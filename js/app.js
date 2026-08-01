@@ -57,7 +57,7 @@ async function inicializarHistorico() {
             HistoricoCards.renderResumo(
                 HistoricoMetricas.calcular(metricas)
             );
-
+            HistoricoCards.renderTabela(numero);
         }
 
     }
