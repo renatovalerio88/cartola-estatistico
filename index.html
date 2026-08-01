@@ -75,16 +75,20 @@
       <span class="menu-icon">♟</span>
       <span>Times sugeridos</span>
     </button>
-
+    
     <button
       class="menu-item"
       type="button"
       data-tab="historico"
     >
-      <span class="menu-icon">📈</span>
-      <span>Histórico</span>
+      <span class="menu-icon">
+        📈
+      </span>
+    
+      <span>
+        Histórico
+      </span>
     </button>
-
     <button
       class="menu-item"
       type="button"
@@ -3015,7 +3019,78 @@
           </div>
 
         </section>
+        <!-- =================================================
+     ABA HISTÓRICO
+     ================================================= -->
 
+<section
+  class="tab-content"
+  id="historico"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <p class="section-label">
+        BACKTEST DO MODELO
+      </p>
+
+      <h2>
+        Histórico das projeções
+      </h2>
+
+    </div>
+
+  </div>
+
+  <div class="history-toolbar">
+
+    <label>
+
+      Rodada
+
+      <select id="historyRound"></select>
+
+    </label>
+
+    <label>
+
+      Posição
+
+      <select id="historyPosition"></select>
+
+    </label>
+
+  </div>
+
+  <div
+    class="history-summary"
+    id="historySummary"
+  >
+  </div>
+
+  <div
+    id="historyGrid"
+  >
+
+    <div class="empty-state">
+
+      <strong>
+        Nenhum backtest disponível
+      </strong>
+
+      <p>
+        Aqui serão exibidas as projeções do modelo,
+        os resultados reais da rodada e as métricas
+        de desempenho para evolução dos pesos.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
       </main>
 
     </div>
@@ -3033,18 +3108,13 @@
   >
   </div>
 
-    <script src="js/utils.js"></script>
-    <script src="js/ui.js"></script>
-    
-    <script src="js/motor/pesos.js"></script>
-    <script src="js/motor/estatistico.js"></script>
-    
-    <script src="js/recomendacoes/dados.js"></script>
-    <script src="js/recomendacoes/ranking.js"></script>
-    <script src="js/recomendacoes/cards.js"></script>
-    
     <script src="js/escalacoes/dados.js"></script>
     <script src="js/escalacoes/cards.js"></script>
+    
+    <script src="js/historico/dados.js"></script>
+    <script src="js/historico/cards.js"></script>
+    <script src="js/historico/filtros.js"></script>
+    <script src="js/historico/metricas.js"></script>
     
     <script src="js/app.js"></script>
 
