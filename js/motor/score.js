@@ -1,6 +1,6 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Motor de Score
+   Motor de Score Inteligente
    ========================================================= */
 
 const MotorScore = (() => {
@@ -14,58 +14,106 @@ const MotorScore = (() => {
 
         let score = 0;
 
-        score += valor(jogador.formaRecente)
-            * pesos.formaRecente;
+        // ----------------------------
+        // HISTÓRICO
+        // ----------------------------
 
-        score += valor(jogador.media)
-            * pesos.mediaGeral;
+        if (
+            jogador.historico &&
+            jogador.historico.length
+        ) {
 
-        score += valor(jogador.mediana)
+            const forma =
+                MotorForma.mediaRecente(
+                    jogador.historico
+                );
+
+            const tendencia =
+                MotorForma.tendencia(
+                    jogador.historico
+                );
+
+            const regularidade =
+                MotorRegularidade.calcular(
+                    jogador.historico
+                );
+
+            score +=
+                forma *
+                pesos.formaRecente;
+
+            score +=
+                tendencia *
+                pesos.tendenciaRecente;
+
+            score +=
+                regularidade.regularidade *
+                pesos.regularidade;
+
+            score +=
+                regularidade.media *
+                pesos.mediaGeral;
+
+        }
+
+        // ----------------------------
+        // DADOS DA RODADA
+        // ----------------------------
+
+        score +=
+            valor(jogador.mediana)
             * pesos.mediana;
 
-        score += valor(jogador.regularidade)
-            * pesos.regularidade;
-
-        score += valor(jogador.pontuacaoBasica)
+        score +=
+            valor(jogador.pontuacaoBasica)
             * pesos.pontuacaoBasica;
 
-        score += valor(jogador.scoutsOfensivos)
+        score +=
+            valor(jogador.scoutsOfensivos)
             * pesos.scoutsOfensivos;
 
-        score += valor(jogador.scoutsDefensivos)
+        score +=
+            valor(jogador.scoutsDefensivos)
             * pesos.scoutsDefensivos;
 
-        score += valor(jogador.casaFora)
+        score +=
+            valor(jogador.casaFora)
             * pesos.casaFora;
 
-        score += valor(jogador.forcaAdversario)
+        score +=
+            valor(jogador.forcaAdversario)
             * pesos.forcaAdversario;
 
-        score += valor(jogador.pontosCedidos)
+        score +=
+            valor(jogador.pontosCedidos)
             * pesos.pontosCedidos;
 
-        score += valor(jogador.chanceSG)
+        score +=
+            valor(jogador.chanceSG)
             * pesos.chanceSG;
 
-        score += valor(jogador.titularidade)
+        score +=
+            valor(jogador.titularidade)
             * pesos.titularidade;
 
-        score += valor(jogador.minutosEsperados)
+        score +=
+            valor(jogador.minutosEsperados)
             * pesos.minutosEsperados;
 
-        score += valor(jogador.bolaParada)
+        score +=
+            valor(jogador.bolaParada)
             * pesos.bolaParada;
 
-        score += valor(jogador.penaltis)
+        score +=
+            valor(jogador.penaltis)
             * pesos.penaltis;
 
-        score += valor(jogador.custoBeneficio)
+        score +=
+            valor(jogador.custoBeneficio)
             * pesos.custoBeneficio;
 
-        score += valor(jogador.tendenciaRecente)
-            * pesos.tendenciaRecente;
-
-        score -= valor(jogador.riscoNegativar)
+        score -=
+            valor(jogador.riscoNegativar)
             * pesos.riscoNegativar;
 
         return Number(
