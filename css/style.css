@@ -4156,3 +4156,125 @@ body.dark-theme
     margin-right: 14px;
   }
 }
+/* =========================================================
+   57. HISTÓRICO DO MODELO
+   ========================================================= */
+
+.history-toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin:24px 0;
+}
+
+.history-toolbar label{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-size:.78rem;
+    font-weight:600;
+    color:var(--text-soft);
+}
+
+.history-toolbar select{
+    min-width:190px;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface);
+    color:var(--text);
+}
+
+.history-summary{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:24px;
+}
+
+.history-card{
+    padding:18px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:var(--surface);
+    box-shadow:var(--shadow-small);
+}
+
+.history-card span{
+    display:block;
+    color:var(--text-soft);
+    font-size:.72rem;
+}
+
+.history-card strong{
+    display:block;
+    margin-top:8px;
+    color:var(--primary);
+    font-size:1.45rem;
+}
+
+.history-table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+    background:var(--surface);
+    box-shadow:var(--shadow-small);
+}
+
+.history-table th{
+    padding:14px;
+    background:var(--surface-dark);
+    color:#fff;
+    text-align:left;
+    font-size:.74rem;
+}
+
+.history-table td{
+    padding:13px 14px;
+    border-bottom:1px solid var(--border);
+    font-size:.76rem;
+}
+
+.history-table tr:hover{
+    background:var(--surface-soft-2);
+}
+
+.history-good{
+    color:var(--success);
+    font-weight:700;
+}
+
+.history-medium{
+    color:var(--warning);
+    font-weight:700;
+}
+
+.history-bad{
+    color:var(--danger);
+    font-weight:700;
+}
+
+@media(max-width:900px){
+
+    .history-summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:680px){
+
+    .history-summary{
+        grid-template-columns:1fr;
+    }
+
+    .history-toolbar{
+        flex-direction:column;
+    }
+
+    .history-toolbar select{
+        width:100%;
+    }
+
+}
