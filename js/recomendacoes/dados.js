@@ -8,8 +8,10 @@
    1. CAMINHO DO ARQUIVO
    ========================================================= */
 
-const CAMINHO_JOGADORES =
-  "data/jogadores.json";
+const CAMINHO_STATUS =
+  "data/api/status.json";
+
+let CAMINHO_JOGADORES = "";
 
 
 /* =========================================================
