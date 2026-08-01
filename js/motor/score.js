@@ -1,1 +1,97 @@
+/* =========================================================
+   CARTOLA ESTATÍSTICO
+   Motor de Score
+   ========================================================= */
 
+const MotorScore = (() => {
+
+    function calcular(jogador) {
+
+        const pesos =
+            obterPesosPorPosicao(
+                jogador.posicao
+            );
+
+        let score = 0;
+
+        score += valor(jogador.formaRecente)
+            * pesos.formaRecente;
+
+        score += valor(jogador.media)
+            * pesos.mediaGeral;
+
+        score += valor(jogador.mediana)
+            * pesos.mediana;
+
+        score += valor(jogador.regularidade)
+            * pesos.regularidade;
+
+        score += valor(jogador.pontuacaoBasica)
+            * pesos.pontuacaoBasica;
+
+        score += valor(jogador.scoutsOfensivos)
+            * pesos.scoutsOfensivos;
+
+        score += valor(jogador.scoutsDefensivos)
+            * pesos.scoutsDefensivos;
+
+        score += valor(jogador.casaFora)
+            * pesos.casaFora;
+
+        score += valor(jogador.forcaAdversario)
+            * pesos.forcaAdversario;
+
+        score += valor(jogador.pontosCedidos)
+            * pesos.pontosCedidos;
+
+        score += valor(jogador.chanceSG)
+            * pesos.chanceSG;
+
+        score += valor(jogador.titularidade)
+            * pesos.titularidade;
+
+        score += valor(jogador.minutosEsperados)
+            * pesos.minutosEsperados;
+
+        score += valor(jogador.bolaParada)
+            * pesos.bolaParada;
+
+        score += valor(jogador.penaltis)
+            * pesos.penaltis;
+
+        score += valor(jogador.custoBeneficio)
+            * pesos.custoBeneficio;
+
+        score += valor(jogador.tendenciaRecente)
+            * pesos.tendenciaRecente;
+
+        score -= valor(jogador.riscoNegativar)
+            * pesos.riscoNegativar;
+
+        return Number(
+            (score / 100).toFixed(2)
+        );
+
+    }
+
+    function valor(v) {
+
+        if (
+            v === undefined ||
+            v === null ||
+            Number.isNaN(Number(v))
+        ) {
+            return 0;
+        }
+
+        return Number(v);
+
+    }
+
+    return {
+
+        calcular
+
+    };
+
+})();
