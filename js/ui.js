@@ -14,6 +14,7 @@ const CAMINHO_CONFIGURACAO =
 const TITULOS_PAGINAS = {
   recomendacoes: "Recomendações",
   times: "Times sugeridos",
+  historico: "Histórico",
   metodologia: "Metodologia",
   analise: "Análise da rodada"
 };
