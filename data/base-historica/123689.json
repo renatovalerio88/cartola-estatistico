@@ -1,0 +1,15 @@
+{
+  "id": 123689,
+  "nome": "Pedro Milans Carámbula",
+  "posicao": "LAT",
+  "clube": "COR",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 8.55,
+      "media": 5.28,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

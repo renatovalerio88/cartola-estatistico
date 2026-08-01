@@ -1,0 +1,15 @@
+{
+  "id": 123101,
+  "nome": "Leonardo Caetano Silva",
+  "posicao": "ATA",
+  "clube": "CAP",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 5.84,
+      "media": 6.05,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

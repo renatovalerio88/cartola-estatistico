@@ -1,0 +1,15 @@
+{
+  "id": 123016,
+  "nome": "David Francisco Trindade Braga",
+  "posicao": "MEI",
+  "clube": "REM",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 3.14,
+      "media": 1.37,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

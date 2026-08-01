@@ -1,0 +1,15 @@
+{
+  "id": 42234,
+  "nome": "Cássio Roberto Ramos",
+  "posicao": "GOL",
+  "clube": "CRU",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 6.89,
+      "media": 1.32,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

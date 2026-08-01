@@ -1,0 +1,15 @@
+{
+  "id": 42500,
+  "nome": "Fagner Conserva Lemos",
+  "posicao": "LAT",
+  "clube": "CRU",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 5.19,
+      "media": 3.01,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 123445,
+  "nome": "João Vitor Silva Dantas de Oliveira",
+  "posicao": "MEI",
+  "clube": "CAP",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 5,
+      "media": 0,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 123717,
+  "nome": "José Guilherme de Lima Costa",
+  "posicao": "LAT",
+  "clube": "BAH",
+  "historico": [
+    {
+      "rodada": 22,
+      "preco": 3.68,
+      "media": 1.7,
+      "pontos": null,
+      "scouts": {}
+    }
+  ]
+}
