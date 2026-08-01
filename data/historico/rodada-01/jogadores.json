@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "Hulk",
+    "posicao": "ATA",
+    "projecao": 9.4,
+    "real": 12.7,
+    "top5": true
+  },
+  {
+    "nome": "Scarpa",
+    "posicao": "MEI",
+    "projecao": 8.7,
+    "real": 7.9,
+    "top5": true
+  },
+  {
+    "nome": "Everson",
+    "posicao": "GOL",
+    "projecao": 6.1,
+    "real": 2.3,
+    "top5": false
+  }
+]
