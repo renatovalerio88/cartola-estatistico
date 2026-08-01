@@ -1,1 +1,1 @@
-
+print("Importando histórico...")
