@@ -544,14 +544,54 @@ const CalculadoraEstatistica = (() => {
         notas: calculo.notas
       });
 
-    return {
-      ...jogador,
+     const jogadorCompleto = {
 
-      notasCriterios:
-        calculo.notas,
+    ...jogador,
 
-      notaCalculada:
-        resultadoMotor.notaFinal,
+    ...calculo.notas
+
+};
+
+jogadorCompleto.score =
+    MotorScore.calcular(
+        jogadorCompleto
+    );
+
+const pisoTeto =
+    MotorPisoTeto.calcular(
+        jogadorCompleto.historico || []
+    );
+
+jogadorCompleto.piso =
+    pisoTeto.piso;
+
+jogadorCompleto.teto =
+    pisoTeto.teto;
+
+jogadorCompleto.confianca =
+    MotorConfianca.calcular(
+        jogadorCompleto
+    );
+
+jogadorCompleto.risco =
+    MotorRisco.calcular(
+        jogadorCompleto
+    );
+
+jogadorCompleto.projecao =
+    MotorProjecao.calcular(
+        jogadorCompleto
+    );
+
+   return {
+   
+       ...jogadorCompleto,
+   
+       notasCriterios:
+           calculo.notas,
+   
+       notaCalculada:
+           resultadoMotor.notaFinal,
 
       classificacaoCalculada:
         resultadoMotor.classificacao,
