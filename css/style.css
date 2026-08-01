@@ -3189,3 +3189,970 @@ body.dark-theme .player-badge.score {
     margin-right: 14px;
   }
 }
+
+/* =========================================================
+   52. TIMES SUGERIDOS — GRID PRINCIPAL
+   ========================================================= */
+
+.suggested-lineups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+}
+
+.suggested-lineups-grid > .empty-state {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   53. CARD DA ESCALAÇÃO
+   ========================================================= */
+
+.suggested-lineup-card {
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-large);
+
+  background: var(--surface);
+  box-shadow: var(--shadow-medium);
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.suggested-lineup-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-large);
+}
+
+.suggested-lineup-card.conservative {
+  border-top: 4px solid var(--success);
+}
+
+.suggested-lineup-card.balanced {
+  border-top: 4px solid var(--blue);
+}
+
+.suggested-lineup-card.aggressive {
+  border-top: 4px solid var(--gold);
+}
+
+
+/* =========================================================
+   54. CABEÇALHO DA ESCALAÇÃO
+   ========================================================= */
+
+.lineup-card-header {
+  padding: 20px;
+
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--primary-light) 45%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+}
+
+.suggested-lineup-card.balanced .lineup-card-header {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--blue-light) 58%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+}
+
+.suggested-lineup-card.aggressive .lineup-card-header {
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--gold) 10%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+}
+
+.lineup-card-header h3 {
+  margin: 10px 0 4px;
+  font-size: 1.16rem;
+}
+
+.lineup-card-header p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.lineup-profile-tag {
+  padding: 6px 9px;
+
+  border-radius: 999px;
+  display: inline-block;
+
+  color: var(--success);
+  background: var(--success-light);
+
+  font-size: 0.66rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.suggested-lineup-card.balanced .lineup-profile-tag {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+
+.suggested-lineup-card.aggressive .lineup-profile-tag {
+  color: #8a6a1a;
+  background: color-mix(in srgb, var(--gold) 18%, var(--surface));
+}
+
+body.dark-theme
+.suggested-lineup-card.aggressive
+.lineup-profile-tag {
+  color: var(--gold);
+}
+
+.lineup-formation {
+  min-width: 78px;
+  padding: 9px 11px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface);
+  text-align: center;
+}
+
+.lineup-formation span,
+.lineup-formation strong {
+  display: block;
+}
+
+.lineup-formation span {
+  margin-bottom: 4px;
+  color: var(--text-soft);
+  font-size: 0.61rem;
+}
+
+.lineup-formation strong {
+  color: var(--primary);
+  font-size: 0.94rem;
+}
+
+
+/* =========================================================
+   55. CUSTO, LIMITE E SALDO
+   ========================================================= */
+
+.lineup-cost-row {
+  margin: 16px 20px 0;
+
+  padding: 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  background: var(--surface-soft-2);
+}
+
+.lineup-cost-row div {
+  min-width: 0;
+  text-align: center;
+}
+
+.lineup-cost-row span,
+.lineup-cost-row strong {
+  display: block;
+}
+
+.lineup-cost-row span {
+  margin-bottom: 5px;
+  color: var(--text-soft);
+  font-size: 0.61rem;
+}
+
+.lineup-cost-row strong {
+  color: var(--text);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   56. PROJEÇÃO, PISO E TETO DA ESCALAÇÃO
+   ========================================================= */
+
+.lineup-main-metrics {
+  margin: 12px 20px 0;
+
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 9px;
+}
+
+.lineup-main-metric {
+  padding: 12px 8px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background: var(--surface-soft-2);
+  text-align: center;
+}
+
+.lineup-main-metric span,
+.lineup-main-metric strong {
+  display: block;
+}
+
+.lineup-main-metric span {
+  margin-bottom: 5px;
+  color: var(--text-soft);
+  font-size: 0.63rem;
+}
+
+.lineup-main-metric strong {
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.lineup-main-metric.projection {
+  border-color: var(--primary);
+  color: #ffffff;
+  background:
+    linear-gradient(
+      145deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+}
+
+.lineup-main-metric.projection span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.lineup-main-metric.projection strong {
+  color: #ffffff;
+  font-size: 0.96rem;
+}
+
+
+/* =========================================================
+   57. CONFIANÇA E SELOS DA ESCALAÇÃO
+   ========================================================= */
+
+.lineup-confidence {
+  margin: 16px 20px 0;
+}
+
+.lineup-badges {
+  margin: 14px 20px 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.lineup-badge {
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 850;
+}
+
+.lineup-badge.formation {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.lineup-badge.players-count {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+
+.lineup-badge.risk-low {
+  color: var(--success);
+  background: var(--success-light);
+}
+
+.lineup-badge.risk-medium {
+  color: var(--warning);
+  background: var(--warning-light);
+}
+
+.lineup-badge.risk-high {
+  color: var(--danger);
+  background: var(--danger-light);
+}
+
+
+/* =========================================================
+   58. CAPITÃO
+   ========================================================= */
+
+.lineup-captain-highlight {
+  margin: 16px 20px 0;
+  padding: 14px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--gold) 30%,
+      var(--border)
+    );
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--gold) 9%,
+      var(--surface)
+    );
+}
+
+.lineup-special-symbol {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  display: grid;
+  place-items: center;
+
+  color: #1d281f;
+  background:
+    linear-gradient(
+      145deg,
+      var(--gold),
+      var(--gold-light)
+    );
+
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.lineup-special-symbol.reserve {
+  color: #ffffff;
+  background: var(--blue);
+}
+
+.lineup-special-symbol.luxury {
+  color: #1d281f;
+  background:
+    linear-gradient(
+      145deg,
+      var(--gold),
+      var(--gold-light)
+    );
+}
+
+.lineup-captain-highlight small,
+.lineup-captain-highlight strong {
+  display: block;
+}
+
+.lineup-captain-highlight small {
+  margin-bottom: 3px;
+  color: var(--text-soft);
+  font-size: 0.62rem;
+}
+
+.lineup-captain-highlight strong {
+  font-size: 0.84rem;
+}
+
+.lineup-captain-highlight p {
+  margin: 6px 0 0;
+  color: var(--text-soft);
+  font-size: 0.69rem;
+  line-height: 1.48;
+}
+
+
+/* =========================================================
+   59. LISTA DE TITULARES
+   ========================================================= */
+
+.lineup-players-title {
+  margin: 18px 20px 9px;
+
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.lineup-players-list {
+  margin: 0 20px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.lineup-player-row {
+  padding: 10px 11px;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--surface-soft-2);
+}
+
+.lineup-player-row + .lineup-player-row {
+  border-top: 1px solid var(--border);
+}
+
+.lineup-position-pill {
+  min-width: 37px;
+  padding: 5px 6px;
+
+  border-radius: 8px;
+
+  color: var(--primary);
+  background: var(--primary-light);
+
+  text-align: center;
+  font-size: 0.58rem;
+  font-weight: 900;
+}
+
+.lineup-player-name {
+  min-width: 0;
+}
+
+.lineup-player-name strong,
+.lineup-player-name small {
+  display: block;
+}
+
+.lineup-player-name strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 0.73rem;
+}
+
+.lineup-player-name small {
+  margin-top: 3px;
+  color: var(--text-soft);
+  font-size: 0.6rem;
+}
+
+.lineup-captain-mini {
+  width: 18px;
+  height: 18px;
+
+  margin-left: 4px;
+
+  border-radius: 50%;
+
+  display: inline-grid;
+  place-items: center;
+
+  color: #1d281f;
+  background: var(--gold);
+
+  font-size: 0.52rem;
+  font-weight: 900;
+  vertical-align: middle;
+}
+
+.lineup-player-numbers {
+  text-align: right;
+}
+
+.lineup-player-numbers strong,
+.lineup-player-numbers small {
+  display: block;
+  white-space: nowrap;
+}
+
+.lineup-player-numbers strong {
+  color: var(--primary);
+  font-size: 0.69rem;
+}
+
+.lineup-player-numbers small {
+  margin-top: 3px;
+  color: var(--text-soft);
+  font-size: 0.58rem;
+}
+
+
+/* =========================================================
+   60. JUSTIFICATIVA DA ESTRATÉGIA
+   ========================================================= */
+
+.lineup-strategy-summary {
+  margin: 16px 20px 0;
+  padding: 14px;
+
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+
+  background: var(--primary-light);
+}
+
+.suggested-lineup-card.balanced
+.lineup-strategy-summary {
+  border-left-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.suggested-lineup-card.aggressive
+.lineup-strategy-summary {
+  border-left-color: var(--gold);
+  background:
+    color-mix(
+      in srgb,
+      var(--gold) 10%,
+      var(--surface)
+    );
+}
+
+.lineup-strategy-summary strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.73rem;
+}
+
+.lineup-strategy-summary p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.69rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   61. BOTÃO DOS DETALHES
+   ========================================================= */
+
+.lineup-details-button {
+  width: calc(100% - 40px);
+
+  margin: 15px 20px 20px;
+  padding: 11px 13px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--primary) 28%,
+      var(--border)
+    );
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: var(--primary);
+  background: var(--primary-light);
+
+  font-size: 0.72rem;
+  font-weight: 850;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.lineup-details-button:hover,
+.lineup-details-button.open {
+  color: #ffffff;
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.lineup-details-arrow {
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    color-mix(
+      in srgb,
+      currentColor 10%,
+      transparent
+    );
+
+  font-size: 1rem;
+}
+
+
+/* =========================================================
+   62. CONTEÚDO EXPANDIDO
+   ========================================================= */
+
+.lineup-complete-analysis {
+  padding: 18px 20px 20px;
+
+  border-top: 1px solid var(--border);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--surface-soft-2) 60%,
+      var(--surface)
+    );
+
+  animation: completeAnalysisFade 0.25s ease;
+}
+
+.lineup-complete-analysis[hidden] {
+  display: none;
+}
+
+.lineup-detail-section + .lineup-detail-section {
+  margin-top: 17px;
+}
+
+.lineup-detail-heading {
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.lineup-detail-heading strong {
+  display: block;
+  font-size: 0.77rem;
+}
+
+.lineup-detail-heading p {
+  margin: 4px 0 0;
+  color: var(--text-soft);
+  font-size: 0.67rem;
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   63. BANCO
+   ========================================================= */
+
+.lineup-bench-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.lineup-bench-player {
+  min-width: 0;
+  padding: 11px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface);
+}
+
+.lineup-bench-player span,
+.lineup-bench-player strong,
+.lineup-bench-player small {
+  display: block;
+}
+
+.lineup-bench-player span {
+  color: var(--primary);
+  font-size: 0.57rem;
+  font-weight: 900;
+}
+
+.lineup-bench-player strong {
+  margin: 5px 0 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 0.68rem;
+}
+
+.lineup-bench-player small {
+  color: var(--text-soft);
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   64. RESERVA DE LUXO
+   ========================================================= */
+
+.lineup-luxury-player {
+  padding: 13px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--gold) 28%,
+      var(--border)
+    );
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--gold) 8%,
+      var(--surface)
+    );
+}
+
+.lineup-luxury-player > div:last-child {
+  text-align: right;
+}
+
+.lineup-luxury-player span,
+.lineup-luxury-player strong,
+.lineup-luxury-player small {
+  display: block;
+}
+
+.lineup-luxury-player span {
+  color: var(--gold);
+  font-size: 0.57rem;
+  font-weight: 900;
+}
+
+.lineup-luxury-player strong {
+  margin: 4px 0;
+  font-size: 0.72rem;
+}
+
+.lineup-luxury-player small {
+  color: var(--text-soft);
+  font-size: 0.6rem;
+}
+
+
+/* =========================================================
+   65. PONTOS POSITIVOS E ATENÇÃO
+   ========================================================= */
+
+.lineup-analysis-columns {
+  margin-top: 17px;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.lineup-analysis-box {
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.lineup-analysis-box.positive {
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--success) 20%,
+      var(--border)
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--success-light) 72%,
+      var(--surface)
+    );
+}
+
+.lineup-analysis-box.attention {
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--warning) 20%,
+      var(--border)
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--warning-light) 72%,
+      var(--surface)
+    );
+}
+
+.lineup-analysis-box h4 {
+  margin: 0 0 8px;
+  font-size: 0.73rem;
+}
+
+.lineup-analysis-box ul {
+  margin: 0;
+  padding-left: 17px;
+
+  color: var(--text-soft);
+  font-size: 0.66rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   66. RESPONSIVIDADE DOS TIMES SUGERIDOS
+   ========================================================= */
+
+@media (max-width: 1320px) {
+  .suggested-lineups-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .suggested-lineups-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .lineup-card-header {
+    padding: 17px;
+  }
+
+  .lineup-cost-row,
+  .lineup-main-metrics,
+  .lineup-confidence,
+  .lineup-badges,
+  .lineup-captain-highlight,
+  .lineup-players-list,
+  .lineup-strategy-summary {
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+
+  .lineup-players-title {
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+
+  .lineup-details-button {
+    width: calc(100% - 34px);
+    margin-left: 17px;
+    margin-right: 17px;
+  }
+
+  .lineup-analysis-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .lineup-card-header {
+    flex-direction: column;
+  }
+
+  .lineup-formation {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+  }
+
+  .lineup-formation span {
+    margin: 0;
+  }
+
+  .lineup-main-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lineup-main-metric.projection {
+    grid-column: 1 / -1;
+  }
+
+  .lineup-bench-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 390px) {
+  .lineup-cost-row,
+  .lineup-main-metrics,
+  .lineup-confidence,
+  .lineup-badges,
+  .lineup-captain-highlight,
+  .lineup-players-list,
+  .lineup-strategy-summary {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .lineup-players-title {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .lineup-details-button {
+    width: calc(100% - 28px);
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}
