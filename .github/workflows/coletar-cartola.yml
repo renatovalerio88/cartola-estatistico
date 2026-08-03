@@ -56,6 +56,10 @@ jobs:
         run: |
           python scripts/processamento/analisar_componentes.py
 
+      - name: Backtest Inteligente
+        run: |
+          python scripts/processamento/backtest_inteligente.py
+
       - name: Commit
         run: |
 
