@@ -49,6 +49,38 @@ const MotorProjecao = (() => {
         const regularidade =
             numero(jogador.regularidade,50);
 
+        const historico =
+            jogador.historico || [];
+
+        let volatilidade = 0;
+
+        if (historico.length >= 2) {
+
+            const media = historico.reduce(
+                (soma, r) => soma + numero(r.pontos),
+                0
+            ) / historico.length;
+
+            volatilidade = Math.sqrt(
+
+                historico.reduce(
+
+                    (soma, r) =>
+
+                        soma +
+
+                        Math.pow(
+                            numero(r.pontos) - media,
+                            2
+                        ),
+
+                    0
+
+                ) / historico.length
+
+            );
+
+        }
 
         let projecao =
 
@@ -59,31 +91,27 @@ const MotorProjecao = (() => {
             + piso * 0.10
             + teto * 0.20;
 
-
         projecao *=
-
             0.85 + (regularidade / 1000);
 
-
         projecao *=
-
             0.90 + (confianca / 1000);
 
-
         projecao *=
-
             0.95 + (tendencia / 1000);
 
-
         projecao *=
-
             1 - (risco / 350);
 
+        // Penaliza jogadores muito instáveis
+        projecao *=
+            Math.max(
+                0.85,
+                1 - (volatilidade / 100)
+            );
 
         return Number(
-
             projecao.toFixed(2)
-
         );
 
     }
