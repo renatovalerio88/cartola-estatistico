@@ -126,10 +126,25 @@ for rodada, jogadores in rodadas.items():
         for j in jogadores
     ]
 
-    media_erro = round(
-        sum(erros) / len(erros),
-        2
-    )
+        maior_erro = round(
+            max(erros),
+            2
+        )
+        
+        menor_erro = round(
+            min(erros),
+            2
+        )
+        
+        acertos = len([
+            e for e in erros
+            if e <= 3
+        ])
+        
+        taxa_acerto = round(
+            acertos * 100 / len(erros),
+            2
+        )
 
     salvar_json(
 
@@ -137,17 +152,13 @@ for rodada, jogadores in rodadas.items():
         f"rodada-{rodada:02d}.json",
 
         {
-
             "rodada": rodada,
-
             "erroMedio": media_erro,
-
-            "quantidade": len(
-                jogadores
-            ),
-
+            "maiorErro": maior_erro,
+            "menorErro": menor_erro,
+            "taxaAcerto": taxa_acerto,
+            "quantidade": len(jogadores),
             "jogadores": jogadores
-
         }
 
     )
