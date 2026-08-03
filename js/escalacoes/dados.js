@@ -3,18 +3,8 @@
    Escalações — carregamento dos dados
    ========================================================= */
 
-
-/* =========================================================
-   1. CAMINHO DO ARQUIVO
-   ========================================================= */
-
 const CAMINHO_ESCALACOES =
   "data/escalacoes.json";
-
-
-/* =========================================================
-   2. ESTADO DAS ESCALAÇÕES
-   ========================================================= */
 
 const estadoEscalacoes = {
   escalacoes: [],
@@ -22,11 +12,6 @@ const estadoEscalacoes = {
   carregando: false,
   erro: null
 };
-
-
-/* =========================================================
-   3. CARREGAMENTO DAS ESCALAÇÕES
-   ========================================================= */
 
 async function carregarEscalacoes() {
 
@@ -70,7 +55,9 @@ async function carregarEscalacoes() {
       const titulares =
         MotorEscalacao.montar(
           jogadores,
-          perfil.formacao
+          perfil.formacao,
+          Infinity,
+          perfil.perfil
         );
 
       const escalacao = {
@@ -80,32 +67,40 @@ async function carregarEscalacoes() {
         jogadores: titulares,
 
         custo: titulares.reduce(
-          (s,j)=>
-            s + (j.preco || 0),
+          (s,j)=>s+(j.preco||0),
           0
         ),
 
         projecao: titulares.reduce(
-          (s,j)=>
-            s + (j.projecao || 0),
+          (s,j)=>s+(j.projecao||0),
           0
         ),
 
         piso: titulares.reduce(
-          (s,j)=>
-            s + (j.piso || 0),
+          (s,j)=>s+(j.piso||0),
           0
         ),
 
         teto: titulares.reduce(
-          (s,j)=>
-            s + (j.teto || 0),
+          (s,j)=>s+(j.teto||0),
           0
         ),
 
-        confianca: 0,
+        confianca:
+          titulares.length
+          ? titulares.reduce(
+              (s,j)=>s+(j.confianca||0),
+              0
+            ) / titulares.length
+          : 0,
 
-        risco: 0,
+        risco:
+          titulares.length
+          ? titulares.reduce(
+              (s,j)=>s+(j.risco||0),
+              0
+            ) / titulares.length
+          : 0,
 
         banco: []
 
@@ -121,7 +116,8 @@ async function carregarEscalacoes() {
             .slice()
             .sort(
               (a,b)=>
-                MotorCapitao.calcular(b) -
+                MotorCapitao.calcular(b)
+                -
                 MotorCapitao.calcular(a)
             )[0];
 
@@ -137,7 +133,8 @@ async function carregarEscalacoes() {
             .slice()
             .sort(
               (a,b)=>
-                MotorReservaLuxo.calcular(b) -
+                MotorReservaLuxo.calcular(b)
+                -
                 MotorReservaLuxo.calcular(a)
             )[0];
 
@@ -152,9 +149,11 @@ async function carregarEscalacoes() {
     estadoEscalacoes.escalacoes =
       escalacoes;
 
-    estadoEscalacoes.carregado = true;
+    estadoEscalacoes.carregado =
+      true;
 
-    estadoEscalacoes.carregando = false;
+    estadoEscalacoes.carregando =
+      false;
 
     iniciarEscalacoes();
 
@@ -162,13 +161,18 @@ async function carregarEscalacoes() {
 
   } catch (erro) {
 
-    console.error(erro);
+    console.error(
+      "Erro ao carregar escalações:",
+      erro
+    );
 
     estadoEscalacoes.escalacoes = [];
 
-    estadoEscalacoes.carregado = false;
+    estadoEscalacoes.carregado =
+      false;
 
-    estadoEscalacoes.carregando = false;
+    estadoEscalacoes.carregando =
+      false;
 
     estadoEscalacoes.erro =
       erro.message;
@@ -183,73 +187,43 @@ async function carregarEscalacoes() {
 
 }
 
-/* =========================================================
-   4. VALIDAÇÃO DE UMA ESCALAÇÃO
-   ========================================================= */
-
 function validarEscalacao(
   escalacao
 ) {
-  if (!ehObjetoValido(escalacao)) {
-    return false;
-  }
 
-  if (!escalacao.id) {
-    return false;
-  }
+  return !!(
+    escalacao &&
+    escalacao.id &&
+    escalacao.nome
+  );
 
-  if (!escalacao.nome) {
-    return false;
-  }
-
-  if (
-    !Array.isArray(
-      escalacao.jogadores
-    )
-  ) {
-    return false;
-  }
-
-  if (
-    escalacao.jogadores.length === 0
-  ) {
-    return false;
-  }
-
-  return true;
 }
-
-
-/* =========================================================
-   5. INICIALIZAÇÃO DAS ESCALAÇÕES
-   ========================================================= */
 
 function iniciarEscalacoes() {
-  if (!estadoEscalacoes.carregado) {
-    return;
-  }
 
   if (
+    estadoEscalacoes.carregado &&
     typeof exibirEscalacoes ===
-    "function"
+      "function"
   ) {
+
     exibirEscalacoes();
+
   }
+
 }
 
-
-/* =========================================================
-   6. LOCALIZAÇÃO DO CONTAINER
-   ========================================================= */
-
 function obterContainerEscalacoes() {
-  const secaoTimes =
+
+  const secao =
     document.getElementById(
       "times"
     );
 
-  if (!secaoTimes) {
+  if (!secao) {
+
     return null;
+
   }
 
   let container =
@@ -258,13 +232,10 @@ function obterContainerEscalacoes() {
     );
 
   if (container) {
-    return container;
-  }
 
-  const estadoVazio =
-    secaoTimes.querySelector(
-      ".empty-state"
-    );
+    return container;
+
+  }
 
   container =
     document.createElement("div");
@@ -275,155 +246,97 @@ function obterContainerEscalacoes() {
   container.className =
     "suggested-lineups-grid";
 
-  if (estadoVazio) {
-    estadoVazio.replaceWith(
-      container
-    );
-  } else {
-    secaoTimes.appendChild(
-      container
-    );
-  }
+  secao.appendChild(
+    container
+  );
 
   return container;
+
 }
-
-
-/* =========================================================
-   7. ESTADO DE CARREGAMENTO
-   ========================================================= */
 
 function exibirCarregamentoEscalacoes() {
+
   const container =
     obterContainerEscalacoes();
 
   if (!container) {
+
     return;
+
   }
 
-  container.innerHTML = `
-    <div class="empty-state">
+  container.innerHTML =
+    `<div class="empty-state">
+      <strong>Carregando escalações...</strong>
+    </div>`;
 
-      <strong>
-        Carregando escalações
-      </strong>
-
-      <p>
-        Organizando titulares,
-        formação, patrimônio,
-        capitão, banco,
-        Reserva de Luxo
-        e justificativas.
-      </p>
-
-    </div>
-  `;
 }
-
-
-/* =========================================================
-   8. ESTADO DE ERRO
-   ========================================================= */
 
 function exibirErroEscalacoes(
-  mensagem = ""
+  mensagem=""
 ) {
+
   const container =
     obterContainerEscalacoes();
 
   if (!container) {
+
     return;
+
   }
 
-  container.innerHTML = `
-    <div class="empty-state">
+  container.innerHTML =
+    `<div class="empty-state">
+      <strong>Erro ao carregar escalações</strong>
+      <p>${escaparHtml(mensagem)}</p>
+    </div>`;
 
-      <strong>
-        Não foi possível
-        carregar as escalações
-      </strong>
-
-      <p>
-        Confirme se o arquivo
-        <strong>data/escalacoes.json</strong>
-        existe e contém um JSON válido.
-      </p>
-
-      ${
-        mensagem
-          ? `
-            <small>
-              Detalhe técnico:
-              ${escaparHtml(mensagem)}
-            </small>
-          `
-          : ""
-      }
-
-    </div>
-  `;
 }
-
-
-/* =========================================================
-   9. ESTADO SEM ESCALAÇÕES
-   ========================================================= */
 
 function exibirSemEscalacoes() {
+
   const container =
     obterContainerEscalacoes();
 
   if (!container) {
+
     return;
+
   }
 
-  container.innerHTML = `
-    <div class="empty-state">
+  container.innerHTML =
+    `<div class="empty-state">
+      Nenhuma escalação disponível.
+    </div>`;
 
-      <strong>
-        Nenhuma escalação cadastrada
-      </strong>
-
-      <p>
-        O arquivo
-        data/escalacoes.json
-        está vazio.
-      </p>
-
-    </div>
-  `;
 }
 
-
-/* =========================================================
-   10. ACESSO AOS DADOS
-   ========================================================= */
-
 function obterEscalacoesCarregadas() {
+
   return [
     ...estadoEscalacoes.escalacoes
   ];
+
 }
 
+function obterEscalacaoPorId(id) {
 
-function obterEscalacaoPorId(
-  escalacaoId
-) {
-  return (
-    estadoEscalacoes.escalacoes.find(
-      (escalacao) =>
-        String(escalacao.id) ===
-        String(escalacaoId)
-    ) || null
-  );
+  return estadoEscalacoes.escalacoes.find(
+    e =>
+      String(e.id) ===
+      String(id)
+  ) || null;
+
 }
-
 
 function escalacoesCarregadas() {
+
   return estadoEscalacoes.carregado;
+
 }
 
-
 function obterErroEscalacoes() {
+
   return estadoEscalacoes.erro;
+
 }
