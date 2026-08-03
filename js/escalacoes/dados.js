@@ -29,6 +29,7 @@ const estadoEscalacoes = {
    ========================================================= */
 
 async function carregarEscalacoes() {
+
   estadoEscalacoes.carregando = true;
   estadoEscalacoes.carregado = false;
   estadoEscalacoes.erro = null;
@@ -36,6 +37,7 @@ async function carregarEscalacoes() {
   exibirCarregamentoEscalacoes();
 
   try {
+
     const resposta = await fetch(
       CAMINHO_ESCALACOES,
       {
@@ -49,141 +51,125 @@ async function carregarEscalacoes() {
       );
     }
 
-    const dados =
+    const perfis =
       await resposta.json();
 
-    if (!Array.isArray(dados)) {
+    if (!Array.isArray(perfis)) {
       throw new Error(
-        "O arquivo escalacoes.json " +
-        "não contém uma lista válida."
+        "Arquivo de perfis inválido."
       );
     }
 
-    const escalacoesValidas =
-      dados.filter(
-        validarEscalacao
+    const jogadores =
+      obterJogadoresCarregados();
+
+    const escalacoes = [];
+
+    for (const perfil of perfis) {
+
+      const titulares =
+        MotorEscalacao.montar(
+          jogadores,
+          perfil.formacao
+        );
+
+      const escalacao = {
+
+        ...perfil,
+
+        jogadores: titulares,
+
+        custo: titulares.reduce(
+          (s,j)=>
+            s + (j.preco || 0),
+          0
+        ),
+
+        projecao: titulares.reduce(
+          (s,j)=>
+            s + (j.projecao || 0),
+          0
+        ),
+
+        piso: titulares.reduce(
+          (s,j)=>
+            s + (j.piso || 0),
+          0
+        ),
+
+        teto: titulares.reduce(
+          (s,j)=>
+            s + (j.teto || 0),
+          0
+        ),
+
+        confianca: 0,
+
+        risco: 0,
+
+        banco: []
+
+      };
+
+      if (
+        typeof MotorCapitao !==
+        "undefined"
+      ) {
+
+        escalacao.capitao =
+          titulares
+            .slice()
+            .sort(
+              (a,b)=>
+                MotorCapitao.calcular(b) -
+                MotorCapitao.calcular(a)
+            )[0];
+
+      }
+
+      if (
+        typeof MotorReservaLuxo !==
+        "undefined"
+      ) {
+
+        escalacao.reservaLuxo =
+          titulares
+            .slice()
+            .sort(
+              (a,b)=>
+                MotorReservaLuxo.calcular(b) -
+                MotorReservaLuxo.calcular(a)
+            )[0];
+
+      }
+
+      escalacoes.push(
+        escalacao
       );
 
-    for (const escalacao of escalacoesValidas) {
-
-      escalacao.jogadores =
-        escalacao.jogadores
-          .map(id =>
-            obterJogadorPorId(id)
-          )
-          .filter(Boolean);
-
-      // ============================
-      // Capitão automático
-      // ============================
-
-   if (
-     typeof MotorCapitao !==
-     "undefined"
-   ) {
-   
-     let melhorCapitao = null;
-     let maiorScoreCapitao = -Infinity;
-   
-     let melhorReserva = null;
-     let maiorScoreReserva = -Infinity;
-   
-     for (const jogador of escalacao.jogadores) {
-   
-       const scoreCapitao =
-         MotorCapitao.calcular(
-           jogador
-         );
-   
-       jogador.scoreCapitao =
-         scoreCapitao;
-   
-       if (
-         scoreCapitao >
-         maiorScoreCapitao
-       ) {
-   
-         maiorScoreCapitao =
-           scoreCapitao;
-   
-         melhorCapitao =
-           jogador;
-   
-       }
-   
-       if (
-         typeof MotorReservaLuxo !==
-         "undefined"
-       ) {
-   
-         const scoreReserva =
-           MotorReservaLuxo.calcular(
-             jogador
-           );
-   
-         jogador.scoreReservaLuxo =
-           scoreReserva;
-   
-         if (
-           scoreReserva >
-           maiorScoreReserva
-         ) {
-   
-           maiorScoreReserva =
-             scoreReserva;
-   
-           melhorReserva =
-             jogador;
-   
-         }
-   
-       }
-   
-     }
-   
-     if (melhorCapitao) {
-   
-       escalacao.capitao =
-         melhorCapitao;
-   
-     }
-   
-     if (melhorReserva) {
-   
-       escalacao.reservaLuxo =
-         melhorReserva;
-   
-     }
-   
-   }
-
-    if (
-      escalacoesValidas.length === 0
-    ) {
-      throw new Error(
-        "Nenhuma escalação válida " +
-        "foi encontrada."
-      );
     }
 
     estadoEscalacoes.escalacoes =
-      escalacoesValidas;
+      escalacoes;
 
     estadoEscalacoes.carregado = true;
+
     estadoEscalacoes.carregando = false;
 
     iniciarEscalacoes();
 
-    return escalacoesValidas;
+    return escalacoes;
+
   } catch (erro) {
-    console.error(
-      "Erro ao carregar escalações:",
-      erro
-    );
+
+    console.error(erro);
 
     estadoEscalacoes.escalacoes = [];
+
     estadoEscalacoes.carregado = false;
+
     estadoEscalacoes.carregando = false;
+
     estadoEscalacoes.erro =
       erro.message;
 
@@ -192,9 +178,10 @@ async function carregarEscalacoes() {
     );
 
     return [];
-  }
-}
 
+  }
+
+}
 
 /* =========================================================
    4. VALIDAÇÃO DE UMA ESCALAÇÃO
