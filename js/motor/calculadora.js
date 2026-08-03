@@ -1151,6 +1151,32 @@ const CalculadoraEstatistica = (() => {
         jogadorCompleto.projecao
       );
 
+     /* PROBABILIDADES */
+
+      if (
+        typeof MotorProbabilidade !==
+        "undefined"
+      ) {
+      
+        const probabilidades =
+          MotorProbabilidade.calcular(
+            historico
+          );
+      
+        jogadorCompleto.chance5 =
+          probabilidades.chance5;
+      
+        jogadorCompleto.chance10 =
+          probabilidades.chance10;
+      
+        jogadorCompleto.chance15 =
+          probabilidades.chance15;
+      
+        jogadorCompleto.chanceNegativar =
+          probabilidades.chanceNegativar;
+      
+      }
+
 
     /* CUSTO-BENEFÍCIO FINAL */
 
