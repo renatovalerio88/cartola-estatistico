@@ -48,6 +48,10 @@ jobs:
         run: |
           python scripts/processamento/otimizar_pesos.py
 
+      - name: Gerar Laboratório
+        run: |
+          python scripts/processamento/gerar_laboratorio.py
+
       - name: Commit
         run: |
 
