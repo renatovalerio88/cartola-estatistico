@@ -739,11 +739,21 @@ function criarReservaLuxoHtml(
 
       <div>
 
-        <strong>
+         <strong>
+             ${formatarPontos(
+                 jogador.projecao
+             )}
+         </strong>
+         
          <small>
-         ⭐ ${jogador.score?.toFixed(1) ?? "--"}
+             ⭐ ${jogador.score?.toFixed(1) ?? "--"}
          </small>
-        </strong>
+         
+         <small>
+             ${formatarCartoletas(
+                 jogador.preco
+             )}
+         </small>
 
         <small>
           ${formatarCartoletas(
