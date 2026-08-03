@@ -64,6 +64,17 @@ async function carregarEscalacoes() {
         validarEscalacao
       );
 
+   for (const escalacao of escalacoesValidas) {
+
+  escalacao.jogadores =
+    escalacao.jogadores
+      .map(id =>
+        obterJogadorPorId(id)
+      )
+      .filter(Boolean);
+
+}     
+
     if (
       escalacoesValidas.length === 0
     ) {
