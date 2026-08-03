@@ -44,8 +44,11 @@ jobs:
         run: |
           python scripts/processamento/gerar_backtest.py
 
-      - name: Commit
+      - name: Otimizar Pesos
+        run: |
+          python scripts/processamento/otimizar_pesos.py
 
+      - name: Commit
         run: |
 
           git config user.name github-actions
