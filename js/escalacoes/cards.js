@@ -597,9 +597,13 @@ function criarJogadorTitularHtml(
       <div class="lineup-player-numbers">
 
         <strong>
-          ${formatarPontos(
-            jogador.projecao
-          )}
+            ${formatarPontos(
+              jogador.projecao
+            )}
+            
+            <small>
+            ⭐ ${jogador.score?.toFixed(1) ?? "--"}
+            </small>
         </strong>
 
         <small>
@@ -674,9 +678,13 @@ function criarJogadorBancoHtml(
 
         •
 
-        ${formatarPontos(
-          jogador.projecao
-        )}
+         ${formatarPontos(
+             jogador.projecao
+         )}
+         
+         •
+         
+         ⭐ ${jogador.score?.toFixed(1) ?? "--"}
 
       </small>
 
@@ -732,9 +740,9 @@ function criarReservaLuxoHtml(
       <div>
 
         <strong>
-          ${formatarPontos(
-            jogador.projecao
-          )}
+         <small>
+         ⭐ ${jogador.score?.toFixed(1) ?? "--"}
+         </small>
         </strong>
 
         <small>
