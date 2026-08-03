@@ -52,6 +52,10 @@ jobs:
         run: |
           python scripts/processamento/gerar_laboratorio.py
 
+      - name: Analisar Componentes
+        run: |
+          python scripts/processamento/analisar_componentes.py
+
       - name: Commit
         run: |
 
