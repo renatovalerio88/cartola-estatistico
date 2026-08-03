@@ -127,30 +127,29 @@ for rodada, jogadores in rodadas.items():
     ]
 
     media_erro = round(
-    sum(erros) / len(erros),
-    2
+        sum(erros) / len(erros),
+        2
     )
     
-        maior_erro = round(
-            max(erros),
-            2
-        )
-        
-        menor_erro = round(
-            min(erros),
-            2
-        )
-        
-        acertos = len([
-            e for e in erros
-            if e <= 3
-        ])
-        
-        taxa_acerto = round(
-            acertos * 100 / len(erros),
-            2
-        )
-
+    maior_erro = round(
+        max(erros),
+        2
+    )
+    
+    menor_erro = round(
+        min(erros),
+        2
+    )
+    
+    acertos = len([
+        e for e in erros
+        if e <= 3
+    ])
+    
+    taxa_acerto = round(
+        acertos * 100 / len(erros),
+        2
+    )
     salvar_json(
 
         PASTA_SAIDA /
