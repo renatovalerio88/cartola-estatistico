@@ -7,38 +7,78 @@ Motor de Projeção
 
 const MotorProjecao = (() => {
 
+    function numero(valor, padrao = 0) {
+
+        valor = Number(valor);
+
+        return Number.isFinite(valor)
+            ? valor
+            : padrao;
+
+    }
+
     function calcular(jogador){
 
         const score =
-            Number(jogador.score || 0);
+            numero(jogador.score);
+
+        const media3 =
+            numero(jogador.score?.media3 ?? jogador.media3);
+
+        const media5 =
+            numero(jogador.score?.media5 ?? jogador.media5);
+
+        const mediaGeral =
+            numero(jogador.mediaGeral);
 
         const piso =
-            Number(jogador.piso || 0);
+            numero(jogador.piso);
 
         const teto =
-            Number(jogador.teto || 0);
+            numero(jogador.teto);
 
         const confianca =
-            Number(jogador.confianca || 50);
+            numero(jogador.confianca,50);
 
         const risco =
-            Number(jogador.risco || 50);
+            numero(jogador.risco,50);
+
+        const tendencia =
+            numero(jogador.tendencia);
+
+        const regularidade =
+            numero(jogador.regularidade,50);
+
 
         let projecao =
 
-            (score * 0.55) +
+              score * 0.25
+            + media3 * 0.20
+            + media5 * 0.15
+            + mediaGeral * 0.10
+            + piso * 0.10
+            + teto * 0.20;
 
-            (piso * 0.15) +
-
-            (teto * 0.30);
-
-        projecao *=
-
-            confianca / 100;
 
         projecao *=
 
-            1 - (risco / 250);
+            0.85 + (regularidade / 1000);
+
+
+        projecao *=
+
+            0.90 + (confianca / 1000);
+
+
+        projecao *=
+
+            0.95 + (tendencia / 1000);
+
+
+        projecao *=
+
+            1 - (risco / 350);
+
 
         return Number(
 
