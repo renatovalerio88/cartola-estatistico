@@ -1024,6 +1024,11 @@ function executarMotorEstatistico(
   const notas =
     dadosAnalise?.notas || {};
 
+   const score =
+    calcularScoreEstatistico(
+        dadosAnalise
+    );
+
   const resultadoNota =
     calcularNotaFinal(
       notas,
@@ -1061,6 +1066,8 @@ function executarMotorEstatistico(
           .quantidadeCriterios
     },
 
+     score,
+     
     jogadorId:
       dadosAnalise?.jogadorId ||
       null,
@@ -1095,6 +1102,59 @@ function executarMotorEstatistico(
     erro:
       resultadoNota.erro
   };
+}
+
+/* =========================================================
+   28. SCORE ESTATÍSTICO COMPLETO
+   ========================================================= */
+
+function calcularScoreEstatistico(
+  jogador
+) {
+
+  const historico =
+    jogador.historico || [];
+
+  const ultimas3 =
+    historico.slice(-3);
+
+  const ultimas5 =
+    historico.slice(-5);
+
+  const ultimas10 =
+    historico.slice(-10);
+
+  return {
+
+    media3:
+      calcularMedia(ultimas3),
+
+    media5:
+      calcularMedia(ultimas5),
+
+    media10:
+      calcularMedia(ultimas10),
+
+    mediana:
+      calcularMediana(historico),
+
+    regularidade:
+      calcularRegularidade(historico),
+
+    tendencia:
+      calcularTendencia(historico),
+
+    desvioPadrao:
+      calcularDesvioPadrao(historico),
+
+    amplitude:
+      calcularAmplitude(historico),
+
+    frequenciaNegativa:
+      calcularFrequenciaNegativa(historico)
+
+  };
+
 }
 
 
