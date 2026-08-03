@@ -12,21 +12,13 @@ async function inicializarAplicacao() {
 
     configurarInterface();
 
-      configurarInterface();
-      
-      await carregarConfiguracao();
-      
-      await carregarPesosDinamicos();
-      
-      await carregarJogadores();
-      
-      await carregarEscalacoes();
-      
-      await inicializarHistorico();
-      
-      console.info(
-          "Cartola Estatístico inicializado com sucesso."
-      );
+    await carregarConfiguracao();
+
+    await carregarPesosDinamicos();
+
+    await carregarJogadores();
+
+    await carregarEscalacoes();
 
     await inicializarHistorico();
 
@@ -45,19 +37,28 @@ async function inicializarHistorico() {
         return;
     }
 
-    const indice = await Historico.carregarIndice();
+    const indice =
+        await Historico.carregarIndice();
 
-    if (!indice) return;
+    if (!indice) {
+        return;
+    }
 
-    HistoricoFiltros.preencherRodadas(indice);
+    HistoricoFiltros.preencherRodadas(
+        indice
+    );
 
     HistoricoFiltros.preencherPosicoes();
 
     if (indice.rodadas.length > 0) {
 
-        const numero = indice.rodadas[0].numero;
+        const numero =
+            indice.rodadas[0].numero;
 
-        const metricas = await Historico.carregarRodada(numero);
+        const metricas =
+            await Historico.carregarRodada(
+                numero
+            );
 
         if (
             metricas &&
@@ -65,9 +66,15 @@ async function inicializarHistorico() {
         ) {
 
             HistoricoCards.renderResumo(
-                HistoricoMetricas.calcular(metricas)
+                HistoricoMetricas.calcular(
+                    metricas
+                )
             );
-            HistoricoCards.renderTabela(numero);
+
+            HistoricoCards.renderTabela(
+                numero
+            );
+
         }
 
     }
