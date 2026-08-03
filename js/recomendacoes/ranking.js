@@ -237,45 +237,34 @@ function compararJogadoresRanking(
   jogadorA,
   jogadorB
 ) {
-  const diferencaNota =
-    obterNotaRanking(jogadorB) -
-    obterNotaRanking(jogadorA);
-
-  if (diferencaNota !== 0) {
-    return diferencaNota;
-  }
 
   const diferencaProjecao =
-    numeroSeguro(
-      jogadorB.projecao
-    ) -
-    numeroSeguro(
-      jogadorA.projecao
-    );
+    numeroSeguro(jogadorB.projecao) -
+    numeroSeguro(jogadorA.projecao);
 
   if (diferencaProjecao !== 0) {
     return diferencaProjecao;
   }
 
+  const diferencaScore =
+    numeroSeguro(jogadorB.score) -
+    numeroSeguro(jogadorA.score);
+
+  if (diferencaScore !== 0) {
+    return diferencaScore;
+  }
+
   const diferencaConfianca =
-    numeroSeguro(
-      jogadorB.confiancaNumerica
-    ) -
-    numeroSeguro(
-      jogadorA.confiancaNumerica
-    );
+    numeroSeguro(jogadorB.confiancaNumerica) -
+    numeroSeguro(jogadorA.confiancaNumerica);
 
   if (diferencaConfianca !== 0) {
     return diferencaConfianca;
   }
 
   const diferencaRisco =
-    numeroSeguro(
-      jogadorA.riscoNegativar
-    ) -
-    numeroSeguro(
-      jogadorB.riscoNegativar
-    );
+    numeroSeguro(jogadorA.risco) -
+    numeroSeguro(jogadorB.risco);
 
   if (diferencaRisco !== 0) {
     return diferencaRisco;
@@ -284,11 +273,10 @@ function compararJogadoresRanking(
   return String(
     jogadorA.nome || ""
   ).localeCompare(
-    String(
-      jogadorB.nome || ""
-    ),
+    String(jogadorB.nome || ""),
     "pt-BR"
   );
+
 }
 
 
