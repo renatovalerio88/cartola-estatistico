@@ -77,47 +77,85 @@ async function carregarEscalacoes() {
       // Capitão automático
       // ============================
 
-      if (
-        typeof MotorCapitao !==
-        "undefined"
-      ) {
-
-        let melhorJogador = null;
-        let melhorScore = -Infinity;
-
-        for (const jogador of escalacao.jogadores) {
-
-          const scoreCapitao =
-            MotorCapitao.calcular(
-              jogador
-            );
-
-          jogador.scoreCapitao =
-            scoreCapitao;
-
-          if (
-            scoreCapitao >
-            melhorScore
-          ) {
-            melhorScore =
-              scoreCapitao;
-
-            melhorJogador =
-              jogador;
-          }
-
-        }
-
-        if (melhorJogador) {
-
-          escalacao.capitao =
-            melhorJogador;
-
-        }
-
-      }
-
-    }
+   if (
+     typeof MotorCapitao !==
+     "undefined"
+   ) {
+   
+     let melhorCapitao = null;
+     let maiorScoreCapitao = -Infinity;
+   
+     let melhorReserva = null;
+     let maiorScoreReserva = -Infinity;
+   
+     for (const jogador of escalacao.jogadores) {
+   
+       const scoreCapitao =
+         MotorCapitao.calcular(
+           jogador
+         );
+   
+       jogador.scoreCapitao =
+         scoreCapitao;
+   
+       if (
+         scoreCapitao >
+         maiorScoreCapitao
+       ) {
+   
+         maiorScoreCapitao =
+           scoreCapitao;
+   
+         melhorCapitao =
+           jogador;
+   
+       }
+   
+       if (
+         typeof MotorReservaLuxo !==
+         "undefined"
+       ) {
+   
+         const scoreReserva =
+           MotorReservaLuxo.calcular(
+             jogador
+           );
+   
+         jogador.scoreReservaLuxo =
+           scoreReserva;
+   
+         if (
+           scoreReserva >
+           maiorScoreReserva
+         ) {
+   
+           maiorScoreReserva =
+             scoreReserva;
+   
+           melhorReserva =
+             jogador;
+   
+         }
+   
+       }
+   
+     }
+   
+     if (melhorCapitao) {
+   
+       escalacao.capitao =
+         melhorCapitao;
+   
+     }
+   
+     if (melhorReserva) {
+   
+       escalacao.reservaLuxo =
+         melhorReserva;
+   
+     }
+   
+   }
 
     if (
       escalacoesValidas.length === 0
