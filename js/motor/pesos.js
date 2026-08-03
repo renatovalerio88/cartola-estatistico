@@ -207,6 +207,8 @@ const PESOS_POR_POSICAO = {
   TEC: PESOS_TREINADORES
 };
 
+let PESOS_DINAMICOS = {};
+
 
 /* =========================================================
    9. NOMES DOS PERFIS
@@ -245,9 +247,10 @@ function obterPesosPorPosicao(
     };
   }
 
-  return {
-    ...pesos
-  };
+return {
+    ...pesos,
+    ...(PESOS_DINAMICOS[codigo] || {})
+};
 }
 
 
@@ -422,6 +425,31 @@ function obterRelatorioPesos() {
   );
 }
 
+async function carregarPesosDinamicos() {
+
+    try {
+
+        const resposta = await fetch(
+            "data/pesos.json",
+            {
+                cache: "no-store"
+            }
+        );
+
+        if (!resposta.ok) {
+            return;
+        }
+
+        PESOS_DINAMICOS =
+            await resposta.json();
+
+    } catch {
+
+        PESOS_DINAMICOS = {};
+
+    }
+
+}
 
 /* =========================================================
    17. VALIDAÇÃO AUTOMÁTICA
