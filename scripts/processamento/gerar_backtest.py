@@ -61,10 +61,24 @@ for arquivo in arquivos:
 
         rodada_prevista = historico[indice]
 
-        media = sum(
-            item.get("pontos") or 0
-            for item in treino
-        ) / len(treino)
+        pesos = []
+
+        for indice, item in enumerate(treino):
+        
+            pesos.append(indice + 1)
+        
+        soma_pesos = sum(pesos)
+        
+        projecao = sum(
+        
+            (item.get("pontos") or 0) * peso
+        
+            for item, peso in zip(
+                treino,
+                pesos
+            )
+        
+        ) / soma_pesos
 
         rodada = rodada_prevista["rodada"]
 
@@ -74,8 +88,8 @@ for arquivo in arquivos:
 
         erro = (
             rodada_prevista.get("pontos") or 0
-        ) - media
-
+        ) - projecao
+        
         rodadas[rodada].append({
 
             "id": jogador["id"],
@@ -85,7 +99,7 @@ for arquivo in arquivos:
             "posicao": jogador["posicao"],
 
             "projecao": round(
-                media,
+                projecao,
                 2
             ),
 
