@@ -1,6 +1,6 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Calculadora dos 18 critérios estatísticos
+   Calculadora integrada do modelo estatístico
    ========================================================= */
 
 const CalculadoraEstatistica = (() => {
@@ -15,6 +15,10 @@ const CalculadoraEstatistica = (() => {
   ];
 
 
+  /* =======================================================
+     UTILITÁRIOS
+     ======================================================= */
+
   function numero(valor, padrao = 0) {
     const convertido = Number(valor);
 
@@ -24,116 +28,248 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function limitar(valor, minimo = 0, maximo = 100) {
+  function limitar(
+    valor,
+    minimo = 0,
+    maximo = 100
+  ) {
     return Math.min(
       maximo,
-      Math.max(minimo, numero(valor))
+      Math.max(
+        minimo,
+        numero(valor)
+      )
     );
   }
 
 
-  function prepararHistorico(valores) {
-    if (!Array.isArray(valores)) {
-      return [];
+  function arredondar(
+    valor,
+    casas = 2
+  ) {
+    return Number(
+      numero(valor).toFixed(casas)
+    );
+  }
+
+
+  function obterHistoricoRegistros(
+    jogador
+  ) {
+    if (
+      Array.isArray(jogador?.historico)
+    ) {
+      return jogador.historico
+        .filter(
+          registro =>
+            registro &&
+            typeof registro === "object"
+        )
+        .sort(
+          (registroA, registroB) =>
+            numero(registroA.rodada) -
+            numero(registroB.rodada)
+        );
     }
 
-    return valores
-      .map(Number)
+    return [];
+  }
+
+
+  function obterHistoricoPontuacoes(
+    jogador
+  ) {
+    const historicoDireto =
+      jogador?.historicoPontuacoes ||
+      jogador?.pontuacoes ||
+      jogador?.pontuacoesRecentes;
+
+    if (
+      Array.isArray(historicoDireto) &&
+      historicoDireto.length
+    ) {
+      return historicoDireto
+        .map(Number)
+        .filter(Number.isFinite);
+    }
+
+    return obterHistoricoRegistros(
+      jogador
+    )
+      .map(
+        registro =>
+          Number(registro.pontos)
+      )
       .filter(Number.isFinite);
   }
 
 
   function media(valores) {
-    const lista = prepararHistorico(valores);
-
-    if (!lista.length) {
+    if (
+      !Array.isArray(valores) ||
+      valores.length === 0
+    ) {
       return 0;
     }
 
-    return lista.reduce(
-      (total, valor) => total + valor,
+    return valores.reduce(
+      (total, valor) =>
+        total + numero(valor),
       0
-    ) / lista.length;
+    ) / valores.length;
   }
 
 
   function mediana(valores) {
-    const lista = prepararHistorico(valores)
-      .sort((a, b) => a - b);
-
-    if (!lista.length) {
+    if (
+      !Array.isArray(valores) ||
+      valores.length === 0
+    ) {
       return 0;
     }
 
-    const meio = Math.floor(lista.length / 2);
+    const ordenados = valores
+      .map(Number)
+      .filter(Number.isFinite)
+      .sort(
+        (valorA, valorB) =>
+          valorA - valorB
+      );
 
-    if (lista.length % 2 === 0) {
+    if (!ordenados.length) {
+      return 0;
+    }
+
+    const meio =
+      Math.floor(
+        ordenados.length / 2
+      );
+
+    if (
+      ordenados.length % 2 === 0
+    ) {
       return (
-        lista[meio - 1] +
-        lista[meio]
+        ordenados[meio - 1] +
+        ordenados[meio]
       ) / 2;
     }
 
-    return lista[meio];
+    return ordenados[meio];
   }
 
 
   function desvioPadrao(valores) {
-    const lista = prepararHistorico(valores);
-
-    if (!lista.length) {
+    if (
+      !Array.isArray(valores) ||
+      valores.length === 0
+    ) {
       return 0;
     }
 
-    const valorMedio = media(lista);
+    const valorMedio =
+      media(valores);
 
-    const variancia = lista.reduce(
-      (total, valor) =>
-        total + ((valor - valorMedio) ** 2),
-      0
-    ) / lista.length;
+    const variancia =
+      valores.reduce(
+        (total, valor) =>
+          total +
+          (
+            numero(valor) -
+            valorMedio
+          ) ** 2,
+        0
+      ) / valores.length;
 
-    return Math.sqrt(variancia);
+    return Math.sqrt(
+      variancia
+    );
   }
 
 
-  function normalizar(valor, minimo, maximo) {
-    const numeroValor = numero(valor);
-    const numeroMinimo = numero(minimo);
-    const numeroMaximo = numero(maximo);
+  function normalizar(
+    valor,
+    minimo,
+    maximo
+  ) {
+    const limiteMinimo =
+      numero(minimo);
 
-    if (numeroMaximo === numeroMinimo) {
+    const limiteMaximo =
+      numero(maximo);
+
+    if (
+      limiteMaximo ===
+      limiteMinimo
+    ) {
       return 50;
     }
 
     return limitar(
       (
-        (numeroValor - numeroMinimo) /
-        (numeroMaximo - numeroMinimo)
+        (
+          numero(valor) -
+          limiteMinimo
+        ) /
+        (
+          limiteMaximo -
+          limiteMinimo
+        )
       ) * 100
     );
   }
 
 
-  function calcularFormaRecente(historico) {
-    const lista = prepararHistorico(historico);
+  /* =======================================================
+     MÉTRICAS HISTÓRICAS
+     ======================================================= */
 
-    if (!lista.length) {
+  function calcularFormaRecente(
+    historico
+  ) {
+    if (!historico.length) {
       return 50;
     }
 
-    const ultimasCinco = lista.slice(-5);
-    const mediaRecente = media(ultimasCinco);
+    const ultimosCinco =
+      historico.slice(-5);
+
+    const pesosRecentes =
+      [1, 1.15, 1.3, 1.5, 1.75]
+        .slice(
+          -ultimosCinco.length
+        );
+
+    const somaPesos =
+      pesosRecentes.reduce(
+        (total, peso) =>
+          total + peso,
+        0
+      );
+
+    const mediaPonderada =
+      ultimosCinco.reduce(
+        (total, pontuacao, indice) =>
+          total +
+          numero(pontuacao) *
+          pesosRecentes[indice],
+        0
+      ) / somaPesos;
 
     return normalizar(
-      mediaRecente,
+      mediaPonderada,
       -2,
       15
     );
   }
 
 
-  function calcularMediaGeral(historico) {
+  function calcularMediaGeral(
+    historico
+  ) {
+    if (!historico.length) {
+      return 50;
+    }
+
     return normalizar(
       media(historico),
       -2,
@@ -142,7 +278,13 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularNotaMediana(historico) {
+  function calcularNotaMediana(
+    historico
+  ) {
+    if (!historico.length) {
+      return 50;
+    }
+
     return normalizar(
       mediana(historico),
       -2,
@@ -151,15 +293,20 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularRegularidade(historico) {
-    const lista = prepararHistorico(historico);
-
-    if (!lista.length) {
+  function calcularRegularidade(
+    historico
+  ) {
+    if (!historico.length) {
       return 50;
     }
 
-    const valorMedio = Math.abs(media(lista));
-    const desvio = desvioPadrao(lista);
+    const valorMedio =
+      Math.abs(
+        media(historico)
+      );
+
+    const desvio =
+      desvioPadrao(historico);
 
     if (valorMedio === 0) {
       return desvio === 0
@@ -168,105 +315,169 @@ const CalculadoraEstatistica = (() => {
     }
 
     const coeficienteVariacao =
-      desvio / valorMedio;
+      desvio /
+      valorMedio;
 
     return limitar(
       100 -
-      (coeficienteVariacao * 70)
+      coeficienteVariacao * 70
     );
   }
 
 
-  function calcularTendenciaRecente(historico) {
-    const lista = prepararHistorico(historico);
-
-    if (lista.length < 2) {
+  function calcularTendenciaRecente(
+    historico
+  ) {
+    if (historico.length < 2) {
       return 50;
     }
 
-    const tamanho = Math.max(
-      1,
-      Math.floor(lista.length / 2)
-    );
+    const recentes =
+      historico.slice(-6);
 
-    const inicio = lista.slice(0, tamanho);
-    const fim = lista.slice(-tamanho);
+    const tamanhoMetade =
+      Math.max(
+        1,
+        Math.floor(
+          recentes.length / 2
+        )
+      );
+
+    const inicio =
+      recentes.slice(
+        0,
+        tamanhoMetade
+      );
+
+    const fim =
+      recentes.slice(
+        -tamanhoMetade
+      );
 
     const diferenca =
       media(fim) -
       media(inicio);
 
     return limitar(
-      50 + (diferenca * 8)
+      50 +
+      diferenca * 8
     );
   }
 
 
-  function calcularProtecaoNegativacao(historico) {
-    const lista = prepararHistorico(historico);
-
-    if (!lista.length) {
+  function calcularProtecaoNegativacao(
+    historico
+  ) {
+    if (!historico.length) {
       return 50;
     }
 
-    const negativas = lista.filter(
-      valor => valor < 0
-    ).length;
-
-    const percentualNegativo =
-      negativas / lista.length;
+    const negativas =
+      historico.filter(
+        pontuacao =>
+          pontuacao < 0
+      ).length;
 
     return limitar(
       100 -
-      (percentualNegativo * 100)
+      (
+        negativas /
+        historico.length
+      ) * 100
     );
   }
 
 
-  function calcularPontuacaoBasica(jogador) {
-    const scouts = jogador?.scouts || {};
-    const posicao = String(
-      jogador?.posicao || ""
-    ).toUpperCase();
+  /* =======================================================
+     SCOUTS E CONTEXTO DA RODADA
+     ======================================================= */
+
+  function calcularPontuacaoBasica(
+    jogador
+  ) {
+    const scouts =
+      jogador?.scouts || {};
+
+    const posicao =
+      String(
+        jogador?.posicao || ""
+      ).toUpperCase();
 
     let valor = 0;
 
     if (posicao === "GOL") {
       valor =
-        numero(scouts.defesas) * 1.3 +
-        numero(scouts.defesasDificeis) * 2;
+        numero(
+          scouts.defesas ??
+          scouts.DE
+        ) * 1.3 +
+        numero(
+          scouts.defesasDificeis ??
+          scouts.DD
+        ) * 2;
     }
 
     if (posicao === "LAT") {
       valor =
-        numero(scouts.desarmes) * 1.4 +
-        numero(scouts.cruzamentos) * 0.35 +
-        numero(scouts.faltasSofridas) * 0.5;
+        numero(
+          scouts.desarmes ??
+          scouts.DS
+        ) * 1.4 +
+        numero(
+          scouts.cruzamentos
+        ) * 0.35 +
+        numero(
+          scouts.faltasSofridas ??
+          scouts.FS
+        ) * 0.5;
     }
 
     if (posicao === "ZAG") {
       valor =
-        numero(scouts.desarmes) * 1.5 +
-        numero(scouts.cortes) * 0.25;
+        numero(
+          scouts.desarmes ??
+          scouts.DS
+        ) * 1.5 +
+        numero(
+          scouts.cortes
+        ) * 0.25;
     }
 
     if (posicao === "MEI") {
       valor =
-        numero(scouts.desarmes) * 1.2 +
-        numero(scouts.finalizacoes) * 0.5 +
-        numero(scouts.faltasSofridas) * 0.5;
+        numero(
+          scouts.desarmes ??
+          scouts.DS
+        ) * 1.2 +
+        numero(
+          scouts.finalizacoes
+        ) * 0.5 +
+        numero(
+          scouts.faltasSofridas ??
+          scouts.FS
+        ) * 0.5;
     }
 
     if (posicao === "ATA") {
       valor =
-        numero(scouts.finalizacoes) * 0.7 +
-        numero(scouts.finalizacoesNoAlvo) * 1 +
-        numero(scouts.faltasSofridas) * 0.5;
+        numero(
+          scouts.finalizacoes
+        ) * 0.7 +
+        numero(
+          scouts.finalizacoesNoAlvo ??
+          scouts.FD
+        ) +
+        numero(
+          scouts.faltasSofridas ??
+          scouts.FS
+        ) * 0.5;
     }
 
     if (posicao === "TEC") {
       valor =
-        numero(scouts.favoritismo) / 10;
+        numero(
+          scouts.favoritismo
+        ) / 10;
     }
 
     return normalizar(
@@ -277,15 +488,31 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularScoutsOfensivos(jogador) {
-    const scouts = jogador?.scouts || {};
+  function calcularScoutsOfensivos(
+    jogador
+  ) {
+    const scouts =
+      jogador?.scouts || {};
 
     const valor =
-      numero(scouts.gols) * 8 +
-      numero(scouts.assistencias) * 5 +
-      numero(scouts.finalizacoes) * 0.7 +
-      numero(scouts.finalizacoesNoAlvo) * 1.2 +
-      numero(scouts.forcaAtaque) / 12;
+      numero(
+        scouts.gols ??
+        scouts.G
+      ) * 8 +
+      numero(
+        scouts.assistencias ??
+        scouts.A
+      ) * 5 +
+      numero(
+        scouts.finalizacoes
+      ) * 0.7 +
+      numero(
+        scouts.finalizacoesNoAlvo ??
+        scouts.FD
+      ) * 1.2 +
+      numero(
+        scouts.forcaAtaque
+      ) / 12;
 
     return normalizar(
       valor,
@@ -295,15 +522,31 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularScoutsDefensivos(jogador) {
-    const scouts = jogador?.scouts || {};
+  function calcularScoutsDefensivos(
+    jogador
+  ) {
+    const scouts =
+      jogador?.scouts || {};
 
     const valor =
-      numero(scouts.desarmes) * 1.5 +
-      numero(scouts.cortes) * 0.3 +
-      numero(scouts.defesas) * 1.3 +
-      numero(scouts.defesasDificeis) * 2 +
-      numero(scouts.forcaDefesa) / 12;
+      numero(
+        scouts.desarmes ??
+        scouts.DS
+      ) * 1.5 +
+      numero(
+        scouts.cortes
+      ) * 0.3 +
+      numero(
+        scouts.defesas ??
+        scouts.DE
+      ) * 1.3 +
+      numero(
+        scouts.defesasDificeis ??
+        scouts.DD
+      ) * 2 +
+      numero(
+        scouts.forcaDefesa
+      ) / 12;
 
     return normalizar(
       valor,
@@ -313,16 +556,25 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularCasaFora(jogador) {
-    const mando = String(
-      jogador?.mando || ""
-    ).toLowerCase();
+  function calcularCasaFora(
+    jogador
+  ) {
+    const mando =
+      String(
+        jogador?.mando || ""
+      ).toLowerCase();
 
-    if (mando === "casa") {
+    if (
+      mando === "casa" ||
+      mando === "mandante"
+    ) {
       return 70;
     }
 
-    if (mando === "fora") {
+    if (
+      mando === "fora" ||
+      mando === "visitante"
+    ) {
       return 45;
     }
 
@@ -330,14 +582,22 @@ const CalculadoraEstatistica = (() => {
   }
 
 
-  function calcularForcaAdversario(jogador) {
+  function calcularForcaAdversario(
+    jogador
+  ) {
+    const notaInformada =
+      Number(
+        jogador
+          ?.notaForcaAdversario
+      );
+
     if (
       Number.isFinite(
-        Number(jogador?.notaForcaAdversario)
+        notaInformada
       )
     ) {
       return limitar(
-        jogador.notaForcaAdversario
+        notaInformada
       );
     }
 
@@ -345,183 +605,285 @@ const CalculadoraEstatistica = (() => {
       jogador?.componentes || {};
 
     return limitar(
+      componentes.forcaAdversario ??
       componentes.Confronto ??
       componentes.confronto ??
+      jogador?.notaConfronto ??
       50
     );
   }
 
 
-  function calcularPontosCedidos(jogador) {
+  function calcularPontosCedidos(
+    jogador
+  ) {
+    const notaInformada =
+      Number(
+        jogador
+          ?.pontosCedidosNota ??
+        jogador
+          ?.notaPontosCedidos
+      );
+
     if (
       Number.isFinite(
-        Number(jogador?.pontosCedidosNota)
+        notaInformada
       )
     ) {
       return limitar(
-        jogador.pontosCedidosNota
+        notaInformada
       );
     }
 
-    return calcularForcaAdversario(
-      jogador
-    );
+    return 50;
   }
 
 
-  function calcularChanceSG(jogador) {
+  function calcularChanceSG(
+    jogador
+  ) {
     return limitar(
-      jogador?.chanceSG
+      jogador?.chanceSG ?? 50
     );
   }
 
 
-  function calcularTitularidade(jogador) {
-    return limitar(
-      jogador?.titularidade ?? 50
-    );
-  }
-
-
-  function calcularMinutosEsperados(jogador) {
-    const minutos = numero(
-      jogador?.minutosEsperados,
-      45
-    );
+  function calcularTitularidade(
+    jogador
+  ) {
+    if (
+      jogador?.statusId === 7
+    ) {
+      return 95;
+    }
 
     return limitar(
-      (minutos / 90) * 100
+      jogador?.titularidade ??
+      50
     );
   }
 
 
-  function calcularBolaParada(jogador) {
+  function calcularMinutosEsperados(
+    jogador
+  ) {
+    const minutos =
+      numero(
+        jogador
+          ?.minutosEsperados,
+        jogador?.statusId === 7
+          ? 85
+          : 45
+      );
+
+    return limitar(
+      minutos /
+      90 *
+      100
+    );
+  }
+
+
+  function calcularBolaParada(
+    jogador
+  ) {
     return jogador?.cobraBolaParada
       ? 100
       : 0;
   }
 
 
-  function calcularPenaltis(jogador) {
+  function calcularPenaltis(
+    jogador
+  ) {
     return jogador?.cobraPenalti
       ? 100
       : 0;
   }
 
 
-  function calcularCustoBeneficio(jogador) {
-    const projecao = numero(
-      jogador?.projecao
-    );
-
-    const preco = numero(
-      jogador?.preco
-    );
+  function calcularCustoBeneficio(
+    jogador,
+    mediaHistorica
+  ) {
+    const preco =
+      numero(
+        jogador?.preco
+      );
 
     if (preco <= 0) {
       return 0;
     }
 
     return normalizar(
-      projecao / preco,
+      numero(mediaHistorica) /
+      preco,
       0,
       1.5
     );
   }
 
 
-  function calcularNotasJogador(jogador) {
-    const posicao = String(
-      jogador?.posicao || ""
-    )
-      .toUpperCase()
-      .trim();
+  /* =======================================================
+     CÁLCULO DOS 18 CRITÉRIOS
+     ======================================================= */
 
-    if (!POSICOES_VALIDAS.includes(posicao)) {
+  function calcularNotasJogador(
+    jogador
+  ) {
+    const posicao =
+      String(
+        jogador?.posicao || ""
+      )
+        .toUpperCase()
+        .trim();
+
+    if (
+      !POSICOES_VALIDAS.includes(
+        posicao
+      )
+    ) {
       return {
-        erro: "Posição inválida.",
+        erro:
+          "Posição inválida.",
         posicao,
-        notas: {}
+        notas: {},
+        historicoPontuacoes: []
       };
     }
 
-    const historico =
-      jogador?.historicoPontuacoes ||
-      jogador?.pontuacoes ||
-      [];
+    const historicoPontuacoes =
+      obterHistoricoPontuacoes(
+        jogador
+      );
+
+    const mediaHistorica =
+      media(
+        historicoPontuacoes
+      );
 
     return {
       erro: null,
 
       posicao,
 
+      historicoPontuacoes,
+
+      mediaHistorica,
+
       notas: {
         formaRecente:
-          calcularFormaRecente(historico),
+          calcularFormaRecente(
+            historicoPontuacoes
+          ),
 
         mediaGeral:
-          calcularMediaGeral(historico),
+          calcularMediaGeral(
+            historicoPontuacoes
+          ),
 
         mediana:
-          calcularNotaMediana(historico),
+          calcularNotaMediana(
+            historicoPontuacoes
+          ),
 
         regularidade:
-          calcularRegularidade(historico),
+          calcularRegularidade(
+            historicoPontuacoes
+          ),
 
         pontuacaoBasica:
-          calcularPontuacaoBasica(jogador),
+          calcularPontuacaoBasica(
+            jogador
+          ),
 
         scoutsOfensivos:
-          calcularScoutsOfensivos(jogador),
+          calcularScoutsOfensivos(
+            jogador
+          ),
 
         scoutsDefensivos:
-          calcularScoutsDefensivos(jogador),
+          calcularScoutsDefensivos(
+            jogador
+          ),
 
         casaFora:
-          calcularCasaFora(jogador),
+          calcularCasaFora(
+            jogador
+          ),
 
         forcaAdversario:
-          calcularForcaAdversario(jogador),
+          calcularForcaAdversario(
+            jogador
+          ),
 
         pontosCedidos:
-          calcularPontosCedidos(jogador),
+          calcularPontosCedidos(
+            jogador
+          ),
 
         chanceSG:
-          calcularChanceSG(jogador),
+          calcularChanceSG(
+            jogador
+          ),
 
         titularidade:
-          calcularTitularidade(jogador),
+          calcularTitularidade(
+            jogador
+          ),
 
         minutosEsperados:
-          calcularMinutosEsperados(jogador),
+          calcularMinutosEsperados(
+            jogador
+          ),
 
         bolaParada:
-          calcularBolaParada(jogador),
+          calcularBolaParada(
+            jogador
+          ),
 
         penaltis:
-          calcularPenaltis(jogador),
+          calcularPenaltis(
+            jogador
+          ),
 
         custoBeneficio:
-          calcularCustoBeneficio(jogador),
+          calcularCustoBeneficio(
+            jogador,
+            mediaHistorica
+          ),
 
         tendenciaRecente:
-          calcularTendenciaRecente(historico),
+          calcularTendenciaRecente(
+            historicoPontuacoes
+          ),
 
         riscoNegativar:
-          calcularProtecaoNegativacao(historico)
+          calcularProtecaoNegativacao(
+            historicoPontuacoes
+          )
       }
     };
   }
 
 
-  function analisarJogador(jogador) {
+  /* =======================================================
+     INTEGRAÇÃO DOS MOTORES
+     ======================================================= */
+
+  function analisarJogador(
+    jogador
+  ) {
     const calculo =
-      calcularNotasJogador(jogador);
+      calcularNotasJogador(
+        jogador
+      );
 
     if (calculo.erro) {
       return {
         ...jogador,
-        erroCalculadora: calculo.erro
+        erroCalculadora:
+          calculo.erro
       };
     }
 
@@ -531,7 +893,10 @@ const CalculadoraEstatistica = (() => {
     ) {
       return {
         ...jogador,
-        notasCriterios: calculo.notas,
+
+        notasCriterios:
+          calculo.notas,
+
         erroCalculadora:
           "Motor estatístico não carregado."
       };
@@ -539,59 +904,287 @@ const CalculadoraEstatistica = (() => {
 
     const resultadoMotor =
       executarMotorEstatistico({
-        jogadorId: jogador.id,
-        posicao: calculo.posicao,
-        notas: calculo.notas
+        jogadorId:
+          jogador.id,
+
+        posicao:
+          calculo.posicao,
+
+        notas:
+          calculo.notas
       });
 
-     const jogadorCompleto = {
+    const historico =
+      obterHistoricoRegistros(
+        jogador
+      );
 
-    ...jogador,
+    const jogadorCompleto = {
+      ...jogador,
 
-    ...calculo.notas
+      historico,
 
-};
+      historicoPontuacoes:
+        calculo.historicoPontuacoes,
 
-jogadorCompleto.score =
-    MotorScore.calcular(
-        jogadorCompleto
-    );
+      ...calculo.notas
+    };
 
-const pisoTeto =
-    MotorPisoTeto.calcular(
-        jogadorCompleto.historico || []
-    );
 
-jogadorCompleto.piso =
-    pisoTeto.piso;
+    /* SCORE */
 
-jogadorCompleto.teto =
-    pisoTeto.teto;
+    const score =
+      typeof MotorScore !==
+        "undefined"
+        ? MotorScore.calcular(
+            jogadorCompleto
+          )
+        : resultadoMotor.notaFinal;
 
-jogadorCompleto.confianca =
-    MotorConfianca.calcular(
-        jogadorCompleto
-    );
+    jogadorCompleto.score =
+      arredondar(score);
 
-jogadorCompleto.risco =
-    MotorRisco.calcular(
-        jogadorCompleto
-    );
 
-jogadorCompleto.projecao =
-    MotorProjecao.calcular(
-        jogadorCompleto
-    );
+    /* FORMA */
 
-   return {
-   
-       ...jogadorCompleto,
-   
-       notasCriterios:
-           calculo.notas,
-   
-       notaCalculada:
-           resultadoMotor.notaFinal,
+    const formaMedia =
+      typeof MotorForma !==
+        "undefined"
+        ? MotorForma.mediaRecente(
+            historico
+          )
+        : calculo.mediaHistorica;
+
+    const tendenciaForma =
+      typeof MotorForma !==
+        "undefined"
+        ? MotorForma.tendencia(
+            historico
+          )
+        : 0;
+
+    const fase =
+      typeof MotorForma !==
+        "undefined"
+        ? MotorForma.fase(
+            historico
+          )
+        : "Sem histórico";
+
+    jogadorCompleto.mediaRecente =
+      arredondar(
+        formaMedia
+      );
+
+    jogadorCompleto.tendencia =
+      arredondar(
+        tendenciaForma
+      );
+
+    jogadorCompleto.fase =
+      fase;
+
+
+    /* REGULARIDADE */
+
+    const regularidadeHistorica =
+      typeof MotorRegularidade !==
+        "undefined"
+        ? MotorRegularidade.calcular(
+            historico
+          )
+        : {
+            media:
+              calculo.mediaHistorica,
+
+            desvio:
+              desvioPadrao(
+                calculo
+                  .historicoPontuacoes
+              ),
+
+            regularidade:
+              calculo
+                .notas
+                .regularidade
+          };
+
+    jogadorCompleto.mediaGeral =
+      arredondar(
+        regularidadeHistorica.media
+      );
+
+    jogadorCompleto.desvioPadrao =
+      arredondar(
+        regularidadeHistorica.desvio
+      );
+
+    jogadorCompleto.regularidade =
+      arredondar(
+        regularidadeHistorica
+          .regularidade,
+        1
+      );
+
+
+    /* PISO E TETO */
+
+    const pisoTeto =
+      typeof MotorPisoTeto !==
+        "undefined"
+        ? MotorPisoTeto.calcular(
+            historico
+          )
+        : {
+            piso:
+              calculo.historicoPontuacoes
+                .length
+                ? Math.min(
+                    ...calculo
+                      .historicoPontuacoes
+                  )
+                : 0,
+
+            teto:
+              calculo.historicoPontuacoes
+                .length
+                ? Math.max(
+                    ...calculo
+                      .historicoPontuacoes
+                  )
+                : 0
+          };
+
+    jogadorCompleto.piso =
+      arredondar(
+        pisoTeto.piso
+      );
+
+    jogadorCompleto.teto =
+      arredondar(
+        pisoTeto.teto
+      );
+
+
+    /* RISCO */
+
+    jogadorCompleto.riscoNegativar =
+      arredondar(
+        100 -
+        calculo.notas
+          .riscoNegativar,
+        1
+      );
+
+    jogadorCompleto.risco =
+      typeof MotorRisco !==
+        "undefined"
+        ? MotorRisco.calcular(
+            jogadorCompleto
+          )
+        : jogadorCompleto
+            .riscoNegativar;
+
+    jogadorCompleto.risco =
+      arredondar(
+        jogadorCompleto.risco,
+        1
+      );
+
+    jogadorCompleto.riscoTexto =
+      typeof MotorRisco !==
+        "undefined"
+        ? MotorRisco.nivel(
+            jogadorCompleto.risco
+          )
+        : "Não calculado";
+
+
+    /* CONFIANÇA */
+
+    jogadorCompleto.confianca =
+      typeof MotorConfianca !==
+        "undefined"
+        ? MotorConfianca.calcular(
+            jogadorCompleto
+          )
+        : 50;
+
+    jogadorCompleto.confianca =
+      arredondar(
+        jogadorCompleto.confianca,
+        1
+      );
+
+    jogadorCompleto
+      .confiancaNumerica =
+        jogadorCompleto.confianca;
+
+
+    /* PROJEÇÃO */
+
+    if (
+      typeof MotorProjecao !==
+      "undefined"
+    ) {
+      const dadosProjecao = {
+        ...jogadorCompleto,
+
+        score:
+          jogadorCompleto.score /
+          10
+      };
+
+      jogadorCompleto.projecao =
+        MotorProjecao.calcular(
+          dadosProjecao
+        );
+    } else {
+      jogadorCompleto.projecao =
+        arredondar(
+          calculo.mediaHistorica
+        );
+    }
+
+    jogadorCompleto.projecao =
+      arredondar(
+        jogadorCompleto.projecao
+      );
+
+
+    /* CUSTO-BENEFÍCIO FINAL */
+
+    const preco =
+      numero(
+        jogadorCompleto.preco
+      );
+
+    jogadorCompleto
+      .custoBeneficio =
+        preco > 0
+          ? arredondar(
+              jogadorCompleto
+                .projecao /
+              preco,
+              2
+            )
+          : 0;
+
+
+    return {
+      ...jogadorCompleto,
+
+      notasCriterios:
+        calculo.notas,
+
+      notaCalculada:
+        resultadoMotor.notaFinal,
+
+      notaFinal:
+        resultadoMotor.notaFinal,
+
+      notaModelo:
+        resultadoMotor.notaFinal,
 
       classificacaoCalculada:
         resultadoMotor.classificacao,
@@ -605,14 +1198,20 @@ jogadorCompleto.projecao =
       explicacaoCalculada:
         resultadoMotor.explicacao,
 
+      calculadoPeloMotor: true,
+
       erroCalculadora:
         resultadoMotor.erro
     };
   }
 
 
-  function analisarListaJogadores(jogadores) {
-    if (!Array.isArray(jogadores)) {
+  function analisarListaJogadores(
+    jogadores
+  ) {
+    if (
+      !Array.isArray(jogadores)
+    ) {
       return [];
     }
 
