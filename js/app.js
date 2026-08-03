@@ -12,11 +12,21 @@ async function inicializarAplicacao() {
 
     configurarInterface();
 
-    await Promise.all([
-        carregarConfiguracao(),
-        carregarJogadores(),
-        carregarEscalacoes()
-    ]);
+      configurarInterface();
+      
+      await carregarConfiguracao();
+      
+      await carregarPesosDinamicos();
+      
+      await carregarJogadores();
+      
+      await carregarEscalacoes();
+      
+      await inicializarHistorico();
+      
+      console.info(
+          "Cartola Estatístico inicializado com sucesso."
+      );
 
     await inicializarHistorico();
 
