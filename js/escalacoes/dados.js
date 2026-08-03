@@ -64,16 +64,60 @@ async function carregarEscalacoes() {
         validarEscalacao
       );
 
-   for (const escalacao of escalacoesValidas) {
+    for (const escalacao of escalacoesValidas) {
 
-  escalacao.jogadores =
-    escalacao.jogadores
-      .map(id =>
-        obterJogadorPorId(id)
-      )
-      .filter(Boolean);
+      escalacao.jogadores =
+        escalacao.jogadores
+          .map(id =>
+            obterJogadorPorId(id)
+          )
+          .filter(Boolean);
 
-}     
+      // ============================
+      // Capitão automático
+      // ============================
+
+      if (
+        typeof MotorCapitao !==
+        "undefined"
+      ) {
+
+        let melhorJogador = null;
+        let melhorScore = -Infinity;
+
+        for (const jogador of escalacao.jogadores) {
+
+          const scoreCapitao =
+            MotorCapitao.calcular(
+              jogador
+            );
+
+          jogador.scoreCapitao =
+            scoreCapitao;
+
+          if (
+            scoreCapitao >
+            melhorScore
+          ) {
+            melhorScore =
+              scoreCapitao;
+
+            melhorJogador =
+              jogador;
+          }
+
+        }
+
+        if (melhorJogador) {
+
+          escalacao.capitao =
+            melhorJogador;
+
+        }
+
+      }
+
+    }
 
     if (
       escalacoesValidas.length === 0
