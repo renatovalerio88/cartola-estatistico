@@ -91,24 +91,23 @@ async function carregarJogadores() {
       );
     }
 
-    const jogadoresValidos =
-      dados.filter(validarJogador);
-
-    if (jogadoresValidos.length === 0) {
-      throw new Error(
-        "Nenhum jogador válido foi encontrado."
-      );
-    }
-
-    estadoRecomendacoes.jogadoresOriginais =
-      jogadoresValidos.map(
-        copiarJogador
-      );
-
-    const jogadoresProcessados =
-      processarJogadoresPelaCalculadora(
-        jogadoresValidos
-      );
+      const jogadoresValidos =
+        dados.filter(validarJogador);
+      
+      const jogadoresComHistorico =
+        await HistoricoJogadores.carregar(
+          jogadoresValidos
+        );
+      
+      estadoRecomendacoes.jogadoresOriginais =
+        jogadoresComHistorico.map(
+          copiarJogador
+        );
+      
+      const jogadoresProcessados =
+        processarJogadoresPelaCalculadora(
+          jogadoresComHistorico
+        );
 
     estadoRecomendacoes.jogadores =
       jogadoresProcessados;
