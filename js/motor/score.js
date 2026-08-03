@@ -12,6 +12,13 @@ const MotorScore = (() => {
                 jogador.posicao
             );
 
+        const pesosHistorico =
+            (typeof PESOS_DINAMICOS !== "undefined"
+                ? PESOS_DINAMICOS[
+                    jogador.posicao
+                  ]
+                : null) || {};
+
         let score = 0;
 
         // ----------------------------
@@ -72,15 +79,17 @@ const MotorScore = (() => {
                 regularidade.media *
                 pesos.mediaGeral;
 
-            // Histórico recente
             score +=
-                media3 * 6;
+                media3 *
+                (pesosHistorico.media3 ?? 6);
 
             score +=
-                media5 * 5;
+                media5 *
+                (pesosHistorico.media5 ?? 5);
 
             score +=
-                media10 * 4;
+                media10 *
+                (pesosHistorico.media10 ?? 4);
 
         }
 
