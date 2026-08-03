@@ -38,6 +38,24 @@ const MotorScore = (() => {
                     jogador.historico
                 );
 
+            const media3 =
+                MotorForma.mediaUltimas(
+                    jogador.historico,
+                    3
+                );
+
+            const media5 =
+                MotorForma.mediaUltimas(
+                    jogador.historico,
+                    5
+                );
+
+            const media10 =
+                MotorForma.mediaUltimas(
+                    jogador.historico,
+                    10
+                );
+
             score +=
                 forma *
                 pesos.formaRecente;
@@ -53,6 +71,16 @@ const MotorScore = (() => {
             score +=
                 regularidade.media *
                 pesos.mediaGeral;
+
+            // Histórico recente
+            score +=
+                media3 * 6;
+
+            score +=
+                media5 * 5;
+
+            score +=
+                media10 * 4;
 
         }
 
