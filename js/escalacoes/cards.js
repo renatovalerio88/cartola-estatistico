@@ -755,12 +755,6 @@ function criarReservaLuxoHtml(
              )}
          </small>
 
-        <small>
-          ${formatarCartoletas(
-            jogador.preco
-          )}
-        </small>
-
       </div>
 
     </div>
