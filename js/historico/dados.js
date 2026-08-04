@@ -1,6 +1,7 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
    Histórico de jogadores
+   Base individual por jogador
    ========================================================= */
 
 
@@ -10,7 +11,7 @@ const Historico = (() => {
     let indice = null;
 
 
-    const cacheRodadas = {};
+    const cacheJogadores = {};
 
 
 
@@ -36,50 +37,43 @@ const Historico = (() => {
                 await fetch(
                     "data/historico/indice.json",
                     {
-                        cache: "no-store"
+                        cache:"no-store"
                     }
                 );
-
 
 
             if (!resposta.ok) {
 
                 throw new Error(
-                    "Erro ao carregar indice historico"
+                    "Índice histórico não encontrado"
                 );
 
             }
-
 
 
             indice =
                 await resposta.json();
 
 
-
             return indice;
-
 
 
         }
         catch (erro) {
 
 
-            console.error(
-                "Erro no índice histórico:",
-                erro
+            console.warn(
+                "Índice histórico indisponível:",
+                erro.message
             );
-
 
 
             indice = {
 
                 ultimaRodada: 0,
-
                 rodadas: []
 
             };
-
 
 
             return indice;
@@ -93,21 +87,22 @@ const Historico = (() => {
 
 
 
+
     /* =====================================================
-       CARREGA JOGADORES DE UMA RODADA
+       CARREGA HISTÓRICO INDIVIDUAL
        ===================================================== */
 
 
-    async function carregarRodada(
-        numeroRodada
+    async function carregarJogadorHistorico(
+        id
     ) {
 
 
         if (
-            cacheRodadas[numeroRodada]
+            cacheJogadores[id]
         ) {
 
-            return cacheRodadas[numeroRodada];
+            return cacheJogadores[id];
 
         }
 
@@ -116,25 +111,24 @@ const Historico = (() => {
         try {
 
 
-            const caminho =
-
-                `data/api/rodada-${String(numeroRodada).padStart(2,"0")}/jogadores.json`;
-
-
-
             const resposta =
                 await fetch(
-                    caminho,
+
+                    `data/base-historica/${id}.json`,
+
                     {
                         cache:"no-store"
                     }
+
                 );
 
 
 
             if (!resposta.ok) {
 
-                return [];
+                cacheJogadores[id] = null;
+
+                return null;
 
             }
 
@@ -145,7 +139,7 @@ const Historico = (() => {
 
 
 
-            cacheRodadas[numeroRodada] =
+            cacheJogadores[id] =
                 dados;
 
 
@@ -153,25 +147,54 @@ const Historico = (() => {
             return dados;
 
 
-
         }
         catch (erro) {
 
 
-            console.error(
-                "Erro ao carregar rodada",
-                numeroRodada,
-                erro
+            console.warn(
+                "Erro histórico jogador:",
+                id
             );
 
 
-            return [];
+            cacheJogadores[id] = null;
+
+
+            return null;
 
 
         }
 
 
     }
+
+
+
+
+
+
+
+    /* =====================================================
+       COMPATIBILIDADE
+       ===================================================== */
+
+
+    async function carregarRodada(
+        numeroRodada
+    ) {
+
+
+        console.warn(
+            "carregarRodada não utilizado na nova arquitetura"
+        );
+
+
+        return [];
+
+
+    }
+
+
 
 
 
@@ -187,7 +210,9 @@ const Historico = (() => {
     ) {
 
 
-        if (!Array.isArray(jogadores)) {
+        if (
+            !Array.isArray(jogadores)
+        ) {
 
             return [];
 
@@ -195,136 +220,56 @@ const Historico = (() => {
 
 
 
-        const indiceHistorico =
-            await carregarIndice();
-
-
-
-        const mapaHistorico = {};
-
-
-
-        const rodadasDisponiveis =
-            Array.isArray(
-                indiceHistorico.rodadas
-            )
-                ? indiceHistorico.rodadas
-                : [];
-
-
-
-
-
-        /*
-          Busca somente rodadas existentes
-        */
-
-
         for (
-            const itemRodada of rodadasDisponiveis
+            const jogador of jogadores
         ) {
 
 
 
-            const numeroRodada =
-                Number(
-                    itemRodada.numero
-                );
-
-
-
-            if (!numeroRodada) {
-
-                continue;
-
-            }
-
-
-
-            const jogadoresRodada =
-                await carregarRodada(
-                    numeroRodada
+            const historicoJogador =
+                await carregarJogadorHistorico(
+                    jogador.id
                 );
 
 
 
             if (
-                !Array.isArray(jogadoresRodada)
+                historicoJogador &&
+                Array.isArray(
+                    historicoJogador.historico
+                )
             ) {
 
-                continue;
+
+                jogador.historico =
+                    historicoJogador.historico;
+
+
+
+            }
+            else {
+
+
+                jogador.historico =
+                    [];
+
 
             }
 
 
 
+            jogador.historicoPontuacoes =
 
+                jogador.historico.map(
 
-            jogadoresRodada.forEach(
-                atleta => {
+                    item =>
 
-
-                    const id =
                         Number(
-                            atleta.id
-                        );
+                            item.pontos || 0
+                        )
 
+                );
 
-
-                    if (!id) {
-
-                        return;
-
-                    }
-
-
-
-                    if (
-                        !mapaHistorico[id]
-                    ) {
-
-                        mapaHistorico[id] = [];
-
-                    }
-
-
-
-                    mapaHistorico[id].push({
-
-                        rodada:
-                            numeroRodada,
-
-
-                        pontos:
-                            Number(
-                                atleta.pontuacaoReal ??
-                                atleta.pontosUltimaRodada ??
-                                atleta.pontos ??
-                                0
-                            ),
-
-
-                        media:
-                            Number(
-                                atleta.media || 0
-                            ),
-
-
-                        preco:
-                            Number(
-                                atleta.preco || 0
-                            ),
-
-
-                        scouts:
-                            atleta.scouts || {}
-
-                    });
-
-
-
-                }
-            );
 
 
         }
@@ -332,64 +277,14 @@ const Historico = (() => {
 
 
 
-
-        /*
-          Junta histórico no jogador atual
-        */
-
-
-        jogadores.forEach(
-            jogador => {
-
-
-                const id =
-                    Number(
-                        jogador.id
-                    );
-
-
-
-                const historico =
-                    mapaHistorico[id]
-                    ||
-                    [];
-
-
-
-                historico.sort(
-                    (a,b) =>
-                        a.rodada - b.rodada
-                );
-
-
-
-                jogador.historico =
-                    historico;
-
-
-
-                jogador.historicoPontuacoes =
-
-                    historico.map(
-                        item =>
-                            Number(
-                                item.pontos || 0
-                            )
-                    );
-
-
-
-            }
-        );
-
-
-
-
-
         console.log(
-            "Histórico carregado:",
+
+            "Histórico individual carregado:",
+
             jogadores.length,
+
             "jogadores"
+
         );
 
 
@@ -397,23 +292,22 @@ const Historico = (() => {
         return jogadores;
 
 
-
     }
 
 
 
 
 
-    /* =====================================================
-       CONSULTA
-       ===================================================== */
 
 
     function getIndice() {
 
+
         return indice;
 
+
     }
+
 
 
 
@@ -425,6 +319,8 @@ const Historico = (() => {
         carregarIndice,
 
         carregarRodada,
+
+        carregarJogadorHistorico,
 
         montarHistoricoJogadores,
 
