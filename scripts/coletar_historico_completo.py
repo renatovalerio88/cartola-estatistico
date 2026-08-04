@@ -77,11 +77,13 @@ def buscar_json(endpoint: str) -> Any:
                 .decode("utf-8")
             )
 
+
     except HTTPError as erro:
 
         raise RuntimeError(
             f"Erro HTTP {erro.code}: {url}"
         )
+
 
     except URLError as erro:
 
@@ -120,16 +122,38 @@ def buscar_mercado_historico(
 
     try:
 
-        return buscar_json(
+        mercado = buscar_json(
             f"/atletas/mercado/{rodada}"
         )
+
+
+        # Algumas rodadas antigas retornam
+        # resposta válida, porém sem atletas.
+        # Nesse caso precisamos usar fallback.
+
+        if (
+            not isinstance(
+                mercado,
+                dict
+            )
+            or not mercado.get("atletas")
+        ):
+
+            raise RuntimeError(
+                "Mercado histórico sem atletas"
+            )
+
+
+        return mercado
+
 
     except Exception:
 
         print(
-            f"Mercado histórico indisponível rodada {rodada}. "
+            f"Mercado histórico rodada {rodada} incompleto. "
             "Usando mercado atual."
         )
+
 
         return buscar_json(
             "/atletas/mercado"
@@ -194,8 +218,6 @@ def indexar_clubes(
 
 
     return clubes
-
-
 
 def normalizar_jogadores(
     mercado,
@@ -397,15 +419,18 @@ def coletar_rodada(
         mercado
     )
 
+
     salvar_json(
         pasta / "partidas.json",
         partidas
     )
 
+
     salvar_json(
         pasta / "pontuados.json",
         pontuados
     )
+
 
     salvar_json(
         pasta / "jogadores.json",
@@ -452,6 +477,7 @@ def executar():
                 rodada
             )
 
+
         except Exception as erro:
 
             print(
@@ -471,6 +497,7 @@ if __name__ == "__main__":
 
         executar()
 
+
     except Exception as erro:
 
         print(
@@ -478,5 +505,6 @@ if __name__ == "__main__":
             erro,
             file=sys.stderr
         )
+
 
         sys.exit(1)
