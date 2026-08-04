@@ -1,22 +1,22 @@
 {
   "amostra": {
     "rodadasAnalisadas": 21,
-    "jogadoresAnalisados": 16107
+    "jogadoresAnalisados": 6590
   },
-  "erroMedio": 1.46,
+  "erroMedio": 2.84,
   "forma": {
-    "impacto": 0.26
+    "impacto": 0.51
   },
   "regularidade": {
-    "impacto": 0.2
+    "impacto": 0.4
   },
   "risco": {
-    "impacto": 0.13
+    "impacto": 0.26
   },
   "confianca": {
-    "impacto": 0.16
+    "impacto": 0.31
   },
   "projecao": {
-    "impacto": 0.34
+    "impacto": 0.65
   }
 }
