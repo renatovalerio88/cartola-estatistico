@@ -12,38 +12,16 @@ const MotorScore = (() => {
                 jogador.posicao
             );
 
-        const pesosHistorico =
-            (typeof PESOS_DINAMICOS !== "undefined"
-                ? PESOS_DINAMICOS[
-                    jogador.posicao
-                  ]
-                : null) || {};
-
         let score = 0;
 
-        // ----------------------------
-        // HISTÓRICO
-        // ----------------------------
+        // =====================================================
+        // HISTÓRICO INTELIGENTE
+        // =====================================================
 
         if (
             jogador.historico &&
             jogador.historico.length
         ) {
-
-            const forma =
-                MotorForma.mediaRecente(
-                    jogador.historico
-                );
-
-            const tendencia =
-                MotorForma.tendencia(
-                    jogador.historico
-                );
-
-            const regularidade =
-                MotorRegularidade.calcular(
-                    jogador.historico
-                );
 
             const media3 =
                 MotorForma.mediaUltimas(
@@ -63,13 +41,26 @@ const MotorScore = (() => {
                     10
                 );
 
-            score +=
-                forma *
-                pesos.formaRecente;
+            const tendencia =
+                MotorForma.tendencia(
+                    jogador.historico
+                );
+
+            const regularidade =
+                MotorRegularidade.calcular(
+                    jogador.historico
+                );
+
+            const historicoInteligente =
+
+                  media3 * 0.40
+                + media5 * 0.30
+                + media10 * 0.20
+                + tendencia * 0.10;
 
             score +=
-                tendencia *
-                pesos.tendenciaRecente;
+                historicoInteligente *
+                pesos.formaRecente;
 
             score +=
                 regularidade.regularidade *
@@ -79,23 +70,11 @@ const MotorScore = (() => {
                 regularidade.media *
                 pesos.mediaGeral;
 
-            score +=
-                media3 *
-                (pesosHistorico.media3 ?? 6);
-
-            score +=
-                media5 *
-                (pesosHistorico.media5 ?? 5);
-
-            score +=
-                media10 *
-                (pesosHistorico.media10 ?? 4);
-
         }
 
-        // ----------------------------
+        // =====================================================
         // DADOS DA RODADA
-        // ----------------------------
+        // =====================================================
 
         score +=
             valor(jogador.mediana)
@@ -166,7 +145,9 @@ const MotorScore = (() => {
             v === null ||
             Number.isNaN(Number(v))
         ) {
+
             return 0;
+
         }
 
         return Number(v);
