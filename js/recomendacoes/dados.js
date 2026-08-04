@@ -203,3 +203,44 @@ function calculadoraEstatisticaAplicada(){
     return false;
 
 }
+
+function exibirCarregamentoJogadores() {
+
+    const container =
+        document.getElementById(
+            "playersGrid"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="empty-state">
+            <strong>Carregando jogadores...</strong>
+        </div>
+    `;
+
+}
+
+function exibirErroJogadores(
+    mensagem = ""
+) {
+
+    const container =
+        document.getElementById(
+            "playersGrid"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="empty-state">
+            <strong>Erro ao carregar jogadores</strong>
+            <p>${mensagem}</p>
+        </div>
+    `;
+
+}
