@@ -12,6 +12,7 @@ ARQUIVO_SAIDA = Path(
 )
 
 
+
 def carregar_json(caminho):
 
     with open(
@@ -19,116 +20,50 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(arquivo)
-
-
-
-def calcular_erro(modelo):
-
-    erros = []
-
-
-    arquivos = sorted(
-        PASTA_HISTORICO.glob(
-            "rodada-*.json"
-        )
-    )
-
-
-    for arquivo in arquivos:
-
-        dados = carregar_json(
+        return json.load(
             arquivo
         )
 
 
-        for jogador in dados.get(
-            "jogadores",
-            []
-        ):
 
-            valores = {
+def salvar_json(
+    caminho,
+    dados
+):
 
-                "media3":
-                    jogador.get(
-                        "media3",
-                        0
-                    ),
+    with open(
+        caminho,
+        "w",
+        encoding="utf-8"
+    ) as arquivo:
 
-                "media5":
-                    jogador.get(
-                        "media5",
-                        0
-                    ),
-
-                "mediaGeral":
-                    jogador.get(
-                        "mediaGeral",
-                        0
-                    ),
-
-                "piso":
-                    jogador.get(
-                        "piso",
-                        0
-                    ),
-
-                "teto":
-                    jogador.get(
-                        "teto",
-                        0
-                    ),
-
-                "projecao":
-                    jogador.get(
-                        "projecao",
-                        0
-                    )
-
-            }
-
-
-            previsao = 0
-
-
-            for componente, peso in modelo.items():
-
-                previsao += (
-                    valores.get(
-                        componente,
-                        0
-                    )
-                    *
-                    peso
-                )
-
-
-            real = jogador.get(
-                "real",
-                0
-            )
-
-
-            erros.append(
-                abs(
-                    real - previsao
-                )
-            )
-
-
-    if not erros:
-
-        return 999
-
-
-    return round(
-        sum(erros) / len(erros),
-        2
-    )
+        json.dump(
+            dados,
+            arquivo,
+            ensure_ascii=False,
+            indent=2
+        )
 
 
 
-def gerar_modelos():
+def gerar_pesos():
+
+    valores = [
+
+        0.05,
+        0.10,
+        0.15,
+        0.20,
+        0.25,
+        0.30,
+        0.35,
+        0.40
+
+    ]
+
+
+    modelos = []
+
 
     componentes = [
 
@@ -145,73 +80,150 @@ def gerar_modelos():
     ]
 
 
-    modelos = []
+
+    for combinacao in itertools.product(
+        valores,
+        repeat=5
+    ):
 
 
-    combinações = [
+        if round(
+            sum(combinacao),
+            2
+        ) != 1:
 
-        {
-            "media3":0.40,
-            "media5":0.25,
-            "mediaGeral":0.15,
-            "piso":0.10,
-            "teto":0.10
-        },
-
-        {
-            "media3":0.30,
-            "media5":0.30,
-            "mediaGeral":0.20,
-            "piso":0.10,
-            "teto":0.10
-        },
-
-        {
-            "media3":0.25,
-            "media5":0.25,
-            "mediaGeral":0.20,
-            "piso":0.15,
-            "teto":0.15
-        },
-
-        {
-            "media3":0.35,
-            "media5":0.20,
-            "mediaGeral":0.15,
-            "piso":0.10,
-            "teto":0.20
-        }
-
-    ]
+            continue
 
 
-    modelos.extend(
-        combinações
-    )
+
+        modelos.append({
+
+            componente:
+                peso
+
+            for componente, peso
+            in zip(
+                componentes,
+                combinacao
+            )
+
+        })
 
 
     return modelos
 
 
 
+def calcular_erro(
+    pesos
+):
+
+    erros = []
+
+
+    arquivos = sorted(
+
+        PASTA_HISTORICO.glob(
+            "rodada-*.json"
+        )
+
+    )
+
+
+
+    for arquivo in arquivos:
+
+
+        dados = carregar_json(
+            arquivo
+        )
+
+
+        for jogador in dados.get(
+            "jogadores",
+            []
+        ):
+
+
+            previsao = 0
+
+
+            for componente, peso in pesos.items():
+
+
+                previsao += (
+
+                    jogador.get(
+                        componente,
+                        0
+                    )
+                    *
+                    peso
+
+                )
+
+
+
+            real = jogador.get(
+                "real",
+                0
+            )
+
+
+            erros.append(
+
+                abs(
+                    real -
+                    previsao
+                )
+
+            )
+
+
+
+    if not erros:
+
+        return 999
+
+
+
+    return round(
+
+        sum(erros)
+        /
+        len(erros),
+
+        3
+
+    )
+
+
+
 def executar():
 
-    modelos = gerar_modelos()
+    modelos = gerar_pesos()
 
 
-    resultados = []
+    print(
+        "Modelos testados:",
+        len(modelos)
+    )
+
+
+    melhores = []
 
 
     for modelo in modelos:
+
 
         erro = calcular_erro(
             modelo
         )
 
 
-        resultados.append({
+        melhores.append({
 
-            "modelo":
+            "pesos":
                 modelo,
 
             "erro":
@@ -220,64 +232,65 @@ def executar():
         })
 
 
-    resultados.sort(
+
+    melhores.sort(
+
         key=lambda x:
             x["erro"]
+
     )
 
 
-    melhor = resultados[0]
+    vencedor = melhores[0]
 
 
-    pesos = {
+
+    resultado = {
 
         "modelo":
-            "v2_otimizado",
+
+            "v3_otimizado",
 
 
         "erro":
-            melhor["erro"],
+
+            vencedor["erro"],
 
 
         "pesos":
 
-            melhor["modelo"],
+            vencedor["pesos"],
 
 
         "modelosTestados":
 
-            len(resultados)
+            len(modelos),
+
+
+        "top3":
+
+            melhores[:3]
 
     }
 
 
-    with open(
+
+    salvar_json(
+
         ARQUIVO_SAIDA,
-        "w",
-        encoding="utf-8"
-    ) as arquivo:
 
+        resultado
 
-        json.dump(
-            pesos,
-            arquivo,
-            ensure_ascii=False,
-            indent=2
-        )
+    )
+
 
 
     print(
-        "Pesos otimizados gerados."
+        "Melhor modelo:"
     )
 
     print(
-        "Melhor modelo:",
-        melhor["modelo"]
-    )
-
-    print(
-        "Erro:",
-        melhor["erro"]
+        vencedor
     )
 
 
