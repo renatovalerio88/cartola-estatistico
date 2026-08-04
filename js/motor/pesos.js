@@ -9,6 +9,7 @@
    ========================================================= */
 
 const PESOS_BASE = {
+
   formaRecente: 15,
   mediaGeral: 7,
   mediana: 5,
@@ -27,6 +28,7 @@ const PESOS_BASE = {
   custoBeneficio: 4,
   tendenciaRecente: 3,
   riscoNegativar: 3
+
 };
 
 
@@ -35,6 +37,7 @@ const PESOS_BASE = {
    ========================================================= */
 
 const PESOS_GOLEIROS = {
+
   formaRecente: 13,
   mediaGeral: 6,
   mediana: 6,
@@ -53,6 +56,7 @@ const PESOS_GOLEIROS = {
   custoBeneficio: 3,
   tendenciaRecente: 2,
   riscoNegativar: 1
+
 };
 
 
@@ -61,6 +65,7 @@ const PESOS_GOLEIROS = {
    ========================================================= */
 
 const PESOS_LATERAIS = {
+
   formaRecente: 13,
   mediaGeral: 6,
   mediana: 5,
@@ -79,6 +84,7 @@ const PESOS_LATERAIS = {
   custoBeneficio: 2,
   tendenciaRecente: 1,
   riscoNegativar: 1
+
 };
 
 
@@ -87,6 +93,7 @@ const PESOS_LATERAIS = {
    ========================================================= */
 
 const PESOS_ZAGUEIROS = {
+
   formaRecente: 12,
   mediaGeral: 6,
   mediana: 6,
@@ -105,6 +112,7 @@ const PESOS_ZAGUEIROS = {
   custoBeneficio: 2,
   tendenciaRecente: 1,
   riscoNegativar: 1
+
 };
 
 
@@ -113,6 +121,7 @@ const PESOS_ZAGUEIROS = {
    ========================================================= */
 
 const PESOS_MEIAS = {
+
   formaRecente: 14,
   mediaGeral: 7,
   mediana: 5,
@@ -131,14 +140,15 @@ const PESOS_MEIAS = {
   custoBeneficio: 2,
   tendenciaRecente: 2,
   riscoNegativar: 1
-};
 
+};
 
 /* =========================================================
    6. PESOS DOS ATACANTES
    ========================================================= */
 
 const PESOS_ATACANTES = {
+
   formaRecente: 15,
   mediaGeral: 7,
   mediana: 4,
@@ -157,6 +167,7 @@ const PESOS_ATACANTES = {
   custoBeneficio: 3,
   tendenciaRecente: 3,
   riscoNegativar: 1
+
 };
 
 
@@ -165,6 +176,7 @@ const PESOS_ATACANTES = {
    ========================================================= */
 
 const PESOS_TREINADORES = {
+
   formaRecente: 13,
   mediaGeral: 8,
   mediana: 6,
@@ -183,6 +195,7 @@ const PESOS_TREINADORES = {
   custoBeneficio: 3,
   tendenciaRecente: 2,
   riscoNegativar: 1
+
 };
 
 
@@ -191,13 +204,16 @@ const PESOS_TREINADORES = {
    ========================================================= */
 
 const PESOS_POR_POSICAO = {
+
   GOL: PESOS_GOLEIROS,
   LAT: PESOS_LATERAIS,
   ZAG: PESOS_ZAGUEIROS,
   MEI: PESOS_MEIAS,
   ATA: PESOS_ATACANTES,
   TEC: PESOS_TREINADORES
+
 };
+
 
 let PESOS_DINAMICOS = {};
 
@@ -207,12 +223,14 @@ let PESOS_DINAMICOS = {};
    ========================================================= */
 
 const NOMES_MOTORES_POSICAO = {
+
   GOL: "Motor de Goleiros",
   LAT: "Motor de Laterais",
   ZAG: "Motor de Zagueiros",
   MEI: "Motor de Meias",
   ATA: "Motor de Atacantes",
   TEC: "Motor de Treinadores"
+
 };
 
 
@@ -220,9 +238,7 @@ const NOMES_MOTORES_POSICAO = {
    10. OBTENÇÃO DOS PESOS
    ========================================================= */
 
-function obterPesosPorPosicao(
-  codigoPosicao
-) {
+function obterPesosPorPosicao(codigoPosicao) {
 
   const codigo =
     String(codigoPosicao || "")
@@ -252,8 +268,21 @@ function obterPesosPorPosicao(
   };
 
 
+  return normalizarPesos(
+    pesosFinais
+  );
+
+}
+
+
+/* =========================================================
+   11. NORMALIZAÇÃO DOS PESOS
+   ========================================================= */
+
+function normalizarPesos(pesos) {
+
   const total =
-    Object.values(pesosFinais)
+    Object.values(pesos)
       .reduce(
         (soma, valor) =>
           soma + Number(valor || 0),
@@ -261,25 +290,221 @@ function obterPesosPorPosicao(
       );
 
 
-  if (total > 0 && total !== 100) {
+  if (
+    total === 0 ||
+    total === 100
+  ) {
 
-    Object.keys(pesosFinais)
-      .forEach(chave => {
-
-        pesosFinais[chave] =
-          Number(
-            (
-              pesosFinais[chave] *
-              100 /
-              total
-            ).toFixed(2)
-          );
-
-      });
+    return pesos;
 
   }
 
 
-  return pesosFinais;
+  const resultado = {};
+
+
+  Object.keys(pesos)
+    .forEach(chave => {
+
+      resultado[chave] =
+        Number(
+          (
+            pesos[chave] *
+            100 /
+            total
+          ).toFixed(2)
+        );
+
+    });
+
+
+  return resultado;
 
 }
+
+
+/* =========================================================
+   12. NOME DO MOTOR
+   ========================================================= */
+
+function obterNomeMotorPosicao(
+  codigoPosicao
+) {
+
+  const codigo =
+    String(codigoPosicao || "")
+      .toUpperCase();
+
+
+  return (
+    NOMES_MOTORES_POSICAO[codigo]
+    ||
+    "Motor Estatístico Geral"
+  );
+
+}
+
+
+/* =========================================================
+   13. VALIDAÇÃO
+   ========================================================= */
+
+function validarPerfilDePesos(
+  codigoPosicao
+) {
+
+  const pesos =
+    obterPesosPorPosicao(
+      codigoPosicao
+    );
+
+
+  const total =
+    Object.values(pesos)
+      .reduce(
+        (soma, valor) =>
+          soma + Number(valor || 0),
+        0
+      );
+
+
+  return {
+
+    codigoPosicao,
+
+    nomeMotor:
+      obterNomeMotorPosicao(
+        codigoPosicao
+      ),
+
+    total:
+      Number(total.toFixed(2)),
+
+    esperado: 100,
+
+    valido:
+      Math.abs(total - 100) < 0.1
+
+  };
+
+}
+
+
+/* =========================================================
+   14. TODOS OS PERFIS
+   ========================================================= */
+
+function validarTodosOsPerfisDePesos() {
+
+  return Object.keys(
+    PESOS_POR_POSICAO
+  )
+  .map(
+    validarPerfilDePesos
+  );
+
+}
+
+
+/* =========================================================
+   15. RELATÓRIO
+   ========================================================= */
+
+function obterRelatorioPesos() {
+
+  return Object.keys(
+    PESOS_POR_POSICAO
+  )
+  .map(
+    codigo => ({
+
+      codigoPosicao:
+        codigo,
+
+      nomeMotor:
+        obterNomeMotorPosicao(
+          codigo
+        ),
+
+      validacao:
+        validarPerfilDePesos(
+          codigo
+        ),
+
+      pesos:
+        obterPesosPorPosicao(
+          codigo
+        )
+
+    })
+  );
+
+}
+
+
+/* =========================================================
+   16. PESOS DINÂMICOS
+   ========================================================= */
+
+async function carregarPesosDinamicos() {
+
+  try {
+
+    const resposta =
+      await fetch(
+        "data/pesos.json",
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!resposta.ok) {
+
+      console.warn(
+        "pesos.json não encontrado. Usando pesos padrão."
+      );
+
+      return;
+
+    }
+
+
+    PESOS_DINAMICOS =
+      await resposta.json();
+
+
+    console.info(
+      "Pesos dinâmicos carregados",
+      PESOS_DINAMICOS
+    );
+
+
+  }
+  catch (erro) {
+
+    console.warn(
+      "Erro ao carregar pesos dinâmicos",
+      erro
+    );
+
+
+    PESOS_DINAMICOS = {};
+
+  }
+
+}
+
+
+/* =========================================================
+   17. VALIDAÇÃO AUTOMÁTICA
+   ========================================================= */
+
+const VALIDACAO_PESOS_POSICAO =
+  validarTodosOsPerfisDePesos();
+
+
+console.info(
+  "Pesos por posição carregados:",
+  obterRelatorioPesos()
+);
