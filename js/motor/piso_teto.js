@@ -22,7 +22,7 @@ const MotorPisoTeto = (() => {
 
         const pontos =
             historico.map(
-                j=>j.pontos||0
+                j => j.pontuacao ?? j.pontos ?? 0
             );
 
         return{
