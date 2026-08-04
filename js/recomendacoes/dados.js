@@ -17,6 +17,7 @@ const estadoRecomendacoes = {
     calculadoraAplicada: false
 };
 
+
 async function carregarJogadores() {
 
     estadoRecomendacoes.carregando = true;
@@ -25,41 +26,75 @@ async function carregarJogadores() {
 
     exibirCarregamentoJogadores();
 
+
     try {
 
-        const statusResposta = await fetch(
-            CAMINHO_STATUS,
-            { cache: "no-store" }
-        );
+        const statusResposta =
+            await fetch(
+                CAMINHO_STATUS,
+                {
+                    cache: "no-store"
+                }
+            );
+
 
         if (!statusResposta.ok) {
-            throw new Error("Erro ao carregar status.json");
+
+            throw new Error(
+                "Erro ao carregar status.json"
+            );
+
         }
 
-        const status = await statusResposta.json();
 
-        const rodada = Number(status.rodada_atual);
+        const status =
+            await statusResposta.json();
+
+
+        const rodada =
+            Number(status.rodada_atual);
+
 
         CAMINHO_JOGADORES =
             `data/api/rodada-${String(rodada).padStart(2, "0")}/jogadores.json`;
 
-        const resposta = await fetch(
-            CAMINHO_JOGADORES,
-            { cache: "no-store" }
-        );
+
+        const resposta =
+            await fetch(
+                CAMINHO_JOGADORES,
+                {
+                    cache: "no-store"
+                }
+            );
+
 
         if (!resposta.ok) {
-            throw new Error(`Erro HTTP ${resposta.status}`);
+
+            throw new Error(
+                `Erro HTTP ${resposta.status}`
+            );
+
         }
 
-        const dados = await resposta.json();
+
+        const dados =
+            await resposta.json();
+
 
         if (!Array.isArray(dados)) {
-            throw new Error("Lista de jogadores inválida.");
+
+            throw new Error(
+                "Lista de jogadores inválida."
+            );
+
         }
 
+
         const jogadoresValidos =
-            dados.filter(validarJogador);
+            dados.filter(
+                validarJogador
+            );
+
 
         // ============================================
         // CARREGA O HISTÓRICO
@@ -70,54 +105,85 @@ async function carregarJogadores() {
                 jogadoresValidos
             );
 
+
         // ============================================
         // CALCULA AS MÉTRICAS
         // ============================================
 
         const jogadoresCalculados =
-            CalculadoraEstatistica.analisarListaJogadores(
+            MotorCalculadora.analisarListaJogadores(
                 jogadoresComHistorico
             );
+
 
         estadoRecomendacoes.jogadores =
             jogadoresCalculados;
 
-        estadoRecomendacoes.jogadoresOriginais =
-            jogadoresCalculados.map(copiarJogador);
 
-        estadoRecomendacoes.calculadoraAplicada = true;
-        estadoRecomendacoes.carregado = true;
-        estadoRecomendacoes.carregando = false;
+        estadoRecomendacoes.jogadoresOriginais =
+            jogadoresCalculados.map(
+                copiarJogador
+            );
+
+
+        estadoRecomendacoes.calculadoraAplicada =
+            true;
+
+
+        estadoRecomendacoes.carregado =
+            true;
+
+
+        estadoRecomendacoes.carregando =
+            false;
+
 
         iniciarRecomendacoes();
+
 
         console.log(
             "Jogadores carregados:",
             jogadoresCalculados.length
         );
 
+
         return jogadoresCalculados;
+
 
     }
     catch (erro) {
 
-        console.error(erro);
+
+        console.error(
+            erro
+        );
+
 
         estadoRecomendacoes.erro =
             erro.message;
 
-        estadoRecomendacoes.carregado = false;
-        estadoRecomendacoes.carregando = false;
+
+        estadoRecomendacoes.carregado =
+            false;
+
+
+        estadoRecomendacoes.carregando =
+            false;
+
 
         exibirErroJogadores(
             erro.message
         );
 
+
         return [];
+
 
     }
 
 }
+
+
 
 function copiarJogador(jogador) {
 
@@ -133,6 +199,8 @@ function copiarJogador(jogador) {
 
 }
 
+
+
 function validarJogador(jogador) {
 
     return (
@@ -146,11 +214,16 @@ function validarJogador(jogador) {
 
 }
 
+
+
 function iniciarRecomendacoes() {
 
     if (!estadoRecomendacoes.carregado) {
+
         return;
+
     }
+
 
     criarFiltrosPosicao();
 
@@ -160,6 +233,8 @@ function iniciarRecomendacoes() {
 
 }
 
+
+
 function obterJogadoresCarregados() {
 
     return estadoRecomendacoes.jogadores.map(
@@ -168,15 +243,20 @@ function obterJogadoresCarregados() {
 
 }
 
+
+
 function obterJogadorPorId(id) {
 
     return estadoRecomendacoes.jogadores.find(
 
-        j => String(j.id) === String(id)
+        jogador =>
+            String(jogador.id) === String(id)
 
     ) || null;
 
 }
+
+
 
 function obterPosicaoAtiva() {
 
@@ -184,12 +264,17 @@ function obterPosicaoAtiva() {
 
 }
 
+
+
 function definirPosicaoAtiva(posicao) {
 
     estadoRecomendacoes.posicaoAtiva =
-        String(posicao).toUpperCase();
+        String(posicao)
+            .toUpperCase();
 
 }
+
+
 
 function recomendacoesCarregadas() {
 
@@ -197,17 +282,23 @@ function recomendacoesCarregadas() {
 
 }
 
+
+
 function obterErroRecomendacoes() {
 
     return estadoRecomendacoes.erro;
 
 }
 
+
+
 function calculadoraEstatisticaAplicada() {
 
     return estadoRecomendacoes.calculadoraAplicada;
 
 }
+
+
 
 function exibirCarregamentoJogadores() {
 
@@ -216,36 +307,63 @@ function exibirCarregamentoJogadores() {
             "playersGrid"
         );
 
+
     if (!container) {
+
         return;
+
     }
 
+
     container.innerHTML = `
+
         <div class="empty-state">
-            <strong>Carregando jogadores...</strong>
+
+            <strong>
+                Carregando jogadores...
+            </strong>
+
         </div>
+
     `;
 
 }
 
+
+
 function exibirErroJogadores(
     mensagem = ""
 ) {
+
 
     const container =
         document.getElementById(
             "playersGrid"
         );
 
+
     if (!container) {
+
         return;
+
     }
 
+
     container.innerHTML = `
+
         <div class="empty-state">
-            <strong>Erro ao carregar jogadores</strong>
-            <p>${mensagem}</p>
+
+            <strong>
+                Erro ao carregar jogadores
+            </strong>
+
+            <p>
+                ${mensagem}
+            </p>
+
         </div>
+
     `;
+
 
 }
