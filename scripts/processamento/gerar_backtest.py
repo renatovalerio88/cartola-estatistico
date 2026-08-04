@@ -1,8 +1,16 @@
 from pathlib import Path
 import json
+import statistics
 
-PASTA_BASE = Path("data/base-historica")
-PASTA_SAIDA = Path("data/historico")
+
+PASTA_BASE = Path(
+    "data/base-historica"
+)
+
+PASTA_SAIDA = Path(
+    "data/historico"
+)
+
 
 PASTA_SAIDA.mkdir(
     parents=True,
@@ -10,163 +18,401 @@ PASTA_SAIDA.mkdir(
 )
 
 
+
 def carregar_json(caminho):
+
     with open(
         caminho,
-        "r",
         encoding="utf-8"
-    ) as f:
-        return json.load(f)
+    ) as arquivo:
+
+        return json.load(
+            arquivo
+        )
 
 
-def salvar_json(caminho, dados):
+
+def salvar_json(
+    caminho,
+    dados
+):
+
     with open(
         caminho,
         "w",
         encoding="utf-8"
-    ) as f:
+    ) as arquivo:
+
         json.dump(
             dados,
-            f,
+            arquivo,
             ensure_ascii=False,
             indent=2
         )
 
 
-arquivos = sorted(
-    PASTA_BASE.glob("*.json")
-)
+
+# ======================================================
+# FUNÇÕES ESTATÍSTICAS
+# ======================================================
+
+
+def media(valores):
+
+    if not valores:
+        return 0
+
+    return sum(valores) / len(valores)
+
+
+
+def media_ultimos(
+    valores,
+    quantidade
+):
+
+    valores = valores[-quantidade:]
+
+    return media(
+        valores
+    )
+
+
+
+def tendencia(
+    valores
+):
+
+    if len(valores) < 2:
+
+        return 0
+
+
+    ultima = valores[-1]
+
+    anterior = valores[-2]
+
+
+    return ultima - anterior
+
+
+
+def regularidade(
+    valores
+):
+
+    if len(valores) < 2:
+
+        return 0
+
+
+    try:
+
+        desvio = statistics.pstdev(
+            valores
+        )
+
+
+        return max(
+            0,
+            10 - desvio
+        )
+
+
+    except:
+
+        return 0
+
+
+
+def calcular_projecao(
+    historico
+):
+
+
+    pontos = [
+
+        item.get(
+            "pontos"
+        )
+
+        for item in historico
+
+        if item.get(
+            "pontos"
+        ) is not None
+
+    ]
+
+
+
+    if not pontos:
+
+        return 0
+
+
+
+    media_recente = media_ultimos(
+        pontos,
+        3
+    )
+
+
+    media_geral = media(
+        pontos
+    )
+
+
+    ajuste_tendencia = tendencia(
+        pontos
+    )
+
+
+
+    projecao = (
+
+        media_recente * 0.50
+
+        +
+
+        media_geral * 0.30
+
+        +
+
+        ajuste_tendencia * 0.20
+
+    )
+
+
+    return round(
+        projecao,
+        2
+    )
+
+
+
+# ======================================================
+# BACKTEST PROGRESSIVO
+# ======================================================
+
 
 rodadas = {}
 
+
+
+arquivos = sorted(
+    PASTA_BASE.glob(
+        "*.json"
+    )
+)
+
+
+
 for arquivo in arquivos:
 
-    jogador = carregar_json(arquivo)
+
+    jogador = carregar_json(
+        arquivo
+    )
+
 
     historico = jogador.get(
         "historico",
         []
     )
 
-    historico.sort(
-        key=lambda x: x["rodada"]
+
+    historico = sorted(
+
+        historico,
+
+        key=lambda x:
+            x.get(
+                "rodada",
+                0
+            )
+
     )
 
+
+
     for indice in range(
+
         1,
         len(historico)
+
     ):
+
 
         treino = historico[:indice]
 
-        rodada_prevista = historico[indice]
 
-        pesos = []
+        rodada_real = historico[indice]
 
-        for indice, item in enumerate(treino):
-        
-            pesos.append(indice + 1)
-        
-        soma_pesos = sum(pesos)
-        
-        projecao = sum(
-        
-            (item.get("pontos") or 0) * peso
-        
-            for item, peso in zip(
-                treino,
-                pesos
-            )
-        
-        ) / soma_pesos
 
-        rodada = rodada_prevista["rodada"]
+
+        projecao = calcular_projecao(
+            treino
+        )
+
+
+        real = rodada_real.get(
+            "pontos"
+        )
+
+
+        if real is None:
+
+            continue
+
+
+
+        erro = abs(
+
+            real - projecao
+
+        )
+
+
+        rodada = rodada_real[
+            "rodada"
+        ]
+
+
 
         if rodada not in rodadas:
 
             rodadas[rodada] = []
 
-        erro = (
-            rodada_prevista.get("pontos") or 0
-        ) - projecao
-        
+
+
         rodadas[rodada].append({
 
-            "id": jogador["id"],
+            "id":
+                jogador.get(
+                    "id"
+                ),
 
-            "nome": jogador["nome"],
+            "nome":
+                jogador.get(
+                    "nome"
+                ),
 
-            "posicao": jogador["posicao"],
+            "posicao":
+                jogador.get(
+                    "posicao"
+                ),
 
-            "projecao": round(
+            "projecao":
                 projecao,
-                2
-            ),
 
-            "real": rodada_prevista.get(
-                "pontos"
-            ),
+            "real":
+                real,
 
-            "erro": round(
-                erro,
-                2
-            )
+            "erro":
+                round(
+                    erro,
+                    2
+                )
 
         })
 
+
+
+# ======================================================
+# SALVAR RESULTADOS
+# ======================================================
+
+
 for rodada, jogadores in rodadas.items():
 
+
     jogadores.sort(
-        key=lambda x: x["projecao"],
+
+        key=lambda x:
+            x["projecao"],
+
         reverse=True
+
     )
+
+
 
     erros = [
-        abs(j["erro"])
-        for j in jogadores
+
+        jogador["erro"]
+
+        for jogador in jogadores
+
     ]
 
-    media_erro = round(
-        sum(erros) / len(erros),
+
+
+    erro_medio = round(
+
+        sum(erros)
+        /
+        len(erros),
+
         2
+
     )
-    
-    maior_erro = round(
-        max(erros),
-        2
-    )
-    
-    menor_erro = round(
-        min(erros),
-        2
-    )
-    
+
+
+
     acertos = len([
-        e for e in erros
-        if e <= 3
+
+        erro
+
+        for erro in erros
+
+        if erro <= 3
+
     ])
-    
+
+
+
     taxa_acerto = round(
+
         acertos * 100 / len(erros),
+
         2
+
     )
+
+
+
     salvar_json(
 
         PASTA_SAIDA /
+
         f"rodada-{rodada:02d}.json",
 
         {
-            "rodada": rodada,
-            "erroMedio": media_erro,
-            "maiorErro": maior_erro,
-            "menorErro": menor_erro,
-            "taxaAcerto": taxa_acerto,
-            "quantidade": len(jogadores),
-            "jogadores": jogadores
+
+            "rodada":
+                rodada,
+
+            "erroMedio":
+                erro_medio,
+
+            "taxaAcerto":
+                taxa_acerto,
+
+            "quantidade":
+                len(jogadores),
+
+            "jogadores":
+                jogadores
+
         }
 
     )
 
+
+
 print(
+
     f"{len(rodadas)} rodadas processadas."
+
 )
