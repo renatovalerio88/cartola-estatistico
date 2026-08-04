@@ -1128,12 +1128,21 @@ const CalculadoraEstatistica = (() => {
       "undefined"
     ) {
       const dadosProjecao = {
-        ...jogadorCompleto,
-
-        score:
-          jogadorCompleto.score /
-          10
+          ...jogadorCompleto,
+      
+          score: jogadorCompleto.score,
+      
+          media3:
+              jogadorCompleto.mediaRecente,
+      
+          media5:
+              jogadorCompleto.mediaRecente
       };
+      
+      jogadorCompleto.projecao =
+          MotorProjecao.calcular(
+              dadosProjecao
+          );
 
       jogadorCompleto.projecao =
         MotorProjecao.calcular(
