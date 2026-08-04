@@ -15,8 +15,9 @@ const Historico = (() => {
 
 
     /* =====================================================
-       CARREGA STATUS / RODADA ATUAL
+       CARREGA ÍNDICE HISTÓRICO
        ===================================================== */
+
 
     async function carregarIndice() {
 
@@ -33,35 +34,26 @@ const Historico = (() => {
 
             const resposta =
                 await fetch(
-                    "data/api/status.json",
+                    "data/historico/indice.json",
                     {
                         cache: "no-store"
                     }
                 );
 
 
+
             if (!resposta.ok) {
 
                 throw new Error(
-                    "Erro ao carregar status"
+                    "Erro ao carregar indice historico"
                 );
 
             }
 
 
-            const status =
+
+            indice =
                 await resposta.json();
-
-
-
-            indice = {
-
-                rodadaAtual:
-                    Number(
-                        status.rodada_atual || 1
-                    )
-
-            };
 
 
 
@@ -79,11 +71,15 @@ const Historico = (() => {
             );
 
 
+
             indice = {
 
-                rodadaAtual: 1
+                ultimaRodada: 0,
+
+                rodadas: []
 
             };
+
 
 
             return indice;
@@ -100,6 +96,7 @@ const Historico = (() => {
     /* =====================================================
        CARREGA JOGADORES DE UMA RODADA
        ===================================================== */
+
 
     async function carregarRodada(
         numeroRodada
@@ -198,7 +195,7 @@ const Historico = (() => {
 
 
 
-        const status =
+        const indiceHistorico =
             await carregarIndice();
 
 
@@ -207,22 +204,46 @@ const Historico = (() => {
 
 
 
+        const rodadasDisponiveis =
+            Array.isArray(
+                indiceHistorico.rodadas
+            )
+                ? indiceHistorico.rodadas
+                : [];
+
+
+
+
 
         /*
-          Busca todas as rodadas disponíveis
+          Busca somente rodadas existentes
         */
 
+
         for (
-            let rodada = 1;
-            rodada <= status.rodadaAtual;
-            rodada++
+            const itemRodada of rodadasDisponiveis
         ) {
+
+
+
+            const numeroRodada =
+                Number(
+                    itemRodada.numero
+                );
+
+
+
+            if (!numeroRodada) {
+
+                continue;
+
+            }
 
 
 
             const jogadoresRodada =
                 await carregarRodada(
-                    rodada
+                    numeroRodada
                 );
 
 
@@ -258,7 +279,6 @@ const Historico = (() => {
 
 
 
-
                     if (
                         !mapaHistorico[id]
                     ) {
@@ -269,46 +289,34 @@ const Historico = (() => {
 
 
 
-
                     mapaHistorico[id].push({
 
-                        rodada,
+                        rodada:
+                            numeroRodada,
 
 
                         pontos:
-
                             Number(
-
                                 atleta.pontuacaoReal ??
-
                                 atleta.pontosUltimaRodada ??
-
                                 atleta.pontos ??
-
                                 0
-
                             ),
 
 
-
                         media:
-
                             Number(
                                 atleta.media || 0
                             ),
 
 
-
                         preco:
-
                             Number(
                                 atleta.preco || 0
                             ),
 
 
-
                         scouts:
-
                             atleta.scouts || {}
 
                     });
@@ -317,7 +325,6 @@ const Historico = (() => {
 
                 }
             );
-
 
 
         }
@@ -343,7 +350,6 @@ const Historico = (() => {
 
 
                 const historico =
-
                     mapaHistorico[id]
                     ||
                     [];
@@ -351,8 +357,8 @@ const Historico = (() => {
 
 
                 historico.sort(
-                    (a,b)=>
-                        a.rodada-b.rodada
+                    (a,b) =>
+                        a.rodada - b.rodada
                 );
 
 
@@ -378,6 +384,8 @@ const Historico = (() => {
 
 
 
+
+
         console.log(
             "Histórico carregado:",
             jogadores.length,
@@ -395,6 +403,7 @@ const Historico = (() => {
 
 
 
+
     /* =====================================================
        CONSULTA
        ===================================================== */
@@ -402,9 +411,7 @@ const Historico = (() => {
 
     function getIndice() {
 
-
         return indice;
-
 
     }
 
