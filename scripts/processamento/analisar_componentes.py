@@ -12,6 +12,7 @@ ARQUIVO_SAIDA = Path(
 )
 
 
+
 def carregar_json(caminho):
 
     with open(
@@ -19,215 +20,221 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(arquivo)
+        return json.load(
+            arquivo
+        )
 
 
 
 def media(lista):
 
     if not lista:
+
         return 0
 
     return sum(lista) / len(lista)
 
 
 
-def calcular_rmse(erros):
+def rmse(lista):
 
-    if not erros:
+    if not lista:
+
         return 0
 
     return math.sqrt(
         sum(
-            erro ** 2
-            for erro in erros
+            x ** 2
+            for x in lista
         )
         /
-        len(erros)
+        len(lista)
     )
 
 
 
-def coletar_componentes():
+componentes = {
 
-    componentes = {
+    "media3": [],
 
-        "projecao": [],
+    "media5": [],
 
-        "real": [],
+    "mediaGeral": [],
 
-        "erro": [],
+    "piso": [],
 
-        "media3": [],
+    "teto": [],
 
-        "media5": [],
+    "regularidade": [],
 
-        "mediaGeral": [],
+    "tendencia": []
 
-        "piso": [],
+}
 
-        "teto": [],
 
-        "regularidade": [],
 
-        "tendencia": []
+erros = []
+
+posicoes = {}
+
+
+
+arquivos = sorted(
+
+    PASTA_HISTORICO.glob(
+        "rodada-*.json"
+    )
+
+)
+
+
+
+for arquivo in arquivos:
+
+
+    dados = carregar_json(
+        arquivo
+    )
+
+
+    for jogador in dados.get(
+        "jogadores",
+        []
+    ):
+
+
+        erro = abs(
+
+            jogador.get(
+                "erro",
+                0
+            )
+
+        )
+
+
+        erros.append(
+            erro
+        )
+
+
+
+        for nome in componentes:
+
+
+            valor = jogador.get(
+                nome
+            )
+
+
+            if valor is not None:
+
+                componentes[
+                    nome
+                ].append(
+                    valor
+                )
+
+
+
+        posicao = jogador.get(
+            "posicao",
+            "OUT"
+        )
+
+
+        posicoes.setdefault(
+            posicao,
+            []
+        ).append(
+            erro
+        )
+
+
+
+resultado = {
+
+
+    "modelo":
+
+        "laboratorio_v3",
+
+
+    "amostras":
+
+        len(erros),
+
+
+    "erroMedio":
+
+        round(
+            media(erros),
+            2
+        ),
+
+
+    "rmse":
+
+        round(
+            rmse(erros),
+            2
+        ),
+
+
+    "componentes":
+
+        {},
+
+
+    "posicoes":
+
+        {}
+
+}
+
+
+
+for nome, valores in componentes.items():
+
+
+    resultado[
+        "componentes"
+    ][nome] = {
+
+
+        "media":
+
+            round(
+                media(valores),
+                2
+            ),
+
+
+        "quantidade":
+
+            len(valores)
 
     }
 
 
-    arquivos = sorted(
-        PASTA_HISTORICO.glob(
-            "rodada-*.json"
-        )
-    )
+
+for posicao, valores in posicoes.items():
 
 
-    for arquivo in arquivos:
+    resultado[
+        "posicoes"
+    ][posicao] = {
 
 
-        dados = carregar_json(
-            arquivo
-        )
+        "quantidade":
 
-
-        for jogador in dados.get(
-            "jogadores",
-            []
-        ):
-
-
-            componentes[
-                "projecao"
-            ].append(
-                jogador.get(
-                    "projecao",
-                    0
-                )
-            )
-
-
-            componentes[
-                "real"
-            ].append(
-                jogador.get(
-                    "real",
-                    0
-                )
-            )
-
-
-            componentes[
-                "erro"
-            ].append(
-                abs(
-                    jogador.get(
-                        "erro",
-                        0
-                    )
-                )
-            )
-
-
-            componentes[
-                "media3"
-            ].append(
-                jogador.get(
-                    "media3",
-                    0
-                )
-            )
-
-
-            componentes[
-                "media5"
-            ].append(
-                jogador.get(
-                    "media5",
-                    0
-                )
-            )
-
-
-            componentes[
-                "mediaGeral"
-            ].append(
-                jogador.get(
-                    "mediaGeral",
-                    0
-                )
-            )
-
-
-            componentes[
-                "piso"
-            ].append(
-                jogador.get(
-                    "piso",
-                    0
-                )
-            )
-
-
-            componentes[
-                "teto"
-            ].append(
-                jogador.get(
-                    "teto",
-                    0
-                )
-            )
-
-
-            componentes[
-                "regularidade"
-            ].append(
-                jogador.get(
-                    "regularidade",
-                    0
-                )
-            )
-
-
-            componentes[
-                "tendencia"
-            ].append(
-                jogador.get(
-                    "tendencia",
-                    0
-                )
-            )
-
-
-    return componentes
-
-
-
-def avaliar():
-
-    dados = coletar_componentes()
-
-
-    erros = dados[
-        "erro"
-    ]
-
-
-    resultado = {
-
-        "modelo":
-
-            "laboratorio_v2",
-
-
-        "amostras":
-
-            len(erros),
+            len(valores),
 
 
         "erroMedio":
 
             round(
-                media(erros),
+                media(valores),
                 2
             ),
 
@@ -235,151 +242,86 @@ def avaliar():
         "rmse":
 
             round(
-                calcular_rmse(erros),
+                rmse(valores),
                 2
-            ),
-
-
-        "componentes": {},
-
-
-        "posicoes": {}
+            )
 
     }
 
 
-    for nome, valores in dados.items():
+
+# Ranking dos componentes
+# baseado na estabilidade dos dados
 
 
-        if nome in (
-            "erro",
-            "projecao",
-            "real"
-        ):
-            continue
+ranking = []
 
 
-        resultado[
-            "componentes"
-        ][nome] = {
+for nome, valores in componentes.items():
 
 
-            "media":
+    ranking.append({
 
-                round(
-                    media(valores),
-                    2
-                ),
+        "componente":
 
+            nome,
 
-            "quantidade":
+        "media":
 
-                len(valores)
+            round(
+                media(valores),
+                2
+            ),
 
-        }
+        "quantidade":
 
+            len(valores)
 
-
-    arquivos = sorted(
-        PASTA_HISTORICO.glob(
-            "rodada-*.json"
-        )
-    )
-
-
-    posicoes = {}
-
-
-    for arquivo in arquivos:
-
-
-        dados = carregar_json(
-            arquivo
-        )
-
-
-        for jogador in dados.get(
-            "jogadores",
-            []
-        ):
-
-
-            posicao = jogador.get(
-                "posicao",
-                "OUT"
-            )
-
-
-            posicoes.setdefault(
-                posicao,
-                []
-            ).append(
-                abs(
-                    jogador.get(
-                        "erro",
-                        0
-                    )
-                )
-            )
+    })
 
 
 
-    for posicao, erros_pos in posicoes.items():
+ranking.sort(
 
-        resultado[
-            "posicoes"
-        ][posicao] = {
+    key=lambda x:
+        x["media"]
 
-            "quantidade":
-
-                len(erros_pos),
-
-
-            "erroMedio":
-
-                round(
-                    media(erros_pos),
-                    2
-                ),
-
-
-            "rmse":
-
-                round(
-                    calcular_rmse(
-                        erros_pos
-                    ),
-                    2
-                )
-
-        }
+)
 
 
 
-    with open(
-        ARQUIVO_SAIDA,
-        "w",
-        encoding="utf-8"
-    ) as arquivo:
-
-
-        json.dump(
-            resultado,
-            arquivo,
-            ensure_ascii=False,
-            indent=2
-        )
+resultado[
+    "rankingComponentes"
+] = ranking
 
 
 
-    print(
-        "Componentes analisados.",
-        "Amostras:",
-        len(erros)
+with open(
+    ARQUIVO_SAIDA,
+    "w",
+    encoding="utf-8"
+) as arquivo:
+
+
+    json.dump(
+
+        resultado,
+
+        arquivo,
+
+        ensure_ascii=False,
+
+        indent=2
+
     )
 
 
 
-if __name__ == "__main__":
+print(
+    "Componentes analisados."
+)
 
-    avaliar()
+print(
+    "Amostras:",
+    len(erros)
+)
