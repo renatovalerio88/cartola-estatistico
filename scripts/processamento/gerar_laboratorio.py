@@ -2,45 +2,124 @@ from pathlib import Path
 import json
 import math
 
-PASTA_HISTORICO = Path("data/historico")
-ARQUIVO_SAIDA = Path("data/laboratorio.json")
 
-arquivos = sorted(
-    PASTA_HISTORICO.glob("rodada-*.json")
+# ======================================================
+# CARTOLA ESTATÍSTICO
+#
+# Laboratório Estatístico
+#
+# Analisa:
+# - Erros do modelo
+# - Precisão geral
+# - Precisão por posição
+# - Preparação para otimização de pesos
+# ======================================================
+
+
+PASTA_HISTORICO = Path(
+    "data/historico"
 )
 
+
+PASTA_SAIDA = Path(
+    "data/laboratorio"
+)
+
+
+PASTA_SAIDA.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
+
+
+def carregar_json(caminho):
+
+    with open(
+        caminho,
+        encoding="utf-8"
+    ) as arquivo:
+
+        return json.load(
+            arquivo
+        )
+
+
+
+def salvar_json(
+    caminho,
+    dados
+):
+
+    with open(
+        caminho,
+        "w",
+        encoding="utf-8"
+    ) as arquivo:
+
+        json.dump(
+            dados,
+            arquivo,
+            ensure_ascii=False,
+            indent=2
+        )
+
+
+
+arquivos = sorted(
+    PASTA_HISTORICO.glob(
+        "rodada-*.json"
+    )
+)
+
+
+
 erros = []
+
 por_posicao = {}
 
 top5 = 0
 top10 = 0
-rodadas = 0
+
+total_jogadores = 0
+total_rodadas = 0
+
+
 
 for arquivo in arquivos:
 
-    with open(
-        arquivo,
-        encoding="utf-8"
-    ) as f:
 
-        dados = json.load(f)
+    dados = carregar_json(
+        arquivo
+    )
 
-    rodadas += 1
+
+    total_rodadas += 1
+
 
     jogadores = dados.get(
         "jogadores",
         []
     )
 
+
+    total_jogadores += len(
+        jogadores
+    )
+
+
     jogadores.sort(
-        key=lambda x: x.get(
-            "projecao",
-            0
-        ),
+        key=lambda x:
+            x.get(
+                "projecao",
+                0
+            ),
         reverse=True
     )
 
+
     for indice, jogador in enumerate(jogadores):
+
 
         erro = abs(
             jogador.get(
@@ -49,134 +128,304 @@ for arquivo in arquivos:
             )
         )
 
-        erros.append(erro)
+
+        erros.append(
+            erro
+        )
+
 
         posicao = jogador.get(
             "posicao",
             "OUTROS"
         )
 
-        por_posicao.setdefault(
-            posicao,
-            []
-        ).append(erro)
 
-        if indice < 5 and erro <= 3:
-            top5 += 1
+        if posicao not in por_posicao:
 
-        if indice < 10 and erro <= 3:
-            top10 += 1
+            por_posicao[posicao] = []
 
 
-# ==========================================
-# PROTEÇÃO CONTRA BASE VAZIA
-# ==========================================
+        por_posicao[posicao].append(
+            erro
+        )
 
-if not erros:
 
-    resultado = {
+        if indice < 5:
 
-        "modelo": "1.0",
+            if erro <= 3:
 
-        "rodadas": 0,
+                top5 += 1
 
-        "mae": 0,
 
-        "rmse": 0,
+        if indice < 10:
 
-        "top5": 0,
+            if erro <= 3:
 
-        "top10": 0,
+                top10 += 1
 
-        "melhorPosicao": None,
 
-        "piorPosicao": None,
 
-        "erroPorPosicao": {}
 
-    }
+# ======================================================
+# MÉTRICAS GERAIS
+# ======================================================
+
+
+if erros:
+
+
+    mae = round(
+        sum(erros)
+        /
+        len(erros),
+        2
+    )
+
+
+    rmse = round(
+
+        math.sqrt(
+
+            sum(
+                erro ** 2
+                for erro in erros
+            )
+            /
+            len(erros)
+
+        ),
+
+        2
+    )
+
 
 else:
 
-    mae = round(
-        sum(erros) / len(erros),
-        2
-    )
 
-    rmse = round(
-        math.sqrt(
-            sum(
-                e ** 2
-                for e in erros
-            ) / len(erros)
-        ),
-        2
-    )
+    mae = 0
+    rmse = 0
 
-    media_posicao = {
 
-        posicao: round(
-            sum(lista) / len(lista),
-            2
-        )
 
-        for posicao, lista
-        in por_posicao.items()
+melhores_posicoes = {}
+
+for posicao, lista in por_posicao.items():
+
+    melhores_posicoes[posicao] = {
+
+        "quantidade":
+            len(lista),
+
+        "erroMedio":
+            round(
+                sum(lista)
+                /
+                len(lista),
+                2
+            )
 
     }
+
+
+
+if melhores_posicoes:
+
 
     melhor = min(
-        media_posicao,
-        key=media_posicao.get
+        melhores_posicoes,
+        key=lambda x:
+            melhores_posicoes[x]["erroMedio"]
     )
+
 
     pior = max(
-        media_posicao,
-        key=media_posicao.get
+        melhores_posicoes,
+        key=lambda x:
+            melhores_posicoes[x]["erroMedio"]
     )
 
-    resultado = {
 
-        "modelo": "1.0",
+else:
 
-        "rodadas": rodadas,
+    melhor = None
+    pior = None
 
-        "mae": mae,
 
-        "rmse": rmse,
 
-        "top5": round(
-            top5 * 100 / (rodadas * 5),
+
+# ======================================================
+# RESUMO
+# ======================================================
+
+
+resumo = {
+
+
+    "modelo":
+        "ponderado_atual",
+
+
+    "rodadasAnalisadas":
+        total_rodadas,
+
+
+    "jogadoresAnalisados":
+        total_jogadores,
+
+
+    "mae":
+        mae,
+
+
+    "rmse":
+        rmse,
+
+
+    "top5":
+        round(
+            top5 /
+            (total_rodadas * 5)
+            * 100,
             2
-        ) if rodadas else 0,
+        )
+        if total_rodadas
+        else 0,
 
-        "top10": round(
-            top10 * 100 / (rodadas * 10),
+
+    "top10":
+        round(
+            top10 /
+            (total_rodadas * 10)
+            * 100,
             2
-        ) if rodadas else 0,
+        )
+        if total_rodadas
+        else 0,
 
-        "melhorPosicao": melhor,
 
-        "piorPosicao": pior,
+    "melhorPosicao":
+        melhor,
 
-        "erroPorPosicao":
-            media_posicao
+
+    "piorPosicao":
+        pior
+
+}
+
+
+
+salvar_json(
+
+    PASTA_SAIDA /
+    "resumo.json",
+
+    resumo
+
+)
+
+
+
+# ======================================================
+# POSIÇÕES
+# ======================================================
+
+
+salvar_json(
+
+    PASTA_SAIDA /
+    "posicoes.json",
+
+    melhores_posicoes
+
+)
+
+
+
+# ======================================================
+# MODELOS
+# ======================================================
+
+
+modelos = {
+
+
+    "modeloAtual": {
+
+        "nome":
+            "media_ponderada",
+
+        "erroMedio":
+            mae
+
+    },
+
+
+    "comparacoes": {
+
+
+        "media_simples":
+            None,
+
+
+        "ultimas_3":
+            None,
+
+
+        "ultimas_5":
+            None
 
     }
 
-with open(
-    ARQUIVO_SAIDA,
-    "w",
-    encoding="utf-8"
-) as f:
+}
 
-    json.dump(
-        resultado,
-        f,
-        indent=2,
-        ensure_ascii=False
-    )
+
+
+salvar_json(
+
+    PASTA_SAIDA /
+    "modelos.json",
+
+    modelos
+
+)
+
+
+
+# ======================================================
+# PESOS
+# ======================================================
+
+
+pesos = {
+
+
+    "status":
+        "aguardando_otimizacao",
+
+
+    "modeloAtual": {
+
+
+        "tipo":
+            "media_ponderada"
+
+    }
+
+}
+
+
+
+salvar_json(
+
+    PASTA_SAIDA /
+    "pesos.json",
+
+    pesos
+
+)
+
+
 
 print(
-    "Laboratório estatístico gerado."
+    "Laboratório estatístico atualizado."
 )
