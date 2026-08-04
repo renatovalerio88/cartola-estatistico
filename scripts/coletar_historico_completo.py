@@ -55,6 +55,7 @@ POSICOES = {
 }
 
 
+
 def buscar_json(
     endpoint: str
 ) -> Any:
@@ -82,11 +83,13 @@ def buscar_json(
                 .decode("utf-8")
             )
 
+
     except HTTPError as erro:
 
         raise RuntimeError(
             f"Erro HTTP {erro.code}: {url}"
         )
+
 
     except URLError as erro:
 
@@ -107,12 +110,50 @@ def salvar_json(
     )
 
     caminho.write_text(
+
         json.dumps(
             dados,
             ensure_ascii=False,
             indent=2
         ),
+
         encoding="utf-8"
+
+    )
+
+
+
+def buscar_mercado_historico(
+    rodada:int
+):
+
+    try:
+
+        return buscar_json(
+            f"/atletas/mercado/{rodada}"
+        )
+
+
+    except Exception:
+
+        print(
+            f"Mercado histórico indisponível rodada {rodada}. "
+            "Usando mercado atual."
+        )
+
+
+        return buscar_json(
+            "/atletas/mercado"
+        )
+
+
+
+def buscar_pontuados_historico(
+    rodada:int
+):
+
+    return buscar_json(
+        f"/atletas/pontuados/{rodada}"
     )
 
 
@@ -123,16 +164,20 @@ def indexar_clubes(
 
     clubes = {}
 
+
     for chave, valor in (
+
         mercado.get(
             "clubes",
             {}
         ).items()
+
     ):
 
         clubes[
             int(chave)
         ] = valor
+
 
     return clubes
 
@@ -151,22 +196,28 @@ def normalizar_jogadores(
 
     pontuacoes = {}
 
+
     if isinstance(
         pontuados,
         dict
     ):
 
         pontuacoes = (
+
             pontuados
             .get(
                 "atletas",
                 {}
             )
+
             or {}
+
         )
 
 
+
     jogadores = []
+
 
 
     for atleta in mercado.get(
@@ -174,23 +225,21 @@ def normalizar_jogadores(
         []
     ):
 
-        atleta_id = (
-            atleta.get(
-                "atleta_id"
-            )
+
+        atleta_id = atleta.get(
+            "atleta_id"
         )
 
-        clube_id = (
-            atleta.get(
-                "clube_id"
-            )
+
+        clube_id = atleta.get(
+            "clube_id"
         )
 
-        posicao_id = (
-            atleta.get(
-                "posicao_id"
-            )
+
+        posicao_id = atleta.get(
+            "posicao_id"
         )
+
 
 
         pontuacao = (
@@ -204,12 +253,17 @@ def normalizar_jogadores(
         )
 
 
+
         clube = (
+
             clubes.get(
                 clube_id
             )
+
             or {}
+
         )
+
 
 
         jogadores.append(
@@ -219,23 +273,28 @@ def normalizar_jogadores(
                 "id":
                     atleta_id,
 
+
                 "rodada":
                     rodada,
+
 
                 "nome":
                     atleta.get(
                         "nome"
                     ),
 
+
                 "apelido":
                     atleta.get(
                         "apelido"
                     ),
 
+
                 "foto":
                     atleta.get(
                         "foto"
                     ),
+
 
                 "posicao":
                     POSICOES.get(
@@ -243,8 +302,10 @@ def normalizar_jogadores(
                         ""
                     ),
 
+
                 "posicaoId":
                     posicao_id,
+
 
                 "clube":
                     clube.get(
@@ -252,36 +313,43 @@ def normalizar_jogadores(
                         ""
                     ),
 
+
                 "siglaClube":
                     clube.get(
                         "abreviacao",
                         ""
                     ),
 
+
                 "preco":
                     atleta.get(
                         "preco_num"
                     ),
+
 
                 "media":
                     atleta.get(
                         "media_num"
                     ),
 
+
                 "jogos":
                     atleta.get(
                         "jogos_num"
                     ),
+
 
                 "pontuacaoReal":
                     pontuacao.get(
                         "pontuacao"
                     ),
 
+
                 "entrouEmCampo":
                     pontuacao.get(
                         "entrou_em_campo"
                     ),
+
 
                 "scouts":
                     pontuacao.get(
@@ -302,21 +370,26 @@ def coletar_rodada(
     rodada:int
 ):
 
+
     print(
         f"Coletando rodada {rodada}"
     )
 
 
     pasta = (
+
         PASTA_API
         /
         f"rodada-{rodada:02d}"
+
     )
 
 
-    mercado = buscar_json(
-        "/atletas/mercado"
+
+    mercado = buscar_mercado_historico(
+        rodada
     )
+
 
 
     partidas = buscar_json(
@@ -324,9 +397,11 @@ def coletar_rodada(
     )
 
 
-    pontuados = buscar_json(
-        "/atletas/pontuados"
+
+    pontuados = buscar_pontuados_historico(
+        rodada
     )
+
 
 
     jogadores = normalizar_jogadores(
@@ -336,34 +411,27 @@ def coletar_rodada(
     )
 
 
+
     salvar_json(
-        pasta
-        /
-        "mercado.json",
+        pasta / "mercado.json",
         mercado
     )
 
 
     salvar_json(
-        pasta
-        /
-        "partidas.json",
+        pasta / "partidas.json",
         partidas
     )
 
 
     salvar_json(
-        pasta
-        /
-        "pontuados.json",
+        pasta / "pontuados.json",
         pontuados
     )
 
 
     salvar_json(
-        pasta
-        /
-        "jogadores.json",
+        pasta / "jogadores.json",
         jogadores
     )
 
@@ -377,16 +445,19 @@ def coletar_rodada(
 
 def executar():
 
+
     status = buscar_json(
         "/mercado/status"
     )
 
 
     rodada_atual = int(
+
         status.get(
             "rodada_atual",
             1
         )
+
     )
 
 
@@ -396,16 +467,21 @@ def executar():
     )
 
 
+
     for rodada in range(
+
         1,
         rodada_atual + 1
+
     ):
+
 
         try:
 
             coletar_rodada(
                 rodada
             )
+
 
         except Exception as erro:
 
@@ -423,16 +499,20 @@ def executar():
 
 if __name__ == "__main__":
 
+
     try:
 
         executar()
 
+
     except Exception as erro:
+
 
         print(
             "ERRO:",
             erro,
             file=sys.stderr
         )
+
 
         sys.exit(1)
