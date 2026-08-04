@@ -3,7 +3,7 @@
    Calculadora integrada do modelo estatístico
    ========================================================= */
 
-const CalculadoraEstatistica = (() => {
+const MotorCalculadora = (() => {
 
   const POSICOES_VALIDAS = [
     "GOL",
