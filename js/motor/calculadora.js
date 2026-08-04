@@ -98,7 +98,7 @@ const CalculadoraEstatistica = (() => {
     )
       .map(
         registro =>
-          Number(registro.pontos)
+          Number(registro.pontuacao ?? registro.pontos)
       )
       .filter(Number.isFinite);
   }
@@ -951,7 +951,7 @@ const CalculadoraEstatistica = (() => {
       typeof MotorForma !==
         "undefined"
         ? MotorForma.mediaRecente(
-            historico
+            calculo.historicoPontuacoes
           )
         : calculo.mediaHistorica;
 
@@ -959,7 +959,7 @@ const CalculadoraEstatistica = (() => {
       typeof MotorForma !==
         "undefined"
         ? MotorForma.tendencia(
-            historico
+            calculo.historicoPontuacoes
           )
         : 0;
 
@@ -991,7 +991,7 @@ const CalculadoraEstatistica = (() => {
       typeof MotorRegularidade !==
         "undefined"
         ? MotorRegularidade.calcular(
-            historico
+            calculo.historicoPontuacoes
           )
         : {
             media:
@@ -1033,7 +1033,7 @@ const CalculadoraEstatistica = (() => {
       typeof MotorPisoTeto !==
         "undefined"
         ? MotorPisoTeto.calcular(
-            historico
+            calculo.historicoPontuacoes
           )
         : {
             piso:
