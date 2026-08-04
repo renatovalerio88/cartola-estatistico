@@ -1,0 +1,11 @@
+{
+  "modeloAtual": {
+    "nome": "media_ponderada",
+    "erroMedio": 1.46
+  },
+  "comparacoes": {
+    "media_simples": null,
+    "ultimas_3": null,
+    "ultimas_5": null
+  }
+}

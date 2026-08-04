@@ -1,0 +1,26 @@
+{
+  "MEI": {
+    "quantidade": 4830,
+    "erroMedio": 1.39
+  },
+  "LAT": {
+    "quantidade": 2562,
+    "erroMedio": 1.78
+  },
+  "ATA": {
+    "quantidade": 4032,
+    "erroMedio": 1.56
+  },
+  "GOL": {
+    "quantidade": 1785,
+    "erroMedio": 0.93
+  },
+  "ZAG": {
+    "quantidade": 2478,
+    "erroMedio": 1.39
+  },
+  "TEC": {
+    "quantidade": 420,
+    "erroMedio": 2.05
+  }
+}
