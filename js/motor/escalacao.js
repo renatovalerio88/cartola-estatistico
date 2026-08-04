@@ -42,25 +42,16 @@ const MotorEscalacao = (() => {
     function nota(jogador, perfil){
 
         const p =
-            PerfisEscalacao[perfil]
-            || PerfisEscalacao.equilibrado;
+            PerfisEscalacao[perfil] ||
+            PerfisEscalacao.equilibrado;
 
         return (
 
-            numero(jogador.projecao) *
-            p.pesoProjecao +
-
-            numero(jogador.piso) *
-            p.pesoPiso +
-
-            numero(jogador.teto) *
-            p.pesoTeto +
-
-            numero(jogador.confianca) *
-            p.pesoConfianca +
-
-            numero(jogador.risco) *
-            p.pesoRisco
+              numero(jogador.projecao)   * p.pesoProjecao
+            + numero(jogador.piso)       * p.pesoPiso
+            + numero(jogador.teto)       * p.pesoTeto
+            + numero(jogador.confianca)  * p.pesoConfianca
+            + numero(jogador.risco)      * p.pesoRisco
 
         );
 
@@ -89,6 +80,8 @@ const MotorEscalacao = (() => {
 
         const titulares = [];
 
+        const clubes = {};
+
         let custo = 0;
 
         for(const posicao of Object.keys(esquema)){
@@ -101,25 +94,14 @@ const MotorEscalacao = (() => {
                 jogadores
 
                     .filter(
-                        j=>j.posicao===posicao
+                        j => j.posicao === posicao
                     )
 
                     .sort(
-
                         (a,b)=>
-
-                            nota(
-                                b,
-                                perfil
-                            )
-
+                            nota(b,perfil)
                             -
-
-                            nota(
-                                a,
-                                perfil
-                            )
-
+                            nota(a,perfil)
                     );
 
             for(const jogador of candidatos){
@@ -128,13 +110,9 @@ const MotorEscalacao = (() => {
 
                     titulares.filter(
 
-                        t=>
+                        t=>t.posicao===posicao
 
-                        t.posicao===posicao
-
-                    ).length
-
-                    >= quantidade
+                    ).length >= quantidade
 
                 ){
 
@@ -142,11 +120,27 @@ const MotorEscalacao = (() => {
 
                 }
 
+                const clube =
+
+                    jogador.siglaClube ||
+
+                    jogador.clube ||
+
+                    "SEM";
+
+                if(
+
+                    (clubes[clube] || 0) >= 3
+
+                ){
+
+                    continue;
+
+                }
+
                 const preco =
 
-                    numero(
-                        jogador.preco
-                    );
+                    numero(jogador.preco);
 
                 if(
 
@@ -160,9 +154,11 @@ const MotorEscalacao = (() => {
 
                 }
 
-                titulares.push(
-                    jogador
-                );
+                titulares.push(jogador);
+
+                clubes[clube] =
+
+                    (clubes[clube] || 0) + 1;
 
                 custo += preco;
 
