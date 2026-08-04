@@ -65,27 +65,19 @@ async function carregarJogadores() {
         // CARREGA O HISTÓRICO
         // ============================================
 
-        await Historico.carregarIndice();
-
-        await Historico.montarHistoricoJogadores(
-            jogadoresValidos
-        );
+        const jogadoresComHistorico =
+            await HistoricoJogadores.carregar(
+                jogadoresValidos
+            );
 
         // ============================================
         // CALCULA AS MÉTRICAS
         // ============================================
 
-         await Historico.carregarIndice();
-         
-         const jogadoresComHistorico =
-             await Historico.montarHistoricoJogadores(
-                 jogadoresValidos
-             );
-         
-         const jogadoresCalculados =
-             CalculadoraEstatistica.analisarListaJogadores(
-                 jogadoresComHistorico
-             );
+        const jogadoresCalculados =
+            CalculadoraEstatistica.analisarListaJogadores(
+                jogadoresComHistorico
+            );
 
         estadoRecomendacoes.jogadores =
             jogadoresCalculados;
