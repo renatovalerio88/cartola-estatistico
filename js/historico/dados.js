@@ -1,185 +1,369 @@
-const Historico = (() => {
+/* =========================================================
+   CARTOLA ESTATÍSTICO
+   Recomendações — carregamento dos dados
+   ========================================================= */
 
-    let indice = null;
+const CAMINHO_STATUS = "data/api/status.json";
 
-    const cacheRodadas = {};
+let CAMINHO_JOGADORES = "";
 
-    async function carregarIndice() {
+const estadoRecomendacoes = {
+    jogadores: [],
+    jogadoresOriginais: [],
+    carregado: false,
+    carregando: false,
+    erro: null,
+    posicaoAtiva: "GOL",
+    calculadoraAplicada: false
+};
 
-        if (indice) {
-            return indice;
-        }
 
-        try {
+async function carregarJogadores() {
 
-            const resposta = await fetch(
-                "data/api/status.json",
-                { cache: "no-store" }
-            );
+    estadoRecomendacoes.carregando = true;
+    estadoRecomendacoes.carregado = false;
+    estadoRecomendacoes.erro = null;
 
-            const status = await resposta.json();
+    exibirCarregamentoJogadores();
 
-            indice = {
-                rodadaAtual: Number(status.rodada_atual || 1)
-            };
 
-            return indice;
+    try {
 
-        } catch (e) {
-
-            console.error("Erro ao carregar status.", e);
-
-            indice = {
-                rodadaAtual: 1
-            };
-
-            return indice;
-
-        }
-
-    }
-
-    async function carregarRodada(numeroRodada) {
-
-        if (cacheRodadas[numeroRodada]) {
-            return cacheRodadas[numeroRodada];
-        }
-
-        try {
-
-            const resposta = await fetch(
-                `data/api/rodada-${String(numeroRodada).padStart(2, "0")}/jogadores.json`,
+        const statusResposta =
+            await fetch(
+                CAMINHO_STATUS,
                 {
                     cache: "no-store"
                 }
             );
 
-            if (!resposta.ok) {
-                return [];
-            }
 
-            const json = await resposta.json();
+        if (!statusResposta.ok) {
 
-            cacheRodadas[numeroRodada] = json;
-
-            return json;
-
-        } catch (e) {
-
-            console.error(
-                `Erro ao carregar rodada ${numeroRodada}.`,
-                e
+            throw new Error(
+                "Erro ao carregar status.json"
             );
 
-            return [];
-
         }
 
-    }
 
-    async function montarHistoricoJogadores(jogadores) {
+        const status =
+            await statusResposta.json();
 
-        if (!Array.isArray(jogadores)) {
-            return jogadores;
-        }
 
-        const info = await carregarIndice();
+        const rodada =
+            Number(status.rodada_atual);
 
-        const historicoPorJogador = {};
 
-        for (
-            let rodada = 1;
-            rodada <= info.rodadaAtual;
-            rodada++
-        ) {
+        CAMINHO_JOGADORES =
+            `data/api/rodada-${String(rodada).padStart(2, "0")}/jogadores.json`;
 
-            const jogadoresRodada =
-                await carregarRodada(rodada);
 
-            if (!Array.isArray(jogadoresRodada)) {
-                continue;
-            }
-
-            for (const atleta of jogadoresRodada) {
-
-                const id = Number(atleta.id);
-
-                if (!id) {
-                    continue;
+        const resposta =
+            await fetch(
+                CAMINHO_JOGADORES,
+                {
+                    cache: "no-store"
                 }
-
-                if (!historicoPorJogador[id]) {
-                    historicoPorJogador[id] = [];
-                }
-
-                historicoPorJogador[id].push({
-
-                    rodada,
-
-                    pontuacao: Number(
-                        atleta.pontuacaoReal ??
-                        atleta.pontos ??
-                        atleta.pontuacao ??
-                        atleta.pontosUltimaRodada ??
-                        0
-                    ),
-
-                    preco: Number(
-                        atleta.preco ?? 0
-                    ),
-
-                    media: Number(
-                        atleta.media ??
-                        atleta.mediaGeral ??
-                        0
-                    ),
-
-                    scouts: atleta.scouts || {}
-
-                });
-
-            }
-
-        }
-
-        for (const jogador of jogadores) {
-
-            const historico =
-                historicoPorJogador[
-                    Number(jogador.id)
-                ] || [];
-
-            historico.sort(
-                (a, b) => a.rodada - b.rodada
             );
 
-            jogador.historico =
-                historico;
 
-            jogador.historicoPontuacoes =
-                historico.map(
-                    item => Number(item.pontuacao || 0)
-                );
+        if (!resposta.ok) {
+
+            throw new Error(
+                `Erro HTTP ${resposta.status}`
+            );
 
         }
 
-        return jogadores;
+
+        const dados =
+            await resposta.json();
+
+
+        if (!Array.isArray(dados)) {
+
+            throw new Error(
+                "Lista de jogadores inválida."
+            );
+
+        }
+
+
+        const jogadoresValidos =
+            dados.filter(
+                validarJogador
+            );
+
+
+        // ============================================
+        // CARREGA HISTÓRICO
+        // ============================================
+
+        const jogadoresComHistorico =
+            await Historico.montarHistoricoJogadores(
+                jogadoresValidos
+            );
+
+
+        // ============================================
+        // CALCULA MÉTRICAS
+        // ============================================
+
+        const jogadoresCalculados =
+            CalculadoraEstatistica.analisarListaJogadores(
+                jogadoresComHistorico
+            );
+
+
+        estadoRecomendacoes.jogadores =
+            jogadoresCalculados;
+
+
+        estadoRecomendacoes.jogadoresOriginais =
+            jogadoresCalculados.map(
+                copiarJogador
+            );
+
+
+        estadoRecomendacoes.calculadoraAplicada =
+            true;
+
+
+        estadoRecomendacoes.carregado =
+            true;
+
+
+        estadoRecomendacoes.carregando =
+            false;
+
+
+        iniciarRecomendacoes();
+
+
+        console.log(
+            "Jogadores carregados:",
+            jogadoresCalculados.length
+        );
+
+
+        return jogadoresCalculados;
+
+
+    }
+    catch (erro) {
+
+
+        console.error(
+            erro
+        );
+
+
+        estadoRecomendacoes.erro =
+            erro.message;
+
+
+        estadoRecomendacoes.carregado =
+            false;
+
+
+        estadoRecomendacoes.carregando =
+            false;
+
+
+        exibirErroJogadores(
+            erro.message
+        );
+
+
+        return [];
+
 
     }
 
-    function getIndice() {
+}
 
-        return indice;
 
-    }
+
+function copiarJogador(jogador) {
 
     return {
 
-        carregarIndice,
-        carregarRodada,
-        montarHistoricoJogadores,
-        getIndice
+        ...jogador,
+
+        scouts: {
+            ...(jogador.scouts || {})
+        }
 
     };
 
-})();
+}
+
+
+
+function validarJogador(jogador) {
+
+    return (
+
+        jogador &&
+        jogador.id &&
+        jogador.nome &&
+        jogador.posicao
+
+    );
+
+}
+
+
+
+function iniciarRecomendacoes() {
+
+    if (!estadoRecomendacoes.carregado) {
+
+        return;
+
+    }
+
+
+    criarFiltrosPosicao();
+
+    exibirDestaquesGerais();
+
+    exibirJogadoresDaPosicao();
+
+}
+
+
+
+function obterJogadoresCarregados() {
+
+    return estadoRecomendacoes.jogadores.map(
+        copiarJogador
+    );
+
+}
+
+
+
+function obterJogadorPorId(id) {
+
+    return estadoRecomendacoes.jogadores.find(
+
+        jogador =>
+            String(jogador.id) === String(id)
+
+    ) || null;
+
+}
+
+
+
+function obterPosicaoAtiva() {
+
+    return estadoRecomendacoes.posicaoAtiva;
+
+}
+
+
+
+function definirPosicaoAtiva(posicao) {
+
+    estadoRecomendacoes.posicaoAtiva =
+        String(posicao)
+            .toUpperCase();
+
+}
+
+
+
+function recomendacoesCarregadas() {
+
+    return estadoRecomendacoes.carregado;
+
+}
+
+
+
+function obterErroRecomendacoes() {
+
+    return estadoRecomendacoes.erro;
+
+}
+
+
+
+function calculadoraEstatisticaAplicada() {
+
+    return estadoRecomendacoes.calculadoraAplicada;
+
+}
+
+
+
+function exibirCarregamentoJogadores() {
+
+    const container =
+        document.getElementById(
+            "playersGrid"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="empty-state">
+
+            <strong>
+                Carregando jogadores...
+            </strong>
+
+        </div>
+
+    `;
+
+}
+
+
+
+function exibirErroJogadores(
+    mensagem = ""
+) {
+
+
+    const container =
+        document.getElementById(
+            "playersGrid"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="empty-state">
+
+            <strong>
+                Erro ao carregar jogadores
+            </strong>
+
+            <p>
+                ${mensagem}
+            </p>
+
+        </div>
+
+    `;
+
+
+}
