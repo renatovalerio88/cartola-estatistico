@@ -1,682 +1,205 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Recomendações — carregamento e processamento dos dados
+   Recomendações — carregamento dos dados
+   (VERSÃO DE DIAGNÓSTICO)
    ========================================================= */
 
-
-/* =========================================================
-   1. CAMINHO DO ARQUIVO
-   ========================================================= */
-
-const CAMINHO_STATUS =
-  "data/api/status.json";
+const CAMINHO_STATUS = "data/api/status.json";
 
 let CAMINHO_JOGADORES = "";
 
-
-/* =========================================================
-   2. ESTADO DAS RECOMENDAÇÕES
-   ========================================================= */
-
 const estadoRecomendacoes = {
-  jogadores: [],
-  jogadoresOriginais: [],
-  carregado: false,
-  carregando: false,
-  erro: null,
-  posicaoAtiva: "GOL",
-  calculadoraAplicada: false
+    jogadores: [],
+    jogadoresOriginais: [],
+    carregado: false,
+    carregando: false,
+    erro: null,
+    posicaoAtiva: "GOL",
+    calculadoraAplicada: false
 };
 
-
-/* =========================================================
-   3. CARREGAMENTO DOS JOGADORES
-   ========================================================= */
-
 async function carregarJogadores() {
-  estadoRecomendacoes.carregando = true;
-  estadoRecomendacoes.carregado = false;
-  estadoRecomendacoes.erro = null;
-  estadoRecomendacoes.calculadoraAplicada = false;
 
-  exibirCarregamentoJogadores();
-
-  try {
-      
-      const statusResposta =
-        await fetch(
-          CAMINHO_STATUS,
-          {
-            cache: "no-store"
-          }
-        );
-      
-      if (!statusResposta.ok) {
-        throw new Error(
-          "Não foi possível carregar status.json"
-        );
-      }
-      
-      const status =
-        await statusResposta.json();
-      
-      const rodada =
-        Number(
-          status.rodada_atual
-        );
-      
-      CAMINHO_JOGADORES =
-        `data/api/rodada-${String(rodada).padStart(2,"0")}/jogadores.json`;  
-     
-    const resposta = await fetch(
-      CAMINHO_JOGADORES,
-      {
-        cache: "no-store"
-      }
-    );
-
-    if (!resposta.ok) {
-      throw new Error(
-        `Erro HTTP ${resposta.status}`
-      );
-    }
-
-    const dados =
-      await resposta.json();
-
-    if (!Array.isArray(dados)) {
-      throw new Error(
-        "O arquivo jogadores.json " +
-        "não contém uma lista válida."
-      );
-    }
-
-      const jogadoresValidos =
-        dados.filter(validarJogador);
-      
-      const jogadoresComHistorico =
-        await HistoricoJogadores.carregar(
-          jogadoresValidos
-        );
-      
-      estadoRecomendacoes.jogadoresOriginais =
-        jogadoresComHistorico.map(
-          copiarJogador
-        );
-      
-      const jogadoresProcessados =
-        processarJogadoresPelaCalculadora(
-          jogadoresComHistorico
-        );
-
-    estadoRecomendacoes.jogadores =
-      jogadoresProcessados;
-
-    estadoRecomendacoes.carregado = true;
-    estadoRecomendacoes.carregando = false;
-
-    iniciarRecomendacoes();
-
-    console.info(
-      "Jogadores carregados e processados:",
-      {
-        quantidade:
-          jogadoresProcessados.length,
-
-        calculadoraAplicada:
-          estadoRecomendacoes
-            .calculadoraAplicada
-      }
-    );
-
-    return jogadoresProcessados;
-  } catch (erro) {
-    console.error(
-      "Erro ao carregar jogadores:",
-      erro
-    );
-
-    estadoRecomendacoes.jogadores = [];
-    estadoRecomendacoes.jogadoresOriginais = [];
+    estadoRecomendacoes.carregando = true;
     estadoRecomendacoes.carregado = false;
-    estadoRecomendacoes.carregando = false;
-    estadoRecomendacoes.erro =
-      erro.message;
+    estadoRecomendacoes.erro = null;
 
-    exibirErroJogadores(
-      erro.message
-    );
+    exibirCarregamentoJogadores();
 
-    return [];
-  }
-}
+    try {
 
-
-/* =========================================================
-   4. PROCESSAMENTO PELA CALCULADORA
-   ========================================================= */
-
-function processarJogadoresPelaCalculadora(
-  jogadores
-) {
-  if (!Array.isArray(jogadores)) {
-    return [];
-  }
-
-  if (
-    typeof CalculadoraEstatistica ===
-      "undefined" ||
-    typeof CalculadoraEstatistica
-      .analisarListaJogadores !==
-      "function"
-  ) {
-    console.warn(
-      "CalculadoraEstatistica não foi carregada. " +
-      "Os dados originais serão utilizados."
-    );
-
-    estadoRecomendacoes.calculadoraAplicada =
-      false;
-
-    return jogadores.map(
-      prepararJogadorSemCalculadora
-    );
-  }
-
-  try {
-    const jogadoresCalculados =
-      CalculadoraEstatistica
-        .analisarListaJogadores(
-          jogadores
+        const statusResposta = await fetch(
+            CAMINHO_STATUS,
+            { cache: "no-store" }
         );
 
-    estadoRecomendacoes.calculadoraAplicada =
-      true;
+        if (!statusResposta.ok) {
+            throw new Error("Erro ao carregar status.json");
+        }
 
-    return jogadoresCalculados.map(
-      prepararJogadorCalculado
-    );
-  } catch (erro) {
-    console.error(
-      "Erro ao executar a calculadora estatística:",
-      erro
-    );
+        const status = await statusResposta.json();
 
-    estadoRecomendacoes.calculadoraAplicada =
-      false;
+        const rodada = Number(
+            status.rodada_atual
+        );
 
-    return jogadores.map(
-      prepararJogadorSemCalculadora
-    );
-  }
-}
+        CAMINHO_JOGADORES =
+            `data/api/rodada-${String(rodada).padStart(2,"0")}/jogadores.json`;
 
+        const resposta = await fetch(
+            CAMINHO_JOGADORES,
+            { cache: "no-store" }
+        );
 
-/* =========================================================
-   5. PREPARAÇÃO DO JOGADOR CALCULADO
-   ========================================================= */
+        if (!resposta.ok) {
+            throw new Error(
+                `Erro HTTP ${resposta.status}`
+            );
+        }
 
-function prepararJogadorCalculado(
-  jogador
-) {
-  const notaOriginal =
-    obterNumeroSeguroLocal(
-      jogador?.notaFinal
-    );
+        const dados =
+            await resposta.json();
 
-  const notaCalculada =
-    obterNumeroSeguroLocal(
-      jogador?.notaCalculada,
-      notaOriginal
-    );
+        if (!Array.isArray(dados)) {
+            throw new Error(
+                "Lista de jogadores inválida."
+            );
+        }
 
-  const possuiNotaCalculada =
-    Number.isFinite(
-      Number(jogador?.notaCalculada)
-    );
+        const jogadoresValidos =
+            dados.filter(validarJogador);
 
-  const explicacaoCalculada =
-    jogador?.explicacaoCalculada ||
-    null;
+        // ============================
+        // DIAGNÓSTICO
+        // ============================
 
-  return {
-    ...jogador,
+        estadoRecomendacoes.jogadores =
+            jogadoresValidos;
 
-    notaOriginal,
+        estadoRecomendacoes.jogadoresOriginais =
+            jogadoresValidos.map(copiarJogador);
 
-    notaFinal:
-      possuiNotaCalculada
-        ? notaCalculada
-        : notaOriginal,
+        estadoRecomendacoes.carregado = true;
+        estadoRecomendacoes.carregando = false;
 
-    notaModelo:
-      possuiNotaCalculada
-        ? notaCalculada
-        : notaOriginal,
+        iniciarRecomendacoes();
 
-    calculadoPeloMotor:
-      possuiNotaCalculada,
+        console.log(
+            "Jogadores carregados:",
+            jogadoresValidos.length
+        );
 
-    justificativas:
-      combinarJustificativas(
-        jogador?.justificativas,
-        explicacaoCalculada
-      ),
+        return jogadoresValidos;
 
-    pontosAtencao:
-      combinarPontosAtencao(
-        jogador?.pontosAtencao,
-        explicacaoCalculada
-      )
-  };
-}
-
-
-/* =========================================================
-   6. PREPARAÇÃO SEM CALCULADORA
-   ========================================================= */
-
-function prepararJogadorSemCalculadora(
-  jogador
-) {
-  const notaOriginal =
-    obterNumeroSeguroLocal(
-      jogador?.notaFinal
-    );
-
-  return {
-    ...jogador,
-
-    notaOriginal,
-
-    notaModelo:
-      notaOriginal,
-
-    calculadoPeloMotor:
-      false
-  };
-}
-
-
-/* =========================================================
-   7. COMBINAÇÃO DAS JUSTIFICATIVAS
-   ========================================================= */
-
-function combinarJustificativas(
-  justificativasOriginais,
-  explicacaoCalculada
-) {
-  const justificativas =
-    Array.isArray(
-      justificativasOriginais
-    )
-      ? [...justificativasOriginais]
-      : [];
-
-  const pontosFortes =
-    Array.isArray(
-      explicacaoCalculada?.pontosFortes
-    )
-      ? explicacaoCalculada.pontosFortes
-      : [];
-
-  pontosFortes.forEach(
-    (texto) => {
-      if (
-        texto &&
-        !justificativas.includes(texto)
-      ) {
-        justificativas.push(texto);
-      }
     }
-  );
+    catch (erro) {
 
-  return justificativas;
-}
+        console.error(erro);
 
+        estadoRecomendacoes.erro =
+            erro.message;
 
-/* =========================================================
-   8. COMBINAÇÃO DOS PONTOS DE ATENÇÃO
-   ========================================================= */
+        estadoRecomendacoes.carregado = false;
+        estadoRecomendacoes.carregando = false;
 
-function combinarPontosAtencao(
-  pontosOriginais,
-  explicacaoCalculada
-) {
-  const pontos =
-    Array.isArray(
-      pontosOriginais
-    )
-      ? [...pontosOriginais]
-      : [];
+        exibirErroJogadores(
+            erro.message
+        );
 
-  const pontosCalculados =
-    Array.isArray(
-      explicacaoCalculada?.pontosAtencao
-    )
-      ? explicacaoCalculada.pontosAtencao
-      : [];
+        return [];
 
-  pontosCalculados.forEach(
-    (texto) => {
-      if (
-        texto &&
-        !pontos.includes(texto)
-      ) {
-        pontos.push(texto);
-      }
     }
-  );
 
-  return pontos;
 }
 
+function copiarJogador(jogador){
 
-/* =========================================================
-   9. CÓPIA SEGURA DO JOGADOR
-   ========================================================= */
+    return {
 
-function copiarJogador(
-  jogador
-) {
-  return {
-    ...jogador,
+        ...jogador,
 
-    scouts: {
-      ...(jogador?.scouts || {})
-    },
+        scouts:{
+            ...(jogador.scouts||{})
+        }
 
-    componentes: {
-      ...(jogador?.componentes || {})
-    },
+    };
 
-    justificativas:
-      Array.isArray(
-        jogador?.justificativas
-      )
-        ? [...jogador.justificativas]
-        : [],
-
-    pontosAtencao:
-      Array.isArray(
-        jogador?.pontosAtencao
-      )
-        ? [...jogador.pontosAtencao]
-        : [],
-
-    historicoPontuacoes:
-      Array.isArray(
-        jogador?.historicoPontuacoes
-      )
-        ? [...jogador.historicoPontuacoes]
-        : [],
-
-    pontuacoes:
-      Array.isArray(
-        jogador?.pontuacoes
-      )
-        ? [...jogador.pontuacoes]
-        : []
-  };
 }
 
+function validarJogador(jogador){
 
-/* =========================================================
-   10. NÚMERO SEGURO LOCAL
-   ========================================================= */
+    return (
 
-function obterNumeroSeguroLocal(
-  valor,
-  padrao = 0
-) {
-  const convertido =
-    Number(valor);
+        jogador &&
+        jogador.id &&
+        jogador.nome &&
+        jogador.posicao
 
-  return Number.isFinite(
-    convertido
-  )
-    ? convertido
-    : padrao;
-}
-
-
-/* =========================================================
-   11. VALIDAÇÃO DE UM JOGADOR
-   ========================================================= */
-
-function validarJogador(
-  jogador
-) {
-  if (!ehObjetoValido(jogador)) {
-    return false;
-  }
-
-  if (!jogador.id) {
-    return false;
-  }
-
-  if (!jogador.nome) {
-    return false;
-  }
-
-  if (!jogador.posicao) {
-    return false;
-  }
-
-  const posicao =
-    String(
-      jogador.posicao
-    )
-      .toUpperCase()
-      .trim();
-
-  const posicoesValidas = [
-    "GOL",
-    "LAT",
-    "ZAG",
-    "MEI",
-    "ATA",
-    "TEC"
-  ];
-
-  return posicoesValidas.includes(
-    posicao
-  );
-}
-
-
-/* =========================================================
-   12. INICIALIZAÇÃO DAS RECOMENDAÇÕES
-   ========================================================= */
-
-function iniciarRecomendacoes() {
-  if (!estadoRecomendacoes.carregado) {
-    return;
-  }
-
-  criarFiltrosPosicao();
-  exibirDestaquesGerais();
-  exibirJogadoresDaPosicao();
-}
-
-
-/* =========================================================
-   13. ESTADO DE CARREGAMENTO
-   ========================================================= */
-
-function exibirCarregamentoJogadores() {
-  const grade =
-    document.getElementById(
-      "playersGrid"
     );
 
-  if (!grade) {
-    return;
-  }
-
-  grade.innerHTML = `
-    <div class="empty-state">
-
-      <strong>
-        Carregando jogadores
-      </strong>
-
-      <p>
-        Calculando os 18 critérios,
-        aplicando os pesos por posição,
-        organizando o ranking
-        e gerando as justificativas.
-      </p>
-
-    </div>
-  `;
 }
 
+function iniciarRecomendacoes(){
 
-/* =========================================================
-   14. ESTADO DE ERRO
-   ========================================================= */
+    if(!estadoRecomendacoes.carregado){
+        return;
+    }
 
-function exibirErroJogadores(
-  mensagem = ""
-) {
-  const grade =
-    document.getElementById(
-      "playersGrid"
+    criarFiltrosPosicao();
+
+    exibirDestaquesGerais();
+
+    exibirJogadoresDaPosicao();
+
+}
+
+function obterJogadoresCarregados(){
+
+    return estadoRecomendacoes.jogadores.map(
+
+        copiarJogador
+
     );
 
-  if (!grade) {
-    return;
-  }
-
-  grade.innerHTML = `
-    <div class="empty-state">
-
-      <strong>
-        Não foi possível
-        carregar os jogadores
-      </strong>
-
-      <p>
-        Confirme se o arquivo
-        <strong>data/jogadores.json</strong>
-        existe e contém um JSON válido.
-      </p>
-
-      ${
-        mensagem
-          ? `
-            <small>
-              Detalhe técnico:
-              ${escaparHtml(mensagem)}
-            </small>
-          `
-          : ""
-      }
-
-    </div>
-  `;
 }
 
+function obterJogadorPorId(id){
 
-/* =========================================================
-   15. ESTADO SEM JOGADORES NA POSIÇÃO
-   ========================================================= */
+    return estadoRecomendacoes.jogadores.find(
 
-function exibirPosicaoSemJogadores() {
-  const grade =
-    document.getElementById(
-      "playersGrid"
-    );
+        j=>String(j.id)===String(id)
 
-  if (!grade) {
-    return;
-  }
+    ) || null;
 
-  const nomePosicao =
-    obterNomePosicao(
-      estadoRecomendacoes
-        .posicaoAtiva
-    );
-
-  grade.innerHTML = `
-    <div class="empty-state">
-
-      <strong>
-        Nenhum jogador encontrado
-      </strong>
-
-      <p>
-        Não existem jogadores cadastrados
-        para a posição
-        ${escaparHtml(nomePosicao)}.
-      </p>
-
-    </div>
-  `;
 }
 
+function obterPosicaoAtiva(){
 
-/* =========================================================
-   16. ACESSO AOS DADOS
-   ========================================================= */
+    return estadoRecomendacoes.posicaoAtiva;
 
-function obterJogadoresCarregados() {
-  return estadoRecomendacoes
-    .jogadores
-    .map(copiarJogador);
 }
 
+function definirPosicaoAtiva(posicao){
 
-function obterJogadoresOriginais() {
-  return estadoRecomendacoes
-    .jogadoresOriginais
-    .map(copiarJogador);
+    estadoRecomendacoes.posicaoAtiva =
+        String(posicao).toUpperCase();
+
 }
 
+function recomendacoesCarregadas(){
 
-function obterJogadorPorId(
-  jogadorId
-) {
-  return (
-    estadoRecomendacoes.jogadores.find(
-      (jogador) =>
-        String(jogador.id) ===
-        String(jogadorId)
-    ) || null
-  );
+    return estadoRecomendacoes.carregado;
+
 }
 
+function obterErroRecomendacoes(){
 
-function obterPosicaoAtiva() {
-  return estadoRecomendacoes
-    .posicaoAtiva;
+    return estadoRecomendacoes.erro;
+
 }
 
+function calculadoraEstatisticaAplicada(){
 
-function definirPosicaoAtiva(
-  codigoPosicao
-) {
-  estadoRecomendacoes.posicaoAtiva =
-    String(
-      codigoPosicao || ""
-    )
-      .toUpperCase()
-      .trim();
-}
+    return false;
 
-
-function recomendacoesCarregadas() {
-  return estadoRecomendacoes.carregado;
-}
-
-
-function obterErroRecomendacoes() {
-  return estadoRecomendacoes.erro;
-}
-
-
-function calculadoraEstatisticaAplicada() {
-  return estadoRecomendacoes
-    .calculadoraAplicada;
 }
