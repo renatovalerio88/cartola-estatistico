@@ -1,12 +1,44 @@
 {
-  "modelo": "v2_otimizado",
-  "erro": 2.98,
+  "modelo": "v3_otimizado",
+  "erro": 2.787,
   "pesos": {
-    "media3": 0.3,
-    "media5": 0.3,
-    "mediaGeral": 0.2,
-    "piso": 0.1,
-    "teto": 0.1
+    "media3": 0.05,
+    "media5": 0.1,
+    "mediaGeral": 0.4,
+    "piso": 0.4,
+    "teto": 0.05
   },
-  "modelosTestados": 4
+  "modelosTestados": 2226,
+  "top3": [
+    {
+      "pesos": {
+        "media3": 0.05,
+        "media5": 0.1,
+        "mediaGeral": 0.4,
+        "piso": 0.4,
+        "teto": 0.05
+      },
+      "erro": 2.787
+    },
+    {
+      "pesos": {
+        "media3": 0.05,
+        "media5": 0.15,
+        "mediaGeral": 0.35,
+        "piso": 0.4,
+        "teto": 0.05
+      },
+      "erro": 2.787
+    },
+    {
+      "pesos": {
+        "media3": 0.1,
+        "media5": 0.05,
+        "mediaGeral": 0.4,
+        "piso": 0.4,
+        "teto": 0.05
+      },
+      "erro": 2.787
+    }
+  ]
 }

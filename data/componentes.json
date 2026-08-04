@@ -1,8 +1,8 @@
 {
-  "modelo": "laboratorio_v2",
+  "modelo": "laboratorio_v3",
   "amostras": 6590,
-  "erroMedio": 2.83,
-  "rmse": 3.89,
+  "erroMedio": 2.79,
+  "rmse": 3.93,
   "componentes": {
     "media3": {
       "media": 3.27,
@@ -36,33 +36,70 @@
   "posicoes": {
     "MEI": {
       "quantidade": 2103,
-      "erroMedio": 2.56,
-      "rmse": 3.61
+      "erroMedio": 2.48,
+      "rmse": 3.63
     },
     "LAT": {
       "quantidade": 1015,
       "erroMedio": 3.22,
-      "rmse": 4.15
+      "rmse": 4.19
     },
     "ATA": {
       "quantidade": 1721,
-      "erroMedio": 3.0,
-      "rmse": 4.27
+      "erroMedio": 2.93,
+      "rmse": 4.32
     },
     "GOL": {
       "quantidade": 449,
       "erroMedio": 3.1,
-      "rmse": 4.16
+      "rmse": 4.21
     },
     "ZAG": {
       "quantidade": 953,
-      "erroMedio": 2.8,
-      "rmse": 3.7
+      "erroMedio": 2.77,
+      "rmse": 3.74
     },
     "TEC": {
       "quantidade": 349,
-      "erroMedio": 2.31,
-      "rmse": 2.9
+      "erroMedio": 2.33,
+      "rmse": 2.96
     }
-  }
+  },
+  "rankingComponentes": [
+    {
+      "componente": "tendencia",
+      "media": -0.01,
+      "quantidade": 6590
+    },
+    {
+      "componente": "piso",
+      "media": 0.32,
+      "quantidade": 6590
+    },
+    {
+      "componente": "mediaGeral",
+      "media": 3.23,
+      "quantidade": 6590
+    },
+    {
+      "componente": "media5",
+      "media": 3.26,
+      "quantidade": 6590
+    },
+    {
+      "componente": "media3",
+      "media": 3.27,
+      "quantidade": 6590
+    },
+    {
+      "componente": "regularidade",
+      "media": 5.91,
+      "quantidade": 6590
+    },
+    {
+      "componente": "teto",
+      "media": 7.73,
+      "quantidade": 6590
+    }
+  ]
 }

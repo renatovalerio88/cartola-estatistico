@@ -1,7 +1,7 @@
 {
   "MEI": {
     "quantidade": 2103,
-    "erroMedio": 2.56
+    "erroMedio": 2.48
   },
   "LAT": {
     "quantidade": 1015,
@@ -9,7 +9,7 @@
   },
   "ATA": {
     "quantidade": 1721,
-    "erroMedio": 3.0
+    "erroMedio": 2.93
   },
   "GOL": {
     "quantidade": 449,
@@ -17,10 +17,10 @@
   },
   "ZAG": {
     "quantidade": 953,
-    "erroMedio": 2.8
+    "erroMedio": 2.77
   },
   "TEC": {
     "quantidade": 349,
-    "erroMedio": 2.31
+    "erroMedio": 2.33
   }
 }
