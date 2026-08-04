@@ -52,279 +52,188 @@ def salvar_json(
 
 
 
-# ======================================================
-# COMPONENTES ESTATÍSTICOS
-# ======================================================
+def media(lista):
 
-
-def media(valores):
-
-    if not valores:
-
+    if not lista:
         return 0
 
-
-    return sum(valores) / len(valores)
-
-
-
-def ultimos(valores, quantidade):
-
-    return valores[-quantidade:]
+    return sum(lista) / len(lista)
 
 
 
-def calcular_media3(valores):
+def ultimos(lista, quantidade):
 
-    return media(
-        ultimos(
-            valores,
-            3
-        )
-    )
+    return lista[-quantidade:]
 
 
 
-def calcular_media5(valores):
-
-    return media(
-        ultimos(
-            valores,
-            5
-        )
-    )
-
-
-
-def calcular_media_geral(valores):
-
-    return media(
-        valores
-    )
-
-
-
-def calcular_tendencia(valores):
-
-    if len(valores) < 2:
-
-        return 0
-
-
-    return valores[-1] - valores[-2]
-
-
-
-def calcular_piso(valores):
-
-    if not valores:
-
-        return 0
-
-
-    return min(
-        valores
-    )
-
-
-
-def calcular_teto(valores):
-
-    if not valores:
-
-        return 0
-
-
-    return max(
-        valores
-    )
-
-
-
-def calcular_regularidade(valores):
-
-    if len(valores) < 2:
-
-        return 0
-
-
-    desvio = statistics.pstdev(
-        valores
-    )
-
-
-    return max(
-        0,
-        10 - desvio
-    )
-
-
-
-# ======================================================
-# MOTOR DE PROJEÇÃO BACKTEST
-# ======================================================
-
-
-def projetar(historico):
-
+def calcular_componentes(historico):
 
     pontos = [
 
-        item.get(
-            "pontos"
-        )
+        item.get("pontos")
 
         for item in historico
 
-        if item.get(
-            "pontos"
-        ) is not None
+        if item.get("pontos") is not None
 
     ]
-
 
 
     if not pontos:
 
         return {
 
-            "projecao": 0,
-
             "media3": 0,
-
             "media5": 0,
-
             "mediaGeral": 0,
-
             "piso": 0,
-
             "teto": 0,
-
             "regularidade": 0,
-
             "tendencia": 0
 
         }
 
 
+    media3 = media(
+        ultimos(
+            pontos,
+            3
+        )
+    )
 
-    media3 = calcular_media3(
+
+    media5 = media(
+        ultimos(
+            pontos,
+            5
+        )
+    )
+
+
+    mediaGeral = media(
         pontos
     )
 
 
-    media5 = calcular_media5(
+    piso = min(
         pontos
     )
 
 
-    mediaGeral = calcular_media_geral(
+    teto = max(
         pontos
     )
 
 
-    piso = calcular_piso(
-        pontos
-    )
+    regularidade = 0
+
+    if len(pontos) > 1:
+
+        regularidade = max(
+            0,
+            10 -
+            statistics.pstdev(
+                pontos
+            )
+        )
 
 
-    teto = calcular_teto(
-        pontos
-    )
+    tendencia = 0
 
+    if len(pontos) >= 2:
 
-    regularidade = calcular_regularidade(
-        pontos
-    )
-
-
-    tendencia = calcular_tendencia(
-        pontos
-    )
-
-
-
-    projecao = (
-
-        media3 * 0.30
-
-        +
-
-        media5 * 0.25
-
-        +
-
-        mediaGeral * 0.20
-
-        +
-
-        tendencia * 0.15
-
-        +
-
-        regularidade * 0.10
-
-    )
-
+        tendencia = (
+            pontos[-1]
+            -
+            pontos[-2]
+        )
 
 
     return {
 
-        "projecao":
-            round(
-                projecao,
-                2
-            ),
-
         "media3":
-            round(
-                media3,
-                2
-            ),
+            round(media3,2),
 
         "media5":
-            round(
-                media5,
-                2
-            ),
+            round(media5,2),
 
         "mediaGeral":
-            round(
-                mediaGeral,
-                2
-            ),
+            round(mediaGeral,2),
 
         "piso":
-            round(
-                piso,
-                2
-            ),
+            round(piso,2),
 
         "teto":
-            round(
-                teto,
-                2
-            ),
+            round(teto,2),
 
         "regularidade":
-            round(
-                regularidade,
-                2
-            ),
+            round(regularidade,2),
 
         "tendencia":
-            round(
-                tendencia,
-                2
-            )
+            round(tendencia,2)
 
     }
 
 
 
-# ======================================================
-# BACKTEST PROGRESSIVO
-# ======================================================
+def calcular_projecao(componentes):
+
+
+    base = (
+
+        componentes["media3"] * 0.35
+
+        +
+
+        componentes["media5"] * 0.25
+
+        +
+
+        componentes["mediaGeral"] * 0.20
+
+    )
+
+
+    ajuste_tendencia = (
+
+        componentes["tendencia"]
+        *
+        0.10
+
+    )
+
+
+    fator_regularidade = (
+
+        0.95
+
+        +
+
+        (
+            componentes["regularidade"]
+            /
+            100
+        )
+
+    )
+
+
+    projecao = (
+
+        base
+        +
+        ajuste_tendencia
+
+    ) * fator_regularidade
+
+
+
+    return round(
+        projecao,
+        2
+    )
+
 
 
 rodadas = {}
@@ -332,11 +241,9 @@ rodadas = {}
 
 
 arquivos = sorted(
-
     PASTA_BASE.glob(
         "*.json"
     )
-
 )
 
 
@@ -355,43 +262,32 @@ for arquivo in arquivos:
     )
 
 
-    historico = sorted(
-
-        historico,
-
+    historico.sort(
         key=lambda x:
             x.get(
                 "rodada",
                 0
             )
-
     )
 
 
 
     for indice in range(
-
         1,
         len(historico)
-
     ):
 
 
         treino = historico[:indice]
 
 
-        resultado_real = historico[indice]
-
-
-
-        dados_projecao = projetar(
-            treino
+        real = historico[indice].get(
+            "pontos"
         )
 
 
-
-        real = resultado_real.get(
-            "pontos"
+        rodada = historico[indice].get(
+            "rodada"
         )
 
 
@@ -401,28 +297,26 @@ for arquivo in arquivos:
 
 
 
+        componentes = calcular_componentes(
+            treino
+        )
+
+
+        projecao = calcular_projecao(
+            componentes
+        )
+
+
         erro = abs(
-
-            real -
-            dados_projecao["projecao"]
-
+            real - projecao
         )
 
 
 
-        rodada = resultado_real.get(
-            "rodada"
-        )
-
-
-
-        if rodada not in rodadas:
-
-            rodadas[rodada] = []
-
-
-
-        rodadas[rodada].append({
+        rodadas.setdefault(
+            rodada,
+            []
+        ).append({
 
             "id":
                 jogador.get(
@@ -440,7 +334,7 @@ for arquivo in arquivos:
                 ),
 
             "projecao":
-                dados_projecao["projecao"],
+                projecao,
 
             "real":
                 real,
@@ -451,35 +345,10 @@ for arquivo in arquivos:
                     2
                 ),
 
-
-            "media3":
-                dados_projecao["media3"],
-
-            "media5":
-                dados_projecao["media5"],
-
-            "mediaGeral":
-                dados_projecao["mediaGeral"],
-
-            "piso":
-                dados_projecao["piso"],
-
-            "teto":
-                dados_projecao["teto"],
-
-            "regularidade":
-                dados_projecao["regularidade"],
-
-            "tendencia":
-                dados_projecao["tendencia"]
+            **componentes
 
         })
 
-
-
-# ======================================================
-# GERAR ARQUIVOS
-# ======================================================
 
 
 for rodada, jogadores in rodadas.items():
@@ -508,7 +377,6 @@ for rodada, jogadores in rodadas.items():
     salvar_json(
 
         PASTA_SAIDA /
-
         f"rodada-{rodada:02d}.json",
 
         {
@@ -523,7 +391,6 @@ for rodada, jogadores in rodadas.items():
                 ),
 
             "taxaAcerto":
-
                 round(
 
                     len(
@@ -540,14 +407,10 @@ for rodada, jogadores in rodadas.items():
 
                     2
 
-                )
-                if erros
-                else 0,
-
+                ),
 
             "quantidade":
                 len(jogadores),
-
 
             "jogadores":
                 jogadores
@@ -559,7 +422,5 @@ for rodada, jogadores in rodadas.items():
 
 
 print(
-
     f"{len(rodadas)} rodadas processadas."
-
 )
