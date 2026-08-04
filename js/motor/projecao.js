@@ -64,7 +64,9 @@ const MotorProjecao = (() => {
 
                         soma +
 
-                        numero(rodada.pontos),
+                        numero(
+                            rodada.pontuacao ?? rodada.pontos
+                        ),
 
                     0
 
@@ -80,7 +82,9 @@ const MotorProjecao = (() => {
 
                         Math.pow(
 
-                            numero(rodada.pontos) - media,
+                            numero(
+                                rodada.pontuacao ?? rodada.pontos
+                            ) - media,
 
                             2
 
@@ -99,11 +103,10 @@ const MotorProjecao = (() => {
         // ==========================
 
         const pesos =
-        
             MotorCalibracao.obter();
-        
+
         let projecao =
-        
+
               score * pesos.score
             + media3 * pesos.media3
             + media5 * pesos.media5
@@ -116,60 +119,61 @@ const MotorProjecao = (() => {
         // ==========================
 
         projecao *=
-
             0.85 +
-
             (regularidade / 1000);
 
         projecao *=
-
             0.90 +
-
             (confianca / 1000);
 
         projecao *=
-
             0.95 +
-
             (tendencia / 1000);
 
         projecao *=
-
             1 -
-
             (risco / 350);
 
-        // Penalização por volatilidade
-
         projecao *=
-
             Math.max(
-
                 0.85,
-
                 1 -
-
                 (volatilidade / 100)
-
             );
-
-        // Nunca retornar negativo
 
         projecao =
-
             Math.max(
-
                 0,
-
                 projecao
-
             );
 
-        return Number(
+        return {
 
-            projecao.toFixed(2)
+            projecao: Number(
+                projecao.toFixed(2)
+            ),
 
-        );
+            piso: Number(
+                piso.toFixed(2)
+            ),
+
+            teto: Number(
+                teto.toFixed(2)
+            ),
+
+            media3: Number(
+                media3.toFixed(2)
+            ),
+
+            media5: Number(
+                media5.toFixed(2)
+            ),
+
+            mediaGeral: Number(
+                mediaGeral.toFixed(2)
+            )
+
+        };
 
     }
 
