@@ -1,7 +1,15 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
    Motor estatístico central
-   Versão inicial com pesos especializados por posição
+
+   Responsabilidades:
+   - Normalizar o histórico dos jogadores
+   - Calcular médias, piso, teto e regularidade
+   - Calcular tendência, risco e confiança
+   - Aplicar os pesos especializados por posição
+   - Enriquecer cada jogador com suas estatísticas
+   - Preparar os dados para o Motor de Projeção
+   - Manter compatibilidade com os demais módulos
    ========================================================= */
 
 
@@ -10,10 +18,10 @@
    ========================================================= */
 
 const MOTOR_ESTATISTICO = {
-  nome: "Motor Estatístico do Cartola",
-  versao: "0.2.0",
-  status: "MVP funcional",
-  quantidadeCriterios: 18
+    nome: "Motor Estatístico do Cartola",
+    versao: "0.3.0",
+    status: "Motor estatístico central",
+    quantidadeCriterios: 18
 };
 
 
@@ -22,59 +30,61 @@ const MOTOR_ESTATISTICO = {
    ========================================================= */
 
 const NOMES_CRITERIOS = {
-  formaRecente:
-    "Forma recente",
 
-  mediaGeral:
-    "Média geral",
+    formaRecente:
+        "Forma recente",
 
-  mediana:
-    "Mediana",
+    mediaGeral:
+        "Média geral",
 
-  regularidade:
-    "Regularidade",
+    mediana:
+        "Mediana",
 
-  pontuacaoBasica:
-    "Pontuação básica",
+    regularidade:
+        "Regularidade",
 
-  scoutsOfensivos:
-    "Scouts ofensivos",
+    pontuacaoBasica:
+        "Pontuação básica",
 
-  scoutsDefensivos:
-    "Scouts defensivos",
+    scoutsOfensivos:
+        "Scouts ofensivos",
 
-  casaFora:
-    "Desempenho em casa ou fora",
+    scoutsDefensivos:
+        "Scouts defensivos",
 
-  forcaAdversario:
-    "Força do adversário",
+    casaFora:
+        "Desempenho em casa ou fora",
 
-  pontosCedidos:
-    "Pontos cedidos pela posição",
+    forcaAdversario:
+        "Força do adversário",
 
-  chanceSG:
-    "Probabilidade de SG",
+    pontosCedidos:
+        "Pontos cedidos pela posição",
 
-  titularidade:
-    "Titularidade",
+    chanceSG:
+        "Probabilidade de SG",
 
-  minutosEsperados:
-    "Minutos esperados",
+    titularidade:
+        "Titularidade",
 
-  bolaParada:
-    "Bolas paradas",
+    minutosEsperados:
+        "Minutos esperados",
 
-  penaltis:
-    "Cobrança de pênaltis",
+    bolaParada:
+        "Bolas paradas",
 
-  custoBeneficio:
-    "Custo-benefício",
+    penaltis:
+        "Cobrança de pênaltis",
 
-  tendenciaRecente:
-    "Tendência recente",
+    custoBeneficio:
+        "Custo-benefício",
 
-  riscoNegativar:
-    "Proteção contra negativação"
+    tendenciaRecente:
+        "Tendência recente",
+
+    riscoNegativar:
+        "Proteção contra negativação"
+
 };
 
 
@@ -83,1441 +93,2960 @@ const NOMES_CRITERIOS = {
    ========================================================= */
 
 const PERFIS_POSICAO = {
-  GOL: {
-    nome: "Goleiro",
 
-    prioridades: [
-      "scoutsDefensivos",
-      "chanceSG",
-      "regularidade"
-    ]
-  },
+    GOL: {
 
-  LAT: {
-    nome: "Lateral",
+        nome: "Goleiro",
 
-    prioridades: [
-      "pontuacaoBasica",
-      "scoutsOfensivos",
-      "scoutsDefensivos"
-    ]
-  },
+        prioridades: [
+            "scoutsDefensivos",
+            "chanceSG",
+            "regularidade"
+        ]
 
-  ZAG: {
-    nome: "Zagueiro",
+    },
 
-    prioridades: [
-      "scoutsDefensivos",
-      "chanceSG",
-      "regularidade"
-    ]
-  },
+    LAT: {
 
-  MEI: {
-    nome: "Meia",
+        nome: "Lateral",
 
-    prioridades: [
-      "scoutsOfensivos",
-      "formaRecente",
-      "pontuacaoBasica"
-    ]
-  },
+        prioridades: [
+            "pontuacaoBasica",
+            "scoutsOfensivos",
+            "scoutsDefensivos"
+        ]
 
-  ATA: {
-    nome: "Atacante",
+    },
 
-    prioridades: [
-      "scoutsOfensivos",
-      "formaRecente",
-      "forcaAdversario"
-    ]
-  },
+    ZAG: {
 
-  TEC: {
-    nome: "Treinador",
+        nome: "Zagueiro",
 
-    prioridades: [
-      "forcaAdversario",
-      "chanceSG",
-      "formaRecente"
-    ]
-  }
+        prioridades: [
+            "scoutsDefensivos",
+            "chanceSG",
+            "regularidade"
+        ]
+
+    },
+
+    MEI: {
+
+        nome: "Meia",
+
+        prioridades: [
+            "scoutsOfensivos",
+            "formaRecente",
+            "pontuacaoBasica"
+        ]
+
+    },
+
+    ATA: {
+
+        nome: "Atacante",
+
+        prioridades: [
+            "scoutsOfensivos",
+            "formaRecente",
+            "forcaAdversario"
+        ]
+
+    },
+
+    TEC: {
+
+        nome: "Treinador",
+
+        prioridades: [
+            "forcaAdversario",
+            "chanceSG",
+            "formaRecente"
+        ]
+
+    }
+
 };
 
 
 /* =========================================================
-   4. PREPARAÇÃO DE LISTAS NUMÉRICAS
+   4. CONVERSÃO SEGURA DE NÚMEROS
+   ========================================================= */
+
+function numeroEstatistico(
+    valor,
+    padrao = 0
+) {
+
+    const numero =
+        Number(valor);
+
+    return Number.isFinite(numero)
+        ? numero
+        : padrao;
+
+}
+
+
+/* =========================================================
+   5. LIMITADOR DE VALORES
+   ========================================================= */
+
+function limitarValorEstatistico(
+    valor,
+    minimo = 0,
+    maximo = 100
+) {
+
+    const numero =
+        numeroEstatistico(valor);
+
+    return Math.min(
+        maximo,
+        Math.max(
+            minimo,
+            numero
+        )
+    );
+
+}
+
+
+/* =========================================================
+   6. FORMATAÇÃO INTERNA
+   ========================================================= */
+
+function formatarNumeroEstatistico(
+    valor,
+    casas = 2
+) {
+
+    return numeroEstatistico(valor)
+        .toFixed(casas);
+
+}
+
+
+/* =========================================================
+   7. PREPARAÇÃO DE LISTAS NUMÉRICAS
    ========================================================= */
 
 function prepararListaNumerica(
-  valores
+    valores
 ) {
-  if (!Array.isArray(valores)) {
-    return [];
-  }
 
-  return valores
-    .map(Number)
-    .filter(Number.isFinite);
+    if (!Array.isArray(valores)) {
+        return [];
+    }
+
+    return valores
+        .map((item) => {
+
+            if (
+                typeof item === "number" ||
+                typeof item === "string"
+            ) {
+
+                return Number(item);
+
+            }
+
+            if (
+                item &&
+                typeof item === "object"
+            ) {
+
+                const possibilidades = [
+
+                    item.pontuacao,
+                    item.pontuacaoReal,
+                    item.pontos,
+                    item.score,
+                    item.valor
+
+                ];
+
+                for (
+                    const possibilidade
+                    of possibilidades
+                ) {
+
+                    const numero =
+                        Number(possibilidade);
+
+                    if (
+                        Number.isFinite(numero)
+                    ) {
+
+                        return numero;
+
+                    }
+
+                }
+
+            }
+
+            return NaN;
+
+        })
+        .filter(Number.isFinite);
+
 }
 
 
 /* =========================================================
-   5. MÉDIA
+   8. EXTRAÇÃO DO HISTÓRICO DO JOGADOR
+   ========================================================= */
+
+function extrairHistoricoPontuacoes(
+    jogador
+) {
+
+    if (
+        Array.isArray(
+            jogador?.historicoPontuacoes
+        )
+    ) {
+
+        const pontuacoes =
+            prepararListaNumerica(
+                jogador.historicoPontuacoes
+            );
+
+        if (pontuacoes.length > 0) {
+            return pontuacoes;
+        }
+
+    }
+
+    if (
+        Array.isArray(
+            jogador?.historico
+        )
+    ) {
+
+        const pontuacoes =
+            prepararListaNumerica(
+                jogador.historico
+            );
+
+        if (pontuacoes.length > 0) {
+            return pontuacoes;
+        }
+
+    }
+
+    if (
+        Array.isArray(
+            jogador?.pontuacoes
+        )
+    ) {
+
+        const pontuacoes =
+            prepararListaNumerica(
+                jogador.pontuacoes
+            );
+
+        if (pontuacoes.length > 0) {
+            return pontuacoes;
+        }
+
+    }
+
+    return [];
+
+}
+
+
+/* =========================================================
+   9. MÉDIA
    ========================================================= */
 
 function calcularMedia(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
 
-  const soma =
-    numeros.reduce(
-      (total, valor) =>
-        total + valor,
-      0
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    const soma =
+        numeros.reduce(
+            (
+                total,
+                valor
+            ) =>
+                total + valor,
+            0
+        );
+
+    return (
+        soma /
+        numeros.length
     );
 
-  return soma / numeros.length;
 }
 
 
 /* =========================================================
-   6. MEDIANA
+   10. MEDIANA
    ========================================================= */
 
 function calcularMediana(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores)
-      .sort(
-        (valorA, valorB) =>
-          valorA - valorB
-      );
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        )
+            .sort(
+                (
+                    valorA,
+                    valorB
+                ) =>
+                    valorA - valorB
+            );
 
-  const indiceCentral =
-    Math.floor(
-      numeros.length / 2
-    );
+    if (numeros.length === 0) {
+        return 0;
+    }
 
-  const quantidadePar =
-    numeros.length % 2 === 0;
+    const indiceCentral =
+        Math.floor(
+            numeros.length / 2
+        );
 
-  if (quantidadePar) {
-    return (
-      numeros[indiceCentral - 1] +
-      numeros[indiceCentral]
-    ) / 2;
-  }
+    const quantidadePar =
+        numeros.length % 2 === 0;
 
-  return numeros[indiceCentral];
+    if (quantidadePar) {
+
+        return (
+
+            numeros[
+                indiceCentral - 1
+            ] +
+
+            numeros[
+                indiceCentral
+            ]
+
+        ) / 2;
+
+    }
+
+    return numeros[
+        indiceCentral
+    ];
+
 }
 
 
 /* =========================================================
-   7. VARIÂNCIA
+   11. VARIÂNCIA
    ========================================================= */
 
 function calcularVariancia(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
-
-  const media =
-    calcularMedia(numeros);
-
-  const somaDiferencas =
-    numeros.reduce(
-      (total, valor) => {
-        const diferenca =
-          valor - media;
-
-        return (
-          total +
-          diferenca ** 2
+    const numeros =
+        prepararListaNumerica(
+            valores
         );
-      },
-      0
+
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    const media =
+        calcularMedia(
+            numeros
+        );
+
+    const somaDiferencas =
+        numeros.reduce(
+            (
+                total,
+                valor
+            ) => {
+
+                const diferenca =
+                    valor - media;
+
+                return (
+                    total +
+                    diferenca ** 2
+                );
+
+            },
+            0
+        );
+
+    return (
+        somaDiferencas /
+        numeros.length
     );
 
-  return (
-    somaDiferencas /
-    numeros.length
-  );
 }
 
 
 /* =========================================================
-   8. DESVIO-PADRÃO
+   12. DESVIO-PADRÃO
    ========================================================= */
 
 function calcularDesvioPadrao(
-  valores
+    valores
 ) {
-  return Math.sqrt(
-    calcularVariancia(valores)
-  );
+
+    return Math.sqrt(
+        calcularVariancia(
+            valores
+        )
+    );
+
 }
 
 
 /* =========================================================
-   9. AMPLITUDE
+   13. AMPLITUDE
    ========================================================= */
 
 function calcularAmplitude(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
 
-  return (
-    Math.max(...numeros) -
-    Math.min(...numeros)
-  );
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    return (
+
+        Math.max(
+            ...numeros
+        ) -
+
+        Math.min(
+            ...numeros
+        )
+
+    );
+
 }
 
 
 /* =========================================================
-   10. TENDÊNCIA RECENTE
-   Compara a primeira metade com a segunda metade.
+   14. PISO
+   ========================================================= */
+
+function calcularPiso(
+    valores
+) {
+
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
+
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    return Math.min(
+        ...numeros
+    );
+
+}
+
+
+/* =========================================================
+   15. TETO
+   ========================================================= */
+
+function calcularTeto(
+    valores
+) {
+
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
+
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    return Math.max(
+        ...numeros
+    );
+
+}
+
+
+/* =========================================================
+   16. TENDÊNCIA RECENTE
+
+   Compara a primeira metade das últimas partidas
+   com a segunda metade.
    ========================================================= */
 
 function calcularTendencia(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length < 2) {
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
+
+    if (numeros.length < 2) {
+
+        return {
+
+            valor: 0,
+            nota: 50,
+            classificacao:
+                "Estável"
+
+        };
+
+    }
+
+    const historicoRecente =
+        numeros.slice(-10);
+
+    const tamanhoMetade =
+        Math.max(
+            1,
+            Math.floor(
+                historicoRecente.length /
+                2
+            )
+        );
+
+    const primeiraMetade =
+        historicoRecente.slice(
+            0,
+            tamanhoMetade
+        );
+
+    const segundaMetade =
+        historicoRecente.slice(
+            historicoRecente.length -
+            tamanhoMetade
+        );
+
+    const mediaInicial =
+        calcularMedia(
+            primeiraMetade
+        );
+
+    const mediaFinal =
+        calcularMedia(
+            segundaMetade
+        );
+
+    const diferenca =
+        mediaFinal -
+        mediaInicial;
+
+    const nota =
+        limitarValorEstatistico(
+            50 +
+            diferenca * 8,
+            0,
+            100
+        );
+
+    let classificacao =
+        "Estável";
+
+    if (diferenca >= 1) {
+
+        classificacao =
+            "Em crescimento";
+
+    }
+    else if (
+        diferenca <= -1
+    ) {
+
+        classificacao =
+            "Em queda";
+
+    }
+
     return {
-      valor: 0,
-      nota: 50,
-      classificacao: "Estável"
+
+        valor:
+            diferenca,
+
+        nota,
+
+        classificacao
+
     };
-  }
 
-  const tamanhoMetade =
-    Math.max(
-      1,
-      Math.floor(
-        numeros.length / 2
-      )
-    );
-
-  const primeiraMetade =
-    numeros.slice(
-      0,
-      tamanhoMetade
-    );
-
-  const segundaMetade =
-    numeros.slice(
-      numeros.length -
-      tamanhoMetade
-    );
-
-  const mediaInicial =
-    calcularMedia(
-      primeiraMetade
-    );
-
-  const mediaFinal =
-    calcularMedia(
-      segundaMetade
-    );
-
-  const diferenca =
-    mediaFinal -
-    mediaInicial;
-
-  const nota =
-    limitarValor(
-      50 + diferenca * 8,
-      0,
-      100
-    );
-
-  let classificacao =
-    "Estável";
-
-  if (diferenca >= 1) {
-    classificacao =
-      "Em crescimento";
-  } else if (diferenca <= -1) {
-    classificacao =
-      "Em queda";
-  }
-
-  return {
-    valor: diferenca,
-    nota,
-    classificacao
-  };
 }
 
 
 /* =========================================================
-   11. REGULARIDADE
-   Quanto menor a variação, maior a nota.
+   17. REGULARIDADE
+
+   Quanto menor o coeficiente de variação,
+   maior a nota de regularidade.
    ========================================================= */
 
 function calcularRegularidade(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
 
-  const media =
-    Math.abs(
-      calcularMedia(numeros)
+    if (numeros.length === 0) {
+        return 0;
+    }
+
+    if (numeros.length === 1) {
+        return 50;
+    }
+
+    const media =
+        Math.abs(
+            calcularMedia(
+                numeros
+            )
+        );
+
+    const desvio =
+        calcularDesvioPadrao(
+            numeros
+        );
+
+    if (media === 0) {
+
+        return desvio === 0
+            ? 100
+            : 0;
+
+    }
+
+    const coeficienteVariacao =
+        desvio / media;
+
+    return limitarValorEstatistico(
+
+        100 -
+        coeficienteVariacao * 70,
+
+        0,
+        100
+
     );
 
-  const desvio =
-    calcularDesvioPadrao(
-      numeros
-    );
-
-  if (media === 0) {
-    return desvio === 0
-      ? 100
-      : 0;
-  }
-
-  const coeficienteVariacao =
-    desvio / media;
-
-  return limitarValor(
-    100 -
-    coeficienteVariacao * 70,
-    0,
-    100
-  );
 }
 
 
 /* =========================================================
-   12. FREQUÊNCIA DE NEGATIVAÇÃO
+   18. FREQUÊNCIA DE NEGATIVAÇÃO
    ========================================================= */
 
 function calcularFrequenciaNegativa(
-  valores
+    valores
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
 
-  const negativas =
-    numeros.filter(
-      (valor) => valor < 0
-    ).length;
+    if (numeros.length === 0) {
+        return 0;
+    }
 
-  return (
-    negativas /
-    numeros.length
-  ) * 100;
+    const negativas =
+        numeros.filter(
+            (valor) =>
+                valor < 0
+        ).length;
+
+    return (
+
+        negativas /
+        numeros.length
+
+    ) * 100;
+
 }
 
 
 /* =========================================================
-   13. FREQUÊNCIA ACIMA DE UMA META
+   19. FREQUÊNCIA ACIMA DE UMA META
    ========================================================= */
 
 function calcularFrequenciaAcima(
-  valores,
-  meta
+    valores,
+    meta
 ) {
-  const numeros =
-    prepararListaNumerica(valores);
 
-  if (numeros.length === 0) {
-    return 0;
-  }
+    const numeros =
+        prepararListaNumerica(
+            valores
+        );
 
-  const valorMeta =
-    numeroSeguro(meta);
+    if (numeros.length === 0) {
+        return 0;
+    }
 
-  const quantidade =
-    numeros.filter(
-      (valor) =>
-        valor >= valorMeta
-    ).length;
+    const valorMeta =
+        numeroEstatistico(
+            meta
+        );
 
-  return (
-    quantidade /
-    numeros.length
-  ) * 100;
+    const quantidade =
+        numeros.filter(
+            (valor) =>
+                valor >= valorMeta
+        ).length;
+
+    return (
+
+        quantidade /
+        numeros.length
+
+    ) * 100;
+
 }
 
 
 /* =========================================================
-   14. NORMALIZAÇÃO PARA 0 A 100
+   20. NORMALIZAÇÃO PARA 0 A 100
    ========================================================= */
 
 function normalizarNota(
-  valor,
-  minimo,
-  maximo
+    valor,
+    minimo,
+    maximo
 ) {
-  const numero =
-    numeroSeguro(valor);
 
-  const limiteMinimo =
-    numeroSeguro(minimo);
+    const numero =
+        numeroEstatistico(
+            valor
+        );
 
-  const limiteMaximo =
-    numeroSeguro(maximo);
+    const limiteMinimo =
+        numeroEstatistico(
+            minimo
+        );
 
-  if (
-    limiteMaximo ===
-    limiteMinimo
-  ) {
-    return 50;
-  }
+    const limiteMaximo =
+        numeroEstatistico(
+            maximo
+        );
 
-  const nota =
-    (
-      (
-        numero -
+    if (
+        limiteMaximo ===
         limiteMinimo
-      ) /
-      (
-        limiteMaximo -
-        limiteMinimo
-      )
-    ) * 100;
+    ) {
 
-  return limitarValor(
-    nota,
-    0,
-    100
-  );
+        return 50;
+
+    }
+
+    const nota =
+        (
+            (
+                numero -
+                limiteMinimo
+            ) /
+            (
+                limiteMaximo -
+                limiteMinimo
+            )
+        ) * 100;
+
+    return limitarValorEstatistico(
+        nota,
+        0,
+        100
+    );
+
 }
 
 
 /* =========================================================
-   15. CUSTO-BENEFÍCIO
+   21. CUSTO-BENEFÍCIO
    ========================================================= */
 
 function calcularCustoBeneficio(
-  projecao,
-  preco
+    projecao,
+    preco
 ) {
-  const valorProjecao =
-    numeroSeguro(projecao);
 
-  const valorPreco =
-    numeroSeguro(preco);
+    const valorProjecao =
+        numeroEstatistico(
+            projecao
+        );
 
-  if (valorPreco <= 0) {
-    return 0;
-  }
+    const valorPreco =
+        numeroEstatistico(
+            preco
+        );
 
-  return (
-    valorProjecao /
-    valorPreco
-  );
+    if (valorPreco <= 0) {
+        return 0;
+    }
+
+    return (
+        valorProjecao /
+        valorPreco
+    );
+
 }
 
 
 /* =========================================================
-   16. PESOS DA POSIÇÃO
+   22. CÁLCULO DO RISCO ESTATÍSTICO
+   ========================================================= */
+
+function calcularRiscoEstatistico(
+    dados
+) {
+
+    const regularidade =
+        numeroEstatistico(
+            dados?.regularidade
+        );
+
+    const frequenciaNegativa =
+        numeroEstatistico(
+            dados?.frequenciaNegativa
+        );
+
+    const desvioPadrao =
+        numeroEstatistico(
+            dados?.desvioPadrao
+        );
+
+    const quantidadeJogos =
+        numeroEstatistico(
+            dados?.quantidadeJogos
+        );
+
+    const riscoVariacao =
+        limitarValorEstatistico(
+            desvioPadrao * 10,
+            0,
+            100
+        );
+
+    const riscoRegularidade =
+        100 -
+        limitarValorEstatistico(
+            regularidade,
+            0,
+            100
+        );
+
+    const riscoAmostra =
+        quantidadeJogos >= 5
+            ? 0
+            : (
+                5 -
+                quantidadeJogos
+            ) * 10;
+
+    const risco =
+        (
+            riscoVariacao * 0.35 +
+            riscoRegularidade * 0.35 +
+            frequenciaNegativa * 0.20 +
+            riscoAmostra * 0.10
+        );
+
+    return limitarValorEstatistico(
+        risco,
+        0,
+        100
+    );
+
+}
+
+
+/* =========================================================
+   23. CÁLCULO DA CONFIANÇA
+   ========================================================= */
+
+function calcularConfiancaEstatistica(
+    dados
+) {
+
+    const quantidadeJogos =
+        numeroEstatistico(
+            dados?.quantidadeJogos
+        );
+
+    const regularidade =
+        numeroEstatistico(
+            dados?.regularidade
+        );
+
+    const risco =
+        numeroEstatistico(
+            dados?.risco
+        );
+
+    const notaAmostra =
+        limitarValorEstatistico(
+            quantidadeJogos * 12,
+            0,
+            100
+        );
+
+    const confianca =
+        (
+            notaAmostra * 0.35 +
+            regularidade * 0.35 +
+            (
+                100 -
+                risco
+            ) * 0.30
+        );
+
+    return limitarValorEstatistico(
+        confianca,
+        0,
+        100
+    );
+
+}
+
+
+/* =========================================================
+   24. PESOS DA POSIÇÃO
    ========================================================= */
 
 function obterPesosDoMotor(
-  codigoPosicao
+    codigoPosicao
 ) {
-  if (
-    typeof obterPesosPorPosicao ===
-    "function"
-  ) {
-    return obterPesosPorPosicao(
-      codigoPosicao
+
+    if (
+        typeof obterPesosPorPosicao ===
+        "function"
+    ) {
+
+        return obterPesosPorPosicao(
+            codigoPosicao
+        );
+
+    }
+
+    console.warn(
+        "pesos.js não foi carregado. " +
+        "O motor utilizará pesos iguais."
     );
-  }
 
-  console.warn(
-    "pesos.js não foi carregado. " +
-    "O motor utilizará pesos iguais."
-  );
+    const pesoIgual =
+        100 /
+        MOTOR_ESTATISTICO
+            .quantidadeCriterios;
 
-  const pesoIgual =
-    100 /
-    MOTOR_ESTATISTICO
-      .quantidadeCriterios;
+    return Object.keys(
+        NOMES_CRITERIOS
+    )
+        .reduce(
+            (
+                pesos,
+                criterio
+            ) => {
 
-  return Object.keys(
-    NOMES_CRITERIOS
-  ).reduce(
-    (pesos, criterio) => {
-      pesos[criterio] =
-        pesoIgual;
+                pesos[criterio] =
+                    pesoIgual;
 
-      return pesos;
-    },
-    {}
-  );
+                return pesos;
+
+            },
+            {}
+        );
+
 }
 
 
 /* =========================================================
-   17. NOME DO MOTOR DA POSIÇÃO
+   25. NOME DO MOTOR DA POSIÇÃO
    ========================================================= */
 
 function obterNomeDoMotor(
-  codigoPosicao
+    codigoPosicao
 ) {
-  if (
-    typeof obterNomeMotorPosicao ===
-    "function"
-  ) {
-    return obterNomeMotorPosicao(
-      codigoPosicao
-    );
-  }
 
-  return (
-    "Motor Estatístico Geral"
-  );
+    if (
+        typeof obterNomeMotorPosicao ===
+        "function"
+    ) {
+
+        return obterNomeMotorPosicao(
+            codigoPosicao
+        );
+
+    }
+
+    return (
+        "Motor Estatístico Geral"
+    );
+
 }
 
 
 /* =========================================================
-   18. SOMA DOS PESOS
+   26. SOMA DOS PESOS
    ========================================================= */
 
 function somarPesosEstatisticos(
-  pesos
+    pesos
 ) {
-  if (
-    !pesos ||
-    typeof pesos !== "object"
-  ) {
-    return 0;
-  }
 
-  return Object.values(pesos)
-    .reduce(
-      (total, peso) =>
-        total +
-        numeroSeguro(peso),
-      0
-    );
+    if (
+        !pesos ||
+        typeof pesos !== "object"
+    ) {
+
+        return 0;
+
+    }
+
+    return Object.values(
+        pesos
+    )
+        .reduce(
+            (
+                total,
+                peso
+            ) =>
+
+                total +
+                numeroEstatistico(
+                    peso
+                ),
+
+            0
+        );
+
 }
 
 
 /* =========================================================
-   19. VALIDAÇÃO DOS PESOS
+   27. VALIDAÇÃO DOS PESOS
    ========================================================= */
 
 function validarPesosEstatisticos(
-  codigoPosicao
+    codigoPosicao
 ) {
-  const pesos =
-    obterPesosDoMotor(
-      codigoPosicao
-    );
 
-  const total =
-    somarPesosEstatisticos(
-      pesos
-    );
+    const pesos =
+        obterPesosDoMotor(
+            codigoPosicao
+        );
 
-  const valido =
-    Math.abs(
-      total - 100
-    ) < 0.001;
+    const total =
+        somarPesosEstatisticos(
+            pesos
+        );
 
-  if (!valido) {
-    console.error(
-      "Erro no Motor Estatístico:",
-      `os pesos de ${codigoPosicao} ` +
-      `totalizam ${total}, ` +
-      "mas deveriam totalizar 100."
-    );
-  }
+    const valido =
+        Math.abs(
+            total - 100
+        ) < 0.001;
 
-  return {
-    valido,
-    total,
-    esperado: 100,
-    codigoPosicao,
-    pesos
-  };
+    if (!valido) {
+
+        console.error(
+
+            "Erro no Motor Estatístico:",
+
+            `os pesos de ${codigoPosicao} ` +
+            `totalizam ${total}, ` +
+            "mas deveriam totalizar 100."
+
+        );
+
+    }
+
+    return {
+
+        valido,
+        total,
+        esperado: 100,
+        codigoPosicao,
+        pesos
+
+    };
+
 }
 
 
 /* =========================================================
-   20. CONTRIBUIÇÃO PONDERADA
+   28. CONTRIBUIÇÃO PONDERADA
    ========================================================= */
 
 function calcularContribuicao(
-  nota,
-  peso
+    nota,
+    peso
 ) {
-  const notaSegura =
-    limitarValor(
-      nota,
-      0,
-      100
-    );
 
-  const pesoSeguro =
-    numeroSeguro(peso);
+    const notaSegura =
+        limitarValorEstatistico(
+            nota,
+            0,
+            100
+        );
 
-  return (
-    notaSegura *
-    pesoSeguro
-  ) / 100;
+    const pesoSeguro =
+        numeroEstatistico(
+            peso
+        );
+
+    return (
+
+        notaSegura *
+        pesoSeguro
+
+    ) / 100;
+
 }
 
 
 /* =========================================================
-   21. NOTA FINAL POR POSIÇÃO
+   29. NOTA FINAL POR POSIÇÃO
    ========================================================= */
 
 function calcularNotaFinal(
-  notasCriterios,
-  codigoPosicao
+    notasCriterios,
+    codigoPosicao
 ) {
-  const validacao =
-    validarPesosEstatisticos(
-      codigoPosicao
-    );
 
-  if (!validacao.valido) {
-    return {
-      notaFinal: 0,
-      contribuicoes: {},
-      pesosAplicados:
-        validacao.pesos,
-      erro:
-        "Os pesos do motor não totalizam 100."
-    };
-  }
+    const validacao =
+        validarPesosEstatisticos(
+            codigoPosicao
+        );
 
-  const pesos =
-    validacao.pesos;
+    if (!validacao.valido) {
 
-  const contribuicoes = {};
+        return {
 
-  let notaFinal = 0;
+            notaFinal: 0,
 
-  Object.entries(pesos)
-    .forEach(
-      ([criterio, peso]) => {
-        const nota =
-          limitarValor(
-            notasCriterios?.[
-              criterio
-            ],
-            0,
-            100
-          );
+            contribuicoes: {},
 
-        const contribuicao =
-          calcularContribuicao(
-            nota,
-            peso
-          );
+            pesosAplicados:
+                validacao.pesos,
 
-        contribuicoes[criterio] = {
-          criterio,
+            erro:
+                "Os pesos do motor não totalizam 100."
 
-          nome:
-            NOMES_CRITERIOS[
-              criterio
-            ] || criterio,
-
-          nota,
-
-          peso,
-
-          contribuicao
         };
 
-        notaFinal += contribuicao;
-      }
-    );
+    }
 
-  return {
-    notaFinal:
-      limitarValor(
-        notaFinal,
-        0,
-        100
-      ),
+    const pesos =
+        validacao.pesos;
 
-    contribuicoes,
+    const contribuicoes = {};
 
-    pesosAplicados: pesos,
+    let notaFinal = 0;
 
-    erro: null
-  };
+    Object.entries(
+        pesos
+    )
+        .forEach(
+            (
+                [
+                    criterio,
+                    peso
+                ]
+            ) => {
+
+                const nota =
+                    limitarValorEstatistico(
+
+                        notasCriterios?.[
+                            criterio
+                        ],
+
+                        0,
+                        100
+
+                    );
+
+                const contribuicao =
+                    calcularContribuicao(
+                        nota,
+                        peso
+                    );
+
+                contribuicoes[
+                    criterio
+                ] = {
+
+                    criterio,
+
+                    nome:
+                        NOMES_CRITERIOS[
+                            criterio
+                        ] ||
+                        criterio,
+
+                    nota,
+
+                    peso,
+
+                    contribuicao
+
+                };
+
+                notaFinal +=
+                    contribuicao;
+
+            }
+        );
+
+    return {
+
+        notaFinal:
+            limitarValorEstatistico(
+                notaFinal,
+                0,
+                100
+            ),
+
+        contribuicoes,
+
+        pesosAplicados:
+            pesos,
+
+        erro:
+            null
+
+    };
+
 }
 
 
 /* =========================================================
-   22. CLASSIFICAÇÃO DA NOTA
+   30. CLASSIFICAÇÃO DA NOTA
    ========================================================= */
 
 function classificarNotaFinal(
-  nota
+    nota
 ) {
-  const valor =
-    numeroSeguro(nota);
 
-  if (valor >= 90) {
-    return "Excelente";
-  }
+    const valor =
+        numeroEstatistico(
+            nota
+        );
 
-  if (valor >= 80) {
-    return "Muito boa";
-  }
+    if (valor >= 90) {
+        return "Excelente";
+    }
 
-  if (valor >= 70) {
-    return "Boa";
-  }
+    if (valor >= 80) {
+        return "Muito boa";
+    }
 
-  if (valor >= 60) {
-    return "Regular";
-  }
+    if (valor >= 70) {
+        return "Boa";
+    }
 
-  if (valor >= 50) {
-    return "Abaixo da média";
-  }
+    if (valor >= 60) {
+        return "Regular";
+    }
 
-  return "Baixa";
+    if (valor >= 50) {
+        return "Abaixo da média";
+    }
+
+    return "Baixa";
+
 }
 
 
 /* =========================================================
-   23. CLASSIFICAÇÃO DO RISCO
+   31. CLASSIFICAÇÃO DO RISCO
    ========================================================= */
 
 function classificarRiscoEstatistico(
-  notaRisco
+    notaRisco
 ) {
-  const valor =
-    numeroSeguro(notaRisco);
 
-  if (valor <= 25) {
-    return "Baixo";
-  }
+    const valor =
+        numeroEstatistico(
+            notaRisco
+        );
 
-  if (valor <= 55) {
-    return "Médio";
-  }
+    if (valor <= 25) {
+        return "Baixo";
+    }
 
-  return "Alto";
+    if (valor <= 55) {
+        return "Médio";
+    }
+
+    return "Alto";
+
 }
 
 
 /* =========================================================
-   24. CLASSIFICAÇÃO DA CONFIANÇA
+   32. CLASSIFICAÇÃO DA CONFIANÇA
    ========================================================= */
 
 function classificarConfiancaEstatistica(
-  confianca
+    confianca
 ) {
-  const valor =
-    numeroSeguro(confianca);
 
-  if (valor >= 85) {
-    return "Alta";
-  }
+    const valor =
+        numeroEstatistico(
+            confianca
+        );
 
-  if (valor >= 65) {
-    return "Média";
-  }
+    if (valor >= 85) {
+        return "Alta";
+    }
 
-  return "Baixa";
+    if (valor >= 65) {
+        return "Média";
+    }
+
+    return "Baixa";
+
 }
 
 
 /* =========================================================
-   25. PRINCIPAIS CONTRIBUIÇÕES
+   33. PRINCIPAIS CONTRIBUIÇÕES
    ========================================================= */
 
 function obterPrincipaisContribuicoes(
-  contribuicoes,
-  quantidade = 3
+    contribuicoes,
+    quantidade = 3
 ) {
-  if (
-    !contribuicoes ||
-    typeof contribuicoes !==
-      "object"
-  ) {
-    return [];
-  }
 
-  return Object.values(
-    contribuicoes
-  )
-    .sort(
-      (itemA, itemB) =>
-        numeroSeguro(
-          itemB.contribuicao
-        ) -
-        numeroSeguro(
-          itemA.contribuicao
-        )
+    if (
+        !contribuicoes ||
+        typeof contribuicoes !==
+        "object"
+    ) {
+
+        return [];
+
+    }
+
+    return Object.values(
+        contribuicoes
     )
-    .slice(
-      0,
-      quantidade
-    );
+        .sort(
+            (
+                itemA,
+                itemB
+            ) =>
+
+                numeroEstatistico(
+                    itemB.contribuicao
+                ) -
+
+                numeroEstatistico(
+                    itemA.contribuicao
+                )
+
+        )
+        .slice(
+            0,
+            quantidade
+        );
+
 }
 
 
 /* =========================================================
-   26. MENORES NOTAS
+   34. MENORES NOTAS
    ========================================================= */
 
 function obterMenoresContribuicoes(
-  contribuicoes,
-  quantidade = 3
+    contribuicoes,
+    quantidade = 3
 ) {
-  if (
-    !contribuicoes ||
-    typeof contribuicoes !==
-      "object"
-  ) {
-    return [];
-  }
 
-  return Object.values(
-    contribuicoes
-  )
-    .sort(
-      (itemA, itemB) =>
-        numeroSeguro(
-          itemA.nota
-        ) -
-        numeroSeguro(
-          itemB.nota
-        )
+    if (
+        !contribuicoes ||
+        typeof contribuicoes !==
+        "object"
+    ) {
+
+        return [];
+
+    }
+
+    return Object.values(
+        contribuicoes
     )
-    .slice(
-      0,
-      quantidade
-    );
+        .sort(
+            (
+                itemA,
+                itemB
+            ) =>
+
+                numeroEstatistico(
+                    itemA.nota
+                ) -
+
+                numeroEstatistico(
+                    itemB.nota
+                )
+
+        )
+        .slice(
+            0,
+            quantidade
+        );
+
 }
 
 
 /* =========================================================
-   27. GERAÇÃO DA EXPLICAÇÃO
+   35. EXPLICAÇÃO ESTATÍSTICA
    ========================================================= */
 
 function gerarExplicacaoEstatistica(
-  resultado
+    resultado
 ) {
-  if (
-    !resultado ||
-    resultado.erro
-  ) {
+
+    if (
+        !resultado ||
+        resultado.erro
+    ) {
+
+        return {
+
+            resumo:
+                "Não foi possível calcular a nota.",
+
+            pontosFortes: [],
+
+            pontosAtencao: []
+
+        };
+
+    }
+
+    const melhores =
+        obterPrincipaisContribuicoes(
+            resultado.contribuicoes,
+            3
+        );
+
+    const menores =
+        obterMenoresContribuicoes(
+            resultado.contribuicoes,
+            3
+        );
+
+    const pontosFortes =
+        melhores.map(
+            (item) =>
+
+                `${item.nome}: ` +
+                `nota ${Math.round(
+                    item.nota
+                )}, peso ${formatarNumeroEstatistico(
+                    item.peso,
+                    0
+                )}% e contribuição de ` +
+                `${formatarNumeroEstatistico(
+                    item.contribuicao,
+                    2
+                )} pontos.`
+
+        );
+
+    const pontosAtencao =
+        menores.map(
+            (item) =>
+
+                `${item.nome}: ` +
+                `nota ${Math.round(
+                    item.nota
+                )}, abaixo dos principais ` +
+                "componentes da análise."
+
+        );
+
     return {
-      resumo:
-        "Não foi possível calcular a nota.",
 
-      pontosFortes: [],
+        resumo:
+            `Nota final de ` +
+            `${formatarNumeroEstatistico(
+                resultado.notaFinal,
+                1
+            )}, classificada como ` +
+            `${classificarNotaFinal(
+                resultado.notaFinal
+            )}.`,
 
-      pontosAtencao: []
+        pontosFortes,
+
+        pontosAtencao
+
     };
-  }
 
-  const melhores =
-    obterPrincipaisContribuicoes(
-      resultado.contribuicoes,
-      3
-    );
-
-  const menores =
-    obterMenoresContribuicoes(
-      resultado.contribuicoes,
-      3
-    );
-
-  const pontosFortes =
-    melhores.map(
-      (item) =>
-        `${item.nome}: ` +
-        `nota ${Math.round(
-          item.nota
-        )}, peso ${formatarDecimal(
-          item.peso,
-          0
-        )}% e contribuição de ` +
-        `${item.contribuicao.toFixed(
-          2
-        )} pontos.`
-    );
-
-  const pontosAtencao =
-    menores.map(
-      (item) =>
-        `${item.nome}: ` +
-        `nota ${Math.round(
-          item.nota
-        )}, abaixo dos principais ` +
-        "componentes da análise."
-    );
-
-  return {
-    resumo:
-      `Nota final de ` +
-      `${resultado.notaFinal.toFixed(
-        1
-      )}, classificada como ` +
-      `${classificarNotaFinal(
-        resultado.notaFinal
-      )}.`,
-
-    pontosFortes,
-
-    pontosAtencao
-  };
 }
 
 
 /* =========================================================
-   28. EXECUÇÃO COMPLETA DO MOTOR
-   Porta principal para outros módulos.
+   36. NOTAS DOS CRITÉRIOS DO JOGADOR
    ========================================================= */
 
-function executarMotorEstatistico(
-  dadosAnalise
+function montarNotasCriterios(
+    jogador,
+    estatisticas
 ) {
-  const codigoPosicao =
-    String(
-      dadosAnalise?.posicao ||
-      ""
-    )
-      .toUpperCase()
-      .trim();
 
-  const notas =
-    dadosAnalise?.notas || {};
+    const mediaGeral =
+        numeroEstatistico(
+            estatisticas.mediaGeral
+        );
 
-   const score =
-    calcularScoreEstatistico(
-        dadosAnalise
-    );
+    const mediaRecente =
+        numeroEstatistico(
+            estatisticas.mediaRecente
+        );
 
-  const resultadoNota =
-    calcularNotaFinal(
-      notas,
-      codigoPosicao
-    );
+    const mediana =
+        numeroEstatistico(
+            estatisticas.mediana
+        );
 
-  const explicacao =
-    gerarExplicacaoEstatistica(
-      resultadoNota
-    );
+    const regularidade =
+        numeroEstatistico(
+            estatisticas.regularidade
+        );
 
-  const perfil =
-    PERFIS_POSICAO[
-      codigoPosicao
-    ] || null;
+    const tendencia =
+        numeroEstatistico(
+            estatisticas.tendencia?.nota,
+            50
+        );
 
-  return {
-    motor: {
-      nome:
-        MOTOR_ESTATISTICO.nome,
+    const frequenciaNegativa =
+        numeroEstatistico(
+            estatisticas.frequenciaNegativa
+        );
 
-      nomeEspecializado:
-        obterNomeDoMotor(
-          codigoPosicao
-        ),
+    const preco =
+        numeroEstatistico(
+            jogador?.preco
+        );
 
-      versao:
-        MOTOR_ESTATISTICO.versao,
+    const mediaCartola =
+        numeroEstatistico(
+            jogador?.media
+        );
 
-      status:
-        MOTOR_ESTATISTICO.status,
+    const pontosUltimaRodada =
+        numeroEstatistico(
+            jogador?.pontosUltimaRodada
+        );
 
-      quantidadeCriterios:
-        MOTOR_ESTATISTICO
-          .quantidadeCriterios
-    },
+    const titularidade =
+        jogador?.statusId === 7
+            ? 100
+            : jogador?.statusId
+                ? 60
+                : 50;
 
-     score,
-     
-    jogadorId:
-      dadosAnalise?.jogadorId ||
-      null,
+    const notasOriginais =
+        jogador?.notas ||
+        jogador?.notasCriterios ||
+        {};
 
-    posicao:
-      codigoPosicao || null,
+    return {
 
-    nomePosicao:
-      perfil?.nome ||
-      codigoPosicao ||
-      "Não informada",
+        formaRecente:
+            normalizarNota(
+                mediaRecente,
+                -2,
+                12
+            ),
 
-    prioridades:
-      perfil?.prioridades || [],
+        mediaGeral:
+            normalizarNota(
+                mediaGeral,
+                -2,
+                12
+            ),
 
-    notaFinal:
-      resultadoNota.notaFinal,
+        mediana:
+            normalizarNota(
+                mediana,
+                -2,
+                12
+            ),
 
-    classificacao:
-      classificarNotaFinal(
-        resultadoNota.notaFinal
-      ),
+        regularidade:
+            regularidade,
 
-    pesosAplicados:
-      resultadoNota.pesosAplicados,
+        pontuacaoBasica:
+            normalizarNota(
+                mediaCartola ||
+                mediaGeral,
+                -2,
+                12
+            ),
 
-    contribuicoes:
-      resultadoNota.contribuicoes,
+        scoutsOfensivos:
+            numeroEstatistico(
+                notasOriginais
+                    .scoutsOfensivos,
+                50
+            ),
 
-    explicacao,
+        scoutsDefensivos:
+            numeroEstatistico(
+                notasOriginais
+                    .scoutsDefensivos,
+                50
+            ),
 
-    erro:
-      resultadoNota.erro
-  };
+        casaFora:
+            numeroEstatistico(
+                notasOriginais
+                    .casaFora,
+                50
+            ),
+
+        forcaAdversario:
+            numeroEstatistico(
+                notasOriginais
+                    .forcaAdversario,
+                50
+            ),
+
+        pontosCedidos:
+            numeroEstatistico(
+                notasOriginais
+                    .pontosCedidos,
+                50
+            ),
+
+        chanceSG:
+            numeroEstatistico(
+                notasOriginais
+                    .chanceSG,
+                50
+            ),
+
+        titularidade:
+            numeroEstatistico(
+                notasOriginais
+                    .titularidade,
+                titularidade
+            ),
+
+        minutosEsperados:
+            numeroEstatistico(
+                notasOriginais
+                    .minutosEsperados,
+                titularidade
+            ),
+
+        bolaParada:
+            numeroEstatistico(
+                notasOriginais
+                    .bolaParada,
+                50
+            ),
+
+        penaltis:
+            numeroEstatistico(
+                notasOriginais
+                    .penaltis,
+                50
+            ),
+
+        custoBeneficio:
+            normalizarNota(
+
+                calcularCustoBeneficio(
+                    mediaRecente ||
+                    mediaGeral ||
+                    pontosUltimaRodada,
+                    preco
+                ),
+
+                0,
+                1.5
+
+            ),
+
+        tendenciaRecente:
+            tendencia,
+
+        riscoNegativar:
+            100 -
+            limitarValorEstatistico(
+                frequenciaNegativa,
+                0,
+                100
+            )
+
+    };
+
 }
 
+
 /* =========================================================
-   28. SCORE ESTATÍSTICO COMPLETO
+   37. SCORE ESTATÍSTICO COMPLETO
    ========================================================= */
 
 function calcularScoreEstatistico(
-  jogador
+    jogador
 ) {
 
-  const historico =
-    jogador.historico || [];
+    const historico =
+        extrairHistoricoPontuacoes(
+            jogador
+        );
 
-  const ultimas3 =
-    historico.slice(-3);
+    const ultimas3 =
+        historico.slice(-3);
 
-  const ultimas5 =
-    historico.slice(-5);
+    const ultimas5 =
+        historico.slice(-5);
 
-  const ultimas10 =
-    historico.slice(-10);
+    const ultimas10 =
+        historico.slice(-10);
 
-  return {
+    const mediaGeral =
+        calcularMedia(
+            historico
+        );
 
-    media3:
-      calcularMedia(ultimas3),
+    const media3 =
+        calcularMedia(
+            ultimas3
+        );
 
-    media5:
-      calcularMedia(ultimas5),
+    const media5 =
+        calcularMedia(
+            ultimas5
+        );
 
-    media10:
-      calcularMedia(ultimas10),
+    const media10 =
+        calcularMedia(
+            ultimas10
+        );
 
-    mediana:
-      calcularMediana(historico),
+    const mediaRecente =
+        ultimas5.length > 0
+            ? media5
+            : mediaGeral;
 
-    regularidade:
-      calcularRegularidade(historico),
+    const mediana =
+        calcularMediana(
+            historico
+        );
 
-    tendencia:
-      calcularTendencia(historico),
+    const piso =
+        calcularPiso(
+            historico
+        );
 
-    desvioPadrao:
-      calcularDesvioPadrao(historico),
+    const teto =
+        calcularTeto(
+            historico
+        );
 
-    amplitude:
-      calcularAmplitude(historico),
+    const regularidade =
+        calcularRegularidade(
+            historico
+        );
 
-    frequenciaNegativa:
-      calcularFrequenciaNegativa(historico)
+    const tendencia =
+        calcularTendencia(
+            historico
+        );
 
-  };
+    const desvioPadrao =
+        calcularDesvioPadrao(
+            historico
+        );
+
+    const amplitude =
+        calcularAmplitude(
+            historico
+        );
+
+    const frequenciaNegativa =
+        calcularFrequenciaNegativa(
+            historico
+        );
+
+    const frequenciaAcimaMedia =
+        calcularFrequenciaAcima(
+            historico,
+            mediaGeral
+        );
+
+    const quantidadeJogos =
+        historico.length;
+
+    const risco =
+        calcularRiscoEstatistico({
+
+            regularidade,
+            frequenciaNegativa,
+            desvioPadrao,
+            quantidadeJogos
+
+        });
+
+    const confianca =
+        calcularConfiancaEstatistica({
+
+            quantidadeJogos,
+            regularidade,
+            risco
+
+        });
+
+    return {
+
+        historicoPontuacoes:
+            [...historico],
+
+        quantidadeJogos,
+
+        mediaGeral,
+
+        mediaRecente,
+
+        media3,
+
+        media5,
+
+        media10,
+
+        mediana,
+
+        piso,
+
+        teto,
+
+        regularidade,
+
+        tendencia,
+
+        desvioPadrao,
+
+        amplitude,
+
+        frequenciaNegativa,
+
+        frequenciaAcimaMedia,
+
+        risco,
+
+        classificacaoRisco:
+            classificarRiscoEstatistico(
+                risco
+            ),
+
+        confianca,
+
+        classificacaoConfianca:
+            classificarConfiancaEstatistica(
+                confianca
+            )
+
+    };
 
 }
 
 
 /* =========================================================
-   29. COMPARAÇÃO ENTRE DOIS RESULTADOS
+   38. EXECUÇÃO COMPLETA DO MOTOR
+   ========================================================= */
+
+function executarMotorEstatistico(
+    dadosAnalise
+) {
+
+    const codigoPosicao =
+        String(
+
+            dadosAnalise?.posicao ||
+            ""
+
+        )
+            .toUpperCase()
+            .trim();
+
+    const score =
+        calcularScoreEstatistico(
+            dadosAnalise || {}
+        );
+
+    const notas =
+        dadosAnalise?.notas ||
+        dadosAnalise?.notasCriterios ||
+        montarNotasCriterios(
+            dadosAnalise || {},
+            score
+        );
+
+    const resultadoNota =
+        calcularNotaFinal(
+            notas,
+            codigoPosicao
+        );
+
+    const explicacao =
+        gerarExplicacaoEstatistica(
+            resultadoNota
+        );
+
+    const perfil =
+        PERFIS_POSICAO[
+            codigoPosicao
+        ] ||
+        null;
+
+    return {
+
+        motor: {
+
+            nome:
+                MOTOR_ESTATISTICO.nome,
+
+            nomeEspecializado:
+                obterNomeDoMotor(
+                    codigoPosicao
+                ),
+
+            versao:
+                MOTOR_ESTATISTICO.versao,
+
+            status:
+                MOTOR_ESTATISTICO.status,
+
+            quantidadeCriterios:
+                MOTOR_ESTATISTICO
+                    .quantidadeCriterios
+
+        },
+
+        score,
+
+        jogadorId:
+            dadosAnalise?.jogadorId ||
+            dadosAnalise?.id ||
+            null,
+
+        posicao:
+            codigoPosicao ||
+            null,
+
+        nomePosicao:
+            perfil?.nome ||
+            codigoPosicao ||
+            "Não informada",
+
+        prioridades:
+            perfil?.prioridades ||
+            [],
+
+        notas,
+
+        notaFinal:
+            resultadoNota.notaFinal,
+
+        classificacao:
+            classificarNotaFinal(
+                resultadoNota.notaFinal
+            ),
+
+        pesosAplicados:
+            resultadoNota
+                .pesosAplicados,
+
+        contribuicoes:
+            resultadoNota
+                .contribuicoes,
+
+        explicacao,
+
+        erro:
+            resultadoNota.erro
+
+    };
+
+}
+
+
+/* =========================================================
+   39. APLICAÇÃO DO MOTOR DE PROJEÇÃO
+   ========================================================= */
+
+function aplicarMotorProjecao(
+    jogador
+) {
+
+    if (
+        typeof MotorProjecao ===
+        "undefined" ||
+        !MotorProjecao ||
+        typeof MotorProjecao.calcular !==
+        "function"
+    ) {
+
+        return null;
+
+    }
+
+    try {
+
+        return MotorProjecao.calcular(
+            jogador
+        );
+
+    }
+    catch (erro) {
+
+        console.error(
+            "Erro ao calcular projeção:",
+            jogador?.nome ||
+            jogador?.apelido ||
+            jogador?.id,
+            erro
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   40. ENRIQUECIMENTO DE UM JOGADOR
+   ========================================================= */
+
+function analisarJogadorEstatisticamente(
+    jogador
+) {
+
+    if (
+        !jogador ||
+        typeof jogador !== "object"
+    ) {
+
+        return jogador;
+
+    }
+
+    const historicoPontuacoes =
+        extrairHistoricoPontuacoes(
+            jogador
+        );
+
+    const jogadorPreparado = {
+
+        ...jogador,
+
+        scouts: {
+            ...(jogador.scouts || {})
+        },
+
+        historico:
+            Array.isArray(
+                jogador.historico
+            )
+                ? jogador.historico
+                    .map((item) => {
+
+                        if (
+                            item &&
+                            typeof item ===
+                            "object"
+                        ) {
+
+                            return {
+
+                                ...item,
+
+                                scouts: {
+                                    ...(
+                                        item.scouts ||
+                                        {}
+                                    )
+                                }
+
+                            };
+
+                        }
+
+                        return item;
+
+                    })
+                : [],
+
+        historicoPontuacoes:
+            [...historicoPontuacoes]
+
+    };
+
+    const score =
+        calcularScoreEstatistico(
+            jogadorPreparado
+        );
+
+    const notas =
+        montarNotasCriterios(
+            jogadorPreparado,
+            score
+        );
+
+    const resultadoMotor =
+        executarMotorEstatistico({
+
+            ...jogadorPreparado,
+
+            notas
+
+        });
+
+    const jogadorCalculado = {
+
+        ...jogadorPreparado,
+
+        historicoPontuacoes:
+            [...score.historicoPontuacoes],
+
+        quantidadeJogosHistorico:
+            score.quantidadeJogos,
+
+        mediaGeral:
+            score.mediaGeral,
+
+        mediaRecente:
+            score.mediaRecente,
+
+        media3:
+            score.media3,
+
+        media5:
+            score.media5,
+
+        media10:
+            score.media10,
+
+        mediana:
+            score.mediana,
+
+        piso:
+            score.piso,
+
+        teto:
+            score.teto,
+
+        regularidade:
+            score.regularidade,
+
+        tendencia:
+            score.tendencia,
+
+        tendenciaValor:
+            score.tendencia.valor,
+
+        tendenciaNota:
+            score.tendencia.nota,
+
+        tendenciaClassificacao:
+            score.tendencia
+                .classificacao,
+
+        desvioPadrao:
+            score.desvioPadrao,
+
+        amplitude:
+            score.amplitude,
+
+        frequenciaNegativa:
+            score.frequenciaNegativa,
+
+        frequenciaAcimaMedia:
+            score.frequenciaAcimaMedia,
+
+        risco:
+            score.risco,
+
+        classificacaoRisco:
+            score.classificacaoRisco,
+
+        confianca:
+            score.confianca,
+
+        classificacaoConfianca:
+            score.classificacaoConfianca,
+
+        nota:
+            resultadoMotor.notaFinal,
+
+        notaFinal:
+            resultadoMotor.notaFinal,
+
+        score:
+            resultadoMotor.notaFinal,
+
+        classificacao:
+            resultadoMotor.classificacao,
+
+        notas,
+
+        pesosAplicados:
+            resultadoMotor
+                .pesosAplicados,
+
+        contribuicoes:
+            resultadoMotor
+                .contribuicoes,
+
+        explicacaoEstatistica:
+            resultadoMotor.explicacao,
+
+        estatisticas: {
+
+            quantidadeJogos:
+                score.quantidadeJogos,
+
+            mediaGeral:
+                score.mediaGeral,
+
+            mediaRecente:
+                score.mediaRecente,
+
+            media3:
+                score.media3,
+
+            media5:
+                score.media5,
+
+            media10:
+                score.media10,
+
+            mediana:
+                score.mediana,
+
+            piso:
+                score.piso,
+
+            teto:
+                score.teto,
+
+            regularidade:
+                score.regularidade,
+
+            tendencia:
+                score.tendencia,
+
+            desvioPadrao:
+                score.desvioPadrao,
+
+            amplitude:
+                score.amplitude,
+
+            frequenciaNegativa:
+                score.frequenciaNegativa,
+
+            frequenciaAcimaMedia:
+                score.frequenciaAcimaMedia,
+
+            risco:
+                score.risco,
+
+            classificacaoRisco:
+                score.classificacaoRisco,
+
+            confianca:
+                score.confianca,
+
+            classificacaoConfianca:
+                score.classificacaoConfianca,
+
+            nota:
+                resultadoMotor.notaFinal,
+
+            classificacao:
+                resultadoMotor.classificacao
+
+        }
+
+    };
+
+    const resultadoProjecao =
+        aplicarMotorProjecao(
+            jogadorCalculado
+        );
+
+    if (
+        resultadoProjecao &&
+        typeof resultadoProjecao ===
+        "object"
+    ) {
+
+        Object.assign(
+            jogadorCalculado,
+            resultadoProjecao
+        );
+
+        jogadorCalculado.estatisticas = {
+
+            ...jogadorCalculado
+                .estatisticas,
+
+            projecao:
+                numeroEstatistico(
+
+                    resultadoProjecao
+                        .projecao ??
+                    resultadoProjecao
+                        .pontuacaoProjetada ??
+                    jogadorCalculado
+                        .projecao
+
+                ),
+
+            risco:
+                numeroEstatistico(
+
+                    resultadoProjecao
+                        .risco ??
+                    jogadorCalculado
+                        .risco
+
+                ),
+
+            confianca:
+                numeroEstatistico(
+
+                    resultadoProjecao
+                        .confianca ??
+                    jogadorCalculado
+                        .confianca
+
+                )
+
+        };
+
+    }
+
+    return jogadorCalculado;
+
+}
+
+
+/* =========================================================
+   41. ANÁLISE DE LISTA DE JOGADORES
+   ========================================================= */
+
+function analisarListaJogadoresEstatisticamente(
+    jogadores
+) {
+
+    if (!Array.isArray(jogadores)) {
+        return [];
+    }
+
+    return jogadores
+        .filter(
+            (jogador) =>
+                jogador &&
+                typeof jogador ===
+                "object"
+        )
+        .map(
+            analisarJogadorEstatisticamente
+        );
+
+}
+
+
+/* =========================================================
+   42. COMPARAÇÃO ENTRE DOIS RESULTADOS
    ========================================================= */
 
 function compararResultadosEstatisticos(
-  resultadoA,
-  resultadoB
+    resultadoA,
+    resultadoB
 ) {
-  const notaA =
-    numeroSeguro(
-      resultadoA?.notaFinal
-    );
 
-  const notaB =
-    numeroSeguro(
-      resultadoB?.notaFinal
-    );
+    const notaA =
+        numeroEstatistico(
+            resultadoA?.notaFinal ??
+            resultadoA?.nota ??
+            resultadoA?.score
+        );
 
-  const diferenca =
-    notaA - notaB;
+    const notaB =
+        numeroEstatistico(
+            resultadoB?.notaFinal ??
+            resultadoB?.nota ??
+            resultadoB?.score
+        );
 
-  let vencedor = "empate";
+    const diferenca =
+        notaA - notaB;
 
-  if (diferenca > 0) {
-    vencedor = "A";
-  } else if (diferenca < 0) {
-    vencedor = "B";
-  }
+    let vencedor =
+        "empate";
 
-  return {
-    vencedor,
-    notaA,
-    notaB,
-    diferenca:
-      Math.abs(diferenca)
-  };
+    if (diferenca > 0) {
+
+        vencedor = "A";
+
+    }
+    else if (
+        diferenca < 0
+    ) {
+
+        vencedor = "B";
+
+    }
+
+    return {
+
+        vencedor,
+        notaA,
+        notaB,
+
+        diferenca:
+            Math.abs(
+                diferenca
+            )
+
+    };
+
 }
 
 
 /* =========================================================
-   30. COMPARAÇÃO DETALHADA DOS CRITÉRIOS
+   43. COMPARAÇÃO DETALHADA DOS CRITÉRIOS
    ========================================================= */
 
 function compararContribuicoes(
-  resultadoA,
-  resultadoB
+    resultadoA,
+    resultadoB
 ) {
-  const contribuicoesA =
-    resultadoA?.contribuicoes ||
-    {};
 
-  const contribuicoesB =
-    resultadoB?.contribuicoes ||
-    {};
+    const contribuicoesA =
+        resultadoA?.contribuicoes ||
+        {};
 
-  const criterios =
-    new Set([
-      ...Object.keys(
-        contribuicoesA
-      ),
+    const contribuicoesB =
+        resultadoB?.contribuicoes ||
+        {};
 
-      ...Object.keys(
-        contribuicoesB
-      )
-    ]);
+    const criterios =
+        new Set([
 
-  return [...criterios]
-    .map(
-      (criterio) => {
-        const itemA =
-          contribuicoesA[
-            criterio
-          ] || {};
-
-        const itemB =
-          contribuicoesB[
-            criterio
-          ] || {};
-
-        const contribuicaoA =
-          numeroSeguro(
-            itemA.contribuicao
-          );
-
-        const contribuicaoB =
-          numeroSeguro(
-            itemB.contribuicao
-          );
-
-        return {
-          criterio,
-
-          nome:
-            itemA.nome ||
-            itemB.nome ||
-            NOMES_CRITERIOS[
-              criterio
-            ] ||
-            criterio,
-
-          notaA:
-            numeroSeguro(
-              itemA.nota
+            ...Object.keys(
+                contribuicoesA
             ),
 
-          notaB:
-            numeroSeguro(
-              itemB.nota
-            ),
+            ...Object.keys(
+                contribuicoesB
+            )
 
-          pesoA:
-            numeroSeguro(
-              itemA.peso
-            ),
+        ]);
 
-          pesoB:
-            numeroSeguro(
-              itemB.peso
-            ),
+    return [
+        ...criterios
+    ]
+        .map(
+            (criterio) => {
 
-          contribuicaoA,
+                const itemA =
+                    contribuicoesA[
+                        criterio
+                    ] ||
+                    {};
 
-          contribuicaoB,
+                const itemB =
+                    contribuicoesB[
+                        criterio
+                    ] ||
+                    {};
 
-          diferenca:
-            contribuicaoA -
-            contribuicaoB,
+                const contribuicaoA =
+                    numeroEstatistico(
+                        itemA.contribuicao
+                    );
 
-          vencedor:
-            contribuicaoA >
-            contribuicaoB
-              ? "A"
-              : contribuicaoB >
-                contribuicaoA
-                ? "B"
-                : "empate"
-        };
-      }
-    )
-    .sort(
-      (itemA, itemB) =>
-        Math.abs(
-          itemB.diferenca
-        ) -
-        Math.abs(
-          itemA.diferenca
+                const contribuicaoB =
+                    numeroEstatistico(
+                        itemB.contribuicao
+                    );
+
+                return {
+
+                    criterio,
+
+                    nome:
+                        itemA.nome ||
+                        itemB.nome ||
+                        NOMES_CRITERIOS[
+                            criterio
+                        ] ||
+                        criterio,
+
+                    notaA:
+                        numeroEstatistico(
+                            itemA.nota
+                        ),
+
+                    notaB:
+                        numeroEstatistico(
+                            itemB.nota
+                        ),
+
+                    pesoA:
+                        numeroEstatistico(
+                            itemA.peso
+                        ),
+
+                    pesoB:
+                        numeroEstatistico(
+                            itemB.peso
+                        ),
+
+                    contribuicaoA,
+
+                    contribuicaoB,
+
+                    diferenca:
+                        contribuicaoA -
+                        contribuicaoB,
+
+                    vencedor:
+                        contribuicaoA >
+                        contribuicaoB
+                            ? "A"
+                            : contribuicaoB >
+                                contribuicaoA
+                                ? "B"
+                                : "empate"
+
+                };
+
+            }
         )
-    );
+        .sort(
+            (
+                itemA,
+                itemB
+            ) =>
+
+                Math.abs(
+                    itemB.diferenca
+                ) -
+
+                Math.abs(
+                    itemA.diferenca
+                )
+
+        );
+
 }
 
 
 /* =========================================================
-   31. EXPLICAÇÃO DE POR QUE UM FICOU À FRENTE
+   44. EXPLICAÇÃO DA DIFERENÇA
    ========================================================= */
 
 function explicarDiferencaResultados(
-  resultadoA,
-  resultadoB,
-  quantidade = 3
+    resultadoA,
+    resultadoB,
+    quantidade = 3
 ) {
-  const comparacaoGeral =
-    compararResultadosEstatisticos(
-      resultadoA,
-      resultadoB
-    );
 
-  const criterios =
-    compararContribuicoes(
-      resultadoA,
-      resultadoB
-    );
+    const comparacaoGeral =
+        compararResultadosEstatisticos(
+            resultadoA,
+            resultadoB
+        );
 
-  const favoraveisA =
-    criterios
-      .filter(
-        (item) =>
-          item.diferenca > 0
-      )
-      .slice(
-        0,
-        quantidade
-      );
+    const criterios =
+        compararContribuicoes(
+            resultadoA,
+            resultadoB
+        );
 
-  const favoraveisB =
-    criterios
-      .filter(
-        (item) =>
-          item.diferenca < 0
-      )
-      .slice(
-        0,
-        quantidade
-      );
+    const favoraveisA =
+        criterios
+            .filter(
+                (item) =>
+                    item.diferenca > 0
+            )
+            .slice(
+                0,
+                quantidade
+            );
 
-  return {
-    vencedor:
-      comparacaoGeral.vencedor,
+    const favoraveisB =
+        criterios
+            .filter(
+                (item) =>
+                    item.diferenca < 0
+            )
+            .slice(
+                0,
+                quantidade
+            );
 
-    diferencaFinal:
-      comparacaoGeral.diferenca,
+    return {
 
-    criteriosFavoraveisA:
-      favoraveisA,
+        vencedor:
+            comparacaoGeral.vencedor,
 
-    criteriosFavoraveisB:
-      favoraveisB,
+        diferencaFinal:
+            comparacaoGeral.diferenca,
 
-    resumo:
-      criarResumoComparacao(
-        comparacaoGeral,
-        favoraveisA,
-        favoraveisB
-      )
-  };
+        criteriosFavoraveisA:
+            favoraveisA,
+
+        criteriosFavoraveisB:
+            favoraveisB,
+
+        resumo:
+            criarResumoComparacao(
+                comparacaoGeral,
+                favoraveisA,
+                favoraveisB
+            )
+
+    };
+
 }
 
 
 /* =========================================================
-   32. RESUMO TEXTUAL DA COMPARAÇÃO
+   45. RESUMO TEXTUAL DA COMPARAÇÃO
    ========================================================= */
 
 function criarResumoComparacao(
-  comparacao,
-  favoraveisA,
-  favoraveisB
+    comparacao,
+    favoraveisA,
+    favoraveisB
 ) {
-  if (
-    comparacao.vencedor ===
-    "empate"
-  ) {
+
+    if (
+        comparacao.vencedor ===
+        "empate"
+    ) {
+
+        return (
+            "Os dois jogadores possuem " +
+            "a mesma nota final."
+        );
+
+    }
+
+    const vencedor =
+        comparacao.vencedor;
+
+    const principais =
+        vencedor === "A"
+            ? favoraveisA
+            : favoraveisB;
+
+    const nomes =
+        principais
+            .map(
+                (item) =>
+                    item.nome
+            )
+            .join(", ");
+
     return (
-      "Os dois jogadores possuem " +
-      "a mesma nota final."
+
+        `O jogador ${vencedor} ficou ` +
+        `à frente por ` +
+        `${formatarNumeroEstatistico(
+            comparacao.diferenca,
+            1
+        )} ponto(s).` +
+
+        (
+            nomes
+                ? ` Os critérios que mais ` +
+                  `contribuíram foram: ${nomes}.`
+                : ""
+        )
+
     );
-  }
 
-  const vencedor =
-    comparacao.vencedor;
-
-  const principais =
-    vencedor === "A"
-      ? favoraveisA
-      : favoraveisB;
-
-  const nomes =
-    principais
-      .map(
-        (item) => item.nome
-      )
-      .join(", ");
-
-  return (
-    `O jogador ${vencedor} ficou ` +
-    `à frente por ` +
-    `${comparacao.diferenca.toFixed(
-      1
-    )} ponto(s).` +
-    (
-      nomes
-        ? ` Os critérios que mais ` +
-          `contribuíram foram: ${nomes}.`
-        : ""
-    )
-  );
 }
 
 
 /* =========================================================
-   33. RESUMO DO MOTOR
+   46. RESUMO DO MOTOR
    ========================================================= */
 
 function obterResumoMotorEstatistico(
-  codigoPosicao = "GOL"
+    codigoPosicao = "GOL"
 ) {
-  const validacao =
-    validarPesosEstatisticos(
-      codigoPosicao
-    );
 
-  return {
-    nome:
-      MOTOR_ESTATISTICO.nome,
+    const validacao =
+        validarPesosEstatisticos(
+            codigoPosicao
+        );
 
-    nomeEspecializado:
-      obterNomeDoMotor(
-        codigoPosicao
-      ),
+    return {
 
-    versao:
-      MOTOR_ESTATISTICO.versao,
+        nome:
+            MOTOR_ESTATISTICO.nome,
 
-    status:
-      MOTOR_ESTATISTICO.status,
+        nomeEspecializado:
+            obterNomeDoMotor(
+                codigoPosicao
+            ),
 
-    quantidadeCriterios:
-      MOTOR_ESTATISTICO
-        .quantidadeCriterios,
+        versao:
+            MOTOR_ESTATISTICO.versao,
 
-    posicao:
-      codigoPosicao,
+        status:
+            MOTOR_ESTATISTICO.status,
 
-    totalPesos:
-      validacao.total,
+        quantidadeCriterios:
+            MOTOR_ESTATISTICO
+                .quantidadeCriterios,
 
-    pesosValidos:
-      validacao.valido,
+        posicao:
+            codigoPosicao,
 
-    criterios:
-      Object.entries(
-        validacao.pesos
-      ).map(
-        ([criterio, peso]) => ({
-          id: criterio,
+        totalPesos:
+            validacao.total,
 
-          nome:
-            NOMES_CRITERIOS[
-              criterio
-            ] || criterio,
+        pesosValidos:
+            validacao.valido,
 
-          peso
-        })
-      )
-  };
+        criterios:
+            Object.entries(
+                validacao.pesos
+            )
+                .map(
+                    (
+                        [
+                            criterio,
+                            peso
+                        ]
+                    ) => ({
+
+                        id:
+                            criterio,
+
+                        nome:
+                            NOMES_CRITERIOS[
+                                criterio
+                            ] ||
+                            criterio,
+
+                        peso
+
+                    })
+                )
+
+    };
+
 }
 
 
 /* =========================================================
-   34. VALIDAÇÃO AUTOMÁTICA DOS PERFIS
+   47. VALIDAÇÃO DOS PERFIS
    ========================================================= */
 
 function validarMotoresPorPosicao() {
-  const posicoes = [
-    "GOL",
-    "LAT",
-    "ZAG",
-    "MEI",
-    "ATA",
-    "TEC"
-  ];
 
-  return posicoes.map(
-    (posicao) =>
-      validarPesosEstatisticos(
-        posicao
-      )
-  );
+    const posicoes = [
+
+        "GOL",
+        "LAT",
+        "ZAG",
+        "MEI",
+        "ATA",
+        "TEC"
+
+    ];
+
+    return posicoes.map(
+        (posicao) =>
+            validarPesosEstatisticos(
+                posicao
+            )
+    );
+
 }
 
 
+/* =========================================================
+   48. INTERFACE PÚBLICA DA CALCULADORA
+   ========================================================= */
+
+const CalculadoraEstatistica = {
+
+    analisarJogador(
+        jogador
+    ) {
+
+        return analisarJogadorEstatisticamente(
+            jogador
+        );
+
+    },
+
+    analisarListaJogadores(
+        jogadores
+    ) {
+
+        return analisarListaJogadoresEstatisticamente(
+            jogadores
+        );
+
+    },
+
+    calcularScore(
+        jogador
+    ) {
+
+        return calcularScoreEstatistico(
+            jogador
+        );
+
+    },
+
+    extrairHistoricoPontuacoes(
+        jogador
+    ) {
+
+        return extrairHistoricoPontuacoes(
+            jogador
+        );
+
+    },
+
+    calcularMedia(
+        valores
+    ) {
+
+        return calcularMedia(
+            valores
+        );
+
+    },
+
+    calcularMediana(
+        valores
+    ) {
+
+        return calcularMediana(
+            valores
+        );
+
+    },
+
+    calcularPiso(
+        valores
+    ) {
+
+        return calcularPiso(
+            valores
+        );
+
+    },
+
+    calcularTeto(
+        valores
+    ) {
+
+        return calcularTeto(
+            valores
+        );
+
+    },
+
+    calcularRegularidade(
+        valores
+    ) {
+
+        return calcularRegularidade(
+            valores
+        );
+
+    },
+
+    calcularTendencia(
+        valores
+    ) {
+
+        return calcularTendencia(
+            valores
+        );
+
+    },
+
+    executarMotor(
+        dadosAnalise
+    ) {
+
+        return executarMotorEstatistico(
+            dadosAnalise
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   49. VALIDAÇÃO AUTOMÁTICA
+   ========================================================= */
+
 const VALIDACAO_MOTORES =
-  validarMotoresPorPosicao();
+    validarMotoresPorPosicao();
 
 
 console.info(
-  "Motor Estatístico carregado:",
-  {
-    motor:
-      MOTOR_ESTATISTICO,
+    "Motor Estatístico carregado:",
+    {
 
-    validacoes:
-      VALIDACAO_MOTORES
-  }
+        motor:
+            MOTOR_ESTATISTICO,
+
+        validacoes:
+            VALIDACAO_MOTORES
+
+    }
 );
