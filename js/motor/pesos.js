@@ -308,10 +308,16 @@ function validarPerfilDePesos(
       codigoPosicao
     );
 
-  const total =
-    somarPesosDoPerfil(
-      pesos
-    );
+   const pesosValidacao = { ...pesos };
+   
+   delete pesosValidacao.media3;
+   delete pesosValidacao.media5;
+   delete pesosValidacao.media10;
+   
+   const total =
+       somarPesosDoPerfil(
+           pesosValidacao
+       );
 
   const valido =
     total === 100;
