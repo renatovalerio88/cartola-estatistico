@@ -53,25 +53,50 @@ def salvar_json(
 
 
 # ======================================================
-# FUNÇÕES ESTATÍSTICAS
+# COMPONENTES ESTATÍSTICOS
 # ======================================================
 
 
 def media(valores):
 
     if not valores:
+
         return 0
+
 
     return sum(valores) / len(valores)
 
 
 
-def media_ultimos(
-    valores,
-    quantidade
-):
+def ultimos(valores, quantidade):
 
-    valores = valores[-quantidade:]
+    return valores[-quantidade:]
+
+
+
+def calcular_media3(valores):
+
+    return media(
+        ultimos(
+            valores,
+            3
+        )
+    )
+
+
+
+def calcular_media5(valores):
+
+    return media(
+        ultimos(
+            valores,
+            5
+        )
+    )
+
+
+
+def calcular_media_geral(valores):
 
     return media(
         valores
@@ -79,55 +104,68 @@ def media_ultimos(
 
 
 
-def tendencia(
-    valores
-):
+def calcular_tendencia(valores):
 
     if len(valores) < 2:
 
         return 0
 
 
-    ultima = valores[-1]
-
-    anterior = valores[-2]
-
-
-    return ultima - anterior
+    return valores[-1] - valores[-2]
 
 
 
-def regularidade(
-    valores
-):
+def calcular_piso(valores):
+
+    if not valores:
+
+        return 0
+
+
+    return min(
+        valores
+    )
+
+
+
+def calcular_teto(valores):
+
+    if not valores:
+
+        return 0
+
+
+    return max(
+        valores
+    )
+
+
+
+def calcular_regularidade(valores):
 
     if len(valores) < 2:
 
         return 0
 
 
-    try:
-
-        desvio = statistics.pstdev(
-            valores
-        )
+    desvio = statistics.pstdev(
+        valores
+    )
 
 
-        return max(
-            0,
-            10 - desvio
-        )
-
-
-    except:
-
-        return 0
+    return max(
+        0,
+        10 - desvio
+    )
 
 
 
-def calcular_projecao(
-    historico
-):
+# ======================================================
+# MOTOR DE PROJEÇÃO BACKTEST
+# ======================================================
+
+
+def projetar(historico):
 
 
     pontos = [
@@ -148,22 +186,59 @@ def calcular_projecao(
 
     if not pontos:
 
-        return 0
+        return {
+
+            "projecao": 0,
+
+            "media3": 0,
+
+            "media5": 0,
+
+            "mediaGeral": 0,
+
+            "piso": 0,
+
+            "teto": 0,
+
+            "regularidade": 0,
+
+            "tendencia": 0
+
+        }
 
 
 
-    media_recente = media_ultimos(
-        pontos,
-        3
-    )
-
-
-    media_geral = media(
+    media3 = calcular_media3(
         pontos
     )
 
 
-    ajuste_tendencia = tendencia(
+    media5 = calcular_media5(
+        pontos
+    )
+
+
+    mediaGeral = calcular_media_geral(
+        pontos
+    )
+
+
+    piso = calcular_piso(
+        pontos
+    )
+
+
+    teto = calcular_teto(
+        pontos
+    )
+
+
+    regularidade = calcular_regularidade(
+        pontos
+    )
+
+
+    tendencia = calcular_tendencia(
         pontos
     )
 
@@ -171,23 +246,79 @@ def calcular_projecao(
 
     projecao = (
 
-        media_recente * 0.50
+        media3 * 0.30
 
         +
 
-        media_geral * 0.30
+        media5 * 0.25
 
         +
 
-        ajuste_tendencia * 0.20
+        mediaGeral * 0.20
+
+        +
+
+        tendencia * 0.15
+
+        +
+
+        regularidade * 0.10
 
     )
 
 
-    return round(
-        projecao,
-        2
-    )
+
+    return {
+
+        "projecao":
+            round(
+                projecao,
+                2
+            ),
+
+        "media3":
+            round(
+                media3,
+                2
+            ),
+
+        "media5":
+            round(
+                media5,
+                2
+            ),
+
+        "mediaGeral":
+            round(
+                mediaGeral,
+                2
+            ),
+
+        "piso":
+            round(
+                piso,
+                2
+            ),
+
+        "teto":
+            round(
+                teto,
+                2
+            ),
+
+        "regularidade":
+            round(
+                regularidade,
+                2
+            ),
+
+        "tendencia":
+            round(
+                tendencia,
+                2
+            )
+
+    }
 
 
 
@@ -201,9 +332,11 @@ rodadas = {}
 
 
 arquivos = sorted(
+
     PASTA_BASE.glob(
         "*.json"
     )
+
 )
 
 
@@ -247,16 +380,17 @@ for arquivo in arquivos:
         treino = historico[:indice]
 
 
-        rodada_real = historico[indice]
+        resultado_real = historico[indice]
 
 
 
-        projecao = calcular_projecao(
+        dados_projecao = projetar(
             treino
         )
 
 
-        real = rodada_real.get(
+
+        real = resultado_real.get(
             "pontos"
         )
 
@@ -269,14 +403,16 @@ for arquivo in arquivos:
 
         erro = abs(
 
-            real - projecao
+            real -
+            dados_projecao["projecao"]
 
         )
 
 
-        rodada = rodada_real[
+
+        rodada = resultado_real.get(
             "rodada"
-        ]
+        )
 
 
 
@@ -304,7 +440,7 @@ for arquivo in arquivos:
                 ),
 
             "projecao":
-                projecao,
+                dados_projecao["projecao"],
 
             "real":
                 real,
@@ -313,14 +449,36 @@ for arquivo in arquivos:
                 round(
                     erro,
                     2
-                )
+                ),
+
+
+            "media3":
+                dados_projecao["media3"],
+
+            "media5":
+                dados_projecao["media5"],
+
+            "mediaGeral":
+                dados_projecao["mediaGeral"],
+
+            "piso":
+                dados_projecao["piso"],
+
+            "teto":
+                dados_projecao["teto"],
+
+            "regularidade":
+                dados_projecao["regularidade"],
+
+            "tendencia":
+                dados_projecao["tendencia"]
 
         })
 
 
 
 # ======================================================
-# SALVAR RESULTADOS
+# GERAR ARQUIVOS
 # ======================================================
 
 
@@ -337,7 +495,6 @@ for rodada, jogadores in rodadas.items():
     )
 
 
-
     erros = [
 
         jogador["erro"]
@@ -345,40 +502,6 @@ for rodada, jogadores in rodadas.items():
         for jogador in jogadores
 
     ]
-
-
-
-    erro_medio = round(
-
-        sum(erros)
-        /
-        len(erros),
-
-        2
-
-    )
-
-
-
-    acertos = len([
-
-        erro
-
-        for erro in erros
-
-        if erro <= 3
-
-    ])
-
-
-
-    taxa_acerto = round(
-
-        acertos * 100 / len(erros),
-
-        2
-
-    )
 
 
 
@@ -394,13 +517,37 @@ for rodada, jogadores in rodadas.items():
                 rodada,
 
             "erroMedio":
-                erro_medio,
+                round(
+                    media(erros),
+                    2
+                ),
 
             "taxaAcerto":
-                taxa_acerto,
+
+                round(
+
+                    len(
+                        [
+                            erro
+                            for erro in erros
+                            if erro <= 3
+                        ]
+                    )
+                    *
+                    100
+                    /
+                    len(erros),
+
+                    2
+
+                )
+                if erros
+                else 0,
+
 
             "quantidade":
                 len(jogadores),
+
 
             "jogadores":
                 jogadores
