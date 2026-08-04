@@ -6,8 +6,6 @@
 
 /* =========================================================
    1. PESOS BASE
-   Usados como referência e fallback.
-   A soma deve ser igual a 100.
    ========================================================= */
 
 const PESOS_BASE = {
@@ -34,7 +32,6 @@ const PESOS_BASE = {
 
 /* =========================================================
    2. PESOS DOS GOLEIROS
-   Prioriza SG, defesas, regularidade e confronto.
    ========================================================= */
 
 const PESOS_GOLEIROS = {
@@ -61,7 +58,6 @@ const PESOS_GOLEIROS = {
 
 /* =========================================================
    3. PESOS DOS LATERAIS
-   Equilibra desarmes, apoio ofensivo e SG.
    ========================================================= */
 
 const PESOS_LATERAIS = {
@@ -88,7 +84,6 @@ const PESOS_LATERAIS = {
 
 /* =========================================================
    4. PESOS DOS ZAGUEIROS
-   Prioriza SG, desarmes e estabilidade.
    ========================================================= */
 
 const PESOS_ZAGUEIROS = {
@@ -115,7 +110,6 @@ const PESOS_ZAGUEIROS = {
 
 /* =========================================================
    5. PESOS DOS MEIAS
-   Prioriza criação, finalizações e pontuação básica.
    ========================================================= */
 
 const PESOS_MEIAS = {
@@ -142,7 +136,6 @@ const PESOS_MEIAS = {
 
 /* =========================================================
    6. PESOS DOS ATACANTES
-   Prioriza scouts ofensivos, teto e confronto.
    ========================================================= */
 
 const PESOS_ATACANTES = {
@@ -169,7 +162,6 @@ const PESOS_ATACANTES = {
 
 /* =========================================================
    7. PESOS DOS TREINADORES
-   Prioriza favoritismo, defesa e chance de vitória.
    ========================================================= */
 
 const PESOS_TREINADORES = {
@@ -195,7 +187,7 @@ const PESOS_TREINADORES = {
 
 
 /* =========================================================
-   8. MAPA DE PESOS POR POSIÇÃO
+   8. MAPA DE PESOS
    ========================================================= */
 
 const PESOS_POR_POSICAO = {
@@ -211,7 +203,7 @@ let PESOS_DINAMICOS = {};
 
 
 /* =========================================================
-   9. NOMES DOS PERFIS
+   9. NOMES DOS MOTORES
    ========================================================= */
 
 const NOMES_MOTORES_POSICAO = {
@@ -231,240 +223,63 @@ const NOMES_MOTORES_POSICAO = {
 function obterPesosPorPosicao(
   codigoPosicao
 ) {
+
   const codigo =
-    String(
-      codigoPosicao || ""
-    )
+    String(codigoPosicao || "")
       .toUpperCase()
       .trim();
+
 
   const pesos =
     PESOS_POR_POSICAO[codigo];
 
+
   if (!pesos) {
+
     return {
       ...PESOS_BASE
     };
+
   }
 
-return {
+
+  const pesosFinais = {
+
     ...pesos,
+
     ...(PESOS_DINAMICOS[codigo] || {})
-};
-}
 
-
-/* =========================================================
-   11. NOME DO MOTOR DA POSIÇÃO
-   ========================================================= */
-
-function obterNomeMotorPosicao(
-  codigoPosicao
-) {
-  const codigo =
-    String(
-      codigoPosicao || ""
-    )
-      .toUpperCase()
-      .trim();
-
-  return (
-    NOMES_MOTORES_POSICAO[codigo] ||
-    "Motor Estatístico Geral"
-  );
-}
-
-
-/* =========================================================
-   12. SOMA DOS PESOS
-   ========================================================= */
-
-function somarPesosDoPerfil(
-  pesos
-) {
-  if (!ehObjetoValido(pesos)) {
-    return 0;
-  }
-
-  return Object.values(pesos)
-    .reduce(
-      (total, peso) =>
-        total +
-        numeroSeguro(peso),
-      0
-    );
-}
-
-
-/* =========================================================
-   13. VALIDAÇÃO DE UM PERFIL
-   ========================================================= */
-
-function validarPerfilDePesos(
-  codigoPosicao
-) {
-  const pesos =
-    obterPesosPorPosicao(
-      codigoPosicao
-    );
-
-   const pesosValidacao = { ...pesos };
-   
-   delete pesosValidacao.media3;
-   delete pesosValidacao.media5;
-   delete pesosValidacao.media10;
-   
-   const total =
-       somarPesosDoPerfil(
-           pesosValidacao
-       );
-
-  const valido =
-    total === 100;
-
-  if (!valido) {
-    console.error(
-      `Erro nos pesos de ${codigoPosicao}: ` +
-      `o total é ${total}, mas deveria ser 100.`
-    );
-  }
-
-  return {
-    codigoPosicao,
-    nomeMotor:
-      obterNomeMotorPosicao(
-        codigoPosicao
-      ),
-    total,
-    esperado: 100,
-    valido
   };
-}
 
 
-/* =========================================================
-   14. VALIDAÇÃO DE TODOS OS PERFIS
-   ========================================================= */
-
-function validarTodosOsPerfisDePesos() {
-  return Object.keys(
-    PESOS_POR_POSICAO
-  ).map(
-    validarPerfilDePesos
-  );
-}
+  const total =
+    Object.values(pesosFinais)
+      .reduce(
+        (soma, valor) =>
+          soma + Number(valor || 0),
+        0
+      );
 
 
-/* =========================================================
-   15. CRITÉRIOS MAIS IMPORTANTES
-   ========================================================= */
+  if (total > 0 && total !== 100) {
 
-function obterMaioresPesosDaPosicao(
-  codigoPosicao,
-  quantidade = 5
-) {
-  const pesos =
-    obterPesosPorPosicao(
-      codigoPosicao
-    );
+    Object.keys(pesosFinais)
+      .forEach(chave => {
 
-  return Object.entries(pesos)
-    .map(
-      ([criterio, peso]) => ({
-        criterio,
-        nome:
-          typeof NOMES_CRITERIOS !==
-          "undefined"
-            ? (
-                NOMES_CRITERIOS[
-                  criterio
-                ] || criterio
-              )
-            : criterio,
-        peso
-      })
-    )
-    .sort(
-      (itemA, itemB) =>
-        itemB.peso -
-        itemA.peso
-    )
-    .slice(
-      0,
-      quantidade
-    );
-}
+        pesosFinais[chave] =
+          Number(
+            (
+              pesosFinais[chave] *
+              100 /
+              total
+            ).toFixed(2)
+          );
+
+      });
+
+  }
 
 
-/* =========================================================
-   16. RELATÓRIO DOS PESOS
-   ========================================================= */
-
-function obterRelatorioPesos() {
-  return Object.keys(
-    PESOS_POR_POSICAO
-  ).map(
-    (codigoPosicao) => ({
-      codigoPosicao,
-
-      nomeMotor:
-        obterNomeMotorPosicao(
-          codigoPosicao
-        ),
-
-      validacao:
-        validarPerfilDePesos(
-          codigoPosicao
-        ),
-
-      maioresPesos:
-        obterMaioresPesosDaPosicao(
-          codigoPosicao,
-          5
-        ),
-
-      pesos:
-        obterPesosPorPosicao(
-          codigoPosicao
-        )
-    })
-  );
-}
-
-async function carregarPesosDinamicos() {
-
-    try {
-
-        const resposta = await fetch(
-            "data/pesos.json",
-            {
-                cache: "no-store"
-            }
-        );
-
-        if (!resposta.ok) {
-            return;
-        }
-
-        PESOS_DINAMICOS =
-            await resposta.json();
-
-    } catch {
-
-        PESOS_DINAMICOS = {};
-
-    }
+  return pesosFinais;
 
 }
-
-/* =========================================================
-   17. VALIDAÇÃO AUTOMÁTICA
-   ========================================================= */
-
-const VALIDACAO_PESOS_POSICAO =
-  validarTodosOsPerfisDePesos();
-
-console.info(
-  "Pesos por posição carregados:",
-  obterRelatorioPesos()
-);
