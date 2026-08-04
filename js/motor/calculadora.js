@@ -1139,15 +1139,27 @@ const CalculadoraEstatistica = (() => {
               jogadorCompleto.mediaRecente
       };
       
-      jogadorCompleto.projecao =
+      const resultadoProjecao =
           MotorProjecao.calcular(
               dadosProjecao
           );
-
-      jogadorCompleto.projecao =
-        MotorProjecao.calcular(
-          dadosProjecao
-        );
+      
+      if (
+          resultadoProjecao &&
+          typeof resultadoProjecao === "object"
+      ) {
+      
+          Object.assign(
+              jogadorCompleto,
+              resultadoProjecao
+          );
+      
+      } else {
+      
+          jogadorCompleto.projecao =
+              Number(resultadoProjecao) || 0;
+      
+      }
     } else {
       jogadorCompleto.projecao =
         arredondar(
