@@ -39,7 +39,7 @@ const MotorEscalacao = (() => {
 
     }
 
-    function nota(jogador, perfil){
+    function nota(j,perfil){
 
         const p =
             PerfisEscalacao[perfil] ||
@@ -47,11 +47,27 @@ const MotorEscalacao = (() => {
 
         return (
 
-              numero(jogador.projecao)   * p.pesoProjecao
-            + numero(jogador.piso)       * p.pesoPiso
-            + numero(jogador.teto)       * p.pesoTeto
-            + numero(jogador.confianca)  * p.pesoConfianca
-            + numero(jogador.risco)      * p.pesoRisco
+              numero(j.projecao)  * p.pesoProjecao
+            + numero(j.piso)      * p.pesoPiso
+            + numero(j.teto)      * p.pesoTeto
+            + numero(j.confianca) * p.pesoConfianca
+            + numero(j.risco)     * p.pesoRisco
+
+        );
+
+    }
+
+    function scoreTime(time,perfil){
+
+        return time.reduce(
+
+            (s,j)=>
+
+                s +
+
+                nota(j,perfil),
+
+            0
 
         );
 
@@ -70,6 +86,7 @@ const MotorEscalacao = (() => {
     ){
 
         const esquema =
+
             FORMACOES[formacao];
 
         if(!esquema){
@@ -78,31 +95,39 @@ const MotorEscalacao = (() => {
 
         }
 
-        const titulares = [];
+        const titulares=[];
 
-        const clubes = {};
+        const clubes={};
 
-        let custo = 0;
+        let custo=0;
 
         for(const posicao of Object.keys(esquema)){
 
-            const quantidade =
+            const quantidade=
+
                 esquema[posicao];
 
-            const candidatos =
+            const candidatos=
 
                 jogadores
 
-                    .filter(
-                        j => j.posicao === posicao
-                    )
+                .filter(
 
-                    .sort(
-                        (a,b)=>
-                            nota(b,perfil)
-                            -
-                            nota(a,perfil)
-                    );
+                    j=>j.posicao===posicao
+
+                )
+
+                .sort(
+
+                    (a,b)=>
+
+                        nota(b,perfil)
+
+                        -
+
+                        nota(a,perfil)
+
+                );
 
             for(const jogador of candidatos){
 
@@ -112,7 +137,7 @@ const MotorEscalacao = (() => {
 
                         t=>t.posicao===posicao
 
-                    ).length >= quantidade
+                    ).length>=quantidade
 
                 ){
 
@@ -120,7 +145,7 @@ const MotorEscalacao = (() => {
 
                 }
 
-                const clube =
+                const clube=
 
                     jogador.siglaClube ||
 
@@ -130,7 +155,7 @@ const MotorEscalacao = (() => {
 
                 if(
 
-                    (clubes[clube] || 0) >= 3
+                    (clubes[clube]||0)>=3
 
                 ){
 
@@ -138,13 +163,13 @@ const MotorEscalacao = (() => {
 
                 }
 
-                const preco =
+                const preco=
 
                     numero(jogador.preco);
 
                 if(
 
-                    custo + preco >
+                    custo+preco>
 
                     patrimonio
 
@@ -156,15 +181,130 @@ const MotorEscalacao = (() => {
 
                 titulares.push(jogador);
 
-                clubes[clube] =
+                clubes[clube]=
 
-                    (clubes[clube] || 0) + 1;
+                    (clubes[clube]||0)+1;
 
-                custo += preco;
+                custo+=preco;
 
             }
 
         }
+
+        // Segunda passada:
+        // tenta melhorar a projeção
+
+        const atual=
+
+            scoreTime(
+
+                titulares,
+
+                perfil
+
+            );
+
+        jogadores.forEach(candidato=>{
+
+            titulares.forEach((titular,i)=>{
+
+                if(
+
+                    candidato.posicao!==titular.posicao
+
+                ){
+
+                    return;
+
+                }
+
+                if(
+
+                    nota(
+
+                        candidato,
+
+                        perfil
+
+                    )
+
+                    <=
+
+                    nota(
+
+                        titular,
+
+                        perfil
+
+                    )
+
+                ){
+
+                    return;
+
+                }
+
+                const novo=[
+
+                    ...titulares
+
+                ];
+
+                novo[i]=
+
+                    candidato;
+
+                const preco=
+
+                    novo.reduce(
+
+                        (s,j)=>
+
+                            s+
+
+                            numero(j.preco),
+
+                        0
+
+                    );
+
+                if(
+
+                    preco>
+
+                    patrimonio
+
+                ){
+
+                    return;
+
+                }
+
+                if(
+
+                    scoreTime(
+
+                        novo,
+
+                        perfil
+
+                    )
+
+                    >
+
+                    atual
+
+                ){
+
+                    titulares[i]=
+
+                        candidato;
+
+                }
+
+            });
+
+        });
 
         return titulares;
 
