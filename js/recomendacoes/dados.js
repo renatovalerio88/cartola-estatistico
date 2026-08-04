@@ -75,10 +75,17 @@ async function carregarJogadores() {
         // CALCULA AS MÉTRICAS
         // ============================================
 
-        const jogadoresCalculados =
-            CalculadoraEstatistica.analisarListaJogadores(
-                jogadoresValidos
-            );
+         await Historico.carregarIndice();
+         
+         const jogadoresComHistorico =
+             await Historico.montarHistoricoJogadores(
+                 jogadoresValidos
+             );
+         
+         const jogadoresCalculados =
+             CalculadoraEstatistica.analisarListaJogadores(
+                 jogadoresComHistorico
+             );
 
         estadoRecomendacoes.jogadores =
             jogadoresCalculados;
