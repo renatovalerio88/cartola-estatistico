@@ -10,7 +10,7 @@ const MotorRegularidade = (() => {
     function calcular(historico){
 
         const pontos = historico.map(
-            j => j.pontos || 0
+            j => j.pontuacao ?? j.pontos ?? 0
         );
 
         const media =
