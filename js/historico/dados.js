@@ -6,19 +6,34 @@ const Historico = (() => {
 
     async function carregarIndice() {
 
+        if (indice) {
+            return indice;
+        }
+
         try {
 
-            const resposta = await fetch("data/historico/indice.json");
+            const resposta = await fetch(
+                "data/api/status.json",
+                { cache: "no-store" }
+            );
 
-            indice = await resposta.json();
+            const status = await resposta.json();
+
+            indice = {
+                rodadaAtual: Number(status.rodada_atual || 1)
+            };
 
             return indice;
 
         } catch (e) {
 
-            console.error("Erro ao carregar histórico.", e);
+            console.error("Erro ao carregar status.", e);
 
-            return null;
+            indice = {
+                rodadaAtual: 1
+            };
+
+            return indice;
 
         }
 
@@ -33,8 +48,15 @@ const Historico = (() => {
         try {
 
             const resposta = await fetch(
-                `data/historico/rodada-${String(numeroRodada).padStart(2, "0")}/metricas.json`
+                `data/api/rodada-${String(numeroRodada).padStart(2, "0")}/jogadores.json`,
+                {
+                    cache: "no-store"
+                }
             );
+
+            if (!resposta.ok) {
+                return [];
+            }
 
             const json = await resposta.json();
 
@@ -44,9 +66,12 @@ const Historico = (() => {
 
         } catch (e) {
 
-            console.error("Erro ao carregar rodada.", e);
+            console.error(
+                `Erro ao carregar rodada ${numeroRodada}.`,
+                e
+            );
 
-            return null;
+            return [];
 
         }
 
@@ -54,37 +79,62 @@ const Historico = (() => {
 
     async function montarHistoricoJogadores(jogadores) {
 
-        if (!indice || !indice.rodadas) {
+        if (!Array.isArray(jogadores)) {
             return jogadores;
         }
 
+        const info = await carregarIndice();
+
         const historicoPorJogador = {};
 
-        for (const rodada of indice.rodadas) {
+        for (
+            let rodada = 1;
+            rodada <= info.rodadaAtual;
+            rodada++
+        ) {
 
-            const dadosRodada = await carregarRodada(rodada.numero);
+            const jogadoresRodada =
+                await carregarRodada(rodada);
 
-            if (!dadosRodada || !dadosRodada.jogadores) {
+            if (!Array.isArray(jogadoresRodada)) {
                 continue;
             }
 
-            for (const jogador of dadosRodada.jogadores) {
+            for (const atleta of jogadoresRodada) {
 
-                const id = jogador.id;
+                const id = Number(atleta.id);
+
+                if (!id) {
+                    continue;
+                }
 
                 if (!historicoPorJogador[id]) {
-
                     historicoPorJogador[id] = [];
-
                 }
 
                 historicoPorJogador[id].push({
 
-                    rodada: rodada.numero,
-                    pontuacao: Number(jogador.pontuacao || 0),
-                    scouts: jogador.scouts || {},
-                    preco: Number(jogador.preco || 0),
-                    media: Number(jogador.media || 0)
+                    rodada,
+
+                    pontuacao: Number(
+                        atleta.pontuacaoReal ??
+                        atleta.pontos ??
+                        atleta.pontuacao ??
+                        atleta.pontosUltimaRodada ??
+                        0
+                    ),
+
+                    preco: Number(
+                        atleta.preco ?? 0
+                    ),
+
+                    media: Number(
+                        atleta.media ??
+                        atleta.mediaGeral ??
+                        0
+                    ),
+
+                    scouts: atleta.scouts || {}
 
                 });
 
@@ -94,11 +144,22 @@ const Historico = (() => {
 
         for (const jogador of jogadores) {
 
-            const historico = historicoPorJogador[jogador.id] || [];
+            const historico =
+                historicoPorJogador[
+                    Number(jogador.id)
+                ] || [];
 
-            jogador.historico = historico;
+            historico.sort(
+                (a, b) => a.rodada - b.rodada
+            );
 
-            jogador.historicoPontuacoes = historico.map(item => item.pontuacao);
+            jogador.historico =
+                historico;
+
+            jogador.historicoPontuacoes =
+                historico.map(
+                    item => Number(item.pontuacao || 0)
+                );
 
         }
 
