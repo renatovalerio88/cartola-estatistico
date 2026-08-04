@@ -1,21 +1,15 @@
 from pathlib import Path
 import json
+import itertools
 
 
-PASTA_BASE = Path(
-    "data/base-historica"
+PASTA_HISTORICO = Path(
+    "data/historico"
 )
 
 ARQUIVO_SAIDA = Path(
-    "data/laboratorio/pesos.json"
+    "data/pesos.json"
 )
-
-
-ARQUIVO_SAIDA.parent.mkdir(
-    parents=True,
-    exist_ok=True
-)
-
 
 
 def carregar_json(caminho):
@@ -25,386 +19,269 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(
+        return json.load(arquivo)
+
+
+
+def calcular_erro(modelo):
+
+    erros = []
+
+
+    arquivos = sorted(
+        PASTA_HISTORICO.glob(
+            "rodada-*.json"
+        )
+    )
+
+
+    for arquivo in arquivos:
+
+        dados = carregar_json(
             arquivo
         )
 
 
+        for jogador in dados.get(
+            "jogadores",
+            []
+        ):
 
-# ======================================================
-# MODELOS DE PROJEÇÃO
-# ======================================================
+            valores = {
 
+                "media3":
+                    jogador.get(
+                        "media3",
+                        0
+                    ),
 
-def media_simples(pontos):
+                "media5":
+                    jogador.get(
+                        "media5",
+                        0
+                    ),
 
-    if not pontos:
-        return 0
+                "mediaGeral":
+                    jogador.get(
+                        "mediaGeral",
+                        0
+                    ),
 
-    return sum(pontos) / len(pontos)
+                "piso":
+                    jogador.get(
+                        "piso",
+                        0
+                    ),
 
+                "teto":
+                    jogador.get(
+                        "teto",
+                        0
+                    ),
 
+                "projecao":
+                    jogador.get(
+                        "projecao",
+                        0
+                    )
 
-def ultimas_3(pontos):
-
-    pontos = pontos[-3:]
-
-    if not pontos:
-        return 0
-
-    return sum(pontos) / len(pontos)
-
-
-
-def ultimas_5(pontos):
-
-    pontos = pontos[-5:]
-
-    if not pontos:
-        return 0
-
-    return sum(pontos) / len(pontos)
-
-
-
-def ponderada(pontos):
-
-    if not pontos:
-        return 0
-
-
-    total = 0
-    soma = 0
-
-
-    for indice, valor in enumerate(
-        pontos,
-        start=1
-    ):
-
-        soma += indice
-
-        total += (
-            valor * indice
-        )
+            }
 
 
-    return total / soma
+            previsao = 0
 
 
+            for componente, peso in modelo.items():
 
-MODELOS = {
-
-    "media_simples":
-        media_simples,
-
-    "ultimas_3":
-        ultimas_3,
-
-    "ultimas_5":
-        ultimas_5,
-
-    "ponderada":
-        ponderada
-
-}
+                previsao += (
+                    valores.get(
+                        componente,
+                        0
+                    )
+                    *
+                    peso
+                )
 
 
-
-# ======================================================
-# TESTE PROGRESSIVO
-# ======================================================
-
-
-def avaliar_jogador(
-    historico
-):
-
-    resultados = {
-
-        nome: []
-
-        for nome in MODELOS
-
-    }
-
-
-    historico = sorted(
-
-        historico,
-
-        key=lambda x:
-            x.get(
-                "rodada",
+            real = jogador.get(
+                "real",
                 0
             )
 
-    )
 
-
-    pontos = []
-
-
-    for item in historico:
-
-
-        valor = item.get(
-            "pontos"
-        )
-
-
-        if valor is not None:
-
-            pontos.append(
-                float(valor)
+            erros.append(
+                abs(
+                    real - previsao
+                )
             )
 
 
+    if not erros:
 
-    if len(pontos) < 2:
-
-        return resultados
-
+        return 999
 
 
-    for indice in range(
-
-        1,
-        len(pontos)
-
-    ):
-
-
-        treino = pontos[:indice]
-
-
-        real = pontos[indice]
-
-
-
-        for nome, modelo in MODELOS.items():
-
-
-            previsao = modelo(
-                treino
-            )
-
-
-            erro = abs(
-                real - previsao
-            )
-
-
-            resultados[nome].append(
-                erro
-            )
-
-
-
-    return resultados
-
-
-
-
-
-# ======================================================
-# PROCESSAMENTO
-# ======================================================
-
-
-estatisticas = {}
-
-
-
-arquivos = sorted(
-
-    PASTA_BASE.glob(
-        "*.json"
-    )
-
-)
-
-
-
-for arquivo in arquivos:
-
-
-    jogador = carregar_json(
-        arquivo
-    )
-
-
-    posicao = jogador.get(
-        "posicao",
-        "OUTROS"
-    )
-
-
-    historico = jogador.get(
-        "historico",
-        []
-    )
-
-
-    resultados = avaliar_jogador(
-        historico
+    return round(
+        sum(erros) / len(erros),
+        2
     )
 
 
 
-    if posicao not in estatisticas:
+def gerar_modelos():
 
-        estatisticas[posicao] = {
+    componentes = [
 
-            nome: []
+        "media3",
 
-            for nome in MODELOS
+        "media5",
 
+        "mediaGeral",
+
+        "piso",
+
+        "teto"
+
+    ]
+
+
+    modelos = []
+
+
+    combinações = [
+
+        {
+            "media3":0.40,
+            "media5":0.25,
+            "mediaGeral":0.15,
+            "piso":0.10,
+            "teto":0.10
+        },
+
+        {
+            "media3":0.30,
+            "media5":0.30,
+            "mediaGeral":0.20,
+            "piso":0.10,
+            "teto":0.10
+        },
+
+        {
+            "media3":0.25,
+            "media5":0.25,
+            "mediaGeral":0.20,
+            "piso":0.15,
+            "teto":0.15
+        },
+
+        {
+            "media3":0.35,
+            "media5":0.20,
+            "mediaGeral":0.15,
+            "piso":0.10,
+            "teto":0.20
         }
 
+    ]
 
 
-    for modelo, erros in resultados.items():
+    modelos.extend(
+        combinações
+    )
 
-        estatisticas[posicao][modelo].extend(
-            erros
+
+    return modelos
+
+
+
+def executar():
+
+    modelos = gerar_modelos()
+
+
+    resultados = []
+
+
+    for modelo in modelos:
+
+        erro = calcular_erro(
+            modelo
         )
 
 
-
-
-
-# ======================================================
-# ESCOLHE MELHOR MODELO POR POSIÇÃO
-# ======================================================
-
-
-resultado_final = {
-
-    "posicoes": {}
-
-}
-
-
-
-for posicao, modelos in estatisticas.items():
-
-
-    lista_modelos = []
-
-
-
-    for nome, erros in modelos.items():
-
-
-        if erros:
-
-            erro_medio = round(
-
-                sum(erros)
-                /
-                len(erros),
-
-                2
-
-            )
-
-        else:
-
-            erro_medio = 999
-
-
-
-        lista_modelos.append({
+        resultados.append({
 
             "modelo":
-                nome,
+                modelo,
 
-            "erroMedio":
-                erro_medio,
-
-            "testes":
-                len(erros)
+            "erro":
+                erro
 
         })
 
 
-
-    lista_modelos.sort(
-
+    resultados.sort(
         key=lambda x:
-            x["erroMedio"]
-
+            x["erro"]
     )
 
 
-    resultado_final["posicoes"][posicao] = {
+    melhor = resultados[0]
 
 
-        "melhorModelo":
-            lista_modelos[0]["modelo"],
+    pesos = {
+
+        "modelo":
+            "v2_otimizado",
 
 
-        "menorErro":
-            lista_modelos[0]["erroMedio"],
+        "erro":
+            melhor["erro"],
+
+
+        "pesos":
+
+            melhor["modelo"],
 
 
         "modelosTestados":
-            lista_modelos
+
+            len(resultados)
 
     }
 
 
+    with open(
+        ARQUIVO_SAIDA,
+        "w",
+        encoding="utf-8"
+    ) as arquivo:
 
 
+        json.dump(
+            pesos,
+            arquivo,
+            ensure_ascii=False,
+            indent=2
+        )
 
-# ======================================================
-# SALVAR
-# ======================================================
-
-
-with open(
-
-    ARQUIVO_SAIDA,
-
-    "w",
-
-    encoding="utf-8"
-
-) as arquivo:
-
-
-    json.dump(
-
-        resultado_final,
-
-        arquivo,
-
-        ensure_ascii=False,
-
-        indent=2
-
-    )
-
-
-
-print(
-    "Pesos otimizados por posição gerados."
-)
-
-
-for posicao, dados in resultado_final["posicoes"].items():
 
     print(
-
-        posicao,
-
-        "=>",
-
-        dados["melhorModelo"],
-
-        "erro:",
-
-        dados["menorErro"]
-
+        "Pesos otimizados gerados."
     )
+
+    print(
+        "Melhor modelo:",
+        melhor["modelo"]
+    )
+
+    print(
+        "Erro:",
+        melhor["erro"]
+    )
+
+
+
+if __name__ == "__main__":
+
+    executar()
