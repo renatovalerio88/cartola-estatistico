@@ -1,0 +1,19 @@
+{
+  "modelo": "1.0",
+  "rodadas": 0,
+  "mae": 0,
+  "rmse": 0,
+  "top5": 0,
+  "top10": 0,
+  "melhorPosicao": null,
+  "piorPosicao": null,
+  "erroPorPosicao": {},
+  "pesos": {
+    "score": 0.2621,
+    "media3": 0.2039,
+    "media5": 0.1456,
+    "mediaGeral": 0.0971,
+    "piso": 0.0971,
+    "teto": 0.1942
+  }
+}
