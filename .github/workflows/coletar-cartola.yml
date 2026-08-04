@@ -54,6 +54,9 @@ jobs:
 
       - name: Calibrar modelo
         run: python scripts/processamento/calibrar_modelo.py
+
+      - name: Backtest científico
+        run: python scripts/processamento/backtest_cientifico.py
       
       - name: Analisar Componentes
         run: |
