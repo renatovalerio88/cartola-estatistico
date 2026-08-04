@@ -98,19 +98,18 @@ const MotorProjecao = (() => {
         // PROJEÇÃO BASE
         // ==========================
 
+        const pesos =
+        
+            MotorCalibracao.obter();
+        
         let projecao =
-
-              score * 0.25
-
-            + media3 * 0.20
-
-            + media5 * 0.15
-
-            + mediaGeral * 0.10
-
-            + piso * 0.10
-
-            + teto * 0.20;
+        
+              score * pesos.score
+            + media3 * pesos.media3
+            + media5 * pesos.media5
+            + mediaGeral * pesos.mediaGeral
+            + piso * pesos.piso
+            + teto * pesos.teto;
 
         // ==========================
         // AJUSTES
