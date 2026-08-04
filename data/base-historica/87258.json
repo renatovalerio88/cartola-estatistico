@@ -5,6 +5,175 @@
   "clube": "FLU",
   "historico": [
     {
+      "rodada": 2,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 4,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 2.2,
+      "scouts": {
+        "FD": 1,
+        "FS": 2
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0.5,
+      "scouts": {
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 6,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0.8,
+      "scouts": {
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 8,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 9,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 10,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 2.9,
+      "scouts": {
+        "FD": 1,
+        "FF": 1,
+        "FS": 2,
+        "I": 1
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 12,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 13,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 14,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 2.5,
+      "scouts": {
+        "FC": 1,
+        "FF": 1,
+        "FS": 4
+      }
+    },
+    {
+      "rodada": 15,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 1.7,
+      "scouts": {
+        "FD": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 16,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 17,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 0.5,
+      "scouts": {
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 19,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 20,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
+      "rodada": 21,
+      "preco": 4.63,
+      "media": 1.52,
+      "pontos": 7.3,
+      "scouts": {
+        "DS": 3,
+        "FD": 1,
+        "FF": 2
+      }
+    },
+    {
       "rodada": 22,
       "preco": 4.63,
       "media": 1.52,

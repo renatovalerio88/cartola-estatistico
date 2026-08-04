@@ -1,6 +1,113 @@
 {
-  "rodadas": [],
-  "erroMedioGeral": 0,
-  "melhorRodada": null,
-  "piorRodada": null
+  "rodadas": [
+    {
+      "rodada": 3,
+      "erro": 1.49,
+      "taxaAcerto": 82.01
+    },
+    {
+      "rodada": 4,
+      "erro": 1.39,
+      "taxaAcerto": 83.05
+    },
+    {
+      "rodada": 5,
+      "erro": 1.45,
+      "taxaAcerto": 82.66
+    },
+    {
+      "rodada": 6,
+      "erro": 1.39,
+      "taxaAcerto": 83.05
+    },
+    {
+      "rodada": 7,
+      "erro": 1.33,
+      "taxaAcerto": 83.31
+    },
+    {
+      "rodada": 8,
+      "erro": 1.42,
+      "taxaAcerto": 82.27
+    },
+    {
+      "rodada": 9,
+      "erro": 1.65,
+      "taxaAcerto": 80.83
+    },
+    {
+      "rodada": 10,
+      "erro": 1.43,
+      "taxaAcerto": 81.75
+    },
+    {
+      "rodada": 11,
+      "erro": 1.35,
+      "taxaAcerto": 83.83
+    },
+    {
+      "rodada": 12,
+      "erro": 1.45,
+      "taxaAcerto": 83.31
+    },
+    {
+      "rodada": 13,
+      "erro": 1.43,
+      "taxaAcerto": 83.83
+    },
+    {
+      "rodada": 14,
+      "erro": 1.51,
+      "taxaAcerto": 83.18
+    },
+    {
+      "rodada": 15,
+      "erro": 1.47,
+      "taxaAcerto": 82.92
+    },
+    {
+      "rodada": 16,
+      "erro": 1.42,
+      "taxaAcerto": 85.79
+    },
+    {
+      "rodada": 17,
+      "erro": 1.61,
+      "taxaAcerto": 81.88
+    },
+    {
+      "rodada": 18,
+      "erro": 1.66,
+      "taxaAcerto": 80.83
+    },
+    {
+      "rodada": 19,
+      "erro": 1.53,
+      "taxaAcerto": 81.88
+    },
+    {
+      "rodada": 20,
+      "erro": 1.49,
+      "taxaAcerto": 83.57
+    },
+    {
+      "rodada": 21,
+      "erro": 1.49,
+      "taxaAcerto": 82.53
+    },
+    {
+      "rodada": 22,
+      "erro": 1.35,
+      "taxaAcerto": 84.88
+    }
+  ],
+  "erroMedioGeral": 1.47,
+  "melhorRodada": {
+    "erro": 1.33,
+    "rodada": 7
+  },
+  "piorRodada": {
+    "erro": 1.66,
+    "rodada": 18
+  }
 }

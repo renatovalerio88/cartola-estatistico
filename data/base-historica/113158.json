@@ -5,6 +5,150 @@
   "clube": "CRU",
   "historico": [
     {
+      "rodada": 2,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 4,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 5,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 6,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 7,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 8,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 9,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 10,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 11,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 12,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 13,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 14,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 15,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 16,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 17,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 18,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 19,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
+      "rodada": 20,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": 1.5,
+      "scouts": {
+        "FS": 3
+      }
+    },
+    {
+      "rodada": 21,
+      "preco": 3.54,
+      "media": 0.45,
+      "pontos": -0.6,
+      "scouts": {
+        "FC": 2
+      }
+    },
+    {
       "rodada": 22,
       "preco": 3.54,
       "media": 0.45,
