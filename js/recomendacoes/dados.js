@@ -73,11 +73,16 @@ async function carregarJogadores() {
         // DIAGNÓSTICO
         // ============================
 
-        estadoRecomendacoes.jogadores =
-            jogadoresValidos;
+         const jogadoresCalculados =
+             CalculadoraEstatistica.analisarListaJogadores(
+                 jogadoresValidos
+             );
+         
+         estadoRecomendacoes.jogadores =
+             jogadoresCalculados;
 
-        estadoRecomendacoes.jogadoresOriginais =
-            jogadoresValidos.map(copiarJogador);
+         estadoRecomendacoes.jogadoresOriginais =
+             jogadoresCalculados.map(copiarJogador);
 
         estadoRecomendacoes.carregado = true;
         estadoRecomendacoes.carregando = false;
