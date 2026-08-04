@@ -1,0 +1,74 @@
+{
+  "clubes": {
+    "1": {
+      "escudos": {
+        "60x60": "https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/clubes_2026/escudos/OUT/60x60.png",
+        "45x45": "https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/clubes_2026/escudos/OUT/45x45.png",
+        "30x30": "https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/clubes_2026/escudos/OUT/30x30.png"
+      },
+      "nome": "OUT",
+      "abreviacao": "OUT",
+      "slug": "",
+      "apelido": "",
+      "nome_fantasia": "Outros",
+      "id": 1,
+      "url_editoria": null,
+      "disponivel": true
+    }
+  },
+  "posicoes": {
+    "1": {
+      "id": 1,
+      "nome": "Goleiro",
+      "abreviacao": "gol"
+    },
+    "2": {
+      "id": 2,
+      "nome": "Lateral",
+      "abreviacao": "lat"
+    },
+    "3": {
+      "id": 3,
+      "nome": "Zagueiro",
+      "abreviacao": "zag"
+    },
+    "4": {
+      "id": 4,
+      "nome": "Meia",
+      "abreviacao": "mei"
+    },
+    "5": {
+      "id": 5,
+      "nome": "Atacante",
+      "abreviacao": "ata"
+    },
+    "6": {
+      "id": 6,
+      "nome": "Técnico",
+      "abreviacao": "tec"
+    }
+  },
+  "status": {
+    "2": {
+      "nome": "Dúvida",
+      "id": 2
+    },
+    "3": {
+      "nome": "Suspenso",
+      "id": 3
+    },
+    "5": {
+      "nome": "Contundido",
+      "id": 5
+    },
+    "6": {
+      "nome": "Nulo",
+      "id": 6
+    },
+    "7": {
+      "nome": "Provável",
+      "id": 7
+    }
+  },
+  "atletas": null
+}
