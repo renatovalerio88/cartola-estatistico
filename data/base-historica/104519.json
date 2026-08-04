@@ -5,6 +5,17 @@
   "clube": "CHA",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.44,
+      "media": 3.28,
+      "pontos": 4.4,
+      "scouts": {
+        "CA": 1,
+        "DS": 4,
+        "FC": 2
+      }
+    },
+    {
       "rodada": 2,
       "preco": 5.44,
       "media": 3.28,

@@ -5,6 +5,13 @@
   "clube": "MIR",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 4.99,
+      "media": 1.65,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 4.99,
       "media": 1.65,

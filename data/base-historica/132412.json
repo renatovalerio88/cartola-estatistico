@@ -5,6 +5,13 @@
   "clube": "BAH",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 9.09,
+      "media": 5.47,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 9.09,
       "media": 5.47,

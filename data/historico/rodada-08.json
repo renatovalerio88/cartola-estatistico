@@ -1,50 +1,42 @@
 {
   "rodada": 8,
-  "erroMedio": 1.42,
-  "maiorErro": 19.04,
+  "erroMedio": 1.41,
+  "maiorErro": 19.07,
   "menorErro": 0.0,
-  "taxaAcerto": 82.27,
+  "taxaAcerto": 83.05,
   "quantidade": 767,
   "jogadores": [
     {
       "id": 102928,
       "nome": "Agustín Canobbio Graviz",
       "posicao": "ATA",
-      "projecao": 10.02,
+      "projecao": 9.3,
       "real": 5.9,
-      "erro": -4.12
-    },
-    {
-      "id": 116065,
-      "nome": "Luís Eduardo Soares da Silva",
-      "posicao": "LAT",
-      "projecao": 9.2,
-      "real": 12,
-      "erro": 2.8
+      "erro": -3.4
     },
     {
       "id": 89837,
       "nome": "Luciano Federico Acosta",
       "posicao": "MEI",
-      "projecao": 8.9,
+      "projecao": 8.98,
       "real": 3.5,
-      "erro": -5.4
-    },
-    {
-      "id": 99815,
-      "nome": "Jhon Adolfo Arias Andrade",
-      "posicao": "MEI",
-      "projecao": 8.89,
-      "real": 9,
-      "erro": 0.11
+      "erro": -5.48
     },
     {
       "id": 123648,
       "nome": "Lucas Ronier Vieira Pires",
       "posicao": "ATA",
-      "projecao": 8.22,
+      "projecao": 8.4,
       "real": 4.5,
-      "erro": -3.72
+      "erro": -3.9
+    },
+    {
+      "id": 116065,
+      "nome": "Luís Eduardo Soares da Silva",
+      "posicao": "LAT",
+      "projecao": 8.32,
+      "real": 12,
+      "erro": 3.68
     },
     {
       "id": 116706,
@@ -55,68 +47,52 @@
       "erro": 0.11
     },
     {
-      "id": 141451,
-      "nome": "Allan Andrade Elias",
+      "id": 99815,
+      "nome": "Jhon Adolfo Arias Andrade",
       "posicao": "MEI",
-      "projecao": 7.52,
-      "real": 5,
-      "erro": -2.52
+      "projecao": 7.99,
+      "real": 9,
+      "erro": 1.01
     },
     {
       "id": 89840,
       "nome": "Jonathan Calleri",
       "posicao": "ATA",
-      "projecao": 7.51,
+      "projecao": 7.45,
       "real": 1.9,
-      "erro": -5.61
+      "erro": -5.55
     },
     {
-      "id": 98873,
-      "nome": "Samuel Dias Lino",
-      "posicao": "ATA",
-      "projecao": 7.5,
-      "real": 3.9,
-      "erro": -3.6
-    },
-    {
-      "id": 72294,
-      "nome": "Everson Felipe Marques Pires",
-      "posicao": "GOL",
-      "projecao": 7.36,
-      "real": 2.9,
-      "erro": -4.46
-    },
-    {
-      "id": 97867,
-      "nome": "Leonardo Rech Ortiz",
-      "posicao": "ZAG",
-      "projecao": 7.26,
-      "real": 0,
-      "erro": -7.26
-    },
-    {
-      "id": 88963,
-      "nome": "José Leonardo Nunes Alves Sousa Jardim",
-      "posicao": "TEC",
-      "projecao": 7.19,
-      "real": 3.97,
-      "erro": -3.22
-    },
-    {
-      "id": 107093,
-      "nome": "Luciano Batista da Silva Júnior",
-      "posicao": "LAT",
-      "projecao": 7.16,
-      "real": -2.1,
-      "erro": -9.26
+      "id": 141451,
+      "nome": "Allan Andrade Elias",
+      "posicao": "MEI",
+      "projecao": 7.44,
+      "real": 5,
+      "erro": -2.44
     },
     {
       "id": 122485,
       "nome": "Cauan Lucas Barros da Luz",
       "posicao": "MEI",
-      "projecao": 7.12,
+      "projecao": 7.34,
       "real": null,
-      "erro": -7.12
+      "erro": -7.34
+    },
+    {
+      "id": 89274,
+      "nome": "Andreas Hugo Hoelgebaum Pereira",
+      "posicao": "MEI",
+      "projecao": 7.16,
+      "real": 2.4,
+      "erro": -4.76
+    },
+    {
+      "id": 107093,
+      "nome": "Luciano Batista da Silva Júnior",
+      "posicao": "LAT",
+      "projecao": 7.11,
+      "real": -2.1,
+      "erro": -9.21
     },
     {
       "id": 110506,
@@ -127,292 +103,292 @@
       "erro": 0.28
     },
     {
-      "id": 126977,
-      "nome": "Fernando Seabra",
-      "posicao": "TEC",
-      "projecao": 6.97,
-      "real": 1.53,
-      "erro": -5.44
+      "id": 72294,
+      "nome": "Everson Felipe Marques Pires",
+      "posicao": "GOL",
+      "projecao": 7.08,
+      "real": 2.9,
+      "erro": -4.18
+    },
+    {
+      "id": 98873,
+      "nome": "Samuel Dias Lino",
+      "posicao": "ATA",
+      "projecao": 6.93,
+      "real": 3.9,
+      "erro": -3.03
     },
     {
       "id": 99366,
       "nome": "Luis Francisco Zubeldía",
       "posicao": "TEC",
-      "projecao": 6.89,
+      "projecao": 6.84,
       "real": 7.49,
-      "erro": 0.6
+      "erro": 0.65
     },
     {
-      "id": 89274,
-      "nome": "Andreas Hugo Hoelgebaum Pereira",
-      "posicao": "MEI",
-      "projecao": 6.86,
-      "real": 2.4,
-      "erro": -4.46
+      "id": 126977,
+      "nome": "Fernando Seabra",
+      "posicao": "TEC",
+      "projecao": 6.77,
+      "real": 1.53,
+      "erro": -5.24
     },
     {
       "id": 113103,
       "nome": "José Manuel Alberto López",
       "posicao": "ATA",
-      "projecao": 6.55,
+      "projecao": 6.64,
       "real": 6.5,
-      "erro": -0.05
+      "erro": -0.14
+    },
+    {
+      "id": 97867,
+      "nome": "Leonardo Rech Ortiz",
+      "posicao": "ZAG",
+      "projecao": 6.56,
+      "real": 0,
+      "erro": -6.56
+    },
+    {
+      "id": 88963,
+      "nome": "José Leonardo Nunes Alves Sousa Jardim",
+      "posicao": "TEC",
+      "projecao": 6.47,
+      "real": 3.97,
+      "erro": -2.5
     },
     {
       "id": 94583,
       "nome": "Pedro Guilherme Abreu dos Santos",
       "posicao": "ATA",
-      "projecao": 6.51,
+      "projecao": 6.24,
       "real": 6.1,
-      "erro": -0.41
-    },
-    {
-      "id": 97878,
-      "nome": "Jacy Maranhão Oliveira",
-      "posicao": "ZAG",
-      "projecao": 6.4,
-      "real": 0.8,
-      "erro": -5.6
-    },
-    {
-      "id": 63007,
-      "nome": "Neymar da Silva Santos Júnior",
-      "posicao": "MEI",
-      "projecao": 6.31,
-      "real": null,
-      "erro": -6.31
-    },
-    {
-      "id": 110708,
-      "nome": "Pedro Felipe de Faria Rangel",
-      "posicao": "GOL",
-      "projecao": 6.27,
-      "real": 0.6,
-      "erro": -5.67
-    },
-    {
-      "id": 131516,
-      "nome": "João Pedro Chermont Crema",
-      "posicao": "LAT",
-      "projecao": 6.25,
-      "real": 2.7,
-      "erro": -3.55
+      "erro": -0.14
     },
     {
       "id": 98517,
       "nome": "Jean Lucas de Souza Oliveira",
       "posicao": "MEI",
-      "projecao": 6.25,
+      "projecao": 6.0,
       "real": 5.7,
-      "erro": -0.55
-    },
-    {
-      "id": 124661,
-      "nome": "Ivan Ramiro Román Hurtado",
-      "posicao": "ZAG",
-      "projecao": 6.2,
-      "real": 1,
-      "erro": -5.2
-    },
-    {
-      "id": 61987,
-      "nome": "Alex Sandro Lobo Silva",
-      "posicao": "LAT",
-      "projecao": 6.1,
-      "real": -1.3,
-      "erro": -7.4
-    },
-    {
-      "id": 83528,
-      "nome": "Leonardo Pereira",
-      "posicao": "ZAG",
-      "projecao": 6.09,
-      "real": null,
-      "erro": -6.09
+      "erro": -0.3
     },
     {
       "id": 96591,
       "nome": "Renan Augusto Lodi dos Santos",
       "posicao": "LAT",
-      "projecao": 6.03,
+      "projecao": 5.95,
       "real": 0.6,
-      "erro": -5.43
+      "erro": -5.35
     },
     {
       "id": 91706,
       "nome": "Marlon Rodrigues Xavier",
       "posicao": "LAT",
-      "projecao": 6.02,
+      "projecao": 5.94,
       "real": null,
-      "erro": -6.02
+      "erro": -5.94
+    },
+    {
+      "id": 63007,
+      "nome": "Neymar da Silva Santos Júnior",
+      "posicao": "MEI",
+      "projecao": 5.89,
+      "real": null,
+      "erro": -5.89
     },
     {
       "id": 97341,
       "nome": "Rogério Mücke Ceni",
       "posicao": "TEC",
-      "projecao": 5.94,
+      "projecao": 5.87,
       "real": 4.14,
-      "erro": -1.8
+      "erro": -1.73
     },
     {
-      "id": 116447,
-      "nome": "Hércules Pereira do Nascimento",
-      "posicao": "MEI",
-      "projecao": 5.86,
-      "real": 3.5,
-      "erro": -2.36
-    },
-    {
-      "id": 142004,
-      "nome": "Francis Amuzu",
-      "posicao": "ATA",
-      "projecao": 5.78,
+      "id": 97878,
+      "nome": "Jacy Maranhão Oliveira",
+      "posicao": "ZAG",
+      "projecao": 5.87,
       "real": 0.8,
-      "erro": -4.98
-    },
-    {
-      "id": 98909,
-      "nome": "Tomás Esteban Cuello",
-      "posicao": "ATA",
-      "projecao": 5.78,
-      "real": 2,
-      "erro": -3.78
-    },
-    {
-      "id": 90031,
-      "nome": "John Stiven Mendoza Valencia",
-      "posicao": "ATA",
-      "projecao": 5.73,
-      "real": -0.3,
-      "erro": -6.03
-    },
-    {
-      "id": 107989,
-      "nome": "Johan Stiven Carbonero Balanta",
-      "posicao": "ATA",
-      "projecao": 5.69,
-      "real": 1.4,
-      "erro": -4.29
-    },
-    {
-      "id": 90302,
-      "nome": "Pedro Rocha Neves",
-      "posicao": "ATA",
-      "projecao": 5.65,
-      "real": 0.5,
-      "erro": -5.15
-    },
-    {
-      "id": 131967,
-      "nome": "Neyser Villarreal - Neiser",
-      "posicao": "ATA",
-      "projecao": 5.61,
-      "real": 4.1,
-      "erro": -1.51
-    },
-    {
-      "id": 99552,
-      "nome": "Agustín Daniel Rossi",
-      "posicao": "GOL",
-      "projecao": 5.6,
-      "real": 0.3,
-      "erro": -5.3
-    },
-    {
-      "id": 110759,
-      "nome": "John Kennedy Batista de Souza",
-      "posicao": "ATA",
-      "projecao": 5.53,
-      "real": null,
-      "erro": -5.53
-    },
-    {
-      "id": 101574,
-      "nome": "Hugo de Souza Nogueira",
-      "posicao": "GOL",
-      "projecao": 5.33,
-      "real": 0.8,
-      "erro": -4.53
-    },
-    {
-      "id": 106302,
-      "nome": "Ángelo Smit Preciado Quiñónez",
-      "posicao": "LAT",
-      "projecao": 5.3,
-      "real": 4.3,
-      "erro": -1.0
-    },
-    {
-      "id": 91101,
-      "nome": "Ronaldo de Oliveira Strada",
-      "posicao": "GOL",
-      "projecao": 5.3,
-      "real": 2.6,
-      "erro": -2.7
-    },
-    {
-      "id": 114802,
-      "nome": "Vitor Hugo Roque Ferreira",
-      "posicao": "ATA",
-      "projecao": 5.17,
-      "real": 3,
-      "erro": -2.17
+      "erro": -5.07
     },
     {
       "id": 94968,
       "nome": "Luis Antônio da Rocha Júnior",
       "posicao": "LAT",
-      "projecao": 5.17,
+      "projecao": 5.84,
       "real": 3.5,
-      "erro": -1.67
+      "erro": -2.34
     },
     {
       "id": 107231,
       "nome": "Danilo dos Santos de Oliveira",
       "posicao": "MEI",
-      "projecao": 5.15,
+      "projecao": 5.72,
       "real": 8.2,
-      "erro": 3.05
+      "erro": 2.48
     },
     {
-      "id": 98022,
-      "nome": "Erick Luis Conrado de Carvalho",
-      "posicao": "MEI",
-      "projecao": 5.15,
+      "id": 98909,
+      "nome": "Tomás Esteban Cuello",
+      "posicao": "ATA",
+      "projecao": 5.71,
+      "real": 2,
+      "erro": -3.71
+    },
+    {
+      "id": 114802,
+      "nome": "Vitor Hugo Roque Ferreira",
+      "posicao": "ATA",
+      "projecao": 5.64,
       "real": 3,
-      "erro": -2.15
+      "erro": -2.64
     },
     {
-      "id": 130048,
-      "nome": "Erick Carlos Noriega Loret de Mola",
-      "posicao": "ZAG",
-      "projecao": 5.14,
-      "real": null,
-      "erro": -5.14
-    },
-    {
-      "id": 84339,
-      "nome": "Bruno Ferreira Melo",
+      "id": 131516,
+      "nome": "João Pedro Chermont Crema",
       "posicao": "LAT",
-      "projecao": 5.1,
-      "real": 0,
-      "erro": -5.1
+      "projecao": 5.64,
+      "real": 2.7,
+      "erro": -2.94
+    },
+    {
+      "id": 61987,
+      "nome": "Alex Sandro Lobo Silva",
+      "posicao": "LAT",
+      "projecao": 5.63,
+      "real": -1.3,
+      "erro": -6.93
+    },
+    {
+      "id": 110759,
+      "nome": "John Kennedy Batista de Souza",
+      "posicao": "ATA",
+      "projecao": 5.62,
+      "real": null,
+      "erro": -5.62
+    },
+    {
+      "id": 110708,
+      "nome": "Pedro Felipe de Faria Rangel",
+      "posicao": "GOL",
+      "projecao": 5.61,
+      "real": 0.6,
+      "erro": -5.01
+    },
+    {
+      "id": 142004,
+      "nome": "Francis Amuzu",
+      "posicao": "ATA",
+      "projecao": 5.61,
+      "real": 0.8,
+      "erro": -4.81
+    },
+    {
+      "id": 107989,
+      "nome": "Johan Stiven Carbonero Balanta",
+      "posicao": "ATA",
+      "projecao": 5.58,
+      "real": 1.4,
+      "erro": -4.18
+    },
+    {
+      "id": 124661,
+      "nome": "Ivan Ramiro Román Hurtado",
+      "posicao": "ZAG",
+      "projecao": 5.53,
+      "real": 1,
+      "erro": -4.53
+    },
+    {
+      "id": 83528,
+      "nome": "Leonardo Pereira",
+      "posicao": "ZAG",
+      "projecao": 5.49,
+      "real": null,
+      "erro": -5.49
+    },
+    {
+      "id": 90031,
+      "nome": "John Stiven Mendoza Valencia",
+      "posicao": "ATA",
+      "projecao": 5.47,
+      "real": -0.3,
+      "erro": -5.77
+    },
+    {
+      "id": 90302,
+      "nome": "Pedro Rocha Neves",
+      "posicao": "ATA",
+      "projecao": 5.46,
+      "real": 0.5,
+      "erro": -4.96
+    },
+    {
+      "id": 116447,
+      "nome": "Hércules Pereira do Nascimento",
+      "posicao": "MEI",
+      "projecao": 5.26,
+      "real": 3.5,
+      "erro": -1.76
+    },
+    {
+      "id": 101254,
+      "nome": "Alef Mangueira Severino Pereira",
+      "posicao": "ATA",
+      "projecao": 5.24,
+      "real": 4.7,
+      "erro": -0.54
     },
     {
       "id": 39148,
       "nome": "Givanildo Vieira de Souza",
       "posicao": "ATA",
-      "projecao": 5.07,
+      "projecao": 5.24,
       "real": 1.6,
-      "erro": -3.47
+      "erro": -3.64
     },
     {
       "id": 143193,
       "nome": "Kevin Stiven Viveros Rodallega",
       "posicao": "ATA",
-      "projecao": 5.06,
+      "projecao": 5.18,
       "real": 11,
-      "erro": 5.94
+      "erro": 5.82
+    },
+    {
+      "id": 99552,
+      "nome": "Agustín Daniel Rossi",
+      "posicao": "GOL",
+      "projecao": 5.17,
+      "real": 0.3,
+      "erro": -4.87
+    },
+    {
+      "id": 101574,
+      "nome": "Hugo de Souza Nogueira",
+      "posicao": "GOL",
+      "projecao": 5.16,
+      "real": 0.8,
+      "erro": -4.36
+    },
+    {
+      "id": 91101,
+      "nome": "Ronaldo de Oliveira Strada",
+      "posicao": "GOL",
+      "projecao": 5.14,
+      "real": 2.6,
+      "erro": -2.54
+    },
+    {
+      "id": 130048,
+      "nome": "Erick Carlos Noriega Loret de Mola",
+      "posicao": "ZAG",
+      "projecao": 5.06,
+      "real": null,
+      "erro": -5.06
     },
     {
       "id": 88037,
@@ -423,148 +399,164 @@
       "erro": -1.6
     },
     {
-      "id": 104118,
-      "nome": "Lucas Willians Assis Arcanjo",
-      "posicao": "GOL",
-      "projecao": 5.03,
-      "real": 8.9,
-      "erro": 3.87
-    },
-    {
-      "id": 82627,
-      "nome": "Luiz de Araújo Guimarães Neto",
+      "id": 131967,
+      "nome": "Neyser Villarreal - Neiser",
       "posicao": "ATA",
-      "projecao": 4.96,
-      "real": null,
-      "erro": -4.96
-    },
-    {
-      "id": 84816,
-      "nome": "Guillermo Varela Olivera",
-      "posicao": "LAT",
-      "projecao": 4.95,
-      "real": 6.5,
-      "erro": 1.55
-    },
-    {
-      "id": 101254,
-      "nome": "Alef Mangueira Severino Pereira",
-      "posicao": "ATA",
-      "projecao": 4.89,
-      "real": 4.7,
-      "erro": -0.19
-    },
-    {
-      "id": 104075,
-      "nome": "José Sabino Chagas Monteiro",
-      "posicao": "ZAG",
-      "projecao": 4.82,
-      "real": 4.4,
-      "erro": -0.42
-    },
-    {
-      "id": 92747,
-      "nome": "Eduardo Rodrigo Domínguez",
-      "posicao": "TEC",
-      "projecao": 4.8,
-      "real": 2.62,
-      "erro": -2.18
-    },
-    {
-      "id": 101597,
-      "nome": "Ramon Ramos Lima",
-      "posicao": "LAT",
-      "projecao": 4.72,
-      "real": 5.3,
-      "erro": 0.58
+      "projecao": 5.01,
+      "real": 4.1,
+      "erro": -0.91
     },
     {
       "id": 78445,
       "nome": "Renê Rodrigues Martins",
       "posicao": "LAT",
-      "projecao": 4.72,
+      "projecao": 5.01,
       "real": null,
-      "erro": -4.72
+      "erro": -5.01
     },
     {
-      "id": 39656,
-      "nome": "Alan Steven Franco Palma",
-      "posicao": "MEI",
-      "projecao": 4.7,
-      "real": 1.2,
-      "erro": -3.5
+      "id": 104075,
+      "nome": "José Sabino Chagas Monteiro",
+      "posicao": "ZAG",
+      "projecao": 4.81,
+      "real": 4.4,
+      "erro": -0.41
+    },
+    {
+      "id": 84339,
+      "nome": "Bruno Ferreira Melo",
+      "posicao": "LAT",
+      "projecao": 4.81,
+      "real": 0,
+      "erro": -4.81
+    },
+    {
+      "id": 106302,
+      "nome": "Ángelo Smit Preciado Quiñónez",
+      "posicao": "LAT",
+      "projecao": 4.8,
+      "real": 4.3,
+      "erro": -0.5
     },
     {
       "id": 71684,
       "nome": "Gustavo Raúl Gómez Portillo",
       "posicao": "ZAG",
-      "projecao": 4.63,
+      "projecao": 4.78,
       "real": 6.2,
-      "erro": 1.57
+      "erro": 1.42
     },
     {
-      "id": 71123,
-      "nome": "Thiago Henrique Mendes Ribeiro",
+      "id": 84816,
+      "nome": "Guillermo Varela Olivera",
+      "posicao": "LAT",
+      "projecao": 4.68,
+      "real": 6.5,
+      "erro": 1.82
+    },
+    {
+      "id": 101597,
+      "nome": "Ramon Ramos Lima",
+      "posicao": "LAT",
+      "projecao": 4.66,
+      "real": 5.3,
+      "erro": 0.64
+    },
+    {
+      "id": 98022,
+      "nome": "Erick Luis Conrado de Carvalho",
       "posicao": "MEI",
+      "projecao": 4.64,
+      "real": 3,
+      "erro": -1.64
+    },
+    {
+      "id": 105563,
+      "nome": "Carlos Vinícius Alves Morais",
+      "posicao": "ATA",
       "projecao": 4.62,
-      "real": 10.9,
-      "erro": 6.28
+      "real": 9.7,
+      "erro": 5.08
+    },
+    {
+      "id": 104118,
+      "nome": "Lucas Willians Assis Arcanjo",
+      "posicao": "GOL",
+      "projecao": 4.58,
+      "real": 8.9,
+      "erro": 4.32
     },
     {
       "id": 73384,
       "nome": "Samuel Xavier Brito",
       "posicao": "LAT",
-      "projecao": 4.57,
+      "projecao": 4.5,
       "real": null,
-      "erro": -4.57
+      "erro": -4.5
+    },
+    {
+      "id": 71123,
+      "nome": "Thiago Henrique Mendes Ribeiro",
+      "posicao": "MEI",
+      "projecao": 4.48,
+      "real": 10.9,
+      "erro": 6.42
     },
     {
       "id": 82775,
       "nome": "Lucas Ramon Batista Silva",
       "posicao": "LAT",
-      "projecao": 4.57,
+      "projecao": 4.38,
       "real": 14.7,
-      "erro": 10.13
+      "erro": 10.32
     },
     {
-      "id": 87863,
-      "nome": "Giorgian Daniel de Arrascaeta Benedetti",
-      "posicao": "MEI",
-      "projecao": 4.46,
-      "real": 4.5,
-      "erro": 0.04
-    },
-    {
-      "id": 124526,
-      "nome": "Agustín Giay",
-      "posicao": "LAT",
-      "projecao": 4.45,
-      "real": 7.7,
-      "erro": 3.25
-    },
-    {
-      "id": 98672,
-      "nome": "Jefferson David Savarino Quintero",
-      "posicao": "MEI",
-      "projecao": 4.39,
-      "real": 7.2,
-      "erro": 2.81
+      "id": 92747,
+      "nome": "Eduardo Rodrigo Domínguez",
+      "posicao": "TEC",
+      "projecao": 4.38,
+      "real": 2.62,
+      "erro": -1.76
     },
     {
       "id": 40990,
       "nome": "Dorival Silvestre Júnior",
       "posicao": "TEC",
-      "projecao": 4.36,
+      "projecao": 4.37,
       "real": 3.78,
-      "erro": -0.58
+      "erro": -0.59
     },
     {
-      "id": 71227,
-      "nome": "Maicon Pereira Roque",
-      "posicao": "ZAG",
+      "id": 117632,
+      "nome": "Rodrigo Garro",
+      "posicao": "MEI",
+      "projecao": 4.34,
+      "real": 0,
+      "erro": -4.34
+    },
+    {
+      "id": 39656,
+      "nome": "Alan Steven Franco Palma",
+      "posicao": "MEI",
+      "projecao": 4.34,
+      "real": 1.2,
+      "erro": -3.14
+    },
+    {
+      "id": 82627,
+      "nome": "Luiz de Araújo Guimarães Neto",
+      "posicao": "ATA",
+      "projecao": 4.34,
+      "real": null,
+      "erro": -4.34
+    },
+    {
+      "id": 68928,
+      "nome": "Rafael Pires Monteiro",
+      "posicao": "GOL",
       "projecao": 4.31,
-      "real": -0.3,
-      "erro": -4.61
+      "real": 0.3,
+      "erro": -4.01
     },
     {
       "id": 107873,
@@ -575,92 +567,108 @@
       "erro": 1.4
     },
     {
-      "id": 71631,
-      "nome": "Weverton Pereira da Silva",
-      "posicao": "GOL",
-      "projecao": 4.27,
-      "real": 0.6,
-      "erro": -3.67
-    },
-    {
-      "id": 104084,
-      "nome": "Carlos Miguel dos Santos Pereira",
-      "posicao": "GOL",
-      "projecao": 4.26,
-      "real": 5.8,
-      "erro": 1.54
-    },
-    {
       "id": 113397,
       "nome": "Cristian Gonzalo Olivera Ibarra - Kike",
       "posicao": "ATA",
-      "projecao": 4.26,
+      "projecao": 4.29,
       "real": 4.9,
-      "erro": 0.64
+      "erro": 0.61
     },
     {
-      "id": 68928,
-      "nome": "Rafael Pires Monteiro",
-      "posicao": "GOL",
-      "projecao": 4.23,
-      "real": 0.3,
-      "erro": -3.93
-    },
-    {
-      "id": 117632,
-      "nome": "Rodrigo Garro",
+      "id": 87863,
+      "nome": "Giorgian Daniel de Arrascaeta Benedetti",
       "posicao": "MEI",
-      "projecao": 4.21,
-      "real": 0,
-      "erro": -4.21
+      "projecao": 4.29,
+      "real": 4.5,
+      "erro": 0.21
     },
     {
       "id": 99440,
       "nome": "Gabriel Baralhas dos Santos",
       "posicao": "MEI",
-      "projecao": 4.2,
+      "projecao": 4.29,
       "real": 8.2,
-      "erro": 4.0
-    },
-    {
-      "id": 105436,
-      "nome": "Jorge Andrés Carrascal Guardo",
-      "posicao": "MEI",
-      "projecao": 4.14,
-      "real": 0.5,
-      "erro": -3.64
-    },
-    {
-      "id": 71043,
-      "nome": "Leonardo da Silva Vieira",
-      "posicao": "GOL",
-      "projecao": 4.1,
-      "real": 4.5,
-      "erro": 0.4
-    },
-    {
-      "id": 117930,
-      "nome": "Joaquín Lavega Colzada",
-      "posicao": "ATA",
-      "projecao": 4.01,
-      "real": 0,
-      "erro": -4.01
-    },
-    {
-      "id": 123738,
-      "nome": "José María Herrera Ares",
-      "posicao": "ATA",
-      "projecao": 3.96,
-      "real": 0.8,
-      "erro": -3.16
+      "erro": 3.91
     },
     {
       "id": 96610,
       "nome": "Matheus Fellipe Costa Pereira",
       "posicao": "MEI",
-      "projecao": 3.84,
+      "projecao": 4.2,
       "real": -1.1,
-      "erro": -4.94
+      "erro": -5.3
+    },
+    {
+      "id": 71043,
+      "nome": "Leonardo da Silva Vieira",
+      "posicao": "GOL",
+      "projecao": 4.12,
+      "real": 4.5,
+      "erro": 0.38
+    },
+    {
+      "id": 98672,
+      "nome": "Jefferson David Savarino Quintero",
+      "posicao": "MEI",
+      "projecao": 4.11,
+      "real": 7.2,
+      "erro": 3.09
+    },
+    {
+      "id": 104084,
+      "nome": "Carlos Miguel dos Santos Pereira",
+      "posicao": "GOL",
+      "projecao": 4.1,
+      "real": 5.8,
+      "erro": 1.7
+    },
+    {
+      "id": 124526,
+      "nome": "Agustín Giay",
+      "posicao": "LAT",
+      "projecao": 4.01,
+      "real": 7.7,
+      "erro": 3.69
+    },
+    {
+      "id": 71227,
+      "nome": "Maicon Pereira Roque",
+      "posicao": "ZAG",
+      "projecao": 4.01,
+      "real": -0.3,
+      "erro": -4.31
+    },
+    {
+      "id": 71631,
+      "nome": "Weverton Pereira da Silva",
+      "posicao": "GOL",
+      "projecao": 3.98,
+      "real": 0.6,
+      "erro": -3.38
+    },
+    {
+      "id": 105436,
+      "nome": "Jorge Andrés Carrascal Guardo",
+      "posicao": "MEI",
+      "projecao": 3.97,
+      "real": 0.5,
+      "erro": -3.47
+    },
+    {
+      "id": 117930,
+      "nome": "Joaquín Lavega Colzada",
+      "posicao": "ATA",
+      "projecao": 3.97,
+      "real": 0,
+      "erro": -3.97
+    },
+    {
+      "id": 39850,
+      "nome": "Vagner Carmo Mancini",
+      "posicao": "TEC",
+      "projecao": 3.95,
+      "real": 4.32,
+      "erro": 0.37
     },
     {
       "id": 115479,
@@ -671,972 +679,980 @@
       "erro": 5.18
     },
     {
-      "id": 105563,
-      "nome": "Carlos Vinícius Alves Morais",
+      "id": 80287,
+      "nome": "Luciano da Rocha Neves",
       "posicao": "ATA",
-      "projecao": 3.77,
-      "real": 9.7,
-      "erro": 5.93
-    },
-    {
-      "id": 122660,
-      "nome": "João Wellington Gadelha Melo de Oliveira",
-      "posicao": "MEI",
-      "projecao": 3.76,
-      "real": null,
-      "erro": -3.76
-    },
-    {
-      "id": 39850,
-      "nome": "Vagner Carmo Mancini",
-      "posicao": "TEC",
-      "projecao": 3.75,
-      "real": 4.32,
-      "erro": 0.57
-    },
-    {
-      "id": 68996,
-      "nome": "Willian José da Silva",
-      "posicao": "ATA",
-      "projecao": 3.74,
-      "real": null,
-      "erro": -3.74
-    },
-    {
-      "id": 94930,
-      "nome": "Lucas Tolentino Coelho de Lima",
-      "posicao": "MEI",
-      "projecao": 3.71,
-      "real": 15.7,
-      "erro": 11.99
-    },
-    {
-      "id": 113125,
-      "nome": "Leonel Marcelo Picco",
-      "posicao": "MEI",
-      "projecao": 3.66,
-      "real": 0,
-      "erro": -3.66
+      "projecao": 3.72,
+      "real": 3.9,
+      "erro": 0.18
     },
     {
       "id": 100898,
       "nome": "Victor Alexander da Silva",
       "posicao": "LAT",
-      "projecao": 3.56,
+      "projecao": 3.71,
       "real": 1.8,
-      "erro": -1.76
+      "erro": -1.91
     },
     {
-      "id": 71536,
-      "nome": "Luiz Gustavo Dias",
-      "posicao": "MEI",
-      "projecao": 3.52,
-      "real": 0.7,
-      "erro": -2.82
-    },
-    {
-      "id": 101727,
-      "nome": "Matheus França Silva",
-      "posicao": "LAT",
-      "projecao": 3.5,
-      "real": 2.7,
-      "erro": -0.8
-    },
-    {
-      "id": 106104,
-      "nome": "José David Enamorado Gómez",
+      "id": 68996,
+      "nome": "Willian José da Silva",
       "posicao": "ATA",
-      "projecao": 3.5,
-      "real": 2.5,
-      "erro": -1.0
-    },
-    {
-      "id": 142279,
-      "nome": "Nuno Gonçalo Rocha Moreira",
-      "posicao": "MEI",
-      "projecao": 3.47,
-      "real": 2.3,
-      "erro": -1.17
-    },
-    {
-      "id": 93716,
-      "nome": "Paulo Henrique de Oliveira Alves",
-      "posicao": "LAT",
-      "projecao": 3.47,
-      "real": 0.5,
-      "erro": -2.97
-    },
-    {
-      "id": 102911,
-      "nome": "José Ricardo Araújo Fernandes",
-      "posicao": "MEI",
-      "projecao": 3.46,
-      "real": 7,
-      "erro": 3.54
-    },
-    {
-      "id": 92180,
-      "nome": "Jair Ventura",
-      "posicao": "TEC",
-      "projecao": 3.43,
-      "real": 7.39,
-      "erro": 3.96
-    },
-    {
-      "id": 84626,
-      "nome": "Josué Filipe Soares Pesqueira",
-      "posicao": "MEI",
-      "projecao": 3.38,
-      "real": -0.1,
-      "erro": -3.48
-    },
-    {
-      "id": 91908,
-      "nome": "Cristian David Pavón",
-      "posicao": "ATA",
-      "projecao": 3.38,
-      "real": 8.3,
-      "erro": 4.92
-    },
-    {
-      "id": 92273,
-      "nome": "Odair Hellmann",
-      "posicao": "TEC",
-      "projecao": 3.38,
-      "real": 8.59,
-      "erro": 5.21
-    },
-    {
-      "id": 102318,
-      "nome": "Caio Fernando de Oliveira",
-      "posicao": "LAT",
-      "projecao": 3.37,
-      "real": 1.5,
-      "erro": -1.87
-    },
-    {
-      "id": 101715,
-      "nome": "Alerrandro Barra Mansa Realino de Souza",
-      "posicao": "ATA",
-      "projecao": 3.31,
-      "real": 0.2,
-      "erro": -3.11
-    },
-    {
-      "id": 37656,
-      "nome": "Fábio Deivson Lopes Maciel",
-      "posicao": "GOL",
-      "projecao": 3.3,
-      "real": 10.2,
-      "erro": 6.9
-    },
-    {
-      "id": 80287,
-      "nome": "Luciano da Rocha Neves",
-      "posicao": "ATA",
-      "projecao": 3.24,
-      "real": 3.9,
-      "erro": 0.66
-    },
-    {
-      "id": 109127,
-      "nome": "Tiago Cóser",
-      "posicao": "ZAG",
-      "projecao": 3.2,
+      "projecao": 3.7,
       "real": null,
-      "erro": -3.2
+      "erro": -3.7
     },
     {
-      "id": 110144,
-      "nome": "Claudio Paul Spinelli",
+      "id": 113125,
+      "nome": "Leonel Marcelo Picco",
+      "posicao": "MEI",
+      "projecao": 3.67,
+      "real": 0,
+      "erro": -3.67
+    },
+    {
+      "id": 123738,
+      "nome": "José María Herrera Ares",
       "posicao": "ATA",
-      "projecao": 3.2,
-      "real": null,
-      "erro": -3.2
-    },
-    {
-      "id": 110426,
-      "nome": "Alexandro Ezequiel Bernabei",
-      "posicao": "LAT",
-      "projecao": 3.2,
-      "real": 9.4,
-      "erro": 6.2
-    },
-    {
-      "id": 88393,
-      "nome": "Ayrton Lucas Dantas de Medeiros",
-      "posicao": "LAT",
-      "projecao": 3.18,
-      "real": 1,
-      "erro": -2.18
-    },
-    {
-      "id": 98384,
-      "nome": "Luiz Henrique Soares Firmino",
-      "posicao": "ATA",
-      "projecao": 3.18,
-      "real": 5,
-      "erro": 1.82
+      "projecao": 3.61,
+      "real": 0.8,
+      "erro": -2.81
     },
     {
       "id": 93988,
       "nome": "Breno Henrique Vasconcelos Lopes",
       "posicao": "ATA",
-      "projecao": 3.17,
+      "projecao": 3.58,
       "real": 0.9,
-      "erro": -2.27
+      "erro": -2.68
     },
     {
-      "id": 105647,
-      "nome": "Maurício Magalhães Prado",
+      "id": 94930,
+      "nome": "Lucas Tolentino Coelho de Lima",
       "posicao": "MEI",
-      "projecao": 3.16,
-      "real": -0.1,
-      "erro": -3.26
+      "projecao": 3.53,
+      "real": 15.7,
+      "erro": 12.17
     },
     {
-      "id": 105048,
-      "nome": "Jandir Breno Souza Silva",
-      "posicao": "ATA",
-      "projecao": 3.15,
-      "real": 9.7,
-      "erro": 6.55
+      "id": 92180,
+      "nome": "Jair Ventura",
+      "posicao": "TEC",
+      "projecao": 3.52,
+      "real": 7.39,
+      "erro": 3.87
     },
     {
-      "id": 69208,
-      "nome": "Gabriel Armando de Abreu",
-      "posicao": "ZAG",
-      "projecao": 3.15,
-      "real": 0.6,
-      "erro": -2.55
-    },
-    {
-      "id": 125488,
-      "nome": "João Pedro de Sousa Rodrigues - Tchoca",
-      "posicao": "ZAG",
-      "projecao": 3.13,
-      "real": null,
-      "erro": -3.13
-    },
-    {
-      "id": 113157,
-      "nome": "Nathan Gabriel de Souza Mendes",
-      "posicao": "LAT",
-      "projecao": 3.1,
-      "real": 9.7,
-      "erro": 6.6
-    },
-    {
-      "id": 101960,
-      "nome": "Vitor Hugo Naum dos Santos",
-      "posicao": "ATA",
-      "projecao": 3.08,
-      "real": 7.3,
-      "erro": 4.22
-    },
-    {
-      "id": 105531,
-      "nome": "Matheus Lima Beltrão Oliveira Valin",
-      "posicao": "LAT",
-      "projecao": 3.05,
-      "real": 12.1,
-      "erro": 9.05
-    },
-    {
-      "id": 72493,
-      "nome": "Alex Nicolao Telles",
-      "posicao": "LAT",
-      "projecao": 3.05,
-      "real": 10,
-      "erro": 6.95
+      "id": 37656,
+      "nome": "Fábio Deivson Lopes Maciel",
+      "posicao": "GOL",
+      "projecao": 3.51,
+      "real": 10.2,
+      "erro": 6.69
     },
     {
       "id": 103767,
       "nome": "Gabriel Vinícius Menino",
       "posicao": "MEI",
-      "projecao": 3.03,
+      "projecao": 3.5,
       "real": 2.5,
-      "erro": -0.53
+      "erro": -1.0
+    },
+    {
+      "id": 92273,
+      "nome": "Odair Hellmann",
+      "posicao": "TEC",
+      "projecao": 3.48,
+      "real": 8.59,
+      "erro": 5.11
+    },
+    {
+      "id": 98384,
+      "nome": "Luiz Henrique Soares Firmino",
+      "posicao": "ATA",
+      "projecao": 3.46,
+      "real": 5,
+      "erro": 1.54
+    },
+    {
+      "id": 101727,
+      "nome": "Matheus França Silva",
+      "posicao": "LAT",
+      "projecao": 3.44,
+      "real": 2.7,
+      "erro": -0.74
+    },
+    {
+      "id": 102911,
+      "nome": "José Ricardo Araújo Fernandes",
+      "posicao": "MEI",
+      "projecao": 3.44,
+      "real": 7,
+      "erro": 3.56
     },
     {
       "id": 116034,
       "nome": "Victor Hugo Gomes Silva",
       "posicao": "MEI",
-      "projecao": 3.03,
+      "projecao": 3.4,
       "real": 2.1,
-      "erro": -0.93
+      "erro": -1.3
     },
     {
-      "id": 87228,
-      "nome": "Guilherme Antonio Arana Lopes",
+      "id": 105531,
+      "nome": "Matheus Lima Beltrão Oliveira Valin",
       "posicao": "LAT",
-      "projecao": 3.0,
-      "real": 6.4,
-      "erro": 3.4
+      "projecao": 3.38,
+      "real": 12.1,
+      "erro": 8.72
     },
     {
-      "id": 105990,
-      "nome": "Santiago Martín Ramos Mingo",
-      "posicao": "ZAG",
-      "projecao": 2.99,
-      "real": 1.4,
-      "erro": -1.59
-    },
-    {
-      "id": 85403,
-      "nome": "Daniel de Oliveira Sertanejo",
+      "id": 122660,
+      "nome": "João Wellington Gadelha Melo de Oliveira",
       "posicao": "MEI",
-      "projecao": 2.95,
-      "real": 1.9,
-      "erro": -1.05
+      "projecao": 3.38,
+      "real": null,
+      "erro": -3.38
     },
     {
-      "id": 68685,
-      "nome": "Alan Patrick Lourenço",
-      "posicao": "MEI",
-      "projecao": 2.92,
-      "real": 12.5,
-      "erro": 9.58
-    },
-    {
-      "id": 97810,
-      "nome": "Erick de Arruda Serafim",
+      "id": 106104,
+      "nome": "José David Enamorado Gómez",
       "posicao": "ATA",
-      "projecao": 2.91,
-      "real": 2.9,
-      "erro": -0.01
-    },
-    {
-      "id": 87887,
-      "nome": "Fabián Cornelio Balbuena González",
-      "posicao": "ZAG",
-      "projecao": 2.9,
-      "real": 1.5,
-      "erro": -1.4
-    },
-    {
-      "id": 103388,
-      "nome": "Leandro Emmanuel Martínez",
-      "posicao": "MEI",
-      "projecao": 2.88,
-      "real": 3.9,
-      "erro": 1.02
-    },
-    {
-      "id": 95466,
-      "nome": "Igor Vinícius de Souza",
-      "posicao": "LAT",
-      "projecao": 2.88,
-      "real": 8.7,
-      "erro": 5.82
-    },
-    {
-      "id": 70666,
-      "nome": "Marllon Gonçalves Jerônimo Borges",
-      "posicao": "ZAG",
-      "projecao": 2.87,
-      "real": 0.2,
-      "erro": -2.67
+      "projecao": 3.33,
+      "real": 2.5,
+      "erro": -0.83
     },
     {
       "id": 102130,
       "nome": "Joaquín Piquerez Moreira",
       "posicao": "LAT",
-      "projecao": 2.85,
+      "projecao": 3.29,
       "real": 6.4,
-      "erro": 3.55
+      "erro": 3.11
     },
     {
-      "id": 110510,
-      "nome": "Braian Nahuel Aguirre",
+      "id": 93716,
+      "nome": "Paulo Henrique de Oliveira Alves",
       "posicao": "LAT",
-      "projecao": 2.84,
-      "real": null,
-      "erro": -2.84
-    },
-    {
-      "id": 96870,
-      "nome": "Emerson Aparecido Leite de Souza Júnior",
-      "posicao": "LAT",
-      "projecao": 2.83,
-      "real": null,
-      "erro": -2.83
-    },
-    {
-      "id": 97653,
-      "nome": "Murilo Cerqueira Paim",
-      "posicao": "ZAG",
-      "projecao": 2.83,
-      "real": 5.2,
-      "erro": 2.37
-    },
-    {
-      "id": 101807,
-      "nome": "Christian Gabriel Oliva Giménez",
-      "posicao": "MEI",
-      "projecao": 2.78,
-      "real": 7.5,
-      "erro": 4.72
-    },
-    {
-      "id": 108162,
-      "nome": "Juan Ignacio Martín Nardoni",
-      "posicao": "MEI",
-      "projecao": 2.78,
+      "projecao": 3.29,
       "real": 0.5,
-      "erro": -2.28
+      "erro": -2.79
     },
     {
-      "id": 110668,
-      "nome": "Lucas Ángel Esquivel",
-      "posicao": "LAT",
-      "projecao": 2.77,
-      "real": 6.2,
-      "erro": 3.43
+      "id": 91908,
+      "nome": "Cristian David Pavón",
+      "posicao": "ATA",
+      "projecao": 3.27,
+      "real": 8.3,
+      "erro": 5.03
+    },
+    {
+      "id": 142279,
+      "nome": "Nuno Gonçalo Rocha Moreira",
+      "posicao": "MEI",
+      "projecao": 3.23,
+      "real": 2.3,
+      "erro": -0.93
+    },
+    {
+      "id": 105647,
+      "nome": "Maurício Magalhães Prado",
+      "posicao": "MEI",
+      "projecao": 3.22,
+      "real": -0.1,
+      "erro": -3.32
+    },
+    {
+      "id": 69208,
+      "nome": "Gabriel Armando de Abreu",
+      "posicao": "ZAG",
+      "projecao": 3.22,
+      "real": 0.6,
+      "erro": -2.62
     },
     {
       "id": 126471,
       "nome": "Álvaro Martín Barreal",
       "posicao": "MEI",
-      "projecao": 2.77,
+      "projecao": 3.21,
       "real": 0.3,
-      "erro": -2.47
+      "erro": -2.91
     },
     {
-      "id": 104783,
-      "nome": "Nicolás Brian Acevedo Tabárez",
+      "id": 71536,
+      "nome": "Luiz Gustavo Dias",
       "posicao": "MEI",
-      "projecao": 2.74,
-      "real": null,
-      "erro": -2.74
+      "projecao": 3.2,
+      "real": 0.7,
+      "erro": -2.5
     },
     {
-      "id": 83257,
-      "nome": "Gabriel Barbosa Almeida",
+      "id": 84626,
+      "nome": "Josué Filipe Soares Pesqueira",
+      "posicao": "MEI",
+      "projecao": 3.15,
+      "real": -0.1,
+      "erro": -3.25
+    },
+    {
+      "id": 85403,
+      "nome": "Daniel de Oliveira Sertanejo",
+      "posicao": "MEI",
+      "projecao": 3.15,
+      "real": 1.9,
+      "erro": -1.25
+    },
+    {
+      "id": 101960,
+      "nome": "Vitor Hugo Naum dos Santos",
       "posicao": "ATA",
-      "projecao": 2.74,
-      "real": null,
-      "erro": -2.74
+      "projecao": 3.14,
+      "real": 7.3,
+      "erro": 4.16
     },
     {
-      "id": 109401,
-      "nome": "Erick da Costa Farias",
-      "posicao": "ATA",
-      "projecao": 2.73,
-      "real": 2.4,
-      "erro": -0.33
-    },
-    {
-      "id": 104470,
-      "nome": "Everton Souza da Cruz",
+      "id": 110426,
+      "nome": "Alexandro Ezequiel Bernabei",
       "posicao": "LAT",
-      "projecao": 2.71,
-      "real": -0.6,
-      "erro": -3.31
+      "projecao": 3.1,
+      "real": 9.4,
+      "erro": 6.3
     },
     {
-      "id": 100842,
-      "nome": "Ruan Tressoldi Netto",
-      "posicao": "ZAG",
-      "projecao": 2.69,
-      "real": 2.7,
-      "erro": 0.01
-    },
-    {
-      "id": 106294,
-      "nome": "Marcos Antônio Silva Santos",
-      "posicao": "MEI",
-      "projecao": 2.69,
-      "real": 2.5,
-      "erro": -0.19
-    },
-    {
-      "id": 103056,
-      "nome": "Gabriel Nascimento Rezende Brazão - Resende",
-      "posicao": "GOL",
-      "projecao": 2.67,
-      "real": 8.9,
-      "erro": 6.23
-    },
-    {
-      "id": 101405,
-      "nome": "Wallisson Luiz Alves Máximo",
-      "posicao": "MEI",
-      "projecao": 2.66,
-      "real": 0.1,
-      "erro": -2.56
-    },
-    {
-      "id": 99789,
-      "nome": "Brenner Souza da Silva",
+      "id": 97810,
+      "nome": "Erick de Arruda Serafim",
       "posicao": "ATA",
-      "projecao": 2.64,
-      "real": null,
-      "erro": -2.64
+      "projecao": 3.08,
+      "real": 2.9,
+      "erro": -0.18
     },
     {
-      "id": 92981,
-      "nome": "Ronaldo da Silva Souza Guerrero",
+      "id": 68685,
+      "nome": "Alan Patrick Lourenço",
       "posicao": "MEI",
-      "projecao": 2.62,
-      "real": null,
-      "erro": -2.62
+      "projecao": 3.02,
+      "real": 12.5,
+      "erro": 9.48
     },
     {
-      "id": 87552,
-      "nome": "Vitor Frezarin Bueno",
-      "posicao": "MEI",
-      "projecao": 2.61,
-      "real": 17.8,
-      "erro": 15.19
+      "id": 101715,
+      "nome": "Alerrandro Barra Mansa Realino de Souza",
+      "posicao": "ATA",
+      "projecao": 2.99,
+      "real": 0.2,
+      "erro": -2.79
     },
     {
-      "id": 101393,
-      "nome": "Eduardo Vinícius Domachowski",
-      "posicao": "ZAG",
-      "projecao": 2.58,
+      "id": 102318,
+      "nome": "Caio Fernando de Oliveira",
+      "posicao": "LAT",
+      "projecao": 2.99,
       "real": 1.5,
-      "erro": -1.08
+      "erro": -1.49
     },
     {
-      "id": 105089,
-      "nome": "Mateus Cardoso Lemos Martins",
-      "posicao": "ATA",
-      "projecao": 2.58,
-      "real": 0.5,
-      "erro": -2.08
-    },
-    {
-      "id": 141611,
-      "nome": "Maik Gomes Viegas",
+      "id": 72493,
+      "nome": "Alex Nicolao Telles",
       "posicao": "LAT",
-      "projecao": 2.58,
-      "real": null,
-      "erro": -2.58
+      "projecao": 2.99,
+      "real": 10,
+      "erro": 7.01
     },
     {
-      "id": 132553,
-      "nome": "Jemmes Bruno Ribeiro da Silva",
+      "id": 97653,
+      "nome": "Murilo Cerqueira Paim",
       "posicao": "ZAG",
-      "projecao": 2.53,
-      "real": 3.7,
-      "erro": 1.17
+      "projecao": 2.99,
+      "real": 5.2,
+      "erro": 2.21
+    },
+    {
+      "id": 95466,
+      "nome": "Igor Vinícius de Souza",
+      "posicao": "LAT",
+      "projecao": 2.98,
+      "real": 8.7,
+      "erro": 5.72
+    },
+    {
+      "id": 70666,
+      "nome": "Marllon Gonçalves Jerônimo Borges",
+      "posicao": "ZAG",
+      "projecao": 2.97,
+      "real": 0.2,
+      "erro": -2.77
     },
     {
       "id": 122394,
       "nome": "Gustavo Ribeiro Neves",
       "posicao": "MEI",
-      "projecao": 2.5,
+      "projecao": 2.96,
       "real": 1.2,
-      "erro": -1.3
+      "erro": -1.76
     },
     {
-      "id": 145404,
-      "nome": "Arthur Gabriel Santana Marcolino",
-      "posicao": "LAT",
-      "projecao": 2.5,
-      "real": null,
-      "erro": -2.5
-    },
-    {
-      "id": 123689,
-      "nome": "Pedro Milans Carámbula",
-      "posicao": "LAT",
-      "projecao": 2.47,
-      "real": null,
-      "erro": -2.47
-    },
-    {
-      "id": 145744,
-      "nome": "André Luiz Santos Dias",
-      "posicao": "MEI",
-      "projecao": 2.46,
-      "real": 4.7,
-      "erro": 2.24
-    },
-    {
-      "id": 113113,
-      "nome": "Gastón Américo Benavídez",
-      "posicao": "LAT",
-      "projecao": 2.43,
-      "real": 11.4,
-      "erro": 8.97
-    },
-    {
-      "id": 78855,
-      "nome": "Thiago dos Santos",
+      "id": 109127,
+      "nome": "Tiago Cóser",
       "posicao": "ZAG",
-      "projecao": 2.43,
+      "projecao": 2.93,
       "real": null,
-      "erro": -2.43
+      "erro": -2.93
     },
     {
-      "id": 80570,
-      "nome": "Wendell Nascimento Borges",
-      "posicao": "LAT",
-      "projecao": 2.41,
-      "real": 1.7,
-      "erro": -0.71
-    },
-    {
-      "id": 37457,
-      "nome": "Leonardo Rodrigues Condé",
-      "posicao": "TEC",
-      "projecao": 2.38,
-      "real": 8.52,
-      "erro": 6.14
-    },
-    {
-      "id": 118563,
-      "nome": "Rodrigo Huendra Almeida Mendonça",
-      "posicao": "MEI",
-      "projecao": 2.37,
-      "real": 2.7,
-      "erro": 0.33
-    },
-    {
-      "id": 103523,
-      "nome": "Ignácio da Silva Oliveira",
+      "id": 125488,
+      "nome": "João Pedro de Sousa Rodrigues - Tchoca",
       "posicao": "ZAG",
-      "projecao": 2.36,
+      "projecao": 2.9,
       "real": null,
-      "erro": -2.36
+      "erro": -2.9
     },
     {
-      "id": 112886,
-      "nome": "Lucas Henrique Barbosa",
+      "id": 105089,
+      "nome": "Mateus Cardoso Lemos Martins",
       "posicao": "ATA",
-      "projecao": 2.31,
-      "real": 15.2,
-      "erro": 12.89
+      "projecao": 2.88,
+      "real": 0.5,
+      "erro": -2.38
+    },
+    {
+      "id": 87228,
+      "nome": "Guilherme Antonio Arana Lopes",
+      "posicao": "LAT",
+      "projecao": 2.88,
+      "real": 6.4,
+      "erro": 3.53
+    },
+    {
+      "id": 110144,
+      "nome": "Claudio Paul Spinelli",
+      "posicao": "ATA",
+      "projecao": 2.87,
+      "real": null,
+      "erro": -2.87
+    },
+    {
+      "id": 104783,
+      "nome": "Nicolás Brian Acevedo Tabárez",
+      "posicao": "MEI",
+      "projecao": 2.86,
+      "real": null,
+      "erro": -2.86
+    },
+    {
+      "id": 105048,
+      "nome": "Jandir Breno Souza Silva",
+      "posicao": "ATA",
+      "projecao": 2.85,
+      "real": 9.7,
+      "erro": 6.85
+    },
+    {
+      "id": 113157,
+      "nome": "Nathan Gabriel de Souza Mendes",
+      "posicao": "LAT",
+      "projecao": 2.84,
+      "real": 9.7,
+      "erro": 6.86
+    },
+    {
+      "id": 105990,
+      "nome": "Santiago Martín Ramos Mingo",
+      "posicao": "ZAG",
+      "projecao": 2.81,
+      "real": 1.4,
+      "erro": -1.41
+    },
+    {
+      "id": 88393,
+      "nome": "Ayrton Lucas Dantas de Medeiros",
+      "posicao": "LAT",
+      "projecao": 2.81,
+      "real": 1,
+      "erro": -1.81
+    },
+    {
+      "id": 106294,
+      "nome": "Marcos Antônio Silva Santos",
+      "posicao": "MEI",
+      "projecao": 2.8,
+      "real": 2.5,
+      "erro": -0.3
+    },
+    {
+      "id": 110510,
+      "nome": "Braian Nahuel Aguirre",
+      "posicao": "LAT",
+      "projecao": 2.79,
+      "real": null,
+      "erro": -2.79
+    },
+    {
+      "id": 132553,
+      "nome": "Jemmes Bruno Ribeiro da Silva",
+      "posicao": "ZAG",
+      "projecao": 2.78,
+      "real": 3.7,
+      "erro": 0.92
     },
     {
       "id": 104758,
       "nome": "Enzo Hernán Díaz",
       "posicao": "LAT",
-      "projecao": 2.3,
+      "projecao": 2.76,
       "real": 1.3,
-      "erro": -1.0
+      "erro": -1.46
     },
     {
-      "id": 102340,
-      "nome": "Carlos de Menezes Júnior",
+      "id": 104470,
+      "nome": "Everton Souza da Cruz",
+      "posicao": "LAT",
+      "projecao": 2.74,
+      "real": -0.6,
+      "erro": -3.34
+    },
+    {
+      "id": 87887,
+      "nome": "Fabián Cornelio Balbuena González",
       "posicao": "ZAG",
-      "projecao": 2.29,
-      "real": 6.5,
-      "erro": 4.21
+      "projecao": 2.69,
+      "real": 1.5,
+      "erro": -1.19
     },
     {
-      "id": 105949,
-      "nome": "Sergio Ramón Rochet Álvarez",
-      "posicao": "GOL",
-      "projecao": 2.26,
-      "real": 5,
-      "erro": 2.74
-    },
-    {
-      "id": 95620,
-      "nome": "Bruno Leonardo dos Santos Covas",
-      "posicao": "ZAG",
-      "projecao": 2.26,
-      "real": -1.3,
-      "erro": -3.56
-    },
-    {
-      "id": 85048,
-      "nome": "Memphis Depay",
-      "posicao": "ATA",
-      "projecao": 2.22,
-      "real": -0.3,
-      "erro": -2.52
-    },
-    {
-      "id": 118844,
-      "nome": "Kaio César Andrade Lima",
-      "posicao": "ATA",
-      "projecao": 2.21,
-      "real": null,
-      "erro": -2.21
-    },
-    {
-      "id": 70592,
-      "nome": "Felipe Anderson Pereira Gomes",
+      "id": 92981,
+      "nome": "Ronaldo da Silva Souza Guerrero",
       "posicao": "MEI",
-      "projecao": 2.2,
-      "real": 0,
-      "erro": -2.2
-    },
-    {
-      "id": 91573,
-      "nome": "Robert Abel Arboleda Escobar",
-      "posicao": "ZAG",
-      "projecao": 2.2,
-      "real": 0.8,
-      "erro": -1.4
-    },
-    {
-      "id": 87225,
-      "nome": "Pedro Henrique Ribeiro Gonçalves",
-      "posicao": "ZAG",
-      "projecao": 2.19,
+      "projecao": 2.69,
       "real": null,
-      "erro": -2.19
+      "erro": -2.69
     },
     {
-      "id": 69012,
-      "nome": "Aderbar Melo dos Santos Neto",
-      "posicao": "GOL",
-      "projecao": 2.17,
-      "real": 6.3,
-      "erro": 4.13
+      "id": 87552,
+      "nome": "Vitor Frezarin Bueno",
+      "posicao": "MEI",
+      "projecao": 2.67,
+      "real": 17.8,
+      "erro": 15.13
+    },
+    {
+      "id": 99789,
+      "nome": "Brenner Souza da Silva",
+      "posicao": "ATA",
+      "projecao": 2.67,
+      "real": null,
+      "erro": -2.67
+    },
+    {
+      "id": 101393,
+      "nome": "Eduardo Vinícius Domachowski",
+      "posicao": "ZAG",
+      "projecao": 2.66,
+      "real": 1.5,
+      "erro": -1.16
+    },
+    {
+      "id": 109401,
+      "nome": "Erick da Costa Farias",
+      "posicao": "ATA",
+      "projecao": 2.66,
+      "real": 2.4,
+      "erro": -0.26
+    },
+    {
+      "id": 101405,
+      "nome": "Wallisson Luiz Alves Máximo",
+      "posicao": "MEI",
+      "projecao": 2.65,
+      "real": 0.1,
+      "erro": -2.55
+    },
+    {
+      "id": 110668,
+      "nome": "Lucas Ángel Esquivel",
+      "posicao": "LAT",
+      "projecao": 2.65,
+      "real": 6.2,
+      "erro": 3.55
+    },
+    {
+      "id": 100842,
+      "nome": "Ruan Tressoldi Netto",
+      "posicao": "ZAG",
+      "projecao": 2.63,
+      "real": 2.7,
+      "erro": 0.07
+    },
+    {
+      "id": 103388,
+      "nome": "Leandro Emmanuel Martínez",
+      "posicao": "MEI",
+      "projecao": 2.61,
+      "real": 3.9,
+      "erro": 1.29
+    },
+    {
+      "id": 96870,
+      "nome": "Emerson Aparecido Leite de Souza Júnior",
+      "posicao": "LAT",
+      "projecao": 2.6,
+      "real": null,
+      "erro": -2.6
+    },
+    {
+      "id": 113113,
+      "nome": "Gastón Américo Benavídez",
+      "posicao": "LAT",
+      "projecao": 2.58,
+      "real": 11.4,
+      "erro": 8.82
+    },
+    {
+      "id": 141611,
+      "nome": "Maik Gomes Viegas",
+      "posicao": "LAT",
+      "projecao": 2.56,
+      "real": null,
+      "erro": -2.56
+    },
+    {
+      "id": 112886,
+      "nome": "Lucas Henrique Barbosa",
+      "posicao": "ATA",
+      "projecao": 2.54,
+      "real": 15.2,
+      "erro": 12.66
+    },
+    {
+      "id": 108162,
+      "nome": "Juan Ignacio Martín Nardoni",
+      "posicao": "MEI",
+      "projecao": 2.52,
+      "real": 0.5,
+      "erro": -2.02
+    },
+    {
+      "id": 83257,
+      "nome": "Gabriel Barbosa Almeida",
+      "posicao": "ATA",
+      "projecao": 2.51,
+      "real": null,
+      "erro": -2.51
+    },
+    {
+      "id": 145744,
+      "nome": "André Luiz Santos Dias",
+      "posicao": "MEI",
+      "projecao": 2.5,
+      "real": 4.7,
+      "erro": 2.2
+    },
+    {
+      "id": 101807,
+      "nome": "Christian Gabriel Oliva Giménez",
+      "posicao": "MEI",
+      "projecao": 2.48,
+      "real": 7.5,
+      "erro": 5.03
     },
     {
       "id": 99213,
       "nome": "José Luis Rodríguez Bebanz",
       "posicao": "LAT",
-      "projecao": 2.17,
+      "projecao": 2.48,
       "real": -1,
-      "erro": -3.17
+      "erro": -3.48
     },
     {
-      "id": 113034,
-      "nome": "Juan Pablo Freytes",
+      "id": 69012,
+      "nome": "Aderbar Melo dos Santos Neto",
+      "posicao": "GOL",
+      "projecao": 2.47,
+      "real": 6.3,
+      "erro": 3.83
+    },
+    {
+      "id": 91573,
+      "nome": "Robert Abel Arboleda Escobar",
       "posicao": "ZAG",
-      "projecao": 2.13,
-      "real": 8.6,
-      "erro": 6.47
-    },
-    {
-      "id": 89275,
-      "nome": "Willian de Asevedo Furtado",
-      "posicao": "LAT",
-      "projecao": 2.09,
-      "real": 5.1,
-      "erro": 3.01
-    },
-    {
-      "id": 110715,
-      "nome": "José Andrés Hurtado Cheme",
-      "posicao": "LAT",
-      "projecao": 2.08,
-      "real": 0.2,
-      "erro": -1.88
-    },
-    {
-      "id": 126189,
-      "nome": "Tomás Pérez",
-      "posicao": "MEI",
-      "projecao": 2.08,
-      "real": null,
-      "erro": -2.08
-    },
-    {
-      "id": 104257,
-      "nome": "João Lucas de Almeida Carvalho",
-      "posicao": "LAT",
-      "projecao": 2.06,
-      "real": null,
-      "erro": -2.06
-    },
-    {
-      "id": 123360,
-      "nome": "Cauly Oliveira Souza",
-      "posicao": "MEI",
-      "projecao": 2.06,
-      "real": 4,
-      "erro": 1.94
-    },
-    {
-      "id": 70164,
-      "nome": "Lucas Rodrigues Moura da Silva",
-      "posicao": "MEI",
-      "projecao": 2.0,
-      "real": null,
-      "erro": -2.0
-    },
-    {
-      "id": 124239,
-      "nome": "Henry David Mosquera Sánchez",
-      "posicao": "ATA",
-      "projecao": 1.98,
-      "real": 8.7,
-      "erro": 6.72
-    },
-    {
-      "id": 106202,
-      "nome": "Bruno Gomes da Silva Clevelário",
-      "posicao": "MEI",
-      "projecao": 1.96,
-      "real": 3.5,
-      "erro": 1.54
-    },
-    {
-      "id": 96652,
-      "nome": "Allan Rodrigues de Souza",
-      "posicao": "MEI",
-      "projecao": 1.95,
-      "real": null,
-      "erro": -1.95
-    },
-    {
-      "id": 101708,
-      "nome": "Felipe Jonatan Rocha Andrade",
-      "posicao": "LAT",
-      "projecao": 1.94,
-      "real": 0,
-      "erro": -1.94
-    },
-    {
-      "id": 123869,
-      "nome": "Juan Felipe Aguirre Tabares",
-      "posicao": "ZAG",
-      "projecao": 1.92,
-      "real": 6.5,
-      "erro": 4.58
-    },
-    {
-      "id": 128433,
-      "nome": "Johan Rojas Echavarría",
-      "posicao": "MEI",
-      "projecao": 1.88,
-      "real": -0.3,
-      "erro": -2.18
-    },
-    {
-      "id": 93790,
-      "nome": "Marlon Rodrigues Freitas",
-      "posicao": "MEI",
-      "projecao": 1.88,
-      "real": -0.1,
-      "erro": -1.98
-    },
-    {
-      "id": 106323,
-      "nome": "Caio Alexandre Souza e Silva",
-      "posicao": "MEI",
-      "projecao": 1.87,
-      "real": 1.5,
-      "erro": -0.37
-    },
-    {
-      "id": 104519,
-      "nome": "Camilo Reijers de Oliveira",
-      "posicao": "MEI",
-      "projecao": 1.86,
-      "real": 2.5,
-      "erro": 0.64
+      "projecao": 2.47,
+      "real": 0.8,
+      "erro": -1.67
     },
     {
       "id": 110750,
       "nome": "Gustavo Marques Alves dos Santos",
       "posicao": "ZAG",
-      "projecao": 1.86,
+      "projecao": 2.35,
       "real": 4.2,
-      "erro": 2.34
+      "erro": 1.85
     },
     {
-      "id": 90608,
-      "nome": "Francisco da Costa Aragão",
-      "posicao": "ATA",
-      "projecao": 1.86,
-      "real": null,
-      "erro": -1.86
+      "id": 106202,
+      "nome": "Bruno Gomes da Silva Clevelário",
+      "posicao": "MEI",
+      "projecao": 2.33,
+      "real": 3.5,
+      "erro": 1.17
     },
     {
-      "id": 132580,
-      "nome": "Vinicius Mendonça Pereira",
-      "posicao": "ATA",
-      "projecao": 1.84,
-      "real": null,
-      "erro": -1.84
+      "id": 105949,
+      "nome": "Sergio Ramón Rochet Álvarez",
+      "posicao": "GOL",
+      "projecao": 2.32,
+      "real": 5,
+      "erro": 2.68
     },
     {
-      "id": 100804,
-      "nome": "Duplexe Tchamba Bangou",
+      "id": 80570,
+      "nome": "Wendell Nascimento Borges",
+      "posicao": "LAT",
+      "projecao": 2.32,
+      "real": 1.7,
+      "erro": -0.62
+    },
+    {
+      "id": 87225,
+      "nome": "Pedro Henrique Ribeiro Gonçalves",
       "posicao": "ZAG",
-      "projecao": 1.82,
-      "real": 4.2,
-      "erro": 2.38
+      "projecao": 2.32,
+      "real": null,
+      "erro": -2.32
+    },
+    {
+      "id": 103056,
+      "nome": "Gabriel Nascimento Rezende Brazão - Resende",
+      "posicao": "GOL",
+      "projecao": 2.26,
+      "real": 8.9,
+      "erro": 6.64
+    },
+    {
+      "id": 110715,
+      "nome": "José Andrés Hurtado Cheme",
+      "posicao": "LAT",
+      "projecao": 2.25,
+      "real": 0.2,
+      "erro": -2.05
+    },
+    {
+      "id": 123689,
+      "nome": "Pedro Milans Carámbula",
+      "posicao": "LAT",
+      "projecao": 2.25,
+      "real": null,
+      "erro": -2.25
+    },
+    {
+      "id": 78855,
+      "nome": "Thiago dos Santos",
+      "posicao": "ZAG",
+      "projecao": 2.23,
+      "real": null,
+      "erro": -2.23
+    },
+    {
+      "id": 145404,
+      "nome": "Arthur Gabriel Santana Marcolino",
+      "posicao": "LAT",
+      "projecao": 2.21,
+      "real": null,
+      "erro": -2.21
+    },
+    {
+      "id": 37457,
+      "nome": "Leonardo Rodrigues Condé",
+      "posicao": "TEC",
+      "projecao": 2.2,
+      "real": 8.52,
+      "erro": 6.32
+    },
+    {
+      "id": 113034,
+      "nome": "Juan Pablo Freytes",
+      "posicao": "ZAG",
+      "projecao": 2.19,
+      "real": 8.6,
+      "erro": 6.41
+    },
+    {
+      "id": 118563,
+      "nome": "Rodrigo Huendra Almeida Mendonça",
+      "posicao": "MEI",
+      "projecao": 2.17,
+      "real": 2.7,
+      "erro": 0.53
+    },
+    {
+      "id": 70164,
+      "nome": "Lucas Rodrigues Moura da Silva",
+      "posicao": "MEI",
+      "projecao": 2.17,
+      "real": null,
+      "erro": -2.17
+    },
+    {
+      "id": 103523,
+      "nome": "Ignácio da Silva Oliveira",
+      "posicao": "ZAG",
+      "projecao": 2.15,
+      "real": null,
+      "erro": -2.15
+    },
+    {
+      "id": 104257,
+      "nome": "João Lucas de Almeida Carvalho",
+      "posicao": "LAT",
+      "projecao": 2.15,
+      "real": null,
+      "erro": -2.15
+    },
+    {
+      "id": 85048,
+      "nome": "Memphis Depay",
+      "posicao": "ATA",
+      "projecao": 2.14,
+      "real": -0.3,
+      "erro": -2.44
+    },
+    {
+      "id": 124239,
+      "nome": "Henry David Mosquera Sánchez",
+      "posicao": "ATA",
+      "projecao": 2.12,
+      "real": 8.7,
+      "erro": 6.57
+    },
+    {
+      "id": 95620,
+      "nome": "Bruno Leonardo dos Santos Covas",
+      "posicao": "ZAG",
+      "projecao": 2.11,
+      "real": -1.3,
+      "erro": -3.41
+    },
+    {
+      "id": 102340,
+      "nome": "Carlos de Menezes Júnior",
+      "posicao": "ZAG",
+      "projecao": 2.08,
+      "real": 6.5,
+      "erro": 4.42
+    },
+    {
+      "id": 70592,
+      "nome": "Felipe Anderson Pereira Gomes",
+      "posicao": "MEI",
+      "projecao": 2.0,
+      "real": 0,
+      "erro": -2.0
+    },
+    {
+      "id": 118844,
+      "nome": "Kaio César Andrade Lima",
+      "posicao": "ATA",
+      "projecao": 1.99,
+      "real": null,
+      "erro": -1.99
+    },
+    {
+      "id": 89275,
+      "nome": "Willian de Asevedo Furtado",
+      "posicao": "LAT",
+      "projecao": 1.98,
+      "real": 5.1,
+      "erro": 3.12
+    },
+    {
+      "id": 123360,
+      "nome": "Cauly Oliveira Souza",
+      "posicao": "MEI",
+      "projecao": 1.97,
+      "real": 4,
+      "erro": 2.03
+    },
+    {
+      "id": 123869,
+      "nome": "Juan Felipe Aguirre Tabares",
+      "posicao": "ZAG",
+      "projecao": 1.94,
+      "real": 6.5,
+      "erro": 4.56
+    },
+    {
+      "id": 104519,
+      "nome": "Camilo Reijers de Oliveira",
+      "posicao": "MEI",
+      "projecao": 1.93,
+      "real": 2.5,
+      "erro": 0.57
+    },
+    {
+      "id": 104027,
+      "nome": "Rafael Silva Guanaes",
+      "posicao": "TEC",
+      "projecao": 1.91,
+      "real": 3.61,
+      "erro": 1.7
     },
     {
       "id": 51413,
       "nome": "Walter Leandro Capeloza Artune",
       "posicao": "GOL",
-      "projecao": 1.79,
+      "projecao": 1.88,
       "real": 5.5,
-      "erro": 3.71
+      "erro": 3.62
     },
     {
-      "id": 91607,
-      "nome": "Ronielson da Silva Barbosa",
-      "posicao": "ATA",
-      "projecao": 1.79,
-      "real": 3.8,
-      "erro": 2.01
+      "id": 93790,
+      "nome": "Marlon Rodrigues Freitas",
+      "posicao": "MEI",
+      "projecao": 1.87,
+      "real": -0.1,
+      "erro": -1.97
+    },
+    {
+      "id": 106708,
+      "nome": "Igor Marques Paciência Cardoso",
+      "posicao": "LAT",
+      "projecao": 1.86,
+      "real": 5.4,
+      "erro": 3.54
+    },
+    {
+      "id": 109336,
+      "nome": "Rafael dos Santos Carvalheira Natividade",
+      "posicao": "MEI",
+      "projecao": 1.85,
+      "real": 2,
+      "erro": 0.15
+    },
+    {
+      "id": 126189,
+      "nome": "Tomás Pérez",
+      "posicao": "MEI",
+      "projecao": 1.83,
+      "real": null,
+      "erro": -1.83
+    },
+    {
+      "id": 142890,
+      "nome": "Álvaro Montoro",
+      "posicao": "MEI",
+      "projecao": 1.82,
+      "real": 5.5,
+      "erro": 3.68
+    },
+    {
+      "id": 89256,
+      "nome": "Gerson Santos da Silva",
+      "posicao": "MEI",
+      "projecao": 1.8,
+      "real": 3.6,
+      "erro": 1.8
     },
     {
       "id": 126182,
       "nome": "Paulo Lucas Santos de Paula",
       "posicao": "MEI",
-      "projecao": 1.77,
+      "projecao": 1.78,
       "real": 7.7,
-      "erro": 5.93
+      "erro": 5.92
     },
     {
-      "id": 140906,
-      "nome": "Davi Gomes de Alvarenga",
+      "id": 97321,
+      "nome": "Alesson dos Santos Batista",
       "posicao": "ATA",
       "projecao": 1.77,
-      "real": 2.3,
-      "erro": 0.53
+      "real": 1.8,
+      "erro": 0.03
     },
     {
-      "id": 62977,
-      "nome": "Paulo Henrique Chagas de Lima",
+      "id": 117910,
+      "nome": "Breno de Souza Bidon",
+      "posicao": "MEI",
+      "projecao": 1.76,
+      "real": 2.6,
+      "erro": 0.84
+    },
+    {
+      "id": 128433,
+      "nome": "Johan Rojas Echavarría",
+      "posicao": "MEI",
+      "projecao": 1.76,
+      "real": -0.3,
+      "erro": -2.06
+    },
+    {
+      "id": 68920,
+      "nome": "Eduardo Pereira Rodrigues",
+      "posicao": "ATA",
+      "projecao": 1.76,
+      "real": null,
+      "erro": -1.76
+    },
+    {
+      "id": 100742,
+      "nome": "Matheus Henrique de Souza",
       "posicao": "MEI",
       "projecao": 1.74,
+      "real": 4.5,
+      "erro": 2.76
+    },
+    {
+      "id": 101708,
+      "nome": "Felipe Jonatan Rocha Andrade",
+      "posicao": "LAT",
+      "projecao": 1.74,
       "real": 0,
+      "erro": -1.74
+    },
+    {
+      "id": 109573,
+      "nome": "Matheus Martinelli Lima",
+      "posicao": "MEI",
+      "projecao": 1.74,
+      "real": 2.9,
+      "erro": 1.16
+    },
+    {
+      "id": 96652,
+      "nome": "Allan Rodrigues de Souza",
+      "posicao": "MEI",
+      "projecao": 1.74,
+      "real": null,
       "erro": -1.74
     },
     {
       "id": 90703,
       "nome": "Matheus Martins Fogaça de Paulo",
       "posicao": "MEI",
-      "projecao": 1.74,
-      "real": 3.3,
-      "erro": 1.56
-    },
-    {
-      "id": 89256,
-      "nome": "Gerson Santos da Silva",
-      "posicao": "MEI",
       "projecao": 1.73,
-      "real": 3.6,
-      "erro": 1.87
+      "real": 3.3,
+      "erro": 1.57
     },
     {
-      "id": 109573,
-      "nome": "Matheus Martinelli Lima",
-      "posicao": "MEI",
-      "projecao": 1.72,
-      "real": 2.9,
-      "erro": 1.18
-    },
-    {
-      "id": 104027,
-      "nome": "Rafael Silva Guanaes",
-      "posicao": "TEC",
-      "projecao": 1.7,
-      "real": 3.61,
-      "erro": 1.91
-    },
-    {
-      "id": 105300,
-      "nome": "Nahuel Adolfo Ferraresi Hernández",
+      "id": 78248,
+      "nome": "Gustavo Henrique Vernes",
       "posicao": "ZAG",
-      "projecao": 1.69,
-      "real": 3,
-      "erro": 1.31
+      "projecao": 1.72,
+      "real": -0.3,
+      "erro": -2.02
+    },
+    {
+      "id": 51772,
+      "nome": "Everton Augusto de Barros Ribeiro",
+      "posicao": "MEI",
+      "projecao": 1.71,
+      "real": null,
+      "erro": -1.71
+    },
+    {
+      "id": 91607,
+      "nome": "Ronielson da Silva Barbosa",
+      "posicao": "ATA",
+      "projecao": 1.71,
+      "real": 3.8,
+      "erro": 2.09
     },
     {
       "id": 117330,
@@ -1647,156 +1663,212 @@
       "erro": -1.69
     },
     {
+      "id": 90608,
+      "nome": "Francisco da Costa Aragão",
+      "posicao": "ATA",
+      "projecao": 1.68,
+      "real": null,
+      "erro": -1.68
+    },
+    {
       "id": 94067,
       "nome": "Matheus Fernandes Siqueira",
       "posicao": "MEI",
-      "projecao": 1.69,
+      "projecao": 1.67,
       "real": 1.5,
-      "erro": -0.19
+      "erro": -0.17
     },
     {
-      "id": 87008,
-      "nome": "Leonardo César Jardim",
-      "posicao": "GOL",
-      "projecao": 1.68,
-      "real": 3.6,
-      "erro": 1.92
-    },
-    {
-      "id": 100742,
-      "nome": "Matheus Henrique de Souza",
-      "posicao": "MEI",
-      "projecao": 1.67,
-      "real": 4.5,
-      "erro": 2.83
-    },
-    {
-      "id": 97642,
-      "nome": "Félix Eduardo Torres Caicedo",
-      "posicao": "ZAG",
-      "projecao": 1.67,
-      "real": 6.7,
-      "erro": 5.03
-    },
-    {
-      "id": 72018,
-      "nome": "Tiago Luis Volpi",
-      "posicao": "GOL",
+      "id": 92696,
+      "nome": "Renato Kayzer de Souza",
+      "posicao": "ATA",
       "projecao": 1.66,
-      "real": null,
-      "erro": -1.66
+      "real": 2.1,
+      "erro": 0.44
     },
     {
-      "id": 102975,
-      "nome": "Gonzalo Daniel Escobar",
-      "posicao": "LAT",
-      "projecao": 1.65,
-      "real": 7.7,
-      "erro": 6.05
+      "id": 106323,
+      "nome": "Caio Alexandre Souza e Silva",
+      "posicao": "MEI",
+      "projecao": 1.64,
+      "real": 1.5,
+      "erro": -0.14
     },
     {
-      "id": 78435,
-      "nome": "Victor Vinícius Coelho dos Santos",
+      "id": 132580,
+      "nome": "Vinicius Mendonça Pereira",
       "posicao": "ATA",
       "projecao": 1.64,
       "real": null,
       "erro": -1.64
     },
     {
-      "id": 106708,
-      "nome": "Igor Marques Paciência Cardoso",
-      "posicao": "LAT",
-      "projecao": 1.63,
-      "real": 5.4,
-      "erro": 3.77
-    },
-    {
-      "id": 109336,
-      "nome": "Rafael dos Santos Carvalheira Natividade",
-      "posicao": "MEI",
-      "projecao": 1.63,
-      "real": 2,
-      "erro": 0.37
-    },
-    {
-      "id": 142890,
-      "nome": "Álvaro Montoro",
-      "posicao": "MEI",
-      "projecao": 1.63,
-      "real": 5.5,
-      "erro": 3.87
-    },
-    {
-      "id": 91473,
-      "nome": "Erick Antonio Pulgar Farfán",
-      "posicao": "MEI",
-      "projecao": 1.61,
-      "real": null,
-      "erro": -1.61
-    },
-    {
-      "id": 92440,
-      "nome": "André Ramalho Silva",
-      "posicao": "ZAG",
-      "projecao": 1.61,
-      "real": null,
-      "erro": -1.61
-    },
-    {
       "id": 95332,
       "nome": "Márcio Antônio de Sousa Júnior",
       "posicao": "ATA",
-      "projecao": 1.61,
+      "projecao": 1.64,
       "real": 2.3,
-      "erro": 0.69
-    },
-    {
-      "id": 142484,
-      "nome": "Jordan Andrés Barrera Herrera",
-      "posicao": "MEI",
-      "projecao": 1.59,
-      "real": null,
-      "erro": -1.59
-    },
-    {
-      "id": 108469,
-      "nome": "Adonis Uriel Frías",
-      "posicao": "ZAG",
-      "projecao": 1.57,
-      "real": null,
-      "erro": -1.57
-    },
-    {
-      "id": 145400,
-      "nome": "Cauê Nascimento Santos",
-      "posicao": "LAT",
-      "projecao": 1.57,
-      "real": null,
-      "erro": -1.57
+      "erro": 0.66
     },
     {
       "id": 125926,
       "nome": "Bruno Zapelli",
       "posicao": "MEI",
-      "projecao": 1.55,
+      "projecao": 1.62,
       "real": 0,
+      "erro": -1.62
+    },
+    {
+      "id": 100804,
+      "nome": "Duplexe Tchamba Bangou",
+      "posicao": "ZAG",
+      "projecao": 1.61,
+      "real": 4.2,
+      "erro": 2.59
+    },
+    {
+      "id": 103445,
+      "nome": "Kaio Jorge Pinto Ramos",
+      "posicao": "ATA",
+      "projecao": 1.61,
+      "real": null,
+      "erro": -1.61
+    },
+    {
+      "id": 102975,
+      "nome": "Gonzalo Daniel Escobar",
+      "posicao": "LAT",
+      "projecao": 1.6,
+      "real": 7.7,
+      "erro": 6.1
+    },
+    {
+      "id": 93882,
+      "nome": "Cleiton Schwengber",
+      "posicao": "GOL",
+      "projecao": 1.6,
+      "real": -2,
+      "erro": -3.6
+    },
+    {
+      "id": 97642,
+      "nome": "Félix Eduardo Torres Caicedo",
+      "posicao": "ZAG",
+      "projecao": 1.6,
+      "real": 6.7,
+      "erro": 5.1
+    },
+    {
+      "id": 62977,
+      "nome": "Paulo Henrique Chagas de Lima",
+      "posicao": "MEI",
+      "projecao": 1.59,
+      "real": 0,
+      "erro": -1.59
+    },
+    {
+      "id": 87008,
+      "nome": "Leonardo César Jardim",
+      "posicao": "GOL",
+      "projecao": 1.59,
+      "real": 3.6,
+      "erro": 2.01
+    },
+    {
+      "id": 78435,
+      "nome": "Victor Vinícius Coelho dos Santos",
+      "posicao": "ATA",
+      "projecao": 1.58,
+      "real": null,
+      "erro": -1.58
+    },
+    {
+      "id": 80196,
+      "nome": "Glaybson Yago Souza Lisboa",
+      "posicao": "MEI",
+      "projecao": 1.57,
+      "real": 2.4,
+      "erro": 0.83
+    },
+    {
+      "id": 101314,
+      "nome": "Ademir da Silva Santos Júnior",
+      "posicao": "ATA",
+      "projecao": 1.56,
+      "real": 1.5,
+      "erro": -0.06
+    },
+    {
+      "id": 142484,
+      "nome": "Jordan Andrés Barrera Herrera",
+      "posicao": "MEI",
+      "projecao": 1.56,
+      "real": null,
+      "erro": -1.56
+    },
+    {
+      "id": 140906,
+      "nome": "Davi Gomes de Alvarenga",
+      "posicao": "ATA",
+      "projecao": 1.55,
+      "real": 2.3,
+      "erro": 0.75
+    },
+    {
+      "id": 91473,
+      "nome": "Erick Antonio Pulgar Farfán",
+      "posicao": "MEI",
+      "projecao": 1.55,
+      "real": null,
       "erro": -1.55
     },
     {
-      "id": 97900,
-      "nome": "Vitor Eduardo da Silva Matos",
-      "posicao": "ZAG",
-      "projecao": 1.55,
-      "real": -1.6,
-      "erro": -3.15
+      "id": 95799,
+      "nome": "Artur Victor Guimarães",
+      "posicao": "ATA",
+      "projecao": 1.54,
+      "real": null,
+      "erro": -1.54
     },
     {
-      "id": 68920,
-      "nome": "Eduardo Pereira Rodrigues",
-      "posicao": "ATA",
+      "id": 82730,
+      "nome": "Marcelo Rangel da Rosa",
+      "posicao": "GOL",
       "projecao": 1.53,
+      "real": 6.8,
+      "erro": 5.27
+    },
+    {
+      "id": 101908,
+      "nome": "Willian Estefani Machado",
+      "posicao": "ZAG",
+      "projecao": 1.52,
+      "real": 0,
+      "erro": -1.52
+    },
+    {
+      "id": 105300,
+      "nome": "Nahuel Adolfo Ferraresi Hernández",
+      "posicao": "ZAG",
+      "projecao": 1.52,
+      "real": 3,
+      "erro": 1.48
+    },
+    {
+      "id": 95556,
+      "nome": "Raniele Almeida Melo",
+      "posicao": "MEI",
+      "projecao": 1.52,
+      "real": 3.7,
+      "erro": 2.18
+    },
+    {
+      "id": 104134,
+      "nome": "Fabrício do Rosário dos Santos",
+      "posicao": "ATA",
+      "projecao": 1.51,
       "real": null,
-      "erro": -1.53
+      "erro": -1.51
     },
     {
       "id": 63008,
@@ -1807,572 +1879,532 @@
       "erro": -1.51
     },
     {
-      "id": 98720,
-      "nome": "Fabrizio Germán Angileri - Fabricio",
-      "posicao": "LAT",
+      "id": 87470,
+      "nome": "Thaciano Mickael da Silva",
+      "posicao": "MEI",
       "projecao": 1.51,
-      "real": null,
-      "erro": -1.51
+      "real": 0.4,
+      "erro": -1.11
     },
     {
-      "id": 51772,
-      "nome": "Everton Augusto de Barros Ribeiro",
-      "posicao": "MEI",
+      "id": 72018,
+      "nome": "Tiago Luis Volpi",
+      "posicao": "GOL",
       "projecao": 1.45,
       "real": null,
       "erro": -1.45
     },
     {
-      "id": 101908,
-      "nome": "Willian Estefani Machado",
-      "posicao": "ZAG",
-      "projecao": 1.43,
-      "real": 0,
-      "erro": -1.43
-    },
-    {
-      "id": 104811,
-      "nome": "Sebastián Gómez Londoño",
-      "posicao": "MEI",
-      "projecao": 1.43,
-      "real": 3.4,
-      "erro": 1.97
-    },
-    {
-      "id": 92087,
-      "nome": "Lyanco Evangelista Silveira Neves Vojnovic",
-      "posicao": "ZAG",
-      "projecao": 1.43,
-      "real": null,
-      "erro": -1.43
-    },
-    {
-      "id": 78248,
-      "nome": "Gustavo Henrique Vernes",
-      "posicao": "ZAG",
-      "projecao": 1.42,
-      "real": -0.3,
-      "erro": -1.72
-    },
-    {
-      "id": 92696,
-      "nome": "Renato Kayzer de Souza",
-      "posicao": "ATA",
-      "projecao": 1.42,
-      "real": 2.1,
-      "erro": 0.68
-    },
-    {
-      "id": 84735,
-      "nome": "Jorge Luiz Frello Filho",
-      "posicao": "MEI",
-      "projecao": 1.41,
-      "real": 4.4,
-      "erro": 2.99
-    },
-    {
-      "id": 80196,
-      "nome": "Glaybson Yago Souza Lisboa",
-      "posicao": "MEI",
-      "projecao": 1.4,
-      "real": 2.4,
-      "erro": 1.0
-    },
-    {
-      "id": 87470,
-      "nome": "Thaciano Mickael da Silva",
-      "posicao": "MEI",
-      "projecao": 1.4,
-      "real": 0.4,
-      "erro": -1.0
-    },
-    {
-      "id": 132264,
-      "nome": "Keny Alexander Arroyo Alvarado",
-      "posicao": "ATA",
-      "projecao": 1.39,
-      "real": 2.3,
-      "erro": 0.91
-    },
-    {
-      "id": 105175,
-      "nome": "Khellven Douglas Silva Oliveira",
-      "posicao": "LAT",
-      "projecao": 1.38,
-      "real": null,
-      "erro": -1.38
-    },
-    {
-      "id": 117910,
-      "nome": "Breno de Souza Bidon",
-      "posicao": "MEI",
-      "projecao": 1.38,
-      "real": 2.6,
-      "erro": 1.22
-    },
-    {
-      "id": 118655,
-      "nome": "Alan Gabriel Saldivia Vázquez",
-      "posicao": "ZAG",
-      "projecao": 1.38,
-      "real": 4.2,
-      "erro": 2.82
-    },
-    {
-      "id": 143600,
-      "nome": "Kauã Moraes da Silva",
-      "posicao": "LAT",
-      "projecao": 1.38,
-      "real": null,
-      "erro": -1.38
-    },
-    {
       "id": 70360,
       "nome": "Eduardo Colcenti Antunes",
       "posicao": "ATA",
-      "projecao": 1.37,
+      "projecao": 1.44,
       "real": 2.1,
-      "erro": 0.73
-    },
-    {
-      "id": 97321,
-      "nome": "Alesson dos Santos Batista",
-      "posicao": "ATA",
-      "projecao": 1.36,
-      "real": 1.8,
-      "erro": 0.44
-    },
-    {
-      "id": 101314,
-      "nome": "Ademir da Silva Santos Júnior",
-      "posicao": "ATA",
-      "projecao": 1.35,
-      "real": 1.5,
-      "erro": 0.15
+      "erro": 0.66
     },
     {
       "id": 87999,
       "nome": "Gustavo Henrique Furtado Scarpa",
       "posicao": "MEI",
-      "projecao": 1.35,
+      "projecao": 1.43,
       "real": 2.8,
-      "erro": 1.45
+      "erro": 1.37
     },
     {
-      "id": 90588,
-      "nome": "Caique de Jesus Gonçalves",
-      "posicao": "MEI",
-      "projecao": 1.35,
-      "real": null,
-      "erro": -1.35
-    },
-    {
-      "id": 143173,
-      "nome": "Leonel Ulises Perez",
-      "posicao": "MEI",
-      "projecao": 1.34,
-      "real": 1.2,
-      "erro": -0.14
-    },
-    {
-      "id": 104085,
-      "nome": "Bruno de Lara Fuchs",
+      "id": 92440,
+      "nome": "André Ramalho Silva",
       "posicao": "ZAG",
-      "projecao": 1.33,
+      "projecao": 1.43,
       "real": null,
-      "erro": -1.33
+      "erro": -1.43
     },
     {
-      "id": 90309,
-      "nome": "David Corrêa da Fonseca",
-      "posicao": "ATA",
-      "projecao": 1.33,
-      "real": 9.5,
-      "erro": 8.17
+      "id": 105175,
+      "nome": "Khellven Douglas Silva Oliveira",
+      "posicao": "LAT",
+      "projecao": 1.42,
+      "real": null,
+      "erro": -1.42
     },
     {
-      "id": 103445,
-      "nome": "Kaio Jorge Pinto Ramos",
+      "id": 104811,
+      "nome": "Sebastián Gómez Londoño",
+      "posicao": "MEI",
+      "projecao": 1.4,
+      "real": 3.4,
+      "erro": 2.0
+    },
+    {
+      "id": 93478,
+      "nome": "Wanderson Maciel Sousa Campos",
       "posicao": "ATA",
-      "projecao": 1.31,
+      "projecao": 1.4,
+      "real": 1.2,
+      "erro": -0.2
+    },
+    {
+      "id": 108469,
+      "nome": "Adonis Uriel Frías",
+      "posicao": "ZAG",
+      "projecao": 1.39,
       "real": null,
-      "erro": -1.31
+      "erro": -1.39
+    },
+    {
+      "id": 97900,
+      "nome": "Vitor Eduardo da Silva Matos",
+      "posicao": "ZAG",
+      "projecao": 1.39,
+      "real": -1.6,
+      "erro": -2.99
+    },
+    {
+      "id": 130843,
+      "nome": "Arthur dos Santos Barbosa Dias",
+      "posicao": "ZAG",
+      "projecao": 1.38,
+      "real": 8,
+      "erro": 6.62
+    },
+    {
+      "id": 145400,
+      "nome": "Cauê Nascimento Santos",
+      "posicao": "LAT",
+      "projecao": 1.38,
+      "real": null,
+      "erro": -1.38
+    },
+    {
+      "id": 98720,
+      "nome": "Fabrizio Germán Angileri - Fabricio",
+      "posicao": "LAT",
+      "projecao": 1.37,
+      "real": null,
+      "erro": -1.37
     },
     {
       "id": 116066,
       "nome": "Rubens Tadeu Hartmann Ricoldi",
       "posicao": "ATA",
-      "projecao": 1.31,
+      "projecao": 1.35,
       "real": 1.3,
-      "erro": -0.01
+      "erro": -0.05
     },
     {
-      "id": 87742,
-      "nome": "Antônio Francisco Moura Neto",
+      "id": 132412,
+      "nome": "Román Agustín Gómez",
+      "posicao": "LAT",
+      "projecao": 1.34,
+      "real": 1.7,
+      "erro": 0.36
+    },
+    {
+      "id": 84558,
+      "nome": "Lucas Daniel Romero",
       "posicao": "MEI",
-      "projecao": 1.31,
-      "real": 2.5,
-      "erro": 1.19
+      "projecao": 1.34,
+      "real": null,
+      "erro": -1.34
     },
     {
-      "id": 111682,
-      "nome": "Adson Ferreira Soares",
+      "id": 90588,
+      "nome": "Caique de Jesus Gonçalves",
       "posicao": "MEI",
       "projecao": 1.3,
       "real": null,
       "erro": -1.3
     },
     {
+      "id": 132264,
+      "nome": "Keny Alexander Arroyo Alvarado",
+      "posicao": "ATA",
+      "projecao": 1.29,
+      "real": 2.3,
+      "erro": 1.01
+    },
+    {
       "id": 72951,
       "nome": "Gabriel Iván Mercado",
       "posicao": "ZAG",
-      "projecao": 1.29,
-      "real": 13,
-      "erro": 11.71
-    },
-    {
-      "id": 82730,
-      "nome": "Marcelo Rangel da Rosa",
-      "posicao": "GOL",
       "projecao": 1.28,
-      "real": 6.8,
-      "erro": 5.52
+      "real": 13,
+      "erro": 11.72
     },
     {
-      "id": 95799,
-      "nome": "Artur Victor Guimarães",
-      "posicao": "ATA",
-      "projecao": 1.26,
-      "real": null,
-      "erro": -1.26
-    },
-    {
-      "id": 93478,
-      "nome": "Wanderson Maciel Sousa Campos",
-      "posicao": "ATA",
-      "projecao": 1.25,
-      "real": 1.2,
-      "erro": -0.05
-    },
-    {
-      "id": 104666,
-      "nome": "Moisés Vieira da Veiga",
-      "posicao": "ATA",
-      "projecao": 1.24,
-      "real": 1.5,
-      "erro": 0.26
-    },
-    {
-      "id": 104134,
-      "nome": "Fabrício do Rosário dos Santos",
-      "posicao": "ATA",
-      "projecao": 1.22,
-      "real": null,
-      "erro": -1.22
-    },
-    {
-      "id": 141754,
-      "nome": "Gabriel Morais Silva Bontempo",
-      "posicao": "MEI",
-      "projecao": 1.22,
-      "real": null,
-      "erro": -1.22
-    },
-    {
-      "id": 106434,
-      "nome": "Eduardo Gonzaga Mendes Santos",
+      "id": 118655,
+      "nome": "Alan Gabriel Saldivia Vázquez",
       "posicao": "ZAG",
-      "projecao": 1.2,
-      "real": null,
-      "erro": -1.2
+      "projecao": 1.27,
+      "real": 4.2,
+      "erro": 2.93
     },
     {
-      "id": 95556,
-      "nome": "Raniele Almeida Melo",
-      "posicao": "MEI",
-      "projecao": 1.2,
-      "real": 3.7,
-      "erro": 2.5
-    },
-    {
-      "id": 132412,
-      "nome": "Román Agustín Gómez",
-      "posicao": "LAT",
-      "projecao": 1.19,
-      "real": 1.7,
-      "erro": 0.51
-    },
-    {
-      "id": 83433,
-      "nome": "Patrick Bezerra do Nascimento",
-      "posicao": "MEI",
-      "projecao": 1.19,
-      "real": 0.1,
-      "erro": -1.09
-    },
-    {
-      "id": 93882,
-      "nome": "Cleiton Schwengber",
+      "id": 125803,
+      "nome": "Pedro Luccas Morisco da Silva",
       "posicao": "GOL",
-      "projecao": 1.19,
-      "real": -2,
-      "erro": -3.19
-    },
-    {
-      "id": 42234,
-      "nome": "Cássio Roberto Ramos",
-      "posicao": "GOL",
-      "projecao": 1.17,
+      "projecao": 1.27,
       "real": null,
-      "erro": -1.17
+      "erro": -1.27
     },
     {
-      "id": 84674,
-      "nome": "Lucas Evangelista Santana de Oliveira",
-      "posicao": "MEI",
-      "projecao": 1.14,
-      "real": 0.5,
-      "erro": -0.64
-    },
-    {
-      "id": 130843,
-      "nome": "Arthur dos Santos Barbosa Dias",
-      "posicao": "ZAG",
-      "projecao": 1.12,
-      "real": 8,
-      "erro": 6.88
+      "id": 90309,
+      "nome": "David Corrêa da Fonseca",
+      "posicao": "ATA",
+      "projecao": 1.27,
+      "real": 9.5,
+      "erro": 8.23
     },
     {
       "id": 112576,
       "nome": "Vinicius Romualdo dos Santos",
       "posicao": "MEI",
-      "projecao": 1.1,
+      "projecao": 1.25,
       "real": 3.5,
-      "erro": 2.4
+      "erro": 2.25
     },
     {
-      "id": 111246,
-      "nome": "Alix Vinicius de Souza Sampaio",
+      "id": 92087,
+      "nome": "Lyanco Evangelista Silveira Neves Vojnovic",
       "posicao": "ZAG",
-      "projecao": 1.08,
-      "real": -0.1,
-      "erro": -1.18
-    },
-    {
-      "id": 105068,
-      "nome": "Reinier Jesus Carvalho",
-      "posicao": "MEI",
-      "projecao": 1.07,
-      "real": 0.9,
-      "erro": -0.17
-    },
-    {
-      "id": 111829,
-      "nome": "Kayky da Silva Chagas",
-      "posicao": "ATA",
-      "projecao": 1.07,
+      "projecao": 1.25,
       "real": null,
-      "erro": -1.07
+      "erro": -1.25
     },
     {
-      "id": 42411,
-      "nome": "Alexi Stival",
-      "posicao": "TEC",
-      "projecao": 1.07,
-      "real": 4.64,
-      "erro": 3.57
-    },
-    {
-      "id": 132071,
-      "nome": "Kevin Steven Serna Jaramillo",
-      "posicao": "ATA",
-      "projecao": 1.06,
-      "real": 0.2,
-      "erro": -0.86
-    },
-    {
-      "id": 72605,
-      "nome": "Vitor Hugo Franchescoli de Souza",
-      "posicao": "ZAG",
-      "projecao": 1.05,
-      "real": null,
-      "erro": -1.05
-    },
-    {
-      "id": 84558,
-      "nome": "Lucas Daniel Romero",
-      "posicao": "MEI",
-      "projecao": 1.05,
-      "real": null,
-      "erro": -1.05
-    },
-    {
-      "id": 90768,
-      "nome": "Fabrício Bruno Soares de Faria",
-      "posicao": "ZAG",
-      "projecao": 1.03,
-      "real": 5.5,
-      "erro": 4.47
-    },
-    {
-      "id": 148125,
-      "nome": "Ryan Augusto Tavares da Silva",
+      "id": 143600,
+      "nome": "Kauã Moraes da Silva",
       "posicao": "LAT",
-      "projecao": 1.0,
+      "projecao": 1.24,
       "real": null,
-      "erro": -1.0
+      "erro": -1.24
     },
     {
-      "id": 97795,
-      "nome": "Marcelo Rodrigues Souza",
-      "posicao": "LAT",
-      "projecao": 0.97,
+      "id": 92171,
+      "nome": "Arthur Mendonça Cabral",
+      "posicao": "ATA",
+      "projecao": 1.24,
+      "real": null,
+      "erro": -1.24
+    },
+    {
+      "id": 84735,
+      "nome": "Jorge Luiz Frello Filho",
+      "posicao": "MEI",
+      "projecao": 1.22,
       "real": 4.4,
-      "erro": 3.43
+      "erro": 3.18
     },
     {
-      "id": 91866,
-      "nome": "José Ivaldo Almeida Silva",
+      "id": 104085,
+      "nome": "Bruno de Lara Fuchs",
       "posicao": "ZAG",
-      "projecao": 0.96,
+      "projecao": 1.21,
       "real": null,
-      "erro": -0.96
+      "erro": -1.21
     },
     {
-      "id": 145659,
-      "nome": "Nicolas Bosshardt",
-      "posicao": "LAT",
-      "projecao": 0.95,
-      "real": null,
-      "erro": -0.95
-    },
-    {
-      "id": 42135,
-      "nome": "Willian Borges da Silva",
-      "posicao": "MEI",
-      "projecao": 0.93,
-      "real": 0,
-      "erro": -0.93
-    },
-    {
-      "id": 124424,
-      "nome": "Rodrigo Castillo",
+      "id": 104666,
+      "nome": "Moisés Vieira da Veiga",
       "posicao": "ATA",
-      "projecao": 0.92,
-      "real": 9.9,
-      "erro": 8.98
+      "projecao": 1.2,
+      "real": 1.5,
+      "erro": 0.3
+    },
+    {
+      "id": 141754,
+      "nome": "Gabriel Morais Silva Bontempo",
+      "posicao": "MEI",
+      "projecao": 1.2,
+      "real": null,
+      "erro": -1.2
+    },
+    {
+      "id": 111682,
+      "nome": "Adson Ferreira Soares",
+      "posicao": "MEI",
+      "projecao": 1.18,
+      "real": null,
+      "erro": -1.18
     },
     {
       "id": 96793,
       "nome": "Cleidson Andrade de Souza Silva",
       "posicao": "ZAG",
-      "projecao": 0.91,
+      "projecao": 1.18,
       "real": 10.4,
-      "erro": 9.49
+      "erro": 9.22
     },
     {
-      "id": 106822,
-      "nome": "Rodrigo Nestor Bertalia",
+      "id": 143173,
+      "nome": "Leonel Ulises Perez",
       "posicao": "MEI",
-      "projecao": 0.9,
-      "real": -0.2,
-      "erro": -1.1
+      "projecao": 1.17,
+      "real": 1.2,
+      "erro": 0.03
+    },
+    {
+      "id": 87742,
+      "nome": "Antônio Francisco Moura Neto",
+      "posicao": "MEI",
+      "projecao": 1.17,
+      "real": 2.5,
+      "erro": 1.33
+    },
+    {
+      "id": 83433,
+      "nome": "Patrick Bezerra do Nascimento",
+      "posicao": "MEI",
+      "projecao": 1.16,
+      "real": 0.1,
+      "erro": -1.06
+    },
+    {
+      "id": 112863,
+      "nome": "Ramón Sosa Acosta",
+      "posicao": "ATA",
+      "projecao": 1.15,
+      "real": 0.4,
+      "erro": -0.75
+    },
+    {
+      "id": 105068,
+      "nome": "Reinier Jesus Carvalho",
+      "posicao": "MEI",
+      "projecao": 1.13,
+      "real": 0.9,
+      "erro": -0.23
+    },
+    {
+      "id": 111246,
+      "nome": "Alix Vinicius de Souza Sampaio",
+      "posicao": "ZAG",
+      "projecao": 1.13,
+      "real": -0.1,
+      "erro": -1.23
+    },
+    {
+      "id": 132071,
+      "nome": "Kevin Steven Serna Jaramillo",
+      "posicao": "ATA",
+      "projecao": 1.13,
+      "real": 0.2,
+      "erro": -0.93
     },
     {
       "id": 107985,
       "nome": "Carlos Terán Díaz",
       "posicao": "ZAG",
-      "projecao": 0.9,
+      "projecao": 1.12,
       "real": null,
-      "erro": -0.9
+      "erro": -1.12
     },
     {
-      "id": 131832,
-      "nome": "Juan Camilo Portilla Orozco",
+      "id": 84674,
+      "nome": "Lucas Evangelista Santana de Oliveira",
       "posicao": "MEI",
-      "projecao": 0.89,
-      "real": 4,
-      "erro": 3.11
+      "projecao": 1.12,
+      "real": 0.5,
+      "erro": -0.62
+    },
+    {
+      "id": 42234,
+      "nome": "Cássio Roberto Ramos",
+      "posicao": "GOL",
+      "projecao": 1.11,
+      "real": null,
+      "erro": -1.11
+    },
+    {
+      "id": 90768,
+      "nome": "Fabrício Bruno Soares de Faria",
+      "posicao": "ZAG",
+      "projecao": 1.09,
+      "real": 5.5,
+      "erro": 4.41
+    },
+    {
+      "id": 104693,
+      "nome": "Newton Araújo da Costa Júnior",
+      "posicao": "MEI",
+      "projecao": 1.05,
+      "real": null,
+      "erro": -1.05
+    },
+    {
+      "id": 106434,
+      "nome": "Eduardo Gonzaga Mendes Santos",
+      "posicao": "ZAG",
+      "projecao": 1.05,
+      "real": null,
+      "erro": -1.05
+    },
+    {
+      "id": 108588,
+      "nome": "Gonzalo Andrés Tapia Dubournais",
+      "posicao": "ATA",
+      "projecao": 1.04,
+      "real": 3.7,
+      "erro": 2.66
+    },
+    {
+      "id": 111829,
+      "nome": "Kayky da Silva Chagas",
+      "posicao": "ATA",
+      "projecao": 1.03,
+      "real": null,
+      "erro": -1.03
     },
     {
       "id": 141868,
       "nome": "Vinicius Rodrigues Lira",
+      "posicao": "LAT",
+      "projecao": 1.01,
+      "real": null,
+      "erro": -1.01
+    },
+    {
+      "id": 72605,
+      "nome": "Vitor Hugo Franchescoli de Souza",
+      "posicao": "ZAG",
+      "projecao": 1.0,
+      "real": null,
+      "erro": -1.0
+    },
+    {
+      "id": 91866,
+      "nome": "José Ivaldo Almeida Silva",
+      "posicao": "ZAG",
+      "projecao": 1.0,
+      "real": null,
+      "erro": -1.0
+    },
+    {
+      "id": 111831,
+      "nome": "Matheus Martins Silva dos Santos",
+      "posicao": "ATA",
+      "projecao": 0.97,
+      "real": 5.3,
+      "erro": 4.33
+    },
+    {
+      "id": 42135,
+      "nome": "Willian Borges da Silva",
+      "posicao": "MEI",
+      "projecao": 0.96,
+      "real": 0,
+      "erro": -0.96
+    },
+    {
+      "id": 77485,
+      "nome": "André Martín Carrillo Díaz",
+      "posicao": "MEI",
+      "projecao": 0.96,
+      "real": 0.9,
+      "erro": -0.06
+    },
+    {
+      "id": 100342,
+      "nome": "Leonardo de Andrade Silva",
+      "posicao": "ZAG",
+      "projecao": 0.94,
+      "real": null,
+      "erro": -0.94
+    },
+    {
+      "id": 82628,
+      "nome": "Guilherme de Jesus da Silva",
+      "posicao": "LAT",
+      "projecao": 0.94,
+      "real": null,
+      "erro": -0.94
+    },
+    {
+      "id": 42411,
+      "nome": "Alexi Stival",
+      "posicao": "TEC",
+      "projecao": 0.93,
+      "real": 4.64,
+      "erro": 3.7
+    },
+    {
+      "id": 145659,
+      "nome": "Nicolas Bosshardt",
       "posicao": "LAT",
       "projecao": 0.89,
       "real": null,
       "erro": -0.89
     },
     {
-      "id": 108588,
-      "nome": "Gonzalo Andrés Tapia Dubournais",
+      "id": 148125,
+      "nome": "Ryan Augusto Tavares da Silva",
+      "posicao": "LAT",
+      "projecao": 0.89,
+      "real": null,
+      "erro": -0.89
+    },
+    {
+      "id": 136955,
+      "nome": "Mateo Naín Sanabria Doracio",
       "posicao": "ATA",
       "projecao": 0.88,
-      "real": 3.7,
-      "erro": 2.82
-    },
-    {
-      "id": 127970,
-      "nome": "Felipe Chiqueti Bandeira",
-      "posicao": "MEI",
-      "projecao": 0.87,
-      "real": 0,
-      "erro": -0.87
-    },
-    {
-      "id": 77485,
-      "nome": "André Martín Carrillo Díaz",
-      "posicao": "MEI",
-      "projecao": 0.86,
-      "real": 0.9,
-      "erro": 0.04
-    },
-    {
-      "id": 78478,
-      "nome": "Willian Souza Arão da Silva",
-      "posicao": "MEI",
-      "projecao": 0.86,
       "real": null,
-      "erro": -0.86
+      "erro": -0.88
     },
     {
       "id": 69140,
       "nome": "Allan Marques Loureiro",
       "posicao": "MEI",
-      "projecao": 0.84,
+      "projecao": 0.88,
       "real": 2.7,
-      "erro": 1.86
+      "erro": 1.82
     },
     {
-      "id": 112863,
-      "nome": "Ramón Sosa Acosta",
+      "id": 106822,
+      "nome": "Rodrigo Nestor Bertalia",
+      "posicao": "MEI",
+      "projecao": 0.86,
+      "real": -0.2,
+      "erro": -1.06
+    },
+    {
+      "id": 124424,
+      "nome": "Rodrigo Castillo",
       "posicao": "ATA",
-      "projecao": 0.83,
-      "real": 0.4,
-      "erro": -0.43
+      "projecao": 0.85,
+      "real": 9.9,
+      "erro": 9.05
     },
     {
-      "id": 132274,
-      "nome": "Ignacio Sosa Ospital",
+      "id": 127970,
+      "nome": "Felipe Chiqueti Bandeira",
       "posicao": "MEI",
-      "projecao": 0.83,
-      "real": 5.5,
-      "erro": 4.67
+      "projecao": 0.85,
+      "real": 0,
+      "erro": -0.85
     },
     {
-      "id": 104693,
-      "nome": "Newton Araújo da Costa Júnior",
+      "id": 97795,
+      "nome": "Marcelo Rodrigues Souza",
+      "posicao": "LAT",
+      "projecao": 0.85,
+      "real": 4.4,
+      "erro": 3.55
+    },
+    {
+      "id": 78605,
+      "nome": "Gabriel Girotto Franco",
       "posicao": "MEI",
-      "projecao": 0.82,
+      "projecao": 0.84,
+      "real": -0.3,
+      "erro": -1.14
+    },
+    {
+      "id": 94154,
+      "nome": "Maycon de Andrade Barberan",
+      "posicao": "MEI",
+      "projecao": 0.83,
       "real": null,
-      "erro": -0.82
-    },
-    {
-      "id": 147268,
-      "nome": "Anderson Bispo dos Santos",
-      "posicao": "ATA",
-      "projecao": 0.79,
-      "real": 1.5,
-      "erro": 0.71
+      "erro": -0.83
     },
     {
       "id": 78117,
@@ -2383,212 +2415,236 @@
       "erro": 13.22
     },
     {
-      "id": 92171,
-      "nome": "Arthur Mendonça Cabral",
-      "posicao": "ATA",
+      "id": 78478,
+      "nome": "Willian Souza Arão da Silva",
+      "posicao": "MEI",
       "projecao": 0.77,
       "real": null,
       "erro": -0.77
     },
     {
-      "id": 107173,
-      "nome": "Michel Daryl Araújo Villar",
+      "id": 63289,
+      "nome": "Edenílson Andrade dos Santos",
       "posicao": "MEI",
       "projecao": 0.76,
-      "real": 0.2,
-      "erro": -0.56
+      "real": -1.3,
+      "erro": -2.06
     },
     {
-      "id": 78605,
-      "nome": "Gabriel Girotto Franco",
+      "id": 68708,
+      "nome": "Carlos Eduardo de Oliveira Alves",
       "posicao": "MEI",
       "projecao": 0.76,
-      "real": -0.3,
-      "erro": -1.06
-    },
-    {
-      "id": 121824,
-      "nome": "Kayke Ferrari Guimarães",
-      "posicao": "ATA",
-      "projecao": 0.74,
-      "real": 0,
-      "erro": -0.74
-    },
-    {
-      "id": 125803,
-      "nome": "Pedro Luccas Morisco da Silva",
-      "posicao": "GOL",
-      "projecao": 0.74,
       "real": null,
-      "erro": -0.74
-    },
-    {
-      "id": 136955,
-      "nome": "Mateo Naín Sanabria Doracio",
-      "posicao": "ATA",
-      "projecao": 0.74,
-      "real": null,
-      "erro": -0.74
-    },
-    {
-      "id": 101319,
-      "nome": "Cláudio Rodrigues Gomes",
-      "posicao": "LAT",
-      "projecao": 0.72,
-      "real": 6.6,
-      "erro": 5.88
-    },
-    {
-      "id": 100342,
-      "nome": "Leonardo de Andrade Silva",
-      "posicao": "ZAG",
-      "projecao": 0.7,
-      "real": null,
-      "erro": -0.7
-    },
-    {
-      "id": 130620,
-      "nome": "Edenílson Santos Nascimento Filho",
-      "posicao": "MEI",
-      "projecao": 0.69,
-      "real": null,
-      "erro": -0.69
-    },
-    {
-      "id": 68952,
-      "nome": "Mário Sérgio Santos Costa",
-      "posicao": "ATA",
-      "projecao": 0.69,
-      "real": null,
-      "erro": -0.69
-    },
-    {
-      "id": 105584,
-      "nome": "Lucas Piton Crivellaro",
-      "posicao": "LAT",
-      "projecao": 0.68,
-      "real": -0.6,
-      "erro": -1.28
-    },
-    {
-      "id": 106593,
-      "nome": "Lucas Hernán Villalba",
-      "posicao": "ZAG",
-      "projecao": 0.68,
-      "real": 5.5,
-      "erro": 4.82
-    },
-    {
-      "id": 111831,
-      "nome": "Matheus Martins Silva dos Santos",
-      "posicao": "ATA",
-      "projecao": 0.65,
-      "real": 5.3,
-      "erro": 4.65
-    },
-    {
-      "id": 82628,
-      "nome": "Guilherme de Jesus da Silva",
-      "posicao": "LAT",
-      "projecao": 0.65,
-      "real": null,
-      "erro": -0.65
-    },
-    {
-      "id": 68938,
-      "nome": "Giovanni Augusto Oliveira Cardoso",
-      "posicao": "MEI",
-      "projecao": 0.64,
-      "real": 1,
-      "erro": 0.36
-    },
-    {
-      "id": 94154,
-      "nome": "Maycon de Andrade Barberan",
-      "posicao": "MEI",
-      "projecao": 0.64,
-      "real": null,
-      "erro": -0.64
-    },
-    {
-      "id": 100652,
-      "nome": "Yuri Alberto Monteiro da Silva",
-      "posicao": "ATA",
-      "projecao": 0.63,
-      "real": 10.9,
-      "erro": 10.27
+      "erro": -0.76
     },
     {
       "id": 105214,
       "nome": "Santiago Mariano Rodríguez Molina",
       "posicao": "MEI",
-      "projecao": 0.63,
+      "projecao": 0.75,
       "real": 3,
-      "erro": 2.37
+      "erro": 2.25
     },
     {
-      "id": 101002,
-      "nome": "José Antonio dos Santos Júnior",
+      "id": 105584,
+      "nome": "Lucas Piton Crivellaro",
+      "posicao": "LAT",
+      "projecao": 0.75,
+      "real": -0.6,
+      "erro": -1.35
+    },
+    {
+      "id": 131832,
+      "nome": "Juan Camilo Portilla Orozco",
+      "posicao": "MEI",
+      "projecao": 0.74,
+      "real": 4,
+      "erro": 3.26
+    },
+    {
+      "id": 101319,
+      "nome": "Cláudio Rodrigues Gomes",
+      "posicao": "LAT",
+      "projecao": 0.73,
+      "real": 6.6,
+      "erro": 5.87
+    },
+    {
+      "id": 132274,
+      "nome": "Ignacio Sosa Ospital",
+      "posicao": "MEI",
+      "projecao": 0.73,
+      "real": 5.5,
+      "erro": 4.77
+    },
+    {
+      "id": 121824,
+      "nome": "Kayke Ferrari Guimarães",
       "posicao": "ATA",
-      "projecao": 0.62,
+      "projecao": 0.7,
       "real": 0,
-      "erro": -0.62
+      "erro": -0.7
+    },
+    {
+      "id": 147268,
+      "nome": "Anderson Bispo dos Santos",
+      "posicao": "ATA",
+      "projecao": 0.7,
+      "real": 1.5,
+      "erro": 0.8
+    },
+    {
+      "id": 115025,
+      "nome": "Miguel Àngel Terceros",
+      "posicao": "MEI",
+      "projecao": 0.67,
+      "real": null,
+      "erro": -0.67
+    },
+    {
+      "id": 68938,
+      "nome": "Giovanni Augusto Oliveira Cardoso",
+      "posicao": "MEI",
+      "projecao": 0.67,
+      "real": 1,
+      "erro": 0.33
+    },
+    {
+      "id": 97432,
+      "nome": "Victor Henrique Carvalho Caetano",
+      "posicao": "ZAG",
+      "projecao": 0.67,
+      "real": null,
+      "erro": -0.67
+    },
+    {
+      "id": 113359,
+      "nome": "Pablo Gonçalves Maia Fortunato",
+      "posicao": "MEI",
+      "projecao": 0.66,
+      "real": null,
+      "erro": -0.66
+    },
+    {
+      "id": 100652,
+      "nome": "Yuri Alberto Monteiro da Silva",
+      "posicao": "ATA",
+      "projecao": 0.65,
+      "real": 10.9,
+      "erro": 10.25
+    },
+    {
+      "id": 111466,
+      "nome": "Victor Gabriel da Conceição Ribeiro",
+      "posicao": "ZAG",
+      "projecao": 0.65,
+      "real": 5,
+      "erro": 4.35
+    },
+    {
+      "id": 106593,
+      "nome": "Lucas Hernán Villalba",
+      "posicao": "ZAG",
+      "projecao": 0.64,
+      "real": 5.5,
+      "erro": 4.86
+    },
+    {
+      "id": 109096,
+      "nome": "Gonzalo Jordy Plata Jiménez",
+      "posicao": "ATA",
+      "projecao": 0.64,
+      "real": null,
+      "erro": -0.64
+    },
+    {
+      "id": 68952,
+      "nome": "Mário Sérgio Santos Costa",
+      "posicao": "ATA",
+      "projecao": 0.64,
+      "real": null,
+      "erro": -0.64
     },
     {
       "id": 86292,
       "nome": "Yannick Bolasie",
       "posicao": "ATA",
-      "projecao": 0.62,
+      "projecao": 0.64,
       "real": 2,
-      "erro": 1.38
+      "erro": 1.36
+    },
+    {
+      "id": 99274,
+      "nome": "Alexander Nahuel Barboza Ullúa",
+      "posicao": "ZAG",
+      "projecao": 0.63,
+      "real": 10.4,
+      "erro": 9.77
+    },
+    {
+      "id": 130620,
+      "nome": "Edenílson Santos Nascimento Filho",
+      "posicao": "MEI",
+      "projecao": 0.62,
+      "real": null,
+      "erro": -0.62
     },
     {
       "id": 90370,
       "nome": "Matheus Pereira da Silva",
       "posicao": "MEI",
-      "projecao": 0.62,
+      "projecao": 0.61,
       "real": 0.5,
-      "erro": -0.12
+      "erro": -0.11
+    },
+    {
+      "id": 105903,
+      "nome": "José Aldo Soares de Oliveira Filho",
+      "posicao": "MEI",
+      "projecao": 0.6,
+      "real": null,
+      "erro": -0.6
     },
     {
       "id": 79701,
       "nome": "Lucas Silva Borges",
       "posicao": "MEI",
-      "projecao": 0.6,
+      "projecao": 0.58,
       "real": 0,
-      "erro": -0.6
+      "erro": -0.58
     },
     {
       "id": 87258,
       "nome": "Yeferson Julio Soteldo Martínez",
       "posicao": "ATA",
-      "projecao": 0.6,
+      "projecao": 0.58,
       "real": 0,
-      "erro": -0.6
+      "erro": -0.58
     },
     {
-      "id": 95362,
-      "nome": "Zander Mateo Casierra Cabezas",
-      "posicao": "ATA",
-      "projecao": 0.6,
-      "real": 1.2,
-      "erro": 0.6
-    },
-    {
-      "id": 141595,
-      "nome": "Gabriel Ferreira de Carvalho",
-      "posicao": "ATA",
-      "projecao": 0.57,
-      "real": 2,
-      "erro": 1.43
-    },
-    {
-      "id": 146430,
-      "nome": "Gabriel Pereira Justino",
+      "id": 97460,
+      "nome": "João Victor Carroll Santana - Caroll",
       "posicao": "ZAG",
+      "projecao": 0.58,
+      "real": 5.1,
+      "erro": 4.52
+    },
+    {
+      "id": 104330,
+      "nome": "Eduardo Marcelo Rodrigues Nunes",
+      "posicao": "MEI",
       "projecao": 0.57,
-      "real": 0,
+      "real": null,
       "erro": -0.57
+    },
+    {
+      "id": 107173,
+      "nome": "Michel Daryl Araújo Villar",
+      "posicao": "MEI",
+      "projecao": 0.57,
+      "real": 0.2,
+      "erro": -0.37
     },
     {
       "id": 101290,
@@ -2599,100 +2655,156 @@
       "erro": -0.06
     },
     {
-      "id": 105157,
-      "nome": "Rodrigo Román Villagra",
-      "posicao": "MEI",
-      "projecao": 0.54,
-      "real": 4.1,
-      "erro": 3.56
-    },
-    {
-      "id": 114040,
-      "nome": "Alan Steve Minda García",
+      "id": 86757,
+      "nome": "Everton Sousa Soares",
       "posicao": "ATA",
-      "projecao": 0.54,
-      "real": 4.5,
-      "erro": 3.96
-    },
-    {
-      "id": 115025,
-      "nome": "Miguel Àngel Terceros",
-      "posicao": "MEI",
-      "projecao": 0.54,
+      "projecao": 0.56,
       "real": null,
-      "erro": -0.54
+      "erro": -0.56
     },
     {
-      "id": 113359,
-      "nome": "Pablo Gonçalves Maia Fortunato",
+      "id": 101002,
+      "nome": "José Antonio dos Santos Júnior",
+      "posicao": "ATA",
+      "projecao": 0.55,
+      "real": 0,
+      "erro": -0.55
+    },
+    {
+      "id": 141595,
+      "nome": "Gabriel Ferreira de Carvalho",
+      "posicao": "ATA",
+      "projecao": 0.55,
+      "real": 2,
+      "erro": 1.45
+    },
+    {
+      "id": 95362,
+      "nome": "Zander Mateo Casierra Cabezas",
+      "posicao": "ATA",
+      "projecao": 0.55,
+      "real": 1.2,
+      "erro": 0.65
+    },
+    {
+      "id": 100987,
+      "nome": "Gustavo Nonato Santana",
       "posicao": "MEI",
       "projecao": 0.53,
       "real": null,
       "erro": -0.53
     },
     {
-      "id": 88293,
-      "nome": "Altemir Cordeiro Pessôa Neto",
-      "posicao": "ATA",
-      "projecao": 0.53,
-      "real": 0.5,
-      "erro": -0.03
-    },
-    {
-      "id": 105903,
-      "nome": "José Aldo Soares de Oliveira Filho",
-      "posicao": "MEI",
+      "id": 111309,
+      "nome": "Gustavo Martins de Souza Santos",
+      "posicao": "ZAG",
       "projecao": 0.52,
-      "real": null,
-      "erro": -0.52
+      "real": 1.2,
+      "erro": 0.68
     },
     {
-      "id": 133543,
-      "nome": "Guilherme William Silva Inácio",
+      "id": 114040,
+      "nome": "Alan Steve Minda García",
       "posicao": "ATA",
-      "projecao": 0.51,
-      "real": 2.7,
-      "erro": 2.19
-    },
-    {
-      "id": 141776,
-      "nome": "Gustavo Henrique Pereira",
-      "posicao": "MEI",
-      "projecao": 0.48,
-      "real": -1.7,
-      "erro": -2.18
-    },
-    {
-      "id": 141995,
-      "nome": "Diego da Cruz Lopes",
-      "posicao": "MEI",
-      "projecao": 0.48,
-      "real": null,
-      "erro": -0.48
+      "projecao": 0.52,
+      "real": 4.5,
+      "erro": 3.98
     },
     {
       "id": 108713,
       "nome": "Antonio Javier Galeano Ferreira",
       "posicao": "ATA",
-      "projecao": 0.45,
+      "projecao": 0.5,
       "real": 0.5,
-      "erro": 0.05
+      "erro": 0.0
     },
     {
-      "id": 123744,
-      "nome": "Alan Jesús Rodríguez Guaglianoni",
-      "posicao": "MEI",
-      "projecao": 0.45,
+      "id": 146430,
+      "nome": "Gabriel Pereira Justino",
+      "posicao": "ZAG",
+      "projecao": 0.5,
+      "real": 0,
+      "erro": -0.5
+    },
+    {
+      "id": 88293,
+      "nome": "Altemir Cordeiro Pessôa Neto",
+      "posicao": "ATA",
+      "projecao": 0.5,
+      "real": 0.5,
+      "erro": 0.0
+    },
+    {
+      "id": 104994,
+      "nome": "Wagner Leonardo Calvelo de Souza",
+      "posicao": "ZAG",
+      "projecao": 0.49,
       "real": null,
-      "erro": -0.45
+      "erro": -0.49
     },
     {
-      "id": 63289,
-      "nome": "Edenílson Andrade dos Santos",
+      "id": 133543,
+      "nome": "Guilherme William Silva Inácio",
+      "posicao": "ATA",
+      "projecao": 0.48,
+      "real": 2.7,
+      "erro": 2.22
+    },
+    {
+      "id": 105157,
+      "nome": "Rodrigo Román Villagra",
       "posicao": "MEI",
-      "projecao": 0.45,
-      "real": -1.3,
-      "erro": -1.75
+      "projecao": 0.47,
+      "real": 4.1,
+      "erro": 3.62
+    },
+    {
+      "id": 110598,
+      "nome": "Marino Hinestroza Angulo",
+      "posicao": "ATA",
+      "projecao": 0.47,
+      "real": 0,
+      "erro": -0.47
+    },
+    {
+      "id": 108131,
+      "nome": "Maurício Garcez de Jesus",
+      "posicao": "ATA",
+      "projecao": 0.46,
+      "real": null,
+      "erro": -0.46
+    },
+    {
+      "id": 141995,
+      "nome": "Diego da Cruz Lopes",
+      "posicao": "MEI",
+      "projecao": 0.46,
+      "real": null,
+      "erro": -0.46
+    },
+    {
+      "id": 147088,
+      "nome": "Mamady Cissé",
+      "posicao": "MEI",
+      "projecao": 0.44,
+      "real": null,
+      "erro": -0.44
+    },
+    {
+      "id": 72391,
+      "nome": "Fernando Diniz Silva",
+      "posicao": "TEC",
+      "projecao": 0.44,
+      "real": null,
+      "erro": -0.44
+    },
+    {
+      "id": 77777,
+      "nome": "João Felipe Schmidt Urbano",
+      "posicao": "MEI",
+      "projecao": 0.44,
+      "real": -0.3,
+      "erro": -0.74
     },
     {
       "id": 82463,
@@ -2703,257 +2815,257 @@
       "erro": -0.44
     },
     {
-      "id": 147088,
-      "nome": "Mamady Cissé",
+      "id": 123744,
+      "nome": "Alan Jesús Rodríguez Guaglianoni",
+      "posicao": "MEI",
+      "projecao": 0.43,
+      "real": null,
+      "erro": -0.43
+    },
+    {
+      "id": 141776,
+      "nome": "Gustavo Henrique Pereira",
+      "posicao": "MEI",
+      "projecao": 0.43,
+      "real": -1.7,
+      "erro": -2.13
+    },
+    {
+      "id": 80313,
+      "nome": "Gilberto Moraes Júnior",
+      "posicao": "LAT",
+      "projecao": 0.43,
+      "real": null,
+      "erro": -0.43
+    },
+    {
+      "id": 42500,
+      "nome": "Fagner Conserva Lemos",
+      "posicao": "LAT",
+      "projecao": 0.42,
+      "real": null,
+      "erro": -0.42
+    },
+    {
+      "id": 96342,
+      "nome": "Charles Rigon Mattos",
       "posicao": "MEI",
       "projecao": 0.42,
       "real": null,
       "erro": -0.42
     },
     {
-      "id": 110598,
-      "nome": "Marino Hinestroza Angulo",
-      "posicao": "ATA",
-      "projecao": 0.41,
-      "real": 0,
-      "erro": -0.41
-    },
-    {
-      "id": 111466,
-      "nome": "Victor Gabriel da Conceição Ribeiro",
-      "posicao": "ZAG",
-      "projecao": 0.41,
-      "real": 5,
-      "erro": 4.59
-    },
-    {
-      "id": 136156,
-      "nome": "Larson Torna Ferreira dos Santos",
-      "posicao": "MEI",
-      "projecao": 0.41,
-      "real": null,
-      "erro": -0.41
-    },
-    {
-      "id": 68708,
-      "nome": "Carlos Eduardo de Oliveira Alves",
-      "posicao": "MEI",
-      "projecao": 0.41,
-      "real": null,
-      "erro": -0.41
-    },
-    {
-      "id": 97432,
-      "nome": "Victor Henrique Carvalho Caetano",
-      "posicao": "ZAG",
-      "projecao": 0.41,
-      "real": null,
-      "erro": -0.41
-    },
-    {
       "id": 147546,
       "nome": "Roger Dias Fernandes",
       "posicao": "MEI",
-      "projecao": 0.4,
-      "real": null,
-      "erro": -0.4
-    },
-    {
-      "id": 86686,
-      "nome": "Danilo das Neves Pinheiro",
-      "posicao": "MEI",
-      "projecao": 0.4,
-      "real": 0.9,
-      "erro": 0.5
-    },
-    {
-      "id": 96342,
-      "nome": "Charles Rigon Mattos",
-      "posicao": "MEI",
-      "projecao": 0.4,
-      "real": null,
-      "erro": -0.4
-    },
-    {
-      "id": 97460,
-      "nome": "João Victor Carroll Santana - Caroll",
-      "posicao": "ZAG",
-      "projecao": 0.4,
-      "real": 5.1,
-      "erro": 4.7
-    },
-    {
-      "id": 104330,
-      "nome": "Eduardo Marcelo Rodrigues Nunes",
-      "posicao": "MEI",
       "projecao": 0.39,
       "real": null,
       "erro": -0.39
-    },
-    {
-      "id": 108131,
-      "nome": "Maurício Garcez de Jesus",
-      "posicao": "ATA",
-      "projecao": 0.39,
-      "real": null,
-      "erro": -0.39
-    },
-    {
-      "id": 73318,
-      "nome": "Daniel Fortunato Borges",
-      "posicao": "LAT",
-      "projecao": 0.37,
-      "real": null,
-      "erro": -0.37
-    },
-    {
-      "id": 86410,
-      "nome": "Victor Luis Chuab Zamblauskas",
-      "posicao": "LAT",
-      "projecao": 0.37,
-      "real": null,
-      "erro": -0.37
-    },
-    {
-      "id": 86757,
-      "nome": "Everton Sousa Soares",
-      "posicao": "ATA",
-      "projecao": 0.37,
-      "real": null,
-      "erro": -0.37
-    },
-    {
-      "id": 112017,
-      "nome": "Antonio Feliphe Costa Silva",
-      "posicao": "MEI",
-      "projecao": 0.36,
-      "real": null,
-      "erro": -0.36
     },
     {
       "id": 80129,
       "nome": "Jadson Alves dos Santos",
       "posicao": "MEI",
-      "projecao": 0.36,
+      "projecao": 0.39,
       "real": 4.4,
-      "erro": 4.04
+      "erro": 4.01
     },
     {
-      "id": 81005,
-      "nome": "André Luis Silva de Aguiar",
+      "id": 120433,
+      "nome": "Leonardo Derik Dias Gonçalves",
+      "posicao": "LAT",
+      "projecao": 0.36,
+      "real": null,
+      "erro": -0.36
+    },
+    {
+      "id": 136156,
+      "nome": "Larson Torna Ferreira dos Santos",
+      "posicao": "MEI",
+      "projecao": 0.36,
+      "real": null,
+      "erro": -0.36
+    },
+    {
+      "id": 86686,
+      "nome": "Danilo das Neves Pinheiro",
+      "posicao": "MEI",
+      "projecao": 0.36,
+      "real": 0.9,
+      "erro": 0.54
+    },
+    {
+      "id": 90917,
+      "nome": "Carlos Eduardo Ferreira de Souza",
       "posicao": "ATA",
       "projecao": 0.36,
       "real": null,
       "erro": -0.36
     },
     {
-      "id": 108133,
-      "nome": "Isidro Miguel Pitta Saldívar",
-      "posicao": "ATA",
-      "projecao": 0.34,
-      "real": 2,
-      "erro": 1.66
+      "id": 98484,
+      "nome": "Victor Hugo Soares dos Santos",
+      "posicao": "ZAG",
+      "projecao": 0.36,
+      "real": null,
+      "erro": -0.36
     },
     {
-      "id": 146991,
-      "nome": "Rhuan Gabriel Rodrigues de Souza Silva",
-      "posicao": "MEI",
+      "id": 111879,
+      "nome": "Mateus da Silva Duarte",
+      "posicao": "LAT",
+      "projecao": 0.35,
+      "real": null,
+      "erro": -0.35
+    },
+    {
+      "id": 91772,
+      "nome": "David de Duarte Macedo",
+      "posicao": "ZAG",
       "projecao": 0.34,
       "real": null,
       "erro": -0.34
     },
     {
-      "id": 90917,
-      "nome": "Carlos Eduardo Ferreira de Souza",
-      "posicao": "ATA",
+      "id": 73318,
+      "nome": "Daniel Fortunato Borges",
+      "posicao": "LAT",
       "projecao": 0.33,
       "real": null,
       "erro": -0.33
     },
     {
-      "id": 98484,
-      "nome": "Victor Hugo Soares dos Santos",
-      "posicao": "ZAG",
+      "id": 86410,
+      "nome": "Victor Luis Chuab Zamblauskas",
+      "posicao": "LAT",
+      "projecao": 0.33,
+      "real": null,
+      "erro": -0.33
+    },
+    {
+      "id": 112017,
+      "nome": "Antonio Feliphe Costa Silva",
+      "posicao": "MEI",
       "projecao": 0.32,
       "real": null,
       "erro": -0.32
     },
     {
-      "id": 131617,
-      "nome": "André Oliveira e Silva",
+      "id": 142265,
+      "nome": "Wendeson Wanderley Santos de Melo",
       "posicao": "ATA",
-      "projecao": 0.3,
-      "real": -1.3,
-      "erro": -1.6
+      "projecao": 0.32,
+      "real": null,
+      "erro": -0.32
+    },
+    {
+      "id": 81005,
+      "nome": "André Luis Silva de Aguiar",
+      "posicao": "ATA",
+      "projecao": 0.32,
+      "real": null,
+      "erro": -0.32
     },
     {
       "id": 105047,
       "nome": "João Marcelo Messias Ferreira",
       "posicao": "ZAG",
-      "projecao": 0.29,
+      "projecao": 0.31,
       "real": null,
-      "erro": -0.29
-    },
-    {
-      "id": 105842,
-      "nome": "Lucas Eduardo Ribeiro de Souza",
-      "posicao": "ZAG",
-      "projecao": 0.29,
-      "real": null,
-      "erro": -0.29
-    },
-    {
-      "id": 109096,
-      "nome": "Gonzalo Jordy Plata Jiménez",
-      "posicao": "ATA",
-      "projecao": 0.29,
-      "real": null,
-      "erro": -0.29
-    },
-    {
-      "id": 142265,
-      "nome": "Wendeson Wanderley Santos de Melo",
-      "posicao": "ATA",
-      "projecao": 0.29,
-      "real": null,
-      "erro": -0.29
-    },
-    {
-      "id": 42500,
-      "nome": "Fagner Conserva Lemos",
-      "posicao": "LAT",
-      "projecao": 0.29,
-      "real": null,
-      "erro": -0.29
+      "erro": -0.31
     },
     {
       "id": 115914,
       "nome": "Everton Gustavo Fernandes Araújo",
       "posicao": "MEI",
-      "projecao": 0.28,
+      "projecao": 0.31,
       "real": -1,
-      "erro": -1.28
+      "erro": -1.31
     },
     {
-      "id": 95131,
-      "nome": "Gabriel Pereira Taliari",
+      "id": 70944,
+      "nome": "Bruno Henrique Corsini",
+      "posicao": "MEI",
+      "projecao": 0.31,
+      "real": 2,
+      "erro": 1.69
+    },
+    {
+      "id": 146991,
+      "nome": "Rhuan Gabriel Rodrigues de Souza Silva",
+      "posicao": "MEI",
+      "projecao": 0.3,
+      "real": null,
+      "erro": -0.3
+    },
+    {
+      "id": 131617,
+      "nome": "André Oliveira e Silva",
       "posicao": "ATA",
-      "projecao": 0.26,
-      "real": 19.3,
-      "erro": 19.04
+      "projecao": 0.28,
+      "real": -1.3,
+      "erro": -1.58
+    },
+    {
+      "id": 105842,
+      "nome": "Lucas Eduardo Ribeiro de Souza",
+      "posicao": "ZAG",
+      "projecao": 0.27,
+      "real": null,
+      "erro": -0.27
+    },
+    {
+      "id": 124481,
+      "nome": "Mateo Ponte Costa",
+      "posicao": "LAT",
+      "projecao": 0.27,
+      "real": 3.5,
+      "erro": 3.23
     },
     {
       "id": 97095,
       "nome": "Carlos Eccehomo Cuesta Figueroa",
       "posicao": "ZAG",
-      "projecao": 0.26,
+      "projecao": 0.27,
       "real": null,
-      "erro": -0.26
+      "erro": -0.27
     },
     {
-      "id": 104994,
-      "nome": "Wagner Leonardo Calvelo de Souza",
+      "id": 108133,
+      "nome": "Isidro Miguel Pitta Saldívar",
+      "posicao": "ATA",
+      "projecao": 0.26,
+      "real": 2,
+      "erro": 1.74
+    },
+    {
+      "id": 107453,
+      "nome": "João Paulo Silveira dos Santos",
       "posicao": "ZAG",
+      "projecao": 0.25,
+      "real": null,
+      "erro": -0.25
+    },
+    {
+      "id": 118775,
+      "nome": "Lautaro Ariel Díaz",
+      "posicao": "ATA",
+      "projecao": 0.24,
+      "real": null,
+      "erro": -0.24
+    },
+    {
+      "id": 116461,
+      "nome": "Jamerson Santos de Jesus",
+      "posicao": "LAT",
+      "projecao": 0.23,
+      "real": 5.8,
+      "erro": 5.57
+    },
+    {
+      "id": 126120,
+      "nome": "Marcelo Braz da Silva",
+      "posicao": "MEI",
       "projecao": 0.23,
       "real": null,
       "erro": -0.23
@@ -2967,36 +3079,36 @@
       "erro": -0.23
     },
     {
-      "id": 77777,
-      "nome": "João Felipe Schmidt Urbano",
-      "posicao": "MEI",
+      "id": 95131,
+      "nome": "Gabriel Pereira Taliari",
+      "posicao": "ATA",
       "projecao": 0.23,
-      "real": -0.3,
-      "erro": -0.53
+      "real": 19.3,
+      "erro": 19.07
     },
     {
-      "id": 97899,
-      "nome": "Matheus Bahia Santos",
+      "id": 105213,
+      "nome": "Ariel Agustín Sant'Anna Quintero",
       "posicao": "LAT",
-      "projecao": 0.23,
-      "real": 5.2,
-      "erro": 4.97
-    },
-    {
-      "id": 70944,
-      "nome": "Bruno Henrique Corsini",
-      "posicao": "MEI",
-      "projecao": 0.22,
-      "real": 2,
-      "erro": 1.78
-    },
-    {
-      "id": 72391,
-      "nome": "Fernando Diniz Silva",
-      "posicao": "TEC",
       "projecao": 0.22,
       "real": null,
       "erro": -0.22
+    },
+    {
+      "id": 89273,
+      "nome": "João Pedro Maturano dos Santos",
+      "posicao": "LAT",
+      "projecao": 0.22,
+      "real": null,
+      "erro": -0.22
+    },
+    {
+      "id": 99228,
+      "nome": "Diego Nicolás de la Cruz Arcosa",
+      "posicao": "MEI",
+      "projecao": 0.22,
+      "real": 2.3,
+      "erro": 2.08
     },
     {
       "id": 102909,
@@ -3015,14 +3127,6 @@
       "erro": -0.21
     },
     {
-      "id": 129666,
-      "nome": "João Pedro Murilo de Paula Morais",
-      "posicao": "MEI",
-      "projecao": 0.21,
-      "real": null,
-      "erro": -0.21
-    },
-    {
       "id": 147545,
       "nome": "Jéferson Forneck",
       "posicao": "MEI",
@@ -3031,65 +3135,49 @@
       "erro": -0.21
     },
     {
-      "id": 100987,
-      "nome": "Gustavo Nonato Santana",
+      "id": 84428,
+      "nome": "Fernando Pereira do Nascimento",
       "posicao": "MEI",
-      "projecao": 0.2,
+      "projecao": 0.21,
       "real": null,
-      "erro": -0.2
+      "erro": -0.21
+    },
+    {
+      "id": 97899,
+      "nome": "Matheus Bahia Santos",
+      "posicao": "LAT",
+      "projecao": 0.21,
+      "real": 5.2,
+      "erro": 4.99
+    },
+    {
+      "id": 129666,
+      "nome": "João Pedro Murilo de Paula Morais",
+      "posicao": "MEI",
+      "projecao": 0.19,
+      "real": null,
+      "erro": -0.19
+    },
+    {
+      "id": 72460,
+      "nome": "Bernard Anício Caldeira Duarte",
+      "posicao": "MEI",
+      "projecao": 0.19,
+      "real": 1.5,
+      "erro": 1.31
+    },
+    {
+      "id": 90285,
+      "nome": "Bruno Henrique Pinto",
+      "posicao": "ATA",
+      "projecao": 0.19,
+      "real": null,
+      "erro": -0.19
     },
     {
       "id": 103295,
       "nome": "Eric dos Santos Rodrigues",
       "posicao": "MEI",
-      "projecao": 0.2,
-      "real": null,
-      "erro": -0.2
-    },
-    {
-      "id": 91772,
-      "nome": "David de Duarte Macedo",
-      "posicao": "ZAG",
-      "projecao": 0.2,
-      "real": null,
-      "erro": -0.2
-    },
-    {
-      "id": 99274,
-      "nome": "Alexander Nahuel Barboza Ullúa",
-      "posicao": "ZAG",
-      "projecao": 0.2,
-      "real": 10.4,
-      "erro": 10.2
-    },
-    {
-      "id": 111309,
-      "nome": "Gustavo Martins de Souza Santos",
-      "posicao": "ZAG",
-      "projecao": 0.19,
-      "real": 1.2,
-      "erro": 1.01
-    },
-    {
-      "id": 125746,
-      "nome": "Eduardo Kogitzki Anastacio",
-      "posicao": "MEI",
-      "projecao": 0.19,
-      "real": 14.2,
-      "erro": 14.01
-    },
-    {
-      "id": 80313,
-      "nome": "Gilberto Moraes Júnior",
-      "posicao": "LAT",
-      "projecao": 0.18,
-      "real": null,
-      "erro": -0.18
-    },
-    {
-      "id": 89273,
-      "nome": "João Pedro Maturano dos Santos",
-      "posicao": "LAT",
       "projecao": 0.18,
       "real": null,
       "erro": -0.18
@@ -3098,46 +3186,38 @@
       "id": 114405,
       "nome": "Luis Fernando Sinisterra Lucumí",
       "posicao": "ATA",
-      "projecao": 0.16,
+      "projecao": 0.18,
       "real": null,
-      "erro": -0.16
+      "erro": -0.18
+    },
+    {
+      "id": 125746,
+      "nome": "Eduardo Kogitzki Anastacio",
+      "posicao": "MEI",
+      "projecao": 0.18,
+      "real": 14.2,
+      "erro": 14.02
     },
     {
       "id": 146375,
       "nome": "José Kadir Barría Rose",
       "posicao": "ATA",
-      "projecao": 0.16,
+      "projecao": 0.18,
       "real": null,
-      "erro": -0.16
+      "erro": -0.18
+    },
+    {
+      "id": 85626,
+      "nome": "Leonardo Pinheiro da Conceição",
+      "posicao": "ZAG",
+      "projecao": 0.17,
+      "real": null,
+      "erro": -0.17
     },
     {
       "id": 98225,
       "nome": "Pedro Raul Garay da Silva",
       "posicao": "ATA",
-      "projecao": 0.15,
-      "real": null,
-      "erro": -0.15
-    },
-    {
-      "id": 99228,
-      "nome": "Diego Nicolás de la Cruz Arcosa",
-      "posicao": "MEI",
-      "projecao": 0.15,
-      "real": 2.3,
-      "erro": 2.15
-    },
-    {
-      "id": 72460,
-      "nome": "Bernard Anício Caldeira Duarte",
-      "posicao": "MEI",
-      "projecao": 0.14,
-      "real": 1.5,
-      "erro": 1.36
-    },
-    {
-      "id": 84428,
-      "nome": "Fernando Pereira do Nascimento",
-      "posicao": "MEI",
       "projecao": 0.14,
       "real": null,
       "erro": -0.14
@@ -3146,57 +3226,81 @@
       "id": 111690,
       "nome": "Matheus Cunha Queiroz",
       "posicao": "GOL",
-      "projecao": 0.13,
+      "projecao": 0.12,
       "real": 6.3,
-      "erro": 6.17
+      "erro": 6.18
     },
     {
-      "id": 90285,
-      "nome": "Bruno Henrique Pinto",
-      "posicao": "ATA",
+      "id": 130414,
+      "nome": "Robert dos Santos Conceição",
+      "posicao": "MEI",
       "projecao": 0.11,
       "real": null,
       "erro": -0.11
     },
     {
-      "id": 104036,
-      "nome": "Zakaria Labyad",
+      "id": 89637,
+      "nome": "Thiago Maia Alencar",
       "posicao": "MEI",
-      "projecao": 0.1,
-      "real": null,
-      "erro": -0.1
-    },
-    {
-      "id": 81845,
-      "nome": "Alisson Euler de Freitas Castro",
-      "posicao": "MEI",
-      "projecao": 0.1,
-      "real": 1.2,
-      "erro": 1.1
-    },
-    {
-      "id": 124481,
-      "nome": "Mateo Ponte Costa",
-      "posicao": "LAT",
-      "projecao": 0.08,
-      "real": 3.5,
-      "erro": 3.42
+      "projecao": 0.11,
+      "real": 0.5,
+      "erro": 0.39
     },
     {
       "id": 115986,
       "nome": "Denilson Alves Borges",
       "posicao": "MEI",
-      "projecao": 0.07,
+      "projecao": 0.1,
       "real": 1,
-      "erro": 0.93
+      "erro": 0.9
     },
     {
-      "id": 89637,
-      "nome": "Thiago Maia Alencar",
+      "id": 104036,
+      "nome": "Zakaria Labyad",
       "posicao": "MEI",
+      "projecao": 0.09,
+      "real": null,
+      "erro": -0.09
+    },
+    {
+      "id": 81150,
+      "nome": "Mayke Rocha de Oliveira",
+      "posicao": "LAT",
+      "projecao": 0.09,
+      "real": null,
+      "erro": -0.09
+    },
+    {
+      "id": 81845,
+      "nome": "Alisson Euler de Freitas Castro",
+      "posicao": "MEI",
+      "projecao": 0.09,
+      "real": 1.2,
+      "erro": 1.11
+    },
+    {
+      "id": 77656,
+      "nome": "Cédric Ricardo Alves Soares",
+      "posicao": "LAT",
+      "projecao": 0.08,
+      "real": null,
+      "erro": -0.08
+    },
+    {
+      "id": 117403,
+      "nome": "Renato Marques de Oliveira Júnior",
+      "posicao": "ATA",
       "projecao": 0.07,
-      "real": 0.5,
-      "erro": 0.43
+      "real": null,
+      "erro": -0.07
+    },
+    {
+      "id": 70449,
+      "nome": "Gabriel Vasconcelos Ferreira",
+      "posicao": "GOL",
+      "projecao": 0.07,
+      "real": null,
+      "erro": -0.07
     },
     {
       "id": 92811,
@@ -3207,27 +3311,51 @@
       "erro": 0.63
     },
     {
-      "id": 81150,
-      "nome": "Mayke Rocha de Oliveira",
+      "id": 100848,
+      "nome": "Luan Cândido de Almeida",
       "posicao": "LAT",
       "projecao": 0.06,
       "real": null,
       "erro": -0.06
     },
     {
-      "id": 89883,
-      "nome": "Douglas Moreira Fagundes",
+      "id": 112939,
+      "nome": "Franco Catarozzi Parafita",
       "posicao": "MEI",
       "projecao": 0.06,
       "real": null,
       "erro": -0.06
     },
     {
-      "id": 137542,
-      "nome": "Kaique Kenji Takamura Correa",
+      "id": 118774,
+      "nome": "Alexsander Cristhian Gomes da Costa - Christian",
+      "posicao": "MEI",
+      "projecao": 0.06,
+      "real": null,
+      "erro": -0.06
+    },
+    {
+      "id": 141406,
+      "nome": "Andrey Fernandes de Oliveira Nunes",
+      "posicao": "ATA",
+      "projecao": 0.06,
+      "real": null,
+      "erro": -0.06
+    },
+    {
+      "id": 98224,
+      "nome": "Jaderson Flores dos Reis",
+      "posicao": "MEI",
+      "projecao": 0.06,
+      "real": 1.5,
+      "erro": 1.44
+    },
+    {
+      "id": 107700,
+      "nome": "Eduardo de Queiroz Melo",
       "posicao": "ATA",
       "projecao": 0.05,
-      "real": 0,
+      "real": null,
       "erro": -0.05
     },
     {
@@ -3241,6 +3369,14 @@
     {
       "id": 141615,
       "nome": "Pedro Henrique Ferreira da Silva",
+      "posicao": "MEI",
+      "projecao": 0.05,
+      "real": null,
+      "erro": -0.05
+    },
+    {
+      "id": 89883,
+      "nome": "Douglas Moreira Fagundes",
       "posicao": "MEI",
       "projecao": 0.05,
       "real": null,
@@ -3263,33 +3399,49 @@
       "erro": -0.04
     },
     {
-      "id": 100848,
-      "nome": "Luan Cândido de Almeida",
+      "id": 137542,
+      "nome": "Kaique Kenji Takamura Correa",
+      "posicao": "ATA",
+      "projecao": 0.04,
+      "real": 0,
+      "erro": -0.04
+    },
+    {
+      "id": 97468,
+      "nome": "Fernando Marçal de Oliveira",
       "posicao": "LAT",
       "projecao": 0.04,
       "real": null,
       "erro": -0.04
     },
     {
-      "id": 112939,
-      "nome": "Franco Catarozzi Parafita",
-      "posicao": "MEI",
-      "projecao": 0.04,
+      "id": 42222,
+      "nome": "Osvaldo Lourenço Filho",
+      "posicao": "ATA",
+      "projecao": 0.03,
       "real": null,
-      "erro": -0.04
+      "erro": -0.03
     },
     {
-      "id": 118775,
-      "nome": "Lautaro Ariel Díaz",
-      "posicao": "ATA",
-      "projecao": 0.02,
+      "id": 63013,
+      "nome": "Marcos Luis Rocha Aquino",
+      "posicao": "LAT",
+      "projecao": 0.03,
       "real": null,
-      "erro": -0.02
+      "erro": -0.03
     },
     {
       "id": 126013,
       "nome": "Ythallo Ryckelm Rodrigues de Oliveira - Rycklem",
       "posicao": "ZAG",
+      "projecao": 0.02,
+      "real": null,
+      "erro": -0.02
+    },
+    {
+      "id": 143488,
+      "nome": "Raykkonen Pereira Soares",
+      "posicao": "ATA",
       "projecao": 0.02,
       "real": null,
       "erro": -0.02
@@ -3423,14 +3575,6 @@
       "erro": 0.0
     },
     {
-      "id": 105213,
-      "nome": "Ariel Agustín Sant'Anna Quintero",
-      "posicao": "LAT",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 105518,
       "nome": "Renan Peixoto Nepomuceno",
       "posicao": "ATA",
@@ -3511,24 +3655,8 @@
       "erro": 0.0
     },
     {
-      "id": 107453,
-      "nome": "João Paulo Silveira dos Santos",
-      "posicao": "ZAG",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 107516,
       "nome": "Sebastião Ênio Santos de Almeida",
-      "posicao": "ATA",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 107700,
-      "nome": "Eduardo de Queiroz Melo",
       "posicao": "ATA",
       "projecao": 0.0,
       "real": null,
@@ -3599,6 +3727,14 @@
       "erro": 0.0
     },
     {
+      "id": 109966,
+      "nome": "Miguel Ángel Monsalve Gonzáles - González",
+      "posicao": "MEI",
+      "projecao": -0.0,
+      "real": null,
+      "erro": 0.0
+    },
+    {
       "id": 110605,
       "nome": "Vinícius Balieiro Lourenço de Carvalho",
       "posicao": "MEI",
@@ -3634,14 +3770,6 @@
       "id": 111683,
       "nome": "Anthoni Spier Souza",
       "posicao": "GOL",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 111879,
-      "nome": "Mateus da Silva Duarte",
-      "posicao": "LAT",
       "projecao": 0.0,
       "real": null,
       "erro": 0.0
@@ -3759,14 +3887,6 @@
       "erro": 0.0
     },
     {
-      "id": 116461,
-      "nome": "Jamerson Santos de Jesus",
-      "posicao": "LAT",
-      "projecao": 0.0,
-      "real": 5.8,
-      "erro": 5.8
-    },
-    {
       "id": 117061,
       "nome": "Gabriel Knesowitsch",
       "posicao": "ZAG",
@@ -3777,14 +3897,6 @@
     {
       "id": 117314,
       "nome": "Thiago Nicolás Borbas Silva",
-      "posicao": "ATA",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 117403,
-      "nome": "Renato Marques de Oliveira Júnior",
       "posicao": "ATA",
       "projecao": 0.0,
       "real": null,
@@ -3823,24 +3935,8 @@
       "erro": 0.0
     },
     {
-      "id": 118774,
-      "nome": "Alexsander Cristhian Gomes da Costa - Christian",
-      "posicao": "MEI",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 118806,
       "nome": "Aurélio Gabriel Ulineia Buta",
-      "posicao": "LAT",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 120433,
-      "nome": "Leonardo Derik Dias Gonçalves",
       "posicao": "LAT",
       "projecao": 0.0,
       "real": null,
@@ -4079,14 +4175,6 @@
       "erro": 0.0
     },
     {
-      "id": 126120,
-      "nome": "Marcelo Braz da Silva",
-      "posicao": "MEI",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 126996,
       "nome": "Paulo Ricardo Alves Ibelli",
       "posicao": "LAT",
@@ -4287,14 +4375,6 @@
       "erro": 0.0
     },
     {
-      "id": 130414,
-      "nome": "Robert dos Santos Conceição",
-      "posicao": "MEI",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 130438,
       "nome": "Diego Esser Pereira",
       "posicao": "GOL",
@@ -4306,14 +4386,6 @@
       "id": 130443,
       "nome": "Luciano Bertolo Ludwig",
       "posicao": "ZAG",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 130608,
-      "nome": "Riquelme Fillipi Marinho de Souza",
-      "posicao": "ATA",
       "projecao": 0.0,
       "real": null,
       "erro": 0.0
@@ -4345,14 +4417,6 @@
     {
       "id": 130889,
       "nome": "Riquelme Freitas dos Santos",
-      "posicao": "MEI",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 130906,
-      "nome": "Diogo Riquelme Rivas do Nascimento",
       "posicao": "MEI",
       "projecao": 0.0,
       "real": null,
@@ -4623,14 +4687,6 @@
       "erro": 0.0
     },
     {
-      "id": 141406,
-      "nome": "Andrey Fernandes de Oliveira Nunes",
-      "posicao": "ATA",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 141419,
       "nome": "Frederico Lippert Neto Gomes",
       "posicao": "ZAG",
@@ -4881,14 +4937,6 @@
     {
       "id": 143465,
       "nome": "Keven Samuel Moreira dos Santos",
-      "posicao": "ATA",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 143488,
-      "nome": "Raykkonen Pereira Soares",
       "posicao": "ATA",
       "projecao": 0.0,
       "real": null,
@@ -5535,22 +5583,6 @@
       "erro": 0.0
     },
     {
-      "id": 42222,
-      "nome": "Osvaldo Lourenço Filho",
-      "posicao": "ATA",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 63013,
-      "nome": "Marcos Luis Rocha Aquino",
-      "posicao": "LAT",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
       "id": 63354,
       "nome": "Rodrigo Modesto da Silva Moledo",
       "posicao": "ZAG",
@@ -5586,14 +5618,6 @@
       "id": 72279,
       "nome": "Carlos Eduardo Lecciolle Thomazella",
       "posicao": "GOL",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 77656,
-      "nome": "Cédric Ricardo Alves Soares",
-      "posicao": "LAT",
       "projecao": 0.0,
       "real": null,
       "erro": 0.0
@@ -5682,14 +5706,6 @@
       "id": 85465,
       "nome": "Alex Paulo Menezes Santana",
       "posicao": "MEI",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 85626,
-      "nome": "Leonardo Pinheiro da Conceição",
-      "posicao": "ZAG",
       "projecao": 0.0,
       "real": null,
       "erro": 0.0
@@ -5919,22 +5935,6 @@
       "erro": 0.0
     },
     {
-      "id": 97969,
-      "nome": "Marcos Vinícius da Silva Santos",
-      "posicao": "LAT",
-      "projecao": 0.0,
-      "real": null,
-      "erro": 0.0
-    },
-    {
-      "id": 98224,
-      "nome": "Jaderson Flores dos Reis",
-      "posicao": "MEI",
-      "projecao": 0.0,
-      "real": 1.5,
-      "erro": 1.5
-    },
-    {
       "id": 98333,
       "nome": "Gabriel Batista de Souza",
       "posicao": "GOL",
@@ -5975,20 +5975,20 @@
       "erro": 0.0
     },
     {
-      "id": 109966,
-      "nome": "Miguel Ángel Monsalve Gonzáles - González",
-      "posicao": "MEI",
-      "projecao": -0.02,
+      "id": 130608,
+      "nome": "Riquelme Fillipi Marinho de Souza",
+      "posicao": "ATA",
+      "projecao": -0.01,
       "real": null,
-      "erro": 0.02
+      "erro": 0.01
     },
     {
-      "id": 86485,
-      "nome": "Marcos da Silva França",
-      "posicao": "ATA",
-      "projecao": -0.03,
-      "real": 0.5,
-      "erro": 0.53
+      "id": 130906,
+      "nome": "Diogo Riquelme Rivas do Nascimento",
+      "posicao": "MEI",
+      "projecao": -0.01,
+      "real": null,
+      "erro": 0.01
     },
     {
       "id": 114308,
@@ -6007,28 +6007,52 @@
       "erro": 0.04
     },
     {
+      "id": 86485,
+      "nome": "Marcos da Silva França",
+      "posicao": "ATA",
+      "projecao": -0.04,
+      "real": 0.5,
+      "erro": 0.54
+    },
+    {
       "id": 122573,
       "nome": "Wallace Yan de Souza Barreto",
       "posicao": "ATA",
-      "projecao": -0.06,
+      "projecao": -0.05,
       "real": 0.9,
-      "erro": 0.96
+      "erro": 0.95
+    },
+    {
+      "id": 97969,
+      "nome": "Marcos Vinícius da Silva Santos",
+      "posicao": "LAT",
+      "projecao": -0.05,
+      "real": null,
+      "erro": 0.05
     },
     {
       "id": 140438,
       "nome": "David Antunes da Silva",
       "posicao": "MEI",
-      "projecao": -0.07,
+      "projecao": -0.06,
       "real": null,
-      "erro": 0.07
+      "erro": 0.06
     },
     {
       "id": 97520,
       "nome": "Shaylon Kallyson Cardozo - Cardoso",
       "posicao": "MEI",
-      "projecao": -0.07,
+      "projecao": -0.06,
       "real": 1.5,
-      "erro": 1.57
+      "erro": 1.56
+    },
+    {
+      "id": 101729,
+      "nome": "Fabio Augusto Luciano da Silva",
+      "posicao": "ATA",
+      "projecao": -0.11,
+      "real": -0.3,
+      "erro": -0.19
     },
     {
       "id": 111832,
@@ -6039,36 +6063,52 @@
       "erro": 0.11
     },
     {
-      "id": 70449,
-      "nome": "Gabriel Vasconcelos Ferreira",
-      "posicao": "GOL",
-      "projecao": -0.11,
-      "real": null,
-      "erro": 0.11
-    },
-    {
-      "id": 101729,
-      "nome": "Fabio Augusto Luciano da Silva",
-      "posicao": "ATA",
-      "projecao": -0.13,
-      "real": -0.3,
-      "erro": -0.17
-    },
-    {
       "id": 96353,
       "nome": "Carlos Joaquín Correa",
       "posicao": "ATA",
-      "projecao": -0.14,
+      "projecao": -0.12,
       "real": 3.6,
-      "erro": 3.74
+      "erro": 3.73
     },
     {
       "id": 78850,
       "nome": "Reinaldo Manoel da Silva",
       "posicao": "LAT",
-      "projecao": -0.21,
+      "projecao": -0.13,
       "real": 2,
-      "erro": 2.21
+      "erro": 2.13
+    },
+    {
+      "id": 84847,
+      "nome": "Luan Peres Petroni",
+      "posicao": "ZAG",
+      "projecao": -0.13,
+      "real": 7,
+      "erro": 7.13
+    },
+    {
+      "id": 102256,
+      "nome": "Benjamín Rollheiser",
+      "posicao": "MEI",
+      "projecao": -0.19,
+      "real": 1.2,
+      "erro": 1.39
+    },
+    {
+      "id": 109987,
+      "nome": "Cristian Nicolás Medina",
+      "posicao": "MEI",
+      "projecao": -0.2,
+      "real": null,
+      "erro": 0.2
+    },
+    {
+      "id": 111760,
+      "nome": "Fábio Silva de Freitas",
+      "posicao": "MEI",
+      "projecao": -0.2,
+      "real": null,
+      "erro": 0.2
     },
     {
       "id": 148215,
@@ -6077,46 +6117,6 @@
       "projecao": -0.23,
       "real": null,
       "erro": 0.23
-    },
-    {
-      "id": 109987,
-      "nome": "Cristian Nicolás Medina",
-      "posicao": "MEI",
-      "projecao": -0.25,
-      "real": null,
-      "erro": 0.25
-    },
-    {
-      "id": 111760,
-      "nome": "Fábio Silva de Freitas",
-      "posicao": "MEI",
-      "projecao": -0.26,
-      "real": null,
-      "erro": 0.26
-    },
-    {
-      "id": 84847,
-      "nome": "Luan Peres Petroni",
-      "posicao": "ZAG",
-      "projecao": -0.28,
-      "real": 7,
-      "erro": 7.28
-    },
-    {
-      "id": 97468,
-      "nome": "Fernando Marçal de Oliveira",
-      "posicao": "LAT",
-      "projecao": -0.29,
-      "real": null,
-      "erro": 0.29
-    },
-    {
-      "id": 102256,
-      "nome": "Benjamín Rollheiser",
-      "posicao": "MEI",
-      "projecao": -0.31,
-      "real": 1.2,
-      "erro": 1.51
     },
     {
       "id": 107554,
@@ -6130,17 +6130,17 @@
       "id": 142877,
       "nome": "Lucas Martín Villalba Jaume",
       "posicao": "ATA",
-      "projecao": -0.46,
+      "projecao": -0.4,
       "real": 4.5,
-      "erro": 4.96
+      "erro": 4.9
     },
     {
       "id": 86859,
       "nome": "José Welison da Silva - Zé",
       "posicao": "MEI",
-      "projecao": -0.64,
+      "projecao": -0.56,
       "real": 2.3,
-      "erro": 2.94
+      "erro": 2.86
     }
   ]
 }

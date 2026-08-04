@@ -5,6 +5,16 @@
   "clube": "SAO",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 12.79,
+      "media": 5.91,
+      "pontos": 0.4,
+      "scouts": {
+        "FC": 2,
+        "FS": 2
+      }
+    },
+    {
       "rodada": 2,
       "preco": 12.79,
       "media": 5.91,

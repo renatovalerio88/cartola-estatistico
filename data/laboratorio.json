@@ -1,19 +1,19 @@
 {
   "modelo": "1.0",
-  "rodadas": 20,
+  "rodadas": 21,
   "mae": 1.46,
-  "rmse": 2.76,
-  "top5": 22.0,
-  "top10": 27.0,
+  "rmse": 2.75,
+  "top5": 23.81,
+  "top10": 27.14,
   "melhorPosicao": "GOL",
   "piorPosicao": "TEC",
   "erroPorPosicao": {
-    "ATA": 1.55,
     "MEI": 1.39,
-    "ZAG": 1.41,
-    "GOL": 0.94,
-    "LAT": 1.79,
-    "TEC": 2.06
+    "LAT": 1.78,
+    "ATA": 1.56,
+    "GOL": 0.93,
+    "ZAG": 1.39,
+    "TEC": 2.05
   },
   "pesos": {
     "score": 0.2621,

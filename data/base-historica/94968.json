@@ -5,6 +5,19 @@
   "clube": "RBB",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 13.39,
+      "media": 7.41,
+      "pontos": 16.2,
+      "scouts": {
+        "FC": 2,
+        "FF": 1,
+        "FT": 1,
+        "G": 1,
+        "SG": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 13.39,
       "media": 7.41,

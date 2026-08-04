@@ -5,6 +5,13 @@
   "clube": "SAO",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 0.79,
+      "media": -0.2,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 0.79,
       "media": -0.2,

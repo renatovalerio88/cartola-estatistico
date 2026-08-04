@@ -5,6 +5,13 @@
   "clube": "VAS",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.76,
+      "media": 1.93,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 5.76,
       "media": 1.93,

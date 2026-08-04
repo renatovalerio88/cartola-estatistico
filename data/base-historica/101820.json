@@ -5,6 +5,13 @@
   "clube": "REM",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 6.03,
+      "media": 3.55,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 6.03,
       "media": 3.55,

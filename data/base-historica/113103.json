@@ -5,6 +5,20 @@
   "clube": "PAL",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 13.4,
+      "media": 6.49,
+      "pontos": 16.1,
+      "scouts": {
+        "DS": 4,
+        "FC": 3,
+        "FD": 1,
+        "FF": 1,
+        "FS": 2,
+        "G": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 13.4,
       "media": 6.49,

@@ -5,6 +5,13 @@
   "clube": "RBB",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 2.04,
+      "media": -0.08,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 2.04,
       "media": -0.08,

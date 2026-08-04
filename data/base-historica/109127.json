@@ -5,6 +5,15 @@
   "clube": "CFC",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 3.33,
+      "media": 2.35,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 3.33,
       "media": 2.35,

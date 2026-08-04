@@ -5,6 +5,16 @@
   "clube": "CRU",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.43,
+      "media": 3.15,
+      "pontos": 1.7,
+      "scouts": {
+        "FD": 1,
+        "FS": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 5.43,
       "media": 3.15,

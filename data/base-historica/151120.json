@@ -5,6 +5,13 @@
   "clube": "CAP",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 4.42,
+      "media": -0.3,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 4.42,
       "media": -0.3,

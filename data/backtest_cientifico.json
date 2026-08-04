@@ -2,78 +2,82 @@
   "experimentos": [
     {
       "treino": 1,
-      "teste": "rodada-04.json"
+      "teste": "rodada-03.json"
     },
     {
       "treino": 2,
-      "teste": "rodada-05.json"
+      "teste": "rodada-04.json"
     },
     {
       "treino": 3,
-      "teste": "rodada-06.json"
+      "teste": "rodada-05.json"
     },
     {
       "treino": 4,
-      "teste": "rodada-07.json"
+      "teste": "rodada-06.json"
     },
     {
       "treino": 5,
-      "teste": "rodada-08.json"
+      "teste": "rodada-07.json"
     },
     {
       "treino": 6,
-      "teste": "rodada-09.json"
+      "teste": "rodada-08.json"
     },
     {
       "treino": 7,
-      "teste": "rodada-10.json"
+      "teste": "rodada-09.json"
     },
     {
       "treino": 8,
-      "teste": "rodada-11.json"
+      "teste": "rodada-10.json"
     },
     {
       "treino": 9,
-      "teste": "rodada-12.json"
+      "teste": "rodada-11.json"
     },
     {
       "treino": 10,
-      "teste": "rodada-13.json"
+      "teste": "rodada-12.json"
     },
     {
       "treino": 11,
-      "teste": "rodada-14.json"
+      "teste": "rodada-13.json"
     },
     {
       "treino": 12,
-      "teste": "rodada-15.json"
+      "teste": "rodada-14.json"
     },
     {
       "treino": 13,
-      "teste": "rodada-16.json"
+      "teste": "rodada-15.json"
     },
     {
       "treino": 14,
-      "teste": "rodada-17.json"
+      "teste": "rodada-16.json"
     },
     {
       "treino": 15,
-      "teste": "rodada-18.json"
+      "teste": "rodada-17.json"
     },
     {
       "treino": 16,
-      "teste": "rodada-19.json"
+      "teste": "rodada-18.json"
     },
     {
       "treino": 17,
-      "teste": "rodada-20.json"
+      "teste": "rodada-19.json"
     },
     {
       "treino": 18,
-      "teste": "rodada-21.json"
+      "teste": "rodada-20.json"
     },
     {
       "treino": 19,
+      "teste": "rodada-21.json"
+    },
+    {
+      "treino": 20,
       "teste": "rodada-22.json"
     }
   ]

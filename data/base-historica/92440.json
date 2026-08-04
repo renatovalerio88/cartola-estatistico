@@ -5,6 +5,13 @@
   "clube": "COR",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.73,
+      "media": 2.55,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 5.73,
       "media": 2.55,

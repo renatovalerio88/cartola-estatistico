@@ -5,6 +5,13 @@
   "clube": "CAM",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 6.67,
+      "media": 3.86,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 6.67,
       "media": 3.86,

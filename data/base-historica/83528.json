@@ -5,6 +5,16 @@
   "clube": "FLA",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 8.91,
+      "media": 4.24,
+      "pontos": 0.1,
+      "scouts": {
+        "FC": 3,
+        "FS": 2
+      }
+    },
+    {
       "rodada": 2,
       "preco": 8.91,
       "media": 4.24,

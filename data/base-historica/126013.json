@@ -5,6 +5,13 @@
   "clube": "BOT",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 3.5,
+      "media": 0.2,
+      "pontos": null,
+      "scouts": {}
+    },
+    {
       "rodada": 2,
       "preco": 3.5,
       "media": 0.2,

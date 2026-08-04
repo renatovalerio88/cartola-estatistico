@@ -5,6 +5,18 @@
   "clube": "REM",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 8.31,
+      "media": 4.83,
+      "pontos": 0.9,
+      "scouts": {
+        "FC": 1,
+        "FF": 1,
+        "FS": 1,
+        "I": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 8.31,
       "media": 4.83,

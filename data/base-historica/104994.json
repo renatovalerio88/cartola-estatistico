@@ -5,6 +5,16 @@
   "clube": "GRE",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.36,
+      "media": 2.78,
+      "pontos": 3.9,
+      "scouts": {
+        "DS": 3,
+        "FC": 2
+      }
+    },
+    {
       "rodada": 2,
       "preco": 5.36,
       "media": 2.78,

@@ -5,6 +5,16 @@
   "clube": "SAN",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 9.33,
+      "media": 5.82,
+      "pontos": 5.5,
+      "scouts": {
+        "A": 1,
+        "FS": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 9.33,
       "media": 5.82,

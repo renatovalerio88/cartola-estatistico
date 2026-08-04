@@ -5,6 +5,15 @@
   "clube": "INT",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 9.14,
+      "media": 5.27,
+      "pontos": 0.5,
+      "scouts": {
+        "FS": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 9.14,
       "media": 5.27,

@@ -5,6 +5,16 @@
   "clube": "VIT",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.38,
+      "media": 2.56,
+      "pontos": 0.4,
+      "scouts": {
+        "FC": 2,
+        "FS": 2
+      }
+    },
+    {
       "rodada": 2,
       "preco": 5.38,
       "media": 2.56,

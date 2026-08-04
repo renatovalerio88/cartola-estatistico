@@ -5,6 +5,16 @@
   "clube": "BOT",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 10.07,
+      "media": 4.11,
+      "pontos": 8,
+      "scouts": {
+        "DS": 2,
+        "SG": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 10.07,
       "media": 4.11,

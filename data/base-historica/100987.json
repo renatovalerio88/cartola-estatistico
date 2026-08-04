@@ -5,6 +5,17 @@
   "clube": "FLU",
   "historico": [
     {
+      "rodada": 1,
+      "preco": 5.98,
+      "media": 2.57,
+      "pontos": 6.4,
+      "scouts": {
+        "CA": 1,
+        "FC": 2,
+        "G": 1
+      }
+    },
+    {
       "rodada": 2,
       "preco": 5.98,
       "media": 2.57,
