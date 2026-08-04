@@ -1,7 +1,6 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
    Recomendações — carregamento dos dados
-   (VERSÃO DE DIAGNÓSTICO)
    ========================================================= */
 
 const CAMINHO_STATUS = "data/api/status.json";
@@ -39,12 +38,10 @@ async function carregarJogadores() {
 
         const status = await statusResposta.json();
 
-        const rodada = Number(
-            status.rodada_atual
-        );
+        const rodada = Number(status.rodada_atual);
 
         CAMINHO_JOGADORES =
-            `data/api/rodada-${String(rodada).padStart(2,"0")}/jogadores.json`;
+            `data/api/rodada-${String(rodada).padStart(2, "0")}/jogadores.json`;
 
         const resposta = await fetch(
             CAMINHO_JOGADORES,
@@ -52,38 +49,44 @@ async function carregarJogadores() {
         );
 
         if (!resposta.ok) {
-            throw new Error(
-                `Erro HTTP ${resposta.status}`
-            );
+            throw new Error(`Erro HTTP ${resposta.status}`);
         }
 
-        const dados =
-            await resposta.json();
+        const dados = await resposta.json();
 
         if (!Array.isArray(dados)) {
-            throw new Error(
-                "Lista de jogadores inválida."
-            );
+            throw new Error("Lista de jogadores inválida.");
         }
 
         const jogadoresValidos =
             dados.filter(validarJogador);
 
-        // ============================
-        // DIAGNÓSTICO
-        // ============================
+        // ============================================
+        // CARREGA O HISTÓRICO
+        // ============================================
 
-         const jogadoresCalculados =
-             CalculadoraEstatistica.analisarListaJogadores(
-                 jogadoresValidos
-             );
-         
-         estadoRecomendacoes.jogadores =
-             jogadoresCalculados;
+        await Historico.carregarIndice();
 
-         estadoRecomendacoes.jogadoresOriginais =
-             jogadoresCalculados.map(copiarJogador);
+        await Historico.montarHistoricoJogadores(
+            jogadoresValidos
+        );
 
+        // ============================================
+        // CALCULA AS MÉTRICAS
+        // ============================================
+
+        const jogadoresCalculados =
+            CalculadoraEstatistica.analisarListaJogadores(
+                jogadoresValidos
+            );
+
+        estadoRecomendacoes.jogadores =
+            jogadoresCalculados;
+
+        estadoRecomendacoes.jogadoresOriginais =
+            jogadoresCalculados.map(copiarJogador);
+
+        estadoRecomendacoes.calculadoraAplicada = true;
         estadoRecomendacoes.carregado = true;
         estadoRecomendacoes.carregando = false;
 
@@ -91,10 +94,10 @@ async function carregarJogadores() {
 
         console.log(
             "Jogadores carregados:",
-            jogadoresValidos.length
+            jogadoresCalculados.length
         );
 
-        return jogadoresValidos;
+        return jogadoresCalculados;
 
     }
     catch (erro) {
@@ -117,21 +120,21 @@ async function carregarJogadores() {
 
 }
 
-function copiarJogador(jogador){
+function copiarJogador(jogador) {
 
     return {
 
         ...jogador,
 
-        scouts:{
-            ...(jogador.scouts||{})
+        scouts: {
+            ...(jogador.scouts || {})
         }
 
     };
 
 }
 
-function validarJogador(jogador){
+function validarJogador(jogador) {
 
     return (
 
@@ -144,9 +147,9 @@ function validarJogador(jogador){
 
 }
 
-function iniciarRecomendacoes(){
+function iniciarRecomendacoes() {
 
-    if(!estadoRecomendacoes.carregado){
+    if (!estadoRecomendacoes.carregado) {
         return;
     }
 
@@ -158,54 +161,52 @@ function iniciarRecomendacoes(){
 
 }
 
-function obterJogadoresCarregados(){
+function obterJogadoresCarregados() {
 
     return estadoRecomendacoes.jogadores.map(
-
         copiarJogador
-
     );
 
 }
 
-function obterJogadorPorId(id){
+function obterJogadorPorId(id) {
 
     return estadoRecomendacoes.jogadores.find(
 
-        j=>String(j.id)===String(id)
+        j => String(j.id) === String(id)
 
     ) || null;
 
 }
 
-function obterPosicaoAtiva(){
+function obterPosicaoAtiva() {
 
     return estadoRecomendacoes.posicaoAtiva;
 
 }
 
-function definirPosicaoAtiva(posicao){
+function definirPosicaoAtiva(posicao) {
 
     estadoRecomendacoes.posicaoAtiva =
         String(posicao).toUpperCase();
 
 }
 
-function recomendacoesCarregadas(){
+function recomendacoesCarregadas() {
 
     return estadoRecomendacoes.carregado;
 
 }
 
-function obterErroRecomendacoes(){
+function obterErroRecomendacoes() {
 
     return estadoRecomendacoes.erro;
 
 }
 
-function calculadoraEstatisticaAplicada(){
+function calculadoraEstatisticaAplicada() {
 
-    return false;
+    return estadoRecomendacoes.calculadoraAplicada;
 
 }
 
