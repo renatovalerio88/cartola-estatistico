@@ -2,117 +2,117 @@
   "rodadas": [
     {
       "rodada": 2,
-      "erro": 3.11,
-      "taxaAcerto": 62.5
+      "erro": 3.08,
+      "taxaAcerto": 63.64
     },
     {
       "rodada": 3,
-      "erro": 3.42,
-      "taxaAcerto": 58.33
+      "erro": 3.32,
+      "taxaAcerto": 57.2
     },
     {
       "rodada": 4,
-      "erro": 2.94,
-      "taxaAcerto": 63.68
+      "erro": 2.9,
+      "taxaAcerto": 64.57
     },
     {
       "rodada": 5,
-      "erro": 3.26,
-      "taxaAcerto": 58.33
+      "erro": 3.2,
+      "taxaAcerto": 56.75
     },
     {
       "rodada": 6,
-      "erro": 2.89,
-      "taxaAcerto": 63.64
+      "erro": 2.86,
+      "taxaAcerto": 63.96
     },
     {
       "rodada": 7,
       "erro": 2.81,
-      "taxaAcerto": 65.02
+      "taxaAcerto": 62.38
     },
     {
       "rodada": 8,
-      "erro": 3.1,
-      "taxaAcerto": 59.15
+      "erro": 2.98,
+      "taxaAcerto": 58.17
     },
     {
       "rodada": 9,
-      "erro": 3.37,
-      "taxaAcerto": 60.06
+      "erro": 3.31,
+      "taxaAcerto": 58.49
     },
     {
       "rodada": 10,
-      "erro": 2.92,
-      "taxaAcerto": 60.44
+      "erro": 2.84,
+      "taxaAcerto": 62.66
     },
     {
       "rodada": 11,
-      "erro": 2.74,
-      "taxaAcerto": 66.67
+      "erro": 2.69,
+      "taxaAcerto": 70.23
     },
     {
       "rodada": 12,
       "erro": 2.87,
-      "taxaAcerto": 66.25
+      "taxaAcerto": 65.94
     },
     {
       "rodada": 13,
-      "erro": 2.85,
-      "taxaAcerto": 66.56
+      "erro": 2.79,
+      "taxaAcerto": 68.17
     },
     {
       "rodada": 14,
-      "erro": 2.99,
-      "taxaAcerto": 63.9
+      "erro": 2.97,
+      "taxaAcerto": 64.86
     },
     {
       "rodada": 15,
-      "erro": 2.95,
-      "taxaAcerto": 62.82
+      "erro": 2.93,
+      "taxaAcerto": 60.58
     },
     {
       "rodada": 16,
-      "erro": 2.88,
-      "taxaAcerto": 65.5
+      "erro": 2.86,
+      "taxaAcerto": 65.18
     },
     {
       "rodada": 17,
-      "erro": 3.14,
-      "taxaAcerto": 60.19
+      "erro": 3.09,
+      "taxaAcerto": 61.46
     },
     {
       "rodada": 18,
-      "erro": 3.13,
+      "erro": 3.1,
       "taxaAcerto": 62.89
     },
     {
       "rodada": 19,
       "erro": 3.02,
-      "taxaAcerto": 61.24
+      "taxaAcerto": 64.11
     },
     {
       "rodada": 20,
       "erro": 2.83,
-      "taxaAcerto": 64.79
+      "taxaAcerto": 64.2
     },
     {
       "rodada": 21,
-      "erro": 3.02,
-      "taxaAcerto": 60.38
+      "erro": 2.96,
+      "taxaAcerto": 61.32
     },
     {
       "rodada": 22,
-      "erro": 1.55,
-      "taxaAcerto": 82.4
+      "erro": 1.84,
+      "taxaAcerto": 77.44
     }
   ],
-  "erroMedioGeral": 2.94,
+  "erroMedioGeral": 2.92,
   "melhorRodada": {
-    "erro": 1.55,
+    "erro": 1.84,
     "rodada": 22
   },
   "piorRodada": {
-    "erro": 3.42,
+    "erro": 3.32,
     "rodada": 3
   }
 }

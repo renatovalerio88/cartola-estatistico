@@ -1,22 +1,68 @@
 {
-  "amostra": {
-    "rodadasAnalisadas": 21,
-    "jogadoresAnalisados": 6590
+  "modelo": "laboratorio_v2",
+  "amostras": 6590,
+  "erroMedio": 2.83,
+  "rmse": 3.89,
+  "componentes": {
+    "media3": {
+      "media": 3.27,
+      "quantidade": 6590
+    },
+    "media5": {
+      "media": 3.26,
+      "quantidade": 6590
+    },
+    "mediaGeral": {
+      "media": 3.23,
+      "quantidade": 6590
+    },
+    "piso": {
+      "media": 0.32,
+      "quantidade": 6590
+    },
+    "teto": {
+      "media": 7.73,
+      "quantidade": 6590
+    },
+    "regularidade": {
+      "media": 5.91,
+      "quantidade": 6590
+    },
+    "tendencia": {
+      "media": -0.01,
+      "quantidade": 6590
+    }
   },
-  "erroMedio": 2.84,
-  "forma": {
-    "impacto": 0.51
-  },
-  "regularidade": {
-    "impacto": 0.4
-  },
-  "risco": {
-    "impacto": 0.26
-  },
-  "confianca": {
-    "impacto": 0.31
-  },
-  "projecao": {
-    "impacto": 0.65
+  "posicoes": {
+    "MEI": {
+      "quantidade": 2103,
+      "erroMedio": 2.56,
+      "rmse": 3.61
+    },
+    "LAT": {
+      "quantidade": 1015,
+      "erroMedio": 3.22,
+      "rmse": 4.15
+    },
+    "ATA": {
+      "quantidade": 1721,
+      "erroMedio": 3.0,
+      "rmse": 4.27
+    },
+    "GOL": {
+      "quantidade": 449,
+      "erroMedio": 3.1,
+      "rmse": 4.16
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.8,
+      "rmse": 3.7
+    },
+    "TEC": {
+      "quantidade": 349,
+      "erroMedio": 2.31,
+      "rmse": 2.9
+    }
   }
 }
