@@ -30,13 +30,8 @@ const MotorEscalacao = (() => {
     };
 
     function numero(v){
-
         v = Number(v);
-
-        return Number.isFinite(v)
-            ? v
-            : 0;
-
+        return Number.isFinite(v) ? v : 0;
     }
 
     function nota(j,perfil){
@@ -76,114 +71,64 @@ const MotorEscalacao = (() => {
     function montar(
 
         jogadores,
-
         formacao,
-
         patrimonio = Infinity,
-
         perfil = "equilibrado"
 
     ){
 
-        const esquema =
-
-            FORMACOES[formacao];
+        const esquema = FORMACOES[formacao];
 
         if(!esquema){
-
             return [];
-
         }
 
         const titulares=[];
-
         const clubes={};
-
         let custo=0;
 
         for(const posicao of Object.keys(esquema)){
 
-            const quantidade=
+            const quantidade = esquema[posicao];
 
-                esquema[posicao];
+            const candidatos = jogadores
 
-            const candidatos=
-
-                jogadores
-
-                .filter(
-
-                    j=>j.posicao===posicao
-
-                )
+                .filter(j=>j.posicao===posicao)
 
                 .sort(
-
                     (a,b)=>
-
-                        nota(b,perfil)
-
-                        -
-
+                        nota(b,perfil)-
                         nota(a,perfil)
-
                 );
 
             for(const jogador of candidatos){
 
                 if(
-
                     titulares.filter(
-
                         t=>t.posicao===posicao
-
                     ).length>=quantidade
-
                 ){
-
                     break;
-
                 }
 
-                const clube=
-
+                const clube =
                     jogador.siglaClube ||
-
                     jogador.clube ||
-
                     "SEM";
 
-                if(
-
-                    (clubes[clube]||0)>=3
-
-                ){
-
+                if((clubes[clube]||0)>=3){
                     continue;
-
                 }
 
-                const preco=
+                const preco = numero(jogador.preco);
 
-                    numero(jogador.preco);
-
-                if(
-
-                    custo+preco>
-
-                    patrimonio
-
-                ){
-
+                if(custo+preco>patrimonio){
                     continue;
-
                 }
 
                 titulares.push(jogador);
 
-                clubes[clube]=
-
-                    (clubes[clube]||0)+1;
+                clubes[clube]=(clubes[clube]||0)+1;
 
                 custo+=preco;
 
@@ -191,128 +136,54 @@ const MotorEscalacao = (() => {
 
         }
 
-        // Segunda passada:
-        // tenta melhorar a projeção
+        return titulares;
 
-        const atual=
+    }
 
-            scoreTime(
+    function montarBanco(
+        jogadores,
+        titulares
+    ){
 
-                titulares,
-
-                perfil
-
+        const ids =
+            new Set(
+                titulares.map(j=>j.id)
             );
 
-        jogadores.forEach(candidato=>{
+        return jogadores
 
-            titulares.forEach((titular,i)=>{
+            .filter(j=>!ids.has(j.id))
 
-                if(
+            .sort(
+                (a,b)=>
+                    numero(b.projecao)-
+                    numero(a.projecao)
+            )
 
-                    candidato.posicao!==titular.posicao
+            .slice(0,5);
 
-                ){
+    }
 
-                    return;
+    function gerarJustificativa(
+        titulares,
+        perfil
+    ){
 
-                }
+        const projecao =
+            titulares.reduce(
+                (s,j)=>s+numero(j.projecao),
+                0
+            );
 
-                if(
-
-                    nota(
-
-                        candidato,
-
-                        perfil
-
-                    )
-
-                    <=
-
-                    nota(
-
-                        titular,
-
-                        perfil
-
-                    )
-
-                ){
-
-                    return;
-
-                }
-
-                const novo=[
-
-                    ...titulares
-
-                ];
-
-                novo[i]=
-
-                    candidato;
-
-                const preco=
-
-                    novo.reduce(
-
-                        (s,j)=>
-
-                            s+
-
-                            numero(j.preco),
-
-                        0
-
-                    );
-
-                if(
-
-                    preco>
-
-                    patrimonio
-
-                ){
-
-                    return;
-
-                }
-
-                if(
-
-                    scoreTime(
-
-                        novo,
-
-                        perfil
-
-                    )
-
-                    >
-
-                    atual
-
-                ){
-
-                    titulares[i]=
-
-                        candidato;
-
-                }
-
-            });
-
-        });
-
-        return titulares;
+        return `Escalação ${perfil} gerada automaticamente pelo motor estatístico com projeção total de ${projecao.toFixed(2)} pontos.`;
 
     }
 
     return{
 
-        montar
+        montar,
+        montarBanco,
+        gerarJustificativa
 
     };
 
