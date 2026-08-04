@@ -1,164 +1,385 @@
 from pathlib import Path
 import json
+import math
 
 
-PASTA = Path("data/historico")
-SAIDA = Path("data/componentes.json")
+PASTA_HISTORICO = Path(
+    "data/historico"
+)
 
-
-arquivos = sorted(
-    PASTA.glob("rodada-*.json")
+ARQUIVO_SAIDA = Path(
+    "data/componentes.json"
 )
 
 
-erros = []
-
-
-for arquivo in arquivos:
+def carregar_json(caminho):
 
     with open(
-        arquivo,
+        caminho,
         encoding="utf-8"
-    ) as f:
+    ) as arquivo:
 
-        dados = json.load(f)
-
-
-    jogadores = (
-        dados.get("jogadores", [])
-    )
+        return json.load(arquivo)
 
 
-    for jogador in jogadores:
 
-        erro = jogador.get(
-            "erro"
+def media(lista):
+
+    if not lista:
+        return 0
+
+    return sum(lista) / len(lista)
+
+
+
+def calcular_rmse(erros):
+
+    if not erros:
+        return 0
+
+    return math.sqrt(
+        sum(
+            erro ** 2
+            for erro in erros
         )
-
-
-        if erro is not None:
-
-            erros.append(
-                abs(float(erro))
-            )
-
-
-
-# =========================================================
-# PROTEÇÃO PARA AUSÊNCIA DE HISTÓRICO
-# =========================================================
-
-if erros:
-
-    erro_medio = round(
-        sum(erros) / len(erros),
-        2
+        /
+        len(erros)
     )
 
-else:
-
-    erro_medio = 0
 
 
+def coletar_componentes():
 
-resultado = {
+    componentes = {
 
-    "amostra": {
+        "projecao": [],
 
-        "rodadasAnalisadas":
-            len(arquivos),
+        "real": [],
 
-        "jogadoresAnalisados":
-            len(erros)
+        "erro": [],
 
-    },
+        "media3": [],
 
+        "media5": [],
 
-    "erroMedio":
-        erro_medio,
+        "mediaGeral": [],
 
+        "piso": [],
 
-    "forma": {
+        "teto": [],
 
-        "impacto":
-            round(
-                erro_medio * 0.18,
-                2
-            )
+        "regularidade": [],
 
-    },
-
-
-    "regularidade": {
-
-        "impacto":
-            round(
-                erro_medio * 0.14,
-                2
-            )
-
-    },
-
-
-    "risco": {
-
-        "impacto":
-            round(
-                erro_medio * 0.09,
-                2
-            )
-
-    },
-
-
-    "confianca": {
-
-        "impacto":
-            round(
-                erro_medio * 0.11,
-                2
-            )
-
-    },
-
-
-    "projecao": {
-
-        "impacto":
-            round(
-                erro_medio * 0.23,
-                2
-            )
+        "tendencia": []
 
     }
 
-}
+
+    arquivos = sorted(
+        PASTA_HISTORICO.glob(
+            "rodada-*.json"
+        )
+    )
+
+
+    for arquivo in arquivos:
+
+
+        dados = carregar_json(
+            arquivo
+        )
+
+
+        for jogador in dados.get(
+            "jogadores",
+            []
+        ):
+
+
+            componentes[
+                "projecao"
+            ].append(
+                jogador.get(
+                    "projecao",
+                    0
+                )
+            )
+
+
+            componentes[
+                "real"
+            ].append(
+                jogador.get(
+                    "real",
+                    0
+                )
+            )
+
+
+            componentes[
+                "erro"
+            ].append(
+                abs(
+                    jogador.get(
+                        "erro",
+                        0
+                    )
+                )
+            )
+
+
+            componentes[
+                "media3"
+            ].append(
+                jogador.get(
+                    "media3",
+                    0
+                )
+            )
+
+
+            componentes[
+                "media5"
+            ].append(
+                jogador.get(
+                    "media5",
+                    0
+                )
+            )
+
+
+            componentes[
+                "mediaGeral"
+            ].append(
+                jogador.get(
+                    "mediaGeral",
+                    0
+                )
+            )
+
+
+            componentes[
+                "piso"
+            ].append(
+                jogador.get(
+                    "piso",
+                    0
+                )
+            )
+
+
+            componentes[
+                "teto"
+            ].append(
+                jogador.get(
+                    "teto",
+                    0
+                )
+            )
+
+
+            componentes[
+                "regularidade"
+            ].append(
+                jogador.get(
+                    "regularidade",
+                    0
+                )
+            )
+
+
+            componentes[
+                "tendencia"
+            ].append(
+                jogador.get(
+                    "tendencia",
+                    0
+                )
+            )
+
+
+    return componentes
 
 
 
-SAIDA.parent.mkdir(
-    parents=True,
-    exist_ok=True
-)
+def avaliar():
+
+    dados = coletar_componentes()
 
 
-with open(
-    SAIDA,
-    "w",
-    encoding="utf-8"
-) as f:
+    erros = dados[
+        "erro"
+    ]
 
-    json.dump(
-        resultado,
-        f,
-        indent=2,
-        ensure_ascii=False
+
+    resultado = {
+
+        "modelo":
+
+            "laboratorio_v2",
+
+
+        "amostras":
+
+            len(erros),
+
+
+        "erroMedio":
+
+            round(
+                media(erros),
+                2
+            ),
+
+
+        "rmse":
+
+            round(
+                calcular_rmse(erros),
+                2
+            ),
+
+
+        "componentes": {},
+
+
+        "posicoes": {}
+
+    }
+
+
+    for nome, valores in dados.items():
+
+
+        if nome in (
+            "erro",
+            "projecao",
+            "real"
+        ):
+            continue
+
+
+        resultado[
+            "componentes"
+        ][nome] = {
+
+
+            "media":
+
+                round(
+                    media(valores),
+                    2
+                ),
+
+
+            "quantidade":
+
+                len(valores)
+
+        }
+
+
+
+    arquivos = sorted(
+        PASTA_HISTORICO.glob(
+            "rodada-*.json"
+        )
+    )
+
+
+    posicoes = {}
+
+
+    for arquivo in arquivos:
+
+
+        dados = carregar_json(
+            arquivo
+        )
+
+
+        for jogador in dados.get(
+            "jogadores",
+            []
+        ):
+
+
+            posicao = jogador.get(
+                "posicao",
+                "OUT"
+            )
+
+
+            posicoes.setdefault(
+                posicao,
+                []
+            ).append(
+                abs(
+                    jogador.get(
+                        "erro",
+                        0
+                    )
+                )
+            )
+
+
+
+    for posicao, erros_pos in posicoes.items():
+
+        resultado[
+            "posicoes"
+        ][posicao] = {
+
+            "quantidade":
+
+                len(erros_pos),
+
+
+            "erroMedio":
+
+                round(
+                    media(erros_pos),
+                    2
+                ),
+
+
+            "rmse":
+
+                round(
+                    calcular_rmse(
+                        erros_pos
+                    ),
+                    2
+                )
+
+        }
+
+
+
+    with open(
+        ARQUIVO_SAIDA,
+        "w",
+        encoding="utf-8"
+    ) as arquivo:
+
+
+        json.dump(
+            resultado,
+            arquivo,
+            ensure_ascii=False,
+            indent=2
+        )
+
+
+
+    print(
+        "Componentes analisados.",
+        "Amostras:",
+        len(erros)
     )
 
 
 
-print(
-    "Componentes analisados.",
-    f"Erro médio: {erro_medio}",
-    f"Amostras: {len(erros)}"
-)
+if __name__ == "__main__":
+
+    avaliar()
