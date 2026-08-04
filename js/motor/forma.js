@@ -22,9 +22,9 @@ const MotorForma = (() => {
         const jogos =
             ultimosJogos(historico,5);
 
-        return MotorMetricas.media(
-            jogos.map(j=>j.pontos||0)
-        );
+    return MotorMetricas.media(
+        jogos.map(j => j.pontuacao ?? j.pontos ?? 0)
+    );
 
     }
 
@@ -37,10 +37,10 @@ const MotorForma = (() => {
             return 0;
 
         const primeiro =
-            jogos[0].pontos||0;
-
+        jogos[0].pontuacao ?? jogos[0].pontos ?? 0;
+    
         const ultimo =
-            jogos[jogos.length-1].pontos||0;
+            jogos[jogos.length - 1].pontuacao ?? jogos[jogos.length - 1].pontos ?? 0;
 
         return ultimo-primeiro;
 
