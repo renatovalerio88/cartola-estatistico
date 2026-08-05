@@ -1,6 +1,6 @@
 {
   "modelo": "laboratorio_v3",
-  "amostras": 6590,
+  "amostras": 6591,
   "erroMedio": 2.74,
   "rmse": 3.96,
   "componentes": {
@@ -45,7 +45,7 @@
       "rmse": 4.31
     },
     "ATA": {
-      "quantidade": 1721,
+      "quantidade": 1722,
       "erroMedio": 2.86,
       "rmse": 4.33
     },

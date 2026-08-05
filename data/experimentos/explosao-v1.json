@@ -1,10 +1,10 @@
 {
   "modelo": "experimento_explosao_v1",
-  "jogadoresAnalisados": 6590,
+  "jogadoresAnalisados": 6591,
   "erroMedioOriginal": 2.739,
-  "erroMedioComExplosao": 2.763,
+  "erroMedioComExplosao": 2.762,
   "melhorouEm": 3066,
-  "impacto": -0.024,
+  "impacto": -0.023,
   "amostras": [
     {
       "rodada": 2,

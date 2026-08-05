@@ -6,8 +6,7 @@
       "nome": "Modelo Base",
       "mae": 2.739,
       "melhoria": 0,
-      "tipo": "projecao",
-      "fonte": "historico"
+      "tipo": "projecao"
     }
   ],
   "camadasEstrategicas": [
@@ -16,8 +15,9 @@
       "status": "teste",
       "dados": {
         "disponivel": true,
-        "jogadoresAnalisados": 770,
-        "tipo": "camada estrategica"
+        "jogadoresAnalisados": 771,
+        "fonte": "data/indice-diferencial.json",
+        "tipo": "camada_estrategica"
       }
     }
   ],
@@ -26,8 +26,7 @@
       "nome": "Modelo Base",
       "mae": 2.739,
       "melhoria": 0,
-      "tipo": "projecao",
-      "fonte": "historico"
+      "tipo": "projecao"
     }
   ],
   "melhorModelo": "Modelo Base"

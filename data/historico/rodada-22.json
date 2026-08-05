@@ -3,8 +3,8 @@
   "erroMedio": 1.35,
   "maiorErro": 13.88,
   "menorErro": 0.0,
-  "taxaAcerto": 85.27,
-  "quantidade": 767,
+  "taxaAcerto": 85.29,
+  "quantidade": 768,
   "jogadores": [
     {
       "id": 94583,
@@ -6960,6 +6960,18 @@
       "posicao": "GOL",
       "clube": "SAO",
       "preco": 3,
+      "media": 0,
+      "jogos": null,
+      "projecao": 0.0,
+      "real": 0,
+      "erro": 0.0
+    },
+    {
+      "id": 117909,
+      "nome": "Wesley Gassova Ribeiro Teixeira",
+      "posicao": "ATA",
+      "clube": "CRU",
+      "preco": 8,
       "media": 0,
       "jogos": null,
       "projecao": 0.0,

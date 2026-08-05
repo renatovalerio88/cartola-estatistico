@@ -3940,6 +3940,17 @@
       "riscoExplosao": 25
     },
     {
+      "id": 117909,
+      "nome": "Wesley Gassova Ribeiro Teixeira",
+      "posicao": "ATA",
+      "media": 0.0,
+      "media3": 0.0,
+      "media5": 0.0,
+      "explosoes": 0,
+      "jogos": 22,
+      "riscoExplosao": 25
+    },
+    {
       "id": 118775,
       "nome": "Lautaro Ariel Díaz",
       "posicao": "ATA",
@@ -8440,9 +8451,9 @@
     }
   ],
   "resumo": {
-    "totalJogadores": 767,
+    "totalJogadores": 768,
     "altoRisco": 11,
     "medioRisco": 185,
-    "baixoRisco": 571
+    "baixoRisco": 572
   }
 }

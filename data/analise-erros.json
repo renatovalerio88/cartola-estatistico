@@ -1,6 +1,6 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 6590,
+  "totalJogadores": 6591,
   "erroMedio": 2.74,
   "porPosicao": {
     "MEI": {
@@ -12,7 +12,7 @@
       "erroMedio": 3.18
     },
     "ATA": {
-      "quantidade": 1721,
+      "quantidade": 1722,
       "erroMedio": 2.86
     },
     "GOL": {
@@ -34,7 +34,7 @@
       "erroMedio": 4.06
     },
     "5-10": {
-      "quantidade": 3701,
+      "quantidade": 3702,
       "erroMedio": 3.06
     },
     "0-5": {

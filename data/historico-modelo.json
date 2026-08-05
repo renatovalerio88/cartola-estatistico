@@ -10,7 +10,7 @@
     "melhorRodada": {
       "rodada": 22,
       "erro": 1.35,
-      "taxaAcerto": 85.27
+      "taxaAcerto": 85.29
     },
     "piorRodada": {
       "rodada": 3,
@@ -122,7 +122,7 @@
     {
       "rodada": 22,
       "mae": 1.35,
-      "taxaAcerto": 85.27
+      "taxaAcerto": 85.29
     }
   ],
   "evolucao": [
@@ -221,7 +221,7 @@
       "erroMedio": 3.18
     },
     "ATA": {
-      "quantidade": 1721,
+      "quantidade": 1722,
       "erroMedio": 2.86
     },
     "GOL": {
@@ -263,8 +263,8 @@
       "tipo": "camada estratégica",
       "resultado": "não incorporado na projeção",
       "erroOriginal": 2.739,
-      "erroComExplosao": 2.763,
-      "impacto": -0.024,
+      "erroComExplosao": 2.762,
+      "impacto": -0.023,
       "decisao": "usar futuramente em capitão e diferenciais"
     }
   ]

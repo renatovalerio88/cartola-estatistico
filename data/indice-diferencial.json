@@ -7662,6 +7662,19 @@
       ]
     },
     {
+      "id": 117909,
+      "nome": "Wesley Gassova Ribeiro Teixeira",
+      "posicao": "ATA",
+      "indiceDiferencial": 21.5,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 0,
+      "tendencia": 0.0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 122121,
       "nome": "Túlio Eduardo Silva de Oliveira",
       "posicao": "ATA",

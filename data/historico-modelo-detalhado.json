@@ -3504,11 +3504,11 @@
     {
       "rodada": 22,
       "mae": 1.35,
-      "quantidadeJogadores": 767,
+      "quantidadeJogadores": 768,
       "posicoes": {
         "ATA": {
-          "quantidade": 192,
-          "mae": 1.28
+          "quantidade": 193,
+          "mae": 1.27
         },
         "MEI": {
           "quantidade": 230,
