@@ -7,6 +7,11 @@ PASTA_HISTORICO = Path(
 )
 
 
+ARQUIVO_SIMULACAO = Path(
+    "data/simulacao-times.json"
+)
+
+
 ARQUIVO_SAIDA = Path(
     "data/historico-modelo-detalhado.json"
 )
@@ -51,13 +56,30 @@ resultado = {
 
     "modelo":
 
-        "historico_detalhado_v1",
+        "historico_detalhado_v2",
 
 
-    "rodadas": []
+    "rodadas": [],
+
+
+    "resumoPosicoes": {},
+
+
+    "simulacaoTimes": {
+
+        "disponivel": False,
+
+        "estrategias": []
+
+    }
 
 }
 
+
+
+# =====================================
+# HISTÓRICO DE JOGADORES
+# =====================================
 
 
 arquivos = sorted(
@@ -69,6 +91,10 @@ arquivos = sorted(
     )
 
 )
+
+
+
+acumulado_posicoes = {}
 
 
 
@@ -100,13 +126,10 @@ for arquivo in arquivos:
     erros = []
 
 
-
     por_posicao = {}
 
 
-
     maiores_erros = []
-
 
 
     melhores_acertos = []
@@ -157,6 +180,18 @@ for arquivo in arquivos:
 
 
 
+        if posicao not in acumulado_posicoes:
+
+            acumulado_posicoes[posicao] = []
+
+
+
+        acumulado_posicoes[posicao].append(
+            erro_abs
+        )
+
+
+
         registro = {
 
 
@@ -199,7 +234,6 @@ for arquivo in arquivos:
         )
 
 
-
         melhores_acertos.append(
             registro
         )
@@ -228,17 +262,14 @@ for arquivo in arquivos:
             ),
 
 
-
         "posicoes":
 
             {},
 
 
-
         "maioresErros":
 
             [],
-
 
 
         "melhoresAcertos":
@@ -250,6 +281,7 @@ for arquivo in arquivos:
 
 
     for posicao, valores in por_posicao.items():
+
 
         rodada_json["posicoes"][posicao] = {
 
@@ -309,6 +341,153 @@ for arquivo in arquivos:
 
 
 
+# =====================================
+# RESUMO POR POSIÇÃO
+# =====================================
+
+
+for posicao, valores in acumulado_posicoes.items():
+
+
+    resultado["resumoPosicoes"][posicao] = {
+
+
+        "quantidade":
+
+            len(
+                valores
+            ),
+
+
+        "mae":
+
+            media(
+                valores
+            )
+
+    }
+
+
+
+# =====================================
+# SIMULAÇÃO DE TIMES
+# =====================================
+
+
+simulacao = carregar_json(
+    ARQUIVO_SIMULACAO
+)
+
+
+
+if simulacao:
+
+
+    estrategias = {}
+
+
+
+    for rodada in simulacao.get(
+        "rodadas",
+        []
+    ):
+
+
+        for estrategia in rodada.get(
+            "estrategias",
+            []
+        ):
+
+
+            nome = estrategia.get(
+                "nome"
+            )
+
+
+            if nome not in estrategias:
+
+                estrategias[nome] = []
+
+
+
+            estrategias[nome].append(
+
+                estrategia.get(
+                    "pontos",
+                    0
+                )
+
+            )
+
+
+
+    lista = []
+
+
+
+    for nome, pontos in estrategias.items():
+
+
+        lista.append({
+
+
+            "nome":
+
+                nome,
+
+
+            "mediaPontos":
+
+                media(
+                    pontos
+                ),
+
+
+            "rodadas":
+
+                len(
+                    pontos
+                )
+
+        })
+
+
+
+    lista = sorted(
+
+        lista,
+
+        key=lambda x:
+
+            x["mediaPontos"],
+
+        reverse=True
+
+    )
+
+
+
+    resultado["simulacaoTimes"] = {
+
+
+        "disponivel":
+
+            True,
+
+
+        "estrategias":
+
+            lista
+
+    }
+
+
+
+# =====================================
+# ORDENAR E SALVAR
+# =====================================
+
+
 resultado["rodadas"] = sorted(
 
     resultado["rodadas"],
@@ -347,12 +526,21 @@ with open(
 
 
 print(
-    "Histórico detalhado gerado."
+    "Histórico detalhado v2 gerado."
 )
+
 
 print(
     "Rodadas:",
     len(
         resultado["rodadas"]
+    )
+)
+
+
+print(
+    "Posições analisadas:",
+    len(
+        resultado["resumoPosicoes"]
     )
 )
