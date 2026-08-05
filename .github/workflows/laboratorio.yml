@@ -122,6 +122,10 @@ jobs:
         run: |
           python scripts/processamento/calcular_potencial_explosao.py
 
+      - name: Calcular Índice Diferencial
+        run: |
+          python scripts/processamento/calcular_indice_diferencial.py
+
       - name: Testar Modelo Explosao
         run: |
           python scripts/processamento/testar_explosao_modelo.py
