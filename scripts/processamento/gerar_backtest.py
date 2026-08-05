@@ -1,6 +1,5 @@
 from pathlib import Path
 import json
-import statistics
 
 
 PASTA_BASE = Path(
@@ -23,12 +22,11 @@ def carregar_json(caminho):
 
     with open(
         caminho,
+        "r",
         encoding="utf-8"
-    ) as arquivo:
+    ) as f:
 
-        return json.load(
-            arquivo
-        )
+        return json.load(f)
 
 
 
@@ -41,210 +39,24 @@ def salvar_json(
         caminho,
         "w",
         encoding="utf-8"
-    ) as arquivo:
+    ) as f:
 
         json.dump(
             dados,
-            arquivo,
+            f,
             ensure_ascii=False,
             indent=2
         )
 
 
 
-def media(lista):
-
-    if not lista:
-        return 0
-
-    return sum(lista) / len(lista)
-
-
-
-def ultimos(lista, quantidade):
-
-    return lista[-quantidade:]
-
-
-
-def calcular_componentes(historico):
-
-    pontos = [
-
-        item.get("pontos")
-
-        for item in historico
-
-        if item.get("pontos") is not None
-
-    ]
-
-
-    if not pontos:
-
-        return {
-
-            "media3": 0,
-            "media5": 0,
-            "mediaGeral": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "tendencia": 0
-
-        }
-
-
-    media3 = media(
-        ultimos(
-            pontos,
-            3
-        )
-    )
-
-
-    media5 = media(
-        ultimos(
-            pontos,
-            5
-        )
-    )
-
-
-    mediaGeral = media(
-        pontos
-    )
-
-
-    piso = min(
-        pontos
-    )
-
-
-    teto = max(
-        pontos
-    )
-
-
-    regularidade = 0
-
-    if len(pontos) > 1:
-
-        regularidade = max(
-            0,
-            10 -
-            statistics.pstdev(
-                pontos
-            )
-        )
-
-
-    tendencia = 0
-
-    if len(pontos) >= 2:
-
-        tendencia = (
-            pontos[-1]
-            -
-            pontos[-2]
-        )
-
-
-    return {
-
-        "media3":
-            round(media3,2),
-
-        "media5":
-            round(media5,2),
-
-        "mediaGeral":
-            round(mediaGeral,2),
-
-        "piso":
-            round(piso,2),
-
-        "teto":
-            round(teto,2),
-
-        "regularidade":
-            round(regularidade,2),
-
-        "tendencia":
-            round(tendencia,2)
-
-    }
-
-
-
-def calcular_projecao(componentes):
-
-
-    base = (
-
-        componentes["media3"] * 0.35
-
-        +
-
-        componentes["media5"] * 0.25
-
-        +
-
-        componentes["mediaGeral"] * 0.20
-
-    )
-
-
-    ajuste_tendencia = (
-
-        componentes["tendencia"]
-        *
-        0.10
-
-    )
-
-
-    fator_regularidade = (
-
-        0.95
-
-        +
-
-        (
-            componentes["regularidade"]
-            /
-            100
-        )
-
-    )
-
-
-    projecao = (
-
-        base
-        +
-        ajuste_tendencia
-
-    ) * fator_regularidade
-
-
-
-    return round(
-        projecao,
-        2
-    )
+arquivos = sorted(
+    PASTA_BASE.glob("*.json")
+)
 
 
 
 rodadas = {}
-
-
-
-arquivos = sorted(
-    PASTA_BASE.glob(
-        "*.json"
-    )
-)
 
 
 
@@ -264,10 +76,7 @@ for arquivo in arquivos:
 
     historico.sort(
         key=lambda x:
-            x.get(
-                "rodada",
-                0
-            )
+            x["rodada"]
     )
 
 
@@ -278,17 +87,78 @@ for arquivo in arquivos:
     ):
 
 
-        treino = historico[:indice]
+        treino = historico[
+            :indice
+        ]
 
 
-        real = historico[indice].get(
+        rodada_prevista = historico[
+            indice
+        ]
+
+
+
+        pesos = []
+
+        for posicao, item in enumerate(
+            treino
+        ):
+
+            pesos.append(
+                posicao + 1
+            )
+
+
+
+        soma_pesos = sum(
+            pesos
+        )
+
+
+
+        if soma_pesos == 0:
+
+            continue
+
+
+
+        projecao = sum(
+
+            (
+                item.get(
+                    "pontos"
+                )
+                or 0
+            )
+            *
+            peso
+
+            for item, peso
+            in zip(
+                treino,
+                pesos
+            )
+
+        ) / soma_pesos
+
+
+
+        rodada = rodada_prevista[
+            "rodada"
+        ]
+
+
+
+        if rodada not in rodadas:
+
+            rodadas[rodada] = []
+
+
+
+        real = rodada_prevista.get(
             "pontos"
         )
 
-
-        rodada = historico[indice].get(
-            "rodada"
-        )
 
 
         if real is None:
@@ -297,55 +167,84 @@ for arquivo in arquivos:
 
 
 
-        componentes = calcular_componentes(
-            treino
-        )
-
-
-        projecao = calcular_projecao(
-            componentes
-        )
-
-
-        erro = abs(
-            real - projecao
+        erro = (
+            real
+            -
+            projecao
         )
 
 
 
-        rodadas.setdefault(
-            rodada,
-            []
-        ).append({
+        rodadas[rodada].append({
 
             "id":
+
                 jogador.get(
                     "id"
                 ),
 
+
             "nome":
+
                 jogador.get(
                     "nome"
                 ),
 
+
             "posicao":
+
                 jogador.get(
                     "posicao"
                 ),
 
+
+            "clube":
+
+                jogador.get(
+                    "clube"
+                ),
+
+
+            "preco":
+
+                rodada_prevista.get(
+                    "preco"
+                ),
+
+
+            "media":
+
+                rodada_prevista.get(
+                    "media"
+                ),
+
+
+            "jogos":
+
+                rodada_prevista.get(
+                    "jogos"
+                ),
+
+
             "projecao":
-                projecao,
 
-            "real":
-                real,
-
-            "erro":
                 round(
-                    erro,
+                    projecao,
                     2
                 ),
 
-            **componentes
+
+            "real":
+
+                real,
+
+
+            "erro":
+
+                round(
+                    erro,
+                    2
+                )
 
         })
 
@@ -357,16 +256,23 @@ for rodada, jogadores in rodadas.items():
     jogadores.sort(
 
         key=lambda x:
-            x["projecao"],
+
+            x.get(
+                "projecao",
+                0
+            ),
 
         reverse=True
 
     )
 
 
+
     erros = [
 
-        jogador["erro"]
+        abs(
+            jogador["erro"]
+        )
 
         for jogador in jogadores
 
@@ -374,45 +280,105 @@ for rodada, jogadores in rodadas.items():
 
 
 
+    media_erro = round(
+
+        sum(erros)
+        /
+        len(erros),
+
+        2
+
+    )
+
+
+
+    maior_erro = round(
+
+        max(erros),
+
+        2
+
+    )
+
+
+
+    menor_erro = round(
+
+        min(erros),
+
+        2
+
+    )
+
+
+
+    acertos = len([
+
+        erro
+
+        for erro in erros
+
+        if erro <= 3
+
+    ])
+
+
+
+    taxa_acerto = round(
+
+        acertos
+        *
+        100
+        /
+        len(erros),
+
+        2
+
+    )
+
+
+
     salvar_json(
 
-        PASTA_SAIDA /
+        PASTA_SAIDA
+        /
         f"rodada-{rodada:02d}.json",
+
 
         {
 
             "rodada":
+
                 rodada,
 
+
             "erroMedio":
-                round(
-                    media(erros),
-                    2
-                ),
+
+                media_erro,
+
+
+            "maiorErro":
+
+                maior_erro,
+
+
+            "menorErro":
+
+                menor_erro,
+
 
             "taxaAcerto":
-                round(
 
-                    len(
-                        [
-                            erro
-                            for erro in erros
-                            if erro <= 3
-                        ]
-                    )
-                    *
-                    100
-                    /
-                    len(erros),
+                taxa_acerto,
 
-                    2
-
-                ),
 
             "quantidade":
+
                 len(jogadores),
 
+
             "jogadores":
+
                 jogadores
 
         }
