@@ -172,7 +172,10 @@ jobs:
       # SIMULAÇÃO DE CAMPEONATO
       # ======================================
 
-
+      - name: Diagnosticar Escalações
+        run: |
+          python scripts/processamento/diagnosticar_escalacoes.py
+      
       - name: Simular Times Históricos
 
         run: |
