@@ -1,6 +1,6 @@
 {
   "versao": "2.0",
-  "dataCalibracao": "2026-08-05 13:02:55",
+  "dataCalibracao": "2026-08-05 13:11:07",
   "modelo": "estatistico_hibrido",
   "pesos": {
     "media3": 0.05,
@@ -11,19 +11,19 @@
   },
   "componentesMelhores": [
     {
-      "componente": "tendencia",
-      "media": -0.01,
-      "quantidade": 6590
+      "componente": "media3",
+      "media": 0,
+      "quantidade": 0
     },
     {
-      "componente": "piso",
-      "media": 0.32,
-      "quantidade": 6590
+      "componente": "media5",
+      "media": 0,
+      "quantidade": 0
     },
     {
       "componente": "mediaGeral",
-      "media": 3.23,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     }
   ],
   "origem": "backtest_historico"
