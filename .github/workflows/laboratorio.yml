@@ -136,8 +136,10 @@ jobs:
 
           python scripts/processamento/backtest_inteligente.py
 
-
-
+      - name: Gerar Histórico do Modelo
+        run: |
+          python scripts/processamento/gerar_historico_modelo.py
+          
       # ======================================
       # COMMIT DOS RESULTADOS
       # ======================================
