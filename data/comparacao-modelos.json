@@ -1,12 +1,24 @@
 {
-  "modelo": "comparacao_modelos_v3",
+  "modelo": "comparacao_modelos_v4",
   "descricao": "Comparação científica entre versões do modelo",
   "modelos": [
     {
       "nome": "Modelo Base",
       "mae": 2.739,
       "melhoria": 0,
+      "tipo": "projecao",
       "fonte": "historico"
+    }
+  ],
+  "camadasEstrategicas": [
+    {
+      "nome": "Índice Diferencial",
+      "status": "teste",
+      "dados": {
+        "disponivel": true,
+        "jogadoresAnalisados": 770,
+        "tipo": "camada estrategica"
+      }
     }
   ],
   "ranking": [
@@ -14,6 +26,7 @@
       "nome": "Modelo Base",
       "mae": 2.739,
       "melhoria": 0,
+      "tipo": "projecao",
       "fonte": "historico"
     }
   ],
