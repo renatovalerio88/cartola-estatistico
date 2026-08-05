@@ -139,6 +139,10 @@ jobs:
       - name: Gerar Histórico do Modelo
         run: |
           python scripts/processamento/gerar_historico_modelo.py
+
+      - name: Gerar Histórico Detalhado
+        run: |
+          python scripts/processamento/gerar_historico_detalhado.py
           
       # ======================================
       # COMMIT DOS RESULTADOS
