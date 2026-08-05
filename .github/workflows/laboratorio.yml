@@ -151,6 +151,11 @@ jobs:
       - name: Simular Times Históricos
         run: |
           python scripts/processamento/gerar_simulacao_times.py
+
+      - name: Gerar Ranking Simulação
+        run: |
+          python scripts/processamento/gerar_ranking_simulacao.py      
+
       
       # ======================================
       # COMMIT DOS RESULTADOS
