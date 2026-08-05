@@ -2,30 +2,25 @@ from pathlib import Path
 import json
 
 
-PASTA_HISTORICO = Path(
-    "data/historico"
-)
-
-
 ARQUIVO_BACKTEST = Path(
     "data/backtest-inteligente.json"
 )
-
 
 ARQUIVO_LABORATORIO = Path(
     "data/laboratorio.json"
 )
 
-
 ARQUIVO_ERROS = Path(
     "data/analise-erros.json"
 )
-
 
 ARQUIVO_MODELO = Path(
     "data/modelo-calibrado.json"
 )
 
+ARQUIVO_EXPLOSAO = Path(
+    "data/experimentos/explosao-v1.json"
+)
 
 ARQUIVO_SAIDA = Path(
     "data/historico-modelo.json"
@@ -68,41 +63,57 @@ def media(lista):
 
 resultado = {
 
+
     "modelo":
 
-        "historico_modelo_v1",
+        "historico_modelo_v2",
 
 
-    "resumo":
 
-        {},
-
-
-    "rodadas":
-
-        [],
+    "metricaOficial": {
 
 
-    "evolucao":
+        "tipo":
 
-        [],
-
-
-    "posicoes":
-
-        {},
+            "backtest_progressivo",
 
 
-    "versoes":
+        "descricao":
 
-        []
+            "Modelo treinado apenas com dados anteriores à rodada prevista"
+
+    },
+
+
+
+    "resumo": {},
+
+
+
+    "rodadas": [],
+
+
+
+    "evolucao": [],
+
+
+
+    "posicoes": {},
+
+
+
+    "versoes": [],
+
+
+
+    "experimentos": []
 
 }
 
 
 
 # =====================================
-# BACKTEST POR RODADA
+# BACKTEST OFICIAL
 # =====================================
 
 
@@ -112,13 +123,18 @@ backtest = carregar_json(
 
 
 
-for rodada in backtest.get(
+rodadas = backtest.get(
     "rodadas",
     []
-):
+)
 
 
-    resultado["rodadas"].append({
+
+for rodada in rodadas:
+
+
+    item = {
+
 
         "rodada":
 
@@ -126,11 +142,13 @@ for rodada in backtest.get(
                 "rodada"
             ),
 
-        "erro":
+
+        "mae":
 
             rodada.get(
                 "erro"
             ),
+
 
         "taxaAcerto":
 
@@ -138,28 +156,12 @@ for rodada in backtest.get(
                 "taxaAcerto"
             )
 
-    })
+    }
 
 
-
-resultado["rodadas"] = sorted(
-
-    resultado["rodadas"],
-
-    key=lambda x:
-
-        x["rodada"]
-
-)
-
-
-
-# =====================================
-# EVOLUÇÃO DO MODELO
-# =====================================
-
-
-for item in resultado["rodadas"]:
+    resultado["rodadas"].append(
+        item
+    )
 
 
     resultado["evolucao"].append({
@@ -168,17 +170,13 @@ for item in resultado["rodadas"]:
 
             item["rodada"],
 
+
         "mae":
 
-            item["erro"]
+            item["mae"]
 
     })
 
-
-
-# =====================================
-# RESUMO GERAL
-# =====================================
 
 
 resultado["resumo"] = {
@@ -187,17 +185,20 @@ resultado["resumo"] = {
     "rodadasAnalisadas":
 
         len(
-            resultado["rodadas"]
+            rodadas
         ),
 
 
-    "erroMedio":
+    "mae":
 
         media([
 
-            x["erro"]
+            x.get(
+                "mae",
+                0
+            )
 
-            for x in resultado["rodadas"]
+            for x in rodadas
 
         ]),
 
@@ -206,15 +207,18 @@ resultado["resumo"] = {
 
         min(
 
-            resultado["rodadas"],
+            rodadas,
 
             key=lambda x:
 
-                x["erro"]
+                x.get(
+                    "erro",
+                    999
+                )
 
         )
 
-        if resultado["rodadas"]
+        if rodadas
 
         else None,
 
@@ -224,15 +228,18 @@ resultado["resumo"] = {
 
         max(
 
-            resultado["rodadas"],
+            rodadas,
 
             key=lambda x:
 
-                x["erro"]
+                x.get(
+                    "erro",
+                    0
+                )
 
         )
 
-        if resultado["rodadas"]
+        if rodadas
 
         else None
 
@@ -241,17 +248,17 @@ resultado["resumo"] = {
 
 
 # =====================================
-# POSIÇÕES
+# ANÁLISE POR POSIÇÃO
 # =====================================
 
 
-analise_erros = carregar_json(
+erros = carregar_json(
     ARQUIVO_ERROS
 )
 
 
 
-resultado["posicoes"] = analise_erros.get(
+resultado["posicoes"] = erros.get(
 
     "porPosicao",
 
@@ -284,17 +291,27 @@ resultado["versoes"] = [
 
         "nome":
 
-            "Modelo Base",
+            "Modelo Laboratório Inicial",
+
 
         "versao":
 
-            "1.0",
+            laboratorio.get(
+                "modelo",
+                "1.0"
+            ),
+
 
         "mae":
 
             laboratorio.get(
                 "mae"
-            )
+            ),
+
+
+        "observacao":
+
+            "Primeiro modelo validado"
 
     },
 
@@ -305,23 +322,96 @@ resultado["versoes"] = [
 
             "Modelo Calibrado",
 
+
         "versao":
 
             modelo.get(
                 "versao"
             ),
 
+
         "pesos":
 
             modelo.get(
-                "pesos"
-            )
+                "pesos",
+                {}
+
+            ),
+
+
+        "observacao":
+
+            "Pesos ajustados pelo histórico"
 
     }
 
-
 ]
 
+
+
+# =====================================
+# EXPERIMENTOS
+# =====================================
+
+
+explosao = carregar_json(
+    ARQUIVO_EXPLOSAO
+)
+
+
+
+if explosao:
+
+
+    resultado["experimentos"].append({
+
+        "nome":
+
+            "Índice Explosão",
+
+
+        "tipo":
+
+            "camada estratégica",
+
+
+        "resultado":
+
+            "não incorporado na projeção",
+
+
+        "erroOriginal":
+
+            explosao.get(
+                "erroMedioOriginal"
+            ),
+
+
+        "erroComExplosao":
+
+            explosao.get(
+                "erroMedioComExplosao"
+            ),
+
+
+        "impacto":
+
+            explosao.get(
+                "impacto"
+            ),
+
+
+        "decisao":
+
+            "usar futuramente em capitão e diferenciais"
+
+    })
+
+
+
+# =====================================
+# SALVAR
+# =====================================
 
 
 with open(
@@ -350,13 +440,17 @@ with open(
 
 
 print(
-    "Histórico do modelo gerado."
+    "Histórico do modelo v2 gerado."
 )
-
 
 print(
     "Rodadas:",
     len(
         resultado["rodadas"]
     )
+)
+
+print(
+    "MAE oficial:",
+    resultado["resumo"]["mae"]
 )
