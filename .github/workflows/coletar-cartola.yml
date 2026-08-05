@@ -74,6 +74,10 @@ jobs:
         run: |
           python scripts/processamento/analisar_erros.py
 
+      - name: Analisar Explosões
+        run: |
+          python scripts/processamento/analisar_explosoes.py
+
       - name: Backtest Inteligente
         run: |
           python scripts/processamento/backtest_inteligente.py
