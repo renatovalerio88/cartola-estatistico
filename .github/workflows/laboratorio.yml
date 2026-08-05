@@ -143,7 +143,11 @@ jobs:
       - name: Gerar Histórico Detalhado
         run: |
           python scripts/processamento/gerar_historico_detalhado.py
-          
+
+      - name: Comparar Modelos
+        run: |
+          python scripts/processamento/gerar_comparacao_modelos.py
+      
       # ======================================
       # COMMIT DOS RESULTADOS
       # ======================================
