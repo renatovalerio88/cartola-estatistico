@@ -1,0 +1,254 @@
+{
+  "modelo": "historico_modelo_v1",
+  "resumo": {
+    "rodadasAnalisadas": 21,
+    "erroMedio": 2.86,
+    "melhorRodada": {
+      "rodada": 22,
+      "erro": 1.35,
+      "taxaAcerto": 85.27
+    },
+    "piorRodada": {
+      "rodada": 3,
+      "erro": 3.51,
+      "taxaAcerto": 54.55
+    }
+  },
+  "rodadas": [
+    {
+      "rodada": 2,
+      "erro": 3.31,
+      "taxaAcerto": 62.12
+    },
+    {
+      "rodada": 3,
+      "erro": 3.51,
+      "taxaAcerto": 54.55
+    },
+    {
+      "rodada": 4,
+      "erro": 2.92,
+      "taxaAcerto": 65.92
+    },
+    {
+      "rodada": 5,
+      "erro": 3.25,
+      "taxaAcerto": 56.75
+    },
+    {
+      "rodada": 6,
+      "erro": 2.94,
+      "taxaAcerto": 63.31
+    },
+    {
+      "rodada": 7,
+      "erro": 2.78,
+      "taxaAcerto": 65.02
+    },
+    {
+      "rodada": 8,
+      "erro": 2.95,
+      "taxaAcerto": 61.11
+    },
+    {
+      "rodada": 9,
+      "erro": 3.19,
+      "taxaAcerto": 61.64
+    },
+    {
+      "rodada": 10,
+      "erro": 2.79,
+      "taxaAcerto": 62.97
+    },
+    {
+      "rodada": 11,
+      "erro": 2.68,
+      "taxaAcerto": 66.99
+    },
+    {
+      "rodada": 12,
+      "erro": 2.81,
+      "taxaAcerto": 67.81
+    },
+    {
+      "rodada": 13,
+      "erro": 2.78,
+      "taxaAcerto": 66.56
+    },
+    {
+      "rodada": 14,
+      "erro": 2.86,
+      "taxaAcerto": 67.09
+    },
+    {
+      "rodada": 15,
+      "erro": 2.84,
+      "taxaAcerto": 63.78
+    },
+    {
+      "rodada": 16,
+      "erro": 2.57,
+      "taxaAcerto": 73.16
+    },
+    {
+      "rodada": 17,
+      "erro": 3.07,
+      "taxaAcerto": 63.06
+    },
+    {
+      "rodada": 18,
+      "erro": 2.96,
+      "taxaAcerto": 65.09
+    },
+    {
+      "rodada": 19,
+      "erro": 2.95,
+      "taxaAcerto": 65.55
+    },
+    {
+      "rodada": 20,
+      "erro": 2.6,
+      "taxaAcerto": 70.12
+    },
+    {
+      "rodada": 21,
+      "erro": 2.9,
+      "taxaAcerto": 64.15
+    },
+    {
+      "rodada": 22,
+      "erro": 1.35,
+      "taxaAcerto": 85.27
+    }
+  ],
+  "evolucao": [
+    {
+      "rodada": 2,
+      "mae": 3.31
+    },
+    {
+      "rodada": 3,
+      "mae": 3.51
+    },
+    {
+      "rodada": 4,
+      "mae": 2.92
+    },
+    {
+      "rodada": 5,
+      "mae": 3.25
+    },
+    {
+      "rodada": 6,
+      "mae": 2.94
+    },
+    {
+      "rodada": 7,
+      "mae": 2.78
+    },
+    {
+      "rodada": 8,
+      "mae": 2.95
+    },
+    {
+      "rodada": 9,
+      "mae": 3.19
+    },
+    {
+      "rodada": 10,
+      "mae": 2.79
+    },
+    {
+      "rodada": 11,
+      "mae": 2.68
+    },
+    {
+      "rodada": 12,
+      "mae": 2.81
+    },
+    {
+      "rodada": 13,
+      "mae": 2.78
+    },
+    {
+      "rodada": 14,
+      "mae": 2.86
+    },
+    {
+      "rodada": 15,
+      "mae": 2.84
+    },
+    {
+      "rodada": 16,
+      "mae": 2.57
+    },
+    {
+      "rodada": 17,
+      "mae": 3.07
+    },
+    {
+      "rodada": 18,
+      "mae": 2.96
+    },
+    {
+      "rodada": 19,
+      "mae": 2.95
+    },
+    {
+      "rodada": 20,
+      "mae": 2.6
+    },
+    {
+      "rodada": 21,
+      "mae": 2.9
+    },
+    {
+      "rodada": 22,
+      "mae": 1.35
+    }
+  ],
+  "posicoes": {
+    "MEI": {
+      "quantidade": 2103,
+      "erroMedio": 2.45
+    },
+    "LAT": {
+      "quantidade": 1015,
+      "erroMedio": 3.18
+    },
+    "ATA": {
+      "quantidade": 1721,
+      "erroMedio": 2.86
+    },
+    "GOL": {
+      "quantidade": 449,
+      "erroMedio": 3.03
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.69
+    },
+    "TEC": {
+      "quantidade": 349,
+      "erroMedio": 2.39
+    }
+  },
+  "versoes": [
+    {
+      "nome": "Modelo Base",
+      "versao": "1.0",
+      "mae": 1.46
+    },
+    {
+      "nome": "Modelo Calibrado",
+      "versao": "2.0",
+      "pesos": {
+        "media3": 0.05,
+        "media5": 0.05,
+        "mediaGeral": 0.1,
+        "piso": 0.4,
+        "teto": 0.4
+      }
+    }
+  ]
+}
