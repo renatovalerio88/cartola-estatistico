@@ -1,0 +1,3283 @@
+{
+  "modelo": "simulacao_times_v1",
+  "descricao": "Simulação histórica das escalações recomendadas",
+  "estrategias": [
+    "Conservador",
+    "Equilibrado",
+    "Agressivo"
+  ],
+  "times": [
+    {
+      "rodada": 2,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gabriel Vinícius Menino",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano da Rocha Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Álvaro Martín Barreal",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick de Arruda Serafim",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Luccas Morisco da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Renan Augusto Lodi dos Santos",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gabriel Vinícius Menino",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano da Rocha Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Álvaro Martín Barreal",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick de Arruda Serafim",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Luccas Morisco da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Renan Augusto Lodi dos Santos",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gabriel Vinícius Menino",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano da Rocha Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Álvaro Martín Barreal",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick de Arruda Serafim",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Luccas Morisco da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Renan Augusto Lodi dos Santos",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 3,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Ribeiro Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Murilo Cerqueira Paim",
+              "pontos": 0
+            },
+            {
+              "nome": "Joaquín Piquerez Moreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Leonardo da Silva Vieira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Ribeiro Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Murilo Cerqueira Paim",
+              "pontos": 0
+            },
+            {
+              "nome": "Joaquín Piquerez Moreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Leonardo da Silva Vieira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Ribeiro Neves",
+              "pontos": 0
+            },
+            {
+              "nome": "Murilo Cerqueira Paim",
+              "pontos": 0
+            },
+            {
+              "nome": "Joaquín Piquerez Moreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Leonardo da Silva Vieira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 4,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Raúl Gómez Portillo",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Raúl Gómez Portillo",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Gustavo Raúl Gómez Portillo",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick Carlos Noriega Loret de Mola",
+              "pontos": 0
+            },
+            {
+              "nome": "Marlon Rodrigues Xavier",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick Carlos Noriega Loret de Mola",
+              "pontos": 0
+            },
+            {
+              "nome": "Marlon Rodrigues Xavier",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alef Mangueira Severino Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Erick Carlos Noriega Loret de Mola",
+              "pontos": 0
+            },
+            {
+              "nome": "Marlon Rodrigues Xavier",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 6,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            },
+            {
+              "nome": "Cauan Lucas Barros da Luz",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Givanildo Vieira de Souza",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 7,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Vitor Hugo Roque Ferreira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Agustín Canobbio Graviz",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Andreas Hugo Hoelgebaum Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 9,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ramon Batista Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Tolentino Coelho de Lima",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ramon Batista Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Tolentino Coelho de Lima",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Federico Acosta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ramon Batista Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Tolentino Coelho de Lima",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Everson Felipe Marques Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Vinícius Alves Morais",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 11,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Gonzalo Daniel Escobar",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Gonzalo Daniel Escobar",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Gonzalo Daniel Escobar",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 12,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Antônio da Rocha Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 13,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jean Lucas de Souza Oliveira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jean Lucas de Souza Oliveira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            },
+            {
+              "nome": "Jonathan Calleri",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Luís Eduardo Soares da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Luis Francisco Zubeldía",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Jean Lucas de Souza Oliveira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 14,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jefferson David Savarino Quintero",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Miguel dos Santos Pereira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jefferson David Savarino Quintero",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Miguel dos Santos Pereira",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Ronier Vieira Pires",
+              "pontos": 0
+            },
+            {
+              "nome": "Jefferson David Savarino Quintero",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Miguel dos Santos Pereira",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 15,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Danilo dos Santos de Oliveira",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 16,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Luciano Batista da Silva Júnior",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 17,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Andrés Gómez Hinestroza",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "José Manuel Alberto López",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Weverton Pereira da Silva",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 18,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "John Kennedy Batista de Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Allan Andrade Elias",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            },
+            {
+              "nome": "Tomás Esteban Cuello",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 19,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Vagner Carmo Mancini",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Breno Henrique Vasconcelos Lopes",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 20,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Johan Stiven Carbonero Balanta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Johan Stiven Carbonero Balanta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            },
+            {
+              "nome": "Johan Stiven Carbonero Balanta",
+              "pontos": 0
+            },
+            {
+              "nome": "Lucas Henrique Barbosa",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Arthur Mendonça Cabral",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 21,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Alexandro Ezequiel Bernabei",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rodada": 22,
+      "estrategias": [
+        {
+          "nome": "Conservador",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Equilibrado",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            }
+          ]
+        },
+        {
+          "nome": "Agressivo",
+          "pontos": 0,
+          "jogadores": [
+            {
+              "nome": "Pedro Guilherme Abreu dos Santos",
+              "pontos": 0
+            },
+            {
+              "nome": "Samuel Dias Lino",
+              "pontos": 0
+            },
+            {
+              "nome": "Kevin Stiven Viveros Rodallega",
+              "pontos": 0
+            },
+            {
+              "nome": "Jhon Adolfo Arias Andrade",
+              "pontos": 0
+            },
+            {
+              "nome": "Abel Fernando Moreira Ferreira",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Fellipe Costa Pereira",
+              "pontos": 0
+            },
+            {
+              "nome": "José Leonardo Nunes Alves Sousa Jardim",
+              "pontos": 0
+            },
+            {
+              "nome": "Odair Hellmann",
+              "pontos": 0
+            },
+            {
+              "nome": "Matheus Lima Beltrão Oliveira Valin",
+              "pontos": 0
+            },
+            {
+              "nome": "Carlos Renê de Sousa Ferreira - Souza",
+              "pontos": 0
+            },
+            {
+              "nome": "Marcelo Rodrigues Souza",
+              "pontos": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "resumo": [
+    {
+      "nome": "Conservador",
+      "pontosTotal": 0,
+      "mediaRodada": 0.0
+    },
+    {
+      "nome": "Equilibrado",
+      "pontosTotal": 0,
+      "mediaRodada": 0.0
+    },
+    {
+      "nome": "Agressivo",
+      "pontosTotal": 0,
+      "mediaRodada": 0.0
+    }
+  ]
+}
