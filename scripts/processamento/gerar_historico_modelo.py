@@ -22,6 +22,10 @@ ARQUIVO_EXPLOSAO = Path(
     "data/experimentos/explosao-v1.json"
 )
 
+ARQUIVO_SIMULACAO = Path(
+    "data/simulacao-times.json"
+)
+
 ARQUIVO_SAIDA = Path(
     "data/historico-modelo.json"
 )
@@ -63,15 +67,12 @@ def media(lista):
 
 resultado = {
 
-
     "modelo":
 
-        "historico_modelo_v2",
-
+        "historico_modelo_v3",
 
 
     "metricaOficial": {
-
 
         "tipo":
 
@@ -85,28 +86,31 @@ resultado = {
     },
 
 
-
     "resumo": {},
-
 
 
     "rodadas": [],
 
 
-
     "evolucao": [],
-
 
 
     "posicoes": {},
 
 
-
     "versoes": [],
 
 
+    "experimentos": [],
 
-    "experimentos": []
+
+    "simulacaoTimes": {
+
+        "disponivel": False,
+
+        "estrategias": []
+
+    }
 
 }
 
@@ -120,7 +124,6 @@ resultado = {
 backtest = carregar_json(
     ARQUIVO_BACKTEST
 )
-
 
 
 rodadas = backtest.get(
@@ -198,9 +201,10 @@ resultado["resumo"] = {
                 0
             )
 
-            for x in rodadas
+            for x in resultado["rodadas"]
 
         ]),
+
 
 
     "melhorRodada":
@@ -257,7 +261,6 @@ erros = carregar_json(
 )
 
 
-
 resultado["posicoes"] = erros.get(
 
     "porPosicao",
@@ -276,6 +279,7 @@ resultado["posicoes"] = erros.get(
 laboratorio = carregar_json(
     ARQUIVO_LABORATORIO
 )
+
 
 
 modelo = carregar_json(
@@ -365,6 +369,7 @@ if explosao:
 
     resultado["experimentos"].append({
 
+
         "nome":
 
             "Índice Explosão",
@@ -410,6 +415,125 @@ if explosao:
 
 
 # =====================================
+# SIMULAÇÃO DE TIMES
+# =====================================
+
+
+simulacao = carregar_json(
+    ARQUIVO_SIMULACAO
+)
+
+
+
+if simulacao:
+
+
+    estrategias = {}
+
+
+    for rodada in simulacao.get(
+        "rodadas",
+        []
+    ):
+
+
+        for estrategia in rodada.get(
+            "estrategias",
+            []
+        ):
+
+
+            nome = estrategia.get(
+                "nome"
+            )
+
+
+            if nome not in estrategias:
+
+                estrategias[nome] = []
+
+
+            estrategias[nome].append(
+
+                estrategia.get(
+                    "pontos",
+                    0
+                )
+
+            )
+
+
+
+    resumo_estrategias = []
+
+
+
+    for nome, pontos in estrategias.items():
+
+
+        resumo_estrategias.append({
+
+
+            "nome":
+
+                nome,
+
+
+            "mediaPontos":
+
+                media(
+                    pontos
+                ),
+
+
+            "rodadas":
+
+                len(
+                    pontos
+                )
+
+        })
+
+
+
+    resumo_estrategias.sort(
+
+        key=lambda x:
+
+            x["mediaPontos"],
+
+        reverse=True
+
+    )
+
+
+
+    resultado["simulacaoTimes"] = {
+
+
+        "disponivel":
+
+            True,
+
+
+        "melhorEstrategia":
+
+            resumo_estrategias[0]["nome"]
+
+            if resumo_estrategias
+
+            else None,
+
+
+        "estrategias":
+
+            resumo_estrategias
+
+    }
+
+
+
+# =====================================
 # SALVAR
 # =====================================
 
@@ -440,8 +564,9 @@ with open(
 
 
 print(
-    "Histórico do modelo v2 gerado."
+    "Histórico do modelo v3 gerado."
 )
+
 
 print(
     "Rodadas:",
@@ -450,7 +575,16 @@ print(
     )
 )
 
+
 print(
     "MAE oficial:",
     resultado["resumo"]["mae"]
 )
+
+
+if resultado["simulacaoTimes"]["disponivel"]:
+
+    print(
+        "Melhor estratégia:",
+        resultado["simulacaoTimes"]["melhorEstrategia"]
+    )
