@@ -70,6 +70,10 @@ jobs:
         run: |
           python scripts/processamento/analisar_componentes.py
 
+      - name: Analisar Erros
+        run: |
+          python scripts/processamento/analisar_erros.py
+
       - name: Backtest Inteligente
         run: |
           python scripts/processamento/backtest_inteligente.py
