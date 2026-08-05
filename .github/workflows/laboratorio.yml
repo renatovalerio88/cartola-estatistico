@@ -118,17 +118,31 @@ jobs:
 
           python scripts/processamento/criar_explosoes.py
 
+
+
       - name: Calcular Potencial Explosao
+
         run: |
+
           python scripts/processamento/calcular_potencial_explosao.py
 
+
+
       - name: Calcular Índice Diferencial
+
         run: |
+
           python scripts/processamento/calcular_indice_diferencial.py
 
+
+
       - name: Testar Modelo Explosao
+
         run: |
+
           python scripts/processamento/testar_explosao_modelo.py
+
+
 
       - name: Backtest Inteligente
 
@@ -136,27 +150,53 @@ jobs:
 
           python scripts/processamento/backtest_inteligente.py
 
+
+
       - name: Gerar Histórico do Modelo
+
         run: |
+
           python scripts/processamento/gerar_historico_modelo.py
 
+
+
       - name: Gerar Histórico Detalhado
+
         run: |
+
           python scripts/processamento/gerar_historico_detalhado.py
 
-      - name: Comparar Modelos
-        run: |
-          python scripts/processamento/gerar_comparacao_modelos.py
+
+
+      # ======================================
+      # SIMULAÇÃO DE CAMPEONATO
+      # ======================================
+
 
       - name: Simular Times Históricos
+
         run: |
-          python scripts/processamento/gerar_simulacao_times.py
+
+          python scripts/calcular_simulacao_times.py
+
+
 
       - name: Gerar Ranking Simulação
-        run: |
-          python scripts/processamento/gerar_ranking_simulacao.py      
 
-      
+        run: |
+
+          python scripts/processamento/gerar_ranking_simulacao.py
+
+
+
+      - name: Comparar Modelos
+
+        run: |
+
+          python scripts/processamento/gerar_comparacao_modelos.py
+
+
+
       # ======================================
       # COMMIT DOS RESULTADOS
       # ======================================
