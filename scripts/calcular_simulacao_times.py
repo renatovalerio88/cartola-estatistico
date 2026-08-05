@@ -2,7 +2,9 @@ from pathlib import Path
 import json
 
 
-PASTA_HISTORICO = Path("data/historico")
+PASTA_HISTORICO = Path(
+    "data/historico"
+)
 
 ARQUIVO_ESCALACOES = Path(
     "data/escalacoes.json"
@@ -13,9 +15,11 @@ ARQUIVO_SAIDA = Path(
 )
 
 
+
 def carregar_json(caminho):
 
     if not caminho.exists():
+
         return {}
 
     with open(
@@ -23,7 +27,9 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(arquivo)
+        return json.load(
+            arquivo
+        )
 
 
 
@@ -47,6 +53,7 @@ def salvar_json(caminho, dados):
 def normalizar_nome(nome):
 
     if not nome:
+
         return ""
 
     return (
@@ -60,8 +67,11 @@ def normalizar_nome(nome):
 def carregar_pontuacoes_real(rodada):
 
     arquivo = (
+
         PASTA_HISTORICO /
+
         f"rodada-{rodada:02d}.json"
+
     )
 
 
@@ -78,30 +88,45 @@ def carregar_pontuacoes_real(rodada):
         []
     ):
 
+
         nome = normalizar_nome(
+
             jogador.get("nome")
+
             or jogador.get("apelido")
+
         )
 
 
         if not nome:
+
             continue
 
 
         jogadores[nome] = {
 
+
             "nome":
+
                 jogador.get("nome")
+
                 or jogador.get("apelido"),
 
 
             "pontos":
+
                 jogador.get(
+
                     "pontuacaoReal",
+
                     jogador.get(
+
                         "pontos",
+
                         0
+
                     )
+
                 )
 
         }
@@ -125,20 +150,29 @@ def calcular_time(
 
 
         nome = normalizar_nome(
+
             jogador.get("nome")
+
             or jogador.get("apelido")
+
         )
 
 
         dados = pontuacoes.get(
+
             nome,
+
             {}
+
         )
 
 
         valor = dados.get(
+
             "pontos",
+
             0
+
         )
 
 
@@ -153,32 +187,43 @@ def calcular_time(
             valor = 0
 
 
+
         pontos += valor
 
 
         detalhes.append({
 
             "nome":
+
                 jogador.get(
                     "nome"
                 ),
 
 
             "pontos":
+
                 valor
 
         })
 
 
+
     return {
 
+
         "pontos":
+
             round(
+
                 pontos,
+
                 2
+
             ),
 
+
         "jogadores":
+
             detalhes
 
     }
@@ -189,7 +234,9 @@ def processar():
 
 
     escalacoes = carregar_json(
+
         ARQUIVO_ESCALACOES
+
     )
 
 
@@ -197,40 +244,71 @@ def processar():
 
 
         "modelo":
-            "simulacao_times_v1",
+
+            "simulacao_times_v2",
 
 
         "descricao":
+
             "Avaliação histórica das escalações sugeridas pelo modelo",
 
 
         "rodadas":
+
             []
 
     }
 
 
 
-    lista_rodadas = escalacoes.get(
-        "rodadas",
-        []
-    )
+    # aceita lista ou objeto
+
+    if isinstance(
+
+        escalacoes,
+
+        list
+
+    ):
+
+
+        lista_rodadas = escalacoes
+
+
+
+    else:
+
+
+        lista_rodadas = escalacoes.get(
+
+            "rodadas",
+
+            []
+
+        )
+
 
 
     for rodada_dados in lista_rodadas:
 
 
         rodada = rodada_dados.get(
+
             "rodada"
+
         )
 
 
         if not rodada:
+
             continue
 
 
+
         pontuacoes = carregar_pontuacoes_real(
+
             rodada
+
         )
 
 
@@ -238,63 +316,90 @@ def processar():
 
 
             "rodada":
+
                 rodada,
 
 
             "estrategias":
+
                 []
 
         }
 
 
+
         for estrategia in rodada_dados.get(
+
             "estrategias",
+
             []
+
         ):
 
 
+
             nome = estrategia.get(
+
                 "nome"
+
             )
 
 
             jogadores = estrategia.get(
+
                 "titulares",
+
                 []
+
             )
 
 
             calculo = calcular_time(
+
                 jogadores,
+
                 pontuacoes
+
             )
 
 
             registro["estrategias"].append({
 
+
                 "nome":
+
                     nome,
 
 
                 "pontos":
+
                     calculo["pontos"],
 
 
                 "jogadores":
+
                     calculo["jogadores"]
 
             })
 
 
+
         resultado["rodadas"].append(
+
             registro
+
         )
 
 
+
     salvar_json(
+
         ARQUIVO_SAIDA,
+
         resultado
+
     )
+
 
 
     print(
@@ -303,8 +408,15 @@ def processar():
 
 
     print(
+
         "Rodadas processadas:",
-        len(resultado["rodadas"])
+
+        len(
+
+            resultado["rodadas"]
+
+        )
+
     )
 
 
