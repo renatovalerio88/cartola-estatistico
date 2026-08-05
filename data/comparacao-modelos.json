@@ -1,0 +1,18 @@
+{
+  "modelo": "comparacao_modelos_v1",
+  "descricao": "Comparação científica entre versões",
+  "modelos": [
+    {
+      "nome": "Modelo Base",
+      "mae": 2.739,
+      "melhoria": 0
+    }
+  ],
+  "ranking": [
+    {
+      "nome": "Modelo Base",
+      "mae": 2.739,
+      "melhoria": 0
+    }
+  ]
+}
