@@ -25,16 +25,6 @@ def carregar_json(caminho):
 
 
 
-def media(lista):
-
-    if not lista:
-
-        return 0
-
-    return sum(lista) / len(lista)
-
-
-
 def limitar(valor):
 
     return max(
@@ -47,76 +37,111 @@ def limitar(valor):
 
 
 
-def calcular_explosoes(historico):
+def media(lista):
 
-    pontos = [
-
-        x.get(
-            "pontos",
-            0
-        )
-        or 0
-
-        for x in historico
-
-    ]
-
-
-    return len(
-
-        [
-
-            x
-
-            for x in pontos
-
-            if x >= 15
-
-        ]
-
-    )
-
-
-
-def calcular_teto(historico):
-
-    pontos = [
-
-        x.get(
-            "pontos",
-            0
-        )
-        or 0
-
-        for x in historico
-
-    ]
-
-
-    if not pontos:
+    if not lista:
 
         return 0
 
-
-    return max(
-        pontos
-    )
+    return sum(lista) / len(lista)
 
 
 
-def calcular_tendencia(historico):
+def get_pontos(historico):
 
-    pontos = [
+    return [
 
-        x.get(
+        jogo.get(
             "pontos",
             0
         )
         or 0
 
-        for x in historico
+        for jogo in historico
 
     ]
+
+
+
+def calcular_explosoes(
+    historico,
+    posicao
+):
+
+    pontos = get_pontos(
+        historico
+    )
+
+
+    limite = {
+
+        "ATA": 18,
+
+        "MEI": 18,
+
+        "LAT": 15,
+
+        "ZAG": 12,
+
+        "GOL": 12,
+
+        "TEC": 10
+
+    }.get(
+
+        posicao,
+
+        15
+
+    )
+
+
+    explosoes = [
+
+        x
+
+        for x in pontos
+
+        if x >= limite
+
+    ]
+
+
+    return {
+
+        "quantidade":
+            len(explosoes),
+
+        "taxa":
+
+            (
+                len(explosoes)
+                /
+                len(pontos)
+                *
+                100
+            )
+
+            if pontos
+
+            else 0,
+
+        "maior":
+            max(explosoes)
+            if explosoes
+            else 0
+
+    }
+
+
+
+def calcular_tendencia(
+    historico
+):
+
+    pontos = get_pontos(
+        historico
+    )
 
 
     if len(pontos) < 6:
@@ -124,23 +149,47 @@ def calcular_tendencia(historico):
         return 0
 
 
-    ultimos3 = media(
+    recente = media(
         pontos[-3:]
     )
 
 
-    anteriores3 = media(
+    anterior = media(
         pontos[-6:-3]
     )
 
 
-    return ultimos3 - anteriores3
+    return recente - anterior
+
+
+
+def calcular_confianca(
+    jogos
+):
+
+    if jogos >= 20:
+
+        return 100
+
+
+    if jogos >= 10:
+
+        return 75
+
+
+    if jogos >= 5:
+
+        return 50
+
+
+    return 25
 
 
 
 def calcular_nota(
     jogador
 ):
+
 
     historico = jogador.get(
         "historico",
@@ -154,18 +203,9 @@ def calcular_nota(
 
 
 
-    explosoes = calcular_explosoes(
-        historico
-    )
-
-
-    teto = calcular_teto(
-        historico
-    )
-
-
-    tendencia = calcular_tendencia(
-        historico
+    posicao = jogador.get(
+        "posicao",
+        "OUT"
     )
 
 
@@ -174,158 +214,219 @@ def calcular_nota(
     )
 
 
-    # ================================
-    # COMPONENTES
-    # ================================
+    explosao = calcular_explosoes(
+        historico,
+        posicao
+    )
 
 
-    fator_explosao = min(
-        explosoes * 15,
+    pontos = get_pontos(
+        historico
+    )
+
+
+    teto = max(
+        pontos
+    )
+
+
+    tendencia = calcular_tendencia(
+        historico
+    )
+
+
+    confianca = calcular_confianca(
+        jogos
+    )
+
+
+
+    # ==========================
+    # COMPONENTES DA NOTA
+    # ==========================
+
+
+    score_explosao = min(
+        explosao["taxa"] * 4,
         100
     )
 
 
-    fator_teto = min(
-        teto * 5,
+    score_teto = min(
+        teto * 4,
         100
     )
 
 
-    fator_tendencia = max(
+    score_tendencia = max(
         0,
         min(
-            tendencia * 10 + 50,
+            tendencia * 8 + 50,
             100
         )
     )
 
 
-    fator_posicao = {
+    score_posicao = {
 
         "ATA": 90,
 
-        "MEI": 80,
+        "MEI": 85,
 
-        "LAT": 60,
+        "LAT": 65,
 
-        "ZAG": 50,
+        "ZAG": 55,
 
-        "GOL": 40,
+        "GOL": 45,
 
-        "TEC": 30
+        "TEC": 35
 
     }.get(
 
-        jogador.get(
-            "posicao"
-        ),
+        posicao,
 
         50
 
     )
 
 
+
     nota = (
 
-        fator_explosao * 0.30
+        score_explosao * 0.30
 
         +
 
-        fator_teto * 0.25
+        score_teto * 0.25
 
         +
 
-        fator_tendencia * 0.20
+        score_tendencia * 0.20
 
         +
 
-        fator_posicao * 0.15
+        score_posicao * 0.15
 
         +
 
-        min(
-            jogos * 5,
-            100
-        ) * 0.10
+        confianca * 0.10
 
     )
+
 
 
     motivos = []
 
 
-    if explosoes > 0:
+    if explosao["quantidade"]:
 
         motivos.append(
-            f"{explosoes} explosões históricas"
+
+            f'{explosao["quantidade"]} explosões'
+
         )
+
+
+    motivos.append(
+
+        f'taxa explosão {round(explosao["taxa"],1)}%'
+
+    )
 
 
     if teto >= 15:
 
         motivos.append(
-            f"teto histórico {round(teto,1)}"
+
+            f'teto {round(teto,1)}'
+
         )
 
 
     if tendencia > 0:
 
         motivos.append(
-            "tendência positiva"
+
+            "momento positivo"
+
         )
 
 
-    if jogador.get(
-        "posicao"
-    ) in [
-        "ATA",
-        "MEI"
-    ]:
+    motivos.append(
 
-        motivos.append(
-            "posição ofensiva"
-        )
+        f'confiança {confianca}%'
+
+    )
 
 
 
     return {
 
         "id":
+
             jogador.get(
                 "id"
             ),
 
         "nome":
+
             jogador.get(
                 "nome"
             ),
 
         "posicao":
-            jogador.get(
-                "posicao"
-            ),
+
+            posicao,
+
 
         "notaExplosao":
+
             limitar(
                 nota
             ),
 
+
         "explosoes":
-            explosoes,
+
+            explosao["quantidade"],
+
+
+        "taxaExplosao":
+
+            round(
+                explosao["taxa"],
+                2
+            ),
+
 
         "teto":
+
             round(
                 teto,
                 2
             ),
 
+
         "tendencia":
+
             round(
                 tendencia,
                 2
             ),
 
+
+        "jogos":
+
+            jogos,
+
+
+        "confianca":
+
+            confianca,
+
+
         "motivos":
+
             motivos
 
     }
@@ -335,9 +436,12 @@ def calcular_nota(
 resultado = {
 
     "modelo":
-        "potencial_explosao_v1",
+
+        "potencial_explosao_v2",
+
 
     "jogadores":
+
         []
 
 }
@@ -369,23 +473,18 @@ for arquivo in arquivos:
 
     if calculado:
 
-        resultado[
-            "jogadores"
-        ].append(
+        resultado["jogadores"].append(
             calculado
         )
 
 
 
-resultado[
-    "jogadores"
-] = sorted(
+resultado["jogadores"] = sorted(
 
-    resultado[
-        "jogadores"
-    ],
+    resultado["jogadores"],
 
     key=lambda x:
+
         x["notaExplosao"],
 
     reverse=True
@@ -420,7 +519,7 @@ with open(
 
 
 print(
-    "Potencial de explosão calculado."
+    "Potencial de explosão v2 calculado."
 )
 
 print(
