@@ -47,7 +47,7 @@ def media(lista):
 
 
 
-def get_pontos(historico):
+def pontos_historico(historico):
 
     return [
 
@@ -63,17 +63,9 @@ def get_pontos(historico):
 
 
 
-def calcular_explosoes(
-    historico,
-    posicao
-):
+def limite_explosao(posicao):
 
-    pontos = get_pontos(
-        historico
-    )
-
-
-    limite = {
+    return {
 
         "ATA": 18,
 
@@ -96,13 +88,29 @@ def calcular_explosoes(
     )
 
 
+
+def analisar_explosoes(
+    historico,
+    posicao
+):
+
+    pontos = pontos_historico(
+        historico
+    )
+
+
+    limite = limite_explosao(
+        posicao
+    )
+
+
     explosoes = [
 
-        x
+        p
 
-        for x in pontos
+        for p in pontos
 
-        if x >= limite
+        if p >= limite
 
     ]
 
@@ -110,7 +118,9 @@ def calcular_explosoes(
     return {
 
         "quantidade":
+
             len(explosoes),
+
 
         "taxa":
 
@@ -126,9 +136,13 @@ def calcular_explosoes(
 
             else 0,
 
+
         "maior":
+
             max(explosoes)
+
             if explosoes
+
             else 0
 
     }
@@ -139,7 +153,7 @@ def calcular_tendencia(
     historico
 ):
 
-    pontos = get_pontos(
+    pontos = pontos_historico(
         historico
     )
 
@@ -149,7 +163,8 @@ def calcular_tendencia(
         return 0
 
 
-    recente = media(
+
+    atual = media(
         pontos[-3:]
     )
 
@@ -159,11 +174,11 @@ def calcular_tendencia(
     )
 
 
-    return recente - anterior
+    return atual - anterior
 
 
 
-def calcular_confianca(
+def confianca(
     jogos
 ):
 
@@ -183,6 +198,41 @@ def calcular_confianca(
 
 
     return 25
+
+
+
+def calcular_perfil(
+    explosoes,
+    tendencia
+):
+
+
+    if explosoes >= 3:
+
+        if tendencia >= 0:
+
+            return "Explosao_Comprovada"
+
+        return "Explosao_Comprovada_EmQueda"
+
+
+
+    if explosoes > 0:
+
+        if tendencia > 0:
+
+            return "Explosao_Em_Evolucao"
+
+        return "Explosao_Ocasional"
+
+
+
+    if tendencia > 5:
+
+        return "Promessa"
+
+
+    return "Baixo_Risco"
 
 
 
@@ -209,19 +259,19 @@ def calcular_nota(
     )
 
 
-    jogos = len(
+    pontos = pontos_historico(
         historico
     )
 
 
-    explosao = calcular_explosoes(
+    jogos = len(
+        pontos
+    )
+
+
+    explosao = analisar_explosoes(
         historico,
         posicao
-    )
-
-
-    pontos = get_pontos(
-        historico
     )
 
 
@@ -235,35 +285,47 @@ def calcular_nota(
     )
 
 
-    confianca = calcular_confianca(
+    confi = confianca(
         jogos
     )
 
 
 
-    # ==========================
-    # COMPONENTES DA NOTA
-    # ==========================
+    # ================================
+    # COMPONENTES
+    # ================================
 
 
-    score_explosao = min(
-        explosao["taxa"] * 4,
+    score_historico = min(
+
+        explosao["taxa"] * 5,
+
         100
+
     )
 
 
     score_teto = min(
-        teto * 4,
+
+        teto * 3,
+
         100
+
     )
 
 
     score_tendencia = max(
+
         0,
+
         min(
+
             tendencia * 8 + 50,
+
             100
+
         )
+
     )
 
 
@@ -293,11 +355,11 @@ def calcular_nota(
 
     nota = (
 
-        score_explosao * 0.30
+        score_historico * 0.40
 
         +
 
-        score_teto * 0.25
+        score_teto * 0.20
 
         +
 
@@ -305,11 +367,28 @@ def calcular_nota(
 
         +
 
-        score_posicao * 0.15
+        score_posicao * 0.10
 
         +
 
-        confianca * 0.10
+        confi * 0.10
+
+    )
+
+
+    # Penalização para quem nunca explodiu
+
+    if explosao["quantidade"] == 0:
+
+        nota -= 10
+
+
+
+    perfil = calcular_perfil(
+
+        explosao["quantidade"],
+
+        tendencia
 
     )
 
@@ -322,14 +401,14 @@ def calcular_nota(
 
         motivos.append(
 
-            f'{explosao["quantidade"]} explosões'
+            f'{explosao["quantidade"]} explosões históricas'
 
         )
 
 
     motivos.append(
 
-        f'taxa explosão {round(explosao["taxa"],1)}%'
+        f'taxa {round(explosao["taxa"],2)}%'
 
     )
 
@@ -338,7 +417,7 @@ def calcular_nota(
 
         motivos.append(
 
-            f'teto {round(teto,1)}'
+            f'teto {round(teto,2)}'
 
         )
 
@@ -352,9 +431,18 @@ def calcular_nota(
         )
 
 
+    if tendencia < 0:
+
+        motivos.append(
+
+            "momento em queda"
+
+        )
+
+
     motivos.append(
 
-        f'confiança {confianca}%'
+        perfil
 
     )
 
@@ -384,6 +472,11 @@ def calcular_nota(
             limitar(
                 nota
             ),
+
+
+        "perfilExplosao":
+
+            perfil,
 
 
         "explosoes":
@@ -422,7 +515,7 @@ def calcular_nota(
 
         "confianca":
 
-            confianca,
+            confi,
 
 
         "motivos":
@@ -437,7 +530,7 @@ resultado = {
 
     "modelo":
 
-        "potencial_explosao_v2",
+        "potencial_explosao_v3",
 
 
     "jogadores":
@@ -519,7 +612,7 @@ with open(
 
 
 print(
-    "Potencial de explosão v2 calculado."
+    "Potencial de explosão v3 calculado."
 )
 
 print(
