@@ -2,38 +2,27 @@ from pathlib import Path
 import json
 
 
-PASTA_HISTORICO = Path(
-    "data/historico"
-)
+PASTA_HISTORICO = Path("data/historico")
 
 ARQUIVO_SAIDA = Path(
-    "data/historico/simulacao_times.json"
+    "data/simulacao-times.json"
 )
 
 
 def carregar_json(caminho):
 
     if not caminho.exists():
-
         return {}
 
     with open(
         caminho,
         encoding="utf-8"
     ) as arquivo:
-
-        return json.load(
-            arquivo
-        )
+        return json.load(arquivo)
 
 
 
 def salvar_json(caminho, dados):
-
-    caminho.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
 
     with open(
         caminho,
@@ -50,253 +39,101 @@ def salvar_json(caminho, dados):
 
 
 
-def numero(valor, padrao=0):
+def classificar_jogadores(jogadores):
 
-    try:
-
-        valor = float(valor)
-
-        return valor
-
-    except:
-
-        return padrao
-
-
-
-def ordenar_conservador(jogadores):
-
-    return sorted(
-
+    ordenados = sorted(
         jogadores,
-
-        key=lambda x:
-
-            (
-
-                numero(
-                    x.get("confianca")
-                ),
-
-                numero(
-                    x.get("piso")
-                ),
-
-                numero(
-                    x.get("projecao")
-                )
-
-            ),
-
+        key=lambda x: x.get(
+            "projecao",
+            0
+        ),
         reverse=True
-
     )
 
-
-
-def ordenar_equilibrado(jogadores):
-
-    return sorted(
-
-        jogadores,
-
-        key=lambda x:
-
-            (
-
-                numero(
-                    x.get("projecao")
-                )
-                * 0.5
-
-                +
-
-                numero(
-                    x.get("teto")
-                )
-                * 0.3
-
-                +
-
-                numero(
-                    x.get("confianca")
-                )
-                * 0.002
-
-            ),
-
-        reverse=True
-
-    )
+    return ordenados
 
 
 
-def ordenar_agressivo(jogadores):
+def montar_time(jogadores, estrategia):
 
-    return sorted(
+    if estrategia == "Conservador":
 
-        jogadores,
+        filtro = jogadores[:]
 
-        key=lambda x:
-
-            (
-
-                numero(
-                    x.get("teto")
-                )
-                * 0.6
-
-                +
-
-                numero(
-                    x.get("notaExplosao")
-                )
-                * 0.4
-
-            ),
-
-        reverse=True
-
-    )
-
-
-
-def montar_time(lista):
-
-    posicoes = {
-
-        "GOL": 1,
-        "LAT": 2,
-        "ZAG": 2,
-        "MEI": 3,
-        "ATA": 3,
-        "TEC": 1
-
-    }
-
-
-    selecionados = []
-
-
-    usados = {
-
-        "GOL":0,
-        "LAT":0,
-        "ZAG":0,
-        "MEI":0,
-        "ATA":0,
-        "TEC":0
-
-    }
-
-
-    for jogador in lista:
-
-
-        posicao = jogador.get(
-            "posicao"
+        filtro.sort(
+            key=lambda x:
+            x.get(
+                "risco",
+                50
+            )
         )
 
 
-        if posicao not in posicoes:
+    elif estrategia == "Agressivo":
 
-            continue
+        filtro = jogadores[:]
 
-
-        if usados[posicao] >= posicoes[posicao]:
-
-            continue
-
-
-        selecionados.append(
-            jogador
+        filtro.sort(
+            key=lambda x:
+            x.get(
+                "teto",
+                0
+            ),
+            reverse=True
         )
 
 
-        usados[posicao] += 1
+    else:
 
-
-        if len(selecionados) == 12:
-
-            break
-
-
-    return selecionados
+        filtro = jogadores
 
 
 
-def pontuacao_time(time):
+    return filtro[:11]
 
-    pontos = 0
 
+
+def pontuacao_real(time):
+
+    total = 0
+
+    jogadores = []
 
     for jogador in time:
 
-        pontos += numero(
-
+        pontos = jogador.get(
+            "pontuacaoReal",
             jogador.get(
-                "pontuacaoReal"
+                "pontos",
+                0
             )
-
         )
+
+        total += pontos
+
+
+        jogadores.append({
+
+            "nome":
+                jogador.get(
+                    "nome"
+                ),
+
+            "pontos":
+                pontos
+
+        })
 
 
     return round(
-        pontos,
+        total,
         2
-    )
-
-
-
-def resumo_time(time):
-
-    return {
-
-        "pontos":
-
-            pontuacao_time(
-                time
-            ),
-
-
-        "jogadores":
-
-            [
-
-                {
-
-                    "nome":
-
-                        jogador.get(
-                            "nome"
-                        ),
-
-
-                    "posicao":
-
-                        jogador.get(
-                            "posicao"
-                        ),
-
-
-                    "pontuacao":
-
-                        jogador.get(
-                            "pontuacaoReal",
-                            0
-                        )
-
-                }
-
-                for jogador in time
-
-            ]
-
-    }
+    ), jogadores
 
 
 
 resultado = {
+
 
     "modelo":
 
@@ -305,32 +142,48 @@ resultado = {
 
     "descricao":
 
-        "Simulação histórica das três estratégias de escalação",
+        "Simulação histórica das escalações recomendadas",
 
 
-    "rodadas":
+    "estrategias": [
 
-        []
+        "Conservador",
+        "Equilibrado",
+        "Agressivo"
+
+    ],
+
+
+    "times": []
 
 }
 
 
 
-arquivos = sorted(
+totais = {}
 
+
+
+for estrategia in resultado["estrategias"]:
+
+    totais[estrategia] = 0
+
+
+
+for arquivo in sorted(
     PASTA_HISTORICO.glob(
         "rodada-*.json"
     )
-
-)
-
-
-
-for arquivo in arquivos:
+):
 
 
     dados = carregar_json(
         arquivo
+    )
+
+
+    rodada = dados.get(
+        "rodada"
     )
 
 
@@ -340,98 +193,116 @@ for arquivo in arquivos:
     )
 
 
-    if not jogadores:
-
-        continue
-
-
-
-    conservador = montar_time(
-
-        ordenar_conservador(
-            jogadores.copy()
-        )
-
+    jogadores = classificar_jogadores(
+        jogadores
     )
 
 
-    equilibrado = montar_time(
-
-        ordenar_equilibrado(
-            jogadores.copy()
-        )
-
-    )
-
-
-    agressivo = montar_time(
-
-        ordenar_agressivo(
-            jogadores.copy()
-        )
-
-    )
-
-
-    resultado["rodadas"].append({
+    registro = {
 
         "rodada":
+            rodada,
 
-            dados.get(
-                "rodada"
+        "estrategias":
+            []
+
+    }
+
+
+
+    for estrategia in resultado["estrategias"]:
+
+
+        time = montar_time(
+            jogadores,
+            estrategia
+        )
+
+
+        pontos, lista = pontuacao_real(
+            time
+        )
+
+
+        totais[estrategia] += pontos
+
+
+
+        registro["estrategias"].append({
+
+            "nome":
+                estrategia,
+
+            "pontos":
+                pontos,
+
+            "jogadores":
+                lista
+
+        })
+
+
+
+    resultado["times"].append(
+        registro
+    )
+
+
+
+resultado["resumo"] = []
+
+
+
+for nome, total in totais.items():
+
+    resultado["resumo"].append({
+
+        "nome":
+            nome,
+
+        "pontosTotal":
+            round(
+                total,
+                2
             ),
 
-
-        "times": {
-
-
-            "conservador":
-
-                resumo_time(
-                    conservador
-                ),
-
-
-            "equilibrado":
-
-                resumo_time(
-                    equilibrado
-                ),
-
-
-            "agressivo":
-
-                resumo_time(
-                    agressivo
-                )
-
-        }
+        "mediaRodada":
+            round(
+                total /
+                len(resultado["times"])
+                if resultado["times"]
+                else 0,
+                2
+            )
 
     })
 
 
 
+resultado["resumo"] = sorted(
+    resultado["resumo"],
+    key=lambda x:
+    x["pontosTotal"],
+    reverse=True
+)
+
+
+
 salvar_json(
-
     ARQUIVO_SAIDA,
-
     resultado
-
 )
 
 
 
 print(
-    "Simulação histórica de times concluída."
+    "Simulação de times concluída."
 )
 
 
-print(
+for item in resultado["resumo"]:
 
-    "Rodadas analisadas:",
-
-    len(
-        resultado["rodadas"]
+    print(
+        item["nome"],
+        item["pontosTotal"]
     )
-
-)
