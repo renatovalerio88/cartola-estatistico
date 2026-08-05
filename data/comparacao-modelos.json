@@ -1,20 +1,20 @@
 {
-  "modelo": "comparacao_modelos_v2",
+  "modelo": "comparacao_modelos_v3",
   "descricao": "Comparação científica entre versões do modelo",
   "modelos": [
     {
       "nome": "Modelo Base",
       "mae": 2.739,
-      "melhoria": 0.0,
-      "fonte": "historico_modelo"
+      "melhoria": 0,
+      "fonte": "historico"
     }
   ],
   "ranking": [
     {
       "nome": "Modelo Base",
       "mae": 2.739,
-      "melhoria": 0.0,
-      "fonte": "historico_modelo"
+      "melhoria": 0,
+      "fonte": "historico"
     }
   ],
   "melhorModelo": "Modelo Base"
