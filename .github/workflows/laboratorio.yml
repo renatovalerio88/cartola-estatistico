@@ -118,6 +118,10 @@ jobs:
 
           python scripts/processamento/criar_explosoes.py
 
+      - name: Calcular Potencial Explosao
+        run: |
+          python scripts/processamento/calcular_potencial_explosao.py
+
 
 
       - name: Backtest Inteligente
