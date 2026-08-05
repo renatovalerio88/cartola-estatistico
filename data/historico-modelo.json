@@ -1,12 +1,12 @@
 {
-  "modelo": "historico_modelo_v2",
+  "modelo": "historico_modelo_v3",
   "metricaOficial": {
     "tipo": "backtest_progressivo",
     "descricao": "Modelo treinado apenas com dados anteriores à rodada prevista"
   },
   "resumo": {
     "rodadasAnalisadas": 21,
-    "mae": 0.0,
+    "mae": 2.86,
     "melhorRodada": {
       "rodada": 22,
       "erro": 1.35,
@@ -267,5 +267,10 @@
       "impacto": -0.023,
       "decisao": "usar futuramente em capitão e diferenciais"
     }
-  ]
+  ],
+  "simulacaoTimes": {
+    "disponivel": true,
+    "melhorEstrategia": null,
+    "estrategias": []
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "modelo": "historico_detalhado_v1",
+  "modelo": "historico_detalhado_v2",
   "rodadas": [
     {
       "rodada": 2,
@@ -3676,5 +3676,35 @@
         }
       ]
     }
-  ]
+  ],
+  "resumoPosicoes": {
+    "MEI": {
+      "quantidade": 2103,
+      "mae": 2.45
+    },
+    "LAT": {
+      "quantidade": 1015,
+      "mae": 3.18
+    },
+    "ATA": {
+      "quantidade": 1722,
+      "mae": 2.86
+    },
+    "GOL": {
+      "quantidade": 449,
+      "mae": 3.03
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "mae": 2.69
+    },
+    "TEC": {
+      "quantidade": 349,
+      "mae": 2.39
+    }
+  },
+  "simulacaoTimes": {
+    "disponivel": true,
+    "estrategias": []
+  }
 }

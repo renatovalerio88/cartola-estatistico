@@ -1,26 +1,6 @@
 {
   "modelo": "ranking_simulacao_v1",
   "descricao": "Ranking histórico das estratégias de escalação",
-  "rodadasAnalisadas": 21,
-  "ranking": [
-    {
-      "posicao": 1,
-      "estrategia": "Conservador",
-      "pontosTotal": 0,
-      "mediaRodada": 0.0
-    },
-    {
-      "posicao": 2,
-      "estrategia": "Equilibrado",
-      "pontosTotal": 0,
-      "mediaRodada": 0.0
-    },
-    {
-      "posicao": 3,
-      "estrategia": "Agressivo",
-      "pontosTotal": 0,
-      "mediaRodada": 0.0
-    }
-  ],
-  "melhorEstrategia": "Conservador"
+  "melhorEstrategia": null,
+  "ranking": []
 }
