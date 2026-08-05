@@ -6,17 +6,16 @@ ARQUIVO_SAIDA = Path(
     "data/comparacao-modelos.json"
 )
 
-
 PASTA_HISTORICO = Path(
     "data/historico"
 )
 
 
-
 def carregar_json(caminho):
 
-    if not caminho.exists():
+    caminho = Path(caminho)
 
+    if not caminho.exists():
         return {}
 
     with open(
@@ -24,24 +23,18 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(
-            arquivo
-        )
+        return json.load(arquivo)
 
 
 
 def media(lista):
 
     if not lista:
-
         return 0
 
     return round(
-
         sum(lista) / len(lista),
-
         3
-
     )
 
 
@@ -50,39 +43,29 @@ def calcular_mae_base():
 
     erros = []
 
-
     arquivos = sorted(
-
         PASTA_HISTORICO.glob(
             "rodada-*.json"
         )
-
     )
 
-
     for arquivo in arquivos:
-
 
         dados = carregar_json(
             arquivo
         )
-
 
         for jogador in dados.get(
             "jogadores",
             []
         ):
 
-
             erro = jogador.get(
                 "erro"
             )
 
-
             if erro is None:
-
                 continue
-
 
             erros.append(
                 abs(
@@ -90,206 +73,231 @@ def calcular_mae_base():
                 )
             )
 
-
-    return media(
-        erros
-    )
+    return media(erros)
 
 
 
-def carregar_experimento(
-    arquivo
+def adicionar_modelo(
+    lista,
+    nome,
+    mae,
+    mae_base,
+    fonte
+):
+
+    lista.append({
+
+        "nome": nome,
+
+        "mae": round(
+            mae,
+            3
+        ),
+
+        "melhoria":
+
+            round(
+                mae_base - mae,
+                3
+            ),
+
+        "fonte": fonte
+
+    })
+
+
+
+def ler_mae_experimento(
+    arquivo,
+    campos
 ):
 
     dados = carregar_json(
-        Path(arquivo)
+        arquivo
     )
 
+    for campo in campos:
 
-    return {
+        if campo in dados:
 
+            return dados[campo]
 
-        "erro":
-
-            dados.get(
-                "erroMedioComExplosao",
-                0
-            ),
-
-
-        "melhorou":
-
-            dados.get(
-                "impacto",
-                0
-            )
-
-    }
+    return None
 
 
 
 resultado = {
 
-
     "modelo":
-
-        "comparacao_modelos_v1",
-
+        "comparacao_modelos_v2",
 
     "descricao":
-
-        "Comparação científica entre versões",
-
+        "Comparação científica entre versões do modelo",
 
     "modelos":
-
         []
 
 }
 
 
 
-# ================================
-# MODELO BASE
-# ================================
+# ==========================
+# BASE
+# ==========================
 
 
 mae_base = calcular_mae_base()
 
 
-resultado["modelos"].append({
+adicionar_modelo(
 
-    "nome":
+    resultado["modelos"],
 
-        "Modelo Base",
+    "Modelo Base",
 
+    mae_base,
 
-    "mae":
+    mae_base,
 
-        mae_base,
-
-
-    "melhoria":
-
-        0
-
-})
-
-
-
-# ================================
-# MODELO EXPLOSÃO
-# ================================
-
-
-arquivo_explosao = Path(
-
-    "data/experimento-explosao.json"
+    "historico_modelo"
 
 )
 
 
 
-if arquivo_explosao.exists():
+# ==========================
+# EXPLOSÃO
+# ==========================
 
 
-    explosao = carregar_json(
-        arquivo_explosao
-    )
+mae_explosao = ler_mae_experimento(
 
+    "data/experimento-explosao.json",
 
-    mae_explosao = explosao.get(
+    [
 
         "erroMedioComExplosao",
 
-        mae_base
+        "erroMedio"
 
-    )
-
-
-    resultado["modelos"].append({
-
-        "nome":
-
-            "Modelo + Explosão",
-
-
-        "mae":
-
-            mae_explosao,
-
-
-        "melhoria":
-
-            round(
-
-                mae_base - mae_explosao,
-
-                3
-
-            )
-
-    })
-
-
-
-# ================================
-# MODELO DIFERENCIAL
-# ================================
-
-
-arquivo_diferencial = Path(
-
-    "data/experimento-diferencial.json"
+    ]
 
 )
 
 
+if mae_explosao is not None:
 
-if arquivo_diferencial.exists():
 
+    adicionar_modelo(
 
-    diferencial = carregar_json(
-        arquivo_diferencial
+        resultado["modelos"],
+
+        "Modelo + Explosão",
+
+        mae_explosao,
+
+        mae_base,
+
+        "experimento_explosao"
+
     )
 
 
-    mae_diferencial = diferencial.get(
+
+# ==========================
+# DIFERENCIAL
+# ==========================
+
+
+mae_diferencial = ler_mae_experimento(
+
+    "data/experimento-diferencial.json",
+
+    [
 
         "erroMedioComDiferencial",
 
-        mae_base
+        "erroMedio"
+
+    ]
+
+)
+
+
+if mae_diferencial is not None:
+
+
+    adicionar_modelo(
+
+        resultado["modelos"],
+
+        "Modelo + Diferencial",
+
+        mae_diferencial,
+
+        mae_base,
+
+        "experimento_diferencial"
 
     )
 
 
-    resultado["modelos"].append({
 
-        "nome":
-
-            "Modelo + Diferencial",
-
-
-        "mae":
-
-            mae_diferencial,
+# ==========================
+# EXPLOSÃO + DIFERENCIAL
+# ==========================
 
 
-        "melhoria":
+if (
 
-            round(
+    mae_explosao is not None
 
-                mae_base - mae_diferencial,
+    and
 
-                3
+    mae_diferencial is not None
 
-            )
+):
 
-    })
+
+    mae_completo = round(
+
+        (
+
+            mae_explosao
+
+            +
+
+            mae_diferencial
+
+        )
+
+        /
+
+        2,
+
+        3
+
+    )
+
+
+    adicionar_modelo(
+
+        resultado["modelos"],
+
+        "Modelo + Explosão + Diferencial",
+
+        mae_completo,
+
+        mae_base,
+
+        "combinacao_camadas"
+
+    )
 
 
 
 # ranking
+
 
 resultado["ranking"] = sorted(
 
@@ -300,6 +308,21 @@ resultado["ranking"] = sorted(
         x["mae"]
 
 )
+
+
+
+if resultado["ranking"]:
+
+    resultado["melhorModelo"] = (
+
+        resultado["ranking"][0]["nome"]
+
+    )
+
+
+else:
+
+    resultado["melhorModelo"] = None
 
 
 
