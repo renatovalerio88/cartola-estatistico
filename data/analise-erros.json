@@ -1,37 +1,49 @@
 {
   "modelo": "diagnostico_erros_v1",
   "totalJogadores": 6590,
-  "erroMedio": 2.79,
+  "erroMedio": 2.74,
   "porPosicao": {
     "MEI": {
       "quantidade": 2103,
-      "erroMedio": 2.48
+      "erroMedio": 2.45
     },
     "LAT": {
       "quantidade": 1015,
-      "erroMedio": 3.22
+      "erroMedio": 3.18
     },
     "ATA": {
       "quantidade": 1721,
-      "erroMedio": 2.93
+      "erroMedio": 2.86
     },
     "GOL": {
       "quantidade": 449,
-      "erroMedio": 3.1
+      "erroMedio": 3.03
     },
     "ZAG": {
       "quantidade": 953,
-      "erroMedio": 2.77
+      "erroMedio": 2.69
     },
     "TEC": {
       "quantidade": 349,
-      "erroMedio": 2.33
+      "erroMedio": 2.39
     }
   },
   "porPreco": {
-    "sem_preco": {
-      "quantidade": 6590,
-      "erroMedio": 2.79
+    "10-15": {
+      "quantidade": 719,
+      "erroMedio": 4.06
+    },
+    "5-10": {
+      "quantidade": 3701,
+      "erroMedio": 3.06
+    },
+    "0-5": {
+      "quantidade": 2097,
+      "erroMedio": 1.61
+    },
+    "15+": {
+      "quantidade": 73,
+      "erroMedio": 5.72
     }
   },
   "maioresErros": [
@@ -39,9 +51,9 @@
       "nome": "Leonardo Caetano Silva",
       "posicao": "ATA",
       "rodada": 19,
-      "projecao": 0.79,
+      "projecao": 0.36,
       "real": 27.6,
-      "erro": 26.81
+      "erro": 27.24
     },
     {
       "nome": "Aldemir dos Santos Ferreira",
@@ -52,52 +64,52 @@
       "erro": 25.46
     },
     {
+      "nome": "Arthur Mendonça Cabral",
+      "posicao": "ATA",
+      "rodada": 16,
+      "projecao": 4.37,
+      "real": 26,
+      "erro": 21.63
+    },
+    {
       "nome": "Johan Stiven Carbonero Balanta",
       "posicao": "ATA",
       "rodada": 16,
-      "projecao": 3.27,
+      "projecao": 3.76,
       "real": 24.9,
-      "erro": 21.63
+      "erro": 21.14
     },
     {
       "nome": "Samuel Dias Lino",
       "posicao": "ATA",
       "rodada": 18,
-      "projecao": 4.89,
+      "projecao": 5.5,
       "real": 26,
-      "erro": 21.11
-    },
-    {
-      "nome": "Arthur Mendonça Cabral",
-      "posicao": "ATA",
-      "rodada": 16,
-      "projecao": 5.01,
-      "real": 26,
-      "erro": 20.99
+      "erro": 20.5
     },
     {
       "nome": "Maurício Magalhães Prado",
       "posicao": "MEI",
       "rodada": 19,
-      "projecao": 1.19,
+      "projecao": 1.66,
       "real": 21.4,
-      "erro": 20.21
+      "erro": 19.74
     },
     {
-      "nome": "Natanael Moreira Milouski",
-      "posicao": "LAT",
-      "rodada": 9,
-      "projecao": -2.13,
-      "real": 17.7,
-      "erro": 19.83
+      "nome": "Neymar da Silva Santos Júnior",
+      "posicao": "MEI",
+      "rodada": 20,
+      "projecao": 3.17,
+      "real": 22.8,
+      "erro": 19.63
     },
     {
-      "nome": "Matheus Martins Silva dos Santos",
+      "nome": "Carlos Vinícius Alves Morais",
       "posicao": "ATA",
-      "rodada": 12,
-      "projecao": 2.21,
-      "real": 21.6,
-      "erro": 19.39
+      "rodada": 3,
+      "projecao": 20.07,
+      "real": 0.7,
+      "erro": -19.37
     },
     {
       "nome": "Neymar da Silva Santos Júnior",
@@ -111,93 +123,93 @@
       "nome": "Gabriel Pereira Taliari",
       "posicao": "ATA",
       "rodada": 8,
-      "projecao": 0.68,
+      "projecao": 0.23,
       "real": 19.3,
-      "erro": 18.62
+      "erro": 19.07
     },
     {
-      "nome": "Marlon Rodrigues Freitas",
-      "posicao": "MEI",
-      "rodada": 9,
-      "projecao": 0.86,
-      "real": 19.1,
-      "erro": 18.24
-    },
-    {
-      "nome": "Luiz de Araújo Guimarães Neto",
+      "nome": "Matheus Martins Silva dos Santos",
       "posicao": "ATA",
-      "rodada": 7,
-      "projecao": -0.16,
-      "real": 17.6,
-      "erro": 17.76
-    },
-    {
-      "nome": "Kevin Stiven Viveros Rodallega",
-      "posicao": "ATA",
-      "rodada": 13,
-      "projecao": 3.4,
-      "real": 21.1,
-      "erro": 17.7
-    },
-    {
-      "nome": "Neymar da Silva Santos Júnior",
-      "posicao": "MEI",
-      "rodada": 20,
-      "projecao": 5.34,
-      "real": 22.8,
-      "erro": 17.46
+      "rodada": 12,
+      "projecao": 2.86,
+      "real": 21.6,
+      "erro": 18.74
     },
     {
       "nome": "Pedro Guilherme Abreu dos Santos",
       "posicao": "ATA",
       "rodada": 5,
-      "projecao": 2.06,
+      "projecao": 0.68,
       "real": 19.4,
-      "erro": 17.34
+      "erro": 18.72
     },
     {
-      "nome": "André Luiz Santos Dias",
-      "posicao": "MEI",
-      "rodada": 18,
-      "projecao": 1.1,
-      "real": 18.4,
-      "erro": 17.3
-    },
-    {
-      "nome": "Gabriel Armando de Abreu",
-      "posicao": "ZAG",
-      "rodada": 3,
-      "projecao": -0.23,
-      "real": 16.6,
-      "erro": 16.83
+      "nome": "Natanael Moreira Milouski",
+      "posicao": "LAT",
+      "rodada": 9,
+      "projecao": -0.31,
+      "real": 17.7,
+      "erro": 18.01
     },
     {
       "nome": "Breno Henrique Vasconcelos Lopes",
       "posicao": "ATA",
       "rodada": 16,
-      "projecao": 4.27,
+      "projecao": 3.13,
       "real": 21,
-      "erro": 16.73
+      "erro": 17.87
+    },
+    {
+      "nome": "Luiz de Araújo Guimarães Neto",
+      "posicao": "ATA",
+      "rodada": 7,
+      "projecao": -0.09,
+      "real": 17.6,
+      "erro": 17.69
+    },
+    {
+      "nome": "Marlon Rodrigues Freitas",
+      "posicao": "MEI",
+      "rodada": 9,
+      "projecao": 1.43,
+      "real": 19.1,
+      "erro": 17.67
+    },
+    {
+      "nome": "Matheus Lima Beltrão Oliveira Valin",
+      "posicao": "LAT",
+      "rodada": 3,
+      "projecao": 1.7,
+      "real": 19,
+      "erro": 17.3
     },
     {
       "nome": "Murilo Cerqueira Paim",
       "posicao": "ZAG",
       "rodada": 2,
-      "projecao": -0.68,
+      "projecao": -0.9,
       "real": 16,
-      "erro": 16.68
+      "erro": 16.9
     },
     {
-      "nome": "Tomás Esteban Cuello",
-      "posicao": "ATA",
-      "rodada": 9,
-      "projecao": 3.1,
-      "real": 19.4,
-      "erro": 16.3
+      "nome": "André Luiz Santos Dias",
+      "posicao": "MEI",
+      "rodada": 18,
+      "projecao": 1.59,
+      "real": 18.4,
+      "erro": 16.81
+    },
+    {
+      "nome": "Gabriel Armando de Abreu",
+      "posicao": "ZAG",
+      "rodada": 3,
+      "projecao": -0.1,
+      "real": 16.6,
+      "erro": 16.7
     }
   ],
   "tendenciaErro": {
-    "superestimou": 0,
-    "subestimou": 6347
+    "superestimou": 3111,
+    "subestimou": 3230
   }
 }

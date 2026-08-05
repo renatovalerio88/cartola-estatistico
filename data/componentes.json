@@ -1,105 +1,105 @@
 {
   "modelo": "laboratorio_v3",
   "amostras": 6590,
-  "erroMedio": 2.79,
-  "rmse": 3.93,
+  "erroMedio": 2.74,
+  "rmse": 3.96,
   "componentes": {
     "media3": {
-      "media": 3.27,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "media5": {
-      "media": 3.26,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "mediaGeral": {
-      "media": 3.23,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "piso": {
-      "media": 0.32,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "teto": {
-      "media": 7.73,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "regularidade": {
-      "media": 5.91,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     "tendencia": {
-      "media": -0.01,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     }
   },
   "posicoes": {
     "MEI": {
       "quantidade": 2103,
-      "erroMedio": 2.48,
-      "rmse": 3.63
+      "erroMedio": 2.45,
+      "rmse": 3.65
     },
     "LAT": {
       "quantidade": 1015,
-      "erroMedio": 3.22,
-      "rmse": 4.19
+      "erroMedio": 3.18,
+      "rmse": 4.31
     },
     "ATA": {
       "quantidade": 1721,
-      "erroMedio": 2.93,
-      "rmse": 4.32
+      "erroMedio": 2.86,
+      "rmse": 4.33
     },
     "GOL": {
       "quantidade": 449,
-      "erroMedio": 3.1,
-      "rmse": 4.21
+      "erroMedio": 3.03,
+      "rmse": 4.16
     },
     "ZAG": {
       "quantidade": 953,
-      "erroMedio": 2.77,
-      "rmse": 3.74
+      "erroMedio": 2.69,
+      "rmse": 3.73
     },
     "TEC": {
       "quantidade": 349,
-      "erroMedio": 2.33,
-      "rmse": 2.96
+      "erroMedio": 2.39,
+      "rmse": 3.02
     }
   },
   "rankingComponentes": [
     {
-      "componente": "tendencia",
-      "media": -0.01,
-      "quantidade": 6590
-    },
-    {
-      "componente": "piso",
-      "media": 0.32,
-      "quantidade": 6590
-    },
-    {
-      "componente": "mediaGeral",
-      "media": 3.23,
-      "quantidade": 6590
+      "componente": "media3",
+      "media": 0,
+      "quantidade": 0
     },
     {
       "componente": "media5",
-      "media": 3.26,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
     },
     {
-      "componente": "media3",
-      "media": 3.27,
-      "quantidade": 6590
+      "componente": "mediaGeral",
+      "media": 0,
+      "quantidade": 0
     },
     {
-      "componente": "regularidade",
-      "media": 5.91,
-      "quantidade": 6590
+      "componente": "piso",
+      "media": 0,
+      "quantidade": 0
     },
     {
       "componente": "teto",
-      "media": 7.73,
-      "quantidade": 6590
+      "media": 0,
+      "quantidade": 0
+    },
+    {
+      "componente": "regularidade",
+      "media": 0,
+      "quantidade": 0
+    },
+    {
+      "componente": "tendencia",
+      "media": 0,
+      "quantidade": 0
     }
   ]
 }
