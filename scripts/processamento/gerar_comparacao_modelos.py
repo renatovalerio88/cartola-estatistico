@@ -12,8 +12,9 @@ PASTA_HISTORICO = Path(
 )
 
 
-
 def carregar_json(caminho):
+
+    caminho = Path(caminho)
 
     if not caminho.exists():
 
@@ -24,9 +25,7 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(
-            arquivo
-        )
+        return json.load(arquivo)
 
 
 
@@ -43,6 +42,11 @@ def media(lista):
 
 
 
+# ==================================================
+# MODELO BASE
+# ==================================================
+
+
 def calcular_mae_base():
 
     erros = []
@@ -57,7 +61,6 @@ def calcular_mae_base():
 
     for arquivo in arquivos:
 
-
         dados = carregar_json(
             arquivo
         )
@@ -67,7 +70,6 @@ def calcular_mae_base():
             "jogadores",
             []
         ):
-
 
             erro = jogador.get(
                 "erro"
@@ -81,7 +83,7 @@ def calcular_mae_base():
 
             erros.append(
                 abs(
-                    erro
+                    float(erro)
                 )
             )
 
@@ -92,96 +94,134 @@ def calcular_mae_base():
 
 
 
-def carregar_explosao():
+# ==================================================
+# EXPLOSÃO
+# ==================================================
 
 
-    arquivos = [
+def carregar_modelo_explosao():
 
-        Path(
-            "data/experimento-explosao.json"
-        ),
 
-        Path(
-            "data/explosoes.json"
-        )
+    caminhos = [
+
+        "data/experimento-explosao.json",
+
+        "data/explosoes.json"
 
     ]
 
 
-    for arquivo in arquivos:
+    for caminho in caminhos:
 
 
-        if arquivo.exists():
+        dados = carregar_json(
+            caminho
+        )
 
 
-            dados = carregar_json(
-                arquivo
-            )
+        if not dados:
+
+            continue
 
 
-            valor = dados.get(
-                "erroMedioComExplosao"
-            )
+        erro = dados.get(
+            "erroMedioComExplosao"
+        )
 
 
-            if valor is not None:
+        if erro is not None:
 
-                return round(
-                    valor,
+            return {
+
+                "disponivel": True,
+
+                "mae": round(
+                    erro,
                     3
-                )
+                ),
 
+                "fonte": caminho
 
-    return None
-
-
-
-def analisar_indice_diferencial():
-
-
-    arquivo = Path(
-        "data/indice-diferencial.json"
-    )
-
-
-    if not arquivo.exists():
-
-        return {
-
-            "disponivel": False
-
-        }
-
-
-    dados = carregar_json(
-        arquivo
-    )
-
-
-    jogadores = dados.get(
-        "jogadores",
-        []
-    )
+            }
 
 
     return {
 
-        "disponivel": True,
-
-        "jogadoresAnalisados":
-
-            len(jogadores),
-
-        "tipo":
-
-            "camada estrategica"
+        "disponivel": False
 
     }
 
 
 
-resultado = {
+# ==================================================
+# DIFERENCIAL
+# ==================================================
 
+
+def carregar_diferencial():
+
+
+    caminhos = [
+
+        "data/experimento-diferencial.json",
+
+        "data/indice-diferencial.json"
+
+    ]
+
+
+    for caminho in caminhos:
+
+
+        dados = carregar_json(
+            caminho
+        )
+
+
+        if not dados:
+
+            continue
+
+
+        jogadores = dados.get(
+            "jogadores",
+            []
+        )
+
+
+        return {
+
+            "disponivel": True,
+
+            "jogadoresAnalisados":
+
+                len(jogadores),
+
+            "fonte":
+
+                caminho,
+
+            "tipo":
+
+                "camada_estrategica"
+
+        }
+
+
+    return {
+
+        "disponivel": False
+
+    }
+
+
+
+# ==================================================
+# GERAR RESULTADO
+# ==================================================
+
+
+resultado = {
 
     "modelo":
 
@@ -195,19 +235,23 @@ resultado = {
 
     "modelos":
 
+        [],
+
+
+    "camadasEstrategicas":
+
         []
 
 }
 
 
 
-# =================================
-# MODELO BASE
-# =================================
+# -------------------------------
+# BASE
+# -------------------------------
 
 
 mae_base = calcular_mae_base()
-
 
 
 resultado["modelos"].append({
@@ -216,36 +260,35 @@ resultado["modelos"].append({
 
         "Modelo Base",
 
+
     "mae":
 
         mae_base,
+
 
     "melhoria":
 
         0,
 
+
     "tipo":
 
-        "projecao",
-
-    "fonte":
-
-        "historico"
+        "projecao"
 
 })
 
 
 
-# =================================
+# -------------------------------
 # EXPLOSÃO
-# =================================
+# -------------------------------
 
 
-mae_explosao = carregar_explosao()
+explosao = carregar_modelo_explosao()
 
 
 
-if mae_explosao is not None:
+if explosao["disponivel"]:
 
 
     resultado["modelos"].append({
@@ -254,89 +297,73 @@ if mae_explosao is not None:
 
             "Modelo + Explosão",
 
+
         "mae":
 
-            mae_explosao,
+            explosao["mae"],
+
 
         "melhoria":
 
             round(
 
-                mae_base - mae_explosao,
+                mae_base - explosao["mae"],
 
                 3
 
             ),
 
+
         "tipo":
 
             "projecao",
 
+
         "fonte":
 
-            "experimento_explosao"
+            explosao["fonte"]
 
     })
 
 
 
-# =================================
-# ÍNDICE DIFERENCIAL
-# =================================
+# -------------------------------
+# DIFERENCIAL
+# -------------------------------
 
 
-diferencial = analisar_indice_diferencial()
-
-
-
-resultado["camadasEstrategicas"] = [
-
-
-    {
-
-        "nome":
-
-            "Índice Diferencial",
-
-
-        "status":
-
-            "teste",
-
-
-        "dados":
-
-            diferencial
-
-    }
-
-
-]
+diferencial = carregar_diferencial()
 
 
 
-# =================================
+resultado["camadasEstrategicas"].append({
+
+    "nome":
+
+        "Índice Diferencial",
+
+
+    "status":
+
+        "teste",
+
+
+    "dados":
+
+        diferencial
+
+})
+
+
+
+# -------------------------------
 # RANKING
-# =================================
+# -------------------------------
 
 
 resultado["ranking"] = sorted(
 
-
-    [
-
-        modelo
-
-        for modelo in resultado["modelos"]
-
-        if modelo.get(
-            "mae"
-        )
-
-        is not None
-
-    ],
-
+    resultado["modelos"],
 
     key=lambda x:
 
@@ -346,16 +373,26 @@ resultado["ranking"] = sorted(
 
 
 
-resultado["melhorModelo"] = (
+if resultado["ranking"]:
 
-    resultado["ranking"][0]["nome"]
 
-    if resultado["ranking"]
+    resultado["melhorModelo"] = (
 
-    else None
+        resultado["ranking"][0]["nome"]
 
-)
+    )
 
+
+else:
+
+
+    resultado["melhorModelo"] = None
+
+
+
+# ==================================================
+# SALVAR
+# ==================================================
 
 
 with open(
@@ -388,9 +425,7 @@ print(
 )
 
 
-
 for modelo in resultado["ranking"]:
-
 
     print(
 
