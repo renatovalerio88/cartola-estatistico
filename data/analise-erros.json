@@ -1,0 +1,203 @@
+{
+  "modelo": "diagnostico_erros_v1",
+  "totalJogadores": 6590,
+  "erroMedio": 2.79,
+  "porPosicao": {
+    "MEI": {
+      "quantidade": 2103,
+      "erroMedio": 2.48
+    },
+    "LAT": {
+      "quantidade": 1015,
+      "erroMedio": 3.22
+    },
+    "ATA": {
+      "quantidade": 1721,
+      "erroMedio": 2.93
+    },
+    "GOL": {
+      "quantidade": 449,
+      "erroMedio": 3.1
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.77
+    },
+    "TEC": {
+      "quantidade": 349,
+      "erroMedio": 2.33
+    }
+  },
+  "porPreco": {
+    "sem_preco": {
+      "quantidade": 6590,
+      "erroMedio": 2.79
+    }
+  },
+  "maioresErros": [
+    {
+      "nome": "Leonardo Caetano Silva",
+      "posicao": "ATA",
+      "rodada": 19,
+      "projecao": 0.79,
+      "real": 27.6,
+      "erro": 26.81
+    },
+    {
+      "nome": "Aldemir dos Santos Ferreira",
+      "posicao": "ATA",
+      "rodada": 10,
+      "projecao": 0.54,
+      "real": 26,
+      "erro": 25.46
+    },
+    {
+      "nome": "Johan Stiven Carbonero Balanta",
+      "posicao": "ATA",
+      "rodada": 16,
+      "projecao": 3.27,
+      "real": 24.9,
+      "erro": 21.63
+    },
+    {
+      "nome": "Samuel Dias Lino",
+      "posicao": "ATA",
+      "rodada": 18,
+      "projecao": 4.89,
+      "real": 26,
+      "erro": 21.11
+    },
+    {
+      "nome": "Arthur Mendonça Cabral",
+      "posicao": "ATA",
+      "rodada": 16,
+      "projecao": 5.01,
+      "real": 26,
+      "erro": 20.99
+    },
+    {
+      "nome": "Maurício Magalhães Prado",
+      "posicao": "MEI",
+      "rodada": 19,
+      "projecao": 1.19,
+      "real": 21.4,
+      "erro": 20.21
+    },
+    {
+      "nome": "Natanael Moreira Milouski",
+      "posicao": "LAT",
+      "rodada": 9,
+      "projecao": -2.13,
+      "real": 17.7,
+      "erro": 19.83
+    },
+    {
+      "nome": "Matheus Martins Silva dos Santos",
+      "posicao": "ATA",
+      "rodada": 12,
+      "projecao": 2.21,
+      "real": 21.6,
+      "erro": 19.39
+    },
+    {
+      "nome": "Neymar da Silva Santos Júnior",
+      "posicao": "MEI",
+      "rodada": 4,
+      "projecao": 0.0,
+      "real": 19.2,
+      "erro": 19.2
+    },
+    {
+      "nome": "Gabriel Pereira Taliari",
+      "posicao": "ATA",
+      "rodada": 8,
+      "projecao": 0.68,
+      "real": 19.3,
+      "erro": 18.62
+    },
+    {
+      "nome": "Marlon Rodrigues Freitas",
+      "posicao": "MEI",
+      "rodada": 9,
+      "projecao": 0.86,
+      "real": 19.1,
+      "erro": 18.24
+    },
+    {
+      "nome": "Luiz de Araújo Guimarães Neto",
+      "posicao": "ATA",
+      "rodada": 7,
+      "projecao": -0.16,
+      "real": 17.6,
+      "erro": 17.76
+    },
+    {
+      "nome": "Kevin Stiven Viveros Rodallega",
+      "posicao": "ATA",
+      "rodada": 13,
+      "projecao": 3.4,
+      "real": 21.1,
+      "erro": 17.7
+    },
+    {
+      "nome": "Neymar da Silva Santos Júnior",
+      "posicao": "MEI",
+      "rodada": 20,
+      "projecao": 5.34,
+      "real": 22.8,
+      "erro": 17.46
+    },
+    {
+      "nome": "Pedro Guilherme Abreu dos Santos",
+      "posicao": "ATA",
+      "rodada": 5,
+      "projecao": 2.06,
+      "real": 19.4,
+      "erro": 17.34
+    },
+    {
+      "nome": "André Luiz Santos Dias",
+      "posicao": "MEI",
+      "rodada": 18,
+      "projecao": 1.1,
+      "real": 18.4,
+      "erro": 17.3
+    },
+    {
+      "nome": "Gabriel Armando de Abreu",
+      "posicao": "ZAG",
+      "rodada": 3,
+      "projecao": -0.23,
+      "real": 16.6,
+      "erro": 16.83
+    },
+    {
+      "nome": "Breno Henrique Vasconcelos Lopes",
+      "posicao": "ATA",
+      "rodada": 16,
+      "projecao": 4.27,
+      "real": 21,
+      "erro": 16.73
+    },
+    {
+      "nome": "Murilo Cerqueira Paim",
+      "posicao": "ZAG",
+      "rodada": 2,
+      "projecao": -0.68,
+      "real": 16,
+      "erro": 16.68
+    },
+    {
+      "nome": "Tomás Esteban Cuello",
+      "posicao": "ATA",
+      "rodada": 9,
+      "projecao": 3.1,
+      "real": 19.4,
+      "erro": 16.3
+    }
+  ],
+  "tendenciaErro": {
+    "superestimou": 0,
+    "subestimou": 6347
+  }
+}
