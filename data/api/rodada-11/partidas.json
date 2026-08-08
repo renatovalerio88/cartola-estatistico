@@ -284,10 +284,10 @@
   "partidas": [
     {
       "aproveitamento_visitante": [
-        "d",
         "e",
         "d",
         "d",
+        "e",
         "e"
       ],
       "aproveitamento_mandante": [
@@ -327,11 +327,11 @@
         "e"
       ],
       "aproveitamento_mandante": [
-        "d",
         "v",
         "d",
         "v",
-        "d"
+        "d",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -392,11 +392,11 @@
     },
     {
       "aproveitamento_visitante": [
-        "v",
         "d",
         "v",
         "e",
-        "v"
+        "v",
+        "e"
       ],
       "aproveitamento_mandante": [
         "d",
@@ -428,10 +428,10 @@
     },
     {
       "aproveitamento_visitante": [
-        "e",
         "v",
         "d",
         "d",
+        "e",
         "e"
       ],
       "aproveitamento_mandante": [
@@ -467,7 +467,7 @@
         "d",
         "d",
         "d",
-        "d",
+        "e",
         "e"
       ],
       "aproveitamento_mandante": [
@@ -500,18 +500,18 @@
     },
     {
       "aproveitamento_visitante": [
-        "v",
         "d",
         "d",
         "e",
-        "d"
+        "d",
+        "e"
       ],
       "aproveitamento_mandante": [
-        "e",
         "d",
         "v",
         "e",
-        "v"
+        "v",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -543,7 +543,7 @@
         "e"
       ],
       "aproveitamento_mandante": [
-        "d",
+        "e",
         "e",
         "e",
         "e",
