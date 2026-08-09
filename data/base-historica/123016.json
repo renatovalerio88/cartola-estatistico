@@ -176,7 +176,9 @@
       "preco": 3.14,
       "media": 1.37,
       "pontos": 0.5,
-      "scouts": {}
+      "scouts": {
+        "FS": 1
+      }
     }
   ]
 }
