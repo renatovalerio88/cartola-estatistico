@@ -1,7 +1,7 @@
 {
-  "id": 141536,
-  "nome": "Yuri Alves de Aquino",
-  "posicao": "MEI",
+  "id": 151492,
+  "nome": "Marcos Vinicius Krygsman Monteiro",
+  "posicao": "LAT",
   "clube": "RBB",
   "historico": [
     {
@@ -155,10 +155,8 @@
       "rodada": 22,
       "preco": 1,
       "media": 0,
-      "pontos": 1.5,
-      "scouts": {
-        "DS": 1
-      }
+      "pontos": null,
+      "scouts": {}
     }
   ]
 }
