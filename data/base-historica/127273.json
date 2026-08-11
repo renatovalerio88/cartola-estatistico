@@ -6,64 +6,64 @@
   "historico": [
     {
       "rodada": 1,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 2,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 4,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 8,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 4.24,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 9.78,
       "scouts": {
         "V": 1
@@ -71,15 +71,15 @@
     },
     {
       "rodada": 10,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 3.68,
       "scouts": {}
     },
     {
       "rodada": 11,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 6.78,
       "scouts": {
         "V": 1
@@ -87,8 +87,8 @@
     },
     {
       "rodada": 12,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 8.58,
       "scouts": {
         "V": 1
@@ -96,8 +96,8 @@
     },
     {
       "rodada": 13,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 7.21,
       "scouts": {
         "V": 1
@@ -105,15 +105,15 @@
     },
     {
       "rodada": 14,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 3.25,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 7.05,
       "scouts": {
         "V": 1
@@ -121,15 +121,15 @@
     },
     {
       "rodada": 16,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 4.74,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 6.77,
       "scouts": {
         "V": 1
@@ -137,15 +137,15 @@
     },
     {
       "rodada": 18,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 5.44,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 7.65,
       "scouts": {
         "V": 1
@@ -153,15 +153,15 @@
     },
     {
       "rodada": 20,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 3.77,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 7.65,
       "scouts": {
         "V": 1
@@ -169,12 +169,19 @@
     },
     {
       "rodada": 22,
-      "preco": 12.12,
-      "media": 6.33,
+      "preco": 12,
+      "media": 6.37,
       "pontos": 6.91,
       "scouts": {
         "V": 1
       }
+    },
+    {
+      "rodada": 23,
+      "preco": 12,
+      "media": 6.37,
+      "pontos": 6.91,
+      "scouts": {}
     }
   ]
 }

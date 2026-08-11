@@ -216,6 +216,13 @@
       "media": 3.17,
       "pontos": null,
       "scouts": {}
+    },
+    {
+      "rodada": 23,
+      "preco": 5.17,
+      "media": 3.17,
+      "pontos": 0,
+      "scouts": {}
     }
   ]
 }
