@@ -137,8 +137,8 @@
       "nome": "media_v3_consistente",
       "passou": true,
       "critico": true,
-      "esperado": 0.0,
-      "encontrado": 0.0
+      "esperado": 55.12,
+      "encontrado": 55.12
     },
     {
       "nome": "desvio_v1_consistente",
@@ -184,7 +184,7 @@
     },
     {
       "nome": "oraculo_valido",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -353,38 +353,38 @@
   ],
   "resumoTestes": {
     "quantidade": 43,
-    "aprovados": 43,
-    "falhas": 0,
-    "falhasCriticas": 0,
+    "aprovados": 42,
+    "falhas": 1,
+    "falhasCriticas": 1,
     "alertas": 0,
-    "scoreQualidade": 100.0
+    "scoreQualidade": 97.67
   },
   "resultados": {
     "mediaV1": 0.0,
     "mediaV2": 0.0,
-    "mediaV3": 0.0,
+    "mediaV3": 55.12,
     "melhorFixa": "Conservador",
     "mediaMelhorFixa": 0.0,
     "mediaOraculo": 0.0,
-    "ganhoV3VsV1": 0.0,
-    "ganhoV3VsV2": 0.0,
-    "ganhoV3VsMelhorFixa": 0.0,
+    "ganhoV3VsV1": 55.12,
+    "ganhoV3VsV2": 55.12,
+    "ganhoV3VsMelhorFixa": 55.12,
     "eficienciaV1": 0.0,
     "eficienciaV2": 0.0,
     "eficienciaV3": 0.0,
     "desvioV1": 0.0,
     "desvioV2": 0.0,
-    "desvioV3": 0.0,
+    "desvioV3": 12.77,
     "vitoriasV2Pareado": 0,
-    "vitoriasV3Pareado": 0,
-    "empatesPareado": 22,
+    "vitoriasV3Pareado": 22,
+    "empatesPareado": 0,
     "escolhasV3": {
-      "Conservador": 19,
-      "Equilibrado": 3,
-      "Agressivo": 0
+      "Conservador": 14,
+      "Equilibrado": 7,
+      "Agressivo": 1
     }
   },
-  "decisao": "COMPARACAO_V3_VALIDADA",
+  "decisao": "COMPARACAO_V3_REPROVADA",
   "promocaoAutomatica": false,
   "seguranca": {
     "alteraModeloOficial": false,
