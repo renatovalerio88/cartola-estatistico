@@ -335,6 +335,37 @@ def obter_times(
 
             return valor
 
+        if isinstance(
+            valor,
+            dict
+        ):
+
+            times = []
+
+            for nome, dados in valor.items():
+
+                if not isinstance(
+                    dados,
+                    dict
+                ):
+
+                    continue
+
+                copia = dict(
+                    dados
+                )
+
+                copia.setdefault(
+                    "nome",
+                    nome
+                )
+
+                times.append(
+                    copia
+                )
+
+            return times
+
     return []
 
 
@@ -413,6 +444,10 @@ def obter_pontos_diretos(
     """
 
     for chave in [
+        "pontuacaoComCapitao",
+        "pontosComCapitao",
+        "pontuacaoRealComCapitao",
+        "pontuacaoFinal",
         "pontos",
         "pontuacao",
         "pontuacaoReal",
@@ -432,6 +467,30 @@ def obter_pontos_diretos(
             time.get(
                 chave
             )
+        )
+
+        if valor is not None:
+
+            return valor
+
+    for chave_container in [
+        "resultado",
+        "metricas",
+    ]:
+
+        container = time.get(
+            chave_container
+        )
+
+        if not isinstance(
+            container,
+            dict
+        ):
+
+            continue
+
+        valor = obter_pontos_diretos(
+            container
         )
 
         if valor is not None:
@@ -669,7 +728,7 @@ def obter_pontuacao_real(
     ]
 
     if not candidatos_validos:
-        return 0.0
+        return None
 
     # Se o valor direto existe e é diferente
     # de zero, ele continua sendo a fonte principal.
@@ -748,6 +807,16 @@ def normalizar_rodadas(
             pontos = obter_pontuacao_real(
                 time
             )
+
+            if pontos is None:
+
+                print(
+                    f"[ALERTA] Rodada {rodada:02d}"
+                    f" | {estrategia}: "
+                    f"pontuação real não encontrada."
+                )
+
+                continue
 
             pontuacoes[
                 estrategia
