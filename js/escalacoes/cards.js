@@ -164,45 +164,30 @@ function criarCardEscalacao(
     <div class="lineup-cost-row">
 
       <div>
-
-        <span>
-          Custo
-        </span>
-
+        <span>Custo</span>
         <strong>
           ${formatarCartoletas(
             escalacao.custo
           )}
         </strong>
-
       </div>
 
       <div>
-
-        <span>
-          Limite
-        </span>
-
+        <span>Limite</span>
         <strong>
           ${formatarCartoletas(
             escalacao.limitePatrimonio
           )}
         </strong>
-
       </div>
 
       <div>
-
-        <span>
-          Saldo
-        </span>
-
+        <span>Saldo</span>
         <strong>
           ${formatarCartoletas(
             saldo
           )}
         </strong>
-
       </div>
 
     </div>
@@ -211,45 +196,30 @@ function criarCardEscalacao(
     <div class="lineup-main-metrics">
 
       <div class="lineup-main-metric projection">
-
-        <span>
-          Projeção
-        </span>
-
+        <span>Projeção</span>
         <strong>
           ${formatarPontos(
             escalacao.projecao
           )}
         </strong>
-
       </div>
 
       <div class="lineup-main-metric">
-
-        <span>
-          Piso
-        </span>
-
+        <span>Piso</span>
         <strong>
           ${formatarPontos(
             escalacao.piso
           )}
         </strong>
-
       </div>
 
       <div class="lineup-main-metric">
-
-        <span>
-          Teto
-        </span>
-
+        <span>Teto</span>
         <strong>
           ${formatarPontos(
             escalacao.teto
           )}
         </strong>
-
       </div>
 
     </div>
@@ -303,7 +273,7 @@ function criarCardEscalacao(
 
 
     <div class="lineup-players-title">
-      Titulares
+      TITULARES
     </div>
 
 
@@ -516,6 +486,10 @@ function obterNomeCurtoJogador(
 }
 
 
+/* =========================================================
+   4. NORMALIZAÇÃO VISUAL DO SCORE
+   ========================================================= */
+
 function normalizarScoreVisual(
   valor
 ) {
@@ -527,22 +501,29 @@ function normalizarScoreVisual(
   }
 
   /*
-   * Alguns dados históricos podem chegar
-   * com o score multiplicado por 100.
+   * O score visual deve permanecer
+   * na escala de 0 a 100.
+   *
+   * Alguns registros históricos chegam
+   * com casas decimais deslocadas.
    *
    * Exemplos:
    *
-   * 1080 -> 10.8
-   * 1883 -> 18.83
-   * 2626 -> 26.26
+   * 1080  -> 10.8
+   * 269.3 -> 26.93
+   * 188.3 -> 18.83
+   * 80.8  -> 80.8
    *
-   * Scores já normalizados, como 80.8,
-   * permanecem inalterados.
+   * A correção abaixo é SOMENTE VISUAL.
+   * Não modifica a projeção estatística.
    */
 
-  if (Math.abs(score) >= 1000) {
+  score =
+    Math.abs(score);
+
+  while (score > 100) {
     score =
-      score / 100;
+      score / 10;
   }
 
   return score
@@ -552,7 +533,7 @@ function normalizarScoreVisual(
 
 
 /* =========================================================
-   4. CAPITÃO
+   5. CAPITÃO
    ========================================================= */
 
 function criarCapitaoHtml(
@@ -619,7 +600,7 @@ function criarCapitaoHtml(
 
 
 /* =========================================================
-   5. JOGADOR TITULAR
+   6. JOGADOR TITULAR
    ========================================================= */
 
 function criarJogadorTitularHtml(
@@ -703,7 +684,7 @@ function criarJogadorTitularHtml(
 
 
 /* =========================================================
-   6. BANCO
+   7. BANCO
    ========================================================= */
 
 function criarBancoHtml(
@@ -780,7 +761,7 @@ function criarJogadorBancoHtml(
 
 
 /* =========================================================
-   7. RESERVA DE LUXO
+   8. RESERVA DE LUXO
    ========================================================= */
 
 function criarReservaLuxoHtml(
@@ -852,7 +833,7 @@ function criarReservaLuxoHtml(
 
 
 /* =========================================================
-   8. PERFIL DA ESCALAÇÃO
+   9. PERFIL DA ESCALAÇÃO
    ========================================================= */
 
 function obterClassePerfilEscalacao(
@@ -886,7 +867,7 @@ function obterClassePerfilEscalacao(
 
 
 /* =========================================================
-   9. BOTÃO DE DETALHES
+   10. BOTÃO DE DETALHES
    ========================================================= */
 
 function configurarBotoesDetalhesEscalacao() {
