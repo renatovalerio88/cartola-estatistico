@@ -3,6 +3,9 @@
 CARTOLA ESTATÍSTICO
 Backtest A/B Progressivo da Calibração por Posição
 
+Versão:
+backtest_ab_calibracao_v2
+
 Objetivo:
 
 Comparar:
@@ -15,18 +18,10 @@ Mesma projeção histórica, porém calibrada por posição
 usando SOMENTE resultados disponíveis ANTES da rodada
 que está sendo avaliada.
 
-Regra científica fundamental:
+REGRA CIENTÍFICA FUNDAMENTAL:
 
 Para avaliar a rodada R, a calibração é calculada
 exclusivamente com rodadas anteriores a R.
-
-Exemplo:
-
-Rodada 8:
-usa rodadas 2..7 para calibrar.
-
-Rodada 15:
-usa rodadas 2..14 para calibrar.
 
 Isso impede vazamento de informação futura.
 
@@ -40,21 +35,6 @@ Saída:
 
 data/backtest-ab-calibracao.json
 
-Métricas:
-
-- MAE individual Modelo A
-- MAE individual Modelo B
-- viés Modelo A
-- viés Modelo B
-- melhora absoluta
-- melhora percentual
-- resultado por posição
-- resultado por estratégia
-- evolução rodada a rodada
-- quantidade de rodadas vencidas por A/B
-- critério de promoção
-- recomendação final
-
 IMPORTANTE:
 
 Este script NÃO altera o modelo oficial.
@@ -66,6 +46,7 @@ Este script NÃO altera escalações.
 
 from pathlib import Path
 from statistics import mean
+
 import json
 import math
 
@@ -82,30 +63,25 @@ BASE_DIR = (
     .parent
 )
 
-
 PASTA_DATA = (
     BASE_DIR /
     "data"
 )
-
 
 ARQUIVO_SIMULACAO = (
     PASTA_DATA /
     "simulacao-times.json"
 )
 
-
 ARQUIVO_ANALISE = (
     PASTA_DATA /
     "analise-simulacoes-historicas.json"
 )
 
-
 ARQUIVO_CALIBRACAO_REFERENCIA = (
     PASTA_DATA /
     "calibracao-posicoes-candidata.json"
 )
-
 
 ARQUIVO_SAIDA = (
     PASTA_DATA /
@@ -127,18 +103,9 @@ POSICOES = [
 # CONTROLE DO BACKTEST
 # ======================================================
 
-# A rodada 2 é cold start e não deve determinar promoção.
-
 RODADA_COLD_START = 2
 
-
-# Quantidade mínima de observações históricas
-# de uma posição para começar a calibrá-la.
-
 AMOSTRA_MINIMA_POSICAO = 20
-
-
-# A partir desta quantidade a confiança cresce.
 
 AMOSTRA_CONFIAVEL = 60
 
@@ -155,19 +122,15 @@ CORRECAO_VIES_PADRAO = 0.35
 
 CORRECAO_VIES_FORTE = 0.50
 
-
 LIMITE_CORRECAO_ADITIVA = 1.50
-
 
 FATOR_MULTIPLICATIVO_MINIMO = 0.88
 
 FATOR_MULTIPLICATIVO_MAXIMO = 1.12
 
-
 FATOR_FINAL_MINIMO = 0.85
 
 FATOR_FINAL_MAXIMO = 1.15
-
 
 MAE_BOM = 3.00
 
@@ -180,22 +143,11 @@ MAE_ALTO = 6.00
 # CRITÉRIOS DE PROMOÇÃO
 # ======================================================
 
-# B precisa melhorar pelo menos 1% no MAE global.
-
 MELHORA_MINIMA_PERCENTUAL = 1.00
-
-
-# B não pode piorar mais que esta quantidade de posições.
 
 MAX_POSICOES_PIORES = 2
 
-
-# B deve vencer pelo menos 45% das rodadas avaliáveis.
-
 TAXA_MINIMA_VITORIAS_B = 45.00
-
-
-# Evita promoção com amostra muito pequena.
 
 MIN_RODADAS_AVALIAVEIS_PROMOCAO = 10
 
@@ -207,7 +159,6 @@ MIN_RODADAS_AVALIAVEIS_PROMOCAO = 10
 def carregar_json(caminho):
 
     if not caminho.exists():
-
         return {}
 
     try:
@@ -264,7 +215,6 @@ def numero(
     try:
 
         if valor is None:
-
             return padrao
 
         resultado = float(
@@ -278,7 +228,6 @@ def numero(
             return resultado
 
     except Exception:
-
         pass
 
     return padrao
@@ -292,11 +241,12 @@ def inteiro(
     try:
 
         if valor is None:
-
             return padrao
 
         return int(
-            valor
+            float(
+                valor
+            )
         )
 
     except Exception:
@@ -322,38 +272,32 @@ def media_segura(
     valores
 ):
 
-    valores_validos = []
-
+    validos = []
 
     for valor in valores:
 
         try:
 
-            valor = float(
+            convertido = float(
                 valor
             )
 
-
             if math.isfinite(
-                valor
+                convertido
             ):
 
-                valores_validos.append(
-                    valor
+                validos.append(
+                    convertido
                 )
 
         except Exception:
-
             pass
 
-
-    if not valores_validos:
-
-        return 0
-
+    if not validos:
+        return 0.0
 
     return mean(
-        valores_validos
+        validos
     )
 
 
@@ -363,15 +307,20 @@ def percentual(
 ):
 
     if not total:
-
-        return 0
-
+        return 0.0
 
     return round(
         (
-            quantidade /
-            total
-        ) * 100,
+            numero(
+                quantidade
+            )
+            /
+            numero(
+                total
+            )
+        )
+        *
+        100,
         2
     )
 
@@ -392,6 +341,390 @@ def limitar(
 
 
 # ======================================================
+# COMPATIBILIDADE COM A SIMULAÇÃO ATUAL
+# ======================================================
+
+def extrair_rodadas(
+    simulacao
+):
+
+    if isinstance(
+        simulacao,
+        list
+    ):
+
+        return simulacao
+
+    if not isinstance(
+        simulacao,
+        dict
+    ):
+
+        return []
+
+    for chave in [
+        "rodadas",
+        "resultados",
+        "simulacoes"
+    ]:
+
+        valor = simulacao.get(
+            chave
+        )
+
+        if isinstance(
+            valor,
+            list
+        ):
+
+            return valor
+
+    return []
+
+
+def extrair_estrategias(
+    rodada_dados
+):
+
+    if not isinstance(
+        rodada_dados,
+        dict
+    ):
+
+        return []
+
+    valor = rodada_dados.get(
+        "estrategias",
+        []
+    )
+
+    if isinstance(
+        valor,
+        list
+    ):
+
+        return valor
+
+    if isinstance(
+        valor,
+        dict
+    ):
+
+        resultado = []
+
+        for (
+            nome,
+            estrategia
+        ) in valor.items():
+
+            if not isinstance(
+                estrategia,
+                dict
+            ):
+
+                continue
+
+            copia = dict(
+                estrategia
+            )
+
+            copia.setdefault(
+                "nome",
+                nome
+            )
+
+            resultado.append(
+                copia
+            )
+
+        return resultado
+
+    return []
+
+
+def extrair_jogadores(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+
+        return []
+
+    for chave in [
+        "jogadores",
+        "titulares",
+        "atletas"
+    ]:
+
+        valor = estrategia.get(
+            chave
+        )
+
+        if isinstance(
+            valor,
+            list
+        ):
+
+            return valor
+
+    return []
+
+
+def obter_nome_estrategia(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+
+        return "Sem nome"
+
+    return (
+        estrategia.get(
+            "nome"
+        )
+        or
+        estrategia.get(
+            "perfil"
+        )
+        or
+        estrategia.get(
+            "id"
+        )
+        or
+        "Sem nome"
+    )
+
+
+def normalizar_posicao(
+    valor
+):
+
+    if isinstance(
+        valor,
+        dict
+    ):
+
+        valor = (
+            valor.get(
+                "abreviacao"
+            )
+            or
+            valor.get(
+                "sigla"
+            )
+            or
+            valor.get(
+                "nome"
+            )
+        )
+
+    if valor is None:
+        return ""
+
+    texto = (
+        str(
+            valor
+        )
+        .strip()
+        .upper()
+    )
+
+    mapa = {
+        "1": "GOL",
+        "2": "LAT",
+        "3": "ZAG",
+        "4": "MEI",
+        "5": "ATA",
+        "6": "TEC",
+
+        "GOLEIRO": "GOL",
+        "GOL": "GOL",
+
+        "LATERAL": "LAT",
+        "LAT": "LAT",
+
+        "ZAGUEIRO": "ZAG",
+        "ZAG": "ZAG",
+
+        "MEIA": "MEI",
+        "MEI": "MEI",
+
+        "ATACANTE": "ATA",
+        "ATA": "ATA",
+
+        "TECNICO": "TEC",
+        "TÉCNICO": "TEC",
+        "TEC": "TEC"
+    }
+
+    return mapa.get(
+        texto,
+        texto
+    )
+
+
+def obter_posicao(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return ""
+
+    for chave in [
+        "posicao",
+        "posição",
+        "posicaoId",
+        "posicao_id"
+    ]:
+
+        if jogador.get(
+            chave
+        ) is not None:
+
+            posicao = normalizar_posicao(
+                jogador.get(
+                    chave
+                )
+            )
+
+            if posicao:
+                return posicao
+
+    return ""
+
+
+def obter_projecao(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return 0.0
+
+    for chave in [
+        "projecao",
+        "projeção",
+        "score",
+        "nota"
+    ]:
+
+        if jogador.get(
+            chave
+        ) is not None:
+
+            return numero(
+                jogador.get(
+                    chave
+                ),
+                0
+            )
+
+    metricas = jogador.get(
+        "metricas"
+    )
+
+    if isinstance(
+        metricas,
+        dict
+    ):
+
+        for chave in [
+            "projecao",
+            "score",
+            "nota"
+        ]:
+
+            if metricas.get(
+                chave
+            ) is not None:
+
+                return numero(
+                    metricas.get(
+                        chave
+                    ),
+                    0
+                )
+
+    return 0.0
+
+
+def obter_pontuacao_real(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return 0.0
+
+    for chave in [
+        "pontuacaoReal",
+        "pontuacao_real",
+        "pontos",
+        "pontuacao",
+        "real",
+        "scoreReal",
+        "score_real"
+    ]:
+
+        if jogador.get(
+            chave
+        ) is not None:
+
+            return numero(
+                jogador.get(
+                    chave
+                ),
+                0
+            )
+
+    resultado = jogador.get(
+        "resultado"
+    )
+
+    if isinstance(
+        resultado,
+        dict
+    ):
+
+        for chave in [
+            "pontuacaoReal",
+            "pontuacao_real",
+            "pontos",
+            "pontuacao",
+            "real"
+        ]:
+
+            if resultado.get(
+                chave
+            ) is not None:
+
+                return numero(
+                    resultado.get(
+                        chave
+                    ),
+                    0
+                )
+
+    return 0.0
+
+
+# ======================================================
 # HISTÓRICO DE OBSERVAÇÕES
 # ======================================================
 
@@ -403,7 +736,6 @@ def criar_historico_vazio():
 
         for posicao
         in POSICOES
-
     }
 
 
@@ -417,9 +749,7 @@ def adicionar_observacao(
 ):
 
     if posicao not in historico:
-
         return
-
 
     historico[
         posicao
@@ -442,7 +772,6 @@ def adicionar_observacao(
                 real,
                 0
             )
-
     })
 
 
@@ -459,54 +788,42 @@ def calcular_confianca(
         0
     )
 
-
     if quantidade < AMOSTRA_MINIMA_POSICAO:
 
         return {
-
             "nivel":
                 "insuficiente",
 
             "fator":
-                0
-
+                0.0
         }
-
 
     if quantidade < AMOSTRA_CONFIAVEL:
 
         return {
-
             "nivel":
                 "baixa",
 
             "fator":
                 0.40
-
         }
-
 
     if quantidade < AMOSTRA_FORTE:
 
         return {
-
             "nivel":
                 "moderada",
 
             "fator":
                 0.70
-
         }
 
-
     return {
-
         "nivel":
             "alta",
 
         "fator":
             1.0
-
     }
 
 
@@ -521,24 +838,12 @@ def calcular_metricas_historicas(
     if not observacoes:
 
         return {
-
-            "amostras":
-                0,
-
-            "mae":
-                0,
-
-            "vies":
-                0,
-
-            "mediaProjecao":
-                0,
-
-            "mediaReal":
-                0
-
+            "amostras": 0,
+            "mae": 0.0,
+            "vies": 0.0,
+            "mediaProjecao": 0.0,
+            "mediaReal": 0.0
         }
-
 
     projecoes = [
 
@@ -551,9 +856,7 @@ def calcular_metricas_historicas(
 
         for item
         in observacoes
-
     ]
-
 
     reais = [
 
@@ -566,14 +869,11 @@ def calcular_metricas_historicas(
 
         for item
         in observacoes
-
     ]
-
 
     erros = [
 
-        projecao -
-        real
+        projecao - real
 
         for (
             projecao,
@@ -582,9 +882,7 @@ def calcular_metricas_historicas(
             projecoes,
             reais
         )
-
     ]
-
 
     erros_absolutos = [
 
@@ -594,12 +892,9 @@ def calcular_metricas_historicas(
 
         for erro
         in erros
-
     ]
 
-
     return {
-
         "amostras":
             len(
                 observacoes
@@ -624,7 +919,6 @@ def calcular_metricas_historicas(
             media_segura(
                 reais
             )
-
     }
 
 
@@ -643,21 +937,14 @@ def intensidade_correcao_vies(
         )
     )
 
-
     if absoluto < 0.50:
-
-        return 0
-
+        return 0.0
 
     if absoluto < 1.50:
-
         return CORRECAO_VIES_MINIMA
 
-
     if absoluto < 2.50:
-
         return CORRECAO_VIES_PADRAO
-
 
     return CORRECAO_VIES_FORTE
 
@@ -676,17 +963,12 @@ def calcular_correcao_aditiva(
         0
     )
 
-
     fator_confianca = numero(
-
         confianca.get(
             "fator"
         ),
-
         0
-
     )
-
 
     intensidade = (
         intensidade_correcao_vies(
@@ -694,24 +976,18 @@ def calcular_correcao_aditiva(
         )
     )
 
-
     correcao = (
-
-        -vies *
-        intensidade *
+        -vies
+        *
+        intensidade
+        *
         fator_confianca
-
     )
 
-
     return limitar(
-
         correcao,
-
         -LIMITE_CORRECAO_ADITIVA,
-
         LIMITE_CORRECAO_ADITIVA
-
     )
 
 
@@ -725,80 +1001,58 @@ def calcular_fator_multiplicativo(
 ):
 
     media_projecao = numero(
-
         metricas.get(
             "mediaProjecao"
         ),
-
         0
-
     )
 
-
     media_real = numero(
-
         metricas.get(
             "mediaReal"
         ),
-
         0
-
     )
 
-
     fator_confianca = numero(
-
         confianca.get(
             "fator"
         ),
-
         0
-
     )
-
 
     if (
         media_projecao == 0
-        or fator_confianca == 0
+        or
+        fator_confianca == 0
     ):
 
         return 1.0
 
-
     fator_bruto = (
-        media_real /
+        media_real
+        /
         media_projecao
     )
 
-
     fator = (
-
-        1.0 +
-
+        1.0
+        +
         (
-            fator_bruto -
+            fator_bruto
+            -
             1.0
         )
-
         *
-
         0.35
-
         *
-
         fator_confianca
-
     )
 
-
     return limitar(
-
         fator,
-
         FATOR_MULTIPLICATIVO_MINIMO,
-
         FATOR_MULTIPLICATIVO_MAXIMO
-
     )
 
 
@@ -816,77 +1070,68 @@ def calcular_ajuste_mae(
         0
     )
 
-
     fator_confianca = numero(
-
         confianca.get(
             "fator"
         ),
-
         0
-
     )
 
-
     if fator_confianca == 0:
-
-        return 0
-
+        return 0.0
 
     if mae <= MAE_BOM:
 
         ajuste = 0.005
 
-
     elif mae <= MAE_MODERADO:
 
-        ajuste = 0
-
+        ajuste = 0.0
 
     elif mae <= MAE_ALTO:
 
         ajuste = -0.0125
 
-
     else:
 
         ajuste = -0.025
 
-
     return (
-        ajuste *
+        ajuste
+        *
         fator_confianca
     )
 
 
 # ======================================================
-# CALIBRAÇÃO PROGRESSIVA DA POSIÇÃO
+# CALIBRAÇÃO PROGRESSIVA
 # ======================================================
 
 def gerar_calibracao_progressiva(
     observacoes
 ):
 
-    metricas = calcular_metricas_historicas(
-        observacoes
+    metricas = (
+        calcular_metricas_historicas(
+            observacoes
+        )
     )
 
-
     confianca = calcular_confianca(
-
         metricas.get(
             "amostras"
         )
-
     )
 
-
-    if confianca.get(
-        "nivel"
-    ) == "insuficiente":
+    if (
+        confianca.get(
+            "nivel"
+        )
+        ==
+        "insuficiente"
+    ):
 
         return {
-
             "aplicada":
                 False,
 
@@ -904,10 +1149,9 @@ def gerar_calibracao_progressiva(
                 1.0,
 
             "correcaoAditiva":
-                0,
+                0.0,
 
             "metricasHistoricas": {
-
                 "mae":
                     arredondar(
                         metricas.get(
@@ -935,66 +1179,39 @@ def gerar_calibracao_progressiva(
                             "mediaReal"
                         )
                     )
-
             }
-
         }
 
-
     fator = calcular_fator_multiplicativo(
-
         metricas,
-
         confianca
-
     )
 
-
     ajuste_mae = calcular_ajuste_mae(
-
         metricas.get(
             "mae"
         ),
-
         confianca
-
     )
-
-
-    fator_final = (
-
-        fator +
-        ajuste_mae
-
-    )
-
 
     fator_final = limitar(
-
-        fator_final,
-
+        fator
+        +
+        ajuste_mae,
         FATOR_FINAL_MINIMO,
-
         FATOR_FINAL_MAXIMO
-
     )
-
 
     correcao_aditiva = (
         calcular_correcao_aditiva(
-
             metricas.get(
                 "vies"
             ),
-
             confianca
-
         )
     )
 
-
     return {
-
         "aplicada":
             True,
 
@@ -1026,7 +1243,6 @@ def gerar_calibracao_progressiva(
             ),
 
         "metricasHistoricas": {
-
             "mae":
                 arredondar(
                     metricas.get(
@@ -1054,9 +1270,7 @@ def gerar_calibracao_progressiva(
                         "mediaReal"
                     )
                 )
-
         }
-
     }
 
 
@@ -1074,34 +1288,24 @@ def aplicar_calibracao(
         0
     )
 
-
     fator = numero(
-
         calibracao.get(
             "fatorMultiplicativo"
         ),
-
         1
-
     )
 
-
     aditivo = numero(
-
         calibracao.get(
             "correcaoAditiva"
         ),
-
         0
-
     )
 
-
     return (
-
-        projecao_original *
+        projecao_original
+        *
         fator
-
     ) + aditivo
 
 
@@ -1114,84 +1318,58 @@ def comparar_jogador(
     calibracao
 ):
 
-    projecao_a = numero(
-
-        jogador.get(
-            "projecao"
-        ),
-
-        0
-
+    projecao_a = obter_projecao(
+        jogador
     )
 
-
-    real = numero(
-
-        jogador.get(
-            "pontos"
-        ),
-
-        0
-
+    real = obter_pontuacao_real(
+        jogador
     )
-
 
     projecao_b = aplicar_calibracao(
-
         projecao_a,
-
         calibracao
-
     )
-
 
     erro_a = (
-        projecao_a -
+        projecao_a
+        -
         real
     )
-
 
     erro_b = (
-        projecao_b -
+        projecao_b
+        -
         real
     )
-
 
     erro_absoluto_a = abs(
         erro_a
     )
 
-
     erro_absoluto_b = abs(
         erro_b
     )
 
-
     diferenca = (
-
-        erro_absoluto_a -
+        erro_absoluto_a
+        -
         erro_absoluto_b
-
     )
-
 
     if erro_absoluto_b < erro_absoluto_a:
 
         vencedor = "B"
 
-
     elif erro_absoluto_a < erro_absoluto_b:
 
         vencedor = "A"
-
 
     else:
 
         vencedor = "EMPATE"
 
-
     return {
-
         "id":
             jogador.get(
                 "id"
@@ -1203,8 +1381,8 @@ def comparar_jogador(
             ),
 
         "posicao":
-            jogador.get(
-                "posicao"
+            obter_posicao(
+                jogador
             ),
 
         "real":
@@ -1213,7 +1391,6 @@ def comparar_jogador(
             ),
 
         "modeloA": {
-
             "projecao":
                 arredondar(
                     projecao_a
@@ -1228,11 +1405,9 @@ def comparar_jogador(
                 arredondar(
                     erro_absoluto_a
                 )
-
         },
 
         "modeloB": {
-
             "projecao":
                 arredondar(
                     projecao_b
@@ -1247,7 +1422,6 @@ def comparar_jogador(
                 arredondar(
                     erro_absoluto_b
                 )
-
         },
 
         "melhoraErroAbsoluto":
@@ -1264,7 +1438,6 @@ def comparar_jogador(
                     "aplicada"
                 )
             )
-
     }
 
 
@@ -1279,212 +1452,147 @@ def resumir_comparacoes(
     if not jogadores:
 
         return {
-
-            "amostras":
-                0,
-
-            "maeA":
-                0,
-
-            "maeB":
-                0,
-
-            "viesA":
-                0,
-
-            "viesB":
-                0,
-
-            "melhoraAbsoluta":
-                0,
-
-            "melhoraPercentual":
-                0,
-
-            "vitoriasA":
-                0,
-
-            "vitoriasB":
-                0,
-
-            "empates":
-                0
-
+            "amostras": 0,
+            "amostrasCalibradas": 0,
+            "percentualCalibrado": 0.0,
+            "maeA": 0.0,
+            "maeB": 0.0,
+            "viesA": 0.0,
+            "viesB": 0.0,
+            "melhoraAbsoluta": 0.0,
+            "melhoraPercentual": 0.0,
+            "vitoriasA": 0,
+            "vitoriasB": 0,
+            "empates": 0,
+            "taxaVitoriasA": 0.0,
+            "taxaVitoriasB": 0.0
         }
-
 
     erros_absolutos_a = [
 
         numero(
-
             jogador.get(
                 "modeloA",
                 {}
             ).get(
                 "erroAbsoluto"
-            ),
-
-            0
-
+            )
         )
 
         for jogador
         in jogadores
-
     ]
-
 
     erros_absolutos_b = [
 
         numero(
-
             jogador.get(
                 "modeloB",
                 {}
             ).get(
                 "erroAbsoluto"
-            ),
-
-            0
-
+            )
         )
 
         for jogador
         in jogadores
-
     ]
-
 
     erros_a = [
 
         numero(
-
             jogador.get(
                 "modeloA",
                 {}
             ).get(
                 "erro"
-            ),
-
-            0
-
+            )
         )
 
         for jogador
         in jogadores
-
     ]
-
 
     erros_b = [
 
         numero(
-
             jogador.get(
                 "modeloB",
                 {}
             ).get(
                 "erro"
-            ),
-
-            0
-
+            )
         )
 
         for jogador
         in jogadores
-
     ]
-
 
     mae_a = media_segura(
         erros_absolutos_a
     )
 
-
     mae_b = media_segura(
         erros_absolutos_b
     )
 
-
     melhora_absoluta = (
-        mae_a -
+        mae_a
+        -
         mae_b
     )
-
 
     if mae_a != 0:
 
         melhora_percentual = (
-
-            melhora_absoluta /
+            melhora_absoluta
+            /
             mae_a
-
-        ) * 100
+            *
+            100
+        )
 
     else:
 
-        melhora_percentual = 0
-
+        melhora_percentual = 0.0
 
     vitorias_a = sum(
-
         1
-
         for jogador
         in jogadores
-
         if jogador.get(
             "vencedor"
         ) == "A"
-
     )
 
-
     vitorias_b = sum(
-
         1
-
         for jogador
         in jogadores
-
         if jogador.get(
             "vencedor"
         ) == "B"
-
     )
 
-
     empates = sum(
-
         1
-
         for jogador
         in jogadores
-
         if jogador.get(
             "vencedor"
         ) == "EMPATE"
-
     )
 
-
     calibrados = sum(
-
         1
-
         for jogador
         in jogadores
-
         if jogador.get(
             "calibracaoAplicada"
         )
-
     )
 
-
     return {
-
         "amostras":
             len(
                 jogadores
@@ -1560,7 +1668,6 @@ def resumir_comparacoes(
                     jogadores
                 )
             )
-
     }
 
 
@@ -1574,7 +1681,6 @@ def resumir_por_posicao(
 
     resultado = {}
 
-
     for posicao in POSICOES:
 
         selecionados = [
@@ -1587,51 +1693,51 @@ def resumir_por_posicao(
             if jogador.get(
                 "posicao"
             ) == posicao
-
         ]
-
 
         resumo = resumir_comparacoes(
             selecionados
         )
 
-
-        if resumo.get(
-            "maeB",
-            0
-        ) < resumo.get(
-            "maeA",
-            0
+        if (
+            resumo.get(
+                "maeB",
+                0
+            )
+            <
+            resumo.get(
+                "maeA",
+                0
+            )
         ):
 
             vencedor = "B"
 
-
-        elif resumo.get(
-            "maeA",
-            0
-        ) < resumo.get(
-            "maeB",
-            0
+        elif (
+            resumo.get(
+                "maeA",
+                0
+            )
+            <
+            resumo.get(
+                "maeB",
+                0
+            )
         ):
 
             vencedor = "A"
-
 
         else:
 
             vencedor = "EMPATE"
 
-
         resumo[
             "vencedor"
         ] = vencedor
 
-
         resultado[
             posicao
         ] = resumo
-
 
     return resultado
 
@@ -1644,8 +1750,7 @@ def resumir_por_estrategia(
     jogadores
 ):
 
-    estrategias = {}
-
+    grupos = {}
 
     for jogador in jogadores:
 
@@ -1653,74 +1758,66 @@ def resumir_por_estrategia(
             "_estrategia"
         )
 
-
         if not estrategia:
             continue
 
-
-        if estrategia not in estrategias:
-
-            estrategias[
-                estrategia
-            ] = []
-
-
-        estrategias[
-            estrategia
-        ].append(
+        grupos.setdefault(
+            estrategia,
+            []
+        ).append(
             jogador
         )
 
-
     resultado = {}
-
 
     for (
         nome,
         registros
-    ) in estrategias.items():
+    ) in grupos.items():
 
         resumo = resumir_comparacoes(
             registros
         )
 
-
-        if resumo.get(
-            "maeB",
-            0
-        ) < resumo.get(
-            "maeA",
-            0
+        if (
+            resumo.get(
+                "maeB",
+                0
+            )
+            <
+            resumo.get(
+                "maeA",
+                0
+            )
         ):
 
             vencedor = "B"
 
-
-        elif resumo.get(
-            "maeA",
-            0
-        ) < resumo.get(
-            "maeB",
-            0
+        elif (
+            resumo.get(
+                "maeA",
+                0
+            )
+            <
+            resumo.get(
+                "maeB",
+                0
+            )
         ):
 
             vencedor = "A"
-
 
         else:
 
             vencedor = "EMPATE"
 
-
         resumo[
             "vencedor"
         ] = vencedor
 
-
         resultado[
             nome
         ] = resumo
-
 
     return resultado
 
@@ -1740,28 +1837,20 @@ def avaliar_promocao(
 
     criterios = []
 
-
     melhora_percentual = numero(
-
         resumo_global.get(
             "melhoraPercentual"
         ),
-
         0
-
     )
-
 
     criterio_mae = (
-
-        melhora_percentual >=
+        melhora_percentual
+        >=
         MELHORA_MINIMA_PERCENTUAL
-
     )
 
-
     criterios.append({
-
         "criterio":
             "melhora_mae_global",
 
@@ -1775,16 +1864,8 @@ def avaliar_promocao(
             ),
 
         "minimo":
-            MELHORA_MINIMA_PERCENTUAL,
-
-        "descricao":
-            (
-                "Modelo B deve reduzir o MAE global "
-                "em percentual mínimo definido."
-            )
-
+            MELHORA_MINIMA_PERCENTUAL
     })
-
 
     posicoes_piores = [
 
@@ -1800,27 +1881,22 @@ def avaliar_promocao(
                 "amostras",
                 0
             ) > 0
-
-            and dados.get(
+            and
+            dados.get(
                 "vencedor"
             ) == "A"
         )
-
     ]
 
-
     criterio_posicoes = (
-
         len(
             posicoes_piores
         )
-        <= MAX_POSICOES_PIORES
-
+        <=
+        MAX_POSICOES_PIORES
     )
 
-
     criterios.append({
-
         "criterio":
             "limite_posicoes_piores",
 
@@ -1836,36 +1912,21 @@ def avaliar_promocao(
             ),
 
         "maximo":
-            MAX_POSICOES_PIORES,
-
-        "descricao":
-            (
-                "Modelo B não pode deteriorar "
-                "muitas posições simultaneamente."
-            )
-
+            MAX_POSICOES_PIORES
     })
 
-
     taxa_vitorias_b = percentual(
-
         vitorias_rodada_b,
-
         rodadas_avaliaveis
-
     )
-
 
     criterio_rodadas = (
-
-        taxa_vitorias_b >=
+        taxa_vitorias_b
+        >=
         TAXA_MINIMA_VITORIAS_B
-
     )
 
-
     criterios.append({
-
         "criterio":
             "vitorias_por_rodada",
 
@@ -1885,27 +1946,16 @@ def avaliar_promocao(
             taxa_vitorias_b,
 
         "minimo":
-            TAXA_MINIMA_VITORIAS_B,
-
-        "descricao":
-            (
-                "Modelo B precisa vencer um percentual "
-                "mínimo das rodadas avaliadas."
-            )
-
+            TAXA_MINIMA_VITORIAS_B
     })
 
-
     criterio_amostra = (
-
-        rodadas_avaliaveis >=
+        rodadas_avaliaveis
+        >=
         MIN_RODADAS_AVALIAVEIS_PROMOCAO
-
     )
 
-
     criterios.append({
-
         "criterio":
             "amostra_minima",
 
@@ -1916,41 +1966,27 @@ def avaliar_promocao(
             rodadas_avaliaveis,
 
         "minimo":
-            MIN_RODADAS_AVALIAVEIS_PROMOCAO,
-
-        "descricao":
-            (
-                "Quantidade mínima de rodadas "
-                "necessária para considerar promoção."
-            )
-
+            MIN_RODADAS_AVALIAVEIS_PROMOCAO
     })
 
-
     aprovados = sum(
-
         1
-
         for criterio
         in criterios
-
         if criterio.get(
             "aprovado"
         )
-
     )
 
-
     promocao = (
-        aprovados ==
+        aprovados
+        ==
         len(
             criterios
         )
     )
 
-
     return {
-
         "promoverModeloB":
             promocao,
 
@@ -1968,15 +2004,12 @@ def avaliar_promocao(
         "decisao":
             (
                 "PROMOVER_CALIBRACAO"
-
                 if promocao
-
                 else "MANTER_MODELO_ATUAL"
             ),
 
         "alteracaoAutomatica":
             False
-
     }
 
 
@@ -1990,16 +2023,13 @@ def processar():
         ARQUIVO_SIMULACAO
     )
 
-
     analise = carregar_json(
         ARQUIVO_ANALISE
     )
 
-
     calibracao_referencia = carregar_json(
         ARQUIVO_CALIBRACAO_REFERENCIA
     )
-
 
     if not simulacao:
 
@@ -2012,12 +2042,9 @@ def processar():
             1
         )
 
-
-    rodadas = simulacao.get(
-        "rodadas",
-        []
+    rodadas = extrair_rodadas(
+        simulacao
     )
-
 
     if not rodadas:
 
@@ -2029,11 +2056,8 @@ def processar():
             1
         )
 
-
     rodadas = sorted(
-
         rodadas,
-
         key=lambda item:
             inteiro(
                 item.get(
@@ -2041,25 +2065,17 @@ def processar():
                 ),
                 0
             )
-
     )
-
 
     historico = criar_historico_vazio()
 
-
     resultados_rodadas = []
-
 
     todos_jogadores_avaliados = []
 
-
     vitorias_rodada_a = 0
-
     vitorias_rodada_b = 0
-
     empates_rodada = 0
-
 
     print(
         "===================================================="
@@ -2073,31 +2089,23 @@ def processar():
         "===================================================="
     )
 
-
     for rodada_dados in rodadas:
 
         rodada = inteiro(
-
             rodada_dados.get(
                 "rodada"
             ),
-
             0
-
         )
 
-
         if rodada <= 0:
-
             continue
 
-
         # =================================================
-        # CALIBRAÇÕES USANDO SOMENTE PASSADO
+        # CALIBRAÇÃO COM SOMENTE O PASSADO
         # =================================================
 
         calibracoes_rodada = {}
-
 
         for posicao in POSICOES:
 
@@ -2105,62 +2113,46 @@ def processar():
                 posicao
             ] = (
                 gerar_calibracao_progressiva(
-
                     historico[
                         posicao
                     ]
-
                 )
             )
-
 
         jogadores_rodada = []
 
-
         estrategias_rodada = []
 
+        estrategias = extrair_estrategias(
+            rodada_dados
+        )
 
         # =================================================
-        # AVALIAÇÃO DA RODADA ATUAL
+        # AVALIAÇÃO DA RODADA
         # =================================================
 
-        for estrategia in rodada_dados.get(
-            "estrategias",
-            []
-        ):
+        for estrategia in estrategias:
 
             nome_estrategia = (
-
-                estrategia.get(
-                    "nome"
+                obter_nome_estrategia(
+                    estrategia
                 )
-
-                or estrategia.get(
-                    "id"
-                )
-
-                or "Sem nome"
-
             )
-
 
             comparacoes_estrategia = []
 
+            jogadores = extrair_jogadores(
+                estrategia
+            )
 
-            for jogador in estrategia.get(
-                "jogadores",
-                []
-            ):
+            for jogador in jogadores:
 
-                posicao = jogador.get(
-                    "posicao"
+                posicao = obter_posicao(
+                    jogador
                 )
 
-
                 if posicao not in POSICOES:
-
                     continue
-
 
                 calibracao = (
                     calibracoes_rodada[
@@ -2168,37 +2160,32 @@ def processar():
                     ]
                 )
 
-
                 comparacao = comparar_jogador(
-
                     jogador,
-
                     calibracao
-
                 )
-
 
                 comparacao[
                     "_estrategia"
                 ] = nome_estrategia
 
-
                 comparacoes_estrategia.append(
                     comparacao
                 )
-
 
                 jogadores_rodada.append(
                     comparacao
                 )
 
-
-                if rodada != RODADA_COLD_START:
+                if (
+                    rodada
+                    !=
+                    RODADA_COLD_START
+                ):
 
                     todos_jogadores_avaliados.append(
                         comparacao
                     )
-
 
             resumo_estrategia = (
                 resumir_comparacoes(
@@ -2206,9 +2193,7 @@ def processar():
                 )
             )
 
-
             estrategias_rodada.append({
-
                 "nome":
                     nome_estrategia,
 
@@ -2217,14 +2202,11 @@ def processar():
 
                 "jogadores":
                     comparacoes_estrategia
-
             })
-
 
         resumo_rodada = resumir_comparacoes(
             jogadores_rodada
         )
-
 
         # =================================================
         # VENCEDOR DA RODADA
@@ -2239,7 +2221,6 @@ def processar():
                 0
             )
 
-
             mae_b = numero(
                 resumo_rodada.get(
                     "maeB"
@@ -2247,13 +2228,22 @@ def processar():
                 0
             )
 
+            if (
+                resumo_rodada.get(
+                    "amostras",
+                    0
+                ) == 0
+            ):
 
-            if mae_b < mae_a:
+                vencedor_rodada = (
+                    "SEM_DADOS"
+                )
+
+            elif mae_b < mae_a:
 
                 vencedor_rodada = "B"
 
                 vitorias_rodada_b += 1
-
 
             elif mae_a < mae_b:
 
@@ -2261,13 +2251,11 @@ def processar():
 
                 vitorias_rodada_a += 1
 
-
             else:
 
                 vencedor_rodada = "EMPATE"
 
                 empates_rodada += 1
-
 
         else:
 
@@ -2275,14 +2263,13 @@ def processar():
                 "COLD_START"
             )
 
-
         resultados_rodadas.append({
-
             "rodada":
                 rodada,
 
             "coldStart":
-                rodada ==
+                rodada
+                ==
                 RODADA_COLD_START,
 
             "dadosUtilizadosSomenteAteRodada":
@@ -2290,6 +2277,16 @@ def processar():
 
             "semVazamentoFuturo":
                 True,
+
+            "quantidadeEstrategias":
+                len(
+                    estrategias
+                ),
+
+            "quantidadeJogadores":
+                len(
+                    jogadores_rodada
+                ),
 
             "calibracoesUsadas":
                 calibracoes_rodada,
@@ -2302,12 +2299,12 @@ def processar():
 
             "estrategias":
                 estrategias_rodada
-
         })
-
 
         print(
             f"Rodada {rodada:02d} | "
+            f"Amostras: "
+            f"{resumo_rodada.get('amostras', 0)} | "
             f"MAE A: "
             f"{resumo_rodada.get('maeA', 0)} | "
             f"MAE B: "
@@ -2318,67 +2315,42 @@ def processar():
             f"{vencedor_rodada}"
         )
 
-
         # =================================================
-        # SOMENTE APÓS AVALIAR A RODADA,
-        # ADICIONAMOS SEUS RESULTADOS AO HISTÓRICO.
+        # SOMENTE DEPOIS DA AVALIAÇÃO,
+        # A RODADA ENTRA NO HISTÓRICO.
         # =================================================
 
-        for estrategia in rodada_dados.get(
-            "estrategias",
-            []
-        ):
+        for estrategia in estrategias:
 
             nome_estrategia = (
-
-                estrategia.get(
-                    "nome"
+                obter_nome_estrategia(
+                    estrategia
                 )
-
-                or estrategia.get(
-                    "id"
-                )
-
-                or "Sem nome"
-
             )
 
-
-            for jogador in estrategia.get(
-                "jogadores",
-                []
+            for jogador in extrair_jogadores(
+                estrategia
             ):
 
-                posicao = jogador.get(
-                    "posicao"
+                posicao = obter_posicao(
+                    jogador
                 )
-
 
                 if posicao not in POSICOES:
-
                     continue
 
-
                 adicionar_observacao(
-
                     historico,
-
                     posicao,
-
-                    jogador.get(
-                        "projecao"
+                    obter_projecao(
+                        jogador
                     ),
-
-                    jogador.get(
-                        "pontos"
+                    obter_pontuacao_real(
+                        jogador
                     ),
-
                     rodada,
-
                     nome_estrategia
-
                 )
-
 
     # =====================================================
     # RESULTADOS GLOBAIS
@@ -2388,11 +2360,9 @@ def processar():
         todos_jogadores_avaliados
     )
 
-
     resumo_posicoes = resumir_por_posicao(
         todos_jogadores_avaliados
     )
-
 
     resumo_estrategias = (
         resumir_por_estrategia(
@@ -2400,39 +2370,24 @@ def processar():
         )
     )
 
-
     rodadas_avaliaveis = (
-
-        vitorias_rodada_a +
-        vitorias_rodada_b +
+        vitorias_rodada_a
+        +
+        vitorias_rodada_b
+        +
         empates_rodada
-
     )
-
 
     promocao = avaliar_promocao(
-
         resumo_global,
-
         resumo_posicoes,
-
         rodadas_avaliaveis,
-
         vitorias_rodada_a,
-
         vitorias_rodada_b,
-
         empates_rodada
-
     )
 
-
-    # =====================================================
-    # DIFERENÇA DE VIÉS
-    # =====================================================
-
     reducao_vies = (
-
         abs(
             numero(
                 resumo_global.get(
@@ -2441,9 +2396,7 @@ def processar():
                 0
             )
         )
-
         -
-
         abs(
             numero(
                 resumo_global.get(
@@ -2452,28 +2405,24 @@ def processar():
                 0
             )
         )
-
     )
-
 
     # =====================================================
     # RESULTADO FINAL
     # =====================================================
 
     resultado = {
-
         "modelo":
-            "backtest_ab_calibracao_v1",
+            "backtest_ab_calibracao_v2",
 
         "descricao":
             (
                 "Backtest A/B progressivo e sem "
                 "vazamento futuro da calibração "
-                "de projeções por posição"
+                "de projeções por posição."
             ),
 
         "modelos": {
-
             "A":
                 "projecao_historica_original",
 
@@ -2482,11 +2431,9 @@ def processar():
                     "projecao_historica_com_calibracao_"
                     "progressiva_por_posicao"
                 )
-
         },
 
         "metodologia": {
-
             "progressivo":
                 True,
 
@@ -2508,11 +2455,28 @@ def processar():
 
             "amostraMinimaPosicao":
                 AMOSTRA_MINIMA_POSICAO
+        },
 
+        "compatibilidadeDados": {
+            "jogadoresAceitos": [
+                "jogadores",
+                "titulares",
+                "atletas"
+            ],
+
+            "campoRealPrioritario":
+                "pontuacaoReal",
+
+            "camposReaisAlternativos": [
+                "pontuacao_real",
+                "pontos",
+                "pontuacao",
+                "real",
+                "scoreReal"
+            ]
         },
 
         "calibracaoGlobalReferencia": {
-
             "arquivoDisponivel":
                 bool(
                     calibracao_referencia
@@ -2523,12 +2487,10 @@ def processar():
 
             "motivo":
                 (
-                    "A calibração global usa todo o "
-                    "histórico e não pode ser aplicada "
-                    "retroativamente sem causar "
-                    "data leakage."
+                    "A calibração de referência usa todo "
+                    "o histórico e não pode ser aplicada "
+                    "retroativamente sem causar data leakage."
                 )
-
         },
 
         "analiseHistoricaDisponivel":
@@ -2543,6 +2505,11 @@ def processar():
 
         "quantidadeRodadasAvaliaveis":
             rodadas_avaliaveis,
+
+        "quantidadeJogadoresAvaliados":
+            len(
+                todos_jogadores_avaliados
+            ),
 
         "resumoGlobal":
             resumo_global,
@@ -2559,7 +2526,6 @@ def processar():
             resumo_estrategias,
 
         "rodadas": {
-
             "vitoriasA":
                 vitorias_rodada_a,
 
@@ -2580,7 +2546,6 @@ def processar():
                     vitorias_rodada_b,
                     rodadas_avaliaveis
                 )
-
         },
 
         "decisaoPromocao":
@@ -2590,7 +2555,6 @@ def processar():
             resultados_rodadas,
 
         "seguranca": {
-
             "modeloOficialAlterado":
                 False,
 
@@ -2602,17 +2566,13 @@ def processar():
 
             "necessitaValidacaoHumana":
                 True
-
         }
-
     }
-
 
     salvar_json(
         ARQUIVO_SAIDA,
         resultado
     )
-
 
     # =====================================================
     # LOG RESUMIDO
@@ -2632,23 +2592,23 @@ def processar():
         "===================================================="
     )
 
-
-    print()
-
-
     print(
         "Rodadas avaliáveis:",
         rodadas_avaliaveis
     )
 
+    print(
+        "Jogadores avaliados:",
+        len(
+            todos_jogadores_avaliados
+        )
+    )
 
     print()
-
 
     print(
         "MODELO A - ORIGINAL"
     )
-
 
     print(
         "  MAE:",
@@ -2657,7 +2617,6 @@ def processar():
         )
     )
 
-
     print(
         "  Viés:",
         resumo_global.get(
@@ -2665,14 +2624,11 @@ def processar():
         )
     )
 
-
     print()
-
 
     print(
         "MODELO B - CALIBRADO"
     )
-
 
     print(
         "  MAE:",
@@ -2681,7 +2637,6 @@ def processar():
         )
     )
 
-
     print(
         "  Viés:",
         resumo_global.get(
@@ -2689,9 +2644,7 @@ def processar():
         )
     )
 
-
     print()
-
 
     print(
         "Melhora absoluta:",
@@ -2699,7 +2652,6 @@ def processar():
             "melhoraAbsoluta"
         )
     )
-
 
     print(
         "Melhora percentual:",
@@ -2709,7 +2661,6 @@ def processar():
         "%"
     )
 
-
     print(
         "Redução absoluta do viés:",
         arredondar(
@@ -2717,32 +2668,26 @@ def processar():
         )
     )
 
-
     print()
-
 
     print(
         "===== RESULTADO POR RODADA ====="
     )
-
 
     print(
         "Vitórias A:",
         vitorias_rodada_a
     )
 
-
     print(
         "Vitórias B:",
         vitorias_rodada_b
     )
 
-
     print(
         "Empates:",
         empates_rodada
     )
-
 
     print(
         "Taxa de vitórias B:",
@@ -2753,14 +2698,11 @@ def processar():
         "%"
     )
 
-
     print()
-
 
     print(
         "===== RESULTADO POR POSIÇÃO ====="
     )
-
 
     for posicao in POSICOES:
 
@@ -2769,9 +2711,9 @@ def processar():
             {}
         )
 
-
         print(
             f"{posicao} | "
+            f"Amostras: {dados.get('amostras', 0)} | "
             f"A: {dados.get('maeA', 0)} | "
             f"B: {dados.get('maeB', 0)} | "
             f"Melhora: "
@@ -2780,14 +2722,11 @@ def processar():
             f"{dados.get('vencedor')}"
         )
 
-
     print()
-
 
     print(
         "===== RESULTADO POR ESTRATÉGIA ====="
     )
-
 
     for (
         nome,
@@ -2796,6 +2735,7 @@ def processar():
 
         print(
             f"{nome} | "
+            f"Amostras: {dados.get('amostras', 0)} | "
             f"A: {dados.get('maeA', 0)} | "
             f"B: {dados.get('maeB', 0)} | "
             f"Melhora: "
@@ -2804,14 +2744,11 @@ def processar():
             f"{dados.get('vencedor')}"
         )
 
-
     print()
-
 
     print(
         "===== CRITÉRIOS DE PROMOÇÃO ====="
     )
-
 
     for criterio in promocao.get(
         "criterios",
@@ -2819,26 +2756,19 @@ def processar():
     ):
 
         simbolo = (
-
             "OK"
-
             if criterio.get(
                 "aprovado"
             )
-
             else "FALHOU"
-
         )
-
 
         print(
             f"[{simbolo}] "
             f"{criterio.get('criterio')}"
         )
 
-
     print()
-
 
     print(
         "DECISÃO:",
@@ -2847,25 +2777,19 @@ def processar():
         )
     )
 
-
     print(
-        "Promoção automática:",
-        "NÃO"
+        "Promoção automática: NÃO"
     )
 
-
     print()
-
 
     print(
         "Arquivo:"
     )
 
-
     print(
         ARQUIVO_SAIDA
     )
-
 
     print(
         "===================================================="
