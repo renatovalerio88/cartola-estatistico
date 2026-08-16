@@ -4,7 +4,7 @@ CARTOLA ESTATÍSTICO
 Análise Científica das Estratégias de Escalação
 
 Versão:
-analise_estrategias_escalacao_v1
+analise_estrategias_escalacao_v2
 
 Entradas:
 data/ranking-simulacao.json
@@ -15,29 +15,32 @@ Saída:
 data/analise-estrategias-escalacao.json
 
 Objetivo:
-Determinar se existe evidência histórica suficiente para
-considerar uma estratégia de escalação superior às demais.
-
-Estratégias avaliadas:
+Avaliar cientificamente as estratégias históricas:
 
 - Conservador
 - Equilibrado
 - Agressivo
 
-A análise NÃO altera automaticamente o modelo oficial.
+e separar claramente:
 
-Critérios:
-
-1. auditoria científica aprovada;
-2. quantidade mínima de rodadas;
-3. pontuação média;
-4. mediana;
+1. líder por score global;
+2. líder por média de pontos;
+3. líder por mediana;
+4. líder por número de vitórias;
 5. consistência;
-6. taxa de vitórias;
-7. cobertura;
-8. vantagem sobre a segunda colocada;
-9. estabilidade da vantagem;
-10. desempenho recente.
+6. estabilidade;
+7. desempenho recente.
+
+Regra científica:
+
+Uma estratégia NÃO pode ser candidata à promoção apenas
+porque lidera um score composto.
+
+Para promoção, o líder do score global também precisa
+liderar a média de pontos reais, além de cumprir os demais
+critérios estatísticos.
+
+A análise NÃO altera automaticamente o modelo oficial.
 
 =========================================================
 """
@@ -88,9 +91,11 @@ ARQUIVO_SAIDA = (
 
 
 ESTRATEGIAS_ESPERADAS = {
+
     "Conservador",
     "Equilibrado",
     "Agressivo"
+
 }
 
 
@@ -108,7 +113,13 @@ MINIMO_COBERTURA = 90.0
 
 MINIMO_ESTABILIDADE = 55.0
 
+MINIMO_CONSISTENCIA = 45.0
+
+MINIMO_SCORE_CONFIANCA = 65.0
+
 JANELA_RECENTE = 5
+
+TOLERANCIA_EMPATE = 0.001
 
 
 # ======================================================
@@ -138,8 +149,10 @@ def carregar_json(
     except Exception as erro:
 
         print(
+
             f"[ERRO] Falha ao ler "
             f"{caminho}: {erro}"
+
         )
 
         return None
@@ -220,8 +233,21 @@ def percentual(
     ) * 100
 
 
+def arredondar(
+    valor,
+    casas=2
+):
+
+    return round(
+        numero(
+            valor
+        ),
+        casas
+    )
+
+
 # ======================================================
-# RESULTADOS POR ESTRATÉGIA
+# HISTÓRICO POR ESTRATÉGIA
 # ======================================================
 
 def coletar_historico(
@@ -307,19 +333,21 @@ def coletar_historico(
         historico[
             nome
         ].sort(
+
             key=lambda item:
                 numero(
                     item.get(
                         "rodada"
                     )
                 )
+
         )
 
     return historico
 
 
 # ======================================================
-# RESULTADO DAS DISPUTAS POR RODADA
+# DISPUTAS POR RODADA
 # ======================================================
 
 def calcular_disputas(
@@ -399,10 +427,13 @@ def calcular_disputas(
             continue
 
         maior = max(
+
             item[
                 "pontos"
             ]
+
             for item in valores
+
         )
 
         vencedores = [
@@ -414,11 +445,13 @@ def calcular_disputas(
             for item in valores
 
             if abs(
+
                 item[
                     "pontos"
                 ] -
                 maior
-            ) < 0.001
+
+            ) <= TOLERANCIA_EMPATE
 
         ]
 
@@ -428,9 +461,15 @@ def calcular_disputas(
                 "nome"
             ]
 
-            if len(
-                vencedores
-            ) > 1 and nome in vencedores:
+            if (
+                len(
+                    vencedores
+                ) > 1
+
+                and
+
+                nome in vencedores
+            ):
 
                 resultado[
                     nome
@@ -491,11 +530,15 @@ def analisar_recente(
         ] = {
 
             "rodadas":
+
                 [
+
                     item.get(
                         "rodada"
                     )
+
                     for item in recentes
+
                 ],
 
             "quantidade":
@@ -504,31 +547,36 @@ def analisar_recente(
                 ),
 
             "media":
-                round(
+                arredondar(
+
                     mean(
                         pontos
-                    ),
-                    2
-                )
-                if pontos
-                else 0,
+                    )
+
+                    if pontos
+
+                    else 0
+
+                ),
 
             "mediana":
-                round(
+                arredondar(
+
                     median(
                         pontos
-                    ),
-                    2
-                )
-                if pontos
-                else 0,
+                    )
+
+                    if pontos
+
+                    else 0
+
+                ),
 
             "total":
-                round(
+                arredondar(
                     sum(
                         pontos
-                    ),
-                    2
+                    )
                 )
 
         }
@@ -537,12 +585,12 @@ def analisar_recente(
 
 
 # ======================================================
-# ESTABILIDADE DA LIDERANÇA
+# ESTABILIDADE DE UMA ESTRATÉGIA
 # ======================================================
 
 def calcular_estabilidade(
     simulacao,
-    lider
+    estrategia_analisada
 ):
 
     comparacoes = 0
@@ -550,6 +598,8 @@ def calcular_estabilidade(
     superior = 0
 
     empatou = 0
+
+    inferior = 0
 
     margens = []
 
@@ -582,7 +632,7 @@ def calcular_estabilidade(
 
         }
 
-        if lider not in pontos:
+        if estrategia_analisada not in pontos:
 
             continue
 
@@ -592,7 +642,7 @@ def calcular_estabilidade(
 
             for nome, valor in pontos.items()
 
-            if nome != lider
+            if nome != estrategia_analisada
 
         ]
 
@@ -605,10 +655,13 @@ def calcular_estabilidade(
         )
 
         margem = (
+
             pontos[
-                lider
-            ] -
+                estrategia_analisada
+            ]
+            -
             melhor_adversario
+
         )
 
         margens.append(
@@ -617,15 +670,19 @@ def calcular_estabilidade(
 
         comparacoes += 1
 
-        if margem > 0.001:
+        if margem > TOLERANCIA_EMPATE:
 
             superior += 1
 
         elif abs(
             margem
-        ) <= 0.001:
+        ) <= TOLERANCIA_EMPATE:
 
             empatou += 1
+
+        else:
+
+            inferior += 1
 
     taxa_superioridade = percentual(
         superior,
@@ -651,6 +708,9 @@ def calcular_estabilidade(
 
     return {
 
+        "estrategia":
+            estrategia_analisada,
+
         "comparacoes":
             comparacoes,
 
@@ -660,29 +720,648 @@ def calcular_estabilidade(
         "rodadasEmpatado":
             empatou,
 
+        "rodadasInferior":
+            inferior,
+
         "taxaSuperioridadePercentual":
-            round(
-                taxa_superioridade,
-                2
+            arredondar(
+                taxa_superioridade
             ),
 
         "taxaNaoDerrotaPercentual":
-            round(
-                taxa_nao_derrota,
-                2
+            arredondar(
+                taxa_nao_derrota
             ),
 
         "margemMediaContraMelhorAdversario":
-            round(
-                margem_media,
-                2
+            arredondar(
+                margem_media
             )
 
     }
 
 
 # ======================================================
-# COMPARAÇÃO DO PRIMEIRO COM O SEGUNDO
+# MAPA DO RANKING
+# ======================================================
+
+def criar_mapa_ranking(
+    ranking_lista
+):
+
+    return {
+
+        item.get(
+            "nome"
+        ):
+            item
+
+        for item in ranking_lista
+
+        if item.get(
+            "nome"
+        )
+
+    }
+
+
+# ======================================================
+# LÍDERES POR CRITÉRIO
+# ======================================================
+
+def obter_lider_por_campo(
+    ranking_lista,
+    campo,
+    maior_melhor=True
+):
+
+    candidatos = [
+
+        item
+
+        for item in ranking_lista
+
+        if item.get(
+            "nome"
+        )
+
+    ]
+
+    if not candidatos:
+
+        return None
+
+    if maior_melhor:
+
+        return max(
+
+            candidatos,
+
+            key=lambda item:
+                numero(
+                    item.get(
+                        campo
+                    )
+                )
+
+        )
+
+    return min(
+
+        candidatos,
+
+        key=lambda item:
+            numero(
+                item.get(
+                    campo
+                )
+            )
+
+    )
+
+
+def identificar_lideres(
+    ranking_lista
+):
+
+    lider_score = (
+        ranking_lista[
+            0
+        ]
+        if ranking_lista
+        else None
+    )
+
+    lider_media = obter_lider_por_campo(
+        ranking_lista,
+        "mediaPontos"
+    )
+
+    lider_mediana = obter_lider_por_campo(
+        ranking_lista,
+        "medianaPontos"
+    )
+
+    lider_vitorias = obter_lider_por_campo(
+        ranking_lista,
+        "vitorias"
+    )
+
+    lider_consistencia = obter_lider_por_campo(
+        ranking_lista,
+        "consistencia"
+    )
+
+    menor_mae = obter_lider_por_campo(
+        ranking_lista,
+        "maeMedioJogadores",
+        maior_melhor=False
+    )
+
+    return {
+
+        "scoreGlobal":
+            lider_score,
+
+        "mediaPontos":
+            lider_media,
+
+        "medianaPontos":
+            lider_mediana,
+
+        "vitorias":
+            lider_vitorias,
+
+        "consistencia":
+            lider_consistencia,
+
+        "menorMae":
+            menor_mae
+
+    }
+
+
+# ======================================================
+# RESUMO DE UM LÍDER
+# ======================================================
+
+def resumir_item_ranking(
+    item
+):
+
+    if not item:
+
+        return None
+
+    return {
+
+        "nome":
+            item.get(
+                "nome"
+            ),
+
+        "posicaoRanking":
+            item.get(
+                "posicao"
+            ),
+
+        "mediaPontos":
+            arredondar(
+                item.get(
+                    "mediaPontos"
+                )
+            ),
+
+        "medianaPontos":
+            arredondar(
+                item.get(
+                    "medianaPontos"
+                )
+            ),
+
+        "pontosTotal":
+            arredondar(
+                item.get(
+                    "pontosTotal"
+                )
+            ),
+
+        "vitorias":
+            int(
+                numero(
+                    item.get(
+                        "vitorias"
+                    )
+                )
+            ),
+
+        "taxaVitorias":
+            arredondar(
+                item.get(
+                    "taxaVitorias"
+                )
+            ),
+
+        "consistencia":
+            arredondar(
+                item.get(
+                    "consistencia"
+                )
+            ),
+
+        "maeMedioJogadores":
+            arredondar(
+                item.get(
+                    "maeMedioJogadores"
+                ),
+                3
+            ),
+
+        "scoreGlobal":
+            arredondar(
+                item.get(
+                    "scoreGlobal"
+                ),
+                3
+            )
+
+    }
+
+
+# ======================================================
+# DIAGNÓSTICO DE DIVERGÊNCIA
+# ======================================================
+
+def analisar_divergencia_lideres(
+    lideres
+):
+
+    lider_score = lideres.get(
+        "scoreGlobal"
+    )
+
+    lider_media = lideres.get(
+        "mediaPontos"
+    )
+
+    lider_mediana = lideres.get(
+        "medianaPontos"
+    )
+
+    nome_score = (
+
+        lider_score.get(
+            "nome"
+        )
+
+        if lider_score
+
+        else None
+
+    )
+
+    nome_media = (
+
+        lider_media.get(
+            "nome"
+        )
+
+        if lider_media
+
+        else None
+
+    )
+
+    nome_mediana = (
+
+        lider_mediana.get(
+            "nome"
+        )
+
+        if lider_mediana
+
+        else None
+
+    )
+
+    score_igual_media = (
+
+        nome_score is not None
+
+        and
+
+        nome_score == nome_media
+
+    )
+
+    score_igual_mediana = (
+
+        nome_score is not None
+
+        and
+
+        nome_score == nome_mediana
+
+    )
+
+    media_igual_mediana = (
+
+        nome_media is not None
+
+        and
+
+        nome_media == nome_mediana
+
+    )
+
+    divergencia_critica = (
+        not score_igual_media
+    )
+
+    if divergencia_critica:
+
+        classificacao = (
+            "DIVERGENCIA_SCORE_MEDIA"
+        )
+
+        explicacao = (
+
+            f"O líder pelo score global "
+            f"({nome_score}) não é o líder "
+            f"pela média de pontos reais "
+            f"({nome_media})."
+
+        )
+
+    elif not score_igual_mediana:
+
+        classificacao = (
+            "DIVERGENCIA_SECUNDARIA"
+        )
+
+        explicacao = (
+
+            "O líder pelo score e pela média coincide, "
+            "mas existe divergência na mediana."
+
+        )
+
+    else:
+
+        classificacao = (
+            "LIDERANCA_CONSISTENTE"
+        )
+
+        explicacao = (
+
+            "O líder pelo score global também lidera "
+            "os principais indicadores de pontuação."
+
+        )
+
+    return {
+
+        "liderScore":
+            nome_score,
+
+        "liderMedia":
+            nome_media,
+
+        "liderMediana":
+            nome_mediana,
+
+        "scoreIgualMedia":
+            score_igual_media,
+
+        "scoreIgualMediana":
+            score_igual_mediana,
+
+        "mediaIgualMediana":
+            media_igual_mediana,
+
+        "divergenciaCritica":
+            divergencia_critica,
+
+        "classificacao":
+            classificacao,
+
+        "explicacao":
+            explicacao
+
+    }
+
+
+# ======================================================
+# COMPARAÇÃO DO LÍDER DE SCORE COM MELHOR MÉDIA
+# ======================================================
+
+def comparar_score_com_media(
+    lider_score,
+    lider_media
+):
+
+    if (
+        not lider_score
+        or
+        not lider_media
+    ):
+
+        return None
+
+    media_score = numero(
+        lider_score.get(
+            "mediaPontos"
+        )
+    )
+
+    media_lider = numero(
+        lider_media.get(
+            "mediaPontos"
+        )
+    )
+
+    diferenca = (
+        media_score -
+        media_lider
+    )
+
+    diferenca_percentual = percentual(
+        diferenca,
+        media_lider
+    )
+
+    score_score = numero(
+        lider_score.get(
+            "scoreGlobal"
+        )
+    )
+
+    score_media = numero(
+        lider_media.get(
+            "scoreGlobal"
+        )
+    )
+
+    return {
+
+        "liderScore":
+            lider_score.get(
+                "nome"
+            ),
+
+        "liderMedia":
+            lider_media.get(
+                "nome"
+            ),
+
+        "mediaLiderScore":
+            arredondar(
+                media_score
+            ),
+
+        "melhorMediaReal":
+            arredondar(
+                media_lider
+            ),
+
+        "diferencaMedia":
+            arredondar(
+                diferenca
+            ),
+
+        "diferencaMediaPercentual":
+            arredondar(
+                diferenca_percentual
+            ),
+
+        "scoreGlobalLiderScore":
+            arredondar(
+                score_score,
+                3
+            ),
+
+        "scoreGlobalLiderMedia":
+            arredondar(
+                score_media,
+                3
+            ),
+
+        "diferencaScore":
+            arredondar(
+                score_score -
+                score_media,
+                3
+            ),
+
+        "mesmaEstrategia":
+            (
+                lider_score.get(
+                    "nome"
+                )
+                ==
+                lider_media.get(
+                    "nome"
+                )
+            )
+
+    }
+
+
+# ======================================================
+# SEGUNDO MELHOR POR MÉDIA
+# ======================================================
+
+def comparar_lider_media_com_segundo(
+    ranking_lista
+):
+
+    ordenado = sorted(
+
+        ranking_lista,
+
+        key=lambda item:
+            numero(
+                item.get(
+                    "mediaPontos"
+                )
+            ),
+
+        reverse=True
+
+    )
+
+    if len(
+        ordenado
+    ) < 2:
+
+        return None
+
+    primeiro = ordenado[
+        0
+    ]
+
+    segundo = ordenado[
+        1
+    ]
+
+    media_primeiro = numero(
+        primeiro.get(
+            "mediaPontos"
+        )
+    )
+
+    media_segundo = numero(
+        segundo.get(
+            "mediaPontos"
+        )
+    )
+
+    diferenca = (
+        media_primeiro -
+        media_segundo
+    )
+
+    diferenca_percentual = percentual(
+        diferenca,
+        media_segundo
+    )
+
+    return {
+
+        "lider":
+            primeiro.get(
+                "nome"
+            ),
+
+        "segundo":
+            segundo.get(
+                "nome"
+            ),
+
+        "mediaLider":
+            arredondar(
+                media_primeiro
+            ),
+
+        "mediaSegundo":
+            arredondar(
+                media_segundo
+            ),
+
+        "vantagemMedia":
+            arredondar(
+                diferenca
+            ),
+
+        "vantagemMediaPercentual":
+            arredondar(
+                diferenca_percentual
+            ),
+
+        "scoreLider":
+            arredondar(
+                primeiro.get(
+                    "scoreGlobal"
+                ),
+                3
+            ),
+
+        "scoreSegundo":
+            arredondar(
+                segundo.get(
+                    "scoreGlobal"
+                ),
+                3
+            )
+
+    }
+
+
+# ======================================================
+# COMPARAÇÃO PRIMEIRO × SEGUNDO DO SCORE
+#
+# Mantida por compatibilidade com os relatórios já
+# existentes.
 # ======================================================
 
 def comparar_lideres(
@@ -744,6 +1423,9 @@ def comparar_lideres(
 
     return {
 
+        "criterio":
+            "scoreGlobal",
+
         "lider":
             primeiro.get(
                 "nome"
@@ -755,43 +1437,39 @@ def comparar_lideres(
             ),
 
         "mediaLider":
-            round(
-                media_primeiro,
-                2
+            arredondar(
+                media_primeiro
             ),
 
         "mediaSegundo":
-            round(
-                media_segundo,
-                2
+            arredondar(
+                media_segundo
             ),
 
         "vantagemMedia":
-            round(
-                diferenca,
-                2
+            arredondar(
+                diferenca
             ),
 
         "vantagemMediaPercentual":
-            round(
-                diferenca_percentual,
-                2
+            arredondar(
+                diferenca_percentual
             ),
 
         "scoreLider":
-            round(
+            arredondar(
                 score_primeiro,
                 3
             ),
 
         "scoreSegundo":
-            round(
+            arredondar(
                 score_segundo,
                 3
             ),
 
         "vantagemScore":
-            round(
+            arredondar(
                 score_primeiro -
                 score_segundo,
                 3
@@ -810,16 +1488,21 @@ def calcular_score_confianca(
     taxa_vitorias,
     estabilidade,
     vantagem_percentual,
+    consistencia,
+    lideranca_consistente,
     auditoria_aprovada
 ):
 
     score_amostra = min(
+
         100,
+
         (
             rodadas /
             MINIMO_RODADAS_PROMOCAO
         ) *
         100
+
     )
 
     score_cobertura = max(
@@ -846,25 +1529,53 @@ def calcular_score_confianca(
         )
     )
 
+    score_consistencia = max(
+        0,
+        min(
+            100,
+            consistencia
+        )
+    )
+
     score_vantagem = min(
+
         100,
+
         max(
+
             0,
+
             (
                 vantagem_percentual /
                 5
             ) *
             100
+
         )
+
+    )
+
+    score_lideranca = (
+        100
+        if lideranca_consistente
+        else 0
     )
 
     score = (
 
-          score_amostra * 0.20
-        + score_cobertura * 0.20
-        + score_vitorias * 0.20
-        + score_estabilidade * 0.25
+          score_amostra * 0.15
+
+        + score_cobertura * 0.15
+
+        + score_vitorias * 0.15
+
+        + score_estabilidade * 0.20
+
+        + score_consistencia * 0.10
+
         + score_vantagem * 0.15
+
+        + score_lideranca * 0.10
 
     )
 
@@ -872,10 +1583,161 @@ def calcular_score_confianca(
 
         score *= 0.50
 
-    return round(
-        score,
-        2
+    return arredondar(
+        score
     )
+
+
+# ======================================================
+# DIAGNÓSTICO COMPLETO DAS ESTRATÉGIAS
+# ======================================================
+
+def construir_diagnostico_estrategias(
+    ranking_lista,
+    disputas,
+    recente,
+    simulacao
+):
+
+    diagnostico = []
+
+    for item in ranking_lista:
+
+        nome = item.get(
+            "nome"
+        )
+
+        disputa = disputas.get(
+            nome,
+            {}
+        )
+
+        estabilidade = calcular_estabilidade(
+            simulacao,
+            nome
+        )
+
+        recente_item = recente.get(
+            nome,
+            {}
+        )
+
+        diagnostico.append({
+
+            "nome":
+                nome,
+
+            "posicaoScoreGlobal":
+                item.get(
+                    "posicao"
+                ),
+
+            "mediaPontos":
+                arredondar(
+                    item.get(
+                        "mediaPontos"
+                    )
+                ),
+
+            "medianaPontos":
+                arredondar(
+                    item.get(
+                        "medianaPontos"
+                    )
+                ),
+
+            "pontosTotal":
+                arredondar(
+                    item.get(
+                        "pontosTotal"
+                    )
+                ),
+
+            "scoreGlobal":
+                arredondar(
+                    item.get(
+                        "scoreGlobal"
+                    ),
+                    3
+                ),
+
+            "consistencia":
+                arredondar(
+                    item.get(
+                        "consistencia"
+                    )
+                ),
+
+            "maeMedioJogadores":
+                arredondar(
+                    item.get(
+                        "maeMedioJogadores"
+                    ),
+                    3
+                ),
+
+            "participacoes":
+                int(
+                    numero(
+                        disputa.get(
+                            "participacoes"
+                        )
+                    )
+                ),
+
+            "vitorias":
+                int(
+                    numero(
+                        disputa.get(
+                            "vitorias"
+                        )
+                    )
+                ),
+
+            "empates":
+                int(
+                    numero(
+                        disputa.get(
+                            "empates"
+                        )
+                    )
+                ),
+
+            "derrotas":
+                int(
+                    numero(
+                        disputa.get(
+                            "derrotas"
+                        )
+                    )
+                ),
+
+            "taxaVitorias":
+                arredondar(
+
+                    percentual(
+
+                        disputa.get(
+                            "vitorias"
+                        ),
+
+                        disputa.get(
+                            "participacoes"
+                        )
+
+                    )
+
+                ),
+
+            "estabilidade":
+                estabilidade,
+
+            "recente":
+                recente_item
+
+        })
+
+    return diagnostico
 
 
 # ======================================================
@@ -893,7 +1755,7 @@ def processar():
     )
 
     print(
-        "ANÁLISE DAS ESTRATÉGIAS DE ESCALAÇÃO"
+        "ANÁLISE DAS ESTRATÉGIAS DE ESCALAÇÃO V2"
     )
 
     print(
@@ -912,14 +1774,12 @@ def processar():
         ARQUIVO_SIMULACAO
     )
 
-
     if not isinstance(
         ranking,
         dict
     ):
 
         ranking = {}
-
 
     if not isinstance(
         auditoria,
@@ -928,7 +1788,6 @@ def processar():
 
         auditoria = {}
 
-
     if not isinstance(
         simulacao,
         dict
@@ -936,69 +1795,20 @@ def processar():
 
         simulacao = {}
 
-
-    historico = coletar_historico(
-        simulacao
-    )
-
-    disputas = calcular_disputas(
-        simulacao
-    )
-
-    recente = analisar_recente(
-        historico
-    )
-
-    comparacao = comparar_lideres(
-        ranking
-    )
-
-
     ranking_lista = ranking.get(
         "ranking",
         []
     )
 
+    if not isinstance(
+        ranking_lista,
+        list
+    ):
 
-    nomes_ranking = {
-
-        item.get(
-            "nome"
-        )
-
-        for item in ranking_lista
-
-        if item.get(
-            "nome"
-        )
-
-    }
-
-
-    auditoria_aprovada = bool(
-
-        auditoria.get(
-            "decisao",
-            {}
-        ).get(
-            "aprovada",
-            False
-        )
-
-    )
-
-
-    quantidade_rodadas = int(
-        numero(
-            ranking.get(
-                "quantidadeRodadas"
-            )
-        )
-    )
-
+        ranking_lista = []
 
     # ==================================================
-    # SEM DADOS SUFICIENTES
+    # SEM DADOS
     # ==================================================
 
     if not ranking_lista:
@@ -1006,7 +1816,7 @@ def processar():
         resultado = {
 
             "modelo":
-                "analise_estrategias_escalacao_v1",
+                "analise_estrategias_escalacao_v2",
 
             "descricao":
                 (
@@ -1026,6 +1836,9 @@ def processar():
                     None,
 
                 "promover":
+                    False,
+
+                "promocaoAutomatica":
                     False
 
             }
@@ -1047,118 +1860,267 @@ def processar():
 
         return
 
-
     # ==================================================
-    # LÍDER
+    # BASES
     # ==================================================
 
-    lider = ranking_lista[
-        0
-    ]
-
-    nome_lider = lider.get(
-        "nome"
+    historico = coletar_historico(
+        simulacao
     )
 
-
-    estabilidade = calcular_estabilidade(
-        simulacao,
-        nome_lider
+    disputas = calcular_disputas(
+        simulacao
     )
 
+    recente = analisar_recente(
+        historico
+    )
 
-    dados_disputa_lider = disputas.get(
-        nome_lider,
+    lideres = identificar_lideres(
+        ranking_lista
+    )
+
+    divergencia = analisar_divergencia_lideres(
+        lideres
+    )
+
+    comparacao_score = comparar_lideres(
+        ranking
+    )
+
+    comparacao_media = (
+        comparar_lider_media_com_segundo(
+            ranking_lista
+        )
+    )
+
+    comparacao_score_media = (
+        comparar_score_com_media(
+
+            lideres.get(
+                "scoreGlobal"
+            ),
+
+            lideres.get(
+                "mediaPontos"
+            )
+
+        )
+    )
+
+    diagnostico_estrategias = (
+        construir_diagnostico_estrategias(
+
+            ranking_lista,
+
+            disputas,
+
+            recente,
+
+            simulacao
+
+        )
+    )
+
+    nomes_ranking = {
+
+        item.get(
+            "nome"
+        )
+
+        for item in ranking_lista
+
+        if item.get(
+            "nome"
+        )
+
+    }
+
+    auditoria_aprovada = bool(
+
+        auditoria.get(
+            "decisao",
+            {}
+        ).get(
+            "aprovada",
+            False
+        )
+
+    )
+
+    quantidade_rodadas = int(
+
+        numero(
+
+            ranking.get(
+                "quantidadeRodadas"
+            )
+
+        )
+
+    )
+
+    # ==================================================
+    # LÍDER DO SCORE
+    # ==================================================
+
+    lider_score = lideres.get(
+        "scoreGlobal"
+    )
+
+    lider_media = lideres.get(
+        "mediaPontos"
+    )
+
+    nome_lider_score = (
+        lider_score.get(
+            "nome"
+        )
+        if lider_score
+        else None
+    )
+
+    nome_lider_media = (
+        lider_media.get(
+            "nome"
+        )
+        if lider_media
+        else None
+    )
+
+    dados_disputa_score = disputas.get(
+        nome_lider_score,
         {}
     )
 
+    participacoes_score = int(
 
-    participacoes = int(
         numero(
-            dados_disputa_lider.get(
+
+            dados_disputa_score.get(
                 "participacoes"
             )
+
         )
+
     )
 
+    vitorias_score = int(
 
-    vitorias = int(
         numero(
-            dados_disputa_lider.get(
+
+            dados_disputa_score.get(
                 "vitorias"
             )
-        )
-    )
 
-
-    taxa_vitorias = percentual(
-        vitorias,
-        participacoes
-    )
-
-
-    cobertura_lider = numero(
-        lider.get(
-            "coberturaMediaPercentual"
-        )
-    )
-
-
-    vantagem_media = (
-
-        numero(
-            comparacao.get(
-                "vantagemMedia"
-            )
         )
 
-        if comparacao
-
-        else 0
-
     )
 
-
-    vantagem_percentual = (
-
-        numero(
-            comparacao.get(
-                "vantagemMediaPercentual"
-            )
-        )
-
-        if comparacao
-
-        else 0
-
+    taxa_vitorias_score = percentual(
+        vitorias_score,
+        participacoes_score
     )
 
+    estabilidade_score = calcular_estabilidade(
+        simulacao,
+        nome_lider_score
+    )
 
-    taxa_estabilidade = numero(
+    taxa_estabilidade_score = numero(
 
-        estabilidade.get(
+        estabilidade_score.get(
             "taxaSuperioridadePercentual"
         )
 
     )
 
+    cobertura_score = numero(
+
+        lider_score.get(
+            "coberturaMediaPercentual"
+        )
+
+        if lider_score
+
+        else 0
+
+    )
+
+    consistencia_score = numero(
+
+        lider_score.get(
+            "consistencia"
+        )
+
+        if lider_score
+
+        else 0
+
+    )
+
+    # ==================================================
+    # VANTAGEM REAL DO LÍDER DE MÉDIA
+    # ==================================================
+
+    vantagem_media_real = (
+
+        numero(
+            comparacao_media.get(
+                "vantagemMedia"
+            )
+        )
+
+        if comparacao_media
+
+        else 0
+
+    )
+
+    vantagem_percentual_real = (
+
+        numero(
+            comparacao_media.get(
+                "vantagemMediaPercentual"
+            )
+        )
+
+        if comparacao_media
+
+        else 0
+
+    )
+
+    lideranca_consistente = (
+        not divergencia.get(
+            "divergenciaCritica",
+            True
+        )
+    )
+
+    # ==================================================
+    # SCORE DE CONFIANÇA
+    # ==================================================
 
     score_confianca = calcular_score_confianca(
 
         quantidade_rodadas,
 
-        cobertura_lider,
+        cobertura_score,
 
-        taxa_vitorias,
+        taxa_vitorias_score,
 
-        taxa_estabilidade,
+        taxa_estabilidade_score,
 
-        vantagem_percentual,
+        vantagem_percentual_real,
+
+        consistencia_score,
+
+        lideranca_consistente,
 
         auditoria_aprovada
 
     )
-
 
     # ==================================================
     # CRITÉRIOS
@@ -1170,39 +2132,83 @@ def processar():
             auditoria_aprovada,
 
         "tresEstrategiasPresentes":
-            nomes_ranking ==
-            ESTRATEGIAS_ESPERADAS,
+            (
+                nomes_ranking
+                ==
+                ESTRATEGIAS_ESPERADAS
+            ),
 
         "amostraMinimaAnalise":
-            quantidade_rodadas >=
-            MINIMO_RODADAS_ANALISE,
+            (
+                quantidade_rodadas
+                >=
+                MINIMO_RODADAS_ANALISE
+            ),
 
         "amostraMinimaPromocao":
-            quantidade_rodadas >=
-            MINIMO_RODADAS_PROMOCAO,
+            (
+                quantidade_rodadas
+                >=
+                MINIMO_RODADAS_PROMOCAO
+            ),
 
         "coberturaMinima":
-            cobertura_lider >=
-            MINIMO_COBERTURA,
+            (
+                cobertura_score
+                >=
+                MINIMO_COBERTURA
+            ),
+
+        "liderScoreTambemLiderMedia":
+            (
+                nome_lider_score
+                ==
+                nome_lider_media
+            ),
 
         "vantagemMediaMinima":
-            vantagem_media >=
-            MINIMO_VANTAGEM_MEDIA,
+            (
+                vantagem_media_real
+                >=
+                MINIMO_VANTAGEM_MEDIA
+            ),
 
         "vantagemPercentualMinima":
-            vantagem_percentual >=
-            MINIMO_VANTAGEM_PERCENTUAL,
+            (
+                vantagem_percentual_real
+                >=
+                MINIMO_VANTAGEM_PERCENTUAL
+            ),
 
         "taxaVitoriasMinima":
-            taxa_vitorias >=
-            MINIMO_TAXA_VITORIAS,
+            (
+                taxa_vitorias_score
+                >=
+                MINIMO_TAXA_VITORIAS
+            ),
 
         "estabilidadeMinima":
-            taxa_estabilidade >=
-            MINIMO_ESTABILIDADE
+            (
+                taxa_estabilidade_score
+                >=
+                MINIMO_ESTABILIDADE
+            ),
+
+        "consistenciaMinima":
+            (
+                consistencia_score
+                >=
+                MINIMO_CONSISTENCIA
+            ),
+
+        "scoreConfiancaMinimo":
+            (
+                score_confianca
+                >=
+                MINIMO_SCORE_CONFIANCA
+            )
 
     }
-
 
     criterios_promocao = [
 
@@ -1214,16 +2220,21 @@ def processar():
 
         "coberturaMinima",
 
+        "liderScoreTambemLiderMedia",
+
         "vantagemMediaMinima",
 
         "vantagemPercentualMinima",
 
         "taxaVitoriasMinima",
 
-        "estabilidadeMinima"
+        "estabilidadeMinima",
+
+        "consistenciaMinima",
+
+        "scoreConfiancaMinimo"
 
     ]
-
 
     aprovados_promocao = [
 
@@ -1238,7 +2249,6 @@ def processar():
 
     ]
 
-
     falhas_promocao = [
 
         nome
@@ -1252,13 +2262,11 @@ def processar():
 
     ]
 
-
     promover = (
         len(
             falhas_promocao
         ) == 0
     )
-
 
     # ==================================================
     # DECISÃO
@@ -1270,10 +2278,23 @@ def processar():
             "AGUARDAR_VALIDACAO_SIMULACAO"
         )
 
-    elif quantidade_rodadas < MINIMO_RODADAS_ANALISE:
+    elif (
+        quantidade_rodadas
+        <
+        MINIMO_RODADAS_ANALISE
+    ):
 
         decisao = (
             "AMOSTRA_INSUFICIENTE"
+        )
+
+    elif divergencia.get(
+        "divergenciaCritica",
+        False
+    ):
+
+        decisao = (
+            "MANTER_ESTRATEGIAS_DIVERGENCIA_SCORE_MEDIA"
         )
 
     elif promover:
@@ -1288,6 +2309,46 @@ def processar():
             "MANTER_ESTRATEGIAS_ATUAIS"
         )
 
+    # ==================================================
+    # OBSERVAÇÃO
+    # ==================================================
+
+    if promover:
+
+        observacao = (
+
+            f"A estratégia {nome_lider_score} "
+            f"lidera score global e média real "
+            f"e atingiu todos os critérios "
+            f"experimentais para promoção."
+
+        )
+
+    elif divergencia.get(
+        "divergenciaCritica",
+        False
+    ):
+
+        observacao = (
+
+            f"O ranking composto aponta "
+            f"{nome_lider_score} como líder, "
+            f"mas a maior média real pertence a "
+            f"{nome_lider_media}. "
+            f"A divergência bloqueia promoção "
+            f"automática ou experimental."
+
+        )
+
+    else:
+
+        observacao = (
+
+            "Ainda não há evidência suficiente "
+            "para substituir automaticamente "
+            "as estratégias atuais."
+
+        )
 
     # ==================================================
     # RESULTADO
@@ -1296,12 +2357,14 @@ def processar():
     resultado = {
 
         "modelo":
-            "analise_estrategias_escalacao_v1",
+            "analise_estrategias_escalacao_v2",
 
         "descricao":
             (
                 "Avaliação histórica das estratégias "
-                "Conservador, Equilibrado e Agressivo."
+                "Conservador, Equilibrado e Agressivo "
+                "com separação entre score composto e "
+                "desempenho real."
             ),
 
         "configuracao": {
@@ -1327,6 +2390,12 @@ def processar():
             "minimoEstabilidade":
                 MINIMO_ESTABILIDADE,
 
+            "minimoConsistencia":
+                MINIMO_CONSISTENCIA,
+
+            "minimoScoreConfianca":
+                MINIMO_SCORE_CONFIANCA,
+
             "janelaRecente":
                 JANELA_RECENTE
 
@@ -1342,53 +2411,148 @@ def processar():
                     ranking_lista
                 ),
 
+            # Compatibilidade com relatório antigo
             "lider":
-                nome_lider,
+                nome_lider_score,
 
             "mediaLider":
-                lider.get(
-                    "mediaPontos"
+                arredondar(
+
+                    lider_score.get(
+                        "mediaPontos"
+                    )
+
+                    if lider_score
+
+                    else 0
+
                 ),
 
             "scoreGlobalLider":
-                lider.get(
-                    "scoreGlobal"
+                arredondar(
+
+                    lider_score.get(
+                        "scoreGlobal"
+                    )
+
+                    if lider_score
+
+                    else 0,
+
+                    3
+
                 ),
 
             "taxaVitoriasLider":
-                round(
-                    taxa_vitorias,
-                    2
+                arredondar(
+                    taxa_vitorias_score
                 ),
 
             "estabilidadeLider":
-                round(
-                    taxa_estabilidade,
-                    2
+                arredondar(
+                    taxa_estabilidade_score
                 ),
 
             "coberturaLider":
-                round(
-                    cobertura_lider,
-                    2
+                arredondar(
+                    cobertura_score
                 ),
 
             "scoreConfianca":
-                score_confianca
+                score_confianca,
+
+            # Novos campos
+            "liderScoreGlobal":
+                nome_lider_score,
+
+            "liderMediaReal":
+                nome_lider_media,
+
+            "liderMediana":
+                (
+                    lideres.get(
+                        "medianaPontos"
+                    ) or {}
+                ).get(
+                    "nome"
+                ),
+
+            "liderVitorias":
+                (
+                    lideres.get(
+                        "vitorias"
+                    ) or {}
+                ).get(
+                    "nome"
+                ),
+
+            "liderConsistencia":
+                (
+                    lideres.get(
+                        "consistencia"
+                    ) or {}
+                ).get(
+                    "nome"
+                ),
+
+            "menorMae":
+                (
+                    lideres.get(
+                        "menorMae"
+                    ) or {}
+                ).get(
+                    "nome"
+                ),
+
+            "liderancaConsistente":
+                lideranca_consistente,
+
+            "divergenciaScoreMedia":
+                divergencia.get(
+                    "divergenciaCritica",
+                    False
+                )
 
         },
 
+        # Compatibilidade
         "comparacaoPrimeiroSegundo":
-            comparacao,
+            comparacao_score,
+
+        # Novas comparações
+        "comparacaoPorMedia":
+            comparacao_media,
+
+        "comparacaoScoreVsMedia":
+            comparacao_score_media,
+
+        "lideresPorCriterio": {
+
+            chave:
+                resumir_item_ranking(
+                    valor
+                )
+
+            for chave, valor in (
+                lideres.items()
+            )
+
+        },
+
+        "divergenciaLideres":
+            divergencia,
 
         "estabilidadeLider":
-            estabilidade,
+            estabilidade_score,
 
         "desempenhoRecente":
             recente,
 
         "disputas":
             disputas,
+
+        "diagnosticoEstrategias":
+            diagnostico_estrategias,
 
         "ranking":
             ranking_lista,
@@ -1413,13 +2577,19 @@ def processar():
 
             "estrategiaRecomendada":
                 (
-                    nome_lider
+                    nome_lider_score
                     if promover
                     else None
                 ),
 
             "liderAtual":
-                nome_lider,
+                nome_lider_score,
+
+            "liderScoreGlobal":
+                nome_lider_score,
+
+            "liderMediaReal":
+                nome_lider_media,
 
             "promover":
                 promover,
@@ -1430,21 +2600,14 @@ def processar():
             "scoreConfianca":
                 score_confianca,
 
+            "divergenciaScoreMedia":
+                divergencia.get(
+                    "divergenciaCritica",
+                    False
+                ),
+
             "observacao":
-                (
-                    (
-                        f"A estratégia {nome_lider} "
-                        "atingiu todos os critérios "
-                        "experimentais para promoção."
-                    )
-                    if promover
-                    else
-                    (
-                        "Ainda não há evidência suficiente "
-                        "para substituir automaticamente "
-                        "as estratégias atuais."
-                    )
-                )
+                observacao
 
         },
 
@@ -1460,18 +2623,19 @@ def processar():
                 False,
 
             "promocaoAutomatica":
-                False
+                False,
+
+            "bloqueiaPromocaoComDivergenciaScoreMedia":
+                True
 
         }
 
     }
 
-
     salvar_json(
         ARQUIVO_SAIDA,
         resultado
     )
-
 
     # ==================================================
     # LOG
@@ -1484,77 +2648,214 @@ def processar():
         quantidade_rodadas
     )
 
+    print()
+
     print(
-        "Líder:",
-        nome_lider
+        "LÍDERES POR CRITÉRIO"
     )
 
     print(
-        "Média:",
-        lider.get(
-            "mediaPontos"
-        )
+        "----------------------------------------------"
     )
 
     print(
         "Score global:",
-        lider.get(
-            "scoreGlobal"
+        nome_lider_score
+    )
+
+    print(
+        "Maior média real:",
+        nome_lider_media
+    )
+
+    print(
+        "Maior mediana:",
+        (
+            lideres.get(
+                "medianaPontos"
+            ) or {}
+        ).get(
+            "nome"
         )
     )
 
     print(
-        "Taxa de vitórias:",
-        round(
-            taxa_vitorias,
-            2
-        ),
-        "%"
+        "Mais vitórias:",
+        (
+            lideres.get(
+                "vitorias"
+            ) or {}
+        ).get(
+            "nome"
+        )
     )
 
     print(
-        "Estabilidade:",
-        round(
-            taxa_estabilidade,
-            2
-        ),
-        "%"
+        "Maior consistência:",
+        (
+            lideres.get(
+                "consistencia"
+            ) or {}
+        ).get(
+            "nome"
+        )
     )
 
     print(
-        "Cobertura:",
-        round(
-            cobertura_lider,
-            2
-        ),
-        "%"
+        "Menor MAE:",
+        (
+            lideres.get(
+                "menorMae"
+            ) or {}
+        ).get(
+            "nome"
+        )
     )
 
-    if comparacao:
+    print()
+
+    print(
+        "DIVERGÊNCIA"
+    )
+
+    print(
+        "----------------------------------------------"
+    )
+
+    print(
+        "Classificação:",
+        divergencia.get(
+            "classificacao"
+        )
+    )
+
+    print(
+        "Score = média:",
+        divergencia.get(
+            "scoreIgualMedia"
+        )
+    )
+
+    print(
+        "Score = mediana:",
+        divergencia.get(
+            "scoreIgualMediana"
+        )
+    )
+
+    print(
+        "Explicação:",
+        divergencia.get(
+            "explicacao"
+        )
+    )
+
+    print()
+
+    if comparacao_score_media:
 
         print(
-            "Segundo colocado:",
-            comparacao.get(
+            "COMPARAÇÃO SCORE × DESEMPENHO REAL"
+        )
+
+        print(
+            "----------------------------------------------"
+        )
+
+        print(
+            "Líder score:",
+            comparacao_score_media.get(
+                "liderScore"
+            )
+        )
+
+        print(
+            "Líder média:",
+            comparacao_score_media.get(
+                "liderMedia"
+            )
+        )
+
+        print(
+            "Média líder score:",
+            comparacao_score_media.get(
+                "mediaLiderScore"
+            )
+        )
+
+        print(
+            "Melhor média real:",
+            comparacao_score_media.get(
+                "melhorMediaReal"
+            )
+        )
+
+        print(
+            "Diferença:",
+            comparacao_score_media.get(
+                "diferencaMedia"
+            )
+        )
+
+        print(
+            "Diferença percentual:",
+            comparacao_score_media.get(
+                "diferencaMediaPercentual"
+            ),
+            "%"
+        )
+
+        print()
+
+    if comparacao_media:
+
+        print(
+            "RANKING POR MÉDIA REAL"
+        )
+
+        print(
+            "----------------------------------------------"
+        )
+
+        print(
+            "1º:",
+            comparacao_media.get(
+                "lider"
+            ),
+            "| Média:",
+            comparacao_media.get(
+                "mediaLider"
+            )
+        )
+
+        print(
+            "2º:",
+            comparacao_media.get(
                 "segundo"
+            ),
+            "| Média:",
+            comparacao_media.get(
+                "mediaSegundo"
             )
         )
 
         print(
-            "Vantagem média:",
-            comparacao.get(
+            "Vantagem:",
+            comparacao_media.get(
                 "vantagemMedia"
-            )
+            ),
+            "pontos"
         )
 
         print(
             "Vantagem percentual:",
-            comparacao.get(
+            comparacao_media.get(
                 "vantagemMediaPercentual"
             ),
             "%"
         )
 
-    print()
+        print()
 
     print(
         "CRITÉRIOS DE PROMOÇÃO"
@@ -1564,7 +2865,9 @@ def processar():
         "----------------------------------------------"
     )
 
-    for nome, aprovado in criterios.items():
+    for nome, aprovado in (
+        criterios.items()
+    ):
 
         status = (
             "OK"
@@ -1593,7 +2896,23 @@ def processar():
     )
 
     print(
+        "Estratégia recomendada:",
+        (
+            nome_lider_score
+            if promover
+            else None
+        )
+    )
+
+    print(
         "Promoção automática: NÃO"
+    )
+
+    print()
+
+    print(
+        "Observação:",
+        observacao
     )
 
     print()
