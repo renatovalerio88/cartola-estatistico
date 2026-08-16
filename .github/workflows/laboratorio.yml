@@ -184,6 +184,25 @@ jobs:
 
 
       # ======================================
+      # ESTRATÉGIA ADAPTATIVA V1 x V2
+      # ======================================
+
+      - name: Comparar Estratégias Adaptativas
+        run: |
+          python scripts/processamento/comparar_estrategias_adaptativas.py
+
+
+      - name: Auditar Comparação Adaptativa
+        run: |
+          python scripts/processamento/auditar_comparacao_adaptativas.py
+
+
+      - name: Decidir Estratégia Adaptativa
+        run: |
+          python scripts/processamento/decidir_estrategia_adaptativa.py
+
+
+      # ======================================
       # RESUMO DA VALIDAÇÃO
       # ======================================
 
@@ -213,7 +232,13 @@ jobs:
 
               "data/auditoria-simulacao-times.json",
 
-              "data/analise-estrategias-escalacao.json"
+              "data/analise-estrategias-escalacao.json",
+
+              "data/comparacao-estrategias-adaptativas.json",
+
+              "data/auditoria-comparacao-adaptativas.json",
+
+              "data/decisao-estrategia-adaptativa.json"
 
           ]
 
