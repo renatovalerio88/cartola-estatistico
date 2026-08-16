@@ -1,0 +1,4676 @@
+{
+  "modelo": "analise_capitao_v1",
+  "descricao": "Comparação histórica entre capitão por projeção e score específico experimental de capitão.",
+  "modelos": {
+    "A": "maior_projecao_original",
+    "B": "score_cientifico_capitao"
+  },
+  "pesosCandidatos": {
+    "projecao": 0.32,
+    "teto": 0.18,
+    "confianca": 0.12,
+    "explosao": 0.12,
+    "forma": 0.08,
+    "mediaRecente": 0.06,
+    "regularidade": 0.05,
+    "potencialOfensivo": 0.04,
+    "risco": -0.02,
+    "volatilidade": -0.01
+  },
+  "metodologia": {
+    "normalizacao": "min-max entre os jogadores da própria escalação",
+    "componentesAusentes": "Componentes inexistentes não recebem valor artificial e seus pesos são removidos do denominador.",
+    "riscoEVolatilidade": "São componentes negativos: quanto menores, maior a contribuição para o score de capitão.",
+    "coldStart": 2,
+    "coldStartExcluidoDaDecisao": true
+  },
+  "fontes": {
+    "simulacaoTimes": true,
+    "historicoEscalacoes": false,
+    "backtestABDisponivel": true,
+    "backtestABUsadoParaEscolherCapitao": false
+  },
+  "resumo": {
+    "avaliacoes": 63,
+    "vitoriasA": 0,
+    "vitoriasB": 0,
+    "empates": 63,
+    "taxaVitoriasA": 0.0,
+    "taxaVitoriasB": 0.0,
+    "mediaPontosA": 4.389,
+    "mediaPontosB": 4.389,
+    "ganhoMedioBvsA": 0.0,
+    "acertoMelhorRealA": {
+      "quantidade": 5,
+      "taxa": 7.94
+    },
+    "acertoMelhorRealB": {
+      "quantidade": 5,
+      "taxa": 7.94
+    }
+  },
+  "porEstrategia": {
+    "Conservador": {
+      "avaliacoes": 21,
+      "vitoriasA": 0,
+      "vitoriasB": 0,
+      "empates": 21,
+      "taxaVitoriasB": 0.0,
+      "ganhoMedioBvsA": 0.0,
+      "taxaAcertoMelhorRealA": 0.0,
+      "taxaAcertoMelhorRealB": 0.0
+    },
+    "Equilibrado": {
+      "avaliacoes": 21,
+      "vitoriasA": 0,
+      "vitoriasB": 0,
+      "empates": 21,
+      "taxaVitoriasB": 0.0,
+      "ganhoMedioBvsA": 0.0,
+      "taxaAcertoMelhorRealA": 9.52,
+      "taxaAcertoMelhorRealB": 9.52
+    },
+    "Agressivo": {
+      "avaliacoes": 21,
+      "vitoriasA": 0,
+      "vitoriasB": 0,
+      "empates": 21,
+      "taxaVitoriasB": 0.0,
+      "ganhoMedioBvsA": 0.0,
+      "taxaAcertoMelhorRealA": 14.29,
+      "taxaAcertoMelhorRealB": 14.29
+    }
+  },
+  "coberturaComponentes": {
+    "projecao": {
+      "peso": 0.32,
+      "disponivel": 66,
+      "total": 66,
+      "cobertura": 100.0
+    },
+    "teto": {
+      "peso": 0.18,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "confianca": {
+      "peso": 0.12,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "explosao": {
+      "peso": 0.12,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "forma": {
+      "peso": 0.08,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "mediaRecente": {
+      "peso": 0.06,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "regularidade": {
+      "peso": 0.05,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "potencialOfensivo": {
+      "peso": 0.04,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "risco": {
+      "peso": -0.02,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    },
+    "volatilidade": {
+      "peso": -0.01,
+      "disponivel": 0,
+      "total": 66,
+      "cobertura": 0.0
+    }
+  },
+  "decisaoExperimental": {
+    "formulaCandidataAprovada": false,
+    "criteriosAprovados": 2,
+    "totalCriterios": 4,
+    "criterios": [
+      {
+        "criterio": "amostra",
+        "aprovado": true,
+        "valor": 63,
+        "minimo": 20
+      },
+      {
+        "criterio": "ganho_medio",
+        "aprovado": false,
+        "valor": 0.0,
+        "minimo": "> 0"
+      },
+      {
+        "criterio": "taxa_vitorias_b",
+        "aprovado": false,
+        "valor": 0.0,
+        "minimo": 40
+      },
+      {
+        "criterio": "acerto_melhor_capitao_real",
+        "aprovado": true,
+        "modeloA": 7.94,
+        "modeloB": 7.94
+      }
+    ],
+    "decisao": "MANTER_CAPITAO_ATUAL",
+    "promocaoAutomatica": false
+  },
+  "rodadas": [
+    {
+      "rodada": 2,
+      "coldStart": true,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "modeloB": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": -20.0,
+            "real": 16.5,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.9,
+            "pontosCapitaoB": 2.9,
+            "melhorPontuacaoReal": 16.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 13.6,
+            "perdaBParaOtimo": 13.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "modeloB": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": -20.0,
+            "real": 16.5,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.9,
+            "pontosCapitaoB": 2.9,
+            "melhorPontuacaoReal": 16.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 13.6,
+            "perdaBParaOtimo": 13.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "modeloB": {
+            "id": "125803",
+            "nome": "Pedro Luccas Morisco da Silva",
+            "posicao": "GOL",
+            "projecao": -20.0,
+            "real": 2.9,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": -20.0,
+            "real": 16.5,
+            "scoreCapitao": 50.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": -20.0,
+                "normalizado": 0.5,
+                "peso": 0.32,
+                "contribuicao": 0.16
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.9,
+            "pontosCapitaoB": 2.9,
+            "melhorPontuacaoReal": 16.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 13.6,
+            "perdaBParaOtimo": 13.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 3,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.45,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.45,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.16,
+            "real": 14.9,
+            "scoreCapitao": 50.047,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.16,
+                "normalizado": 0.5005,
+                "peso": 0.32,
+                "contribuicao": 0.16015
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.7,
+            "pontosCapitaoB": 0.7,
+            "melhorPontuacaoReal": 14.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 14.2,
+            "perdaBParaOtimo": 14.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.78,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.78,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.78,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.78,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.3,
+            "real": 14.9,
+            "scoreCapitao": 42.857,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.3,
+                "normalizado": 0.4286,
+                "peso": 0.32,
+                "contribuicao": 0.13714
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.7,
+            "pontosCapitaoB": 0.7,
+            "melhorPontuacaoReal": 14.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 14.2,
+            "perdaBParaOtimo": 14.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.59,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.59,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105563",
+            "nome": "Carlos Vinícius Alves Morais",
+            "posicao": "ATA",
+            "projecao": 17.59,
+            "real": 0.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 17.59,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.04,
+            "real": 14.9,
+            "scoreCapitao": 42.842,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.04,
+                "normalizado": 0.4284,
+                "peso": 0.32,
+                "contribuicao": 0.1371
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.7,
+            "pontosCapitaoB": 0.7,
+            "melhorPontuacaoReal": 14.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 14.2,
+            "perdaBParaOtimo": 14.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 4,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.5,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.5,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.5,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.5,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "141451",
+            "nome": "Allan Andrade Elias",
+            "posicao": "MEI",
+            "projecao": 6.05,
+            "real": 17.1,
+            "scoreCapitao": 20.567,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.05,
+                "normalizado": 0.2057,
+                "peso": 0.32,
+                "contribuicao": 0.06581
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.1,
+            "pontosCapitaoB": 1.1,
+            "melhorPontuacaoReal": 17.1,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.0,
+            "perdaBParaOtimo": 16.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.85,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.85,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.85,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.85,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "141451",
+            "nome": "Allan Andrade Elias",
+            "posicao": "MEI",
+            "projecao": 6.99,
+            "real": 17.1,
+            "scoreCapitao": 10.942,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.99,
+                "normalizado": 0.1094,
+                "peso": 0.32,
+                "contribuicao": 0.03502
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.1,
+            "pontosCapitaoB": 1.1,
+            "melhorPontuacaoReal": 17.1,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.0,
+            "perdaBParaOtimo": 16.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.71,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.71,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "89274",
+            "nome": "Andreas Hugo Hoelgebaum Pereira",
+            "posicao": "MEI",
+            "projecao": 12.71,
+            "real": 1.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.71,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "141451",
+            "nome": "Allan Andrade Elias",
+            "posicao": "MEI",
+            "projecao": 7.34,
+            "real": 17.1,
+            "scoreCapitao": 17.638,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.34,
+                "normalizado": 0.1764,
+                "peso": 0.32,
+                "contribuicao": 0.05644
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.1,
+            "pontosCapitaoB": 1.1,
+            "melhorPontuacaoReal": 17.1,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.0,
+            "perdaBParaOtimo": 16.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 13.9,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.9,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 13.9,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.9,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "123648",
+            "nome": "Lucas Ronier Vieira Pires",
+            "posicao": "ATA",
+            "projecao": 9.46,
+            "real": 17.5,
+            "scoreCapitao": 48.07,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.46,
+                "normalizado": 0.4807,
+                "peso": 0.32,
+                "contribuicao": 0.15382
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.4,
+            "pontosCapitaoB": 5.4,
+            "melhorPontuacaoReal": 17.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 12.1,
+            "perdaBParaOtimo": 12.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 14.1,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.1,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 14.1,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.1,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "123648",
+            "nome": "Lucas Ronier Vieira Pires",
+            "posicao": "ATA",
+            "projecao": 10.47,
+            "real": 17.5,
+            "scoreCapitao": 47.543,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.47,
+                "normalizado": 0.4754,
+                "peso": 0.32,
+                "contribuicao": 0.15214
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.4,
+            "pontosCapitaoB": 5.4,
+            "melhorPontuacaoReal": 17.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 12.1,
+            "perdaBParaOtimo": 12.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 13.87,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.87,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105531",
+            "nome": "Matheus Lima Beltrão Oliveira Valin",
+            "posicao": "LAT",
+            "projecao": 13.87,
+            "real": 5.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.87,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "123648",
+            "nome": "Lucas Ronier Vieira Pires",
+            "posicao": "ATA",
+            "projecao": 10.83,
+            "real": 17.5,
+            "scoreCapitao": 46.667,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.83,
+                "normalizado": 0.4667,
+                "peso": 0.32,
+                "contribuicao": 0.14933
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.4,
+            "pontosCapitaoB": 5.4,
+            "melhorPontuacaoReal": 17.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 12.1,
+            "perdaBParaOtimo": 12.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 6,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.04,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.04,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.04,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.04,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "122485",
+            "nome": "Cauan Lucas Barros da Luz",
+            "posicao": "MEI",
+            "projecao": 6.01,
+            "real": 13.4,
+            "scoreCapitao": 0.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.01,
+                "normalizado": 0.0,
+                "peso": 0.32,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.7,
+            "pontosCapitaoB": 3.7,
+            "melhorPontuacaoReal": 13.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.7,
+            "perdaBParaOtimo": 9.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.25,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.25,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.25,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.25,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "122485",
+            "nome": "Cauan Lucas Barros da Luz",
+            "posicao": "MEI",
+            "projecao": 8.04,
+            "real": 13.4,
+            "scoreCapitao": 15.854,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.04,
+                "normalizado": 0.1585,
+                "peso": 0.32,
+                "contribuicao": 0.05073
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.7,
+            "pontosCapitaoB": 3.7,
+            "melhorPontuacaoReal": 13.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.7,
+            "perdaBParaOtimo": 9.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.01,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.01,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 14.01,
+            "real": 3.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 14.01,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "122485",
+            "nome": "Cauan Lucas Barros da Luz",
+            "posicao": "MEI",
+            "projecao": 9.36,
+            "real": 13.4,
+            "scoreCapitao": 33.094,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.36,
+                "normalizado": 0.3309,
+                "peso": 0.32,
+                "contribuicao": 0.1059
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.7,
+            "pontosCapitaoB": 3.7,
+            "melhorPontuacaoReal": 13.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.7,
+            "perdaBParaOtimo": 9.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 7,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 9.62,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.62,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 9.62,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.62,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "89837",
+            "nome": "Luciano Federico Acosta",
+            "posicao": "MEI",
+            "projecao": 6.33,
+            "real": 11.5,
+            "scoreCapitao": 17.955,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.33,
+                "normalizado": 0.1796,
+                "peso": 0.32,
+                "contribuicao": 0.05746
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.1,
+            "pontosCapitaoB": 2.1,
+            "melhorPontuacaoReal": 11.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.4,
+            "perdaBParaOtimo": 9.4,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 11.95,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.95,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 11.95,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.95,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "89837",
+            "nome": "Luciano Federico Acosta",
+            "posicao": "MEI",
+            "projecao": 7.28,
+            "real": 11.5,
+            "scoreCapitao": 9.496,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.28,
+                "normalizado": 0.095,
+                "peso": 0.32,
+                "contribuicao": 0.03039
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.1,
+            "pontosCapitaoB": 2.1,
+            "melhorPontuacaoReal": 11.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.4,
+            "perdaBParaOtimo": 9.4,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 13.2,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.2,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 13.2,
+            "real": 2.1,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.2,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "141451",
+            "nome": "Allan Andrade Elias",
+            "posicao": "MEI",
+            "projecao": 8.02,
+            "real": 11.6,
+            "scoreCapitao": 15.909,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.02,
+                "normalizado": 0.1591,
+                "peso": 0.32,
+                "contribuicao": 0.05091
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.1,
+            "pontosCapitaoB": 2.1,
+            "melhorPontuacaoReal": 11.6,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.5,
+            "perdaBParaOtimo": 9.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "132412",
+            "nome": "Román Agustín Gómez",
+            "posicao": "LAT",
+            "projecao": 9.37,
+            "real": 1.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.37,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "132412",
+            "nome": "Román Agustín Gómez",
+            "posicao": "LAT",
+            "projecao": 9.37,
+            "real": 1.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.37,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 7.97,
+            "real": 12.0,
+            "scoreCapitao": 63.542,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.97,
+                "normalizado": 0.6354,
+                "peso": 0.32,
+                "contribuicao": 0.20333
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.7,
+            "pontosCapitaoB": 1.7,
+            "melhorPontuacaoReal": 12.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 10.3,
+            "perdaBParaOtimo": 10.3,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 10.05,
+            "real": 3.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.05,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 10.05,
+            "real": 3.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.05,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 9.6,
+            "real": 12.0,
+            "scoreCapitao": 84.95,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.6,
+                "normalizado": 0.8495,
+                "peso": 0.32,
+                "contribuicao": 0.27184
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.0,
+            "pontosCapitaoB": 3.0,
+            "melhorPontuacaoReal": 12.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.0,
+            "perdaBParaOtimo": 9.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 11.95,
+            "real": 3.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.95,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "114802",
+            "nome": "Vitor Hugo Roque Ferreira",
+            "posicao": "ATA",
+            "projecao": 11.95,
+            "real": 3.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.95,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 10.4,
+            "real": 12.0,
+            "scoreCapitao": 63.095,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.4,
+                "normalizado": 0.631,
+                "peso": 0.32,
+                "contribuicao": 0.2019
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.0,
+            "pontosCapitaoB": 3.0,
+            "melhorPontuacaoReal": 12.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.0,
+            "perdaBParaOtimo": 9.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 9,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "82775",
+            "nome": "Lucas Ramon Batista Silva",
+            "posicao": "LAT",
+            "projecao": 8.58,
+            "real": 4.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.58,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "82775",
+            "nome": "Lucas Ramon Batista Silva",
+            "posicao": "LAT",
+            "projecao": 8.58,
+            "real": 4.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.58,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 7.61,
+            "real": 7.8,
+            "scoreCapitao": 74.674,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.61,
+                "normalizado": 0.7467,
+                "peso": 0.32,
+                "contribuicao": 0.23896
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 4.7,
+            "pontosCapitaoB": 4.7,
+            "melhorPontuacaoReal": 7.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 3.1,
+            "perdaBParaOtimo": 3.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 9.78,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.78,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 9.78,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.78,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 9.78,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.78,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.8,
+            "pontosCapitaoB": 7.8,
+            "melhorPontuacaoReal": 7.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 11.07,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.07,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 11.07,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.07,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 11.07,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.07,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.8,
+            "pontosCapitaoB": 7.8,
+            "melhorPontuacaoReal": 7.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.67,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.67,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.67,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.67,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "72018",
+            "nome": "Tiago Luis Volpi",
+            "posicao": "GOL",
+            "projecao": 5.28,
+            "real": 8.9,
+            "scoreCapitao": 13.297,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.28,
+                "normalizado": 0.133,
+                "peso": 0.32,
+                "contribuicao": 0.04255
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.0,
+            "pontosCapitaoB": 5.0,
+            "melhorPontuacaoReal": 8.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 3.9,
+            "perdaBParaOtimo": 3.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.79,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.79,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.79,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.79,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 8.9,
+            "real": 7.2,
+            "scoreCapitao": 43.665,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.9,
+                "normalizado": 0.4366,
+                "peso": 0.32,
+                "contribuicao": 0.13973
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.0,
+            "pontosCapitaoB": 5.0,
+            "melhorPontuacaoReal": 7.2,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 2.2,
+            "perdaBParaOtimo": 2.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.53,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.53,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105213",
+            "nome": "Ariel Agustín Sant'Anna Quintero",
+            "posicao": "LAT",
+            "projecao": 11.53,
+            "real": 5.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.53,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 10.15,
+            "real": 7.2,
+            "scoreCapitao": 68.421,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.15,
+                "normalizado": 0.6842,
+                "peso": 0.32,
+                "contribuicao": 0.21895
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.0,
+            "pontosCapitaoB": 5.0,
+            "melhorPontuacaoReal": 7.2,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 2.2,
+            "perdaBParaOtimo": 2.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 11,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 7.68,
+            "real": 5.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.68,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 7.68,
+            "real": 5.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.68,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "102975",
+            "nome": "Gonzalo Daniel Escobar",
+            "posicao": "LAT",
+            "projecao": 6.72,
+            "real": 6.0,
+            "scoreCapitao": 67.893,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.72,
+                "normalizado": 0.6789,
+                "peso": 0.32,
+                "contribuicao": 0.21726
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.8,
+            "pontosCapitaoB": 5.8,
+            "melhorPontuacaoReal": 6.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.2,
+            "perdaBParaOtimo": 0.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 8.92,
+            "real": 5.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.92,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "116065",
+            "nome": "Luís Eduardo Soares da Silva",
+            "posicao": "LAT",
+            "projecao": 8.92,
+            "real": 5.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.92,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "110506",
+            "nome": "Abel Fernando Moreira Ferreira",
+            "posicao": "TEC",
+            "projecao": 6.55,
+            "real": 5.94,
+            "scoreCapitao": 10.227,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.55,
+                "normalizado": 0.1023,
+                "peso": 0.32,
+                "contribuicao": 0.03273
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 5.8,
+            "pontosCapitaoB": 5.8,
+            "melhorPontuacaoReal": 5.94,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.14,
+            "perdaBParaOtimo": 0.14,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "102975",
+            "nome": "Gonzalo Daniel Escobar",
+            "posicao": "LAT",
+            "projecao": 10.27,
+            "real": 6.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.27,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "102975",
+            "nome": "Gonzalo Daniel Escobar",
+            "posicao": "LAT",
+            "projecao": 10.27,
+            "real": 6.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.27,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "71631",
+            "nome": "Weverton Pereira da Silva",
+            "posicao": "GOL",
+            "projecao": 6.82,
+            "real": 9.4,
+            "scoreCapitao": 0.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.82,
+                "normalizado": 0.0,
+                "peso": 0.32,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 6.0,
+            "pontosCapitaoB": 6.0,
+            "melhorPontuacaoReal": 9.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 3.4,
+            "perdaBParaOtimo": 3.4,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 12,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "118844",
+            "nome": "Kaio César Andrade Lima",
+            "posicao": "ATA",
+            "projecao": 7.14,
+            "real": 1.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.14,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "118844",
+            "nome": "Kaio César Andrade Lima",
+            "posicao": "ATA",
+            "projecao": 7.14,
+            "real": 1.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.14,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "116447",
+            "nome": "Hércules Pereira do Nascimento",
+            "posicao": "MEI",
+            "projecao": 4.62,
+            "real": 10.1,
+            "scoreCapitao": 23.171,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 4.62,
+                "normalizado": 0.2317,
+                "peso": 0.32,
+                "contribuicao": 0.07415
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.0,
+            "pontosCapitaoB": 1.0,
+            "melhorPontuacaoReal": 10.1,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 9.1,
+            "perdaBParaOtimo": 9.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 8.27,
+            "real": 7.5,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.27,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 8.27,
+            "real": 7.5,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.27,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": 6.49,
+            "real": 10.0,
+            "scoreCapitao": 38.194,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.49,
+                "normalizado": 0.3819,
+                "peso": 0.32,
+                "contribuicao": 0.12222
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.5,
+            "pontosCapitaoB": 7.5,
+            "melhorPontuacaoReal": 10.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 2.5,
+            "perdaBParaOtimo": 2.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.13,
+            "real": 7.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.13,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.13,
+            "real": 7.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.13,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.13,
+            "real": 7.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.13,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.9,
+            "pontosCapitaoB": 7.9,
+            "melhorPontuacaoReal": 7.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 13,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "116706",
+            "nome": "Carlos Andrés Gómez Hinestroza",
+            "posicao": "ATA",
+            "projecao": 6.71,
+            "real": 4.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.71,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "116706",
+            "nome": "Carlos Andrés Gómez Hinestroza",
+            "posicao": "ATA",
+            "projecao": 6.71,
+            "real": 4.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.71,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": 5.86,
+            "real": 19.9,
+            "scoreCapitao": 67.681,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.86,
+                "normalizado": 0.6768,
+                "peso": 0.32,
+                "contribuicao": 0.21658
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 4.3,
+            "pontosCapitaoB": 4.3,
+            "melhorPontuacaoReal": 19.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 15.6,
+            "perdaBParaOtimo": 15.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 9.16,
+            "real": 15.6,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.16,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 9.16,
+            "real": 15.6,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.16,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": 7.05,
+            "real": 19.9,
+            "scoreCapitao": 45.195,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.05,
+                "normalizado": 0.4519,
+                "peso": 0.32,
+                "contribuicao": 0.14462
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 15.6,
+            "pontosCapitaoB": 15.6,
+            "melhorPontuacaoReal": 19.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 4.3,
+            "perdaBParaOtimo": 4.3,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 11.33,
+            "real": 15.6,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.33,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 11.33,
+            "real": 15.6,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.33,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "107231",
+            "nome": "Danilo dos Santos de Oliveira",
+            "posicao": "MEI",
+            "projecao": 7.37,
+            "real": 19.9,
+            "scoreCapitao": 17.672,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.37,
+                "normalizado": 0.1767,
+                "peso": 0.32,
+                "contribuicao": 0.05655
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 15.6,
+            "pontosCapitaoB": 15.6,
+            "melhorPontuacaoReal": 19.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 4.3,
+            "perdaBParaOtimo": 4.3,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 14,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "102906",
+            "nome": "Anderson Silva da Paixão",
+            "posicao": "GOL",
+            "projecao": 8.67,
+            "real": -2.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.67,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "102906",
+            "nome": "Anderson Silva da Paixão",
+            "posicao": "GOL",
+            "projecao": 8.67,
+            "real": -2.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.67,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "110426",
+            "nome": "Alexandro Ezequiel Bernabei",
+            "posicao": "LAT",
+            "projecao": 6.21,
+            "real": 15.8,
+            "scoreCapitao": 44.218,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.21,
+                "normalizado": 0.4422,
+                "peso": 0.32,
+                "contribuicao": 0.1415
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": -2.0,
+            "pontosCapitaoB": -2.0,
+            "melhorPontuacaoReal": 15.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 17.8,
+            "perdaBParaOtimo": 17.8,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.22,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.22,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.22,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.22,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.22,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.22,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 11.8,
+            "pontosCapitaoB": 11.8,
+            "melhorPontuacaoReal": 11.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 12.51,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.51,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 12.51,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.51,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 12.51,
+            "real": 11.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.51,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 11.8,
+            "pontosCapitaoB": 11.8,
+            "melhorPontuacaoReal": 11.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 15,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 8.82,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.82,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 8.82,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.82,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 6.27,
+            "real": 10.5,
+            "scoreCapitao": 49.505,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.27,
+                "normalizado": 0.495,
+                "peso": 0.32,
+                "contribuicao": 0.15842
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.4,
+            "pontosCapitaoB": 0.4,
+            "melhorPontuacaoReal": 10.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 10.1,
+            "perdaBParaOtimo": 10.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.76,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.76,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.76,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.76,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 6.78,
+            "real": 10.5,
+            "scoreCapitao": 21.032,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.78,
+                "normalizado": 0.2103,
+                "peso": 0.32,
+                "contribuicao": 0.0673
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.4,
+            "pontosCapitaoB": 0.4,
+            "melhorPontuacaoReal": 10.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 10.1,
+            "perdaBParaOtimo": 10.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 12.25,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.25,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 12.25,
+            "real": 0.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.25,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "88963",
+            "nome": "José Leonardo Nunes Alves Sousa Jardim",
+            "posicao": "TEC",
+            "projecao": 7.5,
+            "real": 8.44,
+            "scoreCapitao": 6.68,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.5,
+                "normalizado": 0.0668,
+                "peso": 0.32,
+                "contribuicao": 0.02138
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.4,
+            "pontosCapitaoB": 0.4,
+            "melhorPontuacaoReal": 8.44,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 8.04,
+            "perdaBParaOtimo": 8.04,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 16,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "107093",
+            "nome": "Luciano Batista da Silva Júnior",
+            "posicao": "LAT",
+            "projecao": 7.45,
+            "real": 4.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "107093",
+            "nome": "Luciano Batista da Silva Júnior",
+            "posicao": "LAT",
+            "projecao": 7.45,
+            "real": 4.7,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 6.3,
+            "real": 8.8,
+            "scoreCapitao": 54.902,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.3,
+                "normalizado": 0.549,
+                "peso": 0.32,
+                "contribuicao": 0.17569
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 4.7,
+            "pontosCapitaoB": 4.7,
+            "melhorPontuacaoReal": 8.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 4.1,
+            "perdaBParaOtimo": 4.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 8.94,
+            "real": 8.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.94,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 8.94,
+            "real": 8.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.94,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "110759",
+            "nome": "John Kennedy Batista de Souza",
+            "posicao": "ATA",
+            "projecao": 7.77,
+            "real": 10.0,
+            "scoreCapitao": 57.762,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.77,
+                "normalizado": 0.5776,
+                "peso": 0.32,
+                "contribuicao": 0.18484
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 8.8,
+            "pontosCapitaoB": 8.8,
+            "melhorPontuacaoReal": 10.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 1.2,
+            "perdaBParaOtimo": 1.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.7,
+            "real": 8.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.7,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 10.7,
+            "real": 8.8,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.7,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "110426",
+            "nome": "Alexandro Ezequiel Bernabei",
+            "posicao": "LAT",
+            "projecao": 9.17,
+            "real": 17.2,
+            "scoreCapitao": 59.843,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.17,
+                "normalizado": 0.5984,
+                "peso": 0.32,
+                "contribuicao": 0.1915
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 8.8,
+            "pontosCapitaoB": 8.8,
+            "melhorPontuacaoReal": 17.2,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 8.4,
+            "perdaBParaOtimo": 8.4,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 17,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "109096",
+            "nome": "Gonzalo Jordy Plata Jiménez",
+            "posicao": "ATA",
+            "projecao": 6.61,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.61,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "109096",
+            "nome": "Gonzalo Jordy Plata Jiménez",
+            "posicao": "ATA",
+            "projecao": 6.61,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.61,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "141451",
+            "nome": "Allan Andrade Elias",
+            "posicao": "MEI",
+            "projecao": 5.18,
+            "real": 18.1,
+            "scoreCapitao": 38.095,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.18,
+                "normalizado": 0.381,
+                "peso": 0.32,
+                "contribuicao": 0.1219
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.3,
+            "pontosCapitaoB": 1.3,
+            "melhorPontuacaoReal": 18.1,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.8,
+            "perdaBParaOtimo": 16.8,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 9.08,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.08,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 9.08,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.08,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 8.6,
+            "real": 17.4,
+            "scoreCapitao": 87.335,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.6,
+                "normalizado": 0.8734,
+                "peso": 0.32,
+                "contribuicao": 0.27947
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.3,
+            "pontosCapitaoB": 1.3,
+            "melhorPontuacaoReal": 17.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.1,
+            "perdaBParaOtimo": 16.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 12.42,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.42,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 12.42,
+            "real": 1.3,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.42,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 10.78,
+            "real": 17.4,
+            "scoreCapitao": 72.061,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.78,
+                "normalizado": 0.7206,
+                "peso": 0.32,
+                "contribuicao": 0.2306
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.3,
+            "pontosCapitaoB": 1.3,
+            "melhorPontuacaoReal": 17.4,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.1,
+            "perdaBParaOtimo": 16.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 18,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "93988",
+            "nome": "Breno Henrique Vasconcelos Lopes",
+            "posicao": "ATA",
+            "projecao": 6.51,
+            "real": 2.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.51,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "93988",
+            "nome": "Breno Henrique Vasconcelos Lopes",
+            "posicao": "ATA",
+            "projecao": 6.51,
+            "real": 2.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.51,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 6.15,
+            "real": 10.9,
+            "scoreCapitao": 85.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.15,
+                "normalizado": 0.85,
+                "peso": 0.32,
+                "contribuicao": 0.272
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.2,
+            "pontosCapitaoB": 2.2,
+            "melhorPontuacaoReal": 10.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 8.7,
+            "perdaBParaOtimo": 8.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "93988",
+            "nome": "Breno Henrique Vasconcelos Lopes",
+            "posicao": "ATA",
+            "projecao": 9.18,
+            "real": 2.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.18,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "93988",
+            "nome": "Breno Henrique Vasconcelos Lopes",
+            "posicao": "ATA",
+            "projecao": 9.18,
+            "real": 2.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.18,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 8.86,
+            "real": 10.9,
+            "scoreCapitao": 91.111,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.86,
+                "normalizado": 0.9111,
+                "peso": 0.32,
+                "contribuicao": 0.29156
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.2,
+            "pontosCapitaoB": 2.2,
+            "melhorPontuacaoReal": 10.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 8.7,
+            "perdaBParaOtimo": 8.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 12.19,
+            "real": 6.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.19,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "92171",
+            "nome": "Arthur Mendonça Cabral",
+            "posicao": "ATA",
+            "projecao": 12.19,
+            "real": 6.0,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.19,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "88963",
+            "nome": "José Leonardo Nunes Alves Sousa Jardim",
+            "posicao": "TEC",
+            "projecao": 6.28,
+            "real": 10.2,
+            "scoreCapitao": 0.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.28,
+                "normalizado": 0.0,
+                "peso": 0.32,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 6.0,
+            "pontosCapitaoB": 6.0,
+            "melhorPontuacaoReal": 10.2,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 4.2,
+            "perdaBParaOtimo": 4.2,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 19,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.35,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.35,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.35,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.35,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 6.08,
+            "real": 18.8,
+            "scoreCapitao": 63.401,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.08,
+                "normalizado": 0.634,
+                "peso": 0.32,
+                "contribuicao": 0.20288
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.2,
+            "pontosCapitaoB": 1.2,
+            "melhorPontuacaoReal": 18.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 17.6,
+            "perdaBParaOtimo": 17.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 10.13,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.13,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 10.13,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.13,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 8.76,
+            "real": 18.8,
+            "scoreCapitao": 74.2,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.76,
+                "normalizado": 0.742,
+                "peso": 0.32,
+                "contribuicao": 0.23744
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.2,
+            "pontosCapitaoB": 1.2,
+            "melhorPontuacaoReal": 18.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 17.6,
+            "perdaBParaOtimo": 17.6,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 12.2,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.2,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 12.2,
+            "real": 1.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.2,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "96610",
+            "nome": "Matheus Fellipe Costa Pereira",
+            "posicao": "MEI",
+            "projecao": 8.17,
+            "real": 13.9,
+            "scoreCapitao": 30.517,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.17,
+                "normalizado": 0.3052,
+                "peso": 0.32,
+                "contribuicao": 0.09766
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.2,
+            "pontosCapitaoB": 1.2,
+            "melhorPontuacaoReal": 13.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 12.7,
+            "perdaBParaOtimo": 12.7,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 20,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "122321",
+            "nome": "Lorran Lucas Pereira de Sousa",
+            "posicao": "MEI",
+            "projecao": 10.83,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.83,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "122321",
+            "nome": "Lorran Lucas Pereira de Sousa",
+            "posicao": "MEI",
+            "projecao": 10.83,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.83,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 6.3,
+            "real": 22.8,
+            "scoreCapitao": 36.107,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.3,
+                "normalizado": 0.3611,
+                "peso": 0.32,
+                "contribuicao": 0.11554
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.9,
+            "pontosCapitaoB": 3.9,
+            "melhorPontuacaoReal": 22.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 18.9,
+            "perdaBParaOtimo": 18.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "122321",
+            "nome": "Lorran Lucas Pereira de Sousa",
+            "posicao": "MEI",
+            "projecao": 10.93,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.93,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "122321",
+            "nome": "Lorran Lucas Pereira de Sousa",
+            "posicao": "MEI",
+            "projecao": 10.93,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.93,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 6.99,
+            "real": 22.8,
+            "scoreCapitao": 32.65,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.99,
+                "normalizado": 0.3265,
+                "peso": 0.32,
+                "contribuicao": 0.10448
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.9,
+            "pontosCapitaoB": 3.9,
+            "melhorPontuacaoReal": 22.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 18.9,
+            "perdaBParaOtimo": 18.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 13.65,
+            "real": 8.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.65,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 13.65,
+            "real": 8.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.65,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "91772",
+            "nome": "David de Duarte Macedo",
+            "posicao": "ZAG",
+            "projecao": 5.72,
+            "real": 9.0,
+            "scoreCapitao": 0.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.72,
+                "normalizado": 0.0,
+                "peso": 0.32,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 8.9,
+            "pontosCapitaoB": 8.9,
+            "melhorPontuacaoReal": 9.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.1,
+            "perdaBParaOtimo": 0.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 21,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 7.05,
+            "real": 1.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.05,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "94583",
+            "nome": "Pedro Guilherme Abreu dos Santos",
+            "posicao": "ATA",
+            "projecao": 7.05,
+            "real": 1.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.05,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 4.9,
+            "real": 17.7,
+            "scoreCapitao": 26.871,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 4.9,
+                "normalizado": 0.2687,
+                "peso": 0.32,
+                "contribuicao": 0.08599
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 1.9,
+            "pontosCapitaoB": 1.9,
+            "melhorPontuacaoReal": 17.7,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 15.8,
+            "perdaBParaOtimo": 15.8,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 10.45,
+            "real": 10.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 10.45,
+            "real": 10.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.45,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 7.63,
+            "real": 17.7,
+            "scoreCapitao": 48.066,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.63,
+                "normalizado": 0.4807,
+                "peso": 0.32,
+                "contribuicao": 0.15381
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 10.2,
+            "pontosCapitaoB": 10.2,
+            "melhorPontuacaoReal": 17.7,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 7.5,
+            "perdaBParaOtimo": 7.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 13.88,
+            "real": 10.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.88,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 13.88,
+            "real": 10.2,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.88,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 9.64,
+            "real": 17.7,
+            "scoreCapitao": 46.397,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.64,
+                "normalizado": 0.464,
+                "peso": 0.32,
+                "contribuicao": 0.14847
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 10.2,
+            "pontosCapitaoB": 10.2,
+            "melhorPontuacaoReal": 17.7,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 7.5,
+            "perdaBParaOtimo": 7.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 22,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "91204",
+            "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
+            "posicao": "GOL",
+            "projecao": 8.32,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.32,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "91204",
+            "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
+            "posicao": "GOL",
+            "projecao": 8.32,
+            "real": 3.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.32,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 5.83,
+            "real": 17.9,
+            "scoreCapitao": 39.416,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.83,
+                "normalizado": 0.3942,
+                "peso": 0.32,
+                "contribuicao": 0.12613
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 3.9,
+            "pontosCapitaoB": 3.9,
+            "melhorPontuacaoReal": 17.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 14.0,
+            "perdaBParaOtimo": 14.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 10.47,
+            "real": 7.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.47,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 10.47,
+            "real": 7.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.47,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 8.2,
+            "real": 17.9,
+            "scoreCapitao": 51.496,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.2,
+                "normalizado": 0.515,
+                "peso": 0.32,
+                "contribuicao": 0.16479
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.4,
+            "pontosCapitaoB": 7.4,
+            "melhorPontuacaoReal": 17.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 10.5,
+            "perdaBParaOtimo": 10.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "123101",
+            "nome": "Leonardo Caetano Silva",
+            "posicao": "ATA",
+            "projecao": 13.46,
+            "real": 2.5,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.46,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "123101",
+            "nome": "Leonardo Caetano Silva",
+            "posicao": "ATA",
+            "projecao": 13.46,
+            "real": 2.5,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.46,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "91772",
+            "nome": "David de Duarte Macedo",
+            "posicao": "ZAG",
+            "projecao": 7.03,
+            "real": 8.0,
+            "scoreCapitao": 3.743,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.03,
+                "normalizado": 0.0374,
+                "peso": 0.32,
+                "contribuicao": 0.01198
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 2.5,
+            "pontosCapitaoB": 2.5,
+            "melhorPontuacaoReal": 8.0,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 5.5,
+            "perdaBParaOtimo": 5.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 23,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.01,
+            "real": 7.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.01,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.01,
+            "real": 7.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.01,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "94968",
+            "nome": "Luis Antônio da Rocha Júnior",
+            "posicao": "LAT",
+            "projecao": 6.13,
+            "real": 7.5,
+            "scoreCapitao": 77.665,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.13,
+                "normalizado": 0.7766,
+                "peso": 0.32,
+                "contribuicao": 0.24853
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 7.4,
+            "pontosCapitaoB": 7.4,
+            "melhorPontuacaoReal": 7.5,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.1,
+            "perdaBParaOtimo": 0.1,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 9.82,
+            "real": 0.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.82,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 9.82,
+            "real": 0.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 9.82,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "102928",
+            "nome": "Agustín Canobbio Graviz",
+            "posicao": "ATA",
+            "projecao": 5.47,
+            "real": 8.8,
+            "scoreCapitao": 14.538,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.47,
+                "normalizado": 0.1454,
+                "peso": 0.32,
+                "contribuicao": 0.04652
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.9,
+            "pontosCapitaoB": 0.9,
+            "melhorPontuacaoReal": 8.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 7.9,
+            "perdaBParaOtimo": 7.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 12.43,
+            "real": 0.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.43,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 12.43,
+            "real": 0.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.43,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "102928",
+            "nome": "Agustín Canobbio Graviz",
+            "posicao": "ATA",
+            "projecao": 6.34,
+            "real": 8.8,
+            "scoreCapitao": 7.306,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 6.34,
+                "normalizado": 0.0731,
+                "peso": 0.32,
+                "contribuicao": 0.02338
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 0.9,
+            "pontosCapitaoB": 0.9,
+            "melhorPontuacaoReal": 8.8,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 7.9,
+            "perdaBParaOtimo": 7.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    }
+  ],
+  "seguranca": {
+    "alteraMotorOficial": false,
+    "alteraCapitaoOficial": false,
+    "alteraPesosOficiais": false,
+    "promocaoAutomatica": false,
+    "necessitaValidacaoHumana": true
+  }
+}

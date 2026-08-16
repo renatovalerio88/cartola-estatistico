@@ -1,0 +1,320 @@
+{
+  "modelo": "calibracao_posicoes_candidata_v1",
+  "descricao": "Parâmetros candidatos de calibração por posição para avaliação A/B",
+  "status": "candidata_nao_promovida",
+  "objetivo": "Reduzir viés e erro por posição sem modificar o modelo oficial antes de validação histórica.",
+  "metodologia": {
+    "amostraMinima": 20,
+    "amostraConfiavel": 60,
+    "amostraForte": 120,
+    "fatorFinalMinimo": 0.85,
+    "fatorFinalMaximo": 1.15,
+    "correcaoAditivaMaxima": 1.5,
+    "formula": "projecao_calibrada = (projecao_original * fator) + correcao_aditiva",
+    "observacao": "A calibração usa somente uma fração do viés observado e possui limites de segurança contra sobreajuste."
+  },
+  "backtestAtualReferencia": {
+    "disponivel": true,
+    "rodadas": 22,
+    "erroMedio": 2.915,
+    "taxaAcertoMedia": 64.24
+  },
+  "resumo": {
+    "posicoesAnalisadas": 6,
+    "posicoesAplicaveisTesteAB": 6,
+    "prioridadeAlta": [
+      "GOL",
+      "ZAG",
+      "MEI",
+      "ATA"
+    ],
+    "prioridadeMedia": [
+      "LAT"
+    ],
+    "tendenciaReducaoProjecao": [
+      "GOL",
+      "LAT",
+      "ZAG",
+      "MEI",
+      "ATA",
+      "TEC"
+    ],
+    "tendenciaAumentoProjecao": [],
+    "tendenciaNeutra": [],
+    "modeloOficialAlterado": false,
+    "proximoPasso": "backtest_ab"
+  },
+  "posicoes": [
+    {
+      "posicao": "GOL",
+      "aplicarNoTesteAB": true,
+      "prioridade": "alta",
+      "amostra": {
+        "quantidade": 66,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "diagnostico": {
+        "mae": 5.69,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.7
+        },
+        "mediaProjecao": 6.1,
+        "mediaReal": 3.4
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 6.35,
+        "top5": 23.81,
+        "top10": 61.9,
+        "percentilMedio": 46.85,
+        "eficienciaCapturaPontos": 27.75
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.86181,
+        "correcaoAditiva": -0.945,
+        "componentes": {
+          "fatorVies": 0.89156,
+          "ajusteMae": -0.00875,
+          "ajusteRanking": -0.021
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "A projeção histórica está superestimando GOL em 2.7 pontos.",
+        "MAE da posição: 5.69 (alto).",
+        "Auditoria Top Real válida: percentil médio 46.85 e eficiência de captura 27.75%."
+      ]
+    },
+    {
+      "posicao": "LAT",
+      "aplicarNoTesteAB": true,
+      "prioridade": "media",
+      "amostra": {
+        "quantidade": 88,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "diagnostico": {
+        "mae": 5.64,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "alto",
+          "valor": 2.05
+        },
+        "mediaProjecao": 6.96,
+        "mediaReal": 4.92
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 4.76,
+        "top5": 11.9,
+        "top10": 20.24,
+        "percentilMedio": 56.82,
+        "eficienciaCapturaPontos": 32.82
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.90894,
+        "correcaoAditiva": -0.50225,
+        "componentes": {
+          "fatorVies": 0.92819,
+          "ajusteMae": -0.00875,
+          "ajusteRanking": -0.0105
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "A projeção histórica está superestimando LAT em 2.05 pontos.",
+        "MAE da posição: 5.64 (alto).",
+        "Auditoria Top Real válida: percentil médio 56.82 e eficiência de captura 32.82%."
+      ]
+    },
+    {
+      "posicao": "ZAG",
+      "aplicarNoTesteAB": true,
+      "prioridade": "alta",
+      "amostra": {
+        "quantidade": 132,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "diagnostico": {
+        "mae": 5.43,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.61
+        },
+        "mediaProjecao": 5.37,
+        "mediaReal": 2.75
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 2.38,
+        "top5": 3.97,
+        "top10": 19.84,
+        "percentilMedio": 47.35,
+        "eficienciaCapturaPontos": 21.97
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.85,
+        "correcaoAditiva": -1.305,
+        "componentes": {
+          "fatorVies": 0.88,
+          "ajusteMae": -0.0125,
+          "ajusteRanking": -0.03
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "A projeção histórica está superestimando ZAG em 2.61 pontos.",
+        "MAE da posição: 5.43 (alto).",
+        "Auditoria Top Real válida: percentil médio 47.35 e eficiência de captura 21.97%."
+      ]
+    },
+    {
+      "posicao": "MEI",
+      "aplicarNoTesteAB": true,
+      "prioridade": "alta",
+      "amostra": {
+        "quantidade": 264,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "diagnostico": {
+        "mae": 6.2,
+        "classificacaoMae": "muito_alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "moderado",
+          "valor": 1.47
+        },
+        "mediaProjecao": 6.41,
+        "mediaReal": 4.95
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 12.7,
+        "top5": 13.49,
+        "top10": 23.02,
+        "percentilMedio": 62.93,
+        "eficienciaCapturaPontos": 35.48
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.88028,
+        "correcaoAditiva": -0.294,
+        "componentes": {
+          "fatorVies": 0.92028,
+          "ajusteMae": -0.025,
+          "ajusteRanking": -0.015
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "A projeção histórica está superestimando MEI em 1.47 pontos.",
+        "MAE da posição: 6.2 (muito_alto).",
+        "Auditoria Top Real válida: percentil médio 62.93 e eficiência de captura 35.48%."
+      ]
+    },
+    {
+      "posicao": "ATA",
+      "aplicarNoTesteAB": true,
+      "prioridade": "alta",
+      "amostra": {
+        "quantidade": 176,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "diagnostico": {
+        "mae": 6.62,
+        "classificacaoMae": "muito_alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.91
+        },
+        "mediaProjecao": 8.13,
+        "mediaReal": 5.23
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 8.33,
+        "top5": 10.71,
+        "top10": 23.21,
+        "percentilMedio": 64.4,
+        "eficienciaCapturaPontos": 31.8
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.85,
+        "correcaoAditiva": -1.455,
+        "componentes": {
+          "fatorVies": 0.88,
+          "ajusteMae": -0.025,
+          "ajusteRanking": -0.015
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "A projeção histórica está superestimando ATA em 2.91 pontos.",
+        "MAE da posição: 6.62 (muito_alto).",
+        "Auditoria Top Real válida: percentil médio 64.4 e eficiência de captura 31.8%."
+      ]
+    },
+    {
+      "posicao": "TEC",
+      "aplicarNoTesteAB": true,
+      "prioridade": "baixa",
+      "amostra": {
+        "quantidade": 66,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "diagnostico": {
+        "mae": 3.4,
+        "classificacaoMae": "moderado",
+        "vies": {
+          "direcao": "equilibrado",
+          "intensidade": "baixo",
+          "valor": 0.26
+        },
+        "mediaProjecao": 5.61,
+        "mediaReal": 5.35
+      },
+      "auditoriaRanking": {
+        "taxaIdentificacao": 100.0,
+        "topN": 4.76,
+        "top5": 36.51,
+        "top10": 66.67,
+        "percentilMedio": 57.22,
+        "eficienciaCapturaPontos": 56.54
+      },
+      "calibracaoCandidata": {
+        "fatorMultiplicativo": 0.98865,
+        "correcaoAditiva": -0.0,
+        "componentes": {
+          "fatorVies": 0.98865,
+          "ajusteMae": 0.0,
+          "ajusteRanking": 0.0
+        },
+        "formulaTeste": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva"
+      },
+      "motivos": [
+        "O viés histórico de TEC está próximo do equilíbrio.",
+        "MAE da posição: 3.4 (moderado).",
+        "Auditoria Top Real válida: percentil médio 57.22 e eficiência de captura 56.54%."
+      ]
+    }
+  ],
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraPesosOficiais": false,
+    "alteraEscalacoesOficiais": false,
+    "necessitaBacktestAB": true,
+    "promocaoAutomatica": false
+  }
+}
