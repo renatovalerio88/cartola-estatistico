@@ -421,6 +421,10 @@ def obter_pontuacao_adaptativa(
     for chave in [
         "pontuacao",
         "pontos",
+        "pontuacaoAdaptativa",
+        "pontosAdaptativo",
+        "pontuacaoEstrategia",
+        "pontosEstrategia",
         "pontuacaoReal",
         "pontosReais",
         "totalReal",
@@ -1336,6 +1340,41 @@ def processar():
                 "pontuacao"
             ]
         )
+
+        # Fallback científico: V1/V2/V3 representam a pontuação da
+        # estratégia escolhida naquela rodada. Algumas versões antigas
+        # gravaram a escolha corretamente, mas não expuseram a pontuação
+        # em uma chave reconhecida por este comparador. Nesses casos,
+        # recuperamos a pontuação diretamente da simulação histórica da
+        # mesma rodada, sem usar informação futura.
+        for registro_adaptativo, valor_atual, nome in [
+            (registro_v1, p1, "v1"),
+            (registro_v2, p2, "v2"),
+            (registro_v3, p3, "v3"),
+        ]:
+            escolha = registro_adaptativo.get(
+                "estrategiaEscolhida"
+            )
+
+            if (
+                valor_atual == 0
+                and
+                escolha in ESTRATEGIAS
+            ):
+                valor_corrigido = numero(
+                    registro_simulacao[
+                        "pontuacoes"
+                    ].get(
+                        escolha
+                    )
+                )
+
+                if nome == "v1":
+                    p1 = valor_corrigido
+                elif nome == "v2":
+                    p2 = valor_corrigido
+                else:
+                    p3 = valor_corrigido
 
         oraculo = numero(
             registro_simulacao[
