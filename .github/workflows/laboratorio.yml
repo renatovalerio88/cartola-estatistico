@@ -100,9 +100,9 @@ jobs:
         run: |
           python scripts/processamento/auditar_top_real.py
 
-      - name: Gerar Calibração Candidata
+      - name: Calibrar Modelo por Posição
         run: |
-          python scripts/processamento/gerar_calibracao_posicoes.py
+          python scripts/processamento/calibrar_modelo_por_posicao.py
 
       - name: Backtest A/B Calibração
         run: |
@@ -233,10 +233,6 @@ jobs:
               )
 
 
-              # ==================================
-              # BACKTEST A/B
-              # ==================================
-
               if nome.endswith(
                   "backtest-ab-calibracao.json"
               ):
@@ -321,10 +317,6 @@ jobs:
                   )
 
 
-              # ==================================
-              # CAPITÃO
-              # ==================================
-
               elif nome.endswith(
                   "analise-capitao.json"
               ):
@@ -389,10 +381,6 @@ jobs:
                   )
 
 
-              # ==================================
-              # SIMULAÇÃO
-              # ==================================
-
               elif nome.endswith(
                   "simulacao-times.json"
               ):
@@ -429,10 +417,6 @@ jobs:
                       )
                   )
 
-
-              # ==================================
-              # RANKING
-              # ==================================
 
               elif nome.endswith(
                   "ranking-simulacao.json"
@@ -516,10 +500,6 @@ jobs:
                       )
 
 
-              # ==================================
-              # AUDITORIA SIMULAÇÃO
-              # ==================================
-
               elif nome.endswith(
                   "auditoria-simulacao-times.json"
               ):
@@ -594,10 +574,6 @@ jobs:
                       )
                   )
 
-
-              # ==================================
-              # ANÁLISE DAS ESTRATÉGIAS
-              # ==================================
 
               elif nome.endswith(
                   "analise-estrategias-escalacao.json"
