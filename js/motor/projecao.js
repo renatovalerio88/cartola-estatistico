@@ -93,6 +93,43 @@ const MotorProjecao = (() => {
 
 
     // ==================================================
+    // NORMALIZAÇÃO DO SCORE
+    // ==================================================
+
+    function normalizarScore(
+        valor
+    ) {
+
+        /*
+        --------------------------------------------------
+        O score estatístico do projeto trabalha na escala
+        de 0 a 100.
+
+        Alguns registros podem chegar acima de 100 quando
+        uma camada anterior entrega soma bruta de critérios
+        em vez da nota normalizada. Isso fazia o MotorProjecao
+        interpretar, por exemplo, score 1080 como 1080 pontos
+        de nota e gerar projeções absurdas.
+
+        A proteção abaixo NÃO muda scores válidos. Apenas
+        impede que valores fora da escala oficial contaminem
+        a projeção.
+        --------------------------------------------------
+        */
+
+        return limitar(
+            numero(
+                valor,
+                0
+            ),
+            0,
+            100
+        );
+
+    }
+
+
+    // ==================================================
     // POSIÇÃO
     // ==================================================
 
@@ -307,9 +344,15 @@ const MotorProjecao = (() => {
         jogador
     ) {
 
-        const score =
+        const scoreBruto =
             numero(
                 jogador.score
+            );
+
+
+        const score =
+            normalizarScore(
+                scoreBruto
             );
 
 
@@ -528,6 +571,8 @@ const MotorProjecao = (() => {
 
             score,
 
+            scoreBruto,
+
             media3,
 
             media5,
@@ -588,15 +633,6 @@ const MotorProjecao = (() => {
 
         };
 
-
-        /*
-        --------------------------------------------------
-        A camada MotorCalibracaoPosicao será adicionada
-        no próximo arquivo deste lote.
-
-        Até ela existir, retornamos calibração neutra.
-        --------------------------------------------------
-        */
 
         if (
             typeof MotorCalibracaoPosicao ===
@@ -850,21 +886,6 @@ const MotorProjecao = (() => {
             );
 
 
-        /*
-        --------------------------------------------------
-        Compatibilidade:
-
-        O campo "projecao" continua sendo o valor usado
-        pelo restante do sistema.
-
-        Quando a calibração estiver disponível, ele passa
-        a representar a projeção calibrada.
-
-        A projeção anterior fica preservada em
-        "projecaoOriginal".
-        --------------------------------------------------
-        */
-
         const projecaoFinal =
             projecaoCalibrada;
 
@@ -981,6 +1002,29 @@ const MotorProjecao = (() => {
                     null
 
             },
+
+
+            // ==========================================
+            // DIAGNÓSTICO DO SCORE
+            // ==========================================
+
+            scoreProjecao:
+                arredondar(
+                    base.score
+                ),
+
+
+            scoreBrutoProjecao:
+                arredondar(
+                    base.scoreBruto
+                ),
+
+
+            scoreLimitado:
+                Boolean(
+                    base.scoreBruto !==
+                    base.score
+                ),
 
 
             // ==========================================
