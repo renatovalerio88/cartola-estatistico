@@ -42,7 +42,6 @@ antes da rodada analisada.
 import json
 import math
 
-from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median, pstdev
 
@@ -128,7 +127,6 @@ PESOS = {
 def carregar_json(caminho):
 
     if not caminho.exists():
-
         return None
 
     try:
@@ -184,7 +182,6 @@ def numero(
     try:
 
         if valor is None:
-
             return padrao
 
         valor = float(
@@ -198,7 +195,6 @@ def numero(
             return valor
 
     except Exception:
-
         pass
 
     return padrao
@@ -231,7 +227,6 @@ def percentual(
     )
 
     if total == 0:
-
         return 0
 
     return (
@@ -245,7 +240,6 @@ def media_segura(
 ):
 
     if not valores:
-
         return 0
 
     return mean(
@@ -258,7 +252,6 @@ def mediana_segura(
 ):
 
     if not valores:
-
         return 0
 
     return median(
@@ -282,6 +275,197 @@ def desvio_seguro(
 
 
 # ======================================================
+# LEITURA SEGURA DAS PONTUAÇÕES
+# ======================================================
+
+def obter_primeiro_numero(
+    dados,
+    campos,
+    padrao=None
+):
+
+    if not isinstance(
+        dados,
+        dict
+    ):
+        return padrao
+
+    for campo in campos:
+
+        if campo not in dados:
+            continue
+
+        valor = dados.get(
+            campo
+        )
+
+        if valor is None:
+            continue
+
+        try:
+
+            resultado = float(
+                valor
+            )
+
+            if math.isfinite(
+                resultado
+            ):
+                return resultado
+
+        except Exception:
+            continue
+
+    return padrao
+
+
+def obter_pontuacao_com_capitao(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return None
+
+    campos = [
+        "pontuacaoComCapitao",
+        "pontosComCapitao",
+        "pontuacaoRealComCapitao",
+        "pontuacaoFinal",
+        "pontos",
+        "pontuacaoReal",
+        "pontuacao"
+    ]
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        campos,
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    resultado = estrategia.get(
+        "resultado"
+    )
+
+    valor = obter_primeiro_numero(
+        resultado,
+        campos,
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    metricas = estrategia.get(
+        "metricas"
+    )
+
+    return obter_primeiro_numero(
+        metricas,
+        campos,
+        None
+    )
+
+
+def obter_pontuacao_sem_capitao(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return None
+
+    campos = [
+        "pontuacaoSemCapitao",
+        "pontosSemCapitao"
+    ]
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        campos,
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    resultado = estrategia.get(
+        "resultado"
+    )
+
+    valor = obter_primeiro_numero(
+        resultado,
+        campos,
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    return obter_pontuacao_com_capitao(
+        estrategia
+    )
+
+
+def obter_bonus_capitao(
+    estrategia,
+    pontos_com_capitao=None,
+    pontos_sem_capitao=None
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return 0.0
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "bonusCapitao",
+            "bonus_capitao"
+        ],
+        None
+    )
+
+    if valor is None:
+
+        valor = obter_primeiro_numero(
+            estrategia.get(
+                "resultado"
+            ),
+            [
+                "bonusCapitao",
+                "bonus_capitao"
+            ],
+            None
+        )
+
+    if valor is not None:
+        return valor
+
+    if (
+        pontos_com_capitao is not None
+        and
+        pontos_sem_capitao is not None
+    ):
+
+        return (
+            pontos_com_capitao -
+            pontos_sem_capitao
+        )
+
+    return 0.0
+
+
+# ======================================================
 # PERCENTIL
 # ======================================================
 
@@ -291,7 +475,6 @@ def percentil(
 ):
 
     if not valores:
-
         return 0
 
     ordenados = sorted(
@@ -361,66 +544,167 @@ def carregar_rodadas(
 
     rodadas = []
 
-    for rodada in simulacao.get(
+    if not isinstance(
+        simulacao,
+        dict
+    ):
+        return rodadas
+
+    rodadas_brutas = simulacao.get(
         "rodadas",
         []
+    )
+
+    if not isinstance(
+        rodadas_brutas,
+        list
     ):
+        return rodadas
+
+    for rodada in rodadas_brutas:
+
+        if not isinstance(
+            rodada,
+            dict
+        ):
+            continue
 
         numero_rodada = rodada.get(
             "rodada"
         )
 
         if numero_rodada is None:
-
             continue
 
         estrategias = {}
 
-        for estrategia in rodada.get(
+        estrategias_brutas = rodada.get(
             "estrategias",
             []
+        )
+
+        # Compatibilidade com lista ou objeto/dicionário.
+        if isinstance(
+            estrategias_brutas,
+            dict
         ):
+
+            estrategias_iteraveis = []
+
+            for nome, dados in estrategias_brutas.items():
+
+                if not isinstance(
+                    dados,
+                    dict
+                ):
+                    continue
+
+                copia = dict(
+                    dados
+                )
+
+                copia.setdefault(
+                    "nome",
+                    nome
+                )
+
+                estrategias_iteraveis.append(
+                    copia
+                )
+
+        elif isinstance(
+            estrategias_brutas,
+            list
+        ):
+
+            estrategias_iteraveis = (
+                estrategias_brutas
+            )
+
+        else:
+
+            estrategias_iteraveis = []
+
+        for estrategia in estrategias_iteraveis:
+
+            if not isinstance(
+                estrategia,
+                dict
+            ):
+                continue
 
             nome = estrategia.get(
                 "nome"
             )
 
             if nome not in ESTRATEGIAS:
+                continue
+
+            pontos = (
+                obter_pontuacao_com_capitao(
+                    estrategia
+                )
+            )
+
+            # Pontuação ausente não pode ser convertida
+            # silenciosamente para zero.
+            if pontos is None:
+
+                print(
+                    f"[ALERTA] Rodada "
+                    f"{numero_rodada} | "
+                    f"{nome}: pontuação não encontrada."
+                )
 
                 continue
+
+            pontos_sem_capitao = (
+                obter_pontuacao_sem_capitao(
+                    estrategia
+                )
+            )
+
+            if pontos_sem_capitao is None:
+                pontos_sem_capitao = pontos
+
+            bonus_capitao = (
+                obter_bonus_capitao(
+                    estrategia,
+                    pontos,
+                    pontos_sem_capitao
+                )
+            )
 
             estrategias[
                 nome
             ] = {
 
                 "pontos":
-                    numero(
-                        estrategia.get(
-                            "pontuacaoComCapitao"
-                        )
-                    ),
+                    pontos,
 
                 "pontosSemCapitao":
-                    numero(
-                        estrategia.get(
-                            "pontuacaoSemCapitao"
-                        )
-                    ),
+                    pontos_sem_capitao,
 
                 "bonusCapitao":
-                    numero(
-                        estrategia.get(
-                            "bonusCapitao"
-                        )
-                    )
+                    bonus_capitao
 
             }
 
+        # O V2 original exige as três estratégias.
+        # Mantemos exatamente essa regra.
         if len(
             estrategias
         ) != len(
             ESTRATEGIAS
         ):
+
+            print(
+                f"[ALERTA] Rodada "
+                f"{numero_rodada} ignorada: "
+                f"estratégias válidas "
+                f"{len(estrategias)}/"
+                f"{len(ESTRATEGIAS)}."
+            )
 
             continue
 
@@ -458,12 +742,24 @@ def carregar_rodadas(
 
         ]
 
+        try:
+
+            rodada_normalizada = int(
+                numero_rodada
+            )
+
+        except Exception:
+
+            rodada_normalizada = int(
+                numero(
+                    numero_rodada
+                )
+            )
+
         rodadas.append({
 
             "rodada":
-                int(
-                    numero_rodada
-                ),
+                rodada_normalizada,
 
             "estrategias":
                 estrategias,
@@ -497,7 +793,6 @@ def normalizar_valores(
 ):
 
     if not valores:
-
         return {}
 
     minimo = min(
@@ -595,7 +890,6 @@ def classificar_regime(
 ):
 
     if not limites:
-
         return None
 
     if (
@@ -916,7 +1210,6 @@ def calcular_desempenho_regime(
         )
 
         if regime != regime_alvo:
-
             continue
 
         for nome in ESTRATEGIAS:
