@@ -11,6 +11,7 @@ permissions:
   contents: write
 
 
+
 jobs:
 
   laboratorio:
@@ -21,14 +22,10 @@ jobs:
     steps:
 
 
-      # ======================================
-      # PREPARAÇÃO
-      # ======================================
-
-
       - name: Checkout
 
         uses: actions/checkout@v4
+
 
 
       - name: Configurar Python
@@ -40,11 +37,13 @@ jobs:
           python-version: "3.11"
 
 
+
       - name: Atualizar pip
 
         run: |
 
           python -m pip install --upgrade pip
+
 
 
       # ======================================
@@ -59,11 +58,13 @@ jobs:
           python scripts/processamento/gerar_backtest.py
 
 
+
       - name: Otimizar Pesos
 
         run: |
 
           python scripts/processamento/otimizar_pesos.py
+
 
 
       - name: Gerar Laboratório
@@ -73,11 +74,13 @@ jobs:
           python scripts/processamento/gerar_laboratorio.py
 
 
+
       - name: Calibrar Modelo
 
         run: |
 
           python scripts/processamento/calibrar_modelo.py
+
 
 
       # ======================================
@@ -92,11 +95,13 @@ jobs:
           python scripts/processamento/backtest_cientifico.py
 
 
+
       - name: Analisar Componentes
 
         run: |
 
           python scripts/processamento/analisar_componentes.py
+
 
 
       - name: Analisar Erros
@@ -106,11 +111,13 @@ jobs:
           python scripts/processamento/analisar_erros.py
 
 
+
       - name: Analisar Explosões
 
         run: |
 
           python scripts/processamento/criar_explosoes.py
+
 
 
       - name: Calcular Potencial Explosao
@@ -120,11 +127,13 @@ jobs:
           python scripts/processamento/calcular_potencial_explosao.py
 
 
+
       - name: Calcular Índice Diferencial
 
         run: |
 
           python scripts/processamento/calcular_indice_diferencial.py
+
 
 
       - name: Testar Modelo Explosao
@@ -134,11 +143,13 @@ jobs:
           python scripts/processamento/testar_explosao_modelo.py
 
 
+
       - name: Backtest Inteligente
 
         run: |
 
           python scripts/processamento/backtest_inteligente.py
+
 
 
       - name: Gerar Histórico do Modelo
@@ -148,6 +159,7 @@ jobs:
           python scripts/processamento/gerar_historico_modelo.py
 
 
+
       - name: Gerar Histórico Detalhado
 
         run: |
@@ -155,16 +167,10 @@ jobs:
           python scripts/processamento/gerar_historico_detalhado.py
 
 
+
       # ======================================
-      # BACKTEST DE ESCALAÇÕES
+      # SIMULAÇÃO DE CAMPEONATO
       # ======================================
-
-
-      - name: Gerar Histórico de Escalações
-
-        run: |
-
-          python scripts/processamento/gerar_historico_escalacoes.py
 
 
       - name: Diagnosticar Escalações
@@ -174,11 +180,13 @@ jobs:
           python scripts/processamento/diagnosticar_escalacoes.py
 
 
+
       - name: Simular Times Históricos
 
         run: |
 
           python scripts/calcular_simulacao_times.py
+
 
 
       - name: Gerar Ranking Simulação
@@ -188,22 +196,6 @@ jobs:
           python scripts/processamento/gerar_ranking_simulacao.py
 
 
-      # ======================================
-      # ANÁLISE CIENTÍFICA DAS ESCALAÇÕES
-      # ======================================
-
-
-      - name: Analisar Simulações Históricas
-
-        run: |
-
-          python scripts/processamento/analisar_simulacoes_historicas.py
-
-
-      # ======================================
-      # COMPARAÇÃO DOS MODELOS
-      # ======================================
-
 
       - name: Comparar Modelos
 
@@ -212,878 +204,97 @@ jobs:
           python scripts/processamento/gerar_comparacao_modelos.py
 
 
+
       # ======================================
-      # DIAGNÓSTICO CIENTÍFICO FINAL
+      # VALIDAÇÃO CIENTÍFICA AVANÇADA
       # ======================================
 
 
-      - name: Diagnosticar Modelo de Escalações
+      - name: Auditar Top Real
 
         run: |
 
-          python scripts/processamento/diagnosticar_modelo_escalacoes.py
+          python scripts/processamento/auditar_top_real.py
 
 
-      # ======================================
-      # RESUMO DO LABORATÓRIO
-      # ======================================
 
-
-      - name: Mostrar Resumo do Laboratório
-
-        shell: python
+      - name: Calibrar Modelo por Posição
 
         run: |
 
-          from pathlib import Path
+          python scripts/processamento/calibrar_modelo_por_posicao.py
+
+
+
+      - name: Backtest AB da Calibração
+
+        run: |
+
+          python scripts/processamento/backtest_ab_calibracao.py
+
+
+
+      - name: Analisar Capitão
+
+        run: |
+
+          python scripts/processamento/analisar_capitao.py
+
+
+
+      # ======================================
+      # DIAGNÓSTICO DOS NOVOS RESULTADOS
+      # ======================================
+
+
+      - name: Resumo Validação Científica
+
+        run: |
+
+          python - <<'PY'
+
           import json
-
-
-          def carregar(caminho):
-
-              caminho = Path(caminho)
-
-              if not caminho.exists():
-
-                  return {}
-
-              try:
-
-                  with open(
-                      caminho,
-                      "r",
-                      encoding="utf-8"
-                  ) as arquivo:
-
-                      return json.load(
-                          arquivo
-                      )
-
-              except Exception as erro:
-
-                  print(
-                      f"Erro ao carregar {caminho}: {erro}"
-                  )
-
-                  return {}
-
-
-          def linha():
-
-              print(
-                  "=" * 65
-              )
-
-
-          indice = carregar(
-              "data/historico-escalacoes/indice.json"
-          )
-
-
-          simulacao = carregar(
-              "data/simulacao-times.json"
-          )
-
-
-          ranking = carregar(
-              "data/ranking-simulacao.json"
-          )
-
-
-          analise = carregar(
-              "data/analise-simulacoes-historicas.json"
-          )
-
-
-          comparacao = carregar(
-              "data/comparacao-modelos.json"
-          )
-
-
-          diagnostico = carregar(
-              "data/diagnostico-modelo-escalacoes.json"
-          )
-
-
-          linha()
-
-          print(
-              "CARTOLA ESTATÍSTICO - RESUMO DO LABORATÓRIO"
-          )
-
-          linha()
-
-
-          # ==================================
-          # HISTÓRICO
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== HISTÓRICO DE ESCALAÇÕES ====="
-          )
-
-
-          print(
-              "Rodadas processadas:",
-              indice.get(
-                  "quantidadeRodadas",
-                  0
-              )
-          )
-
-
-          print(
-              "Primeira rodada:",
-              indice.get(
-                  "primeiraRodada"
-              )
-          )
-
-
-          print(
-              "Última rodada:",
-              indice.get(
-                  "ultimaRodada"
-              )
-          )
-
-
-          # ==================================
-          # SIMULAÇÃO
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== SIMULAÇÃO HISTÓRICA ====="
-          )
-
-
-          quantidade_simulacao = (
-              simulacao.get(
-                  "quantidadeRodadas"
-              )
-          )
-
-
-          if quantidade_simulacao is None:
-
-              quantidade_simulacao = len(
-                  simulacao.get(
-                      "rodadas",
-                      []
-                  )
-              )
-
-
-          print(
-              "Rodadas:",
-              quantidade_simulacao
-          )
-
-
-          # ==================================
-          # RANKING
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== RANKING DAS ESTRATÉGIAS ====="
-          )
-
-
-          ranking_lista = ranking.get(
-              "ranking",
-              []
-          )
-
-
-          if not ranking_lista:
-
-              print(
-                  "Nenhuma estratégia encontrada."
-              )
-
-
-          for item in ranking_lista:
-
-              print(
-                  f"{item.get('posicao', '-')}º "
-                  f"{item.get('nome', '-')} | "
-                  f"Total: {item.get('pontosTotal', 0)} | "
-                  f"Média: {item.get('mediaPontos', 0)} | "
-                  f"Vitórias: {item.get('vitorias', 0)} | "
-                  f"Taxa vitórias: "
-                  f"{item.get('taxaVitorias', 0)}% | "
-                  f"Consistência: "
-                  f"{item.get('consistencia', 0)}% | "
-                  f"Volatilidade: "
-                  f"{item.get('volatilidade', 0)}"
-              )
-
-
-          print()
-
-
-          print(
-              "Melhor estratégia:",
-              ranking.get(
-                  "melhorEstrategia"
-              )
-          )
-
-
-          segura = ranking.get(
-              "estrategiaMaisSegura"
-          )
-
-
-          explosiva = ranking.get(
-              "estrategiaMaisExplosiva"
-          )
-
-
-          consistente = ranking.get(
-              "estrategiaMaisConsistente"
-          )
-
-
-          if segura:
-
-              print(
-                  "Mais segura:",
-                  segura.get(
-                      "nome"
-                  )
-              )
-
-
-          if explosiva:
-
-              print(
-                  "Mais explosiva:",
-                  explosiva.get(
-                      "nome"
-                  )
-              )
-
-
-          if consistente:
-
-              print(
-                  "Mais consistente:",
-                  consistente.get(
-                      "nome"
-                  )
-              )
-
-
-          # ==================================
-          # RANKING SEM COLD START
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== RANKING SEM COLD START ====="
-          )
-
-
-          ranking_sem_cold = ranking.get(
-              "rankingSemColdStart",
-              []
-          )
-
-
-          if not ranking_sem_cold:
-
-              print(
-                  "Nenhum resultado disponível."
-              )
-
-
-          for item in ranking_sem_cold:
-
-              print(
-                  f"{item.get('posicao', '-')}º "
-                  f"{item.get('nome', '-')} | "
-                  f"Rodadas: {item.get('rodadas', 0)} | "
-                  f"Total: {item.get('pontosTotal', 0)} | "
-                  f"Média: {item.get('mediaPontos', 0)} | "
-                  f"Consistência: "
-                  f"{item.get('consistencia', 0)}%"
-              )
-
-
-          # ==================================
-          # PRECISÃO
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PRECISÃO DAS ESTRATÉGIAS ====="
-          )
-
-
-          resumo = analise.get(
-              "resumoGeral",
-              []
-          )
-
-
-          if not resumo:
-
-              print(
-                  "Análise histórica ainda sem resultados."
-              )
-
-
-          for item in resumo:
-
-              capitao = item.get(
-                  "capitao",
-                  {}
-              )
-
-
-              print(
-                  f"{item.get('posicao', '-')}º "
-                  f"{item.get('nome', '-')} | "
-                  f"Média real: "
-                  f"{item.get('mediaPontos', 0)} | "
-                  f"MAE jogadores: "
-                  f"{item.get('maeJogadores', 0)} | "
-                  f"MAE time: "
-                  f"{item.get('maeTimes', 0)} | "
-                  f"Capitão: "
-                  f"{capitao.get('taxaAcerto', 0)}%"
-              )
-
-
-          # ==================================
-          # SEM COLD START
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PRECISÃO SEM COLD START ====="
-          )
-
-
-          resumo_sem_cold = analise.get(
-              "resumoSemColdStart",
-              []
-          )
-
-
-          if not resumo_sem_cold:
-
-              print(
-                  "Nenhum resultado disponível."
-              )
-
-
-          for item in resumo_sem_cold:
-
-              capitao = item.get(
-                  "capitao",
-                  {}
-              )
-
-
-              print(
-                  f"{item.get('posicao', '-')}º "
-                  f"{item.get('nome', '-')} | "
-                  f"Média: "
-                  f"{item.get('mediaPontos', 0)} | "
-                  f"MAE jogadores: "
-                  f"{item.get('maeJogadores', 0)} | "
-                  f"MAE time: "
-                  f"{item.get('maeTimes', 0)} | "
-                  f"Capitão: "
-                  f"{capitao.get('taxaAcerto', 0)}%"
-              )
-
-
-          # ==================================
-          # POSIÇÕES
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PRECISÃO POR POSIÇÃO ====="
-          )
-
-
-          posicoes = analise.get(
-              "desempenhoPorPosicao",
-              {}
-          )
-
-
-          for posicao in [
-              "GOL",
-              "LAT",
-              "ZAG",
-              "MEI",
-              "ATA",
-              "TEC"
-          ]:
-
-              dados = posicoes.get(
-                  posicao,
-                  {}
-              )
-
-
-              print(
-                  f"{posicao} | "
-                  f"Amostras: "
-                  f"{dados.get('amostras', 0)} | "
-                  f"MAE: {dados.get('mae', 0)} | "
-                  f"Viés: {dados.get('vies', 0)} | "
-                  f"Acerto Top Real: "
-                  f"{dados.get('taxaAcertoTopReal', 0)}%"
-              )
-
-
-          # ==================================
-          # EVOLUÇÃO
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== EVOLUÇÃO POR HISTÓRICO DISPONÍVEL ====="
-          )
-
-
-          evolucao = analise.get(
-              "evolucaoPorQuantidadeHistorico",
-              {}
-          )
-
-
-          for faixa in [
-              "01-03",
-              "04-07",
-              "08-12",
-              "13+"
-          ]:
-
-              print()
-
-              print(
-                  f"Histórico {faixa}:"
-              )
-
-
-              itens = evolucao.get(
-                  faixa,
-                  []
-              )
-
-
-              if not itens:
-
-                  print(
-                      "  sem dados"
-                  )
-
-                  continue
-
-
-              for item in itens:
-
-                  print(
-                      f"  {item.get('nome', '-')} | "
-                      f"Rodadas: "
-                      f"{item.get('rodadas', 0)} | "
-                      f"Média: "
-                      f"{item.get('mediaPontos', 0)} | "
-                      f"MAE jogadores: "
-                      f"{item.get('maeJogadores', 0)} | "
-                      f"MAE time: "
-                      f"{item.get('maeTimes', 0)}"
-                  )
-
-
-          # ==================================
-          # COMPARAÇÃO DOS MODELOS
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== COMPARAÇÃO DOS MODELOS ====="
-          )
-
-
-          modelos = comparacao.get(
-              "modelos",
-              []
-          )
-
-
-          if isinstance(
-              modelos,
-              dict
-          ):
-
-              for nome, dados in modelos.items():
-
-                  if isinstance(
-                      dados,
-                      dict
-                  ):
-
-                      print(
-                          f"{nome} | "
-                          f"MAE: "
-                          f"{dados.get('mae', dados.get('erroMedio', 0))}"
-                      )
-
-                  else:
-
-                      print(
-                          f"{nome}: {dados}"
-                      )
-
-
-          elif isinstance(
-              modelos,
-              list
-          ):
-
-              for modelo in modelos:
-
-                  if not isinstance(
-                      modelo,
-                      dict
-                  ):
-
-                      continue
-
-
-                  print(
-                      f"{modelo.get('nome', modelo.get('modelo', '-'))} | "
-                      f"MAE: "
-                      f"{modelo.get('mae', modelo.get('erroMedio', 0))}"
-                  )
-
-
-          else:
-
-              print(
-                  "Formato de comparação não reconhecido."
-              )
-
-
-          # ==================================
-          # DIAGNÓSTICO FINAL
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== DIAGNÓSTICO CIENTÍFICO FINAL ====="
-          )
-
-
-          executivo = diagnostico.get(
-              "resumoExecutivo",
-              {}
-          )
-
-
-          print(
-              "Melhor estratégia:",
-              executivo.get(
-                  "melhorEstrategia"
-              )
-          )
-
-
-          print(
-              "Estratégia mais segura:",
-              executivo.get(
-                  "estrategiaMaisSegura"
-              )
-          )
-
-
-          print(
-              "Estratégia mais explosiva:",
-              executivo.get(
-                  "estrategiaMaisExplosiva"
-              )
-          )
-
-
-          print(
-              "Posição mais previsível:",
-              executivo.get(
-                  "posicaoMaisPrevisivel"
-              )
-          )
-
-
-          print(
-              "Posição menos previsível:",
-              executivo.get(
-                  "posicaoMenosPrevisivel"
-              )
-          )
-
-
-          print(
-              "Melhor estratégia de capitão:",
-              executivo.get(
-                  "melhorEstrategiaCapitao"
-              )
-          )
-
-
-          print(
-              "Prioridades altas:",
-              executivo.get(
-                  "prioridadesAltas",
-                  0
-              )
-          )
-
-
-          print(
-              "Prioridades médias:",
-              executivo.get(
-                  "prioridadesMedias",
-                  0
-              )
-          )
-
-
-          print(
-              "Status:",
-              executivo.get(
-                  "status"
-              )
-          )
-
-
-          # ==================================
-          # PONTOS FORTES
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PONTOS FORTES ====="
-          )
-
-
-          pontos_fortes = diagnostico.get(
-              "pontosFortes",
-              []
-          )
-
-
-          if not pontos_fortes:
-
-              print(
-                  "Nenhum ponto forte classificado."
-              )
-
-
-          for item in pontos_fortes:
-
-              print(
-                  "-",
-                  item.get(
-                      "descricao",
-                      ""
-                  )
-              )
-
-
-          # ==================================
-          # PONTOS DE ATENÇÃO
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PONTOS DE ATENÇÃO ====="
-          )
-
-
-          pontos_atencao = diagnostico.get(
-              "pontosAtencao",
-              []
-          )
-
-
-          if not pontos_atencao:
-
-              print(
-                  "Nenhum ponto crítico detectado."
-              )
-
-
-          for item in pontos_atencao:
-
-              print(
-                  f"[{item.get('prioridade', '-').upper()}]",
-                  item.get(
-                      "descricao",
-                      ""
-                  )
-              )
-
-
-          # ==================================
-          # RECOMENDAÇÕES
-          # ==================================
-
-
-          print()
-
-          print(
-              "===== PRÓXIMAS CALIBRAÇÕES RECOMENDADAS ====="
-          )
-
-
-          recomendacoes = diagnostico.get(
-              "recomendacoesCalibracao",
-              []
-          )
-
-
-          if not recomendacoes:
-
-              print(
-                  "Nenhuma recomendação gerada."
-              )
-
-
-          for item in recomendacoes:
-
-              print(
-                  f"{item.get('id', '-')}. "
-                  f"[{item.get('prioridade', '-').upper()}] "
-                  f"{item.get('area', '-')} -> "
-                  f"{item.get('acao', '-')}"
-              )
-
-
-              print(
-                  "   Motivo:",
-                  item.get(
-                      "motivo",
-                      ""
-                  )
-              )
-
-
-          print()
-
-          print(
-              "Alteração automática de pesos: NÃO"
-          )
-
-
-          print()
-
-          linha()
-
-          print(
-              "RESUMO FINALIZADO"
-          )
-
-          linha()
-
-
-      # ======================================
-      # VALIDAÇÃO DOS RESULTADOS
-      # ======================================
-
-
-      - name: Validar Resultados do Laboratório
-
-        shell: python
-
-        run: |
-
           from pathlib import Path
-          import json
-          import sys
 
 
-          erros = []
+          arquivos = [
 
+              "data/auditoria-top-real.json",
 
-          arquivos_obrigatorios = [
+              "data/calibracao-posicoes-candidata.json",
 
-              Path(
-                  "data/historico-escalacoes/indice.json"
-              ),
+              "data/backtest-ab-calibracao.json",
 
-              Path(
-                  "data/simulacao-times.json"
-              ),
-
-              Path(
-                  "data/ranking-simulacao.json"
-              ),
-
-              Path(
-                  "data/analise-simulacoes-historicas.json"
-              ),
-
-              Path(
-                  "data/diagnostico-modelo-escalacoes.json"
-              )
+              "data/analise-capitao.json"
 
           ]
 
 
-          # ==================================
-          # EXISTÊNCIA DOS ARQUIVOS
-          # ==================================
+          print()
+          print("==============================================")
+          print("CARTOLA ESTATÍSTICO")
+          print("RESUMO DA VALIDAÇÃO CIENTÍFICA")
+          print("==============================================")
+          print()
 
 
-          for caminho in arquivos_obrigatorios:
+          for nome in arquivos:
+
+              caminho = Path(nome)
+
+
+              print("----------------------------------------------")
+              print(nome)
+              print("----------------------------------------------")
+
 
               if not caminho.exists():
 
-                  erros.append(
-                      f"Arquivo ausente: {caminho}"
-                  )
+                  print("ARQUIVO NÃO GERADO")
+                  print()
 
+                  continue
 
-          # ==================================
-          # LEITURA
-          # ==================================
-
-
-          def carregar(caminho):
 
               try:
 
@@ -1093,376 +304,214 @@ jobs:
                       encoding="utf-8"
                   ) as arquivo:
 
-                      return json.load(
+                      dados = json.load(
                           arquivo
                       )
 
+
               except Exception as erro:
 
-                  erros.append(
-                      f"JSON inválido em {caminho}: {erro}"
-                  )
-
-                  return {}
-
-
-          # ==================================
-          # VALIDAÇÕES CIENTÍFICAS
-          # ==================================
-
-
-          if not erros:
-
-              indice = carregar(
-                  arquivos_obrigatorios[
-                      0
-                  ]
-              )
-
-
-              simulacao = carregar(
-                  arquivos_obrigatorios[
-                      1
-                  ]
-              )
-
-
-              ranking = carregar(
-                  arquivos_obrigatorios[
-                      2
-                  ]
-              )
-
-
-              analise = carregar(
-                  arquivos_obrigatorios[
-                      3
-                  ]
-              )
-
-
-              diagnostico = carregar(
-                  arquivos_obrigatorios[
-                      4
-                  ]
-              )
-
-
-              quantidade_historico = (
-                  indice.get(
-                      "quantidadeRodadas"
-                  )
-              )
-
-
-              if quantidade_historico is None:
-
-                  quantidade_historico = len(
-                      indice.get(
-                          "rodadas",
-                          []
-                      )
-                  )
-
-
-              quantidade_simulacao = (
-                  simulacao.get(
-                      "quantidadeRodadas"
-                  )
-              )
-
-
-              if quantidade_simulacao is None:
-
-                  quantidade_simulacao = len(
-                      simulacao.get(
-                          "rodadas",
-                          []
-                      )
-                  )
-
-
-              quantidade_ranking = len(
-                  ranking.get(
-                      "ranking",
-                      []
-                  )
-              )
-
-
-              quantidade_analise = (
-                  analise.get(
-                      "quantidadeRodadas"
-                  )
-              )
-
-
-              if quantidade_analise is None:
-
-                  quantidade_analise = len(
-                      analise.get(
-                          "rodadas",
-                          []
-                      )
-                  )
-
-
-              resumo_executivo = (
-                  diagnostico.get(
-                      "resumoExecutivo",
-                      {}
-                  )
-              )
-
-
-              # --------------------------------
-              # Histórico
-              # --------------------------------
-
-
-              if quantidade_historico <= 0:
-
-                  erros.append(
-                      "Histórico de escalações vazio."
-                  )
-
-
-              # --------------------------------
-              # Simulação
-              # --------------------------------
-
-
-              if quantidade_simulacao <= 0:
-
-                  erros.append(
-                      "Simulação histórica vazia."
-                  )
-
-
-              # --------------------------------
-              # Estratégias
-              # --------------------------------
-
-
-              if quantidade_ranking != 3:
-
-                  erros.append(
-                      "Ranking deveria possuir exatamente "
-                      "3 estratégias."
-                  )
-
-
-              # --------------------------------
-              # Análise
-              # --------------------------------
-
-
-              if quantidade_analise <= 0:
-
-                  erros.append(
-                      "Análise científica histórica vazia."
-                  )
-
-
-              # --------------------------------
-              # Diagnóstico
-              # --------------------------------
-
-
-              if not resumo_executivo:
-
-                  erros.append(
-                      "Diagnóstico científico sem "
-                      "resumo executivo."
-                  )
-
-
-              if not resumo_executivo.get(
-                  "melhorEstrategia"
-              ):
-
-                  erros.append(
-                      "Diagnóstico não identificou "
-                      "a melhor estratégia."
-                  )
-
-
-              # --------------------------------
-              # Consistência entre arquivos
-              # --------------------------------
-
-
-              if (
-                  quantidade_historico > 0
-                  and quantidade_simulacao > 0
-                  and quantidade_historico
-                  != quantidade_simulacao
-              ):
-
-                  erros.append(
-                      "Quantidade de rodadas do histórico "
-                      "difere da simulação."
-                  )
-
-
-              if (
-                  quantidade_simulacao > 0
-                  and quantidade_analise > 0
-                  and quantidade_simulacao
-                  != quantidade_analise
-              ):
-
-                  erros.append(
-                      "Quantidade de rodadas da simulação "
-                      "difere da análise científica."
-                  )
-
-
-              # --------------------------------
-              # Estratégias esperadas
-              # --------------------------------
-
-
-              nomes = {
-
-                  str(
-                      item.get(
-                          "nome",
-                          ""
-                      )
-                  ).strip().lower()
-
-                  for item in ranking.get(
-                      "ranking",
-                      []
-                  )
-
-              }
-
-
-              esperadas = {
-
-                  "conservador",
-
-                  "equilibrado",
-
-                  "agressivo"
-
-              }
-
-
-              faltantes = (
-                  esperadas -
-                  nomes
-              )
-
-
-              if faltantes:
-
-                  erros.append(
-                      "Estratégias ausentes no ranking: "
-                      +
-                      ", ".join(
-                          sorted(
-                              faltantes
-                          )
-                      )
-                  )
-
-
-              # --------------------------------
-              # Pontuações
-              # --------------------------------
-
-
-              for item in ranking.get(
-                  "ranking",
-                  []
-              ):
-
-                  nome = item.get(
-                      "nome",
-                      "Sem nome"
-                  )
-
-
-                  rodadas = item.get(
-                      "rodadas",
-                      0
-                  )
-
-
-                  if rodadas <= 0:
-
-                      erros.append(
-                          f"Estratégia {nome} sem rodadas."
-                      )
-
-
-                  if item.get(
-                      "pontosTotal"
-                  ) is None:
-
-                      erros.append(
-                          f"Estratégia {nome} sem "
-                          "pontuação total."
-                      )
-
-
-                  if item.get(
-                      "mediaPontos"
-                  ) is None:
-
-                      erros.append(
-                          f"Estratégia {nome} sem "
-                          "média de pontos."
-                      )
-
-
-          # ==================================
-          # RESULTADO
-          # ==================================
-
-
-          if erros:
-
-              print(
-                  "============================================"
-              )
-
-              print(
-                  "VALIDAÇÃO DO LABORATÓRIO FALHOU"
-              )
-
-              print(
-                  "============================================"
-              )
-
-
-              for erro in erros:
-
                   print(
-                      "-",
+                      "ERRO AO LER:",
                       erro
                   )
 
+                  print()
 
-              sys.exit(
-                  1
+                  continue
+
+
+              print(
+                  "Modelo:",
+                  dados.get(
+                      "modelo"
+                  )
               )
 
 
-          print(
-              "============================================"
-          )
+              if nome.endswith(
+                  "backtest-ab-calibracao.json"
+              ):
 
-          print(
-              "VALIDAÇÃO DO LABORATÓRIO: OK"
-          )
+                  resumo = dados.get(
+                      "resumoGlobal",
+                      {}
+                  )
 
-          print(
-              "============================================"
-          )
+
+                  decisao = dados.get(
+                      "decisaoPromocao",
+                      {}
+                  )
+
+
+                  rodadas = dados.get(
+                      "rodadas",
+                      {}
+                  )
+
+
+                  print(
+                      "MAE A:",
+                      resumo.get(
+                          "maeA"
+                      )
+                  )
+
+
+                  print(
+                      "MAE B:",
+                      resumo.get(
+                          "maeB"
+                      )
+                  )
+
+
+                  print(
+                      "Melhora:",
+                      resumo.get(
+                          "melhoraPercentual"
+                      ),
+                      "%"
+                  )
+
+
+                  print(
+                      "Viés A:",
+                      resumo.get(
+                          "viesA"
+                      )
+                  )
+
+
+                  print(
+                      "Viés B:",
+                      resumo.get(
+                          "viesB"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias A:",
+                      rodadas.get(
+                          "vitoriasA"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias B:",
+                      rodadas.get(
+                          "vitoriasB"
+                      )
+                  )
+
+
+                  print(
+                      "Empates:",
+                      rodadas.get(
+                          "empates"
+                      )
+                  )
+
+
+                  print(
+                      "Decisão:",
+                      decisao.get(
+                          "decisao"
+                      )
+                  )
+
+
+              elif nome.endswith(
+                  "analise-capitao.json"
+              ):
+
+                  resumo = dados.get(
+                      "resumo",
+                      {}
+                  )
+
+
+                  decisao = dados.get(
+                      "decisaoExperimental",
+                      {}
+                  )
+
+
+                  print(
+                      "Avaliações:",
+                      resumo.get(
+                          "avaliacoes"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias A:",
+                      resumo.get(
+                          "vitoriasA"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias B:",
+                      resumo.get(
+                          "vitoriasB"
+                      )
+                  )
+
+
+                  print(
+                      "Média capitão A:",
+                      resumo.get(
+                          "mediaPontosA"
+                      )
+                  )
+
+
+                  print(
+                      "Média capitão B:",
+                      resumo.get(
+                          "mediaPontosB"
+                      )
+                  )
+
+
+                  print(
+                      "Ganho médio B vs A:",
+                      resumo.get(
+                          "ganhoMedioBvsA"
+                      )
+                  )
+
+
+                  print(
+                      "Decisão:",
+                      decisao.get(
+                          "decisao"
+                      )
+                  )
+
+
+              else:
+
+                  print(
+                      "Arquivo gerado com sucesso."
+                  )
+
+
+              print()
+
+
+          print("==============================================")
+          print("FIM DA VALIDAÇÃO")
+          print("==============================================")
+
+          PY
+
 
 
       # ======================================
@@ -1474,16 +523,23 @@ jobs:
 
         run: |
 
+
           git config user.name github-actions
+
 
           git config user.email github-actions@github.com
 
+
           git add .
+
 
           git diff --cached --quiet || (
 
+
             git commit -m "Atualização laboratório estatístico"
 
+
             git push
+
 
           )
