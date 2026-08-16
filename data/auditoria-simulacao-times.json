@@ -1,0 +1,322 @@
+{
+  "modelo": "auditoria_simulacao_times_v1",
+  "descricao": "Auditoria científica da camada de simulação histórica de escalações.",
+  "configuracao": {
+    "minimoRodadas": 5,
+    "coberturaMinima": 90.0,
+    "coberturaIdeal": 98.0,
+    "estrategiasEsperadas": [
+      "Agressivo",
+      "Conservador",
+      "Equilibrado"
+    ]
+  },
+  "fontes": {
+    "simulacao": "data/simulacao-times.json",
+    "ranking": "data/ranking-simulacao.json",
+    "historicoEscalacoes": "data/historico-escalacoes"
+  },
+  "resumo": {
+    "rodadas": 22,
+    "timesAvaliados": 66,
+    "coberturaMediaPercentual": 100.0,
+    "taxaTimesCompletosPercentual": 100.0,
+    "taxaCapitaesValidosPercentual": 100.0,
+    "taxaSemVazamentoPercentual": 100.0,
+    "scoreQualidade": 100.0,
+    "testes": 18,
+    "falhasCriticas": 0,
+    "alertas": 0
+  },
+  "rodadas": {
+    "quantidadeRodadas": 22,
+    "quantidadeTimes": 66,
+    "estrategiasEncontradas": [
+      "Agressivo",
+      "Conservador",
+      "Equilibrado"
+    ],
+    "coberturaMediaPercentual": 100.0,
+    "taxaTimesCompletosPercentual": 100.0,
+    "taxaCapitaesValidosPercentual": 100.0,
+    "taxaSemVazamentoPercentual": 100.0,
+    "taxaAuditoriaOrigemPercentual": 100.0,
+    "problemas": []
+  },
+  "arquivosHistoricos": {
+    "esperados": 22,
+    "existentes": 22,
+    "rodadasExistentes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "rodadasAusentes": [],
+    "rodadasInvalidas": []
+  },
+  "ranking": {
+    "estrategiasSimulacao": [
+      "Agressivo",
+      "Conservador",
+      "Equilibrado"
+    ],
+    "estrategiasRanking": [
+      "Agressivo",
+      "Conservador",
+      "Equilibrado"
+    ],
+    "mesmasEstrategias": true,
+    "melhorEstrategia": "Conservador",
+    "primeiroRanking": "Conservador",
+    "melhorEstrategiaConsistente": true,
+    "posicoesRankingValidas": true
+  },
+  "testes": [
+    {
+      "teste": "simulacao_existe",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": "simulacao_times_v3"
+    },
+    {
+      "teste": "versao_simulacao",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": "simulacao_times_v3"
+    },
+    {
+      "teste": "ranking_existe",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": "ranking_simulacao_v2"
+    },
+    {
+      "teste": "versao_ranking",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": "ranking_simulacao_v2"
+    },
+    {
+      "teste": "amostra_minima",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "rodadas": 22,
+        "minimo": 5
+      }
+    },
+    {
+      "teste": "estrategias_completas",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": [
+        "Agressivo",
+        "Conservador",
+        "Equilibrado"
+      ]
+    },
+    {
+      "teste": "arquivos_historicos_presentes",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "esperados": 22,
+        "existentes": 22,
+        "rodadasExistentes": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "rodadasAusentes": [],
+        "rodadasInvalidas": []
+      }
+    },
+    {
+      "teste": "sem_vazamento_futuro",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "taxa": 100.0
+      }
+    },
+    {
+      "teste": "auditoria_origem",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "taxa": 100.0
+      }
+    },
+    {
+      "teste": "times_completos",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "taxa": 100.0
+      }
+    },
+    {
+      "teste": "cobertura_resultados",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "cobertura": 100.0,
+        "minimo": 90.0
+      }
+    },
+    {
+      "teste": "cobertura_ideal",
+      "aprovado": true,
+      "critico": false,
+      "detalhes": {
+        "cobertura": 100.0,
+        "ideal": 98.0
+      }
+    },
+    {
+      "teste": "capitaes_validos",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "taxa": 100.0
+      }
+    },
+    {
+      "teste": "ranking_mesmas_estrategias",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "estrategiasSimulacao": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "estrategiasRanking": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "mesmasEstrategias": true,
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
+        "melhorEstrategiaConsistente": true,
+        "posicoesRankingValidas": true
+      }
+    },
+    {
+      "teste": "ranking_posicoes_validas",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "estrategiasSimulacao": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "estrategiasRanking": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "mesmasEstrategias": true,
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
+        "melhorEstrategiaConsistente": true,
+        "posicoesRankingValidas": true
+      }
+    },
+    {
+      "teste": "ranking_melhor_consistente",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "estrategiasSimulacao": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "estrategiasRanking": [
+          "Agressivo",
+          "Conservador",
+          "Equilibrado"
+        ],
+        "mesmasEstrategias": true,
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
+        "melhorEstrategiaConsistente": true,
+        "posicoesRankingValidas": true
+      }
+    },
+    {
+      "teste": "auditoria_interna_simulacao",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "rodadasComSimulacao": 22,
+        "rodadasIgnoradas": 0,
+        "coberturaMediaPercentual": 100.0,
+        "separacaoPrevisaoResultado": true,
+        "aprovada": true
+      }
+    },
+    {
+      "teste": "auditoria_interna_ranking",
+      "aprovado": true,
+      "critico": true,
+      "detalhes": {
+        "rankingGerado": true,
+        "estrategiasEncontradas": 3,
+        "rodadasAvaliadas": 22,
+        "coberturaMediaPercentual": 100.0,
+        "simulacaoOrigemAprovada": true,
+        "aprovada": true
+      }
+    }
+  ],
+  "falhasCriticas": [],
+  "alertas": [],
+  "decisao": {
+    "aprovada": true,
+    "decisao": "SIMULACAO_VALIDADA",
+    "podeUsarRankingParaEvoluirModelo": true,
+    "observacao": "Ranking histórico liberado para análise estratégica."
+  }
+}

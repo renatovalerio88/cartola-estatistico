@@ -1,393 +1,43 @@
 {
   "modelo": "ranking_simulacao_v2",
-  "descricao": "Ranking histórico avançado das estratégias de escalação",
+  "descricao": "Ranking histórico das estratégias Conservador, Equilibrado e Agressivo usando escalações progressivas.",
   "fonte": "data/simulacao-times.json",
+  "modeloSimulacao": "simulacao_times_v3",
   "quantidadeRodadas": 22,
-  "rodadaColdStart": 2,
-  "melhorEstrategia": "Equilibrado",
-  "estrategiaMaisSegura": {
-    "nome": "Conservador",
-    "mediaPontos": 57.16,
-    "volatilidade": 12.71,
-    "consistencia": 77.76
-  },
-  "estrategiaMaisExplosiva": {
-    "nome": "Equilibrado",
-    "melhorPontuacao": 113.91,
-    "rodadaMelhorPontuacao": 13,
-    "percentualAcima80": 4.55,
-    "percentualAcima100": 4.55
-  },
-  "estrategiaMaisConsistente": {
-    "nome": "Conservador",
-    "consistencia": 77.76,
-    "volatilidade": 12.71,
-    "mediaPontos": 57.16
-  },
-  "destaques": {
-    "melhorMedia": {
-      "nome": "Equilibrado",
-      "media": 59.93
-    },
-    "maisVitorias": {
-      "nome": "Equilibrado",
-      "vitorias": 8,
-      "taxa": 36.36
-    },
-    "melhorPisoHistorico": {
-      "nome": "Equilibrado",
-      "piorPontuacao": 34.47
-    },
-    "maisFrequenteAcima70": {
-      "nome": "Agressivo",
-      "percentual": 22.73
+  "melhorEstrategia": "Conservador",
+  "criterioRanking": {
+    "principal": "scoreGlobal",
+    "desempate1": "mediaPontos",
+    "desempate2": "pontosTotal",
+    "componentesScore": {
+      "mediaPontos": 0.65,
+      "consistencia": 0.1,
+      "cobertura": 0.1,
+      "taxaVitorias": 0.15,
+      "penalizacaoMae": 0.1
     }
   },
   "ranking": [
     {
-      "nome": "Equilibrado",
-      "rodadas": 22,
-      "pontosTotal": 1318.49,
-      "mediaPontos": 59.93,
-      "medianaPontos": 61.44,
-      "volatilidade": 17.13,
-      "consistencia": 71.42,
-      "vitorias": 8,
-      "empatesPrimeiro": 1,
-      "taxaVitorias": 36.36,
-      "taxaPrimeiroLugarIncluindoEmpates": 40.91,
-      "melhorRodada": {
-        "rodada": 13,
-        "pontos": 113.91
-      },
-      "piorRodada": {
-        "rodada": 9,
-        "pontos": 34.47
-      },
-      "amplitude": 79.44,
-      "faixasPontuacao": {
-        "acima50": {
-          "quantidade": 15,
-          "percentual": 68.18
-        },
-        "acima60": {
-          "quantidade": 12,
-          "percentual": 54.55
-        },
-        "acima70": {
-          "quantidade": 4,
-          "percentual": 18.18
-        },
-        "acima80": {
-          "quantidade": 1,
-          "percentual": 4.55
-        },
-        "acima100": {
-          "quantidade": 1,
-          "percentual": 4.55
-        }
-      },
-      "semColdStart": {
-        "rodadas": 21,
-        "pontosTotal": 1248.78,
-        "mediaPontos": 59.47,
-        "medianaPontos": 61.02,
-        "volatilidade": 17.39,
-        "consistencia": 70.75,
-        "diferencaMediaVsHistoricoCompleto": -0.47
-      },
-      "historico": [
-        {
-          "rodada": 2,
-          "pontos": 69.71,
-          "coldStart": true
-        },
-        {
-          "rodada": 3,
-          "pontos": 56.95,
-          "coldStart": false
-        },
-        {
-          "rodada": 4,
-          "pontos": 45.3,
-          "coldStart": false
-        },
-        {
-          "rodada": 5,
-          "pontos": 53.22,
-          "coldStart": false
-        },
-        {
-          "rodada": 6,
-          "pontos": 65.59,
-          "coldStart": false
-        },
-        {
-          "rodada": 7,
-          "pontos": 68.31,
-          "coldStart": false
-        },
-        {
-          "rodada": 8,
-          "pontos": 67.47,
-          "coldStart": false
-        },
-        {
-          "rodada": 9,
-          "pontos": 34.47,
-          "coldStart": false
-        },
-        {
-          "rodada": 10,
-          "pontos": 42.46,
-          "coldStart": false
-        },
-        {
-          "rodada": 11,
-          "pontos": 49.24,
-          "coldStart": false
-        },
-        {
-          "rodada": 12,
-          "pontos": 61.02,
-          "coldStart": false
-        },
-        {
-          "rodada": 13,
-          "pontos": 113.91,
-          "coldStart": false
-        },
-        {
-          "rodada": 14,
-          "pontos": 40.15,
-          "coldStart": false
-        },
-        {
-          "rodada": 15,
-          "pontos": 42.54,
-          "coldStart": false
-        },
-        {
-          "rodada": 16,
-          "pontos": 68.61,
-          "coldStart": false
-        },
-        {
-          "rodada": 17,
-          "pontos": 36.26,
-          "coldStart": false
-        },
-        {
-          "rodada": 18,
-          "pontos": 54.85,
-          "coldStart": false
-        },
-        {
-          "rodada": 19,
-          "pontos": 70.14,
-          "coldStart": false
-        },
-        {
-          "rodada": 20,
-          "pontos": 67.93,
-          "coldStart": false
-        },
-        {
-          "rodada": 21,
-          "pontos": 76.6,
-          "coldStart": false
-        },
-        {
-          "rodada": 22,
-          "pontos": 71.91,
-          "coldStart": false
-        },
-        {
-          "rodada": 23,
-          "pontos": 61.85,
-          "coldStart": false
-        }
-      ],
-      "posicao": 1
-    },
-    {
-      "nome": "Agressivo",
-      "rodadas": 22,
-      "pontosTotal": 1276.84,
-      "mediaPontos": 58.04,
-      "medianaPontos": 54.58,
-      "volatilidade": 16.03,
-      "consistencia": 72.37,
-      "vitorias": 7,
-      "empatesPrimeiro": 1,
-      "taxaVitorias": 31.82,
-      "taxaPrimeiroLugarIncluindoEmpates": 36.36,
-      "melhorRodada": {
-        "rodada": 13,
-        "pontos": 89.81
-      },
-      "piorRodada": {
-        "rodada": 9,
-        "pontos": 26.97
-      },
-      "amplitude": 62.84,
-      "faixasPontuacao": {
-        "acima50": {
-          "quantidade": 14,
-          "percentual": 63.64
-        },
-        "acima60": {
-          "quantidade": 8,
-          "percentual": 36.36
-        },
-        "acima70": {
-          "quantidade": 5,
-          "percentual": 22.73
-        },
-        "acima80": {
-          "quantidade": 4,
-          "percentual": 18.18
-        },
-        "acima100": {
-          "quantidade": 0,
-          "percentual": 0.0
-        }
-      },
-      "semColdStart": {
-        "rodadas": 21,
-        "pontosTotal": 1207.13,
-        "mediaPontos": 57.48,
-        "medianaPontos": 52.2,
-        "volatilidade": 16.2,
-        "consistencia": 71.81,
-        "diferencaMediaVsHistoricoCompleto": -0.56
-      },
-      "historico": [
-        {
-          "rodada": 2,
-          "pontos": 69.71,
-          "coldStart": true
-        },
-        {
-          "rodada": 3,
-          "pontos": 56.95,
-          "coldStart": false
-        },
-        {
-          "rodada": 4,
-          "pontos": 45.2,
-          "coldStart": false
-        },
-        {
-          "rodada": 5,
-          "pontos": 71.52,
-          "coldStart": false
-        },
-        {
-          "rodada": 6,
-          "pontos": 47.2,
-          "coldStart": false
-        },
-        {
-          "rodada": 7,
-          "pontos": 80.66,
-          "coldStart": false
-        },
-        {
-          "rodada": 8,
-          "pontos": 63.67,
-          "coldStart": false
-        },
-        {
-          "rodada": 9,
-          "pontos": 26.97,
-          "coldStart": false
-        },
-        {
-          "rodada": 10,
-          "pontos": 52.16,
-          "coldStart": false
-        },
-        {
-          "rodada": 11,
-          "pontos": 52.09,
-          "coldStart": false
-        },
-        {
-          "rodada": 12,
-          "pontos": 43.35,
-          "coldStart": false
-        },
-        {
-          "rodada": 13,
-          "pontos": 89.81,
-          "coldStart": false
-        },
-        {
-          "rodada": 14,
-          "pontos": 47.25,
-          "coldStart": false
-        },
-        {
-          "rodada": 15,
-          "pontos": 34.94,
-          "coldStart": false
-        },
-        {
-          "rodada": 16,
-          "pontos": 85.71,
-          "coldStart": false
-        },
-        {
-          "rodada": 17,
-          "pontos": 48.46,
-          "coldStart": false
-        },
-        {
-          "rodada": 18,
-          "pontos": 52.2,
-          "coldStart": false
-        },
-        {
-          "rodada": 19,
-          "pontos": 57.8,
-          "coldStart": false
-        },
-        {
-          "rodada": 20,
-          "pontos": 60.43,
-          "coldStart": false
-        },
-        {
-          "rodada": 21,
-          "pontos": 82.6,
-          "coldStart": false
-        },
-        {
-          "rodada": 22,
-          "pontos": 48.21,
-          "coldStart": false
-        },
-        {
-          "rodada": 23,
-          "pontos": 59.95,
-          "coldStart": false
-        }
-      ],
-      "posicao": 2
-    },
-    {
       "nome": "Conservador",
+      "perfil": "conservador",
+      "formacao": "4-4-2",
       "rodadas": 22,
-      "pontosTotal": 1257.43,
-      "mediaPontos": 57.16,
+      "pontosTotal": 1239.1,
+      "mediaPontos": 56.32,
       "medianaPontos": 56.32,
-      "volatilidade": 12.71,
-      "consistencia": 77.76,
-      "vitorias": 6,
-      "empatesPrimeiro": 0,
-      "taxaVitorias": 27.27,
-      "taxaPrimeiroLugarIncluindoEmpates": 27.27,
+      "desvioPadrao": 14.14,
+      "consistencia": 74.89,
+      "mediaSemCapitao": 54.11,
+      "mediaBonusCapitao": 2.21,
+      "ganhoMedioCapitaoPercentual": 4.09,
+      "maeMedioJogadores": 5.194,
+      "coberturaMediaPercentual": 100.0,
+      "escalacoesCompletas": 22,
+      "taxaEscalacoesCompletas": 100.0,
+      "vitorias": 9,
+      "empatesNaLideranca": 0,
+      "taxaVitorias": 40.91,
       "melhorRodada": {
         "rodada": 13,
         "pontos": 87.11
@@ -396,362 +46,78 @@
         "rodada": 9,
         "pontos": 31.75
       },
-      "amplitude": 55.36,
-      "faixasPontuacao": {
-        "acima50": {
-          "quantidade": 14,
-          "percentual": 63.64
-        },
-        "acima60": {
-          "quantidade": 10,
-          "percentual": 45.45
-        },
-        "acima70": {
-          "quantidade": 2,
-          "percentual": 9.09
-        },
-        "acima80": {
-          "quantidade": 1,
-          "percentual": 4.55
-        },
-        "acima100": {
-          "quantidade": 0,
-          "percentual": 0.0
-        }
-      },
-      "semColdStart": {
-        "rodadas": 21,
-        "pontosTotal": 1185.52,
-        "mediaPontos": 56.45,
-        "medianaPontos": 55.72,
-        "volatilidade": 12.59,
-        "consistencia": 77.7,
-        "diferencaMediaVsHistoricoCompleto": -0.7
-      },
-      "historico": [
-        {
-          "rodada": 2,
-          "pontos": 71.91,
-          "coldStart": true
-        },
-        {
-          "rodada": 3,
-          "pontos": 55.05,
-          "coldStart": false
-        },
-        {
-          "rodada": 4,
-          "pontos": 60.3,
-          "coldStart": false
-        },
-        {
-          "rodada": 5,
-          "pontos": 55.72,
-          "coldStart": false
-        },
-        {
-          "rodada": 6,
-          "pontos": 69.29,
-          "coldStart": false
-        },
-        {
-          "rodada": 7,
-          "pontos": 63.31,
-          "coldStart": false
-        },
-        {
-          "rodada": 8,
-          "pontos": 66.78,
-          "coldStart": false
-        },
-        {
-          "rodada": 9,
-          "pontos": 31.75,
-          "coldStart": false
-        },
-        {
-          "rodada": 10,
-          "pontos": 46.16,
-          "coldStart": false
-        },
-        {
-          "rodada": 11,
-          "pontos": 46.34,
-          "coldStart": false
-        },
-        {
-          "rodada": 12,
-          "pontos": 56.92,
-          "coldStart": false
-        },
-        {
-          "rodada": 13,
-          "pontos": 87.11,
-          "coldStart": false
-        },
-        {
-          "rodada": 14,
-          "pontos": 49.25,
-          "coldStart": false
-        },
-        {
-          "rodada": 15,
-          "pontos": 45.64,
-          "coldStart": false
-        },
-        {
-          "rodada": 16,
-          "pontos": 60.01,
-          "coldStart": false
-        },
-        {
-          "rodada": 17,
-          "pontos": 33.46,
-          "coldStart": false
-        },
-        {
-          "rodada": 18,
-          "pontos": 55.55,
-          "coldStart": false
-        },
-        {
-          "rodada": 19,
-          "pontos": 66.64,
-          "coldStart": false
-        },
-        {
-          "rodada": 20,
-          "pontos": 48.92,
-          "coldStart": false
-        },
-        {
-          "rodada": 21,
-          "pontos": 69.68,
-          "coldStart": false
-        },
-        {
-          "rodada": 22,
-          "pontos": 68.21,
-          "coldStart": false
-        },
-        {
-          "rodada": 23,
-          "pontos": 49.43,
-          "coldStart": false
-        }
-      ],
-      "posicao": 3
-    }
-  ],
-  "rankingSemColdStart": [
-    {
-      "nome": "Equilibrado",
-      "rodadas": 21,
-      "pontosTotal": 1248.78,
-      "mediaPontos": 59.47,
-      "medianaPontos": 61.02,
-      "volatilidade": 17.39,
-      "consistencia": 70.75,
+      "scoreGlobal": 59.716,
       "posicao": 1
     },
     {
-      "nome": "Agressivo",
-      "rodadas": 21,
-      "pontosTotal": 1207.13,
-      "mediaPontos": 57.48,
-      "medianaPontos": 52.2,
-      "volatilidade": 16.2,
-      "consistencia": 71.81,
+      "nome": "Equilibrado",
+      "perfil": "equilibrado",
+      "formacao": "3-4-3",
+      "rodadas": 22,
+      "pontosTotal": 1266.79,
+      "mediaPontos": 57.58,
+      "medianaPontos": 55.64,
+      "desvioPadrao": 16.7,
+      "consistencia": 71.0,
+      "mediaSemCapitao": 52.62,
+      "mediaBonusCapitao": 4.96,
+      "ganhoMedioCapitaoPercentual": 9.42,
+      "maeMedioJogadores": 5.604,
+      "coberturaMediaPercentual": 100.0,
+      "escalacoesCompletas": 22,
+      "taxaEscalacoesCompletas": 100.0,
+      "vitorias": 7,
+      "empatesNaLideranca": 1,
+      "taxaVitorias": 31.82,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 115.78
+      },
+      "piorRodada": {
+        "rodada": 17,
+        "pontos": 37.16
+      },
+      "scoreGlobal": 58.74,
       "posicao": 2
     },
     {
-      "nome": "Conservador",
-      "rodadas": 21,
-      "pontosTotal": 1185.52,
-      "mediaPontos": 56.45,
-      "medianaPontos": 55.72,
-      "volatilidade": 12.59,
-      "consistencia": 77.7,
+      "nome": "Agressivo",
+      "perfil": "agressivo",
+      "formacao": "3-4-3",
+      "rodadas": 22,
+      "pontosTotal": 1212.15,
+      "mediaPontos": 55.1,
+      "medianaPontos": 54.77,
+      "desvioPadrao": 13.69,
+      "consistencia": 75.15,
+      "mediaSemCapitao": 50.73,
+      "mediaBonusCapitao": 4.37,
+      "ganhoMedioCapitaoPercentual": 8.62,
+      "maeMedioJogadores": 6.376,
+      "coberturaMediaPercentual": 100.0,
+      "escalacoesCompletas": 22,
+      "taxaEscalacoesCompletas": 100.0,
+      "vitorias": 5,
+      "empatesNaLideranca": 1,
+      "taxaVitorias": 22.73,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 85.31
+      },
+      "piorRodada": {
+        "rodada": 15,
+        "pontos": 33.84
+      },
+      "scoreGlobal": 56.1,
       "posicao": 3
     }
   ],
-  "vencedoresPorRodada": [
-    {
-      "rodada": 2,
-      "pontos": 71.91,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 3,
-      "pontos": 56.95,
-      "vencedores": [
-        "Equilibrado",
-        "Agressivo"
-      ],
-      "empate": true
-    },
-    {
-      "rodada": 4,
-      "pontos": 60.3,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 5,
-      "pontos": 71.52,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 6,
-      "pontos": 69.29,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 7,
-      "pontos": 80.66,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 8,
-      "pontos": 67.47,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 9,
-      "pontos": 34.47,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 10,
-      "pontos": 52.16,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 11,
-      "pontos": 52.09,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 12,
-      "pontos": 61.02,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 13,
-      "pontos": 113.91,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 14,
-      "pontos": 49.25,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 15,
-      "pontos": 45.64,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 16,
-      "pontos": 85.71,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 17,
-      "pontos": 48.46,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 18,
-      "pontos": 55.55,
-      "vencedores": [
-        "Conservador"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 19,
-      "pontos": 70.14,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 20,
-      "pontos": 67.93,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 21,
-      "pontos": 82.6,
-      "vencedores": [
-        "Agressivo"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 22,
-      "pontos": 71.91,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    },
-    {
-      "rodada": 23,
-      "pontos": 61.85,
-      "vencedores": [
-        "Equilibrado"
-      ],
-      "empate": false
-    }
-  ]
+  "auditoria": {
+    "rankingGerado": true,
+    "estrategiasEncontradas": 3,
+    "rodadasAvaliadas": 22,
+    "coberturaMediaPercentual": 100.0,
+    "simulacaoOrigemAprovada": true,
+    "aprovada": true
+  }
 }

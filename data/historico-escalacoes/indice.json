@@ -1,5 +1,6 @@
 {
-  "modelo": "historico_escalacoes_indice_v1",
+  "modelo": "historico_escalacoes_indice_v2",
+  "descricao": "Índice do histórico progressivo de escalações sem vazamento futuro.",
   "rodadasProcessadas": [
     2,
     3,
@@ -26,5 +27,41 @@
   ],
   "quantidadeRodadas": 22,
   "primeiraRodada": 2,
-  "ultimaRodada": 23
+  "ultimaRodada": 23,
+  "totalEscalacoes": 66,
+  "totalEscalacoesCompletas": 66,
+  "totalEstrategiasAuditadas": 66,
+  "totalEstrategiasAprovadas": 66,
+  "rodadasAprovadas": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "rodadasReprovadas": [],
+  "auditoriaGlobalAprovada": true,
+  "regras": {
+    "rodadaPrevistaNaoEntraNoHistorico": true,
+    "pontuacaoRealNaoSerializada": true,
+    "limiteJogadoresClube": 3,
+    "formacoesSincronizadasComMotor": true
+  }
 }
