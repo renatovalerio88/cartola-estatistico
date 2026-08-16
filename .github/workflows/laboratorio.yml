@@ -131,6 +131,11 @@ jobs:
           python scripts/processamento/backtest_ab_calibracao.py
 
 
+      - name: Promover Calibração Validada
+        run: |
+          python scripts/processamento/promover_calibracao.py
+
+
       - name: Analisar Capitão
         run: |
           python scripts/processamento/analisar_capitao.py
