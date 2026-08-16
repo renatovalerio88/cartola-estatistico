@@ -1,251 +1,163 @@
 name: Cartola Estatístico - Laboratório
 
-
 on:
-
   workflow_dispatch:
 
-
 permissions:
-
   contents: write
 
-
 jobs:
-
   laboratorio:
-
     runs-on: ubuntu-latest
 
-
     steps:
-
 
       # ======================================
       # PREPARAÇÃO
       # ======================================
 
       - name: Checkout
-
         uses: actions/checkout@v4
 
-
       - name: Configurar Python
-
         uses: actions/setup-python@v5
-
         with:
-
           python-version: "3.11"
 
-
       - name: Atualizar pip
-
         run: |
-
           python -m pip install --upgrade pip
-
 
       # ======================================
       # PROCESSAMENTO DO MODELO
       # ======================================
 
       - name: Gerar Backtest
-
         run: |
-
           python scripts/processamento/gerar_backtest.py
 
-
       - name: Otimizar Pesos
-
         run: |
-
           python scripts/processamento/otimizar_pesos.py
 
-
       - name: Gerar Laboratório
-
         run: |
-
           python scripts/processamento/gerar_laboratorio.py
 
-
       - name: Calibrar Modelo
-
         run: |
-
           python scripts/processamento/calibrar_modelo.py
-
 
       # ======================================
       # TESTES CIENTÍFICOS
       # ======================================
 
       - name: Backtest Científico
-
         run: |
-
           python scripts/processamento/backtest_cientifico.py
 
-
       - name: Analisar Componentes
-
         run: |
-
           python scripts/processamento/analisar_componentes.py
 
-
       - name: Analisar Erros
-
         run: |
-
           python scripts/processamento/analisar_erros.py
 
-
       - name: Analisar Explosões
-
         run: |
-
           python scripts/processamento/criar_explosoes.py
 
-
       - name: Calcular Potencial Explosao
-
         run: |
-
           python scripts/processamento/calcular_potencial_explosao.py
 
-
       - name: Calcular Índice Diferencial
-
         run: |
-
           python scripts/processamento/calcular_indice_diferencial.py
 
-
       - name: Testar Modelo Explosao
-
         run: |
-
           python scripts/processamento/testar_explosao_modelo.py
 
-
       - name: Backtest Inteligente
-
         run: |
-
           python scripts/processamento/backtest_inteligente.py
 
-
       - name: Gerar Histórico do Modelo
-
         run: |
-
           python scripts/processamento/gerar_historico_modelo.py
 
-
       - name: Gerar Histórico Detalhado
-
         run: |
-
           python scripts/processamento/gerar_historico_detalhado.py
-
 
       # ======================================
       # VALIDAÇÃO DA CALIBRAÇÃO
       # ======================================
 
       - name: Auditar Top Real
-
         run: |
-
           python scripts/processamento/auditar_top_real.py
 
-
       - name: Gerar Calibração Candidata
-
         run: |
-
           python scripts/processamento/gerar_calibracao_posicoes.py
 
-
       - name: Backtest A/B Calibração
-
         run: |
-
           python scripts/processamento/backtest_ab_calibracao.py
 
-
       - name: Analisar Capitão
-
         run: |
-
           python scripts/processamento/analisar_capitao.py
-
 
       # ======================================
       # ESCALAÇÕES HISTÓRICAS
       # ======================================
 
       - name: Gerar Escalações Históricas
-
         run: |
-
           python scripts/processamento/gerar_historico_escalacoes.py
 
-
       - name: Diagnosticar Escalações
-
         run: |
-
           python scripts/processamento/diagnosticar_escalacoes.py
-
 
       # ======================================
       # SIMULAÇÃO HISTÓRICA DE TIMES
       # ======================================
 
       - name: Simular Times Históricos
-
         run: |
-
           python scripts/calcular_simulacao_times.py
 
-
       - name: Gerar Ranking Simulação
-
         run: |
-
           python scripts/processamento/gerar_ranking_simulacao.py
 
-
       - name: Auditar Simulação de Times
-
         run: |
-
           python scripts/processamento/auditar_simulacao_times.py
 
+      - name: Analisar Estratégias de Escalação
+        run: |
+          python scripts/processamento/analisar_estrategias_escalacao.py
 
       # ======================================
       # COMPARAÇÃO DOS MODELOS
       # ======================================
 
       - name: Comparar Modelos
-
         run: |
-
           python scripts/processamento/gerar_comparacao_modelos.py
-
 
       # ======================================
       # RESUMO DA VALIDAÇÃO
       # ======================================
 
       - name: Resumo Validação Científica
-
         run: |
-
           python - <<'PY'
 
           import json
@@ -253,21 +165,14 @@ jobs:
 
 
           arquivos = [
-
               "data/auditoria-top-real.json",
-
               "data/calibracao-posicoes-candidata.json",
-
               "data/backtest-ab-calibracao.json",
-
               "data/analise-capitao.json",
-
               "data/simulacao-times.json",
-
               "data/ranking-simulacao.json",
-
-              "data/auditoria-simulacao-times.json"
-
+              "data/auditoria-simulacao-times.json",
+              "data/analise-estrategias-escalacao.json"
           ]
 
 
@@ -282,7 +187,6 @@ jobs:
           for nome in arquivos:
 
               caminho = Path(nome)
-
 
               print("----------------------------------------------")
               print(nome)
@@ -309,7 +213,6 @@ jobs:
                           arquivo
                       )
 
-
               except Exception as erro:
 
                   print(
@@ -330,6 +233,10 @@ jobs:
               )
 
 
+              # ==================================
+              # BACKTEST A/B
+              # ==================================
+
               if nome.endswith(
                   "backtest-ab-calibracao.json"
               ):
@@ -339,18 +246,15 @@ jobs:
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisaoPromocao",
                       {}
                   )
 
-
                   rodadas = dados.get(
                       "rodadas",
                       {}
                   )
-
 
                   print(
                       "MAE A:",
@@ -359,14 +263,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "MAE B:",
                       resumo.get(
                           "maeB"
                       )
                   )
-
 
                   print(
                       "Melhora:",
@@ -376,14 +278,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Viés A:",
                       resumo.get(
                           "viesA"
                       )
                   )
-
 
                   print(
                       "Viés B:",
@@ -392,14 +292,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias A:",
                       rodadas.get(
                           "vitoriasA"
                       )
                   )
-
 
                   print(
                       "Vitórias B:",
@@ -408,14 +306,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Empates:",
                       rodadas.get(
                           "empates"
                       )
                   )
-
 
                   print(
                       "Decisão:",
@@ -424,6 +320,10 @@ jobs:
                       )
                   )
 
+
+              # ==================================
+              # CAPITÃO
+              # ==================================
 
               elif nome.endswith(
                   "analise-capitao.json"
@@ -434,12 +334,10 @@ jobs:
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisaoExperimental",
                       {}
                   )
-
 
                   print(
                       "Avaliações:",
@@ -448,14 +346,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias A:",
                       resumo.get(
                           "vitoriasA"
                       )
                   )
-
 
                   print(
                       "Vitórias B:",
@@ -464,14 +360,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média capitão A:",
                       resumo.get(
                           "mediaPontosA"
                       )
                   )
-
 
                   print(
                       "Média capitão B:",
@@ -480,14 +374,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Ganho médio B vs A:",
                       resumo.get(
                           "ganhoMedioBvsA"
                       )
                   )
-
 
                   print(
                       "Decisão:",
@@ -496,6 +388,10 @@ jobs:
                       )
                   )
 
+
+              # ==================================
+              # SIMULAÇÃO
+              # ==================================
 
               elif nome.endswith(
                   "simulacao-times.json"
@@ -506,14 +402,12 @@ jobs:
                       {}
                   )
 
-
                   print(
                       "Rodadas processadas:",
                       dados.get(
                           "quantidadeRodadas"
                       )
                   )
-
 
                   print(
                       "Cobertura média:",
@@ -522,7 +416,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Auditoria:",
@@ -536,6 +429,10 @@ jobs:
                       )
                   )
 
+
+              # ==================================
+              # RANKING
+              # ==================================
 
               elif nome.endswith(
                   "ranking-simulacao.json"
@@ -546,14 +443,12 @@ jobs:
                       {}
                   )
 
-
                   print(
                       "Rodadas:",
                       dados.get(
                           "quantidadeRodadas"
                       )
                   )
-
 
                   print(
                       "Melhor estratégia:",
@@ -562,14 +457,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Estratégias:",
                       auditoria.get(
                           "estrategiasEncontradas"
                       )
                   )
-
 
                   print(
                       "Cobertura:",
@@ -578,7 +471,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Auditoria:",
@@ -591,7 +483,6 @@ jobs:
                           "REPROVADA"
                       )
                   )
-
 
                   for item in dados.get(
                       "ranking",
@@ -625,6 +516,10 @@ jobs:
                       )
 
 
+              # ==================================
+              # AUDITORIA SIMULAÇÃO
+              # ==================================
+
               elif nome.endswith(
                   "auditoria-simulacao-times.json"
               ):
@@ -634,12 +529,10 @@ jobs:
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisao",
                       {}
                   )
-
 
                   print(
                       "Rodadas:",
@@ -648,14 +541,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Times avaliados:",
                       resumo.get(
                           "timesAvaliados"
                       )
                   )
-
 
                   print(
                       "Cobertura:",
@@ -665,7 +556,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Times completos:",
                       resumo.get(
@@ -673,7 +563,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Sem vazamento:",
@@ -683,7 +572,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Score qualidade:",
                       resumo.get(
@@ -692,7 +580,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Falhas críticas:",
                       resumo.get(
@@ -700,11 +587,149 @@ jobs:
                       )
                   )
 
+                  print(
+                      "Decisão:",
+                      decisao.get(
+                          "decisao"
+                      )
+                  )
+
+
+              # ==================================
+              # ANÁLISE DAS ESTRATÉGIAS
+              # ==================================
+
+              elif nome.endswith(
+                  "analise-estrategias-escalacao.json"
+              ):
+
+                  resumo = dados.get(
+                      "resumo",
+                      {}
+                  )
+
+                  comparacao = dados.get(
+                      "comparacaoPrimeiroSegundo",
+                      {}
+                  ) or {}
+
+                  criterios = dados.get(
+                      "criteriosPromocao",
+                      {}
+                  )
+
+                  decisao = dados.get(
+                      "decisao",
+                      {}
+                  )
+
+                  print(
+                      "Rodadas:",
+                      resumo.get(
+                          "rodadas"
+                      )
+                  )
+
+                  print(
+                      "Líder:",
+                      resumo.get(
+                          "lider"
+                      )
+                  )
+
+                  print(
+                      "Média líder:",
+                      resumo.get(
+                          "mediaLider"
+                      )
+                  )
+
+                  print(
+                      "Taxa de vitórias:",
+                      resumo.get(
+                          "taxaVitoriasLider"
+                      ),
+                      "%"
+                  )
+
+                  print(
+                      "Estabilidade:",
+                      resumo.get(
+                          "estabilidadeLider"
+                      ),
+                      "%"
+                  )
+
+                  print(
+                      "Cobertura:",
+                      resumo.get(
+                          "coberturaLider"
+                      ),
+                      "%"
+                  )
+
+                  print(
+                      "Score confiança:",
+                      resumo.get(
+                          "scoreConfianca"
+                      ),
+                      "%"
+                  )
+
+                  print(
+                      "Segundo colocado:",
+                      comparacao.get(
+                          "segundo"
+                      )
+                  )
+
+                  print(
+                      "Vantagem média:",
+                      comparacao.get(
+                          "vantagemMedia"
+                      )
+                  )
+
+                  print(
+                      "Vantagem percentual:",
+                      comparacao.get(
+                          "vantagemMediaPercentual"
+                      ),
+                      "%"
+                  )
+
+                  print(
+                      "Critérios aprovados:",
+                      criterios.get(
+                          "aprovados"
+                      )
+                  )
+
+                  print(
+                      "Critérios pendentes:",
+                      criterios.get(
+                          "falhas"
+                      )
+                  )
 
                   print(
                       "Decisão:",
                       decisao.get(
                           "decisao"
+                      )
+                  )
+
+                  print(
+                      "Estratégia recomendada:",
+                      decisao.get(
+                          "estrategiaRecomendada"
+                      )
+                  )
+
+                  print(
+                      "Promoção automática:",
+                      decisao.get(
+                          "promocaoAutomatica"
                       )
                   )
 
@@ -725,13 +750,11 @@ jobs:
 
           PY
 
-
       # ======================================
       # COMMIT DOS RESULTADOS
       # ======================================
 
       - name: Commit resultados
-
         run: |
 
           git config user.name github-actions
