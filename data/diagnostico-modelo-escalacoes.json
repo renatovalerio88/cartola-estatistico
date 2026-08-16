@@ -1,0 +1,848 @@
+{
+  "modelo": "diagnostico_modelo_escalacoes_v1",
+  "descricao": "Diagnóstico científico automático do modelo histórico de escalações",
+  "objetivo": "Identificar oportunidades de melhoria sem alterar automaticamente os pesos do motor estatístico.",
+  "fontes": [
+    "data/ranking-simulacao.json",
+    "data/analise-simulacoes-historicas.json",
+    "data/backtest-inteligente.json",
+    "data/comparacao-modelos.json"
+  ],
+  "resumoExecutivo": {
+    "melhorEstrategia": "Equilibrado",
+    "estrategiaMaisSegura": "Conservador",
+    "estrategiaMaisExplosiva": "Equilibrado",
+    "posicaoMaisPrevisivel": "TEC",
+    "posicaoMenosPrevisivel": "ATA",
+    "melhorEstrategiaCapitao": "Equilibrado",
+    "backtest": {
+      "disponivel": true,
+      "erroMedio": 2.92,
+      "taxaAcertoMedia": 64.24
+    },
+    "melhorModeloComparacao": {
+      "nome": "Modelo Base",
+      "mae": 2.904
+    },
+    "quantidadeRecomendacoes": 19,
+    "prioridadesAltas": 10,
+    "prioridadesMedias": 7,
+    "alteracaoAutomaticaPesos": false,
+    "status": "requer_atencao"
+  },
+  "ranking": {
+    "melhorEstrategia": "Equilibrado",
+    "maisSegura": {
+      "nome": "Conservador",
+      "mediaPontos": 57.16,
+      "volatilidade": 12.71,
+      "consistencia": 77.76
+    },
+    "maisExplosiva": {
+      "nome": "Equilibrado",
+      "melhorPontuacao": 113.91,
+      "rodadaMelhorPontuacao": 13,
+      "percentualAcima80": 4.55,
+      "percentualAcima100": 4.55
+    },
+    "maisConsistente": {
+      "nome": "Conservador",
+      "consistencia": 77.76,
+      "volatilidade": 12.71,
+      "mediaPontos": 57.16
+    },
+    "destaques": {
+      "melhorMedia": {
+        "nome": "Equilibrado",
+        "media": 59.93
+      },
+      "maisVitorias": {
+        "nome": "Equilibrado",
+        "vitorias": 8,
+        "taxa": 36.36
+      },
+      "melhorPisoHistorico": {
+        "nome": "Equilibrado",
+        "piorPontuacao": 34.47
+      },
+      "maisFrequenteAcima70": {
+        "nome": "Agressivo",
+        "percentual": 22.73
+      }
+    },
+    "estrategias": [
+      {
+        "nome": "Equilibrado",
+        "posicao": 1,
+        "pontosTotal": 1318.49,
+        "media": 59.93,
+        "mediana": 61.44,
+        "volatilidade": 17.13,
+        "consistencia": 71.42,
+        "vitorias": 8,
+        "taxaVitorias": 36.36,
+        "melhorRodada": {
+          "rodada": 13,
+          "pontos": 113.91
+        },
+        "piorRodada": {
+          "rodada": 9,
+          "pontos": 34.47
+        },
+        "faixasPontuacao": {
+          "acima50": {
+            "quantidade": 15,
+            "percentual": 68.18
+          },
+          "acima60": {
+            "quantidade": 12,
+            "percentual": 54.55
+          },
+          "acima70": {
+            "quantidade": 4,
+            "percentual": 18.18
+          },
+          "acima80": {
+            "quantidade": 1,
+            "percentual": 4.55
+          },
+          "acima100": {
+            "quantidade": 1,
+            "percentual": 4.55
+          }
+        },
+        "mediaSemColdStart": 59.47,
+        "impactoColdStart": -0.46
+      },
+      {
+        "nome": "Agressivo",
+        "posicao": 2,
+        "pontosTotal": 1276.84,
+        "media": 58.04,
+        "mediana": 54.58,
+        "volatilidade": 16.03,
+        "consistencia": 72.37,
+        "vitorias": 7,
+        "taxaVitorias": 31.82,
+        "melhorRodada": {
+          "rodada": 13,
+          "pontos": 89.81
+        },
+        "piorRodada": {
+          "rodada": 9,
+          "pontos": 26.97
+        },
+        "faixasPontuacao": {
+          "acima50": {
+            "quantidade": 14,
+            "percentual": 63.64
+          },
+          "acima60": {
+            "quantidade": 8,
+            "percentual": 36.36
+          },
+          "acima70": {
+            "quantidade": 5,
+            "percentual": 22.73
+          },
+          "acima80": {
+            "quantidade": 4,
+            "percentual": 18.18
+          },
+          "acima100": {
+            "quantidade": 0,
+            "percentual": 0.0
+          }
+        },
+        "mediaSemColdStart": 57.48,
+        "impactoColdStart": -0.56
+      },
+      {
+        "nome": "Conservador",
+        "posicao": 3,
+        "pontosTotal": 1257.43,
+        "media": 57.16,
+        "mediana": 56.32,
+        "volatilidade": 12.71,
+        "consistencia": 77.76,
+        "vitorias": 6,
+        "taxaVitorias": 27.27,
+        "melhorRodada": {
+          "rodada": 13,
+          "pontos": 87.11
+        },
+        "piorRodada": {
+          "rodada": 9,
+          "pontos": 31.75
+        },
+        "faixasPontuacao": {
+          "acima50": {
+            "quantidade": 14,
+            "percentual": 63.64
+          },
+          "acima60": {
+            "quantidade": 10,
+            "percentual": 45.45
+          },
+          "acima70": {
+            "quantidade": 2,
+            "percentual": 9.09
+          },
+          "acima80": {
+            "quantidade": 1,
+            "percentual": 4.55
+          },
+          "acima100": {
+            "quantidade": 0,
+            "percentual": 0.0
+          }
+        },
+        "mediaSemColdStart": 56.45,
+        "impactoColdStart": -0.71
+      }
+    ],
+    "impactoColdStart": [
+      {
+        "nome": "Equilibrado",
+        "mediaCompleta": 59.93,
+        "mediaSemColdStart": 59.47,
+        "diferenca": -0.46,
+        "melhoraSemColdStart": false
+      },
+      {
+        "nome": "Agressivo",
+        "mediaCompleta": 58.04,
+        "mediaSemColdStart": 57.48,
+        "diferenca": -0.56,
+        "melhoraSemColdStart": false
+      },
+      {
+        "nome": "Conservador",
+        "mediaCompleta": 57.16,
+        "mediaSemColdStart": 56.45,
+        "diferenca": -0.71,
+        "melhoraSemColdStart": false
+      }
+    ]
+  },
+  "posicoes": {
+    "posicoes": [
+      {
+        "posicao": "GOL",
+        "amostras": 66,
+        "mae": 5.69,
+        "classificacaoMae": "alto",
+        "vies": {
+          "valor": 2.7,
+          "nivel": "alto",
+          "direcao": "superestimacao"
+        },
+        "mediaProjecao": 6.1,
+        "mediaReal": 3.4,
+        "taxaAcertoTopReal": 6.06,
+        "acertosTopReal": 4,
+        "totalEscalados": 66
+      },
+      {
+        "posicao": "LAT",
+        "amostras": 88,
+        "mae": 5.64,
+        "classificacaoMae": "alto",
+        "vies": {
+          "valor": 2.05,
+          "nivel": "alto",
+          "direcao": "superestimacao"
+        },
+        "mediaProjecao": 6.96,
+        "mediaReal": 4.92,
+        "taxaAcertoTopReal": 5.68,
+        "acertosTopReal": 5,
+        "totalEscalados": 88
+      },
+      {
+        "posicao": "ZAG",
+        "amostras": 132,
+        "mae": 5.43,
+        "classificacaoMae": "alto",
+        "vies": {
+          "valor": 2.61,
+          "nivel": "alto",
+          "direcao": "superestimacao"
+        },
+        "mediaProjecao": 5.37,
+        "mediaReal": 2.75,
+        "taxaAcertoTopReal": 2.27,
+        "acertosTopReal": 3,
+        "totalEscalados": 132
+      },
+      {
+        "posicao": "MEI",
+        "amostras": 264,
+        "mae": 6.2,
+        "classificacaoMae": "alto",
+        "vies": {
+          "valor": 1.47,
+          "nivel": "moderado",
+          "direcao": "superestimacao"
+        },
+        "mediaProjecao": 6.41,
+        "mediaReal": 4.95,
+        "taxaAcertoTopReal": 13.26,
+        "acertosTopReal": 35,
+        "totalEscalados": 264
+      },
+      {
+        "posicao": "ATA",
+        "amostras": 176,
+        "mae": 6.62,
+        "classificacaoMae": "alto",
+        "vies": {
+          "valor": 2.91,
+          "nivel": "alto",
+          "direcao": "superestimacao"
+        },
+        "mediaProjecao": 8.13,
+        "mediaReal": 5.23,
+        "taxaAcertoTopReal": 7.95,
+        "acertosTopReal": 14,
+        "totalEscalados": 176
+      },
+      {
+        "posicao": "TEC",
+        "amostras": 66,
+        "mae": 3.4,
+        "classificacaoMae": "moderado",
+        "vies": {
+          "valor": 0.26,
+          "nivel": "baixo",
+          "direcao": "equilibrado"
+        },
+        "mediaProjecao": 5.61,
+        "mediaReal": 5.35,
+        "taxaAcertoTopReal": 4.55,
+        "acertosTopReal": 3,
+        "totalEscalados": 66
+      }
+    ],
+    "maisPrevisivel": {
+      "posicao": "TEC",
+      "amostras": 66,
+      "mae": 3.4,
+      "classificacaoMae": "moderado",
+      "vies": {
+        "valor": 0.26,
+        "nivel": "baixo",
+        "direcao": "equilibrado"
+      },
+      "mediaProjecao": 5.61,
+      "mediaReal": 5.35,
+      "taxaAcertoTopReal": 4.55,
+      "acertosTopReal": 3,
+      "totalEscalados": 66
+    },
+    "menosPrevisivel": {
+      "posicao": "ATA",
+      "amostras": 176,
+      "mae": 6.62,
+      "classificacaoMae": "alto",
+      "vies": {
+        "valor": 2.91,
+        "nivel": "alto",
+        "direcao": "superestimacao"
+      },
+      "mediaProjecao": 8.13,
+      "mediaReal": 5.23,
+      "taxaAcertoTopReal": 7.95,
+      "acertosTopReal": 14,
+      "totalEscalados": 176
+    }
+  },
+  "capitao": {
+    "estrategias": [
+      {
+        "nome": "Equilibrado",
+        "rodadasAvaliadas": 21,
+        "acertosMelhorDoTime": 3,
+        "taxaAcerto": 14.29,
+        "mediaPontosPerdidos": 8.47,
+        "classificacao": "atencao"
+      },
+      {
+        "nome": "Agressivo",
+        "rodadasAvaliadas": 21,
+        "acertosMelhorDoTime": 0,
+        "taxaAcerto": 0.0,
+        "mediaPontosPerdidos": 7.74,
+        "classificacao": "atencao"
+      },
+      {
+        "nome": "Conservador",
+        "rodadasAvaliadas": 21,
+        "acertosMelhorDoTime": 0,
+        "taxaAcerto": 0.0,
+        "mediaPontosPerdidos": 11.53,
+        "classificacao": "atencao"
+      }
+    ],
+    "melhorDesempenho": {
+      "nome": "Equilibrado",
+      "rodadasAvaliadas": 21,
+      "acertosMelhorDoTime": 3,
+      "taxaAcerto": 14.29,
+      "mediaPontosPerdidos": 8.47,
+      "classificacao": "atencao"
+    }
+  },
+  "evolucaoHistorico": {
+    "faixas": [
+      {
+        "faixa": "01-03",
+        "estrategias": [
+          {
+            "nome": "Conservador",
+            "rodadas": 3,
+            "mediaPontos": 62.42,
+            "maeTimes": 156.2,
+            "maeJogadores": 12.93
+          },
+          {
+            "nome": "Equilibrado",
+            "rodadas": 3,
+            "mediaPontos": 57.32,
+            "maeTimes": 165.6,
+            "maeJogadores": 13.07
+          },
+          {
+            "nome": "Agressivo",
+            "rodadas": 3,
+            "mediaPontos": 57.29,
+            "maeTimes": 165.37,
+            "maeJogadores": 13.06
+          }
+        ]
+      },
+      {
+        "faixa": "04-07",
+        "estrategias": [
+          {
+            "nome": "Agressivo",
+            "rodadas": 4,
+            "mediaPontos": 65.76,
+            "maeTimes": 61.44,
+            "maeJogadores": 5.86
+          },
+          {
+            "nome": "Conservador",
+            "rodadas": 4,
+            "mediaPontos": 63.78,
+            "maeTimes": 40.44,
+            "maeJogadores": 4.43
+          },
+          {
+            "nome": "Equilibrado",
+            "rodadas": 4,
+            "mediaPontos": 63.65,
+            "maeTimes": 55.7,
+            "maeJogadores": 5.1
+          }
+        ]
+      },
+      {
+        "faixa": "08-12",
+        "estrategias": [
+          {
+            "nome": "Equilibrado",
+            "rodadas": 5,
+            "mediaPontos": 60.22,
+            "maeTimes": 46.44,
+            "maeJogadores": 4.3
+          },
+          {
+            "nome": "Conservador",
+            "rodadas": 5,
+            "mediaPontos": 53.66,
+            "maeTimes": 33.77,
+            "maeJogadores": 3.64
+          },
+          {
+            "nome": "Agressivo",
+            "rodadas": 5,
+            "mediaPontos": 52.88,
+            "maeTimes": 60.38,
+            "maeJogadores": 5.21
+          }
+        ]
+      },
+      {
+        "faixa": "13+",
+        "estrategias": [
+          {
+            "nome": "Equilibrado",
+            "rodadas": 10,
+            "mediaPontos": 59.08,
+            "maeTimes": 39.51,
+            "maeJogadores": 4.53
+          },
+          {
+            "nome": "Agressivo",
+            "rodadas": 10,
+            "mediaPontos": 57.75,
+            "maeTimes": 61.25,
+            "maeJogadores": 5.55
+          },
+          {
+            "nome": "Conservador",
+            "rodadas": 10,
+            "mediaPontos": 54.68,
+            "maeTimes": 21.24,
+            "maeJogadores": 3.91
+          }
+        ]
+      }
+    ],
+    "tendencias": [
+      {
+        "nome": "Conservador",
+        "primeiraFaixa": "01-03",
+        "ultimaFaixa": "13+",
+        "diferencaMediaPontos": -7.74,
+        "diferencaMaeJogadores": -9.02,
+        "melhorouPontuacao": false,
+        "melhorouPrecisao": true,
+        "classificacao": "evolucao_parcial"
+      },
+      {
+        "nome": "Equilibrado",
+        "primeiraFaixa": "01-03",
+        "ultimaFaixa": "13+",
+        "diferencaMediaPontos": 1.76,
+        "diferencaMaeJogadores": -8.54,
+        "melhorouPontuacao": true,
+        "melhorouPrecisao": true,
+        "classificacao": "evolucao_clara"
+      },
+      {
+        "nome": "Agressivo",
+        "primeiraFaixa": "01-03",
+        "ultimaFaixa": "13+",
+        "diferencaMediaPontos": 0.46,
+        "diferencaMaeJogadores": -7.51,
+        "melhorouPontuacao": true,
+        "melhorouPrecisao": true,
+        "classificacao": "evolucao_clara"
+      }
+    ]
+  },
+  "backtestInteligente": {
+    "disponivel": true,
+    "rodadas": 22,
+    "erroMedio": 2.92,
+    "taxaAcertoMedia": 64.24,
+    "melhorErro": {
+      "rodada": 16,
+      "erro": 2.57,
+      "taxaAcerto": 73.16
+    },
+    "melhorTaxaAcerto": {
+      "rodada": 16,
+      "erro": 2.57,
+      "taxaAcerto": 73.16
+    }
+  },
+  "comparacaoModelos": {
+    "quantidadeModelos": 1,
+    "melhorModelo": {
+      "nome": "Modelo Base",
+      "mae": 2.904
+    },
+    "modelos": [
+      {
+        "nome": "Modelo Base",
+        "mae": 2.904
+      }
+    ]
+  },
+  "pontosFortes": [
+    {
+      "categoria": "estrategia",
+      "titulo": "Estratégia histórica líder",
+      "descricao": "Equilibrado lidera o ranking histórico das estratégias simuladas."
+    },
+    {
+      "categoria": "consistencia",
+      "titulo": "Estratégia mais consistente",
+      "descricao": "Conservador apresenta consistência de 77.76%."
+    },
+    {
+      "categoria": "posicao",
+      "titulo": "Posição mais previsível",
+      "descricao": "TEC apresenta o menor MAE: 3.4."
+    },
+    {
+      "categoria": "aprendizado",
+      "titulo": "Evolução com maior histórico",
+      "descricao": "Pontuação e precisão melhoraram simultaneamente com mais dados em: Equilibrado, Agressivo."
+    }
+  ],
+  "pontosAtencao": [
+    {
+      "categoria": "posicao",
+      "prioridade": "alta",
+      "titulo": "Posição com maior erro",
+      "descricao": "ATA possui MAE de 6.62 e deve ser priorizada na próxima análise de pesos."
+    },
+    {
+      "categoria": "vies",
+      "prioridade": "alta",
+      "titulo": "Viés elevado em GOL",
+      "descricao": "A posição GOL apresenta superestimacao com viés médio de 2.7."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em GOL",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de GOL é 6.06%."
+    },
+    {
+      "categoria": "vies",
+      "prioridade": "alta",
+      "titulo": "Viés elevado em LAT",
+      "descricao": "A posição LAT apresenta superestimacao com viés médio de 2.05."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em LAT",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de LAT é 5.68%."
+    },
+    {
+      "categoria": "vies",
+      "prioridade": "alta",
+      "titulo": "Viés elevado em ZAG",
+      "descricao": "A posição ZAG apresenta superestimacao com viés médio de 2.61."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em ZAG",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de ZAG é 2.27%."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em MEI",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de MEI é 13.26%."
+    },
+    {
+      "categoria": "vies",
+      "prioridade": "alta",
+      "titulo": "Viés elevado em ATA",
+      "descricao": "A posição ATA apresenta superestimacao com viés médio de 2.91."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em ATA",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de ATA é 7.95%."
+    },
+    {
+      "categoria": "ranking_posicao",
+      "prioridade": "media",
+      "titulo": "Baixo acerto dos melhores em TEC",
+      "descricao": "A taxa de jogadores escalados entre os melhores reais de TEC é 4.55%."
+    },
+    {
+      "categoria": "capitao",
+      "prioridade": "alta",
+      "titulo": "Capitão precisa de revisão - Equilibrado",
+      "descricao": "A taxa de acerto do capitão é 14.29% e a perda média é 8.47 pontos."
+    },
+    {
+      "categoria": "capitao",
+      "prioridade": "alta",
+      "titulo": "Capitão precisa de revisão - Agressivo",
+      "descricao": "A taxa de acerto do capitão é 0.0% e a perda média é 7.74 pontos."
+    },
+    {
+      "categoria": "capitao",
+      "prioridade": "alta",
+      "titulo": "Capitão precisa de revisão - Conservador",
+      "descricao": "A taxa de acerto do capitão é 0.0% e a perda média é 11.53 pontos."
+    }
+  ],
+  "recomendacoesCalibracao": [
+    {
+      "prioridade": "alta",
+      "area": "pesos_por_posicao",
+      "posicao": "GOL",
+      "acao": "revisar",
+      "motivo": "MAE elevado de 5.69.",
+      "alteracaoAutomatica": false,
+      "id": 1
+    },
+    {
+      "prioridade": "alta",
+      "area": "calibracao_projecao",
+      "posicao": "GOL",
+      "acao": "reduzir_superestimacao",
+      "motivo": "Viés médio positivo de 2.7.",
+      "alteracaoAutomatica": false,
+      "id": 2
+    },
+    {
+      "prioridade": "alta",
+      "area": "pesos_por_posicao",
+      "posicao": "LAT",
+      "acao": "revisar",
+      "motivo": "MAE elevado de 5.64.",
+      "alteracaoAutomatica": false,
+      "id": 3
+    },
+    {
+      "prioridade": "alta",
+      "area": "calibracao_projecao",
+      "posicao": "LAT",
+      "acao": "reduzir_superestimacao",
+      "motivo": "Viés médio positivo de 2.05.",
+      "alteracaoAutomatica": false,
+      "id": 4
+    },
+    {
+      "prioridade": "alta",
+      "area": "pesos_por_posicao",
+      "posicao": "ZAG",
+      "acao": "revisar",
+      "motivo": "MAE elevado de 5.43.",
+      "alteracaoAutomatica": false,
+      "id": 5
+    },
+    {
+      "prioridade": "alta",
+      "area": "calibracao_projecao",
+      "posicao": "ZAG",
+      "acao": "reduzir_superestimacao",
+      "motivo": "Viés médio positivo de 2.61.",
+      "alteracaoAutomatica": false,
+      "id": 6
+    },
+    {
+      "prioridade": "alta",
+      "area": "pesos_por_posicao",
+      "posicao": "MEI",
+      "acao": "revisar",
+      "motivo": "MAE elevado de 6.2.",
+      "alteracaoAutomatica": false,
+      "id": 7
+    },
+    {
+      "prioridade": "alta",
+      "area": "pesos_por_posicao",
+      "posicao": "ATA",
+      "acao": "revisar",
+      "motivo": "MAE elevado de 6.62.",
+      "alteracaoAutomatica": false,
+      "id": 8
+    },
+    {
+      "prioridade": "alta",
+      "area": "calibracao_projecao",
+      "posicao": "ATA",
+      "acao": "reduzir_superestimacao",
+      "motivo": "Viés médio positivo de 2.91.",
+      "alteracaoAutomatica": false,
+      "id": 9
+    },
+    {
+      "prioridade": "alta",
+      "area": "capitao",
+      "acao": "criar_score_especifico_capitao",
+      "motivo": "A taxa média de acerto do capitão é 4.76%.",
+      "alteracaoAutomatica": false,
+      "id": 10
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "GOL",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 6.06% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 11
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "LAT",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 5.68% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 12
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "ZAG",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 2.27% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 13
+    },
+    {
+      "prioridade": "media",
+      "area": "calibracao_projecao",
+      "posicao": "MEI",
+      "acao": "reduzir_superestimacao",
+      "motivo": "Viés médio positivo de 1.47.",
+      "alteracaoAutomatica": false,
+      "id": 14
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "MEI",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 13.26% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 15
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "ATA",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 7.95% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 16
+    },
+    {
+      "prioridade": "media",
+      "area": "ranking_jogadores",
+      "posicao": "TEC",
+      "acao": "reavaliar_criterios_ranking",
+      "motivo": "Apenas 4.55% dos escalados ficaram entre os melhores reais da posição.",
+      "alteracaoAutomatica": false,
+      "id": 17
+    },
+    {
+      "prioridade": "informativa",
+      "area": "estrategias",
+      "acao": "manter_comparacao_multiperfil",
+      "motivo": "Equilibrado lidera atualmente, mas os três perfis devem continuar sendo testados para evitar otimização prematura.",
+      "alteracaoAutomatica": false,
+      "id": 18
+    },
+    {
+      "prioridade": "informativa",
+      "area": "estrategias",
+      "acao": "preservar_perfis_distintos",
+      "motivo": "Conservador aparece como perfil mais seguro enquanto Equilibrado aparece como mais explosivo. A diferenciação entre perfis está produzindo sinais úteis.",
+      "alteracaoAutomatica": false,
+      "id": 19
+    }
+  ],
+  "seguranca": {
+    "pesosAlteradosAutomaticamente": false,
+    "modeloAlteradoAutomaticamente": false,
+    "necessitaValidacaoHumana": true
+  }
+}
