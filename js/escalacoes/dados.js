@@ -12,12 +12,12 @@
    - utilizar projeção calibrada quando disponível;
    - registrar impacto da calibração;
    - selecionar capitão;
-   - selecionar Reserva de Luxo.
+   - montar banco;
+   - selecionar Reserva de Luxo entre os reservas.
 
    IMPORTANTE:
 
    A calibração NÃO é aplicada novamente neste arquivo.
-
    MotorProjecao é responsável por calcular:
 
    projecaoOriginal
@@ -25,7 +25,6 @@
    projecao
 
    Aqui apenas consumimos esses valores.
-
    ========================================================= */
 
 
@@ -397,7 +396,6 @@ function somarCampoEscalacao(
     },
 
     0
-
   );
 
 }
@@ -662,6 +660,390 @@ function calcularResumoCalibracaoEscalacao(
 
 
 /* =========================================================
+   BANCO
+   ========================================================= */
+
+
+const POSICOES_BANCO = [
+
+  "GOL",
+  "LAT",
+  "ZAG",
+  "MEI",
+  "ATA"
+
+];
+
+
+function normalizarPosicaoEscalacao(
+  jogador
+) {
+
+  return String(
+
+    jogador?.posicao ??
+
+    jogador?.posicaoAbreviacao ??
+
+    ""
+
+  )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+function obterIdJogadorEscalacao(
+  jogador
+) {
+
+  return String(
+
+    jogador?.id ??
+
+    jogador?.atletaId ??
+
+    jogador?.atleta_id ??
+
+    ""
+
+  );
+
+}
+
+
+function obterNotaBancoEscalacao(
+  jogador
+) {
+
+  /*
+  ----------------------------------------------------------
+  Mantém a mesma filosofia do histórico progressivo:
+
+  o banco escolhe o melhor candidato restante de cada
+  posição.
+
+  No site, "score" é a nota consolidada do jogador.
+
+  Quando ela não estiver disponível, usamos a projeção
+  final como fallback.
+  ----------------------------------------------------------
+  */
+
+
+  const score =
+    Number(
+      jogador?.score
+    );
+
+
+  if (
+    Number.isFinite(
+      score
+    )
+  ) {
+
+    return score;
+
+  }
+
+
+  return obterProjecaoFinalEscalacao(
+    jogador
+  );
+
+}
+
+
+function compararCandidatosBancoEscalacao(
+  a,
+  b
+) {
+
+  const notaB =
+    obterNotaBancoEscalacao(
+      b
+    );
+
+
+  const notaA =
+    obterNotaBancoEscalacao(
+      a
+    );
+
+
+  if (
+    Math.abs(
+      notaB -
+      notaA
+    ) > 0.000001
+  ) {
+
+    return (
+      notaB -
+      notaA
+    );
+
+  }
+
+
+  const projecaoB =
+    obterProjecaoFinalEscalacao(
+      b
+    );
+
+
+  const projecaoA =
+    obterProjecaoFinalEscalacao(
+      a
+    );
+
+
+  if (
+    Math.abs(
+      projecaoB -
+      projecaoA
+    ) > 0.000001
+  ) {
+
+    return (
+      projecaoB -
+      projecaoA
+    );
+
+  }
+
+
+  return (
+
+    numeroEscalacao(
+      b?.confianca
+    )
+
+    -
+
+    numeroEscalacao(
+      a?.confianca
+    )
+
+  );
+
+}
+
+
+function montarBancoEscalacao(
+  jogadores,
+  titulares
+) {
+
+  const candidatos =
+    Array.isArray(
+      jogadores
+    )
+      ? jogadores
+      : [];
+
+
+  const listaTitulares =
+    Array.isArray(
+      titulares
+    )
+      ? titulares
+      : [];
+
+
+  const idsTitulares =
+    new Set(
+
+      listaTitulares
+        .map(
+          obterIdJogadorEscalacao
+        )
+        .filter(
+          Boolean
+        )
+
+    );
+
+
+  const banco = [];
+
+
+  POSICOES_BANCO.forEach(
+    posicao => {
+
+      const disponiveis =
+        candidatos
+          .filter(
+            jogador => {
+
+              const id =
+                obterIdJogadorEscalacao(
+                  jogador
+                );
+
+
+              if (
+                id
+                &&
+                idsTitulares.has(
+                  id
+                )
+              ) {
+
+                return false;
+
+              }
+
+
+              return (
+
+                normalizarPosicaoEscalacao(
+                  jogador
+                )
+
+                ===
+
+                posicao
+
+              );
+
+            }
+          )
+          .sort(
+            compararCandidatosBancoEscalacao
+          );
+
+
+      if (
+        disponiveis.length
+      ) {
+
+        banco.push(
+          disponiveis[0]
+        );
+
+      }
+
+    }
+  );
+
+
+  return banco;
+
+}
+
+
+/* =========================================================
+   RESERVA DE LUXO
+   ========================================================= */
+
+
+function obterNotaReservaLuxoEscalacao(
+  jogador
+) {
+
+  if (
+    typeof MotorReservaLuxo !==
+      "undefined"
+
+    &&
+
+    MotorReservaLuxo
+
+    &&
+
+    typeof MotorReservaLuxo.calcular ===
+      "function"
+  ) {
+
+    return numeroEscalacao(
+
+      MotorReservaLuxo.calcular(
+        jogador
+      )
+
+    );
+
+  }
+
+
+  return obterNotaBancoEscalacao(
+    jogador
+  );
+
+}
+
+
+function escolherReservaLuxoEscalacao(
+  banco
+) {
+
+  const reservas =
+    Array.isArray(
+      banco
+    )
+      ? banco
+      : [];
+
+
+  if (
+    reservas.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  return reservas
+    .slice()
+    .sort(
+      (
+        a,
+        b
+      ) => {
+
+        const notaB =
+          obterNotaReservaLuxoEscalacao(
+            b
+          );
+
+
+        const notaA =
+          obterNotaReservaLuxoEscalacao(
+            a
+          );
+
+
+        if (
+          Math.abs(
+            notaB -
+            notaA
+          ) > 0.000001
+        ) {
+
+          return (
+            notaB -
+            notaA
+          );
+
+        }
+
+
+        return compararCandidatosBancoEscalacao(
+          a,
+          b
+        );
+
+      }
+    )[0];
+
+}
+
+
+/* =========================================================
    CARREGAMENTO
    ========================================================= */
 
@@ -692,8 +1074,10 @@ async function carregarEscalacoes() {
         CAMINHO_ESCALACOES,
 
         {
+
           cache:
             "no-store"
+
         }
 
       );
@@ -979,7 +1363,11 @@ async function carregarEscalacoes() {
            =============================================== */
 
 
-        banco: []
+        banco:
+          montarBancoEscalacao(
+            jogadores,
+            listaTitulares
+          )
 
       };
 
@@ -992,12 +1380,18 @@ async function carregarEscalacoes() {
       if (
         typeof MotorCapitao !==
         "undefined"
+
         &&
+
         MotorCapitao
+
         &&
+
         typeof MotorCapitao.calcular ===
         "function"
+
         &&
+
         listaTitulares.length
       ) {
 
@@ -1013,17 +1407,21 @@ async function carregarEscalacoes() {
               ) =>
 
                 numeroEscalacao(
+
                   MotorCapitao.calcular(
                     b
                   )
+
                 )
 
                 -
 
                 numeroEscalacao(
+
                   MotorCapitao.calcular(
                     a
                   )
+
                 )
 
             )[0];
@@ -1036,46 +1434,10 @@ async function carregarEscalacoes() {
          =================================================== */
 
 
-      if (
-        typeof MotorReservaLuxo !==
-        "undefined"
-        &&
-        MotorReservaLuxo
-        &&
-        typeof MotorReservaLuxo.calcular ===
-        "function"
-        &&
-        listaTitulares.length
-      ) {
-
-
-        escalacao.reservaLuxo =
-          listaTitulares
-            .slice()
-            .sort(
-
-              (
-                a,
-                b
-              ) =>
-
-                numeroEscalacao(
-                  MotorReservaLuxo.calcular(
-                    b
-                  )
-                )
-
-                -
-
-                numeroEscalacao(
-                  MotorReservaLuxo.calcular(
-                    a
-                  )
-                )
-
-            )[0];
-
-      }
+      escalacao.reservaLuxo =
+        escolherReservaLuxoEscalacao(
+          escalacao.banco
+        );
 
 
       escalacoes.push(
@@ -1353,6 +1715,7 @@ function obterEscalacaoPorId(
 ) {
 
   return (
+
     estadoEscalacoes
       .escalacoes
       .find(
@@ -1374,6 +1737,7 @@ function obterEscalacaoPorId(
     ||
 
     null
+
   );
 
 }
