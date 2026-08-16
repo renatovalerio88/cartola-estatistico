@@ -1,0 +1,345 @@
+{
+  "modelo": "calibracao_posicoes_oficial_v2",
+  "geradoEm": "2026-08-16T13:31:26-03:00",
+  "status": "ATIVA",
+  "descricao": "Configuração oficial de calibração por posição promovida após backtest A/B.",
+  "modeloBase": "A",
+  "modeloPromovido": "B",
+  "origem": {
+    "calibracaoCandidata": "data/calibracao-posicoes-candidata.json",
+    "backtest": "data/backtest-ab-calibracao.json"
+  },
+  "validacao": {
+    "decisaoBacktest": "PROMOVER_CALIBRACAO",
+    "promocaoAutorizada": true,
+    "rodadasAvaliaveis": 21,
+    "jogadoresAvaliados": 756,
+    "maeModeloA": 4.795,
+    "maeModeloB": 4.481,
+    "melhoraPercentual": 6.54,
+    "viesModeloA": 3.268,
+    "viesModeloB": 2.666,
+    "semVazamentoFuturo": true
+  },
+  "politica": {
+    "tipo": "hibrida_por_posicao",
+    "posicoesCalibradas": [
+      "GOL",
+      "LAT",
+      "ZAG",
+      "MEI",
+      "ATA"
+    ],
+    "posicoesModeloOriginal": [
+      "TEC"
+    ],
+    "alterarPesos": false,
+    "alterarMotorBase": false,
+    "alterarHistorico": false,
+    "alterarEscalacoesHistoricas": false,
+    "reversivel": true
+  },
+  "posicoes": {
+    "GOL": {
+      "posicao": "GOL",
+      "ativa": true,
+      "modelo": "calibrado",
+      "fatorMultiplicativo": 0.88281,
+      "correcaoAditiva": -0.945,
+      "formula": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva",
+      "amostra": {
+        "quantidade": 66,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "prioridade": "alta",
+      "diagnosticoOriginal": {
+        "mae": 5.69,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.7
+        },
+        "mediaProjecao": 6.1,
+        "mediaReal": 3.4
+      },
+      "motivos": [
+        "A projeção histórica está superestimando GOL em 2.7 pontos.",
+        "MAE da posição: 5.69 (alto).",
+        "Auditoria Top Real não utilizada na calibração por baixa taxa de identificação dos atletas."
+      ],
+      "origem": "calibracaoCandidata",
+      "motivoPromocao": "Posição beneficiada pela calibração no backtest A/B."
+    },
+    "LAT": {
+      "posicao": "LAT",
+      "ativa": true,
+      "modelo": "calibrado",
+      "fatorMultiplicativo": 0.91944,
+      "correcaoAditiva": -0.50225,
+      "formula": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva",
+      "amostra": {
+        "quantidade": 88,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "prioridade": "media",
+      "diagnosticoOriginal": {
+        "mae": 5.64,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "alto",
+          "valor": 2.05
+        },
+        "mediaProjecao": 6.96,
+        "mediaReal": 4.92
+      },
+      "motivos": [
+        "A projeção histórica está superestimando LAT em 2.05 pontos.",
+        "MAE da posição: 5.64 (alto).",
+        "Auditoria Top Real não utilizada na calibração por baixa taxa de identificação dos atletas."
+      ],
+      "origem": "calibracaoCandidata",
+      "motivoPromocao": "Posição beneficiada pela calibração no backtest A/B."
+    },
+    "ZAG": {
+      "posicao": "ZAG",
+      "ativa": true,
+      "modelo": "calibrado",
+      "fatorMultiplicativo": 0.8675,
+      "correcaoAditiva": -1.305,
+      "formula": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva",
+      "amostra": {
+        "quantidade": 132,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "prioridade": "alta",
+      "diagnosticoOriginal": {
+        "mae": 5.43,
+        "classificacaoMae": "alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.61
+        },
+        "mediaProjecao": 5.37,
+        "mediaReal": 2.75
+      },
+      "motivos": [
+        "A projeção histórica está superestimando ZAG em 2.61 pontos.",
+        "MAE da posição: 5.43 (alto).",
+        "Auditoria Top Real não utilizada na calibração por baixa taxa de identificação dos atletas."
+      ],
+      "origem": "calibracaoCandidata",
+      "motivoPromocao": "Posição beneficiada pela calibração no backtest A/B."
+    },
+    "MEI": {
+      "posicao": "MEI",
+      "ativa": true,
+      "modelo": "calibrado",
+      "fatorMultiplicativo": 0.89528,
+      "correcaoAditiva": -0.294,
+      "formula": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva",
+      "amostra": {
+        "quantidade": 264,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "prioridade": "alta",
+      "diagnosticoOriginal": {
+        "mae": 6.2,
+        "classificacaoMae": "muito_alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "moderado",
+          "valor": 1.47
+        },
+        "mediaProjecao": 6.41,
+        "mediaReal": 4.95
+      },
+      "motivos": [
+        "A projeção histórica está superestimando MEI em 1.47 pontos.",
+        "MAE da posição: 6.2 (muito_alto).",
+        "Auditoria Top Real não utilizada na calibração por baixa taxa de identificação dos atletas."
+      ],
+      "origem": "calibracaoCandidata",
+      "motivoPromocao": "Posição beneficiada pela calibração no backtest A/B."
+    },
+    "ATA": {
+      "posicao": "ATA",
+      "ativa": true,
+      "modelo": "calibrado",
+      "fatorMultiplicativo": 0.855,
+      "correcaoAditiva": -1.455,
+      "formula": "projecao_calibrada = (projecao_original * fatorMultiplicativo) + correcaoAditiva",
+      "amostra": {
+        "quantidade": 176,
+        "nivelConfianca": "alta",
+        "fatorConfianca": 1.0
+      },
+      "prioridade": "alta",
+      "diagnosticoOriginal": {
+        "mae": 6.62,
+        "classificacaoMae": "muito_alto",
+        "vies": {
+          "direcao": "superestimacao",
+          "intensidade": "muito_alto",
+          "valor": 2.91
+        },
+        "mediaProjecao": 8.13,
+        "mediaReal": 5.23
+      },
+      "motivos": [
+        "A projeção histórica está superestimando ATA em 2.91 pontos.",
+        "MAE da posição: 6.62 (muito_alto).",
+        "Auditoria Top Real não utilizada na calibração por baixa taxa de identificação dos atletas."
+      ],
+      "origem": "calibracaoCandidata",
+      "motivoPromocao": "Posição beneficiada pela calibração no backtest A/B."
+    },
+    "TEC": {
+      "posicao": "TEC",
+      "ativa": false,
+      "modelo": "original",
+      "fatorMultiplicativo": 1.0,
+      "correcaoAditiva": 0.0,
+      "formula": "projecao_final = projecao_original",
+      "amostra": {
+        "quantidade": 66,
+        "nivelConfianca": "moderada",
+        "fatorConfianca": 0.7
+      },
+      "prioridade": "baixa",
+      "diagnosticoOriginal": {
+        "mae": 3.4,
+        "classificacaoMae": "moderado",
+        "vies": {
+          "direcao": "equilibrado",
+          "intensidade": "baixo",
+          "valor": 0.26
+        },
+        "mediaProjecao": 5.61,
+        "mediaReal": 5.35
+      },
+      "calibracaoCandidataDescartada": {
+        "fatorMultiplicativo": 0.98865,
+        "correcaoAditiva": -0.0
+      },
+      "origem": "modelo_original",
+      "motivoPreservacao": "A calibração candidata de TEC não foi promovida. O backtest por posição indicou piora em relação ao modelo original."
+    }
+  },
+  "resultadoBacktestPorPosicao": {
+    "GOL": {
+      "amostras": 63,
+      "amostrasCalibradas": 45,
+      "percentualCalibrado": 71.43,
+      "maeA": 4.87,
+      "maeB": 4.527,
+      "viesA": 3.919,
+      "viesB": 3.204,
+      "melhoraAbsoluta": 0.343,
+      "melhoraPercentual": 7.05,
+      "vitoriasA": 11,
+      "vitoriasB": 34,
+      "empates": 18,
+      "taxaVitoriasA": 17.46,
+      "taxaVitoriasB": 53.97,
+      "vencedor": "B"
+    },
+    "LAT": {
+      "amostras": 42,
+      "amostrasCalibradas": 24,
+      "percentualCalibrado": 57.14,
+      "maeA": 4.08,
+      "maeB": 4.046,
+      "viesA": 2.378,
+      "viesB": 2.238,
+      "melhoraAbsoluta": 0.035,
+      "melhoraPercentual": 0.85,
+      "vitoriasA": 8,
+      "vitoriasB": 16,
+      "empates": 18,
+      "taxaVitoriasA": 19.05,
+      "taxaVitoriasB": 38.1,
+      "vencedor": "B"
+    },
+    "ZAG": {
+      "amostras": 168,
+      "amostrasCalibradas": 152,
+      "percentualCalibrado": 90.48,
+      "maeA": 4.319,
+      "maeB": 3.855,
+      "viesA": 3.705,
+      "viesB": 2.767,
+      "melhoraAbsoluta": 0.464,
+      "melhoraPercentual": 10.73,
+      "vitoriasA": 47,
+      "vitoriasB": 105,
+      "empates": 16,
+      "taxaVitoriasA": 27.98,
+      "taxaVitoriasB": 62.5,
+      "vencedor": "B"
+    },
+    "MEI": {
+      "amostras": 252,
+      "amostrasCalibradas": 240,
+      "percentualCalibrado": 95.24,
+      "maeA": 5.121,
+      "maeB": 4.984,
+      "viesA": 2.813,
+      "viesB": 2.667,
+      "melhoraAbsoluta": 0.137,
+      "melhoraPercentual": 2.67,
+      "vitoriasA": 91,
+      "vitoriasB": 149,
+      "empates": 12,
+      "taxaVitoriasA": 36.11,
+      "taxaVitoriasB": 59.13,
+      "vencedor": "B"
+    },
+    "ATA": {
+      "amostras": 168,
+      "amostrasCalibradas": 152,
+      "percentualCalibrado": 90.48,
+      "maeA": 5.778,
+      "maeB": 5.125,
+      "viesA": 4.242,
+      "viesB": 2.912,
+      "melhoraAbsoluta": 0.653,
+      "melhoraPercentual": 11.3,
+      "vitoriasA": 49,
+      "vitoriasB": 103,
+      "empates": 16,
+      "taxaVitoriasA": 29.17,
+      "taxaVitoriasB": 61.31,
+      "vencedor": "B"
+    },
+    "TEC": {
+      "amostras": 63,
+      "amostrasCalibradas": 45,
+      "percentualCalibrado": 71.43,
+      "maeA": 2.536,
+      "maeB": 2.663,
+      "viesA": 1.262,
+      "viesB": 1.492,
+      "melhoraAbsoluta": -0.127,
+      "melhoraPercentual": -5.01,
+      "vitoriasA": 33,
+      "vitoriasB": 12,
+      "empates": 18,
+      "taxaVitoriasA": 52.38,
+      "taxaVitoriasB": 19.05,
+      "vencedor": "A"
+    }
+  },
+  "seguranca": {
+    "modeloOriginalPreservado": true,
+    "pesosOriginaisPreservados": true,
+    "promocaoAutomaticaFutura": false,
+    "arquivoIndependente": true
+  }
+}
