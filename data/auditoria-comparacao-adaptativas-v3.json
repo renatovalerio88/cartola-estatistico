@@ -163,24 +163,24 @@
     },
     {
       "nome": "metricas_fixas_consistentes",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "melhor_fixa_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": "Conservador",
-      "encontrado": "Conservador"
+      "encontrado": "Equilibrado"
     },
     {
       "nome": "media_oraculo_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": 0.0,
-      "encontrado": 0.0
+      "encontrado": 63.9
     },
     {
       "nome": "oraculo_valido",
@@ -205,7 +205,7 @@
     },
     {
       "nome": "ganho_v3_fixa_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -240,21 +240,21 @@
     },
     {
       "nome": "eficiencia_v1_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "eficiencia_v2_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "eficiencia_v3_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -353,11 +353,11 @@
   ],
   "resumoTestes": {
     "quantidade": 43,
-    "aprovados": 31,
-    "falhas": 12,
-    "falhasCriticas": 12,
+    "aprovados": 24,
+    "falhas": 19,
+    "falhasCriticas": 19,
     "alertas": 0,
-    "scoreQualidade": 72.09
+    "scoreQualidade": 55.81
   },
   "resultados": {
     "mediaV1": 0.0,
