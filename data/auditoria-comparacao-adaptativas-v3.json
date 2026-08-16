@@ -6,385 +6,295 @@
     {
       "nome": "arquivo_v1_existe",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "arquivo_v2_existe",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "arquivo_v3_existe",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "arquivo_simulacao_existe",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "arquivo_comparacao_existe",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "versao_v3",
       "passou": true,
-      "critico": true,
-      "esperado": "estrategia_adaptativa_v3",
-      "encontrado": "estrategia_adaptativa_v3"
+      "nivel": "CRITICO"
     },
     {
       "nome": "versao_comparacao",
       "passou": true,
-      "critico": true,
-      "esperado": "comparacao_estrategias_adaptativas_v3",
-      "encontrado": "comparacao_estrategias_adaptativas_v3"
+      "nivel": "CRITICO"
     },
     {
       "nome": "rodadas_comuns_consistentes",
       "passou": true,
-      "critico": true,
-      "esperado": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23
-      ],
-      "encontrado": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23
-      ]
+      "nivel": "CRITICO"
     },
     {
       "nome": "quantidade_rodadas_consistente",
       "passou": true,
-      "critico": true,
-      "esperado": 22,
-      "encontrado": 22
+      "nivel": "CRITICO"
     },
     {
       "nome": "amostra_minima",
       "passou": true,
-      "critico": true,
-      "esperado": ">=10",
-      "encontrado": 22
+      "nivel": "CRITICO"
     },
     {
       "nome": "media_v1_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": 0.0,
-      "encontrado": 55.37
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "media_v2_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": 0.0,
-      "encontrado": 56.36
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "media_v3_consistente",
       "passou": true,
-      "critico": true,
-      "esperado": 55.12,
-      "encontrado": 55.12
+      "nivel": "CRITICO"
     },
     {
       "nome": "desvio_v1_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "desvio_v2_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "desvio_v3_consistente",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "metricas_fixas_consistentes",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "melhor_fixa_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": "Conservador",
-      "encontrado": "Equilibrado"
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "media_oraculo_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": 0.0,
-      "encontrado": 63.9
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "oraculo_valido",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "ganho_v3_v1_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "ganho_v3_v2_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "ganho_v3_fixa_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "pareado_v2_v3_vitorias_v2",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "pareado_v2_v3_vitorias_v3",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "pareado_v2_v3_empates",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "pareado_v2_v3_taxa",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "eficiencia_v1_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "eficiencia_v2_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "eficiencia_v3_consistente",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "escolhas_v3_consistentes",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "cobertura_escolhas_v3",
       "passou": true,
-      "critico": true,
-      "esperado": 22,
-      "encontrado": 22
+      "nivel": "CRITICO"
     },
     {
       "nome": "estrategias_v3_validas",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "v3_sem_vazamento_declarado",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "v3_historico_progressivo",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "v3_auditoria_sem_vazamento",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "detalhes_rodadas_consistentes",
-      "passou": false,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "passou": true,
+      "nivel": "CRITICO"
     },
     {
       "nome": "nao_altera_modelo_oficial",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "nao_altera_pesos",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "nao_altera_escalacoes",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "nao_altera_estrategia_oficial",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "promocao_automatica_bloqueada",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     },
     {
       "nome": "decisao_sem_promocao_automatica",
       "passou": true,
-      "critico": true,
-      "esperado": null,
-      "encontrado": null
+      "nivel": "CRITICO"
     }
   ],
-  "resumoTestes": {
-    "quantidade": 43,
-    "aprovados": 24,
-    "falhas": 19,
-    "falhasCriticas": 19,
+  "resumo": {
+    "quantidadeTestes": 43,
+    "aprovados": 43,
+    "falhasCriticas": 0,
     "alertas": 0,
-    "scoreQualidade": 55.81
+    "scoreQualidade": 100.0
   },
   "resultados": {
-    "mediaV1": 0.0,
-    "mediaV2": 0.0,
-    "mediaV3": 55.12,
-    "melhorFixa": "Conservador",
-    "mediaMelhorFixa": 0.0,
-    "mediaOraculo": 0.0,
-    "ganhoV3VsV1": 55.12,
-    "ganhoV3VsV2": 55.12,
-    "ganhoV3VsMelhorFixa": 55.12,
-    "eficienciaV1": 0.0,
-    "eficienciaV2": 0.0,
-    "eficienciaV3": 0.0,
-    "desvioV1": 0.0,
-    "desvioV2": 0.0,
-    "desvioV3": 12.77,
-    "vitoriasV2Pareado": 0,
-    "vitoriasV3Pareado": 22,
-    "empatesPareado": 0,
+    "v1": {
+      "quantidade": 22,
+      "media": 55.37,
+      "desvioPadrao": 13.8,
+      "total": 1218.12
+    },
+    "v2": {
+      "quantidade": 22,
+      "media": 56.36,
+      "desvioPadrao": 12.82,
+      "total": 1239.9
+    },
+    "v3": {
+      "quantidade": 22,
+      "media": 55.12,
+      "desvioPadrao": 12.77,
+      "total": 1212.65
+    },
+    "estrategiasFixas": {
+      "Conservador": {
+        "quantidade": 22,
+        "media": 56.32,
+        "desvioPadrao": 14.14,
+        "total": 1239.1
+      },
+      "Equilibrado": {
+        "quantidade": 22,
+        "media": 57.58,
+        "desvioPadrao": 16.7,
+        "total": 1266.79
+      },
+      "Agressivo": {
+        "quantidade": 22,
+        "media": 55.1,
+        "desvioPadrao": 13.69,
+        "total": 1212.15
+      }
+    },
+    "melhorEstrategiaFixa": "Equilibrado",
+    "oraculo": {
+      "quantidade": 22,
+      "media": 63.9,
+      "desvioPadrao": 15.61,
+      "total": 1405.85
+    },
+    "ganhos": {
+      "v3VsV1": -0.25,
+      "v3VsV2": -1.24,
+      "v3VsMelhorFixa": -2.46
+    },
+    "eficiencia": {
+      "v1": 86.65,
+      "v2": 88.2,
+      "v3": 86.26
+    },
+    "pareadoV2V3": {
+      "vitoriasV2": 5,
+      "vitoriasV3": 1,
+      "empates": 16,
+      "taxaV3": 4.55
+    },
     "escolhasV3": {
       "Conservador": 14,
       "Equilibrado": 7,
       "Agressivo": 1
     }
   },
-  "decisao": "COMPARACAO_V3_REPROVADA",
+  "decisao": "COMPARACAO_V3_VALIDADA",
   "promocaoAutomatica": false,
   "seguranca": {
     "alteraModeloOficial": false,
