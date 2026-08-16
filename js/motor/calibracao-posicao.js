@@ -1,36 +1,47 @@
 /*
 ======================================================
 CARTOLA ESTATÍSTICO
-Calibração de Projeção por Posição
+Calibração Oficial de Projeção por Posição
 ======================================================
 
 Objetivo:
 
-Disponibilizar para o MotorProjecao os parâmetros de
-calibração específicos de cada posição.
+Disponibilizar para o MotorProjecao os parâmetros
+oficiais de calibração específicos de cada posição.
 
-A calibração foi construída a partir do laboratório
-histórico e posteriormente validada através de
-backtest A/B progressivo.
+A calibração foi validada através de backtest A/B
+progressivo e promovida pelo laboratório estatístico.
 
-Resultado do A/B:
+RESULTADO OFICIAL DO BACKTEST A/B
+
+Rodadas: 21
+Jogadores: 756
 
 Modelo A - projeção original
-MAE: 4.882
+MAE: 4.795
 
 Modelo B - calibração por posição
-MAE: 4.555
+MAE: 4.481
 
 Melhora:
-6.69%
+6.54%
 
-Rodadas:
-- Vitórias A: 6
-- Vitórias B: 14
-- Empates: 1
+Viés A:
+3.268
 
-Decisão científica:
-PROMOVER_CALIBRACAO
+Viés B:
+2.666
+
+DECISÃO:
+
+CALIBRAÇÃO PROMOVIDA
+
+GOL: MODELO B
+LAT: MODELO B
+ZAG: MODELO B
+MEI: MODELO B
+ATA: MODELO B
+TEC: MODELO ORIGINAL
 
 IMPORTANTE:
 
@@ -39,7 +50,9 @@ Esta camada:
 - não recalcula pesos;
 - não altera dados históricos;
 - não consulta resultado futuro;
-- apenas fornece os parâmetros que já foram validados.
+- não modifica o motor base;
+- apenas fornece ao MotorProjecao os parâmetros
+  oficialmente promovidos pelo laboratório.
 
 Fórmula:
 
@@ -58,19 +71,19 @@ const MotorCalibracaoPosicao = (() => {
     // ==================================================
 
     const VERSAO =
-        "1.0";
+        "2.0";
 
 
     const MODELO =
-        "calibracao_posicoes_promovida_v1";
+        "calibracao_posicoes_oficial_v1";
 
 
     const FONTE =
-        "backtest_ab_calibracao_v1";
+        "data/calibracao-posicoes-oficial.json";
 
 
     // ==================================================
-    // RESULTADO DA VALIDAÇÃO A/B
+    // RESULTADO OFICIAL DA VALIDAÇÃO A/B
     // ==================================================
 
     const VALIDACAO = {
@@ -78,36 +91,32 @@ const MotorCalibracaoPosicao = (() => {
         aprovada:
             true,
 
+        promovida:
+            true,
+
         decisao:
-            "PROMOVER_CALIBRACAO",
+            "CALIBRACAO_PROMOVIDA",
+
+        rodadas:
+            21,
+
+        jogadores:
+            756,
 
         maeOriginal:
-            4.882,
+            4.795,
 
         maeCalibrado:
-            4.555,
+            4.481,
 
         melhoraPercentual:
-            6.69,
+            6.54,
 
         viesOriginal:
-            3.362,
+            3.268,
 
         viesCalibrado:
-            2.735,
-
-        rodadas: {
-
-            vitoriasOriginal:
-                6,
-
-            vitoriasCalibrado:
-                14,
-
-            empates:
-                1
-
-        }
+            2.666
 
     };
 
@@ -134,14 +143,21 @@ const MotorCalibracaoPosicao = (() => {
 
 
     // ==================================================
-    // CALIBRAÇÕES PROMOVIDAS
+    // CALIBRAÇÕES OFICIAIS PROMOVIDAS
     // ==================================================
     //
-    // Os valores abaixo vêm diretamente de:
+    // Fonte:
     //
-    // data/calibracao-posicoes-candidata.json
+    // data/calibracao-posicoes-oficial.json
     //
-    // Nenhum valor foi inventado nesta camada.
+    // Resultado da promoção:
+    //
+    // GOL -> calibrado
+    // LAT -> calibrado
+    // ZAG -> calibrado
+    // MEI -> calibrado
+    // ATA -> calibrado
+    // TEC -> original
     //
     // ==================================================
 
@@ -160,11 +176,14 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 true,
 
+            modelo:
+                "B",
+
             prioridade:
                 "alta",
 
             fatorMultiplicativo:
-                0.86181,
+                0.88281,
 
             correcaoAditiva:
                 -0.945,
@@ -184,7 +203,7 @@ const MotorCalibracaoPosicao = (() => {
                     5.69,
 
                 vies:
-                    2.7,
+                    2.70,
 
                 direcaoVies:
                     "superestimacao",
@@ -197,28 +216,6 @@ const MotorCalibracaoPosicao = (() => {
 
                 mediaReal:
                     3.40
-
-            },
-
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    6.35,
-
-                top5:
-                    23.81,
-
-                top10:
-                    61.90,
-
-                percentilMedio:
-                    46.85,
-
-                eficienciaCapturaPontos:
-                    27.75
 
             },
 
@@ -240,11 +237,14 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 true,
 
+            modelo:
+                "B",
+
             prioridade:
                 "media",
 
             fatorMultiplicativo:
-                0.90894,
+                0.91944,
 
             correcaoAditiva:
                 -0.50225,
@@ -280,28 +280,6 @@ const MotorCalibracaoPosicao = (() => {
 
             },
 
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    4.76,
-
-                top5:
-                    11.90,
-
-                top10:
-                    20.24,
-
-                percentilMedio:
-                    56.82,
-
-                eficienciaCapturaPontos:
-                    32.82
-
-            },
-
             fonte:
                 FONTE
 
@@ -320,11 +298,14 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 true,
 
+            modelo:
+                "B",
+
             prioridade:
                 "alta",
 
             fatorMultiplicativo:
-                0.85,
+                0.8675,
 
             correcaoAditiva:
                 -1.305,
@@ -360,28 +341,6 @@ const MotorCalibracaoPosicao = (() => {
 
             },
 
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    2.38,
-
-                top5:
-                    3.97,
-
-                top10:
-                    19.84,
-
-                percentilMedio:
-                    47.35,
-
-                eficienciaCapturaPontos:
-                    21.97
-
-            },
-
             fonte:
                 FONTE
 
@@ -400,11 +359,14 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 true,
 
+            modelo:
+                "B",
+
             prioridade:
                 "alta",
 
             fatorMultiplicativo:
-                0.88028,
+                0.89528,
 
             correcaoAditiva:
                 -0.294,
@@ -440,28 +402,6 @@ const MotorCalibracaoPosicao = (() => {
 
             },
 
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    12.70,
-
-                top5:
-                    13.49,
-
-                top10:
-                    23.02,
-
-                percentilMedio:
-                    62.93,
-
-                eficienciaCapturaPontos:
-                    35.48
-
-            },
-
             fonte:
                 FONTE
 
@@ -480,11 +420,14 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 true,
 
+            modelo:
+                "B",
+
             prioridade:
                 "alta",
 
             fatorMultiplicativo:
-                0.85,
+                0.855,
 
             correcaoAditiva:
                 -1.455,
@@ -520,28 +463,6 @@ const MotorCalibracaoPosicao = (() => {
 
             },
 
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    8.33,
-
-                top5:
-                    10.71,
-
-                top10:
-                    23.21,
-
-                percentilMedio:
-                    64.40,
-
-                eficienciaCapturaPontos:
-                    31.80
-
-            },
-
             fonte:
                 FONTE
 
@@ -551,6 +472,16 @@ const MotorCalibracaoPosicao = (() => {
         // ==============================================
         // TÉCNICO
         // ==============================================
+        //
+        // O backtest decidiu manter o modelo original.
+        //
+        // Portanto:
+        //
+        // fator = 1
+        // aditivo = 0
+        // aplicada = false
+        //
+        // ==============================================
 
         TEC: {
 
@@ -558,16 +489,19 @@ const MotorCalibracaoPosicao = (() => {
                 "TEC",
 
             aplicada:
-                true,
+                false,
+
+            modelo:
+                "ORIGINAL",
 
             prioridade:
                 "baixa",
 
             fatorMultiplicativo:
-                0.98865,
+                1.0,
 
             correcaoAditiva:
-                0,
+                0.0,
 
             confianca:
                 "moderada",
@@ -597,28 +531,6 @@ const MotorCalibracaoPosicao = (() => {
 
                 mediaReal:
                     5.35
-
-            },
-
-            auditoria: {
-
-                taxaIdentificacao:
-                    100,
-
-                topN:
-                    4.76,
-
-                top5:
-                    36.51,
-
-                top10:
-                    66.67,
-
-                percentilMedio:
-                    57.22,
-
-                eficienciaCapturaPontos:
-                    56.54
 
             },
 
@@ -692,9 +604,11 @@ const MotorCalibracaoPosicao = (() => {
         padrao = 0
     ) {
 
-        valor = Number(
-            valor
-        );
+        valor =
+            Number(
+                valor
+            );
+
 
         return Number.isFinite(
             valor
@@ -833,6 +747,9 @@ const MotorCalibracaoPosicao = (() => {
             aplicada:
                 false,
 
+            modelo:
+                "ORIGINAL",
+
             prioridade:
                 "nenhuma",
 
@@ -852,9 +769,6 @@ const MotorCalibracaoPosicao = (() => {
                 0,
 
             diagnostico:
-                null,
-
-            auditoria:
                 null,
 
             fonte:
@@ -877,10 +791,43 @@ const MotorCalibracaoPosicao = (() => {
             !calibracao
             ||
             typeof calibracao !==
-            "object"
+                "object"
         ) {
 
             return null;
+
+        }
+
+
+        /*
+        --------------------------------------------------
+        Caso a posição NÃO esteja calibrada,
+        obrigatoriamente devolvemos fator neutro.
+
+        Isso garante que TEC e qualquer posição futura
+        não sofram alteração acidental.
+        --------------------------------------------------
+        */
+
+        if (
+            calibracao.aplicada !==
+                true
+        ) {
+
+            return {
+
+                ...calibracao,
+
+                aplicada:
+                    false,
+
+                fatorMultiplicativo:
+                    1,
+
+                correcaoAditiva:
+                    0
+
+            };
 
         }
 
@@ -1017,6 +964,28 @@ const MotorCalibracaoPosicao = (() => {
 
 
     // ==================================================
+    // VERIFICAR SE A CALIBRAÇÃO É APLICADA
+    // ==================================================
+
+    function estaCalibrada(
+        posicao
+    ) {
+
+        const calibracao =
+            obter(
+                posicao
+            );
+
+
+        return (
+            calibracao.aplicada ===
+            true
+        );
+
+    }
+
+
+    // ==================================================
     // APLICAR DIRETAMENTE
     // ==================================================
 
@@ -1050,10 +1019,18 @@ const MotorCalibracaoPosicao = (() => {
             return {
 
                 projecaoOriginal:
-                    projecao,
+                    Number(
+                        projecao.toFixed(
+                            2
+                        )
+                    ),
 
                 projecaoCalibrada:
-                    projecao,
+                    Number(
+                        projecao.toFixed(
+                            2
+                        )
+                    ),
 
                 diferenca:
                     0,
@@ -1169,10 +1146,32 @@ const MotorCalibracaoPosicao = (() => {
 
 
     // ==================================================
+    // LISTAR SOMENTE POSIÇÕES CALIBRADAS
+    // ==================================================
+
+    function listarCalibradas() {
+
+        return listar()
+            .filter(
+
+                item =>
+                    item.aplicada ===
+                    true
+
+            );
+
+    }
+
+
+    // ==================================================
     // RESUMO
     // ==================================================
 
     function resumo() {
+
+        const calibradas =
+            listarCalibradas();
+
 
         return {
 
@@ -1188,15 +1187,12 @@ const MotorCalibracaoPosicao = (() => {
             ativa:
                 true,
 
+            oficial:
+                true,
+
             validacao: {
 
-                ...VALIDACAO,
-
-                rodadas: {
-
-                    ...VALIDACAO.rodadas
-
-                }
+                ...VALIDACAO
 
             },
 
@@ -1211,10 +1207,30 @@ const MotorCalibracaoPosicao = (() => {
                     CALIBRACOES
                 ).length,
 
+            quantidadeCalibradas:
+                calibradas.length,
+
             posicoes:
                 Object.keys(
                     CALIBRACOES
-                )
+                ),
+
+            posicoesCalibradas:
+                calibradas.map(
+                    item =>
+                        item.posicao
+                ),
+
+            posicoesOriginais:
+                listar()
+                    .filter(
+                        item =>
+                            !item.aplicada
+                    )
+                    .map(
+                        item =>
+                            item.posicao
+                    )
 
         };
 
@@ -1239,8 +1255,15 @@ const MotorCalibracaoPosicao = (() => {
             versao:
                 VERSAO,
 
+            fonte:
+                FONTE,
+
             validacao:
-                VALIDACAO,
+                {
+
+                    ...VALIDACAO
+
+                },
 
             posicoes:
                 posicoes.map(
@@ -1249,6 +1272,9 @@ const MotorCalibracaoPosicao = (() => {
 
                         posicao:
                             item.posicao,
+
+                        modelo:
+                            item.modelo,
 
                         aplicada:
                             item.aplicada,
@@ -1270,19 +1296,130 @@ const MotorCalibracaoPosicao = (() => {
 
                         mae:
                             item.diagnostico
-                            ?.mae
+                                ?.mae
                             ??
                             null,
 
                         vies:
                             item.diagnostico
-                            ?.vies
+                                ?.vies
                             ??
                             null
 
                     })
 
                 )
+
+        };
+
+    }
+
+
+    // ==================================================
+    // VALIDAR CONFIGURAÇÃO
+    // ==================================================
+
+    function validar() {
+
+        const problemas =
+            [];
+
+
+        Object
+            .keys(
+                CALIBRACOES
+            )
+            .forEach(
+
+                posicao => {
+
+                    const item =
+                        obter(
+                            posicao
+                        );
+
+
+                    if (
+                        item.aplicada
+                    ) {
+
+                        if (
+                            !Number.isFinite(
+                                Number(
+                                    item.fatorMultiplicativo
+                                )
+                            )
+                        ) {
+
+                            problemas.push(
+                                `${posicao}: fator inválido`
+                            );
+
+                        }
+
+
+                        if (
+                            !Number.isFinite(
+                                Number(
+                                    item.correcaoAditiva
+                                )
+                            )
+                        ) {
+
+                            problemas.push(
+                                `${posicao}: correção aditiva inválida`
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            );
+
+
+        /*
+        --------------------------------------------------
+        Regra específica da promoção atual:
+
+        TEC obrigatoriamente deve continuar ORIGINAL.
+        --------------------------------------------------
+        */
+
+        const tecnico =
+            obter(
+                "TEC"
+            );
+
+
+        if (
+            tecnico.aplicada
+            ||
+            tecnico.fatorMultiplicativo !== 1
+            ||
+            tecnico.correcaoAditiva !== 0
+        ) {
+
+            problemas.push(
+                "TEC deveria permanecer no modelo original."
+            );
+
+        }
+
+
+        return {
+
+            valido:
+                problemas.length === 0,
+
+            problemas,
+
+            modelo:
+                MODELO,
+
+            versao:
+                VERSAO
 
         };
 
@@ -1299,13 +1436,19 @@ const MotorCalibracaoPosicao = (() => {
 
         possui,
 
+        estaCalibrada,
+
         aplicar,
 
         listar,
 
+        listarCalibradas,
+
         resumo,
 
         diagnostico,
+
+        validar,
 
         normalizarPosicao
 
