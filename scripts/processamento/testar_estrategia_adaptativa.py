@@ -77,11 +77,9 @@ ARQUIVO_SAIDA = (
 
 
 ESTRATEGIAS = [
-
     "Conservador",
     "Equilibrado",
     "Agressivo"
-
 ]
 
 
@@ -111,12 +109,9 @@ PESO_ESTABILIDADE = 0.10
 # UTILIDADES
 # ======================================================
 
-def carregar_json(
-    caminho
-):
+def carregar_json(caminho):
 
     if not caminho.exists():
-
         return None
 
     try:
@@ -134,10 +129,8 @@ def carregar_json(
     except Exception as erro:
 
         print(
-
             f"[ERRO] Falha ao ler "
             f"{caminho}: {erro}"
-
         )
 
         return None
@@ -175,7 +168,6 @@ def numero(
     try:
 
         if valor is None:
-
             return padrao
 
         resultado = float(
@@ -185,11 +177,9 @@ def numero(
         if math.isfinite(
             resultado
         ):
-
             return resultado
 
     except Exception:
-
         pass
 
     return padrao
@@ -222,13 +212,317 @@ def percentual(
     )
 
     if total == 0:
-
         return 0
 
     return (
         parte /
         total
     ) * 100
+
+
+# ======================================================
+# LEITURA SEGURA DAS PONTUAÇÕES
+# ======================================================
+
+def obter_primeiro_numero(
+    dados,
+    campos,
+    padrao=None
+):
+
+    if not isinstance(
+        dados,
+        dict
+    ):
+        return padrao
+
+    for campo in campos:
+
+        if campo not in dados:
+            continue
+
+        valor = dados.get(
+            campo
+        )
+
+        if valor is None:
+            continue
+
+        try:
+
+            resultado = float(
+                valor
+            )
+
+            if math.isfinite(
+                resultado
+            ):
+                return resultado
+
+        except Exception:
+            continue
+
+    return padrao
+
+
+def obter_pontuacao_com_capitao(
+    estrategia
+):
+
+    """
+    Lê a pontuação real da estratégia de forma tolerante
+    às diferentes versões do simulacao-times.json.
+
+    A prioridade continua sendo pontuacaoComCapitao.
+
+    Os campos alternativos existem apenas para impedir que
+    uma mudança de estrutura do JSON transforme uma
+    pontuação válida em zero.
+    """
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return None
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "pontuacaoComCapitao",
+            "pontosComCapitao",
+            "pontuacaoRealComCapitao",
+            "pontuacaoFinal",
+            "pontos",
+            "pontuacaoReal",
+            "pontuacao"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    resultado = estrategia.get(
+        "resultado"
+    )
+
+    valor = obter_primeiro_numero(
+        resultado,
+        [
+            "pontuacaoComCapitao",
+            "pontosComCapitao",
+            "pontuacaoRealComCapitao",
+            "pontuacaoFinal",
+            "pontos",
+            "pontuacaoReal",
+            "pontuacao"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    metricas = estrategia.get(
+        "metricas"
+    )
+
+    valor = obter_primeiro_numero(
+        metricas,
+        [
+            "pontuacaoComCapitao",
+            "pontosComCapitao",
+            "pontuacaoRealComCapitao",
+            "pontuacaoFinal",
+            "pontos",
+            "pontuacaoReal",
+            "pontuacao"
+        ],
+        None
+    )
+
+    return valor
+
+
+def obter_pontuacao_sem_capitao(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return None
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "pontuacaoSemCapitao",
+            "pontosSemCapitao"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    resultado = estrategia.get(
+        "resultado"
+    )
+
+    valor = obter_primeiro_numero(
+        resultado,
+        [
+            "pontuacaoSemCapitao",
+            "pontosSemCapitao"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    return obter_pontuacao_com_capitao(
+        estrategia
+    )
+
+
+def obter_bonus_capitao(
+    estrategia,
+    pontos_com_capitao=None,
+    pontos_sem_capitao=None
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return 0.0
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "bonusCapitao",
+            "bonus_capitao"
+        ],
+        None
+    )
+
+    if valor is None:
+
+        resultado = estrategia.get(
+            "resultado"
+        )
+
+        valor = obter_primeiro_numero(
+            resultado,
+            [
+                "bonusCapitao",
+                "bonus_capitao"
+            ],
+            None
+        )
+
+    if valor is not None:
+        return valor
+
+    if (
+        pontos_com_capitao is not None
+        and
+        pontos_sem_capitao is not None
+    ):
+
+        return (
+            pontos_com_capitao -
+            pontos_sem_capitao
+        )
+
+    return 0.0
+
+
+def obter_cobertura(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return 0.0
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "coberturaResultadosPercentual",
+            "coberturaPercentual",
+            "cobertura"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    auditoria = estrategia.get(
+        "auditoria"
+    )
+
+    valor = obter_primeiro_numero(
+        auditoria,
+        [
+            "coberturaResultadosPercentual",
+            "coberturaPercentual",
+            "cobertura"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    return 0.0
+
+
+def obter_mae(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+        return 0.0
+
+    valor = obter_primeiro_numero(
+        estrategia,
+        [
+            "maeJogadores",
+            "mae"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    metricas = estrategia.get(
+        "metricas"
+    )
+
+    valor = obter_primeiro_numero(
+        metricas,
+        [
+            "maeJogadores",
+            "mae"
+        ],
+        None
+    )
+
+    if valor is not None:
+        return valor
+
+    return 0.0
 
 
 # ======================================================
@@ -241,37 +535,141 @@ def carregar_rodadas(
 
     rodadas = []
 
-    for rodada in simulacao.get(
+    if not isinstance(
+        simulacao,
+        dict
+    ):
+        return rodadas
+
+    rodadas_brutas = simulacao.get(
         "rodadas",
         []
+    )
+
+    if not isinstance(
+        rodadas_brutas,
+        list
     ):
+        return rodadas
+
+    for rodada in rodadas_brutas:
+
+        if not isinstance(
+            rodada,
+            dict
+        ):
+            continue
 
         numero_rodada = rodada.get(
             "rodada"
         )
 
         if numero_rodada is None:
-
             continue
 
         estrategias = {}
 
-        for estrategia in rodada.get(
+        estrategias_brutas = rodada.get(
             "estrategias",
             []
+        )
+
+        if isinstance(
+            estrategias_brutas,
+            dict
         ):
+
+            estrategias_iteraveis = []
+
+            for nome, dados in (
+                estrategias_brutas.items()
+            ):
+
+                if not isinstance(
+                    dados,
+                    dict
+                ):
+                    continue
+
+                copia = dict(
+                    dados
+                )
+
+                copia.setdefault(
+                    "nome",
+                    nome
+                )
+
+                estrategias_iteraveis.append(
+                    copia
+                )
+
+        elif isinstance(
+            estrategias_brutas,
+            list
+        ):
+
+            estrategias_iteraveis = (
+                estrategias_brutas
+            )
+
+        else:
+
+            estrategias_iteraveis = []
+
+        for estrategia in estrategias_iteraveis:
+
+            if not isinstance(
+                estrategia,
+                dict
+            ):
+                continue
 
             nome = estrategia.get(
                 "nome"
             )
 
             if nome not in ESTRATEGIAS:
+                continue
+
+            pontos = (
+                obter_pontuacao_com_capitao(
+                    estrategia
+                )
+            )
+
+            # --------------------------------------------------
+            # PROTEÇÃO PRINCIPAL
+            #
+            # Pontuação ausente não pode virar 0 silenciosamente.
+            # A estratégia é ignorada nesta rodada caso nenhum
+            # campo válido de pontuação seja encontrado.
+            # --------------------------------------------------
+
+            if pontos is None:
+
+                print(
+                    f"[ALERTA] Rodada "
+                    f"{numero_rodada} | "
+                    f"{nome}: pontuação não encontrada."
+                )
 
                 continue
 
-            pontos = numero(
-                estrategia.get(
-                    "pontuacaoComCapitao"
+            pontos_sem_capitao = (
+                obter_pontuacao_sem_capitao(
+                    estrategia
+                )
+            )
+
+            if pontos_sem_capitao is None:
+                pontos_sem_capitao = pontos
+
+            bonus_capitao = (
+                obter_bonus_capitao(
+                    estrategia,
+                    pontos,
+                    pontos_sem_capitao
                 )
             )
 
@@ -283,43 +681,43 @@ def carregar_rodadas(
                     pontos,
 
                 "pontosSemCapitao":
-                    numero(
-                        estrategia.get(
-                            "pontuacaoSemCapitao"
-                        )
-                    ),
+                    pontos_sem_capitao,
 
                 "bonusCapitao":
-                    numero(
-                        estrategia.get(
-                            "bonusCapitao"
-                        )
-                    ),
+                    bonus_capitao,
 
                 "cobertura":
-                    numero(
-                        estrategia.get(
-                            "coberturaResultadosPercentual"
-                        )
+                    obter_cobertura(
+                        estrategia
                     ),
 
                 "mae":
-                    numero(
-                        estrategia.get(
-                            "maeJogadores"
-                        )
+                    obter_mae(
+                        estrategia
                     )
 
             }
 
         if estrategias:
 
+            try:
+
+                rodada_normalizada = int(
+                    numero_rodada
+                )
+
+            except Exception:
+
+                rodada_normalizada = int(
+                    numero(
+                        numero_rodada
+                    )
+                )
+
             rodadas.append({
 
                 "rodada":
-                    int(
-                        numero_rodada
-                    ),
+                    rodada_normalizada,
 
                 "estrategias":
                     estrategias
@@ -367,7 +765,6 @@ def pontos_historicos(
         )
 
         if dados is None:
-
             continue
 
         pontos.append(
@@ -420,7 +817,6 @@ def calcular_vitorias_historicas(
         for nome in ESTRATEGIAS:
 
             if nome not in estrategias:
-
                 continue
 
             resultado[
@@ -446,7 +842,6 @@ def calcular_vitorias_historicas(
             })
 
         if not candidatos:
-
             continue
 
         maior = max(
@@ -510,7 +905,6 @@ def normalizar_valores(
 ):
 
     if not valores:
-
         return {}
 
     minimo = min(
@@ -1008,7 +1402,6 @@ def obter_oraculo(
     )
 
     if not estrategias:
-
         return None
 
     return max(
@@ -1048,7 +1441,6 @@ def resumir_fixa(
         )
 
         if estrategia not in estrategias:
-
             continue
 
         valor = numero(
@@ -1171,7 +1563,6 @@ def processar():
         simulacao,
         dict
     ):
-
         simulacao = {}
 
     rodadas = carregar_rodadas(
@@ -1235,11 +1626,11 @@ def processar():
             )
         )
 
-        decisao = escolher_estrategia(
+        decisao_escolha = escolher_estrategia(
             historico
         )
 
-        escolhida = decisao.get(
+        escolhida = decisao_escolha.get(
             "estrategia"
         )
 
@@ -1249,7 +1640,6 @@ def processar():
         )
 
         if escolhida not in estrategias_rodada:
-
             continue
 
         pontos_escolhida = numero(
@@ -1300,7 +1690,6 @@ def processar():
         )
 
         if acertou_melhor:
-
             acertos_oraculo += 1
 
         escolhas[
@@ -1325,7 +1714,7 @@ def processar():
         scores_resumidos = {}
 
         for nome, dados_score in (
-            decisao.get(
+            decisao_escolha.get(
                 "scores",
                 {}
             ).items()
@@ -1356,12 +1745,12 @@ def processar():
                 escolhida,
 
             "motivoEscolha":
-                decisao.get(
+                decisao_escolha.get(
                     "motivo"
                 ),
 
             "rankingAntesRodada":
-                decisao.get(
+                decisao_escolha.get(
                     "ranking",
                     []
                 ),
@@ -1566,7 +1955,7 @@ def processar():
         amostra_suficiente
     ):
 
-        decisao = (
+        decisao_final = (
             "ADAPTATIVO_CANDIDATO"
         )
 
@@ -1576,13 +1965,13 @@ def processar():
         amostra_suficiente
     ):
 
-        decisao = (
+        decisao_final = (
             "ADAPTATIVO_PROMISSORIO"
         )
 
     else:
 
-        decisao = (
+        decisao_final = (
             "MANTER_ESTRATEGIAS_FIXAS"
         )
 
@@ -1755,7 +2144,7 @@ def processar():
         "decisao": {
 
             "decisao":
-                decisao,
+                decisao_final,
 
             "promover":
                 False,
@@ -1960,7 +2349,7 @@ def processar():
 
     print(
         "DECISÃO:",
-        decisao
+        decisao_final
     )
 
     print(
