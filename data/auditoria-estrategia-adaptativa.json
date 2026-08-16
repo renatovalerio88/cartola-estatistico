@@ -1,0 +1,254 @@
+{
+  "modelo": "auditoria_estrategia_adaptativa_v1",
+  "descricao": "Auditoria científica do backtest progressivo da estratégia adaptativa.",
+  "resumo": {
+    "rodadasAuditadas": 22,
+    "testes": 24,
+    "testesAprovados": 24,
+    "falhasCriticas": 0,
+    "alertas": 0,
+    "scoreQualidadePercentual": 100.0,
+    "melhorEstrategiaFixa": "Equilibrado",
+    "mediaAdaptativo": 55.37,
+    "mediaMelhorFixa": 57.58,
+    "ganhoAdaptativoVsMelhorFixa": -2.21,
+    "ganhoPercentualAdaptativoVsMelhorFixa": -3.84,
+    "mediaOraculo": 63.9,
+    "eficienciaVsOraculoPercentual": 86.65
+  },
+  "testes": [
+    {
+      "nome": "adaptativo_existe",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "simulacao_existe",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_adaptativo",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "esperada": "estrategia_adaptativa_v1",
+        "encontrada": "estrategia_adaptativa_v1"
+      }
+    },
+    {
+      "nome": "amostra_minima",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "rodadas": 22,
+        "minimo": 10
+      }
+    },
+    {
+      "nome": "estrategias_escolhidas_validas",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "rodadas_presentes_simulacao",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "historico_progressivo",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "ordem_cronologica",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "nome": "rodadas_sem_duplicidade",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "cold_start_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "flags_sem_vazamento",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "metodologiaSemVazamento": true,
+        "usaResultadoRodadaNaEscolha": false,
+        "usaSomenteRodadasAnteriores": true
+      }
+    },
+    {
+      "nome": "pontuacao_adaptativa_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "oraculo_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "perda_oraculo_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "acerto_melhor_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "resumo_adaptativo_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "totalCalculado": 1218.12,
+        "mediaCalculada": 55.37,
+        "medianaCalculada": 55.28,
+        "acertosCalculados": 7
+      }
+    },
+    {
+      "nome": "taxa_acerto_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "calculada": 31.82,
+        "informada": 31.82
+      }
+    },
+    {
+      "nome": "contagem_escolhas_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "calculadas": {
+          "Conservador": 16,
+          "Equilibrado": 6,
+          "Agressivo": 0
+        },
+        "informadas": {
+          "Conservador": 16,
+          "Equilibrado": 6,
+          "Agressivo": 0
+        }
+      }
+    },
+    {
+      "nome": "estrategias_fixas_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "melhor_estrategia_fixa_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "calculada": "Equilibrado",
+        "informada": "Equilibrado"
+      }
+    },
+    {
+      "nome": "comparacao_melhor_fixa_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "ganhoMediaCalculado": -2.21,
+        "ganhoTotalCalculado": -48.67,
+        "ganhoPercentualCalculado": -3.84
+      }
+    },
+    {
+      "nome": "resumo_oraculo_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "totalCalculado": 1405.85,
+        "mediaCalculada": 63.9,
+        "eficienciaCalculada": 86.65
+      }
+    },
+    {
+      "nome": "seguranca_modelo_oficial",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "alteraModeloOficial": false,
+        "alteraEstrategiasOficiais": false,
+        "usaResultadoRodadaNaEscolha": false,
+        "usaSomenteRodadasAnteriores": true,
+        "promocaoAutomatica": false
+      }
+    },
+    {
+      "nome": "promocao_automatica_desativada",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "decisao": "MANTER_ESTRATEGIAS_FIXAS",
+        "promover": false,
+        "promocaoAutomatica": false,
+        "observacao": "Resultado experimental. Nenhuma estratégia oficial foi alterada."
+      }
+    }
+  ],
+  "falhasCriticas": [],
+  "alertas": [],
+  "decisao": {
+    "decisao": "ESTRATEGIA_ADAPTATIVA_VALIDADA",
+    "validado": true,
+    "promover": false,
+    "promocaoAutomatica": false
+  },
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraEstrategiasOficiais": false,
+    "alteraPesos": false,
+    "alteraProjecoes": false,
+    "promocaoAutomatica": false
+  }
+}

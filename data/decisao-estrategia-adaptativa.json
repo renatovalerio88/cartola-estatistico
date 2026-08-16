@@ -3,54 +3,54 @@
   "descricao": "Decisão científica consolidada sobre a estratégia adaptativa V1 e V2.",
   "status": "experimental",
   "amostra": {
-    "rodadas": 0,
+    "rodadas": 22,
     "minimoExigido": 10,
-    "suficiente": false
+    "suficiente": true
   },
   "auditoria": {
-    "decisao": "COMPARACAO_REPROVADA",
-    "validada": false,
-    "scoreQualidade": 78.26,
-    "falhasCriticas": 5,
+    "decisao": "COMPARACAO_VALIDADA",
+    "validada": true,
+    "scoreQualidade": 100.0,
+    "falhasCriticas": 0,
     "alertas": 0
   },
   "desempenho": {
     "v1": {
-      "media": 0.0,
-      "desvioPadrao": 0.0,
-      "eficienciaOraculo": 0.0,
-      "perdaMediaOraculo": 0.0
+      "media": 55.37,
+      "desvioPadrao": 13.8,
+      "eficienciaOraculo": 86.65,
+      "perdaMediaOraculo": 8.53
     },
     "v2": {
-      "media": 0.0,
-      "desvioPadrao": 0.0,
-      "eficienciaOraculo": 0.0,
-      "perdaMediaOraculo": 0.0
+      "media": 56.36,
+      "desvioPadrao": 12.82,
+      "eficienciaOraculo": 88.2,
+      "perdaMediaOraculo": 7.54
     },
     "melhorFixa": {
-      "nome": "Conservador",
-      "media": 0.0
+      "nome": "Equilibrado",
+      "media": 57.58
     },
     "oraculo": {
-      "media": 0.0
+      "media": 63.9
     }
   },
   "ganhosV2": {
     "vsV1": {
-      "pontosPorRodada": 0.0,
-      "percentual": 0.0
+      "pontosPorRodada": 0.99,
+      "percentual": 1.79
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": 0.0,
-      "percentual": 0.0
+      "pontosPorRodada": -1.22,
+      "percentual": -2.12
     }
   },
   "comparacaoPareada": {
-    "rodadas": 0,
-    "vitoriasV1": 0,
-    "vitoriasV2": 0,
-    "empates": 0,
-    "taxaVitoriasV2": 0.0
+    "rodadas": 22,
+    "vitoriasV1": 2,
+    "vitoriasV2": 4,
+    "empates": 16,
+    "taxaVitoriasV2": 18.18
   },
   "criterios": [
     {
@@ -83,82 +83,82 @@
     },
     {
       "nome": "amostra_minima",
-      "passou": false,
-      "valor": 0,
+      "passou": true,
+      "valor": 22,
       "limite": 10,
       "nivel": "CRITICO"
     },
     {
       "nome": "auditoria_validada",
-      "passou": false,
-      "valor": "COMPARACAO_REPROVADA",
+      "passou": true,
+      "valor": "COMPARACAO_VALIDADA",
       "limite": "COMPARACAO_VALIDADA",
       "nivel": "CRITICO"
     },
     {
       "nome": "auditoria_sem_falhas_criticas",
-      "passou": false,
-      "valor": 5,
+      "passou": true,
+      "valor": 0,
       "limite": 0,
       "nivel": "CRITICO"
     },
     {
       "nome": "score_auditoria",
-      "passou": false,
-      "valor": 78.26,
+      "passou": true,
+      "valor": 100.0,
       "limite": 95.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_v1_media",
-      "passou": false,
-      "valor": 0.0,
+      "passou": true,
+      "valor": 0.99,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_ganho_minimo_v1",
-      "passou": false,
-      "valor": 0.0,
+      "passou": true,
+      "valor": 0.99,
       "limite": 0.5,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": 0.0,
+      "valor": -1.22,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_vence_maioria_pareada",
       "passou": false,
-      "valor": 0.0,
+      "valor": 18.18,
       "limite": 55.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_proximo_oraculo",
-      "passou": false,
-      "valor": 0.0,
-      "limite": "< 0.0",
+      "passou": true,
+      "valor": 7.54,
+      "limite": "< 8.53",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
-      "passou": false,
-      "valor": 0.0,
-      "limite": "< 0.0",
+      "passou": true,
+      "valor": 12.82,
+      "limite": "< 13.8",
       "nivel": "DESEJAVEL"
     }
   ],
   "resumoCriterios": {
     "criticos": 13,
-    "criticosAprovados": 4,
-    "criticosReprovados": 9,
+    "criticosAprovados": 11,
+    "criticosReprovados": 2,
     "desejaveis": 1,
-    "desejaveisAprovados": 0,
-    "scoreCriticosPercentual": 30.77
+    "desejaveisAprovados": 1,
+    "scoreCriticosPercentual": 84.62
   },
   "evidencia": {
     "forte": false,
@@ -166,10 +166,10 @@
     "comparacaoFavoravelV2": false,
     "coerenciaDecisao": true
   },
-  "decisaoComparacao": "COMPARACAO_INCONCLUSIVA",
+  "decisaoComparacao": "MANTER_TESTES",
   "recomendacao": {
-    "decisao": "BLOQUEAR_DECISAO",
-    "motivo": "A comparação V1 x V2 não foi validada pela auditoria independente.",
+    "decisao": "MANTER_V1",
+    "motivo": "V2 não apresentou evidência suficiente de superioridade sobre V1.",
     "promoverAutomaticamente": false,
     "necessitaAprovacaoManual": true
   },
