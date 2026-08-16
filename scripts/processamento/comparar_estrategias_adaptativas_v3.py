@@ -630,6 +630,37 @@ def obter_times_simulacao(
 
             return valor
 
+        if isinstance(
+            valor,
+            dict
+        ):
+
+            times = []
+
+            for nome, dados_time in valor.items():
+
+                if not isinstance(
+                    dados_time,
+                    dict
+                ):
+
+                    continue
+
+                copia = dict(
+                    dados_time
+                )
+
+                copia.setdefault(
+                    "nome",
+                    nome
+                )
+
+                times.append(
+                    copia
+                )
+
+            return times
+
     return []
 
 
@@ -674,6 +705,10 @@ def obter_pontos_time(
         return 0.0
 
     for chave in [
+        "pontuacaoComCapitao",
+        "pontosComCapitao",
+        "pontuacaoRealComCapitao",
+        "pontuacaoFinal",
         "pontuacaoReal",
         "pontuacao_real",
         "pontosReais",
@@ -682,6 +717,8 @@ def obter_pontos_time(
         "pontuacao",
         "totalReal",
         "total_real",
+        "pontosTotal",
+        "pontuacaoTotal",
     ]:
 
         if chave in time:
@@ -691,6 +728,30 @@ def obter_pontos_time(
                     chave
                 )
             )
+
+    for chave_container in [
+        "resultado",
+        "metricas",
+    ]:
+
+        container = time.get(
+            chave_container
+        )
+
+        if not isinstance(
+            container,
+            dict
+        ):
+
+            continue
+
+        pontos = obter_pontos_time(
+            container
+        )
+
+        if pontos != 0.0:
+
+            return pontos
 
     return 0.0
 
