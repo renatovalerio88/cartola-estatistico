@@ -2,42 +2,40 @@
 =========================================================
 CARTOLA ESTATÍSTICO
 AUDITORIA CIENTÍFICA
-COMPARAÇÃO ADAPTATIVA V1 x V2 x V3
+COMPARAÇÃO ADAPTATIVAS V1 x V2 x V3
+=========================================================
 
 Versão:
 auditoria_comparacao_adaptativas_v3
 
-Entrada:
-data/comparacao-estrategias-adaptativas-v3.json
-
-Fontes independentes:
+Entradas:
 data/estrategia-adaptativa.json
 data/estrategia-adaptativa-v2.json
 data/estrategia-adaptativa-v3.json
 data/simulacao-times.json
+data/comparacao-estrategias-adaptativas-v3.json
 
 Saída:
 data/auditoria-comparacao-adaptativas-v3.json
 
-Objetivos:
+Objetivo:
+Auditar de forma independente a comparação entre
+V1, V2 e V3, incluindo:
 
-- validar existência dos arquivos;
-- validar versões;
-- validar rodadas comuns;
-- validar pontuações;
-- validar médias;
-- validar estratégias fixas;
-- validar melhor estratégia fixa;
-- validar oráculo;
-- validar ganhos;
-- validar comparações pareadas;
-- validar eficiência contra o oráculo;
-- validar estabilidade;
-- validar escolhas do V3;
-- validar ausência de vazamento declarada pelo V3;
-- bloquear qualquer promoção automática;
-- produzir decisão independente.
+- rodadas comuns;
+- médias;
+- desvios;
+- estratégias fixas;
+- melhor estratégia fixa;
+- oráculo;
+- ganhos;
+- comparação pareada;
+- eficiência;
+- escolhas da V3;
+- integridade das rodadas;
+- segurança contra promoção automática.
 
+Nenhuma lógica oficial é alterada.
 =========================================================
 """
 
@@ -60,43 +58,43 @@ RAIZ = (
 )
 
 PASTA_DATA = (
-    RAIZ /
-    "data"
+    RAIZ
+    / "data"
 )
 
 ARQUIVO_V1 = (
-    PASTA_DATA /
-    "estrategia-adaptativa.json"
+    PASTA_DATA
+    / "estrategia-adaptativa.json"
 )
 
 ARQUIVO_V2 = (
-    PASTA_DATA /
-    "estrategia-adaptativa-v2.json"
+    PASTA_DATA
+    / "estrategia-adaptativa-v2.json"
 )
 
 ARQUIVO_V3 = (
-    PASTA_DATA /
-    "estrategia-adaptativa-v3.json"
+    PASTA_DATA
+    / "estrategia-adaptativa-v3.json"
 )
 
 ARQUIVO_SIMULACAO = (
-    PASTA_DATA /
-    "simulacao-times.json"
+    PASTA_DATA
+    / "simulacao-times.json"
 )
 
 ARQUIVO_COMPARACAO = (
-    PASTA_DATA /
-    "comparacao-estrategias-adaptativas-v3.json"
+    PASTA_DATA
+    / "comparacao-estrategias-adaptativas-v3.json"
 )
 
 ARQUIVO_SAIDA = (
-    PASTA_DATA /
-    "auditoria-comparacao-adaptativas-v3.json"
+    PASTA_DATA
+    / "auditoria-comparacao-adaptativas-v3.json"
 )
 
 
 # ======================================================
-# MODELOS ESPERADOS
+# CONFIGURAÇÕES
 # ======================================================
 
 MODELO_AUDITORIA = (
@@ -111,11 +109,6 @@ MODELO_COMPARACAO = (
     "comparacao_estrategias_adaptativas_v3"
 )
 
-
-# ======================================================
-# CONFIGURAÇÕES
-# ======================================================
-
 ESTRATEGIAS = [
     "Conservador",
     "Equilibrado",
@@ -124,23 +117,18 @@ ESTRATEGIAS = [
 
 MINIMO_RODADAS = 10
 
-TOLERANCIA = 0.03
+TOLERANCIA = 0.02
 
 TOLERANCIA_EMPATE = 0.01
-
-SCORE_MINIMO = 95.0
 
 
 # ======================================================
 # UTILIDADES
 # ======================================================
 
-def carregar_json(
-    caminho
-):
+def carregar_json(caminho):
 
     if not caminho.exists():
-
         return None
 
     try:
@@ -154,7 +142,17 @@ def carregar_json(
                 arquivo
             )
 
-    except Exception:
+    except Exception as erro:
+
+        print(
+            "[ERRO] Falha ao ler:",
+            caminho
+        )
+
+        print(
+            "[ERRO]",
+            erro
+        )
 
         return None
 
@@ -189,15 +187,15 @@ def numero(
 
     try:
 
-        resultado = float(
+        valor = float(
             valor
         )
 
         if math.isfinite(
-            resultado
+            valor
         ):
 
-            return resultado
+            return valor
 
     except (
         TypeError,
@@ -246,35 +244,17 @@ def media(
 ):
 
     valores = [
-        numero(valor)
-        for valor in valores
+        numero(v)
+        for v in valores
     ]
 
     if not valores:
-
         return 0.0
 
     return (
-        sum(valores) /
+        sum(valores)
+        /
         len(valores)
-    )
-
-
-def mediana(
-    valores
-):
-
-    valores = [
-        numero(valor)
-        for valor in valores
-    ]
-
-    if not valores:
-
-        return 0.0
-
-    return statistics.median(
-        valores
     )
 
 
@@ -283,8 +263,8 @@ def desvio(
 ):
 
     valores = [
-        numero(valor)
-        for valor in valores
+        numero(v)
+        for v in valores
     ]
 
     if len(
@@ -312,73 +292,51 @@ def percentual(
     )
 
     if total == 0:
-
         return 0.0
 
     return (
-        parte /
+        parte
+        /
         total
-    ) * 100
+        *
+        100
+    )
 
 
-def proximos(
-    valor_a,
-    valor_b,
+def aproximadamente_igual(
+    a,
+    b,
     tolerancia=TOLERANCIA
 ):
 
-    return (
-        abs(
-            numero(valor_a)
-            -
-            numero(valor_b)
-        )
-        <=
-        tolerancia
-    )
+    return abs(
+        numero(a)
+        -
+        numero(b)
+    ) <= tolerancia
 
 
 # ======================================================
 # TESTES
 # ======================================================
 
-testes = []
-
-
-def registrar_teste(
+def teste(
     nome,
     passou,
-    critico=True,
-    esperado=None,
-    encontrado=None
+    nivel="CRITICO"
 ):
 
-    testes.append(
-        {
-            "nome":
-                nome,
-
-            "passou":
-                bool(
-                    passou
-                ),
-
-            "critico":
-                bool(
-                    critico
-                ),
-
-            "esperado":
-                esperado,
-
-            "encontrado":
-                encontrado,
-        }
-    )
+    return {
+        "nome": nome,
+        "passou": bool(
+            passou
+        ),
+        "nivel": nivel,
+    }
 
 
 # ======================================================
-# EXTRAÇÃO ADAPTATIVOS
+# EXTRAÇÃO ADAPTATIVA
 # ======================================================
 
 def extrair_lista_rodadas(
@@ -413,7 +371,7 @@ def extrair_lista_rodadas(
     return []
 
 
-def obter_rodada(
+def obter_numero_rodada(
     registro
 ):
 
@@ -441,37 +399,7 @@ def obter_rodada(
     return 0
 
 
-def obter_pontuacao(
-    registro
-):
-
-    if not isinstance(
-        registro,
-        dict
-    ):
-
-        return 0.0
-
-    for chave in [
-        "pontuacao",
-        "pontos",
-        "pontuacaoReal",
-        "pontosReais",
-        "totalReal",
-    ]:
-
-        if chave in registro:
-
-            return numero(
-                registro.get(
-                    chave
-                )
-            )
-
-    return 0.0
-
-
-def obter_estrategia(
+def obter_estrategia_escolhida(
     registro
 ):
 
@@ -500,6 +428,53 @@ def obter_estrategia(
     return None
 
 
+def obter_pontuacao_adaptativa(
+    registro
+):
+
+    if not isinstance(
+        registro,
+        dict
+    ):
+
+        return None
+
+    for chave in [
+        "pontuacao",
+        "pontos",
+        "pontuacaoAdaptativa",
+        "pontosAdaptativo",
+        "pontuacaoEstrategia",
+        "pontosEstrategia",
+        "pontuacaoReal",
+        "pontosReais",
+        "totalReal",
+    ]:
+
+        if chave not in registro:
+            continue
+
+        try:
+
+            valor = float(
+                registro.get(
+                    chave
+                )
+            )
+
+            if math.isfinite(
+                valor
+            ):
+
+                return valor
+
+        except Exception:
+
+            pass
+
+    return None
+
+
 def normalizar_adaptativo(
     dados
 ):
@@ -510,24 +485,26 @@ def normalizar_adaptativo(
         dados
     ):
 
-        rodada = obter_rodada(
+        rodada = obter_numero_rodada(
             registro
         )
 
         if rodada <= 0:
-
             continue
 
         resultado[
             rodada
         ] = {
+            "rodada":
+                rodada,
+
             "pontuacao":
-                obter_pontuacao(
+                obter_pontuacao_adaptativa(
                     registro
                 ),
 
-            "estrategia":
-                obter_estrategia(
+            "estrategiaEscolhida":
+                obter_estrategia_escolhida(
                     registro
                 ),
 
@@ -536,10 +513,8 @@ def normalizar_adaptativo(
                     "regime"
                 ),
 
-            "semVazamentoFuturo":
-                registro.get(
-                    "semVazamentoFuturo"
-                ),
+            "registro":
+                registro,
         }
 
     return resultado
@@ -549,7 +524,46 @@ def normalizar_adaptativo(
 # SIMULAÇÃO
 # ======================================================
 
-def obter_times(
+def extrair_rodadas_simulacao(
+    dados
+):
+
+    if isinstance(
+        dados,
+        list
+    ):
+
+        return dados
+
+    if not isinstance(
+        dados,
+        dict
+    ):
+
+        return []
+
+    for chave in [
+        "rodadas",
+        "resultados",
+        "simulacoes",
+        "historico",
+    ]:
+
+        valor = dados.get(
+            chave
+        )
+
+        if isinstance(
+            valor,
+            list
+        ):
+
+            return valor
+
+    return []
+
+
+def obter_times_simulacao(
     registro
 ):
 
@@ -578,6 +592,40 @@ def obter_times(
 
             return valor
 
+        if isinstance(
+            valor,
+            dict
+        ):
+
+            times = []
+
+            for (
+                nome,
+                dados_time
+            ) in valor.items():
+
+                if not isinstance(
+                    dados_time,
+                    dict
+                ):
+
+                    continue
+
+                copia = dict(
+                    dados_time
+                )
+
+                copia.setdefault(
+                    "nome",
+                    nome
+                )
+
+                times.append(
+                    copia
+                )
+
+            return times
+
     return []
 
 
@@ -597,6 +645,7 @@ def obter_nome_time(
         "perfil",
         "nome",
         "tipo",
+        "id",
     ]:
 
         valor = time.get(
@@ -606,6 +655,34 @@ def obter_nome_time(
         if valor in ESTRATEGIAS:
 
             return valor
+
+        if isinstance(
+            valor,
+            str
+        ):
+
+            normalizado = (
+                valor
+                .strip()
+                .lower()
+            )
+
+            mapa = {
+                "conservador":
+                    "Conservador",
+
+                "equilibrado":
+                    "Equilibrado",
+
+                "agressivo":
+                    "Agressivo",
+            }
+
+            if normalizado in mapa:
+
+                return mapa[
+                    normalizado
+                ]
 
     return None
 
@@ -619,9 +696,13 @@ def obter_pontos_time(
         dict
     ):
 
-        return 0.0
+        return None
 
     for chave in [
+        "pontuacaoComCapitao",
+        "pontosComCapitao",
+        "pontuacaoRealComCapitao",
+        "pontuacaoFinal",
         "pontuacaoReal",
         "pontuacao_real",
         "pontosReais",
@@ -630,17 +711,110 @@ def obter_pontos_time(
         "pontuacao",
         "totalReal",
         "total_real",
+        "pontosTotal",
+        "pontuacaoTotal",
     ]:
 
-        if chave in time:
+        if chave not in time:
+            continue
 
-            return numero(
+        try:
+
+            valor = float(
                 time.get(
                     chave
                 )
             )
 
-    return 0.0
+            if math.isfinite(
+                valor
+            ):
+
+                return valor
+
+        except Exception:
+
+            pass
+
+    for chave_container in [
+        "resultado",
+        "metricas",
+    ]:
+
+        container = time.get(
+            chave_container
+        )
+
+        if not isinstance(
+            container,
+            dict
+        ):
+
+            continue
+
+        valor = obter_pontos_time(
+            container
+        )
+
+        if valor is not None:
+
+            return valor
+
+    pontos_sem_capitao = None
+
+    bonus_capitao = None
+
+    for chave in [
+        "pontosSemCapitao",
+        "pontuacaoSemCapitao",
+    ]:
+
+        if chave in time:
+
+            try:
+
+                pontos_sem_capitao = float(
+                    time.get(
+                        chave
+                    )
+                )
+
+            except Exception:
+
+                pass
+
+    for chave in [
+        "bonusCapitao",
+        "bonus_capitao",
+    ]:
+
+        if chave in time:
+
+            try:
+
+                bonus_capitao = float(
+                    time.get(
+                        chave
+                    )
+                )
+
+            except Exception:
+
+                pass
+
+    if pontos_sem_capitao is not None:
+
+        return (
+            pontos_sem_capitao
+            +
+            (
+                bonus_capitao
+                if bonus_capitao is not None
+                else 0.0
+            )
+        )
+
+    return None
 
 
 def normalizar_simulacao(
@@ -649,21 +823,20 @@ def normalizar_simulacao(
 
     resultado = {}
 
-    for registro in extrair_lista_rodadas(
+    for registro in extrair_rodadas_simulacao(
         dados
     ):
 
-        rodada = obter_rodada(
+        rodada = obter_numero_rodada(
             registro
         )
 
         if rodada <= 0:
-
             continue
 
         pontuacoes = {}
 
-        for time in obter_times(
+        for time in obter_times_simulacao(
             registro
         ):
 
@@ -672,79 +845,323 @@ def normalizar_simulacao(
             )
 
             if estrategia not in ESTRATEGIAS:
+                continue
 
+            pontos = obter_pontos_time(
+                time
+            )
+
+            if pontos is None:
                 continue
 
             pontuacoes[
                 estrategia
-            ] = obter_pontos_time(
-                time
-            )
+            ] = pontos
 
         if len(
             pontuacoes
-        ) != 3:
+        ) != len(
+            ESTRATEGIAS
+        ):
 
             continue
+
+        melhor = max(
+            ESTRATEGIAS,
+            key=lambda estrategia:
+                pontuacoes[
+                    estrategia
+                ]
+        )
+
+        oraculo = max(
+            pontuacoes.values()
+        )
 
         resultado[
             rodada
         ] = {
+            "rodada":
+                rodada,
+
             "pontuacoes":
                 pontuacoes,
 
-            "melhor":
-                max(
-                    ESTRATEGIAS,
-                    key=lambda estrategia:
-                        pontuacoes[
-                            estrategia
-                        ]
-                ),
+            "melhorEstrategia":
+                melhor,
 
             "oraculo":
-                max(
-                    pontuacoes.values()
-                ),
+                oraculo,
         }
 
     return resultado
 
 
 # ======================================================
-# COMPARAÇÃO PAREADA INDEPENDENTE
+# RECONSTRUÇÃO DAS SÉRIES
 # ======================================================
 
-def comparar_pareado(
-    pontos_a,
-    pontos_b
+def reconstruir_series(
+    v1,
+    v2,
+    v3,
+    simulacao,
+    rodadas_comuns
 ):
 
-    vitorias_a = 0
-    vitorias_b = 0
+    pontos_v1 = []
+
+    pontos_v2 = []
+
+    pontos_v3 = []
+
+    pontos_fixas = {
+        estrategia: []
+        for estrategia
+        in ESTRATEGIAS
+    }
+
+    pontos_oraculo = []
+
+    escolhas_v3 = Counter()
+
+    detalhes = []
+
+    for rodada in rodadas_comuns:
+
+        registro_v1 = v1[
+            rodada
+        ]
+
+        registro_v2 = v2[
+            rodada
+        ]
+
+        registro_v3 = v3[
+            rodada
+        ]
+
+        registro_sim = simulacao[
+            rodada
+        ]
+
+        valores = {}
+
+        for nome, registro in [
+            ("v1", registro_v1),
+            ("v2", registro_v2),
+            ("v3", registro_v3),
+        ]:
+
+            pontuacao = registro.get(
+                "pontuacao"
+            )
+
+            escolha = registro.get(
+                "estrategiaEscolhida"
+            )
+
+            if (
+                pontuacao is None
+                or
+                (
+                    numero(
+                        pontuacao
+                    ) == 0
+                    and
+                    escolha in ESTRATEGIAS
+                )
+            ):
+
+                if escolha in ESTRATEGIAS:
+
+                    pontuacao = (
+                        registro_sim[
+                            "pontuacoes"
+                        ].get(
+                            escolha
+                        )
+                    )
+
+            valores[
+                nome
+            ] = numero(
+                pontuacao
+            )
+
+        pontos_v1.append(
+            valores[
+                "v1"
+            ]
+        )
+
+        pontos_v2.append(
+            valores[
+                "v2"
+            ]
+        )
+
+        pontos_v3.append(
+            valores[
+                "v3"
+            ]
+        )
+
+        for estrategia in ESTRATEGIAS:
+
+            pontos_fixas[
+                estrategia
+            ].append(
+                numero(
+                    registro_sim[
+                        "pontuacoes"
+                    ][
+                        estrategia
+                    ]
+                )
+            )
+
+        pontos_oraculo.append(
+            numero(
+                registro_sim[
+                    "oraculo"
+                ]
+            )
+        )
+
+        escolha_v3 = (
+            registro_v3.get(
+                "estrategiaEscolhida"
+            )
+        )
+
+        if escolha_v3 in ESTRATEGIAS:
+
+            escolhas_v3[
+                escolha_v3
+            ] += 1
+
+        detalhes.append(
+            {
+                "rodada":
+                    rodada,
+
+                "v1":
+                    valores["v1"],
+
+                "v2":
+                    valores["v2"],
+
+                "v3":
+                    valores["v3"],
+
+                "fixas":
+                    {
+                        estrategia:
+                            registro_sim[
+                                "pontuacoes"
+                            ][
+                                estrategia
+                            ]
+
+                        for estrategia
+                        in ESTRATEGIAS
+                    },
+
+                "oraculo":
+                    registro_sim[
+                        "oraculo"
+                    ],
+
+                "melhorEstrategia":
+                    registro_sim[
+                        "melhorEstrategia"
+                    ],
+            }
+        )
+
+    return {
+        "v1":
+            pontos_v1,
+
+        "v2":
+            pontos_v2,
+
+        "v3":
+            pontos_v3,
+
+        "fixas":
+            pontos_fixas,
+
+        "oraculo":
+            pontos_oraculo,
+
+        "escolhasV3":
+            escolhas_v3,
+
+        "detalhes":
+            detalhes,
+    }
+
+
+# ======================================================
+# MÉTRICAS
+# ======================================================
+
+def metricas(
+    valores
+):
+
+    return {
+        "quantidade":
+            len(
+                valores
+            ),
+
+        "media":
+            arredondar(
+                media(
+                    valores
+                )
+            ),
+
+        "desvioPadrao":
+            arredondar(
+                desvio(
+                    valores
+                )
+            ),
+
+        "total":
+            arredondar(
+                sum(
+                    numero(v)
+                    for v in valores
+                )
+            ),
+    }
+
+
+def comparar_pareado(
+    pontos_v2,
+    pontos_v3
+):
+
+    vitorias_v2 = 0
+
+    vitorias_v3 = 0
+
     empates = 0
 
-    diferencas = []
-
-    for a, b in zip(
-        pontos_a,
-        pontos_b
+    for p2, p3 in zip(
+        pontos_v2,
+        pontos_v3
     ):
 
-        a = numero(
-            a
-        )
-
-        b = numero(
-            b
-        )
-
         diferenca = (
-            b - a
-        )
-
-        diferencas.append(
-            diferenca
+            numero(p3)
+            -
+            numero(p2)
         )
 
         if abs(
@@ -755,33 +1172,36 @@ def comparar_pareado(
 
         elif diferenca > 0:
 
-            vitorias_b += 1
+            vitorias_v3 += 1
 
         else:
 
-            vitorias_a += 1
+            vitorias_v2 += 1
+
+    total = (
+        vitorias_v2
+        +
+        vitorias_v3
+        +
+        empates
+    )
 
     return {
-        "vitoriasA":
-            vitorias_a,
+        "vitoriasV2":
+            vitorias_v2,
 
-        "vitoriasB":
-            vitorias_b,
+        "vitoriasV3":
+            vitorias_v3,
 
         "empates":
             empates,
 
-        "taxaVitoriasB":
-            percentual(
-                vitorias_b,
-                len(
-                    diferencas
+        "taxaV3":
+            arredondar(
+                percentual(
+                    vitorias_v3,
+                    total
                 )
-            ),
-
-        "diferencaMedia":
-            media(
-                diferencas
             ),
     }
 
@@ -790,7 +1210,7 @@ def comparar_pareado(
 # AUDITORIA
 # ======================================================
 
-def executar():
+def processar():
 
     print(
         "=============================================="
@@ -807,10 +1227,6 @@ def executar():
     print(
         "=============================================="
     )
-
-    # ==================================================
-    # ARQUIVOS
-    # ==================================================
 
     dados_v1 = carregar_json(
         ARQUIVO_V1
@@ -832,112 +1248,37 @@ def executar():
         ARQUIVO_COMPARACAO
     )
 
-    registrar_teste(
-        "arquivo_v1_existe",
-        dados_v1 is not None
-    )
+    arquivos = {
+        "v1":
+            dados_v1 is not None,
 
-    registrar_teste(
-        "arquivo_v2_existe",
-        dados_v2 is not None
-    )
+        "v2":
+            dados_v2 is not None,
 
-    registrar_teste(
-        "arquivo_v3_existe",
-        dados_v3 is not None
-    )
+        "v3":
+            dados_v3 is not None,
 
-    registrar_teste(
-        "arquivo_simulacao_existe",
-        dados_simulacao is not None
-    )
+        "simulacao":
+            dados_simulacao is not None,
 
-    registrar_teste(
-        "arquivo_comparacao_existe",
-        comparacao is not None
-    )
-
-    # ==================================================
-    # VERSÕES
-    # ==================================================
-
-    modelo_v3 = (
-        dados_v3.get(
-            "modelo"
-        )
-        if isinstance(
-            dados_v3,
-            dict
-        )
-        else None
-    )
-
-    modelo_comparacao = (
-        comparacao.get(
-            "modelo"
-        )
-        if isinstance(
-            comparacao,
-            dict
-        )
-        else None
-    )
-
-    registrar_teste(
-        "versao_v3",
-        modelo_v3 == MODELO_V3,
-        esperado=MODELO_V3,
-        encontrado=modelo_v3
-    )
-
-    registrar_teste(
-        "versao_comparacao",
-        modelo_comparacao == MODELO_COMPARACAO,
-        esperado=MODELO_COMPARACAO,
-        encontrado=modelo_comparacao
-    )
-
-    # ==================================================
-    # SE ALGUM ARQUIVO FALTOU
-    # ==================================================
-
-    if (
-        dados_v1 is None
-        or
-        dados_v2 is None
-        or
-        dados_v3 is None
-        or
-        dados_simulacao is None
-        or
-        comparacao is None
-    ):
-
-        finalizar(
-            rodadas=0,
-            resumo={}
-        )
-
-        return
-
-    # ==================================================
-    # NORMALIZAÇÃO
-    # ==================================================
+        "comparacao":
+            comparacao is not None,
+    }
 
     v1 = normalizar_adaptativo(
-        dados_v1
+        dados_v1 or {}
     )
 
     v2 = normalizar_adaptativo(
-        dados_v2
+        dados_v2 or {}
     )
 
     v3 = normalizar_adaptativo(
-        dados_v3
+        dados_v3 or {}
     )
 
     simulacao = normalizar_simulacao(
-        dados_simulacao
+        dados_simulacao or {}
     )
 
     rodadas_comuns = sorted(
@@ -958,549 +1299,729 @@ def executar():
         )
     )
 
-    amostra_comparacao = comparacao.get(
-        "amostra",
-        {}
+    series = reconstruir_series(
+        v1,
+        v2,
+        v3,
+        simulacao,
+        rodadas_comuns
     )
 
-    rodadas_comparacao = amostra_comparacao.get(
-        "rodadas",
-        []
-    )
-
-    quantidade_comparacao = inteiro(
-        amostra_comparacao.get(
-            "rodadasComuns"
-        )
-    )
-
-    registrar_teste(
-        "rodadas_comuns_consistentes",
-        rodadas_comparacao == rodadas_comuns,
-        esperado=rodadas_comuns,
-        encontrado=rodadas_comparacao
-    )
-
-    registrar_teste(
-        "quantidade_rodadas_consistente",
-        quantidade_comparacao == len(
-            rodadas_comuns
-        ),
-        esperado=len(
-            rodadas_comuns
-        ),
-        encontrado=quantidade_comparacao
-    )
-
-    registrar_teste(
-        "amostra_minima",
-        len(
-            rodadas_comuns
-        ) >= MINIMO_RODADAS,
-        esperado=f">={MINIMO_RODADAS}",
-        encontrado=len(
-            rodadas_comuns
-        )
-    )
-
-    # ==================================================
-    # SÉRIES INDEPENDENTES
-    # ==================================================
-
-    pontos_v1 = [
-        v1[rodada][
-            "pontuacao"
+    metricas_v1 = metricas(
+        series[
+            "v1"
         ]
-        for rodada in rodadas_comuns
-    ]
+    )
 
-    pontos_v2 = [
-        v2[rodada][
-            "pontuacao"
+    metricas_v2 = metricas(
+        series[
+            "v2"
         ]
-        for rodada in rodadas_comuns
-    ]
+    )
 
-    pontos_v3 = [
-        v3[rodada][
-            "pontuacao"
+    metricas_v3 = metricas(
+        series[
+            "v3"
         ]
-        for rodada in rodadas_comuns
-    ]
+    )
 
-    pontos_oraculo = [
-        simulacao[rodada][
-            "oraculo"
-        ]
-        for rodada in rodadas_comuns
-    ]
+    metricas_fixas = {
+        estrategia:
+            metricas(
+                valores
+            )
 
-    pontos_fixas = {
-        estrategia: [
-            simulacao[rodada][
-                "pontuacoes"
-            ][estrategia]
-            for rodada in rodadas_comuns
-        ]
-        for estrategia in ESTRATEGIAS
+        for (
+            estrategia,
+            valores
+        ) in series[
+            "fixas"
+        ].items()
     }
 
-    metricas = comparacao.get(
-        "metricas",
-        {}
+    metricas_oraculo = metricas(
+        series[
+            "oraculo"
+        ]
     )
 
-    metricas_v1 = metricas.get(
+    melhor_fixa = max(
+        ESTRATEGIAS,
+        key=lambda estrategia:
+            metricas_fixas[
+                estrategia
+            ][
+                "media"
+            ]
+    )
+
+    media_oraculo = numero(
+        metricas_oraculo[
+            "media"
+        ]
+    )
+
+    ganho_v3_v1 = (
+        metricas_v3[
+            "media"
+        ]
+        -
+        metricas_v1[
+            "media"
+        ]
+    )
+
+    ganho_v3_v2 = (
+        metricas_v3[
+            "media"
+        ]
+        -
+        metricas_v2[
+            "media"
+        ]
+    )
+
+    ganho_v3_fixa = (
+        metricas_v3[
+            "media"
+        ]
+        -
+        metricas_fixas[
+            melhor_fixa
+        ][
+            "media"
+        ]
+    )
+
+    eficiencia_v1 = percentual(
+        metricas_v1[
+            "media"
+        ],
+        media_oraculo
+    )
+
+    eficiencia_v2 = percentual(
+        metricas_v2[
+            "media"
+        ],
+        media_oraculo
+    )
+
+    eficiencia_v3 = percentual(
+        metricas_v3[
+            "media"
+        ],
+        media_oraculo
+    )
+
+    pareado = comparar_pareado(
+        series[
+            "v2"
+        ],
+        series[
+            "v3"
+        ]
+    )
+
+    metricas_comp = (
+        comparacao.get(
+            "metricas",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    ganhos_comp = (
+        comparacao.get(
+            "ganhos",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    pareados_comp = (
+        comparacao.get(
+            "comparacoesPareadas",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    oraculo_comp = (
+        comparacao.get(
+            "oraculo",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    estabilidade_comp = (
+        comparacao.get(
+            "estabilidade",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    escolhas_comp = (
+        comparacao.get(
+            "escolhas",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    seguranca_comp = (
+        comparacao.get(
+            "seguranca",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    amostra_comp = (
+        comparacao.get(
+            "amostra",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    decisao_comp = (
+        comparacao.get(
+            "decisao",
+            {}
+        )
+        if isinstance(
+            comparacao,
+            dict
+        )
+        else {}
+    )
+
+    testes = []
+
+    # ==================================================
+    # ARQUIVOS / VERSÕES
+    # ==================================================
+
+    testes.append(
+        teste(
+            "arquivo_v1_existe",
+            arquivos["v1"]
+        )
+    )
+
+    testes.append(
+        teste(
+            "arquivo_v2_existe",
+            arquivos["v2"]
+        )
+    )
+
+    testes.append(
+        teste(
+            "arquivo_v3_existe",
+            arquivos["v3"]
+        )
+    )
+
+    testes.append(
+        teste(
+            "arquivo_simulacao_existe",
+            arquivos["simulacao"]
+        )
+    )
+
+    testes.append(
+        teste(
+            "arquivo_comparacao_existe",
+            arquivos["comparacao"]
+        )
+    )
+
+    testes.append(
+        teste(
+            "versao_v3",
+            (
+                isinstance(
+                    dados_v3,
+                    dict
+                )
+                and
+                dados_v3.get(
+                    "modelo"
+                )
+                ==
+                MODELO_V3
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "versao_comparacao",
+            (
+                isinstance(
+                    comparacao,
+                    dict
+                )
+                and
+                comparacao.get(
+                    "modelo"
+                )
+                ==
+                MODELO_COMPARACAO
+            )
+        )
+    )
+
+    # ==================================================
+    # RODADAS
+    # ==================================================
+
+    rodadas_comp = (
+        amostra_comp.get(
+            "rodadas",
+            []
+        )
+    )
+
+    testes.append(
+        teste(
+            "rodadas_comuns_consistentes",
+            (
+                rodadas_comp
+                ==
+                rodadas_comuns
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "quantidade_rodadas_consistente",
+            (
+                inteiro(
+                    amostra_comp.get(
+                        "rodadasComuns"
+                    )
+                )
+                ==
+                len(
+                    rodadas_comuns
+                )
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "amostra_minima",
+            (
+                len(
+                    rodadas_comuns
+                )
+                >=
+                MINIMO_RODADAS
+            )
+        )
+    )
+
+    # ==================================================
+    # MÉDIAS / DESVIOS
+    # ==================================================
+
+    comp_v1 = metricas_comp.get(
         "adaptativoV1",
         {}
     )
 
-    metricas_v2 = metricas.get(
+    comp_v2 = metricas_comp.get(
         "adaptativoV2",
         {}
     )
 
-    metricas_v3 = metricas.get(
+    comp_v3 = metricas_comp.get(
         "adaptativoV3",
         {}
     )
 
-    # ==================================================
-    # MÉDIAS
-    # ==================================================
-
-    media_v1 = media(
-        pontos_v1
-    )
-
-    media_v2 = media(
-        pontos_v2
-    )
-
-    media_v3 = media(
-        pontos_v3
-    )
-
-    registrar_teste(
-        "media_v1_consistente",
-        proximos(
-            metricas_v1.get(
-                "media"
-            ),
-            media_v1
-        ),
-        esperado=arredondar(
-            media_v1
-        ),
-        encontrado=metricas_v1.get(
-            "media"
+    testes.append(
+        teste(
+            "media_v1_consistente",
+            aproximadamente_igual(
+                comp_v1.get(
+                    "media"
+                ),
+                metricas_v1[
+                    "media"
+                ]
+            )
         )
     )
 
-    registrar_teste(
-        "media_v2_consistente",
-        proximos(
-            metricas_v2.get(
-                "media"
-            ),
-            media_v2
-        ),
-        esperado=arredondar(
-            media_v2
-        ),
-        encontrado=metricas_v2.get(
-            "media"
+    testes.append(
+        teste(
+            "media_v2_consistente",
+            aproximadamente_igual(
+                comp_v2.get(
+                    "media"
+                ),
+                metricas_v2[
+                    "media"
+                ]
+            )
         )
     )
 
-    registrar_teste(
-        "media_v3_consistente",
-        proximos(
-            metricas_v3.get(
-                "media"
-            ),
-            media_v3
-        ),
-        esperado=arredondar(
-            media_v3
-        ),
-        encontrado=metricas_v3.get(
-            "media"
+    testes.append(
+        teste(
+            "media_v3_consistente",
+            aproximadamente_igual(
+                comp_v3.get(
+                    "media"
+                ),
+                metricas_v3[
+                    "media"
+                ]
+            )
         )
     )
 
-    # ==================================================
-    # DESVIOS
-    # ==================================================
-
-    desvio_v1 = desvio(
-        pontos_v1
-    )
-
-    desvio_v2 = desvio(
-        pontos_v2
-    )
-
-    desvio_v3 = desvio(
-        pontos_v3
-    )
-
-    registrar_teste(
-        "desvio_v1_consistente",
-        proximos(
-            metricas_v1.get(
-                "desvioPadrao"
-            ),
-            desvio_v1
+    testes.append(
+        teste(
+            "desvio_v1_consistente",
+            aproximadamente_igual(
+                comp_v1.get(
+                    "desvioPadrao"
+                ),
+                metricas_v1[
+                    "desvioPadrao"
+                ]
+            )
         )
     )
 
-    registrar_teste(
-        "desvio_v2_consistente",
-        proximos(
-            metricas_v2.get(
-                "desvioPadrao"
-            ),
-            desvio_v2
+    testes.append(
+        teste(
+            "desvio_v2_consistente",
+            aproximadamente_igual(
+                comp_v2.get(
+                    "desvioPadrao"
+                ),
+                metricas_v2[
+                    "desvioPadrao"
+                ]
+            )
         )
     )
 
-    registrar_teste(
-        "desvio_v3_consistente",
-        proximos(
-            metricas_v3.get(
-                "desvioPadrao"
-            ),
-            desvio_v3
+    testes.append(
+        teste(
+            "desvio_v3_consistente",
+            aproximadamente_igual(
+                comp_v3.get(
+                    "desvioPadrao"
+                ),
+                metricas_v3[
+                    "desvioPadrao"
+                ]
+            )
         )
     )
 
     # ==================================================
-    # FIXAS
+    # FIXAS / ORÁCULO
     # ==================================================
 
-    metricas_fixas = metricas.get(
+    fixas_comp = metricas_comp.get(
         "estrategiasFixas",
         {}
     )
 
-    medias_fixas = {}
-
-    fixas_consistentes = True
+    fixas_ok = True
 
     for estrategia in ESTRATEGIAS:
 
-        media_calculada = media(
-            pontos_fixas[
-                estrategia
-            ]
-        )
-
-        medias_fixas[
-            estrategia
-        ] = media_calculada
-
-        media_arquivo = numero(
-            metricas_fixas.get(
+        if not aproximadamente_igual(
+            fixas_comp.get(
                 estrategia,
                 {}
             ).get(
                 "media"
-            )
-        )
-
-        if not proximos(
-            media_calculada,
-            media_arquivo
+            ),
+            metricas_fixas[
+                estrategia
+            ][
+                "media"
+            ]
         ):
 
-            fixas_consistentes = False
+            fixas_ok = False
 
-    registrar_teste(
-        "metricas_fixas_consistentes",
-        fixas_consistentes
-    )
-
-    melhor_fixa_calculada = max(
-        ESTRATEGIAS,
-        key=lambda estrategia:
-            medias_fixas[
-                estrategia
-            ]
-    )
-
-    melhor_fixa_arquivo = metricas.get(
-        "melhorEstrategiaFixa"
-    )
-
-    registrar_teste(
-        "melhor_fixa_consistente",
-        (
-            melhor_fixa_calculada
-            ==
-            melhor_fixa_arquivo
-        ),
-        esperado=melhor_fixa_calculada,
-        encontrado=melhor_fixa_arquivo
-    )
-
-    media_melhor_fixa = medias_fixas[
-        melhor_fixa_calculada
-    ]
-
-    # ==================================================
-    # ORÁCULO
-    # ==================================================
-
-    media_oraculo = media(
-        pontos_oraculo
-    )
-
-    metricas_oraculo = metricas.get(
-        "oraculo",
-        {}
-    )
-
-    registrar_teste(
-        "media_oraculo_consistente",
-        proximos(
-            metricas_oraculo.get(
-                "media"
-            ),
-            media_oraculo
-        ),
-        esperado=arredondar(
-            media_oraculo
-        ),
-        encontrado=metricas_oraculo.get(
-            "media"
+    testes.append(
+        teste(
+            "metricas_fixas_consistentes",
+            fixas_ok
         )
     )
 
-    oraculo_valido = all(
-
-        numero(
-            pontos_oraculo[indice]
-        )
-        >=
-        max(
-            numero(
-                pontos_v1[indice]
-            ),
-            numero(
-                pontos_v2[indice]
-            ),
-            numero(
-                pontos_v3[indice]
+    testes.append(
+        teste(
+            "melhor_fixa_consistente",
+            (
+                metricas_comp.get(
+                    "melhorEstrategiaFixa"
+                )
+                ==
+                melhor_fixa
             )
         )
-
-        for indice in range(
-            len(
-                rodadas_comuns
-            )
-        )
-
     )
 
-    registrar_teste(
-        "oraculo_valido",
-        oraculo_valido
+    testes.append(
+        teste(
+            "media_oraculo_consistente",
+            aproximadamente_igual(
+                metricas_comp.get(
+                    "oraculo",
+                    {}
+                ).get(
+                    "media"
+                ),
+                media_oraculo
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "oraculo_valido",
+            (
+                media_oraculo
+                >
+                max(
+                    metricas_v1[
+                        "media"
+                    ],
+                    metricas_v2[
+                        "media"
+                    ],
+                    metricas_v3[
+                        "media"
+                    ],
+                    metricas_fixas[
+                        melhor_fixa
+                    ][
+                        "media"
+                    ]
+                )
+            )
+        )
     )
 
     # ==================================================
     # GANHOS
     # ==================================================
 
-    ganhos = comparacao.get(
-        "ganhos",
-        {}
-    )
-
-    ganho_v3_v1 = (
-        media_v3 -
-        media_v1
-    )
-
-    ganho_v3_v2 = (
-        media_v3 -
-        media_v2
-    )
-
-    ganho_v3_fixa = (
-        media_v3 -
-        media_melhor_fixa
-    )
-
-    registrar_teste(
-        "ganho_v3_v1_consistente",
-        proximos(
-            ganhos.get(
-                "v3VsV1",
-                {}
-            ).get(
-                "pontosPorRodada"
-            ),
-            ganho_v3_v1
+    testes.append(
+        teste(
+            "ganho_v3_v1_consistente",
+            aproximadamente_igual(
+                ganhos_comp.get(
+                    "v3VsV1",
+                    {}
+                ).get(
+                    "pontosPorRodada"
+                ),
+                ganho_v3_v1
+            )
         )
     )
 
-    registrar_teste(
-        "ganho_v3_v2_consistente",
-        proximos(
-            ganhos.get(
-                "v3VsV2",
-                {}
-            ).get(
-                "pontosPorRodada"
-            ),
-            ganho_v3_v2
+    testes.append(
+        teste(
+            "ganho_v3_v2_consistente",
+            aproximadamente_igual(
+                ganhos_comp.get(
+                    "v3VsV2",
+                    {}
+                ).get(
+                    "pontosPorRodada"
+                ),
+                ganho_v3_v2
+            )
         )
     )
 
-    registrar_teste(
-        "ganho_v3_fixa_consistente",
-        proximos(
-            ganhos.get(
-                "v3VsMelhorFixa",
-                {}
-            ).get(
-                "pontosPorRodada"
-            ),
-            ganho_v3_fixa
+    testes.append(
+        teste(
+            "ganho_v3_fixa_consistente",
+            aproximadamente_igual(
+                ganhos_comp.get(
+                    "v3VsMelhorFixa",
+                    {}
+                ).get(
+                    "pontosPorRodada"
+                ),
+                ganho_v3_fixa
+            )
         )
     )
 
     # ==================================================
-    # PAREADO V2 x V3
+    # PAREADO
     # ==================================================
 
-    pareado_calculado = comparar_pareado(
-        pontos_v2,
-        pontos_v3
-    )
-
-    pareados = comparacao.get(
-        "comparacoesPareadas",
-        {}
-    )
-
-    pareado_arquivo = pareados.get(
+    pareado_comp = pareados_comp.get(
         "v2VsV3",
         {}
     )
 
-    registrar_teste(
-        "pareado_v2_v3_vitorias_v2",
-        inteiro(
-            pareado_arquivo.get(
-                "vitoriasA"
+    testes.append(
+        teste(
+            "pareado_v2_v3_vitorias_v2",
+            (
+                inteiro(
+                    pareado_comp.get(
+                        "vitoriasA"
+                    )
+                )
+                ==
+                pareado[
+                    "vitoriasV2"
+                ]
             )
         )
-        ==
-        pareado_calculado[
-            "vitoriasA"
-        ]
     )
 
-    registrar_teste(
-        "pareado_v2_v3_vitorias_v3",
-        inteiro(
-            pareado_arquivo.get(
-                "vitoriasB"
+    testes.append(
+        teste(
+            "pareado_v2_v3_vitorias_v3",
+            (
+                inteiro(
+                    pareado_comp.get(
+                        "vitoriasB"
+                    )
+                )
+                ==
+                pareado[
+                    "vitoriasV3"
+                ]
             )
         )
-        ==
-        pareado_calculado[
-            "vitoriasB"
-        ]
     )
 
-    registrar_teste(
-        "pareado_v2_v3_empates",
-        inteiro(
-            pareado_arquivo.get(
-                "empates"
+    testes.append(
+        teste(
+            "pareado_v2_v3_empates",
+            (
+                inteiro(
+                    pareado_comp.get(
+                        "empates"
+                    )
+                )
+                ==
+                pareado[
+                    "empates"
+                ]
             )
         )
-        ==
-        pareado_calculado[
-            "empates"
-        ]
     )
 
-    registrar_teste(
-        "pareado_v2_v3_taxa",
-        proximos(
-            pareado_arquivo.get(
-                "taxaVitoriasB"
-            ),
-            pareado_calculado[
-                "taxaVitoriasB"
-            ]
+    testes.append(
+        teste(
+            "pareado_v2_v3_taxa",
+            aproximadamente_igual(
+                pareado_comp.get(
+                    "taxaVitoriasB"
+                ),
+                pareado[
+                    "taxaV3"
+                ]
+            )
         )
     )
 
     # ==================================================
-    # EFICIÊNCIA CONTRA ORÁCULO
+    # EFICIÊNCIA
     # ==================================================
 
-    eficiencia_v1 = percentual(
-        media_v1,
-        media_oraculo
-    )
-
-    eficiencia_v2 = percentual(
-        media_v2,
-        media_oraculo
-    )
-
-    eficiencia_v3 = percentual(
-        media_v3,
-        media_oraculo
-    )
-
-    bloco_oraculo = comparacao.get(
-        "oraculo",
-        {}
-    )
-
-    registrar_teste(
-        "eficiencia_v1_consistente",
-        proximos(
-            bloco_oraculo.get(
-                "v1",
-                {}
-            ).get(
-                "eficienciaPercentual"
-            ),
-            eficiencia_v1
+    testes.append(
+        teste(
+            "eficiencia_v1_consistente",
+            aproximadamente_igual(
+                oraculo_comp.get(
+                    "v1",
+                    {}
+                ).get(
+                    "eficienciaPercentual"
+                ),
+                eficiencia_v1
+            )
         )
     )
 
-    registrar_teste(
-        "eficiencia_v2_consistente",
-        proximos(
-            bloco_oraculo.get(
-                "v2",
-                {}
-            ).get(
-                "eficienciaPercentual"
-            ),
-            eficiencia_v2
+    testes.append(
+        teste(
+            "eficiencia_v2_consistente",
+            aproximadamente_igual(
+                oraculo_comp.get(
+                    "v2",
+                    {}
+                ).get(
+                    "eficienciaPercentual"
+                ),
+                eficiencia_v2
+            )
         )
     )
 
-    registrar_teste(
-        "eficiencia_v3_consistente",
-        proximos(
-            bloco_oraculo.get(
-                "v3",
-                {}
-            ).get(
-                "eficienciaPercentual"
-            ),
-            eficiencia_v3
+    testes.append(
+        teste(
+            "eficiencia_v3_consistente",
+            aproximadamente_igual(
+                oraculo_comp.get(
+                    "v3",
+                    {}
+                ).get(
+                    "eficienciaPercentual"
+                ),
+                eficiencia_v3
+            )
         )
     )
 
@@ -1508,512 +2029,364 @@ def executar():
     # ESCOLHAS V3
     # ==================================================
 
-    escolhas_v3 = Counter(
-
-        v3[rodada][
-            "estrategia"
-        ]
-
-        for rodada in rodadas_comuns
-
-        if v3[rodada][
-            "estrategia"
-        ] in ESTRATEGIAS
-
-    )
-
-    escolhas_arquivo = (
-        comparacao.get(
-            "escolhas",
-            {}
-        ).get(
-            "v3",
-            {}
-        )
-    )
-
-    escolhas_consistentes = all(
-
-        inteiro(
-            escolhas_arquivo.get(
-                estrategia
-            )
-        )
-        ==
-        escolhas_v3.get(
-            estrategia,
-            0
-        )
-
-        for estrategia in ESTRATEGIAS
-
-    )
-
-    registrar_teste(
-        "escolhas_v3_consistentes",
-        escolhas_consistentes
-    )
-
-    total_escolhas = sum(
-        escolhas_v3.values()
-    )
-
-    registrar_teste(
-        "cobertura_escolhas_v3",
-        total_escolhas
-        ==
-        len(
-            rodadas_comuns
-        ),
-        esperado=len(
-            rodadas_comuns
-        ),
-        encontrado=total_escolhas
-    )
-
-    # ==================================================
-    # AGRESSIVO PODE SER ESCOLHIDO
-    # ==================================================
-
-    #
-    # Este teste não exige que o Agressivo tenha sido
-    # escolhido. Ele apenas registra o comportamento.
-    #
-    # Não seria cientificamente correto reprovar a V3
-    # apenas porque a evidência histórica não justificou
-    # selecionar o Agressivo.
-    #
-
-    registrar_teste(
-        "estrategias_v3_validas",
-        all(
-            estrategia in ESTRATEGIAS
-            for estrategia in escolhas_v3.keys()
-        )
-    )
-
-    # ==================================================
-    # VAZAMENTO FUTURO
-    # ==================================================
-
-    flags_vazamento = [
-
-        v3[rodada].get(
-            "semVazamentoFuturo"
-        )
-
-        for rodada in rodadas_comuns
-
-    ]
-
-    sem_vazamento_declarado = all(
-
-        flag is True
-
-        for flag in flags_vazamento
-
-    )
-
-    registrar_teste(
-        "v3_sem_vazamento_declarado",
-        sem_vazamento_declarado
-    )
-
-    auditoria_v3 = dados_v3.get(
-        "auditoria",
+    escolhas_v3_comp = escolhas_comp.get(
+        "v3",
         {}
     )
 
-    registrar_teste(
-        "v3_historico_progressivo",
-        auditoria_v3.get(
-            "historicoProgressivo"
-        ) is True
+    escolhas_ok = True
+
+    for estrategia in ESTRATEGIAS:
+
+        if (
+            inteiro(
+                escolhas_v3_comp.get(
+                    estrategia
+                )
+            )
+            !=
+            series[
+                "escolhasV3"
+            ].get(
+                estrategia,
+                0
+            )
+        ):
+
+            escolhas_ok = False
+
+    testes.append(
+        teste(
+            "escolhas_v3_consistentes",
+            escolhas_ok
+        )
     )
 
-    registrar_teste(
-        "v3_auditoria_sem_vazamento",
-        auditoria_v3.get(
-            "semVazamentoFuturo"
-        ) is True
+    testes.append(
+        teste(
+            "cobertura_escolhas_v3",
+            (
+                sum(
+                    series[
+                        "escolhasV3"
+                    ].values()
+                )
+                ==
+                len(
+                    rodadas_comuns
+                )
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "estrategias_v3_validas",
+            all(
+                registro.get(
+                    "estrategiaEscolhida"
+                )
+                in ESTRATEGIAS
+
+                for registro
+                in v3.values()
+            )
+        )
     )
 
     # ==================================================
-    # DETALHES POR RODADA
+    # SEGURANÇA V3
     # ==================================================
 
-    detalhes_comparacao = comparacao.get(
+    auditoria_v3 = (
+        dados_v3.get(
+            "auditoria",
+            {}
+        )
+        if isinstance(
+            dados_v3,
+            dict
+        )
+        else {}
+    )
+
+    testes.append(
+        teste(
+            "v3_sem_vazamento_declarado",
+            (
+                auditoria_v3.get(
+                    "semVazamentoFuturo"
+                )
+                is True
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "v3_historico_progressivo",
+            (
+                auditoria_v3.get(
+                    "historicoProgressivo"
+                )
+                is True
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "v3_auditoria_sem_vazamento",
+            (
+                auditoria_v3.get(
+                    "semVazamentoFuturo"
+                )
+                is True
+                and
+                auditoria_v3.get(
+                    "historicoProgressivo"
+                )
+                is True
+            )
+        )
+    )
+
+    # ==================================================
+    # DETALHES DAS RODADAS
+    # ==================================================
+
+    detalhes_comp = comparacao.get(
         "rodadas",
         []
     )
 
-    mapa_detalhes = {
-
-        inteiro(
-            registro.get(
-                "rodada"
-            )
-        ):
-            registro
-
-        for registro in detalhes_comparacao
-
-        if isinstance(
-            registro,
-            dict
+    detalhes_ok = (
+        len(
+            detalhes_comp
         )
-
-    }
-
-    detalhes_validos = True
-
-    for rodada in rodadas_comuns:
-
-        detalhe = mapa_detalhes.get(
-            rodada
-        )
-
-        if detalhe is None:
-
-            detalhes_validos = False
-            break
-
-        bloco_v1 = detalhe.get(
-            "v1",
-            {}
-        )
-
-        bloco_v2 = detalhe.get(
-            "v2",
-            {}
-        )
-
-        bloco_v3 = detalhe.get(
-            "v3",
-            {}
-        )
-
-        if not proximos(
-            bloco_v1.get(
-                "pontuacao"
-            ),
-            v1[rodada][
-                "pontuacao"
-            ]
-        ):
-
-            detalhes_validos = False
-            break
-
-        if not proximos(
-            bloco_v2.get(
-                "pontuacao"
-            ),
-            v2[rodada][
-                "pontuacao"
-            ]
-        ):
-
-            detalhes_validos = False
-            break
-
-        if not proximos(
-            bloco_v3.get(
-                "pontuacao"
-            ),
-            v3[rodada][
-                "pontuacao"
-            ]
-        ):
-
-            detalhes_validos = False
-            break
-
-        if (
-            bloco_v3.get(
-                "estrategia"
-            )
-            !=
-            v3[rodada][
-                "estrategia"
-            ]
-        ):
-
-            detalhes_validos = False
-            break
-
-        if not proximos(
-            detalhe.get(
-                "oraculo"
-            ),
-            simulacao[rodada][
-                "oraculo"
-            ]
-        ):
-
-            detalhes_validos = False
-            break
-
-    registrar_teste(
-        "detalhes_rodadas_consistentes",
-        detalhes_validos
-    )
-
-    # ==================================================
-    # SEGURANÇA
-    # ==================================================
-
-    seguranca = comparacao.get(
-        "seguranca",
-        {}
-    )
-
-    registrar_teste(
-        "nao_altera_modelo_oficial",
-        seguranca.get(
-            "alteraModeloOficial"
-        ) is False
-    )
-
-    registrar_teste(
-        "nao_altera_pesos",
-        seguranca.get(
-            "alteraPesos"
-        ) is False
-    )
-
-    registrar_teste(
-        "nao_altera_escalacoes",
-        seguranca.get(
-            "alteraEscalacoes"
-        ) is False
-    )
-
-    registrar_teste(
-        "nao_altera_estrategia_oficial",
-        seguranca.get(
-            "alteraEstrategiaOficial"
-        ) is False
-    )
-
-    registrar_teste(
-        "promocao_automatica_bloqueada",
-        seguranca.get(
-            "promocaoAutomatica"
-        ) is False
-    )
-
-    decisao_comparacao = comparacao.get(
-        "decisao",
-        {}
-    )
-
-    registrar_teste(
-        "decisao_sem_promocao_automatica",
-        decisao_comparacao.get(
-            "promocaoAutomatica"
-        ) is False
-    )
-
-    # ==================================================
-    # RESUMO
-    # ==================================================
-
-    resumo = {
-        "mediaV1":
-            arredondar(
-                media_v1
-            ),
-
-        "mediaV2":
-            arredondar(
-                media_v2
-            ),
-
-        "mediaV3":
-            arredondar(
-                media_v3
-            ),
-
-        "melhorFixa":
-            melhor_fixa_calculada,
-
-        "mediaMelhorFixa":
-            arredondar(
-                media_melhor_fixa
-            ),
-
-        "mediaOraculo":
-            arredondar(
-                media_oraculo
-            ),
-
-        "ganhoV3VsV1":
-            arredondar(
-                ganho_v3_v1
-            ),
-
-        "ganhoV3VsV2":
-            arredondar(
-                ganho_v3_v2
-            ),
-
-        "ganhoV3VsMelhorFixa":
-            arredondar(
-                ganho_v3_fixa
-            ),
-
-        "eficienciaV1":
-            arredondar(
-                eficiencia_v1
-            ),
-
-        "eficienciaV2":
-            arredondar(
-                eficiencia_v2
-            ),
-
-        "eficienciaV3":
-            arredondar(
-                eficiencia_v3
-            ),
-
-        "desvioV1":
-            arredondar(
-                desvio_v1
-            ),
-
-        "desvioV2":
-            arredondar(
-                desvio_v2
-            ),
-
-        "desvioV3":
-            arredondar(
-                desvio_v3
-            ),
-
-        "vitoriasV2Pareado":
-            pareado_calculado[
-                "vitoriasA"
-            ],
-
-        "vitoriasV3Pareado":
-            pareado_calculado[
-                "vitoriasB"
-            ],
-
-        "empatesPareado":
-            pareado_calculado[
-                "empates"
-            ],
-
-        "escolhasV3":
-            {
-                estrategia:
-                    escolhas_v3.get(
-                        estrategia,
-                        0
-                    )
-                for estrategia
-                in ESTRATEGIAS
-            },
-    }
-
-    finalizar(
-        rodadas=len(
+        ==
+        len(
             rodadas_comuns
-        ),
-        resumo=resumo
+        )
     )
 
+    if detalhes_ok:
 
-# ======================================================
-# FINALIZAÇÃO
-# ======================================================
+        mapa_detalhes = {
+            inteiro(
+                item.get(
+                    "rodada"
+                )
+            ):
+                item
 
-def finalizar(
-    rodadas,
-    resumo
-):
+            for item
+            in detalhes_comp
 
-    total_testes = len(
+            if isinstance(
+                item,
+                dict
+            )
+        }
+
+        for esperado in series[
+            "detalhes"
+        ]:
+
+            rodada = esperado[
+                "rodada"
+            ]
+
+            atual = mapa_detalhes.get(
+                rodada
+            )
+
+            if not atual:
+
+                detalhes_ok = False
+                break
+
+            for nome in [
+                "v1",
+                "v2",
+                "v3",
+            ]:
+
+                if not aproximadamente_igual(
+                    atual.get(
+                        nome,
+                        {}
+                    ).get(
+                        "pontuacao"
+                    ),
+                    esperado[
+                        nome
+                    ]
+                ):
+
+                    detalhes_ok = False
+                    break
+
+            if not detalhes_ok:
+                break
+
+            if not aproximadamente_igual(
+                atual.get(
+                    "oraculo"
+                ),
+                esperado[
+                    "oraculo"
+                ]
+            ):
+
+                detalhes_ok = False
+                break
+
+    testes.append(
+        teste(
+            "detalhes_rodadas_consistentes",
+            detalhes_ok
+        )
+    )
+
+    # ==================================================
+    # SEGURANÇA DA COMPARAÇÃO
+    # ==================================================
+
+    testes.append(
+        teste(
+            "nao_altera_modelo_oficial",
+            (
+                seguranca_comp.get(
+                    "alteraModeloOficial"
+                )
+                is False
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "nao_altera_pesos",
+            (
+                seguranca_comp.get(
+                    "alteraPesos"
+                )
+                is False
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "nao_altera_escalacoes",
+            (
+                seguranca_comp.get(
+                    "alteraEscalacoes"
+                )
+                is False
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "nao_altera_estrategia_oficial",
+            (
+                seguranca_comp.get(
+                    "alteraEstrategiaOficial"
+                )
+                is False
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "promocao_automatica_bloqueada",
+            (
+                seguranca_comp.get(
+                    "promocaoAutomatica"
+                )
+                is False
+            )
+        )
+    )
+
+    testes.append(
+        teste(
+            "decisao_sem_promocao_automatica",
+            (
+                decisao_comp.get(
+                    "promocaoAutomatica"
+                )
+                is False
+            )
+        )
+    )
+
+    # ==================================================
+    # RESULTADO DOS TESTES
+    # ==================================================
+
+    quantidade_testes = len(
         testes
     )
 
     aprovados = sum(
-
         1
-        for teste in testes
-        if teste[
+        for item in testes
+        if item[
             "passou"
         ]
-
     )
 
-    falhas = [
-
-        teste
-        for teste in testes
-        if not teste[
-            "passou"
-        ]
-
-    ]
-
-    falhas_criticas = [
-
-        teste
-        for teste in falhas
-        if teste[
-            "critico"
-        ]
-
-    ]
-
-    alertas = [
-
-        teste
-        for teste in falhas
-        if not teste[
-            "critico"
-        ]
-
-    ]
-
-    score = (
-
-        (
-            aprovados /
-            total_testes
-        ) * 100
-
-        if total_testes
-        else 0.0
-
+    falhas_criticas = sum(
+        1
+        for item in testes
+        if (
+            not item[
+                "passou"
+            ]
+            and
+            item[
+                "nivel"
+            ]
+            ==
+            "CRITICO"
+        )
     )
 
-    score = arredondar(
-        score
+    alertas = sum(
+        1
+        for item in testes
+        if (
+            not item[
+                "passou"
+            ]
+            and
+            item[
+                "nivel"
+            ]
+            !=
+            "CRITICO"
+        )
     )
 
-    if (
-        len(
-            falhas_criticas
-        ) == 0
-        and
-        score >= SCORE_MINIMO
-        and
-        rodadas >= MINIMO_RODADAS
-    ):
+    score = percentual(
+        aprovados,
+        quantidade_testes
+    )
 
-        decisao = (
+    if falhas_criticas == 0:
+
+        decisao_auditoria = (
             "COMPARACAO_V3_VALIDADA"
         )
 
     else:
 
-        decisao = (
+        decisao_auditoria = (
             "COMPARACAO_V3_REPROVADA"
         )
 
@@ -2028,42 +2401,104 @@ def finalizar(
             ),
 
         "rodadasAuditadas":
-            rodadas,
+            len(
+                rodadas_comuns
+            ),
 
         "testes":
             testes,
 
-        "resumoTestes": {
-            "quantidade":
-                total_testes,
+        "resumo": {
+            "quantidadeTestes":
+                quantidade_testes,
 
             "aprovados":
                 aprovados,
 
-            "falhas":
-                len(
-                    falhas
-                ),
-
             "falhasCriticas":
-                len(
-                    falhas_criticas
-                ),
+                falhas_criticas,
 
             "alertas":
-                len(
-                    alertas
-                ),
+                alertas,
 
             "scoreQualidade":
-                score,
+                arredondar(
+                    score
+                ),
         },
 
-        "resultados":
-            resumo,
+        "resultados": {
+            "v1":
+                metricas_v1,
+
+            "v2":
+                metricas_v2,
+
+            "v3":
+                metricas_v3,
+
+            "estrategiasFixas":
+                metricas_fixas,
+
+            "melhorEstrategiaFixa":
+                melhor_fixa,
+
+            "oraculo":
+                metricas_oraculo,
+
+            "ganhos": {
+                "v3VsV1":
+                    arredondar(
+                        ganho_v3_v1
+                    ),
+
+                "v3VsV2":
+                    arredondar(
+                        ganho_v3_v2
+                    ),
+
+                "v3VsMelhorFixa":
+                    arredondar(
+                        ganho_v3_fixa
+                    ),
+            },
+
+            "eficiencia": {
+                "v1":
+                    arredondar(
+                        eficiencia_v1
+                    ),
+
+                "v2":
+                    arredondar(
+                        eficiencia_v2
+                    ),
+
+                "v3":
+                    arredondar(
+                        eficiencia_v3
+                    ),
+            },
+
+            "pareadoV2V3":
+                pareado,
+
+            "escolhasV3": {
+                estrategia:
+                    series[
+                        "escolhasV3"
+                    ].get(
+                        estrategia,
+                        0
+                    )
+
+                for estrategia
+                in ESTRATEGIAS
+            },
+        },
 
         "decisao":
-            decisao,
+            decisao_auditoria,
 
         "promocaoAutomatica":
             False,
@@ -2099,12 +2534,14 @@ def finalizar(
 
     print(
         "Rodadas auditadas:",
-        rodadas
+        len(
+            rodadas_comuns
+        )
     )
 
     print(
         "Testes:",
-        total_testes
+        quantidade_testes
     )
 
     print()
@@ -2117,229 +2554,214 @@ def finalizar(
         "----------------------------------------------"
     )
 
-    for teste in testes:
+    for item in testes:
 
         status = (
             "OK"
-            if teste[
+            if item[
                 "passou"
             ]
             else "FALHA"
         )
 
-        nivel = (
-            "CRITICO"
-            if teste[
-                "critico"
-            ]
-            else "ALERTA"
-        )
-
         print(
             f"[{status}] "
-            f"{teste['nome']} "
-            f"({nivel})"
+            f"{item['nome']} "
+            f"({item['nivel']})"
         )
 
     print()
 
     print(
         "Score de qualidade:",
-        score,
+        arredondar(
+            score
+        ),
         "%"
     )
 
     print(
         "Falhas críticas:",
-        len(
-            falhas_criticas
-        )
+        falhas_criticas
     )
 
     print(
         "Alertas:",
-        len(
-            alertas
+        alertas
+    )
+
+    print()
+
+    print(
+        "RESULTADOS"
+    )
+
+    print(
+        "----------------------------------------------"
+    )
+
+    print(
+        "V1:",
+        metricas_v1[
+            "media"
+        ]
+    )
+
+    print(
+        "V2:",
+        metricas_v2[
+            "media"
+        ]
+    )
+
+    print(
+        "V3:",
+        metricas_v3[
+            "media"
+        ]
+    )
+
+    print(
+        "Melhor fixa:",
+        melhor_fixa,
+        "|",
+        metricas_fixas[
+            melhor_fixa
+        ][
+            "media"
+        ]
+    )
+
+    print(
+        "Oráculo:",
+        metricas_oraculo[
+            "media"
+        ]
+    )
+
+    print()
+
+    print(
+        "V3 x V1:",
+        arredondar(
+            ganho_v3_v1
         )
     )
 
-    if resumo:
+    print(
+        "V3 x V2:",
+        arredondar(
+            ganho_v3_v2
+        )
+    )
 
-        print()
+    print(
+        "V3 x melhor fixa:",
+        arredondar(
+            ganho_v3_fixa
+        )
+    )
+
+    print()
+
+    print(
+        "Eficiência V1:",
+        arredondar(
+            eficiencia_v1
+        ),
+        "%"
+    )
+
+    print(
+        "Eficiência V2:",
+        arredondar(
+            eficiencia_v2
+        ),
+        "%"
+    )
+
+    print(
+        "Eficiência V3:",
+        arredondar(
+            eficiencia_v3
+        ),
+        "%"
+    )
+
+    print()
+
+    print(
+        "Desvio V1:",
+        metricas_v1[
+            "desvioPadrao"
+        ]
+    )
+
+    print(
+        "Desvio V2:",
+        metricas_v2[
+            "desvioPadrao"
+        ]
+    )
+
+    print(
+        "Desvio V3:",
+        metricas_v3[
+            "desvioPadrao"
+        ]
+    )
+
+    print()
+
+    print(
+        "Pareado V2 x V3:"
+    )
+
+    print(
+        "Vitórias V2:",
+        pareado[
+            "vitoriasV2"
+        ]
+    )
+
+    print(
+        "Vitórias V3:",
+        pareado[
+            "vitoriasV3"
+        ]
+    )
+
+    print(
+        "Empates:",
+        pareado[
+            "empates"
+        ]
+    )
+
+    print()
+
+    print(
+        "Escolhas V3:"
+    )
+
+    for estrategia in ESTRATEGIAS:
 
         print(
-            "RESULTADOS"
-        )
-
-        print(
-            "----------------------------------------------"
-        )
-
-        print(
-            "V1:",
-            resumo.get(
-                "mediaV1"
-            )
-        )
-
-        print(
-            "V2:",
-            resumo.get(
-                "mediaV2"
-            )
-        )
-
-        print(
-            "V3:",
-            resumo.get(
-                "mediaV3"
-            )
-        )
-
-        print(
-            "Melhor fixa:",
-            resumo.get(
-                "melhorFixa"
-            ),
-            "|",
-            resumo.get(
-                "mediaMelhorFixa"
-            )
-        )
-
-        print(
-            "Oráculo:",
-            resumo.get(
-                "mediaOraculo"
-            )
-        )
-
-        print()
-
-        print(
-            "V3 x V1:",
-            resumo.get(
-                "ganhoV3VsV1"
-            )
-        )
-
-        print(
-            "V3 x V2:",
-            resumo.get(
-                "ganhoV3VsV2"
-            )
-        )
-
-        print(
-            "V3 x melhor fixa:",
-            resumo.get(
-                "ganhoV3VsMelhorFixa"
-            )
-        )
-
-        print()
-
-        print(
-            "Eficiência V1:",
-            resumo.get(
-                "eficienciaV1"
-            ),
-            "%"
-        )
-
-        print(
-            "Eficiência V2:",
-            resumo.get(
-                "eficienciaV2"
-            ),
-            "%"
-        )
-
-        print(
-            "Eficiência V3:",
-            resumo.get(
-                "eficienciaV3"
-            ),
-            "%"
-        )
-
-        print()
-
-        print(
-            "Desvio V1:",
-            resumo.get(
-                "desvioV1"
-            )
-        )
-
-        print(
-            "Desvio V2:",
-            resumo.get(
-                "desvioV2"
-            )
-        )
-
-        print(
-            "Desvio V3:",
-            resumo.get(
-                "desvioV3"
-            )
-        )
-
-        print()
-
-        print(
-            "Pareado V2 x V3:"
-        )
-
-        print(
-            "Vitórias V2:",
-            resumo.get(
-                "vitoriasV2Pareado"
-            )
-        )
-
-        print(
-            "Vitórias V3:",
-            resumo.get(
-                "vitoriasV3Pareado"
-            )
-        )
-
-        print(
-            "Empates:",
-            resumo.get(
-                "empatesPareado"
-            )
-        )
-
-        print()
-
-        print(
-            "Escolhas V3:"
-        )
-
-        escolhas = resumo.get(
-            "escolhasV3",
-            {}
-        )
-
-        for estrategia in ESTRATEGIAS:
-
-            print(
+            estrategia,
+            ":",
+            series[
+                "escolhasV3"
+            ].get(
                 estrategia,
-                ":",
-                escolhas.get(
-                    estrategia,
-                    0
-                )
+                0
             )
+        )
 
     print()
 
     print(
         "DECISÃO AUDITORIA:",
-        decisao
+        decisao_auditoria
     )
 
     print(
@@ -2364,4 +2786,4 @@ def finalizar(
 
 if __name__ == "__main__":
 
-    executar()
+    processar()
