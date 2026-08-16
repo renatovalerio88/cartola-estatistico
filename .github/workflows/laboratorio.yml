@@ -187,6 +187,21 @@ jobs:
       # ESTRATÉGIA ADAPTATIVA V1 x V2
       # ======================================
 
+      - name: Testar Estratégia Adaptativa V1
+        run: |
+          python scripts/processamento/testar_estrategia_adaptativa.py
+
+
+      - name: Auditar Estratégia Adaptativa V1
+        run: |
+          python scripts/processamento/auditar_estrategia_adaptativa.py
+
+
+      - name: Testar Estratégia Adaptativa V2
+        run: |
+          python scripts/processamento/testar_estrategia_adaptativa_v2.py
+
+
       - name: Comparar Estratégias Adaptativas
         run: |
           python scripts/processamento/comparar_estrategias_adaptativas.py
