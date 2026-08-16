@@ -273,8 +273,14 @@
       "rodada": 23,
       "preco": 14.34,
       "media": 8.77,
-      "pontos": 17.9,
-      "scouts": {}
+      "pontos": 7.4,
+      "scouts": {
+        "A": 1,
+        "FC": 2,
+        "FD": 1,
+        "FF": 1,
+        "FS": 2
+      }
     }
   ]
 }
