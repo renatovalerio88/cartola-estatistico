@@ -1,8 +1,10 @@
 name: Cartola Estatístico - Laboratório
 
+
 on:
 
   workflow_dispatch:
+
 
 permissions:
 
@@ -181,6 +183,18 @@ jobs:
           python scripts/processamento/gerar_ranking_simulacao.py
 
 
+      # ======================================
+      # ANÁLISE CIENTÍFICA DAS ESCALAÇÕES
+      # ======================================
+
+
+      - name: Analisar Simulações Históricas
+
+        run: |
+
+          python scripts/processamento/analisar_simulacoes_historicas.py
+
+
       - name: Comparar Modelos
 
         run: |
@@ -189,35 +203,683 @@ jobs:
 
 
       # ======================================
-      # DIAGNÓSTICO DOS RESULTADOS
+      # DIAGNÓSTICO RESUMIDO
       # ======================================
 
 
-      - name: Mostrar arquivos gerados
+      - name: Mostrar Resumo do Laboratório
+
+        shell: python
 
         run: |
 
-          echo "===== HISTÓRICO DE ESCALAÇÕES ====="
+          from pathlib import Path
+          import json
 
-          ls -lah data/historico-escalacoes || true
 
-          echo ""
+          def carregar(caminho):
 
-          echo "===== ÍNDICE ====="
+              caminho = Path(caminho)
 
-          cat data/historico-escalacoes/indice.json || true
+              if not caminho.exists():
 
-          echo ""
+                  return {}
 
-          echo "===== SIMULAÇÃO ====="
+              try:
 
-          cat data/simulacao-times.json || true
+                  with open(
+                      caminho,
+                      "r",
+                      encoding="utf-8"
+                  ) as arquivo:
 
-          echo ""
+                      return json.load(
+                          arquivo
+                      )
 
-          echo "===== RANKING ====="
+              except Exception as erro:
 
-          cat data/ranking-simulacao.json || true
+                  print(
+                      f"Erro ao carregar {caminho}: {erro}"
+                  )
+
+                  return {}
+
+
+          def linha():
+
+              print(
+                  "=" * 60
+              )
+
+
+          indice = carregar(
+              "data/historico-escalacoes/indice.json"
+          )
+
+
+          simulacao = carregar(
+              "data/simulacao-times.json"
+          )
+
+
+          ranking = carregar(
+              "data/ranking-simulacao.json"
+          )
+
+
+          analise = carregar(
+              "data/analise-simulacoes-historicas.json"
+          )
+
+
+          comparacao = carregar(
+              "data/comparacao-modelos.json"
+          )
+
+
+          linha()
+
+          print(
+              "CARTOLA ESTATÍSTICO - RESUMO DO LABORATÓRIO"
+          )
+
+          linha()
+
+
+          print()
+
+          print(
+              "===== HISTÓRICO DE ESCALAÇÕES ====="
+          )
+
+
+          print(
+              "Rodadas processadas:",
+              indice.get(
+                  "quantidadeRodadas",
+                  0
+              )
+          )
+
+
+          print(
+              "Primeira rodada:",
+              indice.get(
+                  "primeiraRodada"
+              )
+          )
+
+
+          print(
+              "Última rodada:",
+              indice.get(
+                  "ultimaRodada"
+              )
+          )
+
+
+          print()
+
+
+          print(
+              "===== SIMULAÇÃO HISTÓRICA ====="
+          )
+
+
+          print(
+              "Rodadas:",
+              simulacao.get(
+                  "quantidadeRodadas",
+                  len(
+                      simulacao.get(
+                          "rodadas",
+                          []
+                      )
+                  )
+              )
+          )
+
+
+          print()
+
+
+          print(
+              "===== RANKING DAS ESTRATÉGIAS ====="
+          )
+
+
+          ranking_lista = ranking.get(
+              "ranking",
+              []
+          )
+
+
+          if not ranking_lista:
+
+              print(
+                  "Nenhuma estratégia encontrada."
+              )
+
+
+          for item in ranking_lista:
+
+              print(
+                  f"{item.get('posicao', '-')}º "
+                  f"{item.get('nome', '-')} | "
+                  f"Total: {item.get('pontosTotal', 0)} | "
+                  f"Média: {item.get('mediaPontos', 0)} | "
+                  f"Vitórias: {item.get('vitorias', 0)} | "
+                  f"Consistência: "
+                  f"{item.get('consistencia', 0)}%"
+              )
+
+
+          print()
+
+
+          print(
+              "Melhor estratégia:",
+              ranking.get(
+                  "melhorEstrategia"
+              )
+          )
+
+
+          print()
+
+
+          print(
+              "===== PRECISÃO DAS ESTRATÉGIAS ====="
+          )
+
+
+          resumo = analise.get(
+              "resumoGeral",
+              []
+          )
+
+
+          if not resumo:
+
+              print(
+                  "Análise histórica ainda sem resultados."
+              )
+
+
+          for item in resumo:
+
+              capitao = item.get(
+                  "capitao",
+                  {}
+              )
+
+              print(
+                  f"{item.get('posicao', '-')}º "
+                  f"{item.get('nome', '-')} | "
+                  f"Média real: "
+                  f"{item.get('mediaPontos', 0)} | "
+                  f"MAE jogadores: "
+                  f"{item.get('maeJogadores', 0)} | "
+                  f"MAE time: "
+                  f"{item.get('maeTimes', 0)} | "
+                  f"Capitão: "
+                  f"{capitao.get('taxaAcerto', 0)}%"
+              )
+
+
+          print()
+
+
+          print(
+              "===== ANÁLISE SEM COLD START ====="
+          )
+
+
+          resumo_sem_cold = analise.get(
+              "resumoSemColdStart",
+              []
+          )
+
+
+          if not resumo_sem_cold:
+
+              print(
+                  "Nenhum resultado disponível."
+              )
+
+
+          for item in resumo_sem_cold:
+
+              print(
+                  f"{item.get('posicao', '-')}º "
+                  f"{item.get('nome', '-')} | "
+                  f"Média: "
+                  f"{item.get('mediaPontos', 0)} | "
+                  f"MAE jogadores: "
+                  f"{item.get('maeJogadores', 0)} | "
+                  f"MAE time: "
+                  f"{item.get('maeTimes', 0)}"
+              )
+
+
+          print()
+
+
+          print(
+              "===== PRECISÃO POR POSIÇÃO ====="
+          )
+
+
+          posicoes = analise.get(
+              "desempenhoPorPosicao",
+              {}
+          )
+
+
+          for posicao in [
+              "GOL",
+              "LAT",
+              "ZAG",
+              "MEI",
+              "ATA",
+              "TEC"
+          ]:
+
+              dados = posicoes.get(
+                  posicao,
+                  {}
+              )
+
+              print(
+                  f"{posicao} | "
+                  f"MAE: {dados.get('mae', 0)} | "
+                  f"Viés: {dados.get('vies', 0)} | "
+                  f"Acerto Top Real: "
+                  f"{dados.get('taxaAcertoTopReal', 0)}%"
+              )
+
+
+          print()
+
+
+          print(
+              "===== EVOLUÇÃO POR HISTÓRICO DISPONÍVEL ====="
+          )
+
+
+          evolucao = analise.get(
+              "evolucaoPorQuantidadeHistorico",
+              {}
+          )
+
+
+          for faixa in [
+              "01-03",
+              "04-07",
+              "08-12",
+              "13+"
+          ]:
+
+              print()
+
+              print(
+                  f"Histórico {faixa}:"
+              )
+
+
+              itens = evolucao.get(
+                  faixa,
+                  []
+              )
+
+
+              if not itens:
+
+                  print(
+                      "  sem dados"
+                  )
+
+                  continue
+
+
+              for item in itens:
+
+                  print(
+                      f"  {item.get('nome', '-')} | "
+                      f"Rodadas: "
+                      f"{item.get('rodadas', 0)} | "
+                      f"Média: "
+                      f"{item.get('mediaPontos', 0)} | "
+                      f"MAE jogadores: "
+                      f"{item.get('maeJogadores', 0)}"
+                  )
+
+
+          print()
+
+
+          print(
+              "===== DIAGNÓSTICOS AUTOMÁTICOS ====="
+          )
+
+
+          diagnosticos = analise.get(
+              "diagnosticos",
+              []
+          )
+
+
+          if not diagnosticos:
+
+              print(
+                  "Nenhum diagnóstico disponível."
+              )
+
+
+          for diagnostico in diagnosticos:
+
+              print(
+                  "-",
+                  diagnostico.get(
+                      "mensagem",
+                      ""
+                  )
+              )
+
+
+          print()
+
+
+          print(
+              "===== COMPARAÇÃO DOS MODELOS ====="
+          )
+
+
+          modelos = comparacao.get(
+              "modelos",
+              []
+          )
+
+
+          if isinstance(
+              modelos,
+              dict
+          ):
+
+              for nome, dados in modelos.items():
+
+                  if isinstance(
+                      dados,
+                      dict
+                  ):
+
+                      print(
+                          f"{nome} | "
+                          f"MAE: "
+                          f"{dados.get('mae', dados.get('erroMedio', 0))}"
+                      )
+
+                  else:
+
+                      print(
+                          f"{nome}: {dados}"
+                      )
+
+
+          elif isinstance(
+              modelos,
+              list
+          ):
+
+              for modelo in modelos:
+
+                  if not isinstance(
+                      modelo,
+                      dict
+                  ):
+
+                      continue
+
+                  print(
+                      f"{modelo.get('nome', modelo.get('modelo', '-'))} | "
+                      f"MAE: "
+                      f"{modelo.get('mae', modelo.get('erroMedio', 0))}"
+                  )
+
+
+          else:
+
+              print(
+                  "Formato de comparação não reconhecido."
+              )
+
+
+          linha()
+
+          print(
+              "RESUMO FINALIZADO"
+          )
+
+          linha()
+
+
+      # ======================================
+      # VALIDAÇÕES
+      # ======================================
+
+
+      - name: Validar Resultados do Laboratório
+
+        shell: python
+
+        run: |
+
+          from pathlib import Path
+          import json
+          import sys
+
+
+          erros = []
+
+
+          arquivos_obrigatorios = [
+
+              Path(
+                  "data/historico-escalacoes/indice.json"
+              ),
+
+              Path(
+                  "data/simulacao-times.json"
+              ),
+
+              Path(
+                  "data/ranking-simulacao.json"
+              ),
+
+              Path(
+                  "data/analise-simulacoes-historicas.json"
+              )
+
+          ]
+
+
+          for caminho in arquivos_obrigatorios:
+
+              if not caminho.exists():
+
+                  erros.append(
+                      f"Arquivo ausente: {caminho}"
+                  )
+
+
+          def carregar(caminho):
+
+              try:
+
+                  with open(
+                      caminho,
+                      "r",
+                      encoding="utf-8"
+                  ) as arquivo:
+
+                      return json.load(
+                          arquivo
+                      )
+
+              except Exception as erro:
+
+                  erros.append(
+                      f"JSON inválido em {caminho}: {erro}"
+                  )
+
+                  return {}
+
+
+          if not erros:
+
+              indice = carregar(
+                  arquivos_obrigatorios[0]
+              )
+
+
+              simulacao = carregar(
+                  arquivos_obrigatorios[1]
+              )
+
+
+              ranking = carregar(
+                  arquivos_obrigatorios[2]
+              )
+
+
+              analise = carregar(
+                  arquivos_obrigatorios[3]
+              )
+
+
+              quantidade_historico = indice.get(
+                  "quantidadeRodadas",
+                  0
+              )
+
+
+              quantidade_simulacao = len(
+                  simulacao.get(
+                      "rodadas",
+                      []
+                  )
+              )
+
+
+              quantidade_ranking = len(
+                  ranking.get(
+                      "ranking",
+                      []
+                  )
+              )
+
+
+              quantidade_analise = analise.get(
+                  "quantidadeRodadas",
+                  0
+              )
+
+
+              if quantidade_historico <= 0:
+
+                  erros.append(
+                      "Histórico de escalações vazio."
+                  )
+
+
+              if quantidade_simulacao <= 0:
+
+                  erros.append(
+                      "Simulação histórica vazia."
+                  )
+
+
+              if quantidade_ranking != 3:
+
+                  erros.append(
+                      "Ranking deveria possuir exatamente "
+                      "3 estratégias."
+                  )
+
+
+              if quantidade_analise <= 0:
+
+                  erros.append(
+                      "Análise científica histórica vazia."
+                  )
+
+
+              if (
+                  quantidade_historico > 0
+                  and quantidade_simulacao > 0
+                  and quantidade_historico
+                  != quantidade_simulacao
+              ):
+
+                  erros.append(
+                      "Quantidade de rodadas do histórico "
+                      "difere da simulação."
+                  )
+
+
+              if (
+                  quantidade_simulacao > 0
+                  and quantidade_analise > 0
+                  and quantidade_simulacao
+                  != quantidade_analise
+              ):
+
+                  erros.append(
+                      "Quantidade de rodadas da simulação "
+                      "difere da análise científica."
+                  )
+
+
+          if erros:
+
+              print(
+                  "============================================"
+              )
+
+              print(
+                  "VALIDAÇÃO DO LABORATÓRIO FALHOU"
+              )
+
+              print(
+                  "============================================"
+              )
+
+
+              for erro in erros:
+
+                  print(
+                      "-",
+                      erro
+                  )
+
+
+              sys.exit(
+                  1
+              )
+
+
+          print(
+              "============================================"
+          )
+
+          print(
+              "VALIDAÇÃO DO LABORATÓRIO: OK"
+          )
+
+          print(
+              "============================================"
+          )
 
 
       # ======================================
