@@ -233,14 +233,64 @@ function obterJogadoresDaPosicao(
    7. ORDENAÇÃO DO RANKING
    ========================================================= */
 
+function obterProjecaoRanking(
+  jogador
+) {
+  const projecaoCalibrada =
+    Number(
+      jogador?.projecaoCalibrada
+    );
+
+  if (
+    Number.isFinite(
+      projecaoCalibrada
+    )
+  ) {
+    return projecaoCalibrada;
+  }
+
+  const projecao =
+    Number(
+      jogador?.projecao
+    );
+
+  if (
+    Number.isFinite(
+      projecao
+    )
+  ) {
+    return projecao;
+  }
+
+  const projecaoOriginal =
+    Number(
+      jogador?.projecaoOriginal
+    );
+
+  if (
+    Number.isFinite(
+      projecaoOriginal
+    )
+  ) {
+    return projecaoOriginal;
+  }
+
+  return 0;
+}
+
+
 function compararJogadoresRanking(
   jogadorA,
   jogadorB
 ) {
 
   const diferencaProjecao =
-    numeroSeguro(jogadorB.projecao) -
-    numeroSeguro(jogadorA.projecao);
+    obterProjecaoRanking(
+      jogadorB
+    ) -
+    obterProjecaoRanking(
+      jogadorA
+    );
 
   if (diferencaProjecao !== 0) {
     return diferencaProjecao;
@@ -749,10 +799,9 @@ function exibirDestaquesGerais() {
   }
 
   const maiorProjecao =
-    obterMaiorPorCampo(
-      jogadores,
-      "projecao"
-    );
+    [...jogadores].sort(
+      compararJogadoresRanking
+    )[0] || null;
 
   const maiorConfianca =
     obterMaiorPorCampo(
@@ -771,7 +820,9 @@ function exibirDestaquesGerais() {
     "bestProjectionName",
     maiorProjecao,
     formatarPontos(
-      maiorProjecao?.projecao
+      obterProjecaoRanking(
+        maiorProjecao
+      )
     )
   );
 
