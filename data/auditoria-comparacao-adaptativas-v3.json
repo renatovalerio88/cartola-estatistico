@@ -1,0 +1,396 @@
+{
+  "modelo": "auditoria_comparacao_adaptativas_v3",
+  "descricao": "Auditoria independente da comparação científica V1 x V2 x V3.",
+  "rodadasAuditadas": 22,
+  "testes": [
+    {
+      "nome": "arquivo_v1_existe",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "arquivo_v2_existe",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "arquivo_v3_existe",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "arquivo_simulacao_existe",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "arquivo_comparacao_existe",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "versao_v3",
+      "passou": true,
+      "critico": true,
+      "esperado": "estrategia_adaptativa_v3",
+      "encontrado": "estrategia_adaptativa_v3"
+    },
+    {
+      "nome": "versao_comparacao",
+      "passou": true,
+      "critico": true,
+      "esperado": "comparacao_estrategias_adaptativas_v3",
+      "encontrado": "comparacao_estrategias_adaptativas_v3"
+    },
+    {
+      "nome": "rodadas_comuns_consistentes",
+      "passou": true,
+      "critico": true,
+      "esperado": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "encontrado": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "nome": "quantidade_rodadas_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": 22,
+      "encontrado": 22
+    },
+    {
+      "nome": "amostra_minima",
+      "passou": true,
+      "critico": true,
+      "esperado": ">=10",
+      "encontrado": 22
+    },
+    {
+      "nome": "media_v1_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": 0.0,
+      "encontrado": 0.0
+    },
+    {
+      "nome": "media_v2_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": 0.0,
+      "encontrado": 0.0
+    },
+    {
+      "nome": "media_v3_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": 0.0,
+      "encontrado": 0.0
+    },
+    {
+      "nome": "desvio_v1_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "desvio_v2_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "desvio_v3_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "metricas_fixas_consistentes",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "melhor_fixa_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": "Conservador",
+      "encontrado": "Conservador"
+    },
+    {
+      "nome": "media_oraculo_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": 0.0,
+      "encontrado": 0.0
+    },
+    {
+      "nome": "oraculo_valido",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "ganho_v3_v1_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "ganho_v3_v2_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "ganho_v3_fixa_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "pareado_v2_v3_vitorias_v2",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "pareado_v2_v3_vitorias_v3",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "pareado_v2_v3_empates",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "pareado_v2_v3_taxa",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "eficiencia_v1_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "eficiencia_v2_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "eficiencia_v3_consistente",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "escolhas_v3_consistentes",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "cobertura_escolhas_v3",
+      "passou": true,
+      "critico": true,
+      "esperado": 22,
+      "encontrado": 22
+    },
+    {
+      "nome": "estrategias_v3_validas",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "v3_sem_vazamento_declarado",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "v3_historico_progressivo",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "v3_auditoria_sem_vazamento",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "detalhes_rodadas_consistentes",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "nao_altera_modelo_oficial",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "nao_altera_pesos",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "nao_altera_escalacoes",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "nao_altera_estrategia_oficial",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "promocao_automatica_bloqueada",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    },
+    {
+      "nome": "decisao_sem_promocao_automatica",
+      "passou": true,
+      "critico": true,
+      "esperado": null,
+      "encontrado": null
+    }
+  ],
+  "resumoTestes": {
+    "quantidade": 43,
+    "aprovados": 43,
+    "falhas": 0,
+    "falhasCriticas": 0,
+    "alertas": 0,
+    "scoreQualidade": 100.0
+  },
+  "resultados": {
+    "mediaV1": 0.0,
+    "mediaV2": 0.0,
+    "mediaV3": 0.0,
+    "melhorFixa": "Conservador",
+    "mediaMelhorFixa": 0.0,
+    "mediaOraculo": 0.0,
+    "ganhoV3VsV1": 0.0,
+    "ganhoV3VsV2": 0.0,
+    "ganhoV3VsMelhorFixa": 0.0,
+    "eficienciaV1": 0.0,
+    "eficienciaV2": 0.0,
+    "eficienciaV3": 0.0,
+    "desvioV1": 0.0,
+    "desvioV2": 0.0,
+    "desvioV3": 0.0,
+    "vitoriasV2Pareado": 0,
+    "vitoriasV3Pareado": 0,
+    "empatesPareado": 22,
+    "escolhasV3": {
+      "Conservador": 19,
+      "Equilibrado": 3,
+      "Agressivo": 0
+    }
+  },
+  "decisao": "COMPARACAO_V3_VALIDADA",
+  "promocaoAutomatica": false,
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraPesos": false,
+    "alteraEscalacoes": false,
+    "alteraEstrategiaOficial": false,
+    "promocaoAutomatica": false
+  }
+}

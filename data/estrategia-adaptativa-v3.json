@@ -1,0 +1,1059 @@
+{
+  "modelo": "estrategia_adaptativa_v3",
+  "descricao": "Estratégia adaptativa V3 com média histórica, desempenho recente, tendência, estabilidade e regime.",
+  "rodadas": [
+    {
+      "rodada": 2,
+      "historicoDisponivel": 0,
+      "regime": null,
+      "estrategiaEscolhida": "Equilibrado",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": false,
+      "semVazamentoFuturo": true,
+      "scores": {}
+    },
+    {
+      "rodada": 3,
+      "historicoDisponivel": 1,
+      "regime": null,
+      "estrategiaEscolhida": "Equilibrado",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": false,
+      "semVazamentoFuturo": true,
+      "scores": {}
+    },
+    {
+      "rodada": 4,
+      "historicoDisponivel": 2,
+      "regime": null,
+      "estrategiaEscolhida": "Equilibrado",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": false,
+      "semVazamentoFuturo": true,
+      "scores": {}
+    },
+    {
+      "rodada": 5,
+      "historicoDisponivel": 3,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 10.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 0
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 0
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 0
+        }
+      }
+    },
+    {
+      "rodada": 6,
+      "historicoDisponivel": 4,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 10.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 1
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 1
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 1
+        }
+      }
+    },
+    {
+      "rodada": 7,
+      "historicoDisponivel": 5,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 2
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 2
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 2
+        }
+      }
+    },
+    {
+      "rodada": 8,
+      "historicoDisponivel": 6,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 3
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 3
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 3
+        }
+      }
+    },
+    {
+      "rodada": 9,
+      "historicoDisponivel": 7,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 4
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 4
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 4
+        }
+      }
+    },
+    {
+      "rodada": 10,
+      "historicoDisponivel": 8,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 5
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 5
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 5
+        }
+      }
+    },
+    {
+      "rodada": 11,
+      "historicoDisponivel": 9,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 6
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 6
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 6
+        }
+      }
+    },
+    {
+      "rodada": 12,
+      "historicoDisponivel": 10,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 7
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 7
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 7
+        }
+      }
+    },
+    {
+      "rodada": 13,
+      "historicoDisponivel": 11,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 8
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 8
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 8
+        }
+      }
+    },
+    {
+      "rodada": 14,
+      "historicoDisponivel": 12,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 9
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 9
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 9
+        }
+      }
+    },
+    {
+      "rodada": 15,
+      "historicoDisponivel": 13,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 10
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 10
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 10
+        }
+      }
+    },
+    {
+      "rodada": 16,
+      "historicoDisponivel": 14,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 11
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 11
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 11
+        }
+      }
+    },
+    {
+      "rodada": 17,
+      "historicoDisponivel": 15,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 12
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 12
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 12
+        }
+      }
+    },
+    {
+      "rodada": 18,
+      "historicoDisponivel": 16,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 13
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 13
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 13
+        }
+      }
+    },
+    {
+      "rodada": 19,
+      "historicoDisponivel": 17,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 14
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 14
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 14
+        }
+      }
+    },
+    {
+      "rodada": 20,
+      "historicoDisponivel": 18,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 15
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 15
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 15
+        }
+      }
+    },
+    {
+      "rodada": 21,
+      "historicoDisponivel": 19,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 16
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 16
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 16
+        }
+      }
+    },
+    {
+      "rodada": 22,
+      "historicoDisponivel": 20,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 17
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 17
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 17
+        }
+      }
+    },
+    {
+      "rodada": 23,
+      "historicoDisponivel": 21,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 0.0,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 0.0,
+      "perdaOraculo": 0.0,
+      "acertouMelhorEstrategia": true,
+      "semVazamentoFuturo": true,
+      "scores": {
+        "Conservador": {
+          "score": 18.0,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 100.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 100.0,
+          "amostraRegime": 18
+        },
+        "Equilibrado": {
+          "score": 0.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 18
+        },
+        "Agressivo": {
+          "score": 1.5,
+          "mediaHistorica": 0.0,
+          "mediaRecente": 0.0,
+          "mediana": 0.0,
+          "desvio": 0.0,
+          "taxaVitorias": 0.0,
+          "tendencia": 0.0,
+          "mediaRegime": 0.0,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 18
+        }
+      }
+    }
+  ],
+  "resumo": {
+    "rodadas": 22,
+    "adaptativoV3": {
+      "media": 0.0,
+      "total": 0.0,
+      "mediana": 0.0,
+      "desvio": 0.0,
+      "acertos": 19,
+      "taxaAcerto": 86.36
+    },
+    "estrategiasFixas": {
+      "Conservador": {
+        "media": 0.0,
+        "total": 0.0,
+        "mediana": 0.0,
+        "desvio": 0.0,
+        "vitorias": 22
+      },
+      "Equilibrado": {
+        "media": 0.0,
+        "total": 0.0,
+        "mediana": 0.0,
+        "desvio": 0.0,
+        "vitorias": 0
+      },
+      "Agressivo": {
+        "media": 0.0,
+        "total": 0.0,
+        "mediana": 0.0,
+        "desvio": 0.0,
+        "vitorias": 0
+      }
+    },
+    "melhorEstrategiaFixa": {
+      "estrategia": "Conservador",
+      "media": 0.0
+    },
+    "comparacaoMelhorFixa": {
+      "ganhoPontosRodada": 0.0,
+      "ganhoPercentual": 0.0
+    },
+    "oraculo": {
+      "media": 0.0,
+      "eficienciaV3": 0.0
+    },
+    "escolhas": {
+      "Conservador": 19,
+      "Equilibrado": 3,
+      "Agressivo": 0
+    },
+    "regimes": {
+      "None": 3,
+      "alto": 19
+    }
+  },
+  "decisao": "MANTER_ESTRATEGIAS_FIXAS",
+  "promocaoAutomatica": false,
+  "auditoria": {
+    "historicoProgressivo": true,
+    "semVazamentoFuturo": true,
+    "v1Preservada": true,
+    "v2Preservada": true,
+    "modeloExperimental": true
+  }
+}
