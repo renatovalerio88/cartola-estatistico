@@ -1,52 +1,45 @@
 """
 =========================================================
 CARTOLA ESTATÍSTICO
-Ranking Histórico das Estratégias de Escalação
+Ranking Histórico das Estratégias
+
+Versão:
+ranking_simulacao_v2
+
+Entrada:
+data/simulacao-times.json
+
+Saída:
+data/ranking-simulacao.json
 
 Objetivo:
-
 Comparar historicamente as estratégias:
 
 - Conservador
 - Equilibrado
 - Agressivo
 
-A análise considera:
+A avaliação considera:
 
-- pontos totais
-- média
-- mediana
-- melhor rodada
-- pior rodada
-- vitórias por rodada
-- percentual de vitórias
-- consistência
-- volatilidade
-- frequência acima de faixas de pontuação
-- desempenho com e sem cold start
-- estratégia mais segura
-- estratégia mais explosiva
-
-Entrada:
-
-data/simulacao-times.json
-
-Saída:
-
-data/ranking-simulacao.json
+- pontuação total;
+- média;
+- mediana;
+- consistência;
+- melhor rodada;
+- pior rodada;
+- desempenho do capitão;
+- cobertura dos resultados;
+- vitórias entre estratégias;
+- aproveitamento por rodada.
 
 =========================================================
 """
 
-from pathlib import Path
-from statistics import (
-    mean,
-    median,
-    pstdev
-)
-
 import json
 import math
+
+from pathlib import Path
+from statistics import mean, median, pstdev
 
 
 # ======================================================
@@ -61,13 +54,11 @@ BASE_DIR = (
     .parent
 )
 
-
 ARQUIVO_ENTRADA = (
     BASE_DIR /
     "data" /
     "simulacao-times.json"
 )
-
 
 ARQUIVO_SAIDA = (
     BASE_DIR /
@@ -76,27 +67,17 @@ ARQUIVO_SAIDA = (
 )
 
 
-RODADA_COLD_START = 2
-
-
-FAIXAS_PONTUACAO = [
-    50,
-    60,
-    70,
-    80,
-    100
-]
-
-
 # ======================================================
 # UTILIDADES
 # ======================================================
 
-def carregar_json(caminho):
+def carregar_json(
+    caminho
+):
 
     if not caminho.exists():
 
-        return {}
+        return None
 
     try:
 
@@ -113,11 +94,11 @@ def carregar_json(caminho):
     except Exception as erro:
 
         print(
-            f"[ERRO] Não foi possível carregar "
+            f"[ERRO] Não foi possível ler "
             f"{caminho}: {erro}"
         )
 
-        return {}
+        return None
 
 
 def salvar_json(
@@ -172,41 +153,7 @@ def numero(
     return padrao
 
 
-def inteiro(
-    valor,
-    padrao=0
-):
-
-    try:
-
-        if valor is None:
-
-            return padrao
-
-        return int(
-            valor
-        )
-
-    except Exception:
-
-        return padrao
-
-
-def arredondar(
-    valor,
-    casas=2
-):
-
-    return round(
-        numero(
-            valor,
-            0
-        ),
-        casas
-    )
-
-
-def media_segura(
+def media(
     valores
 ):
 
@@ -219,7 +166,7 @@ def media_segura(
     )
 
 
-def mediana_segura(
+def mediana(
     valores
 ):
 
@@ -232,7 +179,7 @@ def mediana_segura(
     )
 
 
-def desvio_seguro(
+def desvio(
     valores
 ):
 
@@ -247,91 +194,6 @@ def desvio_seguro(
     )
 
 
-def percentual(
-    quantidade,
-    total
-):
-
-    if not total:
-
-        return 0
-
-    return round(
-        (
-            quantidade /
-            total
-        ) * 100,
-        2
-    )
-
-
-# ======================================================
-# NORMALIZAÇÃO DAS ESTRATÉGIAS
-# ======================================================
-
-def obter_nome_estrategia(
-    estrategia
-):
-
-    return (
-
-        estrategia.get(
-            "nome"
-        )
-
-        or estrategia.get(
-            "estrategia"
-        )
-
-        or estrategia.get(
-            "perfil"
-        )
-
-        or estrategia.get(
-            "id"
-        )
-
-        or "Sem nome"
-
-    )
-
-
-def obter_pontos_estrategia(
-    estrategia
-):
-
-    possibilidades = [
-
-        estrategia.get(
-            "pontos"
-        ),
-
-        estrategia.get(
-            "pontuacao"
-        ),
-
-        estrategia.get(
-            "pontuacaoReal"
-        ),
-
-        estrategia.get(
-            "total"
-        )
-
-    ]
-
-    for valor in possibilidades:
-
-        if valor is not None:
-
-            return numero(
-                valor,
-                0
-            )
-
-    return 0
-
-
 # ======================================================
 # COLETA DOS RESULTADOS
 # ======================================================
@@ -342,74 +204,27 @@ def coletar_resultados(
 
     estrategias = {}
 
-    rodadas_validas = []
-
-
-    for rodada_dados in dados.get(
+    for rodada in dados.get(
         "rodadas",
         []
     ):
 
-        rodada = inteiro(
-
-            rodada_dados.get(
-                "rodada"
-            ),
-
-            0
-
+        numero_rodada = rodada.get(
+            "rodada"
         )
 
-        if rodada <= 0:
-
-            continue
-
-
-        estrategias_rodada = (
-            rodada_dados.get(
-                "estrategias",
-                []
-            )
-        )
-
-
-        if not estrategias_rodada:
-
-            continue
-
-
-        registro_rodada = {
-
-            "rodada":
-                rodada,
-
-            "dadosUtilizadosAteRodada":
-                rodada_dados.get(
-                    "dadosUtilizadosAteRodada"
-                ),
-
-            "coldStart":
-                rodada ==
-                RODADA_COLD_START,
-
-            "estrategias":
-                []
-
-        }
-
-
-        for estrategia in (
-            estrategias_rodada
+        for estrategia in rodada.get(
+            "estrategias",
+            []
         ):
 
-            nome = obter_nome_estrategia(
-                estrategia
+            nome = estrategia.get(
+                "nome"
             )
 
-            pontos = obter_pontos_estrategia(
-                estrategia
-            )
+            if not nome:
 
+                continue
 
             if nome not in estrategias:
 
@@ -417,65 +232,87 @@ def coletar_resultados(
                     nome
                 ] = []
 
-
-            resultado = {
-
-                "rodada":
-                    rodada,
-
-                "pontos":
-                    arredondar(
-                        pontos
-                    ),
-
-                "coldStart":
-                    rodada ==
-                    RODADA_COLD_START
-
-            }
-
-
             estrategias[
                 nome
-            ].append(
-                resultado
-            )
-
-
-            registro_rodada[
-                "estrategias"
             ].append({
 
-                "nome":
-                    nome,
+                "rodada":
+                    numero_rodada,
+
+                "perfil":
+                    estrategia.get(
+                        "perfil"
+                    ),
+
+                "formacao":
+                    estrategia.get(
+                        "formacao"
+                    ),
 
                 "pontos":
-                    arredondar(
-                        pontos
+                    numero(
+                        estrategia.get(
+                            "pontuacaoComCapitao"
+                        )
+                    ),
+
+                "pontosSemCapitao":
+                    numero(
+                        estrategia.get(
+                            "pontuacaoSemCapitao"
+                        )
+                    ),
+
+                "bonusCapitao":
+                    numero(
+                        estrategia.get(
+                            "bonusCapitao"
+                        )
+                    ),
+
+                "mae":
+                    numero(
+                        estrategia.get(
+                            "maeJogadores"
+                        )
+                    ),
+
+                "cobertura":
+                    numero(
+                        estrategia.get(
+                            "coberturaResultadosPercentual"
+                        )
+                    ),
+
+                "quantidadeTitulares":
+                    int(
+                        numero(
+                            estrategia.get(
+                                "quantidadeTitulares"
+                            )
+                        )
+                    ),
+
+                "jogadoresEncontrados":
+                    int(
+                        numero(
+                            estrategia.get(
+                                "jogadoresEncontrados"
+                            )
+                        )
+                    ),
+
+                "escalacaoCompleta":
+                    bool(
+                        estrategia.get(
+                            "escalacaoCompleta",
+                            False
+                        )
                     )
 
             })
 
-
-        rodadas_validas.append(
-            registro_rodada
-        )
-
-
-    rodadas_validas.sort(
-
-        key=lambda item:
-            item[
-                "rodada"
-            ]
-
-    )
-
-
-    return (
-        estrategias,
-        rodadas_validas
-    )
+    return estrategias
 
 
 # ======================================================
@@ -483,206 +320,240 @@ def coletar_resultados(
 # ======================================================
 
 def calcular_vitorias(
-    rodadas
+    dados
 ):
 
     vitorias = {}
 
-    empates_primeiro = {}
+    empates = {}
 
-    vencedores_rodadas = []
+    participacoes = {}
 
-
-    for rodada in rodadas:
+    for rodada in dados.get(
+        "rodadas",
+        []
+    ):
 
         estrategias = rodada.get(
             "estrategias",
             []
         )
 
-
         if not estrategias:
 
             continue
 
+        pontuacoes = []
 
-        melhor_pontuacao = max(
+        for estrategia in estrategias:
 
-            numero(
-                estrategia.get(
-                    "pontos"
-                ),
-                0
-            )
-
-            for estrategia
-            in estrategias
-
-        )
-
-
-        vencedores = [
-
-            estrategia.get(
+            nome = estrategia.get(
                 "nome"
             )
 
-            for estrategia
-            in estrategias
+            if not nome:
 
-            if numero(
+                continue
+
+            pontos = numero(
                 estrategia.get(
-                    "pontos"
-                ),
-                0
-            ) == melhor_pontuacao
+                    "pontuacaoComCapitao"
+                )
+            )
+
+            pontuacoes.append(
+                (
+                    nome,
+                    pontos
+                )
+            )
+
+            participacoes[
+                nome
+            ] = (
+                participacoes.get(
+                    nome,
+                    0
+                ) +
+                1
+            )
+
+            if nome not in vitorias:
+
+                vitorias[
+                    nome
+                ] = 0
+
+            if nome not in empates:
+
+                empates[
+                    nome
+                ] = 0
+
+        if not pontuacoes:
+
+            continue
+
+        maior_pontuacao = max(
+
+            pontos
+
+            for _, pontos in pontuacoes
+
+        )
+
+        vencedores = [
+
+            nome
+
+            for nome, pontos in pontuacoes
+
+            if abs(
+                pontos -
+                maior_pontuacao
+            ) < 0.001
 
         ]
 
+        if len(
+            vencedores
+        ) == 1:
 
-        for vencedor in vencedores:
+            vencedor = vencedores[
+                0
+            ]
 
-            if vencedor not in vitorias:
+            vitorias[
+                vencedor
+            ] += 1
 
-                vitorias[
-                    vencedor
-                ] = 0
+        else:
 
+            for nome in vencedores:
 
-            if vencedor not in empates_primeiro:
-
-                empates_primeiro[
-                    vencedor
-                ] = 0
-
-
-            if len(
-                vencedores
-            ) == 1:
-
-                vitorias[
-                    vencedor
+                empates[
+                    nome
                 ] += 1
 
-            else:
+    return {
 
-                empates_primeiro[
-                    vencedor
-                ] += 1
+        "vitorias":
+            vitorias,
 
+        "empates":
+            empates,
 
-        vencedores_rodadas.append({
+        "participacoes":
+            participacoes
 
-            "rodada":
-                rodada.get(
-                    "rodada"
-                ),
-
-            "pontos":
-                arredondar(
-                    melhor_pontuacao
-                ),
-
-            "vencedores":
-                vencedores,
-
-            "empate":
-                len(
-                    vencedores
-                ) > 1
-
-        })
-
-
-    return (
-        vitorias,
-        empates_primeiro,
-        vencedores_rodadas
-    )
+    }
 
 
 # ======================================================
-# FAIXAS DE PONTUAÇÃO
+# MELHOR E PIOR RODADA
 # ======================================================
 
-def calcular_faixas(
-    pontos
+def obter_melhor_rodada(
+    resultados
 ):
 
-    resultado = {}
+    if not resultados:
 
+        return None
 
-    for faixa in FAIXAS_PONTUACAO:
+    melhor = max(
 
-        quantidade = sum(
+        resultados,
 
-            1
-
-            for valor in pontos
-
-            if valor >= faixa
-
-        )
-
-
-        resultado[
-            f"acima{faixa}"
-        ] = {
-
-            "quantidade":
-                quantidade,
-
-            "percentual":
-                percentual(
-                    quantidade,
-                    len(
-                        pontos
-                    )
+        key=lambda item:
+            numero(
+                item.get(
+                    "pontos"
                 )
+            )
 
-        }
+    )
+
+    return {
+
+        "rodada":
+            melhor.get(
+                "rodada"
+            ),
+
+        "pontos":
+            round(
+                numero(
+                    melhor.get(
+                        "pontos"
+                    )
+                ),
+                2
+            )
+
+    }
 
 
-    return resultado
+def obter_pior_rodada(
+    resultados
+):
+
+    if not resultados:
+
+        return None
+
+    pior = min(
+
+        resultados,
+
+        key=lambda item:
+            numero(
+                item.get(
+                    "pontos"
+                )
+            )
+
+    )
+
+    return {
+
+        "rodada":
+            pior.get(
+                "rodada"
+            ),
+
+        "pontos":
+            round(
+                numero(
+                    pior.get(
+                        "pontos"
+                    )
+                ),
+                2
+            )
+
+    }
 
 
 # ======================================================
-# CONSISTÊNCIA
+# SCORE DE CONSISTÊNCIA
 # ======================================================
 
 def calcular_consistencia(
-    pontos
+    media_pontos,
+    desvio_pontos
 ):
 
-    if not pontos:
+    if media_pontos <= 0:
 
         return 0
-
-
-    media_pontos = media_segura(
-        pontos
-    )
-
-
-    if media_pontos == 0:
-
-        return 0
-
-
-    volatilidade = desvio_seguro(
-        pontos
-    )
-
 
     coeficiente_variacao = (
 
-        volatilidade /
-        abs(
-            media_pontos
-        )
+        desvio_pontos /
+        media_pontos
 
     )
-
 
     consistencia = (
 
@@ -694,7 +565,6 @@ def calcular_consistencia(
 
     )
 
-
     consistencia = max(
         0,
         min(
@@ -703,173 +573,258 @@ def calcular_consistencia(
         )
     )
 
-
-    return arredondar(
-        consistencia
+    return round(
+        consistencia,
+        2
     )
 
 
 # ======================================================
-# ANÁLISE DE UMA ESTRATÉGIA
+# SCORE GLOBAL
 # ======================================================
 
-def analisar_estrategia(
-    nome,
-    resultados,
-    vitorias,
-    empates_primeiro,
-    total_rodadas
+def calcular_score_global(
+    media_pontos,
+    consistencia,
+    cobertura,
+    taxa_vitorias,
+    mae
 ):
 
-    if not resultados:
+    # Pontuação média é o componente principal.
+    #
+    # Os demais fatores servem como critérios de
+    # qualidade e estabilidade da estratégia.
 
-        return {
+    score = (
 
-            "nome":
-                nome,
+          media_pontos * 0.65
 
-            "rodadas":
-                0
+        + consistencia * 0.10
 
-        }
+        + cobertura * 0.10
 
+        + taxa_vitorias * 0.15
+
+    )
+
+    # Pequena penalização pelo erro médio individual.
+
+    score -= (
+        mae *
+        0.10
+    )
+
+    return round(
+        score,
+        3
+    )
+
+
+# ======================================================
+# RESUMO DE ESTRATÉGIA
+# ======================================================
+
+def resumir_estrategia(
+    nome,
+    resultados,
+    estatisticas_vitorias
+):
 
     pontos = [
 
         numero(
-            resultado.get(
+            item.get(
                 "pontos"
-            ),
-            0
+            )
         )
 
-        for resultado
-        in resultados
+        for item in resultados
 
     ]
 
-
-    resultados_sem_cold = [
-
-        resultado
-
-        for resultado
-        in resultados
-
-        if not resultado.get(
-            "coldStart"
-        )
-
-    ]
-
-
-    pontos_sem_cold = [
+    pontos_sem_capitao = [
 
         numero(
-            resultado.get(
-                "pontos"
-            ),
-            0
+            item.get(
+                "pontosSemCapitao"
+            )
         )
 
-        for resultado
-        in resultados_sem_cold
+        for item in resultados
 
     ]
 
+    bonus_capitao = [
 
-    melhor = max(
-
-        resultados,
-
-        key=lambda item:
-            numero(
-                item.get(
-                    "pontos"
-                ),
-                0
+        numero(
+            item.get(
+                "bonusCapitao"
             )
+        )
 
+        for item in resultados
+
+    ]
+
+    maes = [
+
+        numero(
+            item.get(
+                "mae"
+            )
+        )
+
+        for item in resultados
+
+    ]
+
+    coberturas = [
+
+        numero(
+            item.get(
+                "cobertura"
+            )
+        )
+
+        for item in resultados
+
+    ]
+
+    completos = [
+
+        item
+
+        for item in resultados
+
+        if item.get(
+            "escalacaoCompleta"
+        )
+
+    ]
+
+    media_pontos = media(
+        pontos
     )
 
-
-    pior = min(
-
-        resultados,
-
-        key=lambda item:
-            numero(
-                item.get(
-                    "pontos"
-                ),
-                0
-            )
-
+    mediana_pontos = mediana(
+        pontos
     )
 
+    desvio_pontos = desvio(
+        pontos
+    )
 
-    quantidade_vitorias = (
-        vitorias.get(
+    media_sem_capitao = media(
+        pontos_sem_capitao
+    )
+
+    media_bonus_capitao = media(
+        bonus_capitao
+    )
+
+    mae_medio = media(
+        maes
+    )
+
+    cobertura_media = media(
+        coberturas
+    )
+
+    vitorias = (
+        estatisticas_vitorias[
+            "vitorias"
+        ].get(
             nome,
             0
         )
     )
 
-
-    quantidade_empates = (
-        empates_primeiro.get(
+    empates = (
+        estatisticas_vitorias[
+            "empates"
+        ].get(
             nome,
             0
         )
     )
 
-
-    media_pontos = media_segura(
-        pontos
+    participacoes = (
+        estatisticas_vitorias[
+            "participacoes"
+        ].get(
+            nome,
+            0
+        )
     )
 
+    taxa_vitorias = (
 
-    mediana_pontos = mediana_segura(
-        pontos
-    )
+        (
+            vitorias /
+            participacoes
+        ) *
+        100
 
-
-    volatilidade = desvio_seguro(
-        pontos
-    )
-
-
-    consistencia = calcular_consistencia(
-        pontos
-    )
-
-
-    media_sem_cold = media_segura(
-        pontos_sem_cold
-    )
-
-
-    total_sem_cold = sum(
-        pontos_sem_cold
-    )
-
-
-    diferenca_cold = (
-
-        media_sem_cold -
-        media_pontos
-
-        if pontos_sem_cold
+        if participacoes
 
         else 0
 
     )
 
+    consistencia = (
+        calcular_consistencia(
+            media_pontos,
+            desvio_pontos
+        )
+    )
+
+    score_global = (
+        calcular_score_global(
+
+            media_pontos,
+
+            consistencia,
+
+            cobertura_media,
+
+            taxa_vitorias,
+
+            mae_medio
+
+        )
+    )
 
     return {
 
         "nome":
             nome,
+
+        "perfil":
+            (
+                resultados[
+                    0
+                ].get(
+                    "perfil"
+                )
+
+                if resultados
+
+                else None
+            ),
+
+        "formacao":
+            (
+                resultados[
+                    0
+                ].get(
+                    "formacao"
+                )
+
+                if resultados
+
+                else None
+            ),
 
         "rodadas":
             len(
@@ -877,742 +832,129 @@ def analisar_estrategia(
             ),
 
         "pontosTotal":
-            arredondar(
+            round(
                 sum(
                     pontos
-                )
+                ),
+                2
             ),
 
         "mediaPontos":
-            arredondar(
-                media_pontos
+            round(
+                media_pontos,
+                2
             ),
 
         "medianaPontos":
-            arredondar(
-                mediana_pontos
+            round(
+                mediana_pontos,
+                2
             ),
 
-        "volatilidade":
-            arredondar(
-                volatilidade
+        "desvioPadrao":
+            round(
+                desvio_pontos,
+                2
             ),
 
         "consistencia":
             consistencia,
 
-        "vitorias":
-            quantidade_vitorias,
-
-        "empatesPrimeiro":
-            quantidade_empates,
-
-        "taxaVitorias":
-            percentual(
-                quantidade_vitorias,
-                total_rodadas
+        "mediaSemCapitao":
+            round(
+                media_sem_capitao,
+                2
             ),
 
-        "taxaPrimeiroLugarIncluindoEmpates":
-            percentual(
+        "mediaBonusCapitao":
+            round(
+                media_bonus_capitao,
+                2
+            ),
+
+        "ganhoMedioCapitaoPercentual":
+            round(
 
                 (
-                    quantidade_vitorias +
-                    quantidade_empates
-                ),
+                    (
+                        media_bonus_capitao /
+                        media_sem_capitao
+                    ) *
+                    100
+                )
 
-                total_rodadas
+                if media_sem_capitao
+
+                else 0,
+
+                2
 
             ),
 
-        "melhorRodada": {
-
-            "rodada":
-                melhor.get(
-                    "rodada"
-                ),
-
-            "pontos":
-                arredondar(
-                    melhor.get(
-                        "pontos"
-                    )
-                )
-
-        },
-
-        "piorRodada": {
-
-            "rodada":
-                pior.get(
-                    "rodada"
-                ),
-
-            "pontos":
-                arredondar(
-                    pior.get(
-                        "pontos"
-                    )
-                )
-
-        },
-
-        "amplitude":
-            arredondar(
-
-                numero(
-                    melhor.get(
-                        "pontos"
-                    ),
-                    0
-                )
-
-                -
-
-                numero(
-                    pior.get(
-                        "pontos"
-                    ),
-                    0
-                )
-
+        "maeMedioJogadores":
+            round(
+                mae_medio,
+                3
             ),
 
-        "faixasPontuacao":
-            calcular_faixas(
-                pontos
+        "coberturaMediaPercentual":
+            round(
+                cobertura_media,
+                2
             ),
 
-        "semColdStart": {
+        "escalacoesCompletas":
+            len(
+                completos
+            ),
 
-            "rodadas":
-                len(
-                    pontos_sem_cold
-                ),
+        "taxaEscalacoesCompletas":
+            round(
 
-            "pontosTotal":
-                arredondar(
-                    total_sem_cold
-                ),
-
-            "mediaPontos":
-                arredondar(
-                    media_sem_cold
-                ),
-
-            "medianaPontos":
-                arredondar(
-                    mediana_segura(
-                        pontos_sem_cold
-                    )
-                ),
-
-            "volatilidade":
-                arredondar(
-                    desvio_seguro(
-                        pontos_sem_cold
-                    )
-                ),
-
-            "consistencia":
-                calcular_consistencia(
-                    pontos_sem_cold
-                ),
-
-            "diferencaMediaVsHistoricoCompleto":
-                arredondar(
-                    diferenca_cold
-                )
-
-        },
-
-        "historico": [
-
-            {
-
-                "rodada":
-                    resultado.get(
-                        "rodada"
-                    ),
-
-                "pontos":
-                    arredondar(
-                        resultado.get(
-                            "pontos"
+                (
+                    (
+                        len(
+                            completos
+                        ) /
+                        len(
+                            resultados
                         )
-                    ),
-
-                "coldStart":
-                    bool(
-                        resultado.get(
-                            "coldStart"
-                        )
-                    )
-
-            }
-
-            for resultado
-            in resultados
-
-        ]
-
-    }
-
-
-# ======================================================
-# RANKING PRINCIPAL
-# ======================================================
-
-def ordenar_ranking(
-    ranking
-):
-
-    return sorted(
-
-        ranking,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "pontosTotal"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "vitorias"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "consistencia"
-                ),
-                0
-            )
-
-        ),
-
-        reverse=True
-
-    )
-
-
-# ======================================================
-# RANKING SEM COLD START
-# ======================================================
-
-def gerar_ranking_sem_cold_start(
-    ranking
-):
-
-    resultado = []
-
-
-    for estrategia in ranking:
-
-        sem_cold = estrategia.get(
-            "semColdStart",
-            {}
-        )
-
-
-        resultado.append({
-
-            "nome":
-                estrategia.get(
-                    "nome"
-                ),
-
-            "rodadas":
-                sem_cold.get(
-                    "rodadas",
-                    0
-                ),
-
-            "pontosTotal":
-                sem_cold.get(
-                    "pontosTotal",
-                    0
-                ),
-
-            "mediaPontos":
-                sem_cold.get(
-                    "mediaPontos",
-                    0
-                ),
-
-            "medianaPontos":
-                sem_cold.get(
-                    "medianaPontos",
-                    0
-                ),
-
-            "volatilidade":
-                sem_cold.get(
-                    "volatilidade",
-                    0
-                ),
-
-            "consistencia":
-                sem_cold.get(
-                    "consistencia",
-                    0
+                    ) *
+                    100
                 )
 
-        })
+                if resultados
 
+                else 0,
 
-    resultado = sorted(
+                2
 
-        resultado,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "pontosTotal"
-                ),
-                0
             ),
 
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
+        "vitorias":
+            vitorias,
+
+        "empatesNaLideranca":
+            empates,
+
+        "taxaVitorias":
+            round(
+                taxa_vitorias,
+                2
             ),
 
-            numero(
-                item.get(
-                    "consistencia"
-                ),
-                0
-            )
-
-        ),
-
-        reverse=True
-
-    )
-
-
-    for indice, item in enumerate(
-        resultado,
-        start=1
-    ):
-
-        item[
-            "posicao"
-        ] = indice
-
-
-    return resultado
-
-
-# ======================================================
-# ESTRATÉGIA MAIS SEGURA
-# ======================================================
-
-def encontrar_mais_segura(
-    ranking
-):
-
-    if not ranking:
-
-        return None
-
-
-    estrategia = min(
-
-        ranking,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "volatilidade"
-                ),
-                999999
+        "melhorRodada":
+            obter_melhor_rodada(
+                resultados
             ),
 
-            -numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            )
-
-        )
-
-    )
-
-
-    return {
-
-        "nome":
-            estrategia.get(
-                "nome"
+        "piorRodada":
+            obter_pior_rodada(
+                resultados
             ),
 
-        "mediaPontos":
-            estrategia.get(
-                "mediaPontos"
-            ),
-
-        "volatilidade":
-            estrategia.get(
-                "volatilidade"
-            ),
-
-        "consistencia":
-            estrategia.get(
-                "consistencia"
-            )
-
-    }
-
-
-# ======================================================
-# ESTRATÉGIA MAIS EXPLOSIVA
-# ======================================================
-
-def encontrar_mais_explosiva(
-    ranking
-):
-
-    if not ranking:
-
-        return None
-
-
-    estrategia = max(
-
-        ranking,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "melhorRodada",
-                    {}
-                ).get(
-                    "pontos"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "faixasPontuacao",
-                    {}
-                ).get(
-                    "acima80",
-                    {}
-                ).get(
-                    "percentual"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            )
-
-        )
-
-    )
-
-
-    return {
-
-        "nome":
-            estrategia.get(
-                "nome"
-            ),
-
-        "melhorPontuacao":
-            estrategia.get(
-                "melhorRodada",
-                {}
-            ).get(
-                "pontos"
-            ),
-
-        "rodadaMelhorPontuacao":
-            estrategia.get(
-                "melhorRodada",
-                {}
-            ).get(
-                "rodada"
-            ),
-
-        "percentualAcima80":
-            estrategia.get(
-                "faixasPontuacao",
-                {}
-            ).get(
-                "acima80",
-                {}
-            ).get(
-                "percentual",
-                0
-            ),
-
-        "percentualAcima100":
-            estrategia.get(
-                "faixasPontuacao",
-                {}
-            ).get(
-                "acima100",
-                {}
-            ).get(
-                "percentual",
-                0
-            )
-
-    }
-
-
-# ======================================================
-# ESTRATÉGIA MAIS CONSISTENTE
-# ======================================================
-
-def encontrar_mais_consistente(
-    ranking
-):
-
-    if not ranking:
-
-        return None
-
-
-    estrategia = max(
-
-        ranking,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "consistencia"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            )
-
-        )
-
-    )
-
-
-    return {
-
-        "nome":
-            estrategia.get(
-                "nome"
-            ),
-
-        "consistencia":
-            estrategia.get(
-                "consistencia"
-            ),
-
-        "volatilidade":
-            estrategia.get(
-                "volatilidade"
-            ),
-
-        "mediaPontos":
-            estrategia.get(
-                "mediaPontos"
-            )
-
-    }
-
-
-# ======================================================
-# MELHOR ESTRATÉGIA POR CRITÉRIO
-# ======================================================
-
-def gerar_destaques(
-    ranking
-):
-
-    if not ranking:
-
-        return {}
-
-
-    melhor_media = max(
-
-        ranking,
-
-        key=lambda item:
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            )
-
-    )
-
-
-    mais_vitorias = max(
-
-        ranking,
-
-        key=lambda item: (
-
-            numero(
-                item.get(
-                    "vitorias"
-                ),
-                0
-            ),
-
-            numero(
-                item.get(
-                    "mediaPontos"
-                ),
-                0
-            )
-
-        )
-
-    )
-
-
-    melhor_piso = max(
-
-        ranking,
-
-        key=lambda item:
-            numero(
-                item.get(
-                    "piorRodada",
-                    {}
-                ).get(
-                    "pontos"
-                ),
-                0
-            )
-
-    )
-
-
-    melhor_acima_70 = max(
-
-        ranking,
-
-        key=lambda item:
-            numero(
-                item.get(
-                    "faixasPontuacao",
-                    {}
-                ).get(
-                    "acima70",
-                    {}
-                ).get(
-                    "percentual"
-                ),
-                0
-            )
-
-    )
-
-
-    return {
-
-        "melhorMedia": {
-
-            "nome":
-                melhor_media.get(
-                    "nome"
-                ),
-
-            "media":
-                melhor_media.get(
-                    "mediaPontos"
-                )
-
-        },
-
-        "maisVitorias": {
-
-            "nome":
-                mais_vitorias.get(
-                    "nome"
-                ),
-
-            "vitorias":
-                mais_vitorias.get(
-                    "vitorias"
-                ),
-
-            "taxa":
-                mais_vitorias.get(
-                    "taxaVitorias"
-                )
-
-        },
-
-        "melhorPisoHistorico": {
-
-            "nome":
-                melhor_piso.get(
-                    "nome"
-                ),
-
-            "piorPontuacao":
-                melhor_piso.get(
-                    "piorRodada",
-                    {}
-                ).get(
-                    "pontos"
-                )
-
-        },
-
-        "maisFrequenteAcima70": {
-
-            "nome":
-                melhor_acima_70.get(
-                    "nome"
-                ),
-
-            "percentual":
-                melhor_acima_70.get(
-                    "faixasPontuacao",
-                    {}
-                ).get(
-                    "acima70",
-                    {}
-                ).get(
-                    "percentual"
-                )
-
-        }
+        "scoreGlobal":
+            score_global
 
     }
 
@@ -1623,119 +965,125 @@ def gerar_destaques(
 
 def processar():
 
+    print(
+        "=============================================="
+    )
+
+    print(
+        "CARTOLA ESTATÍSTICO"
+    )
+
+    print(
+        "RANKING HISTÓRICO DAS ESTRATÉGIAS V2"
+    )
+
+    print(
+        "=============================================="
+    )
+
     dados = carregar_json(
         ARQUIVO_ENTRADA
     )
 
-
-    if not dados:
-
-        print(
-            "Arquivo de simulação inexistente "
-            "ou vazio:"
-        )
+    if not isinstance(
+        dados,
+        dict
+    ):
 
         print(
-            ARQUIVO_ENTRADA
+            "[ERRO] simulacao-times.json inválido."
         )
-
-        return
-
-
-    (
-        estrategias,
-        rodadas
-    ) = coletar_resultados(
-        dados
-    )
-
-
-    if not rodadas:
-
-        resultado_vazio = {
-
-            "modelo":
-                "ranking_simulacao_v2",
-
-            "descricao":
-                (
-                    "Ranking histórico avançado das "
-                    "estratégias de escalação"
-                ),
-
-            "melhorEstrategia":
-                None,
-
-            "quantidadeRodadas":
-                0,
-
-            "ranking":
-                [],
-
-            "rankingSemColdStart":
-                []
-
-        }
-
 
         salvar_json(
+
             ARQUIVO_SAIDA,
-            resultado_vazio
-        )
 
+            {
 
-        print(
-            "Nenhuma rodada disponível "
-            "para geração do ranking."
+                "modelo":
+                    "ranking_simulacao_v2",
+
+                "erro":
+                    "simulacao_times_invalida",
+
+                "ranking":
+                    []
+
+            }
+
         )
 
         return
 
-
-    (
-        vitorias,
-        empates_primeiro,
-        vencedores_rodadas
-    ) = calcular_vitorias(
-        rodadas
+    estrategias = (
+        coletar_resultados(
+            dados
+        )
     )
 
+    estatisticas_vitorias = (
+        calcular_vitorias(
+            dados
+        )
+    )
 
     ranking = []
 
+    for nome, resultados in (
+        estrategias.items()
+    ):
 
-    for (
-        nome,
-        resultados
-    ) in estrategias.items():
-
-
-        analise = analisar_estrategia(
+        resumo = resumir_estrategia(
 
             nome,
 
             resultados,
 
-            vitorias,
-
-            empates_primeiro,
-
-            len(
-                rodadas
-            )
+            estatisticas_vitorias
 
         )
-
 
         ranking.append(
-            analise
+            resumo
         )
 
 
-    ranking = ordenar_ranking(
-        ranking
+    # ==================================================
+    # ORDENAÇÃO
+    # ==================================================
+
+    ranking.sort(
+
+        key=lambda item: (
+
+            numero(
+                item.get(
+                    "scoreGlobal"
+                )
+            ),
+
+            numero(
+                item.get(
+                    "mediaPontos"
+                )
+            ),
+
+            numero(
+                item.get(
+                    "pontosTotal"
+                )
+            )
+
+        ),
+
+        reverse=True
+
     )
 
+
+    # ==================================================
+    # POSIÇÃO
+    # ==================================================
 
     for indice, item in enumerate(
         ranking,
@@ -1747,38 +1095,84 @@ def processar():
         ] = indice
 
 
-    ranking_sem_cold = (
-        gerar_ranking_sem_cold_start(
-            ranking
+    # ==================================================
+    # VENCEDOR
+    # ==================================================
+
+    melhor_estrategia = (
+
+        ranking[
+            0
+        ][
+            "nome"
+        ]
+
+        if ranking
+
+        else None
+
+    )
+
+
+    # ==================================================
+    # AUDITORIA
+    # ==================================================
+
+    cobertura_geral = [
+
+        numero(
+            item.get(
+                "coberturaMediaPercentual"
+            )
+        )
+
+        for item in ranking
+
+    ]
+
+    cobertura_media = media(
+        cobertura_geral
+    )
+
+    quantidade_rodadas = len(
+        dados.get(
+            "rodadas",
+            []
         )
     )
 
+    auditoria_simulacao = dados.get(
+        "auditoria",
+        {}
+    )
 
-    mais_segura = (
-        encontrar_mais_segura(
+    auditoria_aprovada = (
+
+        bool(
             ranking
         )
-    )
 
+        and
 
-    mais_explosiva = (
-        encontrar_mais_explosiva(
-            ranking
+        quantidade_rodadas > 0
+
+        and
+
+        cobertura_media >= 90
+
+        and
+
+        auditoria_simulacao.get(
+            "aprovada",
+            False
         )
+
     )
 
 
-    mais_consistente = (
-        encontrar_mais_consistente(
-            ranking
-        )
-    )
-
-
-    destaques = gerar_destaques(
-        ranking
-    )
-
+    # ==================================================
+    # RESULTADO
+    # ==================================================
 
     resultado = {
 
@@ -1787,58 +1181,93 @@ def processar():
 
         "descricao":
             (
-                "Ranking histórico avançado das "
-                "estratégias de escalação"
+                "Ranking histórico das estratégias "
+                "Conservador, Equilibrado e Agressivo "
+                "usando escalações progressivas."
             ),
 
         "fonte":
             "data/simulacao-times.json",
 
-        "quantidadeRodadas":
-            len(
-                rodadas
+        "modeloSimulacao":
+            dados.get(
+                "modelo"
             ),
 
-        "rodadaColdStart":
-            RODADA_COLD_START,
+        "quantidadeRodadas":
+            quantidade_rodadas,
 
         "melhorEstrategia":
+            melhor_estrategia,
 
-            (
-                ranking[
-                    0
-                ][
-                    "nome"
-                ]
+        "criterioRanking": {
 
-                if ranking
+            "principal":
+                "scoreGlobal",
 
-                else None
-            ),
+            "desempate1":
+                "mediaPontos",
 
-        "estrategiaMaisSegura":
-            mais_segura,
+            "desempate2":
+                "pontosTotal",
 
-        "estrategiaMaisExplosiva":
-            mais_explosiva,
+            "componentesScore": {
 
-        "estrategiaMaisConsistente":
-            mais_consistente,
+                "mediaPontos":
+                    0.65,
 
-        "destaques":
-            destaques,
+                "consistencia":
+                    0.10,
+
+                "cobertura":
+                    0.10,
+
+                "taxaVitorias":
+                    0.15,
+
+                "penalizacaoMae":
+                    0.10
+
+            }
+
+        },
 
         "ranking":
             ranking,
 
-        "rankingSemColdStart":
-            ranking_sem_cold,
+        "auditoria": {
 
-        "vencedoresPorRodada":
-            vencedores_rodadas
+            "rankingGerado":
+                bool(
+                    ranking
+                ),
+
+            "estrategiasEncontradas":
+                len(
+                    ranking
+                ),
+
+            "rodadasAvaliadas":
+                quantidade_rodadas,
+
+            "coberturaMediaPercentual":
+                round(
+                    cobertura_media,
+                    2
+                ),
+
+            "simulacaoOrigemAprovada":
+                auditoria_simulacao.get(
+                    "aprovada",
+                    False
+                ),
+
+            "aprovada":
+                auditoria_aprovada
+
+        }
 
     }
-
 
     salvar_json(
         ARQUIVO_SAIDA,
@@ -1847,123 +1276,92 @@ def processar():
 
 
     # ==================================================
-    # LOG RESUMIDO
+    # LOG
     # ==================================================
-
-    print(
-        "============================================"
-    )
-
-    print(
-        "RANKING HISTÓRICO DAS ESTRATÉGIAS"
-    )
-
-    print(
-        "============================================"
-    )
-
-
-    print(
-        "Rodadas analisadas:",
-        len(
-            rodadas
-        )
-    )
-
 
     print()
 
+    print(
+        "Rodadas avaliadas:",
+        quantidade_rodadas
+    )
+
+    print(
+        "Estratégias:",
+        len(
+            ranking
+        )
+    )
+
+    print()
 
     for item in ranking:
 
         print(
-            f"{item['posicao']}º "
-            f"{item['nome']} | "
-            f"Total: {item['pontosTotal']} | "
-            f"Média: {item['mediaPontos']} | "
-            f"Vitórias: {item['vitorias']} | "
-            f"Consistência: "
-            f"{item['consistencia']}% | "
-            f"Volatilidade: "
-            f"{item['volatilidade']}"
+            "#",
+            item[
+                "posicao"
+            ],
+            item[
+                "nome"
+            ],
+            "| Média:",
+            item[
+                "mediaPontos"
+            ],
+            "| Total:",
+            item[
+                "pontosTotal"
+            ],
+            "| Vitórias:",
+            item[
+                "vitorias"
+            ],
+            "| Consistência:",
+            item[
+                "consistencia"
+            ],
+            "| Score:",
+            item[
+                "scoreGlobal"
+            ]
         )
 
-
     print()
-
 
     print(
         "Melhor estratégia:",
-        resultado[
-            "melhorEstrategia"
-        ]
+        melhor_estrategia
     )
 
+    print(
+        "Cobertura média:",
+        round(
+            cobertura_media,
+            2
+        ),
+        "%"
+    )
 
-    if mais_segura:
-
-        print(
-            "Mais segura:",
-            mais_segura[
-                "nome"
-            ]
+    print(
+        "Auditoria:",
+        (
+            "APROVADA"
+            if auditoria_aprovada
+            else
+            "REPROVADA"
         )
-
-
-    if mais_explosiva:
-
-        print(
-            "Mais explosiva:",
-            mais_explosiva[
-                "nome"
-            ]
-        )
-
-
-    if mais_consistente:
-
-        print(
-            "Mais consistente:",
-            mais_consistente[
-                "nome"
-            ]
-        )
-
+    )
 
     print()
 
-
     print(
-        "===== SEM COLD START ====="
-    )
-
-
-    for item in ranking_sem_cold:
-
-        print(
-            f"{item['posicao']}º "
-            f"{item['nome']} | "
-            f"Total: {item['pontosTotal']} | "
-            f"Média: {item['mediaPontos']} | "
-            f"Consistência: "
-            f"{item['consistencia']}%"
-        )
-
-
-    print()
-
-
-    print(
-        "Arquivo:"
-    )
-
-    print(
+        "Arquivo:",
         ARQUIVO_SAIDA
     )
 
-
     print(
-        "============================================"
+        "=============================================="
     )
 
 
