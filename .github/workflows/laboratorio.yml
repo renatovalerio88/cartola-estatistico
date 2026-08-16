@@ -515,6 +515,761 @@ jobs:
 
 
       # ======================================
+      # VALIDAÇÃO DE INTEGRIDADE
+      # ======================================
+
+
+      - name: Validar Integração da Calibração
+
+        run: |
+
+          python - <<'PY'
+
+          import json
+          import math
+          import sys
+          from pathlib import Path
+
+
+          print()
+          print("==============================================")
+          print("CARTOLA ESTATÍSTICO")
+          print("VALIDAÇÃO DE INTEGRIDADE DA CALIBRAÇÃO")
+          print("==============================================")
+          print()
+
+
+          erros = []
+          avisos = []
+
+
+          # ==========================================
+          # UTILIDADES
+          # ==========================================
+
+
+          def carregar_json(caminho):
+
+              caminho = Path(caminho)
+
+
+              if not caminho.exists():
+
+                  erros.append(
+                      f"Arquivo obrigatório não encontrado: {caminho}"
+                  )
+
+                  return {}
+
+
+              try:
+
+                  with open(
+                      caminho,
+                      "r",
+                      encoding="utf-8"
+                  ) as arquivo:
+
+                      return json.load(
+                          arquivo
+                      )
+
+
+              except Exception as erro:
+
+                  erros.append(
+                      f"Erro ao ler {caminho}: {erro}"
+                  )
+
+                  return {}
+
+
+          def numero_valido(valor):
+
+              try:
+
+                  numero = float(
+                      valor
+                  )
+
+                  return math.isfinite(
+                      numero
+                  )
+
+              except Exception:
+
+                  return False
+
+
+          def verificar_arquivo_javascript(
+              caminho,
+              termos
+          ):
+
+              caminho = Path(caminho)
+
+
+              if not caminho.exists():
+
+                  erros.append(
+                      f"JavaScript obrigatório não encontrado: {caminho}"
+                  )
+
+                  return
+
+
+              try:
+
+                  conteudo = caminho.read_text(
+                      encoding="utf-8"
+                  )
+
+              except Exception as erro:
+
+                  erros.append(
+                      f"Erro ao ler {caminho}: {erro}"
+                  )
+
+                  return
+
+
+              for termo in termos:
+
+                  if termo not in conteudo:
+
+                      erros.append(
+                          f"{caminho}: termo obrigatório ausente: {termo}"
+                      )
+
+
+          # ==========================================
+          # 1. ARQUIVOS JAVASCRIPT
+          # ==========================================
+
+
+          verificar_arquivo_javascript(
+
+              "js/motor/calibracao-posicao.js",
+
+              [
+                  "MotorCalibracaoPosicao",
+                  "projecaoOriginal",
+                  "projecaoCalibrada"
+              ]
+
+          )
+
+
+          verificar_arquivo_javascript(
+
+              "js/motor/projecao.js",
+
+              [
+                  "MotorCalibracao",
+                  "MotorCalibracaoPosicao",
+                  "projecaoOriginal",
+                  "projecaoCalibrada"
+              ]
+
+          )
+
+
+          verificar_arquivo_javascript(
+
+              "js/recomendacoes/ranking.js",
+
+              [
+                  "obterProjecaoRanking",
+                  "projecaoCalibrada",
+                  "projecaoOriginal"
+              ]
+
+          )
+
+
+          verificar_arquivo_javascript(
+
+              "js/motor/escalacao.js",
+
+              [
+                  "obterProjecao",
+                  "projecaoCalibrada",
+                  "projecaoOriginal",
+                  "diagnosticar"
+              ]
+
+          )
+
+
+          verificar_arquivo_javascript(
+
+              "js/escalacoes/dados.js",
+
+              [
+                  "projecaoOriginal",
+                  "projecaoCalibrada",
+                  "impactoCalibracao",
+                  "jogadoresCalibrados"
+              ]
+
+          )
+
+
+          # ==========================================
+          # 2. ORDEM DOS SCRIPTS NO INDEX
+          # ==========================================
+
+
+          index_path = Path(
+              "index.html"
+          )
+
+
+          if not index_path.exists():
+
+              erros.append(
+                  "index.html não encontrado."
+              )
+
+          else:
+
+              index = index_path.read_text(
+                  encoding="utf-8"
+              )
+
+
+              scripts = [
+
+                  "js/motor/calibracao.js",
+
+                  "js/motor/calibracao-posicao.js",
+
+                  "js/motor/projecao.js"
+
+              ]
+
+
+              posicoes = []
+
+
+              for script in scripts:
+
+                  posicao = index.find(
+                      script
+                  )
+
+
+                  posicoes.append(
+                      posicao
+                  )
+
+
+                  if posicao < 0:
+
+                      erros.append(
+                          f"Script não carregado no index.html: {script}"
+                      )
+
+
+              if (
+                  all(
+                      posicao >= 0
+                      for posicao in posicoes
+                  )
+                  and
+                  posicoes != sorted(
+                      posicoes
+                  )
+              ):
+
+                  erros.append(
+                      "Ordem incorreta dos scripts de calibração/projeção no index.html."
+                  )
+
+
+          # ==========================================
+          # 3. CALIBRAÇÃO CANDIDATA
+          # ==========================================
+
+
+          calibracao = carregar_json(
+              "data/calibracao-posicoes-candidata.json"
+          )
+
+
+          posicoes = calibracao.get(
+              "posicoes",
+              []
+          )
+
+
+          if not isinstance(
+              posicoes,
+              list
+          ):
+
+              erros.append(
+                  "calibracao-posicoes-candidata.json não possui lista válida de posições."
+              )
+
+              posicoes = []
+
+
+          esperadas = {
+              "GOL",
+              "LAT",
+              "ZAG",
+              "MEI",
+              "ATA",
+              "TEC"
+          }
+
+
+          encontradas = set()
+
+
+          for item in posicoes:
+
+              posicao = item.get(
+                  "posicao"
+              )
+
+
+              if posicao:
+
+                  encontradas.add(
+                      posicao
+                  )
+
+
+              candidata = item.get(
+                  "calibracaoCandidata",
+                  {}
+              )
+
+
+              fator = candidata.get(
+                  "fatorMultiplicativo"
+              )
+
+
+              correcao = candidata.get(
+                  "correcaoAditiva"
+              )
+
+
+              if not numero_valido(
+                  fator
+              ):
+
+                  erros.append(
+                      f"{posicao}: fatorMultiplicativo inválido."
+                  )
+
+
+              if not numero_valido(
+                  correcao
+              ):
+
+                  erros.append(
+                      f"{posicao}: correcaoAditiva inválida."
+                  )
+
+
+              if item.get(
+                  "aplicarNoTesteAB"
+              ) is not True:
+
+                  avisos.append(
+                      f"{posicao}: não está marcado para aplicação no teste A/B."
+                  )
+
+
+          faltantes = (
+              esperadas -
+              encontradas
+          )
+
+
+          if faltantes:
+
+              erros.append(
+                  "Posições ausentes na calibração: "
+                  +
+                  ", ".join(
+                      sorted(
+                          faltantes
+                      )
+                  )
+              )
+
+
+          # ==========================================
+          # 4. RESULTADO DO TESTE A/B
+          # ==========================================
+
+
+          ab = carregar_json(
+              "data/backtest-ab-calibracao.json"
+          )
+
+
+          resumo_ab = ab.get(
+              "resumoGlobal",
+              {}
+          )
+
+
+          decisao_ab = ab.get(
+              "decisaoPromocao",
+              {}
+          )
+
+
+          rodadas_ab = ab.get(
+              "rodadas",
+              {}
+          )
+
+
+          mae_a = resumo_ab.get(
+              "maeA"
+          )
+
+
+          mae_b = resumo_ab.get(
+              "maeB"
+          )
+
+
+          melhora = resumo_ab.get(
+              "melhoraPercentual"
+          )
+
+
+          vies_a = resumo_ab.get(
+              "viesA"
+          )
+
+
+          vies_b = resumo_ab.get(
+              "viesB"
+          )
+
+
+          vitorias_a = rodadas_ab.get(
+              "vitoriasA",
+              0
+          )
+
+
+          vitorias_b = rodadas_ab.get(
+              "vitoriasB",
+              0
+          )
+
+
+          decisao = decisao_ab.get(
+              "decisao"
+          )
+
+
+          campos_numericos = {
+
+              "MAE A":
+                  mae_a,
+
+              "MAE B":
+                  mae_b,
+
+              "Melhora percentual":
+                  melhora,
+
+              "Viés A":
+                  vies_a,
+
+              "Viés B":
+                  vies_b,
+
+              "Vitórias A":
+                  vitorias_a,
+
+              "Vitórias B":
+                  vitorias_b
+
+          }
+
+
+          for nome, valor in campos_numericos.items():
+
+              if not numero_valido(
+                  valor
+              ):
+
+                  erros.append(
+                      f"Teste A/B: {nome} inválido."
+                  )
+
+
+          if (
+              numero_valido(
+                  mae_a
+              )
+              and
+              numero_valido(
+                  mae_b
+              )
+              and
+              float(
+                  mae_b
+              ) >=
+              float(
+                  mae_a
+              )
+          ):
+
+              erros.append(
+                  "Teste A/B não confirmou redução do MAE."
+              )
+
+
+          if (
+              numero_valido(
+                  melhora
+              )
+              and
+              float(
+                  melhora
+              ) <= 0
+          ):
+
+              erros.append(
+                  "Teste A/B não apresentou melhora percentual positiva."
+              )
+
+
+          if (
+              numero_valido(
+                  vies_a
+              )
+              and
+              numero_valido(
+                  vies_b
+              )
+              and
+              abs(
+                  float(
+                      vies_b
+                  )
+              ) >=
+              abs(
+                  float(
+                      vies_a
+                  )
+              )
+          ):
+
+              erros.append(
+                  "Calibração não reduziu o viés absoluto."
+              )
+
+
+          if (
+              numero_valido(
+                  vitorias_a
+              )
+              and
+              numero_valido(
+                  vitorias_b
+              )
+              and
+              float(
+                  vitorias_b
+              ) <=
+              float(
+                  vitorias_a
+              )
+          ):
+
+              erros.append(
+                  "Modelo B não venceu mais rodadas que o Modelo A."
+              )
+
+
+          if (
+              decisao !=
+              "PROMOVER_CALIBRACAO"
+          ):
+
+              erros.append(
+                  "Decisão científica deixou de ser PROMOVER_CALIBRACAO."
+              )
+
+
+          # ==========================================
+          # 5. CAPITÃO
+          # ==========================================
+
+
+          capitao = carregar_json(
+              "data/analise-capitao.json"
+          )
+
+
+          decisao_capitao = (
+              capitao
+              .get(
+                  "decisaoExperimental",
+                  {}
+              )
+              .get(
+                  "decisao"
+              )
+          )
+
+
+          if (
+              decisao_capitao !=
+              "MANTER_CAPITAO_ATUAL"
+          ):
+
+              avisos.append(
+                  "A decisão experimental do capitão mudou para: "
+                  +
+                  str(
+                      decisao_capitao
+                  )
+              )
+
+
+          # ==========================================
+          # 6. RESULTADO
+          # ==========================================
+
+
+          print(
+              "Posições calibradas:",
+              ", ".join(
+                  sorted(
+                      encontradas
+                  )
+              )
+          )
+
+
+          print(
+              "MAE A:",
+              mae_a
+          )
+
+
+          print(
+              "MAE B:",
+              mae_b
+          )
+
+
+          print(
+              "Melhora:",
+              melhora,
+              "%"
+          )
+
+
+          print(
+              "Viés A:",
+              vies_a
+          )
+
+
+          print(
+              "Viés B:",
+              vies_b
+          )
+
+
+          print(
+              "Vitórias A:",
+              vitorias_a
+          )
+
+
+          print(
+              "Vitórias B:",
+              vitorias_b
+          )
+
+
+          print(
+              "Decisão calibração:",
+              decisao
+          )
+
+
+          print(
+              "Decisão capitão:",
+              decisao_capitao
+          )
+
+
+          print()
+
+
+          if avisos:
+
+              print("----------------------------------------------")
+              print("AVISOS")
+              print("----------------------------------------------")
+
+
+              for aviso in avisos:
+
+                  print(
+                      "-",
+                      aviso
+                  )
+
+
+              print()
+
+
+          if erros:
+
+              print("----------------------------------------------")
+              print("ERROS")
+              print("----------------------------------------------")
+
+
+              for erro in erros:
+
+                  print(
+                      "-",
+                      erro
+                  )
+
+
+              print()
+              print("==============================================")
+              print("VALIDAÇÃO: REPROVADA")
+              print("==============================================")
+
+
+              sys.exit(
+                  1
+              )
+
+
+          print("==============================================")
+          print("VALIDAÇÃO: APROVADA")
+          print("INTEGRAÇÃO DA CALIBRAÇÃO CONSISTENTE")
+          print("==============================================")
+
+
+          PY
+
+
+
+      # ======================================
       # COMMIT DOS RESULTADOS
       # ======================================
 
