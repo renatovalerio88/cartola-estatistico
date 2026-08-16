@@ -202,6 +202,11 @@ jobs:
           python scripts/processamento/testar_estrategia_adaptativa_v2.py
 
 
+      - name: Testar Estratégia Adaptativa V3
+        run: |
+          python scripts/processamento/testar_estrategia_adaptativa_v3.py
+
+
       - name: Comparar Estratégias Adaptativas
         run: |
           python scripts/processamento/comparar_estrategias_adaptativas.py
