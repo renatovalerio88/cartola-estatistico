@@ -79,6 +79,10 @@
     {
       "treino": 20,
       "teste": "rodada-22.json"
+    },
+    {
+      "treino": 21,
+      "teste": "rodada-23.json"
     }
   ]
 }

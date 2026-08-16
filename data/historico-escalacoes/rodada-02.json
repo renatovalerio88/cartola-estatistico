@@ -1,0 +1,1187 @@
+{
+  "modelo": "historico_escalacoes_v1",
+  "rodada": 2,
+  "dadosUtilizadosAteRodada": 1,
+  "semVazamentoFuturo": true,
+  "estrategias": [
+    {
+      "id": "conservador",
+      "nome": "Conservador",
+      "perfil": "conservador",
+      "formacao": "4-4-2",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 126.35,
+      "titulares": [
+        {
+          "id": "125803",
+          "nome": "Pedro Luccas Morisco da Silva",
+          "posicao": "GOL",
+          "clube": "CFC",
+          "preco": 7.6,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "94968",
+          "nome": "Luis Antônio da Rocha Júnior",
+          "posicao": "LAT",
+          "clube": "RBB",
+          "preco": 13.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 8.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "96591",
+          "nome": "Renan Augusto Lodi dos Santos",
+          "posicao": "LAT",
+          "clube": "CAM",
+          "preco": 9.52,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "110750",
+          "nome": "Gustavo Marques Alves dos Santos",
+          "posicao": "ZAG",
+          "clube": "RBB",
+          "preco": 7.36,
+          "projecao": -20.0,
+          "pontuacaoReal": 9.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "91573",
+          "nome": "Robert Abel Arboleda Escobar",
+          "posicao": "ZAG",
+          "clube": "SAO",
+          "preco": 8.55,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": -20.0,
+          "pontuacaoReal": 16.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "103767",
+          "nome": "Gabriel Vinícius Menino",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 9.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "89837",
+          "nome": "Luciano Federico Acosta",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 10.37,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "126471",
+          "nome": "Álvaro Martín Barreal",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 10.8,
+          "projecao": -20.0,
+          "pontuacaoReal": 5.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "113103",
+          "nome": "José Manuel Alberto López",
+          "posicao": "ATA",
+          "clube": "PAL",
+          "preco": 12.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "80287",
+          "nome": "Luciano da Rocha Neves",
+          "posicao": "ATA",
+          "clube": "SAO",
+          "preco": 12.89,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.8,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "92180",
+          "nome": "Jair Ventura",
+          "posicao": "TEC",
+          "clube": "VIT",
+          "preco": 8.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.31,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "capitao": {
+        "id": "125803",
+        "nome": "Pedro Luccas Morisco da Silva",
+        "posicao": "GOL",
+        "clube": "CFC",
+        "preco": 7.6,
+        "projecao": -20.0,
+        "pontuacaoReal": 2.9,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      },
+      "banco": [
+        {
+          "id": "93882",
+          "nome": "Cleiton Schwengber",
+          "posicao": "GOL",
+          "clube": "RBB",
+          "preco": 6.19,
+          "projecao": -20.0,
+          "pontuacaoReal": 6.3,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "111879",
+          "nome": "Mateus da Silva Duarte",
+          "posicao": "LAT",
+          "clube": "VIT",
+          "preco": 4.95,
+          "projecao": -20.0,
+          "pontuacaoReal": 0.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "132553",
+          "nome": "Jemmes Bruno Ribeiro da Silva",
+          "posicao": "ZAG",
+          "clube": "FLU",
+          "preco": 6.82,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.2,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "99440",
+          "nome": "Gabriel Baralhas dos Santos",
+          "posicao": "MEI",
+          "clube": "VIT",
+          "preco": 9.25,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "97810",
+          "nome": "Erick de Arruda Serafim",
+          "posicao": "ATA",
+          "clube": "VIT",
+          "preco": 7.98,
+          "projecao": -20.0,
+          "pontuacaoReal": 0.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "93882",
+        "nome": "Cleiton Schwengber",
+        "posicao": "GOL",
+        "clube": "RBB",
+        "preco": 6.19,
+        "projecao": -20.0,
+        "pontuacaoReal": 6.3,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      }
+    },
+    {
+      "id": "equilibrado",
+      "nome": "Equilibrado",
+      "perfil": "equilibrado",
+      "formacao": "3-4-3",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 124.81,
+      "titulares": [
+        {
+          "id": "125803",
+          "nome": "Pedro Luccas Morisco da Silva",
+          "posicao": "GOL",
+          "clube": "CFC",
+          "preco": 7.6,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "94968",
+          "nome": "Luis Antônio da Rocha Júnior",
+          "posicao": "LAT",
+          "clube": "RBB",
+          "preco": 13.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 8.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "110750",
+          "nome": "Gustavo Marques Alves dos Santos",
+          "posicao": "ZAG",
+          "clube": "RBB",
+          "preco": 7.36,
+          "projecao": -20.0,
+          "pontuacaoReal": 9.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "91573",
+          "nome": "Robert Abel Arboleda Escobar",
+          "posicao": "ZAG",
+          "clube": "SAO",
+          "preco": 8.55,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": -20.0,
+          "pontuacaoReal": 16.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "103767",
+          "nome": "Gabriel Vinícius Menino",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 9.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "89837",
+          "nome": "Luciano Federico Acosta",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 10.37,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "126471",
+          "nome": "Álvaro Martín Barreal",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 10.8,
+          "projecao": -20.0,
+          "pontuacaoReal": 5.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "113103",
+          "nome": "José Manuel Alberto López",
+          "posicao": "ATA",
+          "clube": "PAL",
+          "preco": 12.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "80287",
+          "nome": "Luciano da Rocha Neves",
+          "posicao": "ATA",
+          "clube": "SAO",
+          "preco": 12.89,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.8,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "97810",
+          "nome": "Erick de Arruda Serafim",
+          "posicao": "ATA",
+          "clube": "VIT",
+          "preco": 7.98,
+          "projecao": -20.0,
+          "pontuacaoReal": 0.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "92180",
+          "nome": "Jair Ventura",
+          "posicao": "TEC",
+          "clube": "VIT",
+          "preco": 8.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.31,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "capitao": {
+        "id": "125803",
+        "nome": "Pedro Luccas Morisco da Silva",
+        "posicao": "GOL",
+        "clube": "CFC",
+        "preco": 7.6,
+        "projecao": -20.0,
+        "pontuacaoReal": 2.9,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      },
+      "banco": [
+        {
+          "id": "93882",
+          "nome": "Cleiton Schwengber",
+          "posicao": "GOL",
+          "clube": "RBB",
+          "preco": 6.19,
+          "projecao": -20.0,
+          "pontuacaoReal": 6.3,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "96591",
+          "nome": "Renan Augusto Lodi dos Santos",
+          "posicao": "LAT",
+          "clube": "CAM",
+          "preco": 9.52,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "132553",
+          "nome": "Jemmes Bruno Ribeiro da Silva",
+          "posicao": "ZAG",
+          "clube": "FLU",
+          "preco": 6.82,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.2,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "99440",
+          "nome": "Gabriel Baralhas dos Santos",
+          "posicao": "MEI",
+          "clube": "VIT",
+          "preco": 9.25,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "105563",
+          "nome": "Carlos Vinícius Alves Morais",
+          "posicao": "ATA",
+          "clube": "GRE",
+          "preco": 14.47,
+          "projecao": -20.0,
+          "pontuacaoReal": 24.1,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "93882",
+        "nome": "Cleiton Schwengber",
+        "posicao": "GOL",
+        "clube": "RBB",
+        "preco": 6.19,
+        "projecao": -20.0,
+        "pontuacaoReal": 6.3,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      }
+    },
+    {
+      "id": "agressivo",
+      "nome": "Agressivo",
+      "perfil": "agressivo",
+      "formacao": "3-4-3",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 124.81,
+      "titulares": [
+        {
+          "id": "125803",
+          "nome": "Pedro Luccas Morisco da Silva",
+          "posicao": "GOL",
+          "clube": "CFC",
+          "preco": 7.6,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "94968",
+          "nome": "Luis Antônio da Rocha Júnior",
+          "posicao": "LAT",
+          "clube": "RBB",
+          "preco": 13.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 8.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "110750",
+          "nome": "Gustavo Marques Alves dos Santos",
+          "posicao": "ZAG",
+          "clube": "RBB",
+          "preco": 7.36,
+          "projecao": -20.0,
+          "pontuacaoReal": 9.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "91573",
+          "nome": "Robert Abel Arboleda Escobar",
+          "posicao": "ZAG",
+          "clube": "SAO",
+          "preco": 8.55,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": -20.0,
+          "pontuacaoReal": 16.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "103767",
+          "nome": "Gabriel Vinícius Menino",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 9.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "89837",
+          "nome": "Luciano Federico Acosta",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 10.37,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.4,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "126471",
+          "nome": "Álvaro Martín Barreal",
+          "posicao": "MEI",
+          "clube": "SAN",
+          "preco": 10.8,
+          "projecao": -20.0,
+          "pontuacaoReal": 5.6,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "113103",
+          "nome": "José Manuel Alberto López",
+          "posicao": "ATA",
+          "clube": "PAL",
+          "preco": 12.92,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.9,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "80287",
+          "nome": "Luciano da Rocha Neves",
+          "posicao": "ATA",
+          "clube": "SAO",
+          "preco": 12.89,
+          "projecao": -20.0,
+          "pontuacaoReal": 4.8,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "97810",
+          "nome": "Erick de Arruda Serafim",
+          "posicao": "ATA",
+          "clube": "VIT",
+          "preco": 7.98,
+          "projecao": -20.0,
+          "pontuacaoReal": 0.5,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "92180",
+          "nome": "Jair Ventura",
+          "posicao": "TEC",
+          "clube": "VIT",
+          "preco": 8.21,
+          "projecao": -20.0,
+          "pontuacaoReal": 3.31,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "capitao": {
+        "id": "125803",
+        "nome": "Pedro Luccas Morisco da Silva",
+        "posicao": "GOL",
+        "clube": "CFC",
+        "preco": 7.6,
+        "projecao": -20.0,
+        "pontuacaoReal": 2.9,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      },
+      "banco": [
+        {
+          "id": "93882",
+          "nome": "Cleiton Schwengber",
+          "posicao": "GOL",
+          "clube": "RBB",
+          "preco": 6.19,
+          "projecao": -20.0,
+          "pontuacaoReal": 6.3,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "96591",
+          "nome": "Renan Augusto Lodi dos Santos",
+          "posicao": "LAT",
+          "clube": "CAM",
+          "preco": 9.52,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "132553",
+          "nome": "Jemmes Bruno Ribeiro da Silva",
+          "posicao": "ZAG",
+          "clube": "FLU",
+          "preco": 6.82,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.2,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "99440",
+          "nome": "Gabriel Baralhas dos Santos",
+          "posicao": "MEI",
+          "clube": "VIT",
+          "preco": 9.25,
+          "projecao": -20.0,
+          "pontuacaoReal": 2.7,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "105563",
+          "nome": "Carlos Vinícius Alves Morais",
+          "posicao": "ATA",
+          "clube": "GRE",
+          "preco": 14.47,
+          "projecao": -20.0,
+          "pontuacaoReal": 24.1,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "93882",
+        "nome": "Cleiton Schwengber",
+        "posicao": "GOL",
+        "clube": "RBB",
+        "preco": 6.19,
+        "projecao": -20.0,
+        "pontuacaoReal": 6.3,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      }
+    }
+  ]
+}

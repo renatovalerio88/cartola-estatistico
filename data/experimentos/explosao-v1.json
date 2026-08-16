@@ -1,20 +1,20 @@
 {
   "modelo": "experimento_explosao_v1",
-  "jogadoresAnalisados": 6591,
-  "erroMedioOriginal": 2.739,
-  "erroMedioComExplosao": 2.762,
-  "melhorouEm": 3066,
-  "impacto": -0.023,
+  "jogadoresAnalisados": 6283,
+  "erroMedioOriginal": 2.904,
+  "erroMedioComExplosao": 2.901,
+  "melhorouEm": 3201,
+  "impacto": 0.003,
   "amostras": [
     {
       "rodada": 2,
       "nome": "Danilo dos Santos de Oliveira",
       "projecaoOriginal": 17.2,
-      "ajusteExplosao": 0.75,
-      "novaProjecao": 17.95,
+      "ajusteExplosao": 0.78,
+      "novaProjecao": 17.98,
       "real": 16.5,
       "erroOriginal": 0.7,
-      "erroComExplosao": 1.45
+      "erroComExplosao": 1.48
     },
     {
       "rodada": 2,
@@ -30,121 +30,121 @@
       "rodada": 2,
       "nome": "Luis Antônio da Rocha Júnior",
       "projecaoOriginal": 16.2,
-      "ajusteExplosao": 0.54,
-      "novaProjecao": 16.74,
+      "ajusteExplosao": 0.65,
+      "novaProjecao": 16.85,
       "real": 8.9,
       "erroOriginal": 7.3,
-      "erroComExplosao": 7.84
+      "erroComExplosao": 7.95
     },
     {
       "rodada": 2,
       "nome": "José Manuel Alberto López",
       "projecaoOriginal": 16.1,
-      "ajusteExplosao": 0.37,
-      "novaProjecao": 16.47,
+      "ajusteExplosao": 0.52,
+      "novaProjecao": 16.62,
       "real": 4.9,
       "erroOriginal": 11.2,
-      "erroComExplosao": 11.57
+      "erroComExplosao": 11.72
     },
     {
       "rodada": 2,
       "nome": "Luciano da Rocha Neves",
       "projecaoOriginal": 15.3,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 15.64,
+      "ajusteExplosao": 0.46,
+      "novaProjecao": 15.76,
       "real": 4.8,
       "erroOriginal": 10.5,
-      "erroComExplosao": 10.84
+      "erroComExplosao": 10.96
     },
     {
       "rodada": 2,
       "nome": "Luciano Federico Acosta",
       "projecaoOriginal": 13.8,
-      "ajusteExplosao": 0.45,
-      "novaProjecao": 14.25,
+      "ajusteExplosao": 0.42,
+      "novaProjecao": 14.22,
       "real": 4.4,
       "erroOriginal": 9.4,
-      "erroComExplosao": 9.85
+      "erroComExplosao": 9.82
     },
     {
       "rodada": 2,
       "nome": "Álvaro Martín Barreal",
       "projecaoOriginal": 12.6,
-      "ajusteExplosao": 0.37,
-      "novaProjecao": 12.97,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 12.89,
       "real": 5.6,
       "erroOriginal": 7.0,
-      "erroComExplosao": 7.37
+      "erroComExplosao": 7.29
     },
     {
       "rodada": 2,
       "nome": "Erick de Arruda Serafim",
       "projecaoOriginal": 12.5,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 12.83,
+      "ajusteExplosao": 0.37,
+      "novaProjecao": 12.87,
       "real": 0.5,
       "erroOriginal": 12.0,
-      "erroComExplosao": 12.33
+      "erroComExplosao": 12.37
     },
     {
       "rodada": 2,
       "nome": "Carlos Vinícius Alves Morais",
       "projecaoOriginal": 12.0,
-      "ajusteExplosao": 0.67,
-      "novaProjecao": 12.67,
+      "ajusteExplosao": 0.8,
+      "novaProjecao": 12.8,
       "real": 24.1,
       "erroOriginal": 12.1,
-      "erroComExplosao": 11.43
+      "erroComExplosao": 11.3
     },
     {
       "rodada": 2,
       "nome": "Pedro Luccas Morisco da Silva",
       "projecaoOriginal": 11.7,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 12.09,
+      "ajusteExplosao": 0.4,
+      "novaProjecao": 12.1,
       "real": 2.9,
       "erroOriginal": 8.8,
-      "erroComExplosao": 9.19
+      "erroComExplosao": 9.2
     },
     {
       "rodada": 2,
       "nome": "Renan Augusto Lodi dos Santos",
       "projecaoOriginal": 11.2,
-      "ajusteExplosao": 0.21,
-      "novaProjecao": 11.41,
+      "ajusteExplosao": 0.23,
+      "novaProjecao": 11.43,
       "real": 2.7,
       "erroOriginal": 8.5,
-      "erroComExplosao": 8.71
+      "erroComExplosao": 8.73
     },
     {
       "rodada": 2,
       "nome": "Gabriel Baralhas dos Santos",
       "projecaoOriginal": 10.9,
-      "ajusteExplosao": 0.48,
-      "novaProjecao": 11.38,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 11.26,
       "real": 2.7,
       "erroOriginal": 8.2,
-      "erroComExplosao": 8.68
+      "erroComExplosao": 8.56
     },
     {
       "rodada": 2,
       "nome": "Matheus Martins Silva dos Santos",
       "projecaoOriginal": 10.0,
-      "ajusteExplosao": 0.76,
-      "novaProjecao": 10.76,
+      "ajusteExplosao": 0.75,
+      "novaProjecao": 10.75,
       "real": 1.2,
       "erroOriginal": 8.8,
-      "erroComExplosao": 9.56
+      "erroComExplosao": 9.55
     },
     {
       "rodada": 2,
       "nome": "Gustavo Marques Alves dos Santos",
       "projecaoOriginal": 9.7,
-      "ajusteExplosao": 0.3,
-      "novaProjecao": 10.0,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 10.02,
       "real": 9,
       "erroOriginal": 0.7,
-      "erroComExplosao": 1.0
+      "erroComExplosao": 1.02
     },
     {
       "rodada": 2,
@@ -160,31 +160,31 @@
       "rodada": 2,
       "nome": "Alesson dos Santos Batista",
       "projecaoOriginal": 9.7,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 10.02,
+      "ajusteExplosao": 0.34,
+      "novaProjecao": 10.04,
       "real": 4.5,
       "erroOriginal": 5.2,
-      "erroComExplosao": 5.52
+      "erroComExplosao": 5.54
     },
     {
       "rodada": 2,
       "nome": "Victor Hugo Gomes Silva",
       "projecaoOriginal": 9.5,
-      "ajusteExplosao": 0.45,
-      "novaProjecao": 9.95,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 9.81,
       "real": 1.3,
       "erroOriginal": 8.2,
-      "erroComExplosao": 8.65
+      "erroComExplosao": 8.51
     },
     {
       "rodada": 2,
       "nome": "Willian José da Silva",
       "projecaoOriginal": 9.5,
-      "ajusteExplosao": 0.27,
-      "novaProjecao": 9.77,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 9.83,
       "real": 0.8,
       "erroOriginal": 8.7,
-      "erroComExplosao": 8.97
+      "erroComExplosao": 9.03
     },
     {
       "rodada": 2,
@@ -200,11 +200,11 @@
       "rodada": 2,
       "nome": "Rafael dos Santos Carvalheira Natividade",
       "projecaoOriginal": 9.2,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 9.53,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 9.51,
       "real": 1.4,
       "erroOriginal": 7.8,
-      "erroComExplosao": 8.13
+      "erroComExplosao": 8.11
     },
     {
       "rodada": 2,
@@ -230,71 +230,71 @@
       "rodada": 2,
       "nome": "Odair Hellmann",
       "projecaoOriginal": 8.12,
-      "ajusteExplosao": 0.29,
-      "novaProjecao": 8.41,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 8.37,
       "real": 0,
       "erroOriginal": 8.12,
-      "erroComExplosao": 8.41
+      "erroComExplosao": 8.37
     },
     {
       "rodada": 2,
       "nome": "Vagner Carmo Mancini",
       "projecaoOriginal": 8.07,
-      "ajusteExplosao": 0.64,
-      "novaProjecao": 8.71,
+      "ajusteExplosao": 0.69,
+      "novaProjecao": 8.76,
       "real": 6.95,
       "erroOriginal": 1.12,
-      "erroComExplosao": 1.76
+      "erroComExplosao": 1.81
     },
     {
       "rodada": 2,
       "nome": "Alex Nicolao Telles",
       "projecaoOriginal": 8.0,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 8.39,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 8.32,
       "real": -0.1,
       "erroOriginal": 8.1,
-      "erroComExplosao": 8.49
+      "erroComExplosao": 8.42
     },
     {
       "rodada": 2,
       "nome": "Artur Victor Guimarães",
       "projecaoOriginal": 8.0,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 8.31,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 8.32,
       "real": 2,
       "erroOriginal": 6.0,
-      "erroComExplosao": 6.31
+      "erroComExplosao": 6.32
     },
     {
       "rodada": 2,
       "nome": "Victor Alexander da Silva",
       "projecaoOriginal": 7.7,
-      "ajusteExplosao": 0.38,
-      "novaProjecao": 8.08,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 8.0,
       "real": 5.8,
       "erroOriginal": 1.9,
-      "erroComExplosao": 2.28
+      "erroComExplosao": 2.2
     },
     {
       "rodada": 2,
       "nome": "Vitor Hugo Roque Ferreira",
       "projecaoOriginal": 7.6,
-      "ajusteExplosao": 0.78,
-      "novaProjecao": 8.38,
+      "ajusteExplosao": 0.77,
+      "novaProjecao": 8.37,
       "real": 4.4,
       "erroOriginal": 3.2,
-      "erroComExplosao": 3.98
+      "erroComExplosao": 3.97
     },
     {
       "rodada": 2,
       "nome": "Daniel de Oliveira Sertanejo",
       "projecaoOriginal": 7.6,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 7.94,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 7.92,
       "real": 6.2,
       "erroOriginal": 1.4,
-      "erroComExplosao": 1.74
+      "erroComExplosao": 1.72
     },
     {
       "rodada": 2,
@@ -310,11 +310,11 @@
       "rodada": 2,
       "nome": "Marcos Antônio Silva Santos",
       "projecaoOriginal": 7.5,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 7.84,
+      "ajusteExplosao": 0.35,
+      "novaProjecao": 7.85,
       "real": 0,
       "erroOriginal": 7.5,
-      "erroComExplosao": 7.84
+      "erroComExplosao": 7.85
     },
     {
       "rodada": 2,
@@ -330,31 +330,31 @@
       "rodada": 2,
       "nome": "Robert Abel Arboleda Escobar",
       "projecaoOriginal": 7.5,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 7.82,
+      "ajusteExplosao": 0.22,
+      "novaProjecao": 7.72,
       "real": 3.6,
       "erroOriginal": 3.9,
-      "erroComExplosao": 4.22
+      "erroComExplosao": 4.12
     },
     {
       "rodada": 2,
       "nome": "Renê Rodrigues Martins",
       "projecaoOriginal": 7.4,
-      "ajusteExplosao": 0.41,
-      "novaProjecao": 7.81,
+      "ajusteExplosao": 0.45,
+      "novaProjecao": 7.85,
       "real": 8.2,
       "erroOriginal": 0.8,
-      "erroComExplosao": 0.39
+      "erroComExplosao": 0.35
     },
     {
       "rodada": 2,
       "nome": "Arthur Mendonça Cabral",
       "projecaoOriginal": 7.1,
-      "ajusteExplosao": 0.77,
-      "novaProjecao": 7.87,
+      "ajusteExplosao": 0.76,
+      "novaProjecao": 7.86,
       "real": 8.9,
       "erroOriginal": 1.8,
-      "erroComExplosao": 1.03
+      "erroComExplosao": 1.04
     },
     {
       "rodada": 2,
@@ -380,91 +380,91 @@
       "rodada": 2,
       "nome": "Guillermo Varela Olivera",
       "projecaoOriginal": 6.7,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 7.02,
+      "ajusteExplosao": 0.4,
+      "novaProjecao": 7.1,
       "real": -0.3,
       "erroOriginal": 7.0,
-      "erroComExplosao": 7.32
+      "erroComExplosao": 7.4
     },
     {
       "rodada": 2,
       "nome": "Andreas Hugo Hoelgebaum Pereira",
       "projecaoOriginal": 6.7,
-      "ajusteExplosao": 0.5,
-      "novaProjecao": 7.2,
+      "ajusteExplosao": 0.47,
+      "novaProjecao": 7.17,
       "real": 16.5,
       "erroOriginal": 9.8,
-      "erroComExplosao": 9.3
+      "erroComExplosao": 9.33
     },
     {
       "rodada": 2,
       "nome": "Dorival Silvestre Júnior",
       "projecaoOriginal": 6.6,
-      "ajusteExplosao": 0.24,
-      "novaProjecao": 6.84,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 6.85,
       "real": 0,
       "erroOriginal": 6.6,
-      "erroComExplosao": 6.84
+      "erroComExplosao": 6.85
     },
     {
       "rodada": 2,
       "nome": "Samuel Dias Lino",
       "projecaoOriginal": 6.5,
-      "ajusteExplosao": 0.67,
-      "novaProjecao": 7.17,
+      "ajusteExplosao": 0.65,
+      "novaProjecao": 7.15,
       "real": -0.3,
       "erroOriginal": 6.8,
-      "erroComExplosao": 7.47
+      "erroComExplosao": 7.45
     },
     {
       "rodada": 2,
       "nome": "Gustavo Nonato Santana",
       "projecaoOriginal": 6.4,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 6.79,
+      "ajusteExplosao": 0.37,
+      "novaProjecao": 6.77,
       "real": 4.2,
       "erroOriginal": 2.2,
-      "erroComExplosao": 2.59
+      "erroComExplosao": 2.57
     },
     {
       "rodada": 2,
       "nome": "Pedro Guilherme Abreu dos Santos",
       "projecaoOriginal": 6.4,
-      "ajusteExplosao": 1.02,
-      "novaProjecao": 7.42,
+      "ajusteExplosao": 0.99,
+      "novaProjecao": 7.39,
       "real": 0.2,
       "erroOriginal": 6.2,
-      "erroComExplosao": 7.22
+      "erroComExplosao": 7.19
     },
     {
       "rodada": 2,
       "nome": "José Luis Rodríguez Bebanz",
       "projecaoOriginal": 6.4,
-      "ajusteExplosao": 0.35,
-      "novaProjecao": 6.75,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 6.71,
       "real": 8.9,
       "erroOriginal": 2.5,
-      "erroComExplosao": 2.15
+      "erroComExplosao": 2.19
     },
     {
       "rodada": 2,
       "nome": "Luciano Batista da Silva Júnior",
       "projecaoOriginal": 6.2,
-      "ajusteExplosao": 0.98,
-      "novaProjecao": 7.18,
+      "ajusteExplosao": 0.92,
+      "novaProjecao": 7.12,
       "real": 5.8,
       "erroOriginal": 0.4,
-      "erroComExplosao": 1.38
+      "erroComExplosao": 1.32
     },
     {
       "rodada": 2,
       "nome": "Damián Josué Bobadilla Benítez",
       "projecaoOriginal": 6.2,
-      "ajusteExplosao": 0.38,
-      "novaProjecao": 6.58,
+      "ajusteExplosao": 0.39,
+      "novaProjecao": 6.59,
       "real": 5.1,
       "erroOriginal": 1.1,
-      "erroComExplosao": 1.48
+      "erroComExplosao": 1.49
     },
     {
       "rodada": 2,
@@ -480,31 +480,31 @@
       "rodada": 2,
       "nome": "Jean Lucas de Souza Oliveira",
       "projecaoOriginal": 6.1,
-      "ajusteExplosao": 0.43,
-      "novaProjecao": 6.53,
+      "ajusteExplosao": 0.42,
+      "novaProjecao": 6.52,
       "real": 2.4,
       "erroOriginal": 3.7,
-      "erroComExplosao": 4.13
+      "erroComExplosao": 4.12
     },
     {
       "rodada": 2,
       "nome": "Carlos Andrés Gómez Hinestroza",
       "projecaoOriginal": 6.0,
-      "ajusteExplosao": 0.53,
-      "novaProjecao": 6.53,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 6.33,
       "real": 13.1,
       "erroOriginal": 7.1,
-      "erroComExplosao": 6.57
+      "erroComExplosao": 6.77
     },
     {
       "rodada": 2,
       "nome": "Luis Francisco Zubeldía",
       "projecaoOriginal": 5.98,
-      "ajusteExplosao": 0.37,
-      "novaProjecao": 6.35,
+      "ajusteExplosao": 0.39,
+      "novaProjecao": 6.37,
       "real": 4.64,
       "erroOriginal": 1.34,
-      "erroComExplosao": 1.71
+      "erroComExplosao": 1.73
     },
     {
       "rodada": 2,
@@ -520,51 +520,51 @@
       "rodada": 2,
       "nome": "Álvaro Montoro",
       "projecaoOriginal": 5.8,
-      "ajusteExplosao": 0.37,
-      "novaProjecao": 6.17,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 6.11,
       "real": 5.5,
       "erroOriginal": 0.3,
-      "erroComExplosao": 0.67
+      "erroComExplosao": 0.61
     },
     {
       "rodada": 2,
       "nome": "Agustín Canobbio Graviz",
       "projecaoOriginal": 5.7,
-      "ajusteExplosao": 0.54,
-      "novaProjecao": 6.24,
+      "ajusteExplosao": 0.53,
+      "novaProjecao": 6.23,
       "real": 2.5,
       "erroOriginal": 3.2,
-      "erroComExplosao": 3.74
+      "erroComExplosao": 3.73
     },
     {
       "rodada": 2,
       "nome": "Santiago Mariano Rodríguez Molina",
       "projecaoOriginal": 5.7,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 5.98,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 6.02,
       "real": 0,
       "erroOriginal": 5.7,
-      "erroComExplosao": 5.98
+      "erroComExplosao": 6.02
     },
     {
       "rodada": 2,
       "nome": "Jemmes Bruno Ribeiro da Silva",
       "projecaoOriginal": 5.5,
-      "ajusteExplosao": 0.2,
-      "novaProjecao": 5.7,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 5.8,
       "real": 2.2,
       "erroOriginal": 3.3,
-      "erroComExplosao": 3.5
+      "erroComExplosao": 3.6
     },
     {
       "rodada": 2,
       "nome": "Rogério Mücke Ceni",
       "projecaoOriginal": 5.47,
-      "ajusteExplosao": 0.3,
-      "novaProjecao": 5.77,
+      "ajusteExplosao": 0.27,
+      "novaProjecao": 5.74,
       "real": 5.9,
       "erroOriginal": 0.43,
-      "erroComExplosao": 0.13
+      "erroComExplosao": 0.16
     },
     {
       "rodada": 2,
@@ -580,41 +580,41 @@
       "rodada": 2,
       "nome": "Joaquín Piquerez Moreira",
       "projecaoOriginal": 5.3,
-      "ajusteExplosao": 0.52,
-      "novaProjecao": 5.82,
+      "ajusteExplosao": 0.5,
+      "novaProjecao": 5.8,
       "real": 12.8,
       "erroOriginal": 7.5,
-      "erroComExplosao": 6.98
+      "erroComExplosao": 7.0
     },
     {
       "rodada": 2,
       "nome": "Givanildo Vieira de Souza",
       "projecaoOriginal": 5.3,
-      "ajusteExplosao": 0.55,
-      "novaProjecao": 5.85,
+      "ajusteExplosao": 0.46,
+      "novaProjecao": 5.76,
       "real": 2.4,
       "erroOriginal": 2.9,
-      "erroComExplosao": 3.45
+      "erroComExplosao": 3.36
     },
     {
       "rodada": 2,
       "nome": "Ademir da Silva Santos Júnior",
       "projecaoOriginal": 5.2,
-      "ajusteExplosao": 0.35,
-      "novaProjecao": 5.55,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 5.49,
       "real": 3.3,
       "erroOriginal": 1.9,
-      "erroComExplosao": 2.25
+      "erroComExplosao": 2.19
     },
     {
       "rodada": 2,
       "nome": "José Sabino Chagas Monteiro",
       "projecaoOriginal": 5.2,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 5.53,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 5.51,
       "real": 1.4,
       "erroOriginal": 3.8,
-      "erroComExplosao": 4.13
+      "erroComExplosao": 4.11
     },
     {
       "rodada": 2,
@@ -630,21 +630,21 @@
       "rodada": 2,
       "nome": "Lucas Ronier Vieira Pires",
       "projecaoOriginal": 5.0,
-      "ajusteExplosao": 0.54,
-      "novaProjecao": 5.54,
+      "ajusteExplosao": 0.44,
+      "novaProjecao": 5.44,
       "real": 7.8,
       "erroOriginal": 2.8,
-      "erroComExplosao": 2.26
+      "erroComExplosao": 2.36
     },
     {
       "rodada": 2,
       "nome": "Guilherme de Jesus da Silva",
       "projecaoOriginal": 5.0,
-      "ajusteExplosao": 0.48,
-      "novaProjecao": 5.48,
+      "ajusteExplosao": 0.37,
+      "novaProjecao": 5.37,
       "real": 3.2,
       "erroOriginal": 1.8,
-      "erroComExplosao": 2.28
+      "erroComExplosao": 2.17
     },
     {
       "rodada": 2,
@@ -660,281 +660,281 @@
       "rodada": 2,
       "nome": "Ramon Ramos Lima",
       "projecaoOriginal": 4.7,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 5.09,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 5.06,
       "real": 7,
       "erroOriginal": 2.3,
-      "erroComExplosao": 1.91
+      "erroComExplosao": 1.94
     },
     {
       "rodada": 2,
       "nome": "Marlon Rodrigues Xavier",
       "projecaoOriginal": 4.6,
-      "ajusteExplosao": 0.7,
-      "novaProjecao": 5.3,
+      "ajusteExplosao": 0.71,
+      "novaProjecao": 5.31,
       "real": 4.4,
       "erroOriginal": 0.2,
-      "erroComExplosao": 0.9
+      "erroComExplosao": 0.91
     },
     {
       "rodada": 2,
       "nome": "Fernando Seabra",
       "projecaoOriginal": 4.51,
-      "ajusteExplosao": 0.27,
-      "novaProjecao": 4.78,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 4.8,
       "real": 5.49,
       "erroOriginal": 0.98,
-      "erroComExplosao": 0.71
+      "erroComExplosao": 0.69
     },
     {
       "rodada": 2,
       "nome": "Thiago Henrique Mendes Ribeiro",
       "projecaoOriginal": 4.5,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 4.81,
+      "ajusteExplosao": 0.34,
+      "novaProjecao": 4.84,
       "real": 4,
       "erroOriginal": 0.5,
-      "erroComExplosao": 0.81
+      "erroComExplosao": 0.84
     },
     {
       "rodada": 2,
       "nome": "Pedro Henrique Ribeiro Gonçalves",
       "projecaoOriginal": 4.5,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 4.82,
+      "ajusteExplosao": 0.41,
+      "novaProjecao": 4.91,
       "real": 5.5,
       "erroOriginal": 1.0,
-      "erroComExplosao": 0.68
+      "erroComExplosao": 0.59
     },
     {
       "rodada": 2,
       "nome": "Rafael Silva Guanaes",
       "projecaoOriginal": 4.47,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 4.78,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 4.76,
       "real": 5.45,
       "erroOriginal": 0.98,
-      "erroComExplosao": 0.67
+      "erroComExplosao": 0.69
     },
     {
       "rodada": 2,
       "nome": "Camilo Reijers de Oliveira",
       "projecaoOriginal": 4.4,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 4.68,
+      "ajusteExplosao": 0.21,
+      "novaProjecao": 4.61,
       "real": 0.7,
       "erroOriginal": 3.7,
-      "erroComExplosao": 3.98
+      "erroComExplosao": 3.91
     },
     {
       "rodada": 2,
       "nome": "Gilberto Moraes Júnior",
       "projecaoOriginal": 4.4,
-      "ajusteExplosao": 0.41,
-      "novaProjecao": 4.81,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 4.73,
       "real": 3.8,
       "erroOriginal": 0.6,
-      "erroComExplosao": 1.01
+      "erroComExplosao": 0.93
     },
     {
       "rodada": 2,
       "nome": "Luís Manuel Ribeiro de Castro",
       "projecaoOriginal": 4.32,
-      "ajusteExplosao": 0.22,
-      "novaProjecao": 4.54,
+      "ajusteExplosao": 0.27,
+      "novaProjecao": 4.59,
       "real": 7.92,
       "erroOriginal": 3.6,
-      "erroComExplosao": 3.38
+      "erroComExplosao": 3.33
     },
     {
       "rodada": 2,
       "nome": "José Andrés Hurtado Cheme",
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.38,
-      "novaProjecao": 4.58,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 4.5,
       "real": 5.5,
       "erroOriginal": 1.3,
-      "erroComExplosao": 0.92
+      "erroComExplosao": 1.0
     },
     {
       "rodada": 2,
       "nome": "Walter Leandro Capeloza Artune",
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.23,
-      "novaProjecao": 4.43,
+      "ajusteExplosao": 0.27,
+      "novaProjecao": 4.47,
       "real": 4.5,
       "erroOriginal": 0.3,
-      "erroComExplosao": 0.07
+      "erroComExplosao": 0.03
     },
     {
       "rodada": 2,
       "nome": "Rafael Pires Monteiro",
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 4.48,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 4.45,
       "real": 2.9,
       "erroOriginal": 1.3,
-      "erroComExplosao": 1.58
+      "erroComExplosao": 1.55
     },
     {
       "rodada": 2,
       "nome": "Ronaldo de Oliveira Strada",
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.94,
-      "novaProjecao": 5.14,
+      "ajusteExplosao": 0.79,
+      "novaProjecao": 4.99,
       "real": 2.9,
       "erroOriginal": 1.3,
-      "erroComExplosao": 2.24
+      "erroComExplosao": 2.09
     },
     {
       "rodada": 2,
       "nome": "Igor Marques Paciência Cardoso",
       "projecaoOriginal": 4.0,
-      "ajusteExplosao": 0.52,
-      "novaProjecao": 4.52,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 4.3,
       "real": 7.7,
       "erroOriginal": 3.7,
-      "erroComExplosao": 3.18
+      "erroComExplosao": 3.4
     },
     {
       "rodada": 2,
       "nome": "Lucas Henrique Barbosa",
       "projecaoOriginal": 4.0,
-      "ajusteExplosao": 0.38,
-      "novaProjecao": 4.38,
+      "ajusteExplosao": 0.4,
+      "novaProjecao": 4.4,
       "real": 3.3,
       "erroOriginal": 0.7,
-      "erroComExplosao": 1.08
+      "erroComExplosao": 1.1
     },
     {
       "rodada": 2,
       "nome": "Matheus Martins Fogaça de Paulo",
       "projecaoOriginal": 4.0,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 4.34,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 4.31,
       "real": 0,
       "erroOriginal": 4.0,
-      "erroComExplosao": 4.34
+      "erroComExplosao": 4.31
     },
     {
       "rodada": 2,
       "nome": "Wagner Leonardo Calvelo de Souza",
       "projecaoOriginal": 3.9,
-      "ajusteExplosao": 0.3,
-      "novaProjecao": 4.2,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 4.22,
       "real": 5,
       "erroOriginal": 1.1,
-      "erroComExplosao": 0.8
+      "erroComExplosao": 0.78
     },
     {
       "rodada": 2,
       "nome": "Eduardo Colcenti Antunes",
       "projecaoOriginal": 3.9,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 4.24,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 4.22,
       "real": 1,
       "erroOriginal": 2.9,
-      "erroComExplosao": 3.24
+      "erroComExplosao": 3.22
     },
     {
       "rodada": 2,
       "nome": "Abel Fernando Moreira Ferreira",
       "projecaoOriginal": 3.77,
-      "ajusteExplosao": 0.58,
-      "novaProjecao": 4.35,
+      "ajusteExplosao": 0.59,
+      "novaProjecao": 4.36,
       "real": 11.43,
       "erroOriginal": 7.66,
-      "erroComExplosao": 7.08
+      "erroComExplosao": 7.07
     },
     {
       "rodada": 2,
       "nome": "Everson Felipe Marques Pires",
       "projecaoOriginal": 3.7,
-      "ajusteExplosao": 0.66,
-      "novaProjecao": 4.36,
+      "ajusteExplosao": 0.62,
+      "novaProjecao": 4.32,
       "real": 4.2,
       "erroOriginal": 0.5,
-      "erroComExplosao": 0.16
+      "erroComExplosao": 0.12
     },
     {
       "rodada": 2,
       "nome": "Samuel Xavier Brito",
       "projecaoOriginal": 3.7,
-      "ajusteExplosao": 0.51,
-      "novaProjecao": 4.21,
+      "ajusteExplosao": 0.47,
+      "novaProjecao": 4.17,
       "real": 3.5,
       "erroOriginal": 0.2,
-      "erroComExplosao": 0.71
+      "erroComExplosao": 0.67
     },
     {
       "rodada": 2,
       "nome": "Matheus Fellipe Costa Pereira",
       "projecaoOriginal": 3.7,
-      "ajusteExplosao": 0.36,
-      "novaProjecao": 4.06,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 4.02,
       "real": 12.7,
       "erroOriginal": 9.0,
-      "erroComExplosao": 8.64
+      "erroComExplosao": 8.68
     },
     {
       "rodada": 2,
       "nome": "Miguel Àngel Terceros",
       "projecaoOriginal": 3.6,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 3.88,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 3.89,
       "real": -0.3,
       "erroOriginal": 3.9,
-      "erroComExplosao": 4.18
+      "erroComExplosao": 4.19
     },
     {
       "rodada": 2,
       "nome": "Marllon Gonçalves Jerônimo Borges",
       "projecaoOriginal": 3.5,
-      "ajusteExplosao": 0.17,
-      "novaProjecao": 3.67,
+      "ajusteExplosao": 0.26,
+      "novaProjecao": 3.76,
       "real": 2.4,
       "erroOriginal": 1.1,
-      "erroComExplosao": 1.27
+      "erroComExplosao": 1.36
     },
     {
       "rodada": 2,
       "nome": "Erick Antonio Pulgar Farfán",
       "projecaoOriginal": 3.5,
-      "ajusteExplosao": 0.44,
-      "novaProjecao": 3.94,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 3.83,
       "real": -0.4,
       "erroOriginal": 3.9,
-      "erroComExplosao": 4.34
+      "erroComExplosao": 4.23
     },
     {
       "rodada": 2,
       "nome": "Erick da Costa Farias",
       "projecaoOriginal": 3.4,
-      "ajusteExplosao": 0.3,
-      "novaProjecao": 3.7,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 3.73,
       "real": 0.9,
       "erroOriginal": 2.5,
-      "erroComExplosao": 2.8
+      "erroComExplosao": 2.83
     },
     {
       "rodada": 2,
       "nome": "Alix Vinicius de Souza Sampaio",
       "projecaoOriginal": 3.4,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 3.68,
+      "ajusteExplosao": 0.26,
+      "novaProjecao": 3.66,
       "real": 4.4,
       "erroOriginal": 1.0,
-      "erroComExplosao": 0.72
+      "erroComExplosao": 0.74
     },
     {
       "rodada": 2,
       "nome": "Mateus Cardoso Lemos Martins",
       "projecaoOriginal": 3.3,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 3.62,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 3.66,
       "real": 11.3,
       "erroOriginal": 8.0,
-      "erroComExplosao": 7.68
+      "erroComExplosao": 7.64
     },
     {
       "rodada": 2,
@@ -950,61 +950,61 @@
       "rodada": 2,
       "nome": "Jorge Andrés Carrascal Guardo",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.5,
-      "novaProjecao": 3.7,
+      "ajusteExplosao": 0.56,
+      "novaProjecao": 3.76,
       "real": 2.7,
       "erroOriginal": 0.5,
-      "erroComExplosao": 1.0
+      "erroComExplosao": 1.06
     },
     {
       "rodada": 2,
       "nome": "Weverton Pereira da Silva",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.64,
-      "novaProjecao": 3.84,
+      "ajusteExplosao": 0.69,
+      "novaProjecao": 3.89,
       "real": -1.7,
       "erroOriginal": 4.9,
-      "erroComExplosao": 5.54
+      "erroComExplosao": 5.59
     },
     {
       "rodada": 2,
       "nome": "João Felipe Schmidt Urbano",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 3.51,
+      "ajusteExplosao": 0.35,
+      "novaProjecao": 3.55,
       "real": 3.3,
       "erroOriginal": 0.1,
-      "erroComExplosao": 0.21
+      "erroComExplosao": 0.25
     },
     {
       "rodada": 2,
       "nome": "Marcelo Rangel da Rosa",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 3.53,
+      "ajusteExplosao": 0.21,
+      "novaProjecao": 3.41,
       "real": 3.2,
       "erroOriginal": 0.0,
-      "erroComExplosao": 0.33
+      "erroComExplosao": 0.21
     },
     {
       "rodada": 2,
       "nome": "Everton Sousa Soares",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 3.53,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 3.5,
       "real": 3.4,
       "erroOriginal": 0.2,
-      "erroComExplosao": 0.13
+      "erroComExplosao": 0.1
     },
     {
       "rodada": 2,
       "nome": "Fernando Diniz Silva",
       "projecaoOriginal": 3.02,
-      "ajusteExplosao": 0.49,
-      "novaProjecao": 3.51,
+      "ajusteExplosao": 0.51,
+      "novaProjecao": 3.53,
       "real": 4.69,
       "erroOriginal": 1.67,
-      "erroComExplosao": 1.18
+      "erroComExplosao": 1.16
     }
   ]
 }

@@ -1,0 +1,1187 @@
+{
+  "modelo": "historico_escalacoes_v1",
+  "rodada": 14,
+  "dadosUtilizadosAteRodada": 13,
+  "semVazamentoFuturo": true,
+  "estrategias": [
+    {
+      "id": "conservador",
+      "nome": "Conservador",
+      "perfil": "conservador",
+      "formacao": "4-4-2",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 127.94,
+      "titulares": [
+        {
+          "id": "102906",
+          "nome": "Anderson Silva da Paixão",
+          "posicao": "GOL",
+          "clube": "CHA",
+          "preco": 5.36,
+          "projecao": 8.67,
+          "pontuacaoReal": -2.0,
+          "historico": {
+            "jogos": 1,
+            "media": 11.5,
+            "media3": 11.5,
+            "media5": 11.5,
+            "piso": 11.5,
+            "teto": 11.5,
+            "regularidade": 100,
+            "volatilidade": 0,
+            "tendencia": 0.0
+          }
+        },
+        {
+          "id": "105531",
+          "nome": "Matheus Lima Beltrão Oliveira Valin",
+          "posicao": "LAT",
+          "clube": "COR",
+          "preco": 12.92,
+          "projecao": 7.58,
+          "pontuacaoReal": 1.0,
+          "historico": {
+            "jogos": 8,
+            "media": 9.775,
+            "media3": 13.867,
+            "media5": 10.58,
+            "piso": -0.8,
+            "teto": 17.8,
+            "regularidade": 38.76,
+            "volatilidade": 6.124,
+            "tendencia": 4.092
+          }
+        },
+        {
+          "id": "110426",
+          "nome": "Alexandro Ezequiel Bernabei",
+          "posicao": "LAT",
+          "clube": "INT",
+          "preco": 10.84,
+          "projecao": 6.21,
+          "pontuacaoReal": 15.8,
+          "historico": {
+            "jogos": 10,
+            "media": 6.47,
+            "media3": 11.633,
+            "media5": 9.2,
+            "piso": 1.7,
+            "teto": 15.7,
+            "regularidade": 55.53,
+            "volatilidade": 4.447,
+            "tendencia": 5.163
+          }
+        },
+        {
+          "id": "69208",
+          "nome": "Gabriel Armando de Abreu",
+          "posicao": "ZAG",
+          "clube": "COR",
+          "preco": 9.34,
+          "projecao": 4.93,
+          "pontuacaoReal": -1.6,
+          "historico": {
+            "jogos": 8,
+            "media": 6.525,
+            "media3": 7.9,
+            "media5": 5.58,
+            "piso": 0.6,
+            "teto": 8.7,
+            "regularidade": 69.56,
+            "volatilidade": 3.044,
+            "tendencia": 1.375
+          }
+        },
+        {
+          "id": "71684",
+          "nome": "Gustavo Raúl Gómez Portillo",
+          "posicao": "ZAG",
+          "clube": "PAL",
+          "preco": 10.56,
+          "projecao": 4.26,
+          "pontuacaoReal": 0.7,
+          "historico": {
+            "jogos": 11,
+            "media": 5.918,
+            "media3": 8.1,
+            "media5": 6.1,
+            "piso": 0.0,
+            "teto": 15.5,
+            "regularidade": 48.74,
+            "volatilidade": 5.126,
+            "tendencia": 2.182
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": 7.31,
+          "pontuacaoReal": 5.3,
+          "historico": {
+            "jogos": 9,
+            "media": 9.389,
+            "media3": 13.667,
+            "media5": 9.96,
+            "piso": 0.6,
+            "teto": 19.9,
+            "regularidade": 38.22,
+            "volatilidade": 6.178,
+            "tendencia": 4.278
+          }
+        },
+        {
+          "id": "98672",
+          "nome": "Jefferson David Savarino Quintero",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 9.02,
+          "projecao": 5.94,
+          "pontuacaoReal": 5.4,
+          "historico": {
+            "jogos": 10,
+            "media": 6.64,
+            "media3": 10.4,
+            "media5": 7.34,
+            "piso": 1.5,
+            "teto": 13.1,
+            "regularidade": 58.94,
+            "volatilidade": 4.106,
+            "tendencia": 3.76
+          }
+        },
+        {
+          "id": "116447",
+          "nome": "Hércules Pereira do Nascimento",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 6.82,
+          "projecao": 5.2,
+          "pontuacaoReal": 1.2,
+          "historico": {
+            "jogos": 11,
+            "media": 5.627,
+            "media3": 6.933,
+            "media5": 6.82,
+            "piso": 3.6,
+            "teto": 10.1,
+            "regularidade": 73.93,
+            "volatilidade": 2.607,
+            "tendencia": 1.306
+          }
+        },
+        {
+          "id": "104783",
+          "nome": "Nicolás Brian Acevedo Tabárez",
+          "posicao": "MEI",
+          "clube": "BAH",
+          "preco": 7.02,
+          "projecao": 4.9,
+          "pontuacaoReal": 8.6,
+          "historico": {
+            "jogos": 10,
+            "media": 4.96,
+            "media3": 6.267,
+            "media5": 5.8,
+            "piso": 3.1,
+            "teto": 7.4,
+            "regularidade": 84.78,
+            "volatilidade": 1.522,
+            "tendencia": 1.307
+          }
+        },
+        {
+          "id": "94583",
+          "nome": "Pedro Guilherme Abreu dos Santos",
+          "posicao": "ATA",
+          "clube": "FLA",
+          "preco": 15.42,
+          "projecao": 7.23,
+          "pontuacaoReal": 11.8,
+          "historico": {
+            "jogos": 10,
+            "media": 9.11,
+            "media3": 14.7,
+            "media5": 10.72,
+            "piso": 0.5,
+            "teto": 20.6,
+            "regularidade": 31.18,
+            "volatilidade": 6.882,
+            "tendencia": 5.59
+          }
+        },
+        {
+          "id": "116706",
+          "nome": "Carlos Andrés Gómez Hinestroza",
+          "posicao": "ATA",
+          "clube": "VAS",
+          "preco": 13.56,
+          "projecao": 6.38,
+          "pontuacaoReal": 0.5,
+          "historico": {
+            "jogos": 11,
+            "media": 8.464,
+            "media3": 10.667,
+            "media5": 8.38,
+            "piso": 1.6,
+            "teto": 16.9,
+            "regularidade": 46.88,
+            "volatilidade": 5.312,
+            "tendencia": 2.203
+          }
+        },
+        {
+          "id": "110506",
+          "nome": "Abel Fernando Moreira Ferreira",
+          "posicao": "TEC",
+          "clube": "PAL",
+          "preco": 12.08,
+          "projecao": 6.5,
+          "pontuacaoReal": 4.55,
+          "historico": {
+            "jogos": 12,
+            "media": 7.272,
+            "media3": 7.29,
+            "media5": 6.824,
+            "piso": 5.7,
+            "teto": 8.01,
+            "regularidade": 90.28,
+            "volatilidade": 0.972,
+            "tendencia": 0.018
+          }
+        }
+      ],
+      "capitao": {
+        "id": "102906",
+        "nome": "Anderson Silva da Paixão",
+        "posicao": "GOL",
+        "clube": "CHA",
+        "preco": 5.36,
+        "projecao": 8.67,
+        "pontuacaoReal": -2.0,
+        "historico": {
+          "jogos": 1,
+          "media": 11.5,
+          "media3": 11.5,
+          "media5": 11.5,
+          "piso": 11.5,
+          "teto": 11.5,
+          "regularidade": 100,
+          "volatilidade": 0,
+          "tendencia": 0.0
+        }
+      },
+      "banco": [
+        {
+          "id": "104084",
+          "nome": "Carlos Miguel dos Santos Pereira",
+          "posicao": "GOL",
+          "clube": "PAL",
+          "preco": 8.9,
+          "projecao": 6.1,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 12,
+            "media": 5.808,
+            "media3": 9.333,
+            "media5": 7.58,
+            "piso": 4.7,
+            "teto": 10.2,
+            "regularidade": 77.95,
+            "volatilidade": 2.205,
+            "tendencia": 3.525
+          }
+        },
+        {
+          "id": "102975",
+          "nome": "Gonzalo Daniel Escobar",
+          "posicao": "LAT",
+          "clube": "SAN",
+          "preco": 9.53,
+          "projecao": 5.42,
+          "pontuacaoReal": 3.5,
+          "historico": {
+            "jogos": 7,
+            "media": 7.5,
+            "media3": 5.433,
+            "media5": 8.48,
+            "piso": 4.0,
+            "teto": 18.4,
+            "regularidade": 49.01,
+            "volatilidade": 5.099,
+            "tendencia": -2.067
+          }
+        },
+        {
+          "id": "83528",
+          "nome": "Leonardo Pereira",
+          "posicao": "ZAG",
+          "clube": "FLA",
+          "preco": 10.59,
+          "projecao": 4.02,
+          "pontuacaoReal": 1.5,
+          "historico": {
+            "jogos": 8,
+            "media": 5.237,
+            "media3": 4.667,
+            "media5": 3.98,
+            "piso": 2.3,
+            "teto": 6.5,
+            "regularidade": 86.27,
+            "volatilidade": 1.373,
+            "tendencia": -0.571
+          }
+        },
+        {
+          "id": "141451",
+          "nome": "Allan Andrade Elias",
+          "posicao": "MEI",
+          "clube": "PAL",
+          "preco": 12.39,
+          "projecao": 4.73,
+          "pontuacaoReal": 4.2,
+          "historico": {
+            "jogos": 12,
+            "media": 6.35,
+            "media3": 5.233,
+            "media5": 4.52,
+            "piso": 2.9,
+            "teto": 6.0,
+            "regularidade": 89.66,
+            "volatilidade": 1.034,
+            "tendencia": -1.117
+          }
+        },
+        {
+          "id": "102928",
+          "nome": "Agustín Canobbio Graviz",
+          "posicao": "ATA",
+          "clube": "FLU",
+          "preco": 10.45,
+          "projecao": 6.34,
+          "pontuacaoReal": 1.2,
+          "historico": {
+            "jogos": 8,
+            "media": 8.062,
+            "media3": 6.733,
+            "media5": 9.36,
+            "piso": 3.9,
+            "teto": 16.2,
+            "regularidade": 57.4,
+            "volatilidade": 4.26,
+            "tendencia": -1.329
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "102928",
+        "nome": "Agustín Canobbio Graviz",
+        "posicao": "ATA",
+        "clube": "FLU",
+        "preco": 10.45,
+        "projecao": 6.34,
+        "pontuacaoReal": 1.2,
+        "historico": {
+          "jogos": 8,
+          "media": 8.062,
+          "media3": 6.733,
+          "media5": 9.36,
+          "piso": 3.9,
+          "teto": 16.2,
+          "regularidade": 57.4,
+          "volatilidade": 4.26,
+          "tendencia": -1.329
+        }
+      }
+    },
+    {
+      "id": "equilibrado",
+      "nome": "Equilibrado",
+      "perfil": "equilibrado",
+      "formacao": "3-4-3",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 133.44,
+      "titulares": [
+        {
+          "id": "102906",
+          "nome": "Anderson Silva da Paixão",
+          "posicao": "GOL",
+          "clube": "CHA",
+          "preco": 5.36,
+          "projecao": 8.69,
+          "pontuacaoReal": -2.0,
+          "historico": {
+            "jogos": 1,
+            "media": 11.5,
+            "media3": 11.5,
+            "media5": 11.5,
+            "piso": 11.5,
+            "teto": 11.5,
+            "regularidade": 100,
+            "volatilidade": 0,
+            "tendencia": 0.0
+          }
+        },
+        {
+          "id": "105531",
+          "nome": "Matheus Lima Beltrão Oliveira Valin",
+          "posicao": "LAT",
+          "clube": "COR",
+          "preco": 12.92,
+          "projecao": 10.12,
+          "pontuacaoReal": 1.0,
+          "historico": {
+            "jogos": 8,
+            "media": 9.775,
+            "media3": 13.867,
+            "media5": 10.58,
+            "piso": -0.8,
+            "teto": 17.8,
+            "regularidade": 38.76,
+            "volatilidade": 6.124,
+            "tendencia": 4.092
+          }
+        },
+        {
+          "id": "71684",
+          "nome": "Gustavo Raúl Gómez Portillo",
+          "posicao": "ZAG",
+          "clube": "PAL",
+          "preco": 10.56,
+          "projecao": 6.32,
+          "pontuacaoReal": 0.7,
+          "historico": {
+            "jogos": 11,
+            "media": 5.918,
+            "media3": 8.1,
+            "media5": 6.1,
+            "piso": 0.0,
+            "teto": 15.5,
+            "regularidade": 48.74,
+            "volatilidade": 5.126,
+            "tendencia": 2.182
+          }
+        },
+        {
+          "id": "69208",
+          "nome": "Gabriel Armando de Abreu",
+          "posicao": "ZAG",
+          "clube": "COR",
+          "preco": 9.34,
+          "projecao": 5.93,
+          "pontuacaoReal": -1.6,
+          "historico": {
+            "jogos": 8,
+            "media": 6.525,
+            "media3": 7.9,
+            "media5": 5.58,
+            "piso": 0.6,
+            "teto": 8.7,
+            "regularidade": 69.56,
+            "volatilidade": 3.044,
+            "tendencia": 1.375
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": 10.0,
+          "pontuacaoReal": 5.3,
+          "historico": {
+            "jogos": 9,
+            "media": 9.389,
+            "media3": 13.667,
+            "media5": 9.96,
+            "piso": 0.6,
+            "teto": 19.9,
+            "regularidade": 38.22,
+            "volatilidade": 6.178,
+            "tendencia": 4.278
+          }
+        },
+        {
+          "id": "98672",
+          "nome": "Jefferson David Savarino Quintero",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 9.02,
+          "projecao": 7.56,
+          "pontuacaoReal": 5.4,
+          "historico": {
+            "jogos": 10,
+            "media": 6.64,
+            "media3": 10.4,
+            "media5": 7.34,
+            "piso": 1.5,
+            "teto": 13.1,
+            "regularidade": 58.94,
+            "volatilidade": 4.106,
+            "tendencia": 3.76
+          }
+        },
+        {
+          "id": "63289",
+          "nome": "Edenílson Andrade dos Santos",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 6.15,
+          "projecao": 6.37,
+          "pontuacaoReal": 0.0,
+          "historico": {
+            "jogos": 9,
+            "media": 4.578,
+            "media3": 8.9,
+            "media5": 6.66,
+            "piso": 0.6,
+            "teto": 18.4,
+            "regularidade": 34.76,
+            "volatilidade": 6.524,
+            "tendencia": 4.322
+          }
+        },
+        {
+          "id": "89256",
+          "nome": "Gerson Santos da Silva",
+          "posicao": "MEI",
+          "clube": "CRU",
+          "preco": 8.23,
+          "projecao": 6.08,
+          "pontuacaoReal": 1.9,
+          "historico": {
+            "jogos": 11,
+            "media": 4.355,
+            "media3": 8.6,
+            "media5": 6.36,
+            "piso": 2.2,
+            "teto": 12.1,
+            "regularidade": 65.09,
+            "volatilidade": 3.491,
+            "tendencia": 4.245
+          }
+        },
+        {
+          "id": "94583",
+          "nome": "Pedro Guilherme Abreu dos Santos",
+          "posicao": "ATA",
+          "clube": "FLA",
+          "preco": 15.42,
+          "projecao": 10.22,
+          "pontuacaoReal": 11.8,
+          "historico": {
+            "jogos": 10,
+            "media": 9.11,
+            "media3": 14.7,
+            "media5": 10.72,
+            "piso": 0.5,
+            "teto": 20.6,
+            "regularidade": 31.18,
+            "volatilidade": 6.882,
+            "tendencia": 5.59
+          }
+        },
+        {
+          "id": "143193",
+          "nome": "Kevin Stiven Viveros Rodallega",
+          "posicao": "ATA",
+          "clube": "CAP",
+          "preco": 14.34,
+          "projecao": 8.54,
+          "pontuacaoReal": 1.6,
+          "historico": {
+            "jogos": 10,
+            "media": 7.69,
+            "media3": 11.567,
+            "media5": 7.46,
+            "piso": 0.4,
+            "teto": 21.1,
+            "regularidade": 21.67,
+            "volatilidade": 7.833,
+            "tendencia": 3.877
+          }
+        },
+        {
+          "id": "116706",
+          "nome": "Carlos Andrés Gómez Hinestroza",
+          "posicao": "ATA",
+          "clube": "VAS",
+          "preco": 13.56,
+          "projecao": 8.46,
+          "pontuacaoReal": 0.5,
+          "historico": {
+            "jogos": 11,
+            "media": 8.464,
+            "media3": 10.667,
+            "media5": 8.38,
+            "piso": 1.6,
+            "teto": 16.9,
+            "regularidade": 46.88,
+            "volatilidade": 5.312,
+            "tendencia": 2.203
+          }
+        },
+        {
+          "id": "88963",
+          "nome": "José Leonardo Nunes Alves Sousa Jardim",
+          "posicao": "TEC",
+          "clube": "FLA",
+          "preco": 13.54,
+          "projecao": 7.1,
+          "pontuacaoReal": 3.75,
+          "historico": {
+            "jogos": 10,
+            "media": 6.976,
+            "media3": 9.033,
+            "media5": 7.112,
+            "piso": 1.57,
+            "teto": 11.48,
+            "regularidade": 67.96,
+            "volatilidade": 3.204,
+            "tendencia": 2.057
+          }
+        }
+      ],
+      "capitao": {
+        "id": "94583",
+        "nome": "Pedro Guilherme Abreu dos Santos",
+        "posicao": "ATA",
+        "clube": "FLA",
+        "preco": 15.42,
+        "projecao": 10.22,
+        "pontuacaoReal": 11.8,
+        "historico": {
+          "jogos": 10,
+          "media": 9.11,
+          "media3": 14.7,
+          "media5": 10.72,
+          "piso": 0.5,
+          "teto": 20.6,
+          "regularidade": 31.18,
+          "volatilidade": 6.882,
+          "tendencia": 5.59
+        }
+      },
+      "banco": [
+        {
+          "id": "104084",
+          "nome": "Carlos Miguel dos Santos Pereira",
+          "posicao": "GOL",
+          "clube": "PAL",
+          "preco": 8.9,
+          "projecao": 7.0,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 12,
+            "media": 5.808,
+            "media3": 9.333,
+            "media5": 7.58,
+            "piso": 4.7,
+            "teto": 10.2,
+            "regularidade": 77.95,
+            "volatilidade": 2.205,
+            "tendencia": 3.525
+          }
+        },
+        {
+          "id": "110426",
+          "nome": "Alexandro Ezequiel Bernabei",
+          "posicao": "LAT",
+          "clube": "INT",
+          "preco": 10.84,
+          "projecao": 8.28,
+          "pontuacaoReal": 15.8,
+          "historico": {
+            "jogos": 10,
+            "media": 6.47,
+            "media3": 11.633,
+            "media5": 9.2,
+            "piso": 1.7,
+            "teto": 15.7,
+            "regularidade": 55.53,
+            "volatilidade": 4.447,
+            "tendencia": 5.163
+          }
+        },
+        {
+          "id": "93368",
+          "nome": "Lucas Veríssimo da Silva",
+          "posicao": "ZAG",
+          "clube": "SAN",
+          "preco": 8.63,
+          "projecao": 4.82,
+          "pontuacaoReal": 0.0,
+          "historico": {
+            "jogos": 6,
+            "media": 5.183,
+            "media3": 4.167,
+            "media5": 5.2,
+            "piso": 0.8,
+            "teto": 11.5,
+            "regularidade": 60.76,
+            "volatilidade": 3.924,
+            "tendencia": -1.017
+          }
+        },
+        {
+          "id": "116447",
+          "nome": "Hércules Pereira do Nascimento",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 6.82,
+          "projecao": 6.07,
+          "pontuacaoReal": 1.2,
+          "historico": {
+            "jogos": 11,
+            "media": 5.627,
+            "media3": 6.933,
+            "media5": 6.82,
+            "piso": 3.6,
+            "teto": 10.1,
+            "regularidade": 73.93,
+            "volatilidade": 2.607,
+            "tendencia": 1.306
+          }
+        },
+        {
+          "id": "109096",
+          "nome": "Gonzalo Jordy Plata Jiménez",
+          "posicao": "ATA",
+          "clube": "FLA",
+          "preco": 9.94,
+          "projecao": 7.93,
+          "pontuacaoReal": 5.3,
+          "historico": {
+            "jogos": 5,
+            "media": 8.02,
+            "media3": 10.3,
+            "media5": 8.02,
+            "piso": 1.2,
+            "teto": 14.4,
+            "regularidade": 49.26,
+            "volatilidade": 5.074,
+            "tendencia": 2.28
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "110426",
+        "nome": "Alexandro Ezequiel Bernabei",
+        "posicao": "LAT",
+        "clube": "INT",
+        "preco": 10.84,
+        "projecao": 8.28,
+        "pontuacaoReal": 15.8,
+        "historico": {
+          "jogos": 10,
+          "media": 6.47,
+          "media3": 11.633,
+          "media5": 9.2,
+          "piso": 1.7,
+          "teto": 15.7,
+          "regularidade": 55.53,
+          "volatilidade": 4.447,
+          "tendencia": 5.163
+        }
+      }
+    },
+    {
+      "id": "agressivo",
+      "nome": "Agressivo",
+      "perfil": "agressivo",
+      "formacao": "3-4-3",
+      "escalaçãoCompleta": true,
+      "quantidadeTitulares": 12,
+      "custoTitulares": 126.26,
+      "titulares": [
+        {
+          "id": "102906",
+          "nome": "Anderson Silva da Paixão",
+          "posicao": "GOL",
+          "clube": "CHA",
+          "preco": 5.36,
+          "projecao": 8.39,
+          "pontuacaoReal": -2.0,
+          "historico": {
+            "jogos": 1,
+            "media": 11.5,
+            "media3": 11.5,
+            "media5": 11.5,
+            "piso": 11.5,
+            "teto": 11.5,
+            "regularidade": 100,
+            "volatilidade": 0,
+            "tendencia": 0.0
+          }
+        },
+        {
+          "id": "105531",
+          "nome": "Matheus Lima Beltrão Oliveira Valin",
+          "posicao": "LAT",
+          "clube": "COR",
+          "preco": 12.92,
+          "projecao": 11.75,
+          "pontuacaoReal": 1.0,
+          "historico": {
+            "jogos": 8,
+            "media": 9.775,
+            "media3": 13.867,
+            "media5": 10.58,
+            "piso": -0.8,
+            "teto": 17.8,
+            "regularidade": 38.76,
+            "volatilidade": 6.124,
+            "tendencia": 4.092
+          }
+        },
+        {
+          "id": "71684",
+          "nome": "Gustavo Raúl Gómez Portillo",
+          "posicao": "ZAG",
+          "clube": "PAL",
+          "preco": 10.56,
+          "projecao": 7.85,
+          "pontuacaoReal": 0.7,
+          "historico": {
+            "jogos": 11,
+            "media": 5.918,
+            "media3": 8.1,
+            "media5": 6.1,
+            "piso": 0.0,
+            "teto": 15.5,
+            "regularidade": 48.74,
+            "volatilidade": 5.126,
+            "tendencia": 2.182
+          }
+        },
+        {
+          "id": "69208",
+          "nome": "Gabriel Armando de Abreu",
+          "posicao": "ZAG",
+          "clube": "COR",
+          "preco": 9.34,
+          "projecao": 6.33,
+          "pontuacaoReal": -1.6,
+          "historico": {
+            "jogos": 8,
+            "media": 6.525,
+            "media3": 7.9,
+            "media5": 5.58,
+            "piso": 0.6,
+            "teto": 8.7,
+            "regularidade": 69.56,
+            "volatilidade": 3.044,
+            "tendencia": 1.375
+          }
+        },
+        {
+          "id": "107231",
+          "nome": "Danilo dos Santos de Oliveira",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 15.0,
+          "projecao": 11.96,
+          "pontuacaoReal": 5.3,
+          "historico": {
+            "jogos": 9,
+            "media": 9.389,
+            "media3": 13.667,
+            "media5": 9.96,
+            "piso": 0.6,
+            "teto": 19.9,
+            "regularidade": 38.22,
+            "volatilidade": 6.178,
+            "tendencia": 4.278
+          }
+        },
+        {
+          "id": "63289",
+          "nome": "Edenílson Andrade dos Santos",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 6.15,
+          "projecao": 8.68,
+          "pontuacaoReal": 0.0,
+          "historico": {
+            "jogos": 9,
+            "media": 4.578,
+            "media3": 8.9,
+            "media5": 6.66,
+            "piso": 0.6,
+            "teto": 18.4,
+            "regularidade": 34.76,
+            "volatilidade": 6.524,
+            "tendencia": 4.322
+          }
+        },
+        {
+          "id": "98672",
+          "nome": "Jefferson David Savarino Quintero",
+          "posicao": "MEI",
+          "clube": "FLU",
+          "preco": 9.02,
+          "projecao": 8.66,
+          "pontuacaoReal": 5.4,
+          "historico": {
+            "jogos": 10,
+            "media": 6.64,
+            "media3": 10.4,
+            "media5": 7.34,
+            "piso": 1.5,
+            "teto": 13.1,
+            "regularidade": 58.94,
+            "volatilidade": 4.106,
+            "tendencia": 3.76
+          }
+        },
+        {
+          "id": "109987",
+          "nome": "Cristian Nicolás Medina",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 7.05,
+          "projecao": 7.67,
+          "pontuacaoReal": 2.9,
+          "historico": {
+            "jogos": 6,
+            "media": 4.25,
+            "media3": 8.233,
+            "media5": 4.52,
+            "piso": -3.3,
+            "teto": 17.0,
+            "regularidade": 32.34,
+            "volatilidade": 6.766,
+            "tendencia": 3.983
+          }
+        },
+        {
+          "id": "94583",
+          "nome": "Pedro Guilherme Abreu dos Santos",
+          "posicao": "ATA",
+          "clube": "FLA",
+          "preco": 15.42,
+          "projecao": 12.51,
+          "pontuacaoReal": 11.8,
+          "historico": {
+            "jogos": 10,
+            "media": 9.11,
+            "media3": 14.7,
+            "media5": 10.72,
+            "piso": 0.5,
+            "teto": 20.6,
+            "regularidade": 31.18,
+            "volatilidade": 6.882,
+            "tendencia": 5.59
+          }
+        },
+        {
+          "id": "143193",
+          "nome": "Kevin Stiven Viveros Rodallega",
+          "posicao": "ATA",
+          "clube": "CAP",
+          "preco": 14.34,
+          "projecao": 10.83,
+          "pontuacaoReal": 1.6,
+          "historico": {
+            "jogos": 10,
+            "media": 7.69,
+            "media3": 11.567,
+            "media5": 7.46,
+            "piso": 0.4,
+            "teto": 21.1,
+            "regularidade": 21.67,
+            "volatilidade": 7.833,
+            "tendencia": 3.877
+          }
+        },
+        {
+          "id": "101290",
+          "nome": "Aldemir dos Santos Ferreira",
+          "posicao": "ATA",
+          "clube": "SAO",
+          "preco": 7.56,
+          "projecao": 10.32,
+          "pontuacaoReal": 9.2,
+          "historico": {
+            "jogos": 8,
+            "media": 4.138,
+            "media3": 9.533,
+            "media5": 5.82,
+            "piso": 0.0,
+            "teto": 26.0,
+            "regularidade": 0,
+            "volatilidade": 10.115,
+            "tendencia": 5.396
+          }
+        },
+        {
+          "id": "88963",
+          "nome": "José Leonardo Nunes Alves Sousa Jardim",
+          "posicao": "TEC",
+          "clube": "FLA",
+          "preco": 13.54,
+          "projecao": 7.78,
+          "pontuacaoReal": 3.75,
+          "historico": {
+            "jogos": 10,
+            "media": 6.976,
+            "media3": 9.033,
+            "media5": 7.112,
+            "piso": 1.57,
+            "teto": 11.48,
+            "regularidade": 67.96,
+            "volatilidade": 3.204,
+            "tendencia": 2.057
+          }
+        }
+      ],
+      "capitao": {
+        "id": "101290",
+        "nome": "Aldemir dos Santos Ferreira",
+        "posicao": "ATA",
+        "clube": "SAO",
+        "preco": 7.56,
+        "projecao": 10.32,
+        "pontuacaoReal": 9.2,
+        "historico": {
+          "jogos": 8,
+          "media": 4.138,
+          "media3": 9.533,
+          "media5": 5.82,
+          "piso": 0.0,
+          "teto": 26.0,
+          "regularidade": 0,
+          "volatilidade": 10.115,
+          "tendencia": 5.396
+        }
+      },
+      "banco": [
+        {
+          "id": "71631",
+          "nome": "Weverton Pereira da Silva",
+          "posicao": "GOL",
+          "clube": "GRE",
+          "preco": 8.19,
+          "projecao": 8.21,
+          "pontuacaoReal": 10.7,
+          "historico": {
+            "jogos": 12,
+            "media": 5.0,
+            "media3": 7.767,
+            "media5": 8.16,
+            "piso": 1.6,
+            "teto": 15.9,
+            "regularidade": 47.94,
+            "volatilidade": 5.206,
+            "tendencia": 2.767
+          }
+        },
+        {
+          "id": "110426",
+          "nome": "Alexandro Ezequiel Bernabei",
+          "posicao": "LAT",
+          "clube": "INT",
+          "preco": 10.84,
+          "projecao": 9.92,
+          "pontuacaoReal": 15.8,
+          "historico": {
+            "jogos": 10,
+            "media": 6.47,
+            "media3": 11.633,
+            "media5": 9.2,
+            "piso": 1.7,
+            "teto": 15.7,
+            "regularidade": 55.53,
+            "volatilidade": 4.447,
+            "tendencia": 5.163
+          }
+        },
+        {
+          "id": "102340",
+          "nome": "Carlos de Menezes Júnior",
+          "posicao": "ZAG",
+          "clube": "VIT",
+          "preco": 4.84,
+          "projecao": 5.8,
+          "pontuacaoReal": -0.3,
+          "historico": {
+            "jogos": 9,
+            "media": 3.678,
+            "media3": 6.0,
+            "media5": 3.32,
+            "piso": -1.6,
+            "teto": 13.0,
+            "regularidade": 45.78,
+            "volatilidade": 5.422,
+            "tendencia": 2.322
+          }
+        },
+        {
+          "id": "89256",
+          "nome": "Gerson Santos da Silva",
+          "posicao": "MEI",
+          "clube": "CRU",
+          "preco": 8.23,
+          "projecao": 7.32,
+          "pontuacaoReal": 1.9,
+          "historico": {
+            "jogos": 11,
+            "media": 4.355,
+            "media3": 8.6,
+            "media5": 6.36,
+            "piso": 2.2,
+            "teto": 12.1,
+            "regularidade": 65.09,
+            "volatilidade": 3.491,
+            "tendencia": 4.245
+          }
+        },
+        {
+          "id": "111831",
+          "nome": "Matheus Martins Silva dos Santos",
+          "posicao": "ATA",
+          "clube": "BOT",
+          "preco": 7.01,
+          "projecao": 10.02,
+          "pontuacaoReal": 6.5,
+          "historico": {
+            "jogos": 10,
+            "media": 4.95,
+            "media3": 9.833,
+            "media5": 8.12,
+            "piso": 0.9,
+            "teto": 21.6,
+            "regularidade": 26.04,
+            "volatilidade": 7.396,
+            "tendencia": 4.883
+          }
+        }
+      ],
+      "reservaLuxo": {
+        "id": "111831",
+        "nome": "Matheus Martins Silva dos Santos",
+        "posicao": "ATA",
+        "clube": "BOT",
+        "preco": 7.01,
+        "projecao": 10.02,
+        "pontuacaoReal": 6.5,
+        "historico": {
+          "jogos": 10,
+          "media": 4.95,
+          "media3": 9.833,
+          "media5": 8.12,
+          "piso": 0.9,
+          "teto": 21.6,
+          "regularidade": 26.04,
+          "volatilidade": 7.396,
+          "tendencia": 4.883
+        }
+      }
+    }
+  ]
+}

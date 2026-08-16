@@ -1,6 +1,351 @@
 {
-  "modelo": "ranking_simulacao_v1",
+  "modelo": "ranking_simulacao_v2",
   "descricao": "Ranking histórico das estratégias de escalação",
-  "melhorEstrategia": null,
-  "ranking": []
+  "quantidadeRodadas": 22,
+  "quantidadeEstrategias": 3,
+  "melhorEstrategia": "Equilibrado",
+  "criterioRanking": [
+    "pontosTotal",
+    "mediaPontos",
+    "vitorias",
+    "consistencia"
+  ],
+  "ranking": [
+    {
+      "nome": "Equilibrado",
+      "rodadas": 22,
+      "escalacoesCompletas": 22,
+      "pontosTotal": 1318.49,
+      "mediaPontos": 59.93,
+      "medianaPontos": 61.44,
+      "volatilidade": 17.13,
+      "consistencia": 71.42,
+      "vitorias": 8,
+      "empatesPrimeiro": 1,
+      "taxaVitoria": 36.36,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 113.91
+      },
+      "piorRodada": {
+        "rodada": 9,
+        "pontos": 34.47
+      },
+      "resultados": [
+        {
+          "rodada": 2,
+          "pontos": 69.71
+        },
+        {
+          "rodada": 3,
+          "pontos": 56.95
+        },
+        {
+          "rodada": 4,
+          "pontos": 45.3
+        },
+        {
+          "rodada": 5,
+          "pontos": 53.22
+        },
+        {
+          "rodada": 6,
+          "pontos": 65.59
+        },
+        {
+          "rodada": 7,
+          "pontos": 68.31
+        },
+        {
+          "rodada": 8,
+          "pontos": 67.47
+        },
+        {
+          "rodada": 9,
+          "pontos": 34.47
+        },
+        {
+          "rodada": 10,
+          "pontos": 42.46
+        },
+        {
+          "rodada": 11,
+          "pontos": 49.24
+        },
+        {
+          "rodada": 12,
+          "pontos": 61.02
+        },
+        {
+          "rodada": 13,
+          "pontos": 113.91
+        },
+        {
+          "rodada": 14,
+          "pontos": 40.15
+        },
+        {
+          "rodada": 15,
+          "pontos": 42.54
+        },
+        {
+          "rodada": 16,
+          "pontos": 68.61
+        },
+        {
+          "rodada": 17,
+          "pontos": 36.26
+        },
+        {
+          "rodada": 18,
+          "pontos": 54.85
+        },
+        {
+          "rodada": 19,
+          "pontos": 70.14
+        },
+        {
+          "rodada": 20,
+          "pontos": 67.93
+        },
+        {
+          "rodada": 21,
+          "pontos": 76.6
+        },
+        {
+          "rodada": 22,
+          "pontos": 71.91
+        },
+        {
+          "rodada": 23,
+          "pontos": 61.85
+        }
+      ],
+      "posicao": 1
+    },
+    {
+      "nome": "Agressivo",
+      "rodadas": 22,
+      "escalacoesCompletas": 22,
+      "pontosTotal": 1276.84,
+      "mediaPontos": 58.04,
+      "medianaPontos": 54.58,
+      "volatilidade": 16.03,
+      "consistencia": 72.37,
+      "vitorias": 7,
+      "empatesPrimeiro": 1,
+      "taxaVitoria": 31.82,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 89.81
+      },
+      "piorRodada": {
+        "rodada": 9,
+        "pontos": 26.97
+      },
+      "resultados": [
+        {
+          "rodada": 2,
+          "pontos": 69.71
+        },
+        {
+          "rodada": 3,
+          "pontos": 56.95
+        },
+        {
+          "rodada": 4,
+          "pontos": 45.2
+        },
+        {
+          "rodada": 5,
+          "pontos": 71.52
+        },
+        {
+          "rodada": 6,
+          "pontos": 47.2
+        },
+        {
+          "rodada": 7,
+          "pontos": 80.66
+        },
+        {
+          "rodada": 8,
+          "pontos": 63.67
+        },
+        {
+          "rodada": 9,
+          "pontos": 26.97
+        },
+        {
+          "rodada": 10,
+          "pontos": 52.16
+        },
+        {
+          "rodada": 11,
+          "pontos": 52.09
+        },
+        {
+          "rodada": 12,
+          "pontos": 43.35
+        },
+        {
+          "rodada": 13,
+          "pontos": 89.81
+        },
+        {
+          "rodada": 14,
+          "pontos": 47.25
+        },
+        {
+          "rodada": 15,
+          "pontos": 34.94
+        },
+        {
+          "rodada": 16,
+          "pontos": 85.71
+        },
+        {
+          "rodada": 17,
+          "pontos": 48.46
+        },
+        {
+          "rodada": 18,
+          "pontos": 52.2
+        },
+        {
+          "rodada": 19,
+          "pontos": 57.8
+        },
+        {
+          "rodada": 20,
+          "pontos": 60.43
+        },
+        {
+          "rodada": 21,
+          "pontos": 82.6
+        },
+        {
+          "rodada": 22,
+          "pontos": 48.21
+        },
+        {
+          "rodada": 23,
+          "pontos": 59.95
+        }
+      ],
+      "posicao": 2
+    },
+    {
+      "nome": "Conservador",
+      "rodadas": 22,
+      "escalacoesCompletas": 22,
+      "pontosTotal": 1257.43,
+      "mediaPontos": 57.16,
+      "medianaPontos": 56.32,
+      "volatilidade": 12.71,
+      "consistencia": 77.76,
+      "vitorias": 6,
+      "empatesPrimeiro": 0,
+      "taxaVitoria": 27.27,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 87.11
+      },
+      "piorRodada": {
+        "rodada": 9,
+        "pontos": 31.75
+      },
+      "resultados": [
+        {
+          "rodada": 2,
+          "pontos": 71.91
+        },
+        {
+          "rodada": 3,
+          "pontos": 55.05
+        },
+        {
+          "rodada": 4,
+          "pontos": 60.3
+        },
+        {
+          "rodada": 5,
+          "pontos": 55.72
+        },
+        {
+          "rodada": 6,
+          "pontos": 69.29
+        },
+        {
+          "rodada": 7,
+          "pontos": 63.31
+        },
+        {
+          "rodada": 8,
+          "pontos": 66.78
+        },
+        {
+          "rodada": 9,
+          "pontos": 31.75
+        },
+        {
+          "rodada": 10,
+          "pontos": 46.16
+        },
+        {
+          "rodada": 11,
+          "pontos": 46.34
+        },
+        {
+          "rodada": 12,
+          "pontos": 56.92
+        },
+        {
+          "rodada": 13,
+          "pontos": 87.11
+        },
+        {
+          "rodada": 14,
+          "pontos": 49.25
+        },
+        {
+          "rodada": 15,
+          "pontos": 45.64
+        },
+        {
+          "rodada": 16,
+          "pontos": 60.01
+        },
+        {
+          "rodada": 17,
+          "pontos": 33.46
+        },
+        {
+          "rodada": 18,
+          "pontos": 55.55
+        },
+        {
+          "rodada": 19,
+          "pontos": 66.64
+        },
+        {
+          "rodada": 20,
+          "pontos": 48.92
+        },
+        {
+          "rodada": 21,
+          "pontos": 69.68
+        },
+        {
+          "rodada": 22,
+          "pontos": 68.21
+        },
+        {
+          "rodada": 23,
+          "pontos": 49.43
+        }
+      ],
+      "posicao": 3
+    }
+  ]
 }

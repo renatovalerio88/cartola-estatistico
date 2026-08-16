@@ -4,7 +4,7 @@
   "modelos": [
     {
       "nome": "Modelo Base",
-      "mae": 2.739,
+      "mae": 2.904,
       "melhoria": 0,
       "tipo": "projecao"
     }
@@ -15,7 +15,7 @@
       "status": "teste",
       "dados": {
         "disponivel": true,
-        "jogadoresAnalisados": 771,
+        "jogadoresAnalisados": 785,
         "fonte": "data/indice-diferencial.json",
         "tipo": "camada_estrategica"
       }
@@ -24,7 +24,7 @@
   "ranking": [
     {
       "nome": "Modelo Base",
-      "mae": 2.739,
+      "mae": 2.904,
       "melhoria": 0,
       "tipo": "projecao"
     }

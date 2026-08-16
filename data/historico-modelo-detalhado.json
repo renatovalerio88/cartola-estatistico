@@ -3503,204 +3503,379 @@
     },
     {
       "rodada": 22,
-      "mae": 1.35,
-      "quantidadeJogadores": 768,
+      "mae": 2.6,
+      "quantidadeJogadores": 343,
       "posicoes": {
         "ATA": {
-          "quantidade": 193,
-          "mae": 1.27
+          "quantidade": 91,
+          "mae": 2.59
         },
         "MEI": {
-          "quantidade": 230,
-          "mae": 1.13
+          "quantidade": 114,
+          "mae": 2.11
         },
         "TEC": {
           "quantidade": 20,
-          "mae": 2.25
+          "mae": 1.64
         },
         "LAT": {
-          "quantidade": 122,
-          "mae": 1.85
+          "quantidade": 49,
+          "mae": 3.27
         },
         "GOL": {
-          "quantidade": 85,
-          "mae": 1.01
+          "quantidade": 20,
+          "mae": 3.34
         },
         "ZAG": {
-          "quantidade": 118,
-          "mae": 1.48
+          "quantidade": 49,
+          "mae": 3.21
         }
       },
       "maioresErros": [
         {
-          "nome": "Ronaldo de Oliveira Strada",
-          "posicao": "GOL",
-          "projecao": 2.82,
-          "real": 16.7,
-          "erro": 13.88
-        },
-        {
-          "nome": "Leonel Marcelo Picco",
-          "posicao": "MEI",
-          "projecao": 3.3,
-          "real": 15.7,
-          "erro": 12.4
-        },
-        {
-          "nome": "Joaquín Piquerez Moreira",
+          "nome": "Matheus França Silva",
           "posicao": "LAT",
-          "projecao": 2.66,
-          "real": 13.7,
-          "erro": 11.04
+          "projecao": 5.27,
+          "real": 18.5,
+          "erro": 13.23
         },
         {
-          "nome": "Denilson Alves Borges",
-          "posicao": "MEI",
-          "projecao": 3.56,
-          "real": 14.1,
-          "erro": 10.54
-        },
-        {
-          "nome": "Jhon Adolfo Arias Andrade",
-          "posicao": "MEI",
-          "projecao": 7.27,
-          "real": 17.7,
-          "erro": 10.43
-        },
-        {
-          "nome": "Samuel Xavier Brito",
+          "nome": "Ángelo Smit Preciado Quiñónez",
           "posicao": "LAT",
-          "projecao": 2.24,
-          "real": 12.4,
-          "erro": 10.16
+          "projecao": 0.62,
+          "real": 13.6,
+          "erro": 12.98
+        },
+        {
+          "nome": "Jorge Andrés Carrascal Guardo",
+          "posicao": "MEI",
+          "projecao": 2.2,
+          "real": 14.5,
+          "erro": 12.3
+        },
+        {
+          "nome": "Ignácio da Silva Oliveira",
+          "posicao": "ZAG",
+          "projecao": 1.15,
+          "real": 12.7,
+          "erro": 11.55
+        },
+        {
+          "nome": "Pedro Raul Garay da Silva",
+          "posicao": "ATA",
+          "projecao": -0.02,
+          "real": 10.5,
+          "erro": 10.52
+        },
+        {
+          "nome": "Kevin Stiven Viveros Rodallega",
+          "posicao": "ATA",
+          "projecao": 7.77,
+          "real": 17.9,
+          "erro": 10.13
+        },
+        {
+          "nome": "João Marcelo Messias Ferreira",
+          "posicao": "ZAG",
+          "projecao": 0.4,
+          "real": 10.4,
+          "erro": 10.0
+        },
+        {
+          "nome": "Kevin Federik Ramírez Dutra",
+          "posicao": "ATA",
+          "projecao": 0.23,
+          "real": 10.2,
+          "erro": 9.97
+        },
+        {
+          "nome": "Luís Eduardo Soares da Silva",
+          "posicao": "LAT",
+          "projecao": 3.68,
+          "real": 13.6,
+          "erro": 9.92
+        },
+        {
+          "nome": "Wesley Gassova Ribeiro Teixeira",
+          "posicao": "ATA",
+          "projecao": 0.0,
+          "real": 9.5,
+          "erro": 9.5
+        }
+      ],
+      "melhoresAcertos": [
+        {
+          "nome": "Kerwin Andrés Calderón Vargas",
+          "posicao": "ATA",
+          "projecao": 0.0,
+          "real": 0,
+          "erro": 0.0
+        },
+        {
+          "nome": "Gustavo Domingos Santana",
+          "posicao": "ATA",
+          "projecao": 0.0,
+          "real": 0,
+          "erro": 0.0
+        },
+        {
+          "nome": "Braian Ezequiel Cufré",
+          "posicao": "LAT",
+          "projecao": -0.01,
+          "real": 0,
+          "erro": 0.01
+        },
+        {
+          "nome": "Gabriel Knesowitsch",
+          "posicao": "ZAG",
+          "projecao": -0.02,
+          "real": 0,
+          "erro": 0.02
+        },
+        {
+          "nome": "Kaique Kenji Takamura Correa",
+          "posicao": "ATA",
+          "projecao": 0.67,
+          "real": 0.7,
+          "erro": 0.03
         },
         {
           "nome": "João Victor Carroll Santana - Caroll",
           "posicao": "ZAG",
           "projecao": 2.74,
-          "real": 12.5,
-          "erro": 9.76
+          "real": 2.7,
+          "erro": -0.04
         },
         {
-          "nome": "Vitor Hugo Naum dos Santos",
-          "posicao": "ATA",
-          "projecao": 5.09,
-          "real": 14.2,
-          "erro": 9.11
-        },
-        {
-          "nome": "Matheus Fellipe Costa Pereira",
+          "nome": "Cauly Oliveira Souza",
           "posicao": "MEI",
-          "projecao": 6.7,
-          "real": 15.2,
-          "erro": 8.5
+          "projecao": 1.45,
+          "real": 1.4,
+          "erro": -0.05
         },
         {
-          "nome": "Willian de Asevedo Furtado",
+          "nome": "Jesse Ellis Lingard",
+          "posicao": "ATA",
+          "projecao": 1.45,
+          "real": 1.5,
+          "erro": 0.05
+        },
+        {
+          "nome": "David Francisco Trindade Braga",
+          "posicao": "MEI",
+          "projecao": 0.44,
+          "real": 0.5,
+          "erro": 0.06
+        },
+        {
+          "nome": "Matheus Felipe Santos Nascimento",
+          "posicao": "ZAG",
+          "projecao": 0.42,
+          "real": 0.5,
+          "erro": 0.08
+        }
+      ]
+    },
+    {
+      "rodada": 23,
+      "mae": 2.87,
+      "quantidadeJogadores": 117,
+      "posicoes": {
+        "ATA": {
+          "quantidade": 31,
+          "mae": 2.98
+        },
+        "MEI": {
+          "quantidade": 30,
+          "mae": 2.33
+        },
+        "TEC": {
+          "quantidade": 21,
+          "mae": 3.44
+        },
+        "GOL": {
+          "quantidade": 6,
+          "mae": 3.09
+        },
+        "LAT": {
+          "quantidade": 15,
+          "mae": 2.45
+        },
+        "ZAG": {
+          "quantidade": 14,
+          "mae": 3.32
+        }
+      },
+      "maioresErros": [
+        {
+          "nome": "Germán Ezequiel Cano",
+          "posicao": "ATA",
+          "projecao": 0.47,
+          "real": 11.5,
+          "erro": 11.03
+        },
+        {
+          "nome": "João Victor Santos Sá",
+          "posicao": "ATA",
+          "projecao": 0.07,
+          "real": 9.9,
+          "erro": 9.83
+        },
+        {
+          "nome": "Kerwin Andrés Calderón Vargas",
+          "posicao": "ATA",
+          "projecao": 0.0,
+          "real": 9.3,
+          "erro": 9.3
+        },
+        {
+          "nome": "Givanildo Vieira de Souza",
+          "posicao": "ATA",
+          "projecao": 2.36,
+          "real": 11.3,
+          "erro": 8.94
+        },
+        {
+          "nome": "Pedro Henrique Ribeiro Gonçalves",
+          "posicao": "ZAG",
+          "projecao": 1.81,
+          "real": 10.7,
+          "erro": 8.89
+        },
+        {
+          "nome": "Marco Aurélio de Oliveira Breves",
+          "posicao": "TEC",
+          "projecao": 0.0,
+          "real": 8.23,
+          "erro": 8.23
+        },
+        {
+          "nome": "Jadson Alves dos Santos",
+          "posicao": "MEI",
+          "projecao": 2.8,
+          "real": 10.7,
+          "erro": 7.9
+        },
+        {
+          "nome": "Ariel Agustín Sant'Anna Quintero",
           "posicao": "LAT",
-          "projecao": 1.94,
-          "real": 10.2,
-          "erro": 8.26
+          "projecao": 1.89,
+          "real": 9.6,
+          "erro": 7.71
+        },
+        {
+          "nome": "Pablo Gonçalves Maia Fortunato",
+          "posicao": "MEI",
+          "projecao": 0.86,
+          "real": 8.2,
+          "erro": 7.34
+        },
+        {
+          "nome": "Tiago Cóser",
+          "posicao": "ZAG",
+          "projecao": 2.61,
+          "real": 9.9,
+          "erro": 7.29
         }
       ],
       "melhoresAcertos": [
         {
-          "nome": "Filip Krovinović",
-          "posicao": "MEI",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Marcelo de Araújo Pitaluga Filho",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Fabio Augusto Luciano da Silva",
+          "nome": "Alan da Silva Santos",
           "posicao": "ATA",
-          "projecao": -0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Vitor Eudes de Souza Costa",
-          "posicao": "GOL",
           "projecao": 0.0,
           "real": 0,
           "erro": 0.0
         },
         {
-          "nome": "Andrew da Silva Ventura",
-          "posicao": "GOL",
+          "nome": "Rafael Monti Azpiazú",
+          "posicao": "ATA",
           "projecao": 0.0,
           "real": 0,
           "erro": 0.0
         },
         {
-          "nome": "Guido Gabriel Herrera",
-          "posicao": "GOL",
-          "projecao": 0.0,
+          "nome": "Jorge Luis Rivaldo Pinto",
+          "posicao": "ATA",
+          "projecao": -0.02,
           "real": 0,
-          "erro": 0.0
+          "erro": 0.02
         },
         {
-          "nome": "Fabrício Oliveira de Souza",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "nome": "Eduardo Colcenti Antunes",
+          "posicao": "ATA",
+          "projecao": 0.36,
+          "real": 0.5,
+          "erro": 0.14
         },
         {
-          "nome": "Carlos Miguel Coronel",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Yuri Sena dos Reis Batista",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Bruno Conceição Praxedes",
+          "nome": "Marcos Antônio Silva Santos",
           "posicao": "MEI",
-          "projecao": 0.0,
+          "projecao": 1.35,
+          "real": 1.5,
+          "erro": 0.15
+        },
+        {
+          "nome": "Willian Borges da Silva",
+          "posicao": "MEI",
+          "projecao": 0.17,
           "real": 0,
-          "erro": 0.0
+          "erro": -0.17
+        },
+        {
+          "nome": "Julián Camilo Millán Díaz",
+          "posicao": "ZAG",
+          "projecao": 0.2,
+          "real": 0,
+          "erro": -0.2
+        },
+        {
+          "nome": "Marcos da Silva França",
+          "posicao": "ATA",
+          "projecao": 0.2,
+          "real": 0.4,
+          "erro": 0.2
+        },
+        {
+          "nome": "Allan Andrade Elias",
+          "posicao": "MEI",
+          "projecao": 4.31,
+          "real": 4.1,
+          "erro": -0.21
+        },
+        {
+          "nome": "Isidro Miguel Pitta Saldívar",
+          "posicao": "ATA",
+          "projecao": 3.79,
+          "real": 4,
+          "erro": 0.21
         }
       ]
     }
   ],
   "resumoPosicoes": {
     "MEI": {
-      "quantidade": 2103,
-      "mae": 2.45
+      "quantidade": 2017,
+      "mae": 2.58
     },
     "LAT": {
-      "quantidade": 1015,
-      "mae": 3.18
+      "quantidade": 957,
+      "mae": 3.34
     },
     "ATA": {
-      "quantidade": 1722,
-      "mae": 2.86
-    },
-    "GOL": {
-      "quantidade": 449,
+      "quantidade": 1651,
       "mae": 3.03
     },
+    "GOL": {
+      "quantidade": 390,
+      "mae": 3.49
+    },
     "ZAG": {
-      "quantidade": 953,
-      "mae": 2.69
+      "quantidade": 898,
+      "mae": 2.88
     },
     "TEC": {
-      "quantidade": 349,
-      "mae": 2.39
+      "quantidade": 370,
+      "mae": 2.42
     }
   },
   "simulacaoTimes": {
