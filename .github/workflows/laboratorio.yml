@@ -184,7 +184,7 @@ jobs:
 
 
       # ======================================
-      # ESTRATÉGIA ADAPTATIVA V1 x V2
+      # ESTRATÉGIAS ADAPTATIVAS V1 x V2 x V3
       # ======================================
 
       - name: Testar Estratégia Adaptativa V1
@@ -207,19 +207,37 @@ jobs:
           python scripts/processamento/testar_estrategia_adaptativa_v3.py
 
 
-      - name: Comparar Estratégias Adaptativas
+      # ======================================
+      # COMPARAÇÃO HISTÓRICA V1 x V2
+      # ======================================
+
+      - name: Comparar Estratégias Adaptativas V1 x V2
         run: |
           python scripts/processamento/comparar_estrategias_adaptativas.py
 
 
-      - name: Auditar Comparação Adaptativa
+      - name: Auditar Comparação Adaptativa V1 x V2
         run: |
           python scripts/processamento/auditar_comparacao_adaptativas.py
 
 
-      - name: Decidir Estratégia Adaptativa
+      - name: Decidir Estratégia Adaptativa V1 x V2
         run: |
           python scripts/processamento/decidir_estrategia_adaptativa.py
+
+
+      # ======================================
+      # COMPARAÇÃO CIENTÍFICA V1 x V2 x V3
+      # ======================================
+
+      - name: Comparar Estratégias Adaptativas V1 x V2 x V3
+        run: |
+          python scripts/processamento/comparar_estrategias_adaptativas_v3.py
+
+
+      - name: Auditar Comparação Adaptativa V1 x V2 x V3
+        run: |
+          python scripts/processamento/auditar_comparacao_adaptativas_v3.py
 
 
       # ======================================
@@ -258,7 +276,11 @@ jobs:
 
               "data/auditoria-comparacao-adaptativas.json",
 
-              "data/decisao-estrategia-adaptativa.json"
+              "data/decisao-estrategia-adaptativa.json",
+
+              "data/comparacao-estrategias-adaptativas-v3.json",
+
+              "data/auditoria-comparacao-adaptativas-v3.json"
 
           ]
 
@@ -1052,6 +1074,315 @@ jobs:
                       "Promoção automática:",
                       decisao.get(
                           "promocaoAutomatica"
+                      )
+                  )
+
+
+              # ==================================
+              # COMPARAÇÃO V1 x V2 x V3
+              # ==================================
+
+
+              elif (
+                  nome_arquivo
+                  ==
+                  "comparacao-estrategias-adaptativas-v3.json"
+              ):
+
+
+                  metricas = dados.get(
+                      "metricas",
+                      {}
+                  )
+
+
+                  v1 = metricas.get(
+                      "adaptativoV1",
+                      {}
+                  )
+
+
+                  v2 = metricas.get(
+                      "adaptativoV2",
+                      {}
+                  )
+
+
+                  v3 = metricas.get(
+                      "adaptativoV3",
+                      {}
+                  )
+
+
+                  ganhos = dados.get(
+                      "ganhos",
+                      {}
+                  )
+
+
+                  ganho_v3_v2 = ganhos.get(
+                      "v3VsV2",
+                      {}
+                  )
+
+
+                  ganho_v3_fixa = ganhos.get(
+                      "v3VsMelhorFixa",
+                      {}
+                  )
+
+
+                  pareado = (
+                      dados.get(
+                          "comparacoesPareadas",
+                          {}
+                      ).get(
+                          "v2VsV3",
+                          {}
+                      )
+                  )
+
+
+                  oraculo = dados.get(
+                      "oraculo",
+                      {}
+                  )
+
+
+                  decisao = dados.get(
+                      "decisao",
+                      {}
+                  )
+
+
+                  print(
+                      "Rodadas comuns:",
+                      dados.get(
+                          "amostra",
+                          {}
+                      ).get(
+                          "rodadasComuns"
+                      )
+                  )
+
+
+                  print(
+                      "Média V1:",
+                      v1.get(
+                          "media"
+                      )
+                  )
+
+
+                  print(
+                      "Média V2:",
+                      v2.get(
+                          "media"
+                      )
+                  )
+
+
+                  print(
+                      "Média V3:",
+                      v3.get(
+                          "media"
+                      )
+                  )
+
+
+                  print(
+                      "Melhor fixa:",
+                      metricas.get(
+                          "melhorEstrategiaFixa"
+                      )
+                  )
+
+
+                  print(
+                      "Ganho V3 x V2:",
+                      ganho_v3_v2.get(
+                          "pontosPorRodada"
+                      )
+                  )
+
+
+                  print(
+                      "Ganho V3 x melhor fixa:",
+                      ganho_v3_fixa.get(
+                          "pontosPorRodada"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias V2:",
+                      pareado.get(
+                          "vitoriasA"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias V3:",
+                      pareado.get(
+                          "vitoriasB"
+                      )
+                  )
+
+
+                  print(
+                      "Empates:",
+                      pareado.get(
+                          "empates"
+                      )
+                  )
+
+
+                  print(
+                      "Eficiência V3:",
+                      oraculo.get(
+                          "v3",
+                          {}
+                      ).get(
+                          "eficienciaPercentual"
+                      ),
+                      "%"
+                  )
+
+
+                  print(
+                      "Decisão:",
+                      decisao.get(
+                          "decisao"
+                      )
+                  )
+
+
+              # ==================================
+              # AUDITORIA V1 x V2 x V3
+              # ==================================
+
+
+              elif (
+                  nome_arquivo
+                  ==
+                  "auditoria-comparacao-adaptativas-v3.json"
+              ):
+
+
+                  resumo = dados.get(
+                      "resumoTestes",
+                      {}
+                  )
+
+
+                  resultados = dados.get(
+                      "resultados",
+                      {}
+                  )
+
+
+                  print(
+                      "Rodadas auditadas:",
+                      dados.get(
+                          "rodadasAuditadas"
+                      )
+                  )
+
+
+                  print(
+                      "Score qualidade:",
+                      resumo.get(
+                          "scoreQualidade"
+                      ),
+                      "%"
+                  )
+
+
+                  print(
+                      "Testes:",
+                      resumo.get(
+                          "quantidade"
+                      )
+                  )
+
+
+                  print(
+                      "Aprovados:",
+                      resumo.get(
+                          "aprovados"
+                      )
+                  )
+
+
+                  print(
+                      "Falhas críticas:",
+                      resumo.get(
+                          "falhasCriticas"
+                      )
+                  )
+
+
+                  print(
+                      "Alertas:",
+                      resumo.get(
+                          "alertas"
+                      )
+                  )
+
+
+                  print(
+                      "Média V1:",
+                      resultados.get(
+                          "mediaV1"
+                      )
+                  )
+
+
+                  print(
+                      "Média V2:",
+                      resultados.get(
+                          "mediaV2"
+                      )
+                  )
+
+
+                  print(
+                      "Média V3:",
+                      resultados.get(
+                          "mediaV3"
+                      )
+                  )
+
+
+                  print(
+                      "Ganho V3 x V2:",
+                      resultados.get(
+                          "ganhoV3VsV2"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias V2:",
+                      resultados.get(
+                          "vitoriasV2Pareado"
+                      )
+                  )
+
+
+                  print(
+                      "Vitórias V3:",
+                      resultados.get(
+                          "vitoriasV3Pareado"
+                      )
+                  )
+
+
+                  print(
+                      "Decisão auditoria:",
+                      dados.get(
+                          "decisao"
                       )
                   )
 
