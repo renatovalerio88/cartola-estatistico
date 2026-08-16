@@ -1,39 +1,95 @@
+"""
+=========================================================
+CARTOLA ESTATÍSTICO
+Simulação Histórica de Times
+
+Consome:
+data/historico-escalacoes/rodada-XX.json
+
+Gera:
+data/simulacao-times.json
+
+Objetivo:
+Avaliar a pontuação REAL que as estratégias:
+
+- Conservador
+- Equilibrado
+- Agressivo
+
+teriam feito em cada rodada.
+
+=========================================================
+"""
+
 from pathlib import Path
 import json
+import math
 
 
-PASTA_HISTORICO = Path(
-    "data/historico"
+# ======================================================
+# CONFIGURAÇÕES
+# ======================================================
+
+BASE_DIR = Path(
+    __file__
+).resolve().parent.parent
+
+
+PASTA_HISTORICO_ESCALACOES = (
+
+    BASE_DIR /
+    "data" /
+    "historico-escalacoes"
+
 )
 
-ARQUIVO_ESCALACOES = Path(
-    "data/escalacoes.json"
+
+ARQUIVO_SAIDA = (
+
+    BASE_DIR /
+    "data" /
+    "simulacao-times.json"
+
 )
 
-ARQUIVO_SAIDA = Path(
-    "data/simulacao-times.json"
-)
 
-
+# ======================================================
+# UTILIDADES
+# ======================================================
 
 def carregar_json(caminho):
 
     if not caminho.exists():
+        return {}
+
+    try:
+
+        with open(
+            caminho,
+            "r",
+            encoding="utf-8"
+        ) as arquivo:
+
+            return json.load(
+                arquivo
+            )
+
+    except Exception as erro:
+
+        print(
+            f"[AVISO] Erro ao carregar "
+            f"{caminho}: {erro}"
+        )
 
         return {}
 
-    with open(
-        caminho,
-        encoding="utf-8"
-    ) as arquivo:
-
-        return json.load(
-            arquivo
-        )
-
-
 
 def salvar_json(caminho, dados):
+
+    caminho.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     with open(
         caminho,
@@ -49,377 +105,382 @@ def salvar_json(caminho, dados):
         )
 
 
-
-def normalizar_nome(nome):
-
-    if not nome:
-
-        return ""
-
-    return (
-        nome
-        .lower()
-        .strip()
-    )
-
-
-
-def carregar_pontuacoes_real(rodada):
-
-    arquivo = (
-
-        PASTA_HISTORICO /
-
-        f"rodada-{rodada:02d}.json"
-
-    )
-
-
-    dados = carregar_json(
-        arquivo
-    )
-
-
-    jogadores = {}
-
-
-    for jogador in dados.get(
-        "jogadores",
-        []
-    ):
-
-
-        nome = normalizar_nome(
-
-            jogador.get("nome")
-
-            or jogador.get("apelido")
-
-        )
-
-
-        if not nome:
-
-            continue
-
-
-        jogadores[nome] = {
-
-
-            "nome":
-
-                jogador.get("nome")
-
-                or jogador.get("apelido"),
-
-
-            "pontos":
-
-                jogador.get(
-
-                    "pontuacaoReal",
-
-                    jogador.get(
-
-                        "pontos",
-
-                        0
-
-                    )
-
-                )
-
-        }
-
-
-    return jogadores
-
-
-
-def calcular_time(
-    jogadores,
-    pontuacoes
+def numero(
+    valor,
+    padrao=0.0
 ):
 
-    pontos = 0
+    try:
+
+        if valor is None:
+            return padrao
+
+        resultado = float(
+            valor
+        )
+
+        if math.isfinite(
+            resultado
+        ):
+
+            return resultado
+
+    except Exception:
+        pass
+
+    return padrao
+
+
+# ======================================================
+# CÁLCULO DO TIME
+# ======================================================
+
+def calcular_time(
+    estrategia
+):
+
+    titulares = estrategia.get(
+        "titulares",
+        []
+    )
+
+    capitao = estrategia.get(
+        "capitao"
+    )
+
+    capitao_id = None
+
+    if isinstance(
+        capitao,
+        dict
+    ):
+
+        capitao_id = str(
+            capitao.get("id")
+        )
+
+    pontos_base = 0
+
+    bonus_capitao = 0
 
     detalhes = []
 
+    for jogador in titulares:
 
-    for jogador in jogadores:
-
-
-        nome = normalizar_nome(
-
-            jogador.get("nome")
-
-            or jogador.get("apelido")
-
-        )
-
-
-        dados = pontuacoes.get(
-
-            nome,
-
-            {}
-
-        )
-
-
-        valor = dados.get(
-
-            "pontos",
-
+        pontos = numero(
+            jogador.get(
+                "pontuacaoReal"
+            ),
             0
-
         )
 
+        jogador_id = str(
+            jogador.get("id")
+        )
 
-        try:
+        eh_capitao = (
+            capitao_id is not None
+            and jogador_id == capitao_id
+        )
 
-            valor = float(
-                valor
-            )
+        pontos_base += pontos
 
-        except:
+        if eh_capitao:
 
-            valor = 0
-
-
-
-        pontos += valor
-
+            # No Cartola o capitão dobra
+            # a pontuação do atleta.
+            bonus_capitao += pontos
 
         detalhes.append({
 
-            "nome":
+            "id":
+                jogador.get("id"),
 
-                jogador.get(
-                    "nome"
+            "nome":
+                jogador.get("nome"),
+
+            "posicao":
+                jogador.get("posicao"),
+
+            "clube":
+                jogador.get("clube"),
+
+            "projecao":
+                numero(
+                    jogador.get(
+                        "projecao"
+                    ),
+                    0
                 ),
 
-
             "pontos":
+                round(
+                    pontos,
+                    2
+                ),
 
-                valor
+            "capitao":
+                eh_capitao
 
         })
 
-
+    pontuacao_total = (
+        pontos_base +
+        bonus_capitao
+    )
 
     return {
 
-
-        "pontos":
-
+        "pontosSemCapitao":
             round(
-
-                pontos,
-
+                pontos_base,
                 2
-
             ),
 
+        "bonusCapitao":
+            round(
+                bonus_capitao,
+                2
+            ),
+
+        "pontos":
+            round(
+                pontuacao_total,
+                2
+            ),
+
+        "quantidadeJogadores":
+            len(titulares),
 
         "jogadores":
-
             detalhes
 
     }
 
 
+# ======================================================
+# PROCESSAMENTO
+# ======================================================
 
 def processar():
 
-
-    escalacoes = carregar_json(
-
-        ARQUIVO_ESCALACOES
-
-    )
-
-
     resultado = {
 
-
         "modelo":
-
-            "simulacao_times_v2",
-
+            "simulacao_times_v3",
 
         "descricao":
+            (
+                "Avaliação histórica das escalações "
+                "sugeridas pelo modelo"
+            ),
 
-            "Avaliação histórica das escalações sugeridas pelo modelo",
-
+        "fonte":
+            "data/historico-escalacoes",
 
         "rodadas":
-
             []
 
     }
 
-
-
-    # aceita lista ou objeto
-
-    if isinstance(
-
-        escalacoes,
-
-        list
-
+    if not (
+        PASTA_HISTORICO_ESCALACOES.exists()
     ):
 
-
-        lista_rodadas = escalacoes
-
-
-
-    else:
-
-
-        lista_rodadas = escalacoes.get(
-
-            "rodadas",
-
-            []
-
+        print(
+            "Pasta de histórico de escalações "
+            "não encontrada:"
         )
 
+        print(
+            PASTA_HISTORICO_ESCALACOES
+        )
 
+        salvar_json(
+            ARQUIVO_SAIDA,
+            resultado
+        )
 
-    for rodada_dados in lista_rodadas:
+        return
 
+    arquivos = sorted(
 
-        rodada = rodada_dados.get(
+        PASTA_HISTORICO_ESCALACOES.glob(
+            "rodada-*.json"
+        )
 
+    )
+
+    for arquivo in arquivos:
+
+        dados = carregar_json(
+            arquivo
+        )
+
+        rodada = dados.get(
             "rodada"
-
         )
 
-
-        if not rodada:
-
+        if rodada is None:
             continue
-
-
-
-        pontuacoes = carregar_pontuacoes_real(
-
-            rodada
-
-        )
-
 
         registro = {
 
-
             "rodada":
-
                 rodada,
 
+            "dadosUtilizadosAteRodada":
+                dados.get(
+                    "dadosUtilizadosAteRodada"
+                ),
+
+            "semVazamentoFuturo":
+                dados.get(
+                    "semVazamentoFuturo",
+                    False
+                ),
 
             "estrategias":
-
                 []
 
         }
 
-
-
-        for estrategia in rodada_dados.get(
-
+        for estrategia in dados.get(
             "estrategias",
-
             []
-
         ):
 
-
-
-            nome = estrategia.get(
-
-                "nome"
-
-            )
-
-
-            jogadores = estrategia.get(
-
-                "titulares",
-
-                []
-
-            )
-
-
             calculo = calcular_time(
-
-                jogadores,
-
-                pontuacoes
-
+                estrategia
             )
 
+            registro[
+                "estrategias"
+            ].append({
 
-            registro["estrategias"].append({
-
+                "id":
+                    estrategia.get(
+                        "id"
+                    ),
 
                 "nome":
+                    estrategia.get(
+                        "nome"
+                    ),
 
-                    nome,
+                "perfil":
+                    estrategia.get(
+                        "perfil"
+                    ),
 
+                "formacao":
+                    estrategia.get(
+                        "formacao"
+                    ),
+
+                "escalaçãoCompleta":
+                    estrategia.get(
+                        "escalaçãoCompleta",
+                        False
+                    ),
+
+                "pontosSemCapitao":
+                    calculo[
+                        "pontosSemCapitao"
+                    ],
+
+                "bonusCapitao":
+                    calculo[
+                        "bonusCapitao"
+                    ],
 
                 "pontos":
+                    calculo[
+                        "pontos"
+                    ],
 
-                    calculo["pontos"],
+                "quantidadeJogadores":
+                    calculo[
+                        "quantidadeJogadores"
+                    ],
 
+                "capitao":
+                    estrategia.get(
+                        "capitao"
+                    ),
 
                 "jogadores":
-
-                    calculo["jogadores"]
+                    calculo[
+                        "jogadores"
+                    ]
 
             })
 
+        if registro[
+            "estrategias"
+        ]:
 
+            resultado[
+                "rodadas"
+            ].append(
+                registro
+            )
 
-        resultado["rodadas"].append(
+    # ==================================================
+    # RESUMO
+    # ==================================================
 
-            registro
+    resultado[
+        "quantidadeRodadas"
+    ] = len(
+        resultado["rodadas"]
+    )
 
-        )
+    resultado[
+        "rodadasProcessadas"
+    ] = [
 
+        item["rodada"]
 
+        for item in resultado[
+            "rodadas"
+        ]
+
+    ]
 
     salvar_json(
-
         ARQUIVO_SAIDA,
-
         resultado
-
     )
 
-
-
     print(
-        "Simulação histórica de times concluída."
+        "============================================"
     )
 
+    print(
+        "SIMULAÇÃO HISTÓRICA DE TIMES CONCLUÍDA"
+    )
 
     print(
-
         "Rodadas processadas:",
+        resultado[
+            "quantidadeRodadas"
+        ]
+    )
 
-        len(
+    print(
+        "Arquivo:",
+        ARQUIVO_SAIDA
+    )
 
-            resultado["rodadas"]
-
-        )
-
+    print(
+        "============================================"
     )
 
 
+# ======================================================
+# EXECUÇÃO
+# ======================================================
 
 if __name__ == "__main__":
 
