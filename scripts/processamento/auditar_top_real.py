@@ -1,68 +1,57 @@
 """
 =========================================================
 CARTOLA ESTATÍSTICO
-Auditoria da Métrica Top Real
+AUDITORIA DA MÉTRICA TOP REAL
 
-Objetivo:
+Versão:
+auditoria_top_real_v2
 
-Auditar a métrica utilizada para medir se os jogadores
-escalados pelo modelo ficaram entre os melhores atletas
-reais de cada posição.
+Objetivo
+---------------------------------------------------------
+Auditar a qualidade real das escalações históricas
+geradas pelo modelo.
 
-Problema investigado:
+A auditoria compara, rodada a rodada:
 
-As taxas atuais de Top Real ficaram muito baixas.
-Antes de alterar pesos do modelo, precisamos saber se:
+- jogadores efetivamente escalados;
+- jogadores reais disponíveis na rodada;
+- ranking real por posição;
+- Top N;
+- Top 5;
+- Top 10;
+- ranking real médio;
+- percentil médio;
+- eficiência de captura de pontos;
+- desempenho por posição.
 
-1. o modelo realmente está escolhendo mal;
-2. a definição de Top Real está excessivamente rígida;
-3. estamos comparando conjuntos de tamanhos diferentes;
-4. existe algum problema de identificação dos atletas;
-5. uma métrica mais informativa deve substituir ou
-   complementar a métrica atual.
+Fonte das escalações:
+data/historico-escalacoes/rodada-XX.json
 
-Este script NÃO altera o modelo.
-
-Entradas:
-
-data/simulacao-times.json
-
-Dados históricos auxiliares:
-
+Fonte dos resultados reais:
 data/historico/rodada-XX/jogadores.json
-data/historico/rodada-XX.json
 data/api/rodada-XX/jogadores.json
-data/api/rodada-XX/pontuados.json
 
-Saída:
+REGRA CIENTÍFICA
+---------------------------------------------------------
+A escalação da rodada R foi construída anteriormente
+somente com dados disponíveis até R-1.
 
-data/auditoria-top-real.json
+Esta auditoria usa o resultado real da rodada R apenas
+para medir o desempenho posterior da recomendação.
 
-Métricas:
-
-- Top N exato
-- Top 5
-- Top 10
-- ranking real médio
-- percentil médio
-- pontos reais dos escalados
-- pontos do time perfeito da posição
-- eficiência de captura de pontos
-- análise por estratégia
-- análise por posição
-- análise sem cold start
-
+Nenhuma informação futura é usada para montar o time.
 =========================================================
 """
 
-from pathlib import Path
-from statistics import mean
 import json
 import math
 
+from collections import defaultdict
+from pathlib import Path
+
 
 # ======================================================
-# CONFIGURAÇÕES
+# CAMINHOS
 # ======================================================
 
 BASE_DIR = (
@@ -73,39 +62,39 @@ BASE_DIR = (
     .parent
 )
 
-
 PASTA_DATA = (
-    BASE_DIR /
-    "data"
+    BASE_DIR
+    / "data"
 )
 
+PASTA_HISTORICO_ESCALACOES = (
+    PASTA_DATA
+    / "historico-escalacoes"
+)
 
 PASTA_HISTORICO = (
-    PASTA_DATA /
-    "historico"
+    PASTA_DATA
+    / "historico"
 )
-
 
 PASTA_API = (
-    PASTA_DATA /
-    "api"
+    PASTA_DATA
+    / "api"
 )
-
-
-ARQUIVO_SIMULACAO = (
-    PASTA_DATA /
-    "simulacao-times.json"
-)
-
 
 ARQUIVO_SAIDA = (
-    PASTA_DATA /
-    "auditoria-top-real.json"
+    PASTA_DATA
+    / "auditoria-top-real.json"
 )
 
 
-RODADA_COLD_START = 2
+# ======================================================
+# CONFIGURAÇÕES
+# ======================================================
 
+MODELO = (
+    "auditoria_top_real_v2"
+)
 
 POSICOES = [
     "GOL",
@@ -113,61 +102,34 @@ POSICOES = [
     "ZAG",
     "MEI",
     "ATA",
-    "TEC"
+    "TEC",
 ]
 
-
-# ======================================================
-# MAPAS DE POSIÇÃO
-# ======================================================
-
-MAPA_POSICOES_ID = {
-    1: "GOL",
-    2: "LAT",
-    3: "ZAG",
-    4: "MEI",
-    5: "ATA",
-    6: "TEC"
+ESTRATEGIAS_VALIDAS = {
+    "Conservador",
+    "Equilibrado",
+    "Agressivo",
 }
 
+TOP_5 = 5
 
-MAPA_POSICOES_TEXTO = {
-
-    "gol": "GOL",
-    "goleiro": "GOL",
-
-    "lat": "LAT",
-    "lateral": "LAT",
-
-    "zag": "ZAG",
-    "zagueiro": "ZAG",
-
-    "mei": "MEI",
-    "meia": "MEI",
-
-    "ata": "ATA",
-    "atacante": "ATA",
-
-    "tec": "TEC",
-    "tecnico": "TEC",
-    "técnico": "TEC"
-
-}
+TOP_10 = 10
 
 
 # ======================================================
 # UTILIDADES
 # ======================================================
 
-def carregar_json(caminho):
+def carregar_json(
+    caminho
+):
 
     if not caminho.exists():
         return None
 
     try:
 
-        with open(
-            caminho,
+        with caminho.open(
             "r",
             encoding="utf-8"
         ) as arquivo:
@@ -196,8 +158,7 @@ def salvar_json(
         exist_ok=True
     )
 
-    with open(
-        caminho,
+    with caminho.open(
         "w",
         encoding="utf-8"
     ) as arquivo:
@@ -220,16 +181,18 @@ def numero(
         if valor is None:
             return padrao
 
-        resultado = float(
+        valor = float(
             valor
         )
 
         if math.isfinite(
-            resultado
+            valor
         ):
-            return resultado
+
+            return valor
 
     except Exception:
+
         pass
 
     return padrao
@@ -237,7 +200,7 @@ def numero(
 
 def inteiro(
     valor,
-    padrao=None
+    padrao=0
 ):
 
     try:
@@ -246,10 +209,13 @@ def inteiro(
             return padrao
 
         return int(
-            valor
+            float(
+                valor
+            )
         )
 
     except Exception:
+
         return padrao
 
 
@@ -260,52 +226,98 @@ def arredondar(
 
     return round(
         numero(
-            valor,
-            0
+            valor
         ),
         casas
     )
 
 
-def media_segura(
+def percentual(
+    parte,
+    total
+):
+
+    parte = numero(
+        parte
+    )
+
+    total = numero(
+        total
+    )
+
+    if total == 0:
+        return 0.0
+
+    return (
+        parte
+        /
+        total
+        *
+        100
+    )
+
+
+def media(
     valores
 ):
 
     valores = [
-
         numero(
-            valor,
-            0
+            valor
         )
-
-        for valor
-        in valores
-
+        for valor in valores
     ]
 
     if not valores:
-        return 0
+        return 0.0
 
-    return mean(
-        valores
+    return (
+        sum(
+            valores
+        )
+        /
+        len(
+            valores
+        )
     )
 
 
-def percentual(
-    quantidade,
-    total
+# ======================================================
+# NORMALIZAÇÕES
+# ======================================================
+
+def normalizar_id(
+    valor
 ):
 
-    if not total:
-        return 0
+    if valor is None:
+        return ""
 
-    return round(
-        (
-            quantidade /
-            total
-        ) * 100,
-        2
-    )
+    try:
+
+        numero_id = float(
+            valor
+        )
+
+        if math.isfinite(
+            numero_id
+        ):
+
+            if numero_id.is_integer():
+
+                return str(
+                    int(
+                        numero_id
+                    )
+                )
+
+    except Exception:
+
+        pass
+
+    return str(
+        valor
+    ).strip()
 
 
 def normalizar_texto(
@@ -315,222 +327,127 @@ def normalizar_texto(
     if valor is None:
         return ""
 
-    return (
-        str(valor)
+    return str(
+        valor
+    ).strip()
+
+
+def normalizar_posicao(
+    valor
+):
+
+    if valor is None:
+        return ""
+
+    if isinstance(
+        valor,
+        dict
+    ):
+
+        for chave in [
+            "abreviacao",
+            "sigla",
+            "nome",
+        ]:
+
+            if valor.get(
+                chave
+            ):
+
+                valor = valor.get(
+                    chave
+                )
+
+                break
+
+    texto = (
+        str(
+            valor
+        )
         .strip()
-        .lower()
+        .upper()
     )
 
+    mapa = {
+        "GOLEIRO":
+            "GOL",
 
-# ======================================================
-# IDENTIFICAÇÃO
-# ======================================================
+        "GOL":
+            "GOL",
 
-def obter_id(
-    jogador
-):
+        "LATERAL":
+            "LAT",
 
-    possibilidades = [
+        "LAT":
+            "LAT",
 
-        jogador.get(
-            "id"
-        ),
+        "ZAGUEIRO":
+            "ZAG",
 
-        jogador.get(
-            "atletaId"
-        ),
+        "ZAG":
+            "ZAG",
 
-        jogador.get(
-            "atleta_id"
-        ),
+        "MEIA":
+            "MEI",
 
-        jogador.get(
-            "atleta"
-        )
+        "MEI":
+            "MEI",
 
-    ]
+        "ATACANTE":
+            "ATA",
 
+        "ATA":
+            "ATA",
 
-    for valor in possibilidades:
+        "TECNICO":
+            "TEC",
 
-        if valor is not None:
+        "TÉCNICO":
+            "TEC",
 
-            return str(
-                valor
-            )
+        "TEC":
+            "TEC",
+    }
 
+    if texto in mapa:
 
-    nome = normalizar_texto(
-
-        jogador.get(
-            "nome"
-        )
-
-        or jogador.get(
-            "apelido"
-        )
-
-    )
-
-
-    clube = normalizar_texto(
-
-        jogador.get(
-            "siglaClube"
-        )
-
-        or jogador.get(
-            "clube"
-        )
-
-        or jogador.get(
-            "clubeId"
-        )
-
-    )
-
-
-    posicao = normalizar_texto(
-
-        jogador.get(
-            "posicao"
-        )
-
-    )
-
-
-    return (
-        f"{nome}|"
-        f"{clube}|"
-        f"{posicao}"
-    )
-
-
-def obter_nome(
-    jogador
-):
-
-    return (
-
-        jogador.get(
-            "nome"
-        )
-
-        or jogador.get(
-            "apelido"
-        )
-
-        or ""
-
-    )
-
-
-# ======================================================
-# POSIÇÃO
-# ======================================================
-
-def obter_posicao(
-    jogador
-):
-
-    posicao_id = inteiro(
-
-        jogador.get(
-            "posicaoId"
-        )
-
-        or jogador.get(
-            "posicao_id"
-        )
-
-    )
-
-
-    if posicao_id in MAPA_POSICOES_ID:
-
-        return MAPA_POSICOES_ID[
-            posicao_id
-        ]
-
-
-    texto = normalizar_texto(
-
-        jogador.get(
-            "posicao"
-        )
-
-        or jogador.get(
-            "posicaoNome"
-        )
-
-    )
-
-
-    if texto in MAPA_POSICOES_TEXTO:
-
-        return MAPA_POSICOES_TEXTO[
+        return mapa[
             texto
         ]
 
+    ids = {
+        "1":
+            "GOL",
 
-    texto = texto.upper()
+        "2":
+            "LAT",
 
+        "3":
+            "ZAG",
 
-    if texto in POSICOES:
-        return texto
+        "4":
+            "MEI",
 
+        "5":
+            "ATA",
 
-    return ""
+        "6":
+            "TEC",
+    }
 
-
-# ======================================================
-# PONTUAÇÃO REAL
-# ======================================================
-
-def obter_pontuacao_real(
-    jogador
-):
-
-    campos = [
-
-        "pontuacaoReal",
-        "pontos",
-        "pontuacao",
-        "real",
-        "pontosUltimaRodada"
-
-    ]
-
-
-    for campo in campos:
-
-        valor = jogador.get(
-            campo
-        )
-
-
-        if valor is not None:
-
-            return numero(
-                valor,
-                0
-            )
-
-
-    return 0
+    return ids.get(
+        texto,
+        texto
+    )
 
 
 # ======================================================
-# EXTRAÇÃO DE LISTAS
+# EXTRAÇÃO DE JOGADORES
 # ======================================================
 
 def extrair_lista_jogadores(
     dados
 ):
-
-    if dados is None:
-        return []
-
 
     if isinstance(
         dados,
@@ -539,7 +456,6 @@ def extrair_lista_jogadores(
 
         return dados
 
-
     if not isinstance(
         dados,
         dict
@@ -547,19 +463,16 @@ def extrair_lista_jogadores(
 
         return []
 
-
     for chave in [
-
         "jogadores",
         "atletas",
-        "pontuados"
-
+        "pontuados",
+        "resultados",
     ]:
 
         valor = dados.get(
             chave
         )
-
 
         if isinstance(
             valor,
@@ -568,7 +481,6 @@ def extrair_lista_jogadores(
 
             return valor
 
-
         if isinstance(
             valor,
             dict
@@ -576,80 +488,217 @@ def extrair_lista_jogadores(
 
             lista = []
 
-
             for (
-                atleta_id,
-                atleta
+                jogador_id,
+                jogador
             ) in valor.items():
 
                 if not isinstance(
-                    atleta,
+                    jogador,
                     dict
                 ):
 
                     continue
 
-
                 copia = dict(
-                    atleta
+                    jogador
                 )
 
-
-                if copia.get(
-                    "id"
-                ) is None:
-
-                    copia[
-                        "id"
-                    ] = atleta_id
-
+                copia.setdefault(
+                    "id",
+                    jogador_id
+                )
 
                 lista.append(
                     copia
                 )
 
-
             if lista:
 
                 return lista
 
-
     return []
 
 
+def obter_id(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return ""
+
+    for chave in [
+        "id",
+        "atletaId",
+        "atleta_id",
+        "idAtleta",
+        "id_atleta",
+    ]:
+
+        valor = jogador.get(
+            chave
+        )
+
+        if valor is not None:
+
+            return normalizar_id(
+                valor
+            )
+
+    atleta = jogador.get(
+        "atleta"
+    )
+
+    if isinstance(
+        atleta,
+        dict
+    ):
+
+        return obter_id(
+            atleta
+        )
+
+    return ""
+
+
+def obter_nome(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return ""
+
+    for chave in [
+        "nome",
+        "apelido",
+        "nomeAtleta",
+        "nome_atleta",
+    ]:
+
+        valor = jogador.get(
+            chave
+        )
+
+        if valor:
+
+            return normalizar_texto(
+                valor
+            )
+
+    return ""
+
+
+def obter_posicao(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return ""
+
+    for chave in [
+        "posicao",
+        "posição",
+        "posicaoAbreviacao",
+        "posicao_abreviacao",
+        "posicaoId",
+        "posicao_id",
+    ]:
+
+        valor = jogador.get(
+            chave
+        )
+
+        if valor is not None:
+
+            posicao = (
+                normalizar_posicao(
+                    valor
+                )
+            )
+
+            if posicao:
+
+                return posicao
+
+    return ""
+
+
+def obter_pontuacao_real(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return 0.0
+
+    for chave in [
+        "pontuacaoReal",
+        "pontuacao_real",
+        "pontos",
+        "pontos_num",
+        "pontuacao",
+        "scoreReal",
+        "score_real",
+    ]:
+
+        if jogador.get(
+            chave
+        ) is not None:
+
+            return numero(
+                jogador.get(
+                    chave
+                )
+            )
+
+    return 0.0
+
+
 # ======================================================
-# ARQUIVOS HISTÓRICOS
+# CARREGAMENTO DA BASE REAL
 # ======================================================
 
-def caminhos_rodada(
+def candidatos_jogadores_rodada(
     rodada
 ):
 
     return [
-
         (
-            PASTA_HISTORICO /
-            f"rodada-{rodada:02d}" /
+            PASTA_HISTORICO
+            /
+            f"rodada-{rodada:02d}"
+            /
             "jogadores.json"
         ),
 
         (
-            PASTA_HISTORICO /
+            PASTA_API
+            /
+            f"rodada-{rodada:02d}"
+            /
+            "jogadores.json"
+        ),
+
+        (
+            PASTA_HISTORICO
+            /
             f"rodada-{rodada:02d}.json"
         ),
-
-        (
-            PASTA_API /
-            f"rodada-{rodada:02d}" /
-            "jogadores.json"
-        ),
-
-        (
-            PASTA_API /
-            f"rodada-{rodada:02d}" /
-            "pontuados.json"
-        )
-
     ]
 
 
@@ -657,737 +706,571 @@ def carregar_jogadores_reais(
     rodada
 ):
 
-    for caminho in caminhos_rodada(
-        rodada
+    for caminho in (
+        candidatos_jogadores_rodada(
+            rodada
+        )
     ):
 
         dados = carregar_json(
             caminho
         )
 
-
-        jogadores = extrair_lista_jogadores(
-            dados
+        jogadores = (
+            extrair_lista_jogadores(
+                dados
+            )
         )
-
 
         if jogadores:
 
             return jogadores
 
+    return []
+
+
+# ======================================================
+# ESCALAÇÕES HISTÓRICAS
+# ======================================================
+
+def descobrir_rodadas(
+):
+
+    rodadas = []
+
+    if not PASTA_HISTORICO_ESCALACOES.exists():
+
+        return rodadas
+
+    for caminho in (
+        PASTA_HISTORICO_ESCALACOES
+        .glob(
+            "rodada-*.json"
+        )
+    ):
+
+        nome = caminho.stem
+
+        numero_texto = (
+            nome.replace(
+                "rodada-",
+                ""
+            )
+        )
+
+        try:
+
+            rodada = int(
+                numero_texto
+            )
+
+        except Exception:
+
+            continue
+
+        rodadas.append(
+            rodada
+        )
+
+    return sorted(
+        set(
+            rodadas
+        )
+    )
+
+
+def carregar_escalacao_rodada(
+    rodada
+):
+
+    caminho = (
+        PASTA_HISTORICO_ESCALACOES
+        /
+        f"rodada-{rodada:02d}.json"
+    )
+
+    dados = carregar_json(
+        caminho
+    )
+
+    if not isinstance(
+        dados,
+        dict
+    ):
+
+        return None
+
+    return dados
+
+
+def extrair_estrategias(
+    dados
+):
+
+    if not isinstance(
+        dados,
+        dict
+    ):
+
+        return []
+
+    valor = dados.get(
+        "estrategias"
+    )
+
+    if isinstance(
+        valor,
+        list
+    ):
+
+        return valor
+
+    if isinstance(
+        valor,
+        dict
+    ):
+
+        resultado = []
+
+        for (
+            nome,
+            estrategia
+        ) in valor.items():
+
+            if not isinstance(
+                estrategia,
+                dict
+            ):
+
+                continue
+
+            copia = dict(
+                estrategia
+            )
+
+            copia.setdefault(
+                "nome",
+                nome
+            )
+
+            resultado.append(
+                copia
+            )
+
+        return resultado
+
+    return []
+
+
+def obter_nome_estrategia(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+
+        return ""
+
+    for chave in [
+        "nome",
+        "perfil",
+        "id",
+    ]:
+
+        valor = estrategia.get(
+            chave
+        )
+
+        if not valor:
+            continue
+
+        texto = (
+            str(
+                valor
+            )
+            .strip()
+            .lower()
+        )
+
+        mapa = {
+            "conservador":
+                "Conservador",
+
+            "equilibrado":
+                "Equilibrado",
+
+            "agressivo":
+                "Agressivo",
+        }
+
+        if texto in mapa:
+
+            return mapa[
+                texto
+            ]
+
+    return ""
+
+
+def extrair_titulares(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict
+    ):
+
+        return []
+
+    for chave in [
+        "titulares",
+        "jogadores",
+        "atletas",
+    ]:
+
+        valor = estrategia.get(
+            chave
+        )
+
+        if isinstance(
+            valor,
+            list
+        ):
+
+            return valor
 
     return []
 
 
 # ======================================================
-# NORMALIZAÇÃO DOS REAIS
+# COLD START
 # ======================================================
 
-def preparar_reais(
+def possui_historico(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return False
+
+    historico = jogador.get(
+        "historico"
+    )
+
+    if not isinstance(
+        historico,
+        dict
+    ):
+
+        # Compatibilidade com arquivos antigos:
+        # se não houver campo histórico, não excluímos.
+        return True
+
+    jogos = inteiro(
+        historico.get(
+            "jogos"
+        )
+    )
+
+    return jogos > 0
+
+
+# ======================================================
+# BASE REAL NORMALIZADA
+# ======================================================
+
+def normalizar_base_real(
     jogadores
 ):
 
-    resultado = {
+    resultado = []
 
-        posicao: []
-
-        for posicao
-        in POSICOES
-
-    }
-
+    ids_vistos = set()
 
     for jogador in jogadores:
+
+        jogador_id = obter_id(
+            jogador
+        )
+
+        if not jogador_id:
+            continue
 
         posicao = obter_posicao(
             jogador
         )
 
-
-        if posicao not in resultado:
+        if posicao not in POSICOES:
             continue
 
-
-        resultado[
+        chave = (
+            jogador_id,
             posicao
-        ].append({
-
-            "id":
-                obter_id(
-                    jogador
-                ),
-
-            "nome":
-                obter_nome(
-                    jogador
-                ),
-
-            "posicao":
-                posicao,
-
-            "pontos":
-                arredondar(
-                    obter_pontuacao_real(
-                        jogador
-                    )
-                )
-
-        })
-
-
-    for posicao in resultado:
-
-        resultado[
-            posicao
-        ].sort(
-
-            key=lambda jogador:
-                jogador[
-                    "pontos"
-                ],
-
-            reverse=True
-
         )
 
+        if chave in ids_vistos:
+            continue
 
-        for indice, jogador in enumerate(
-            resultado[
-                posicao
-            ],
-            start=1
-        ):
+        ids_vistos.add(
+            chave
+        )
 
-            jogador[
-                "rankingReal"
-            ] = indice
+        resultado.append(
+            {
+                "id":
+                    jogador_id,
 
+                "nome":
+                    obter_nome(
+                        jogador
+                    ),
+
+                "posicao":
+                    posicao,
+
+                "pontos":
+                    obter_pontuacao_real(
+                        jogador
+                    ),
+            }
+        )
 
     return resultado
 
 
-# ======================================================
-# ÍNDICE DE RANKING REAL
-# ======================================================
-
-def criar_indice_ranking(
-    ranking_posicao
+def indexar_base_real(
+    jogadores
 ):
-
-    indice = {}
-
-
-    total = len(
-        ranking_posicao
-    )
-
-
-    for jogador in ranking_posicao:
-
-        jogador_id = str(
-            jogador.get(
-                "id"
-            )
-        )
-
-
-        ranking = inteiro(
-            jogador.get(
-                "rankingReal"
-            ),
-            0
-        )
-
-
-        if (
-            total > 1
-            and ranking > 0
-        ):
-
-            percentil = (
-
-                1 -
-                (
-                    (
-                        ranking -
-                        1
-                    )
-                    /
-                    (
-                        total -
-                        1
-                    )
-                )
-
-            ) * 100
-
-        elif total == 1:
-
-            percentil = 100
-
-        else:
-
-            percentil = 0
-
-
-        indice[
-            jogador_id
-        ] = {
-
-            "ranking":
-                ranking,
-
-            "percentil":
-                arredondar(
-                    percentil
-                ),
-
-            "pontos":
-                numero(
-                    jogador.get(
-                        "pontos"
-                    ),
-                    0
-                ),
-
-            "nome":
-                jogador.get(
-                    "nome"
-                )
-
-        }
-
-
-    return indice
-
-
-# ======================================================
-# AUDITORIA DE UMA POSIÇÃO
-# ======================================================
-
-def auditar_posicao(
-    jogadores_escalados,
-    ranking_real
-):
-
-    quantidade_escalada = len(
-        jogadores_escalados
-    )
-
-
-    quantidade_reais = len(
-        ranking_real
-    )
-
-
-    if quantidade_escalada == 0:
-
-        return {
-
-            "jogadoresEscalados":
-                0,
-
-            "jogadoresReais":
-                quantidade_reais,
-
-            "identificados":
-                0,
-
-            "naoIdentificados":
-                0,
-
-            "topN": {
-                "acertos": 0,
-                "taxa": 0
-            },
-
-            "top5": {
-                "acertos": 0,
-                "taxa": 0
-            },
-
-            "top10": {
-                "acertos": 0,
-                "taxa": 0
-            },
-
-            "rankingRealMedio":
-                0,
-
-            "percentilMedio":
-                0,
-
-            "pontosEscalados":
-                0,
-
-            "pontosOtimos":
-                0,
-
-            "eficienciaCapturaPontos":
-                0,
-
-            "detalhes":
-                []
-
-        }
-
-
-    indice = criar_indice_ranking(
-        ranking_real
-    )
-
-
-    ids_top_n = {
-
-        str(
-            jogador[
-                "id"
-            ]
-        )
-
-        for jogador
-        in ranking_real[
-            :quantidade_escalada
-        ]
-
-    }
-
-
-    ids_top_5 = {
-
-        str(
-            jogador[
-                "id"
-            ]
-        )
-
-        for jogador
-        in ranking_real[
-            :5
-        ]
-
-    }
-
-
-    ids_top_10 = {
-
-        str(
-            jogador[
-                "id"
-            ]
-        )
-
-        for jogador
-        in ranking_real[
-            :10
-        ]
-
-    }
-
-
-    acertos_top_n = 0
-
-    acertos_top_5 = 0
-
-    acertos_top_10 = 0
-
-    identificados = 0
-
-    rankings = []
-
-    percentis = []
-
-    pontos_escalados = 0
-
-    detalhes = []
-
-
-    for jogador in jogadores_escalados:
-
-        jogador_id = str(
-            jogador.get(
-                "id"
-            )
-        )
-
-
-        real = indice.get(
-            jogador_id
-        )
-
-
-        if real:
-
-            identificados += 1
-
-            ranking = real[
-                "ranking"
-            ]
-
-            percentil = real[
-                "percentil"
-            ]
-
-            pontos = real[
-                "pontos"
-            ]
-
-
-            rankings.append(
-                ranking
-            )
-
-            percentis.append(
-                percentil
-            )
-
-            pontos_escalados += pontos
-
-
-        else:
-
-            ranking = None
-
-            percentil = None
-
-            pontos = numero(
-
-                jogador.get(
-                    "pontos"
-                ),
-
-                0
-
-            )
-
-            pontos_escalados += pontos
-
-
-        top_n = (
-            jogador_id
-            in ids_top_n
-        )
-
-
-        top_5 = (
-            jogador_id
-            in ids_top_5
-        )
-
-
-        top_10 = (
-            jogador_id
-            in ids_top_10
-        )
-
-
-        if top_n:
-
-            acertos_top_n += 1
-
-
-        if top_5:
-
-            acertos_top_5 += 1
-
-
-        if top_10:
-
-            acertos_top_10 += 1
-
-
-        detalhes.append({
-
-            "id":
-                jogador.get(
-                    "id"
-                ),
-
-            "nome":
-                jogador.get(
-                    "nome"
-                ),
-
-            "projecao":
-                arredondar(
-                    jogador.get(
-                        "projecao"
-                    )
-                ),
-
-            "pontos":
-                arredondar(
-                    pontos
-                ),
-
-            "rankingReal":
-                ranking,
-
-            "percentilReal":
-                percentil,
-
-            "topN":
-                top_n,
-
-            "top5":
-                top_5,
-
-            "top10":
-                top_10,
-
-            "identificadoNaBaseReal":
-                real is not None
-
-        })
-
-
-    pontos_otimos = sum(
-
-        numero(
-            jogador.get(
-                "pontos"
-            ),
-            0
-        )
-
-        for jogador
-        in ranking_real[
-            :quantidade_escalada
-        ]
-
-    )
-
-
-    if pontos_otimos != 0:
-
-        eficiencia = (
-
-            pontos_escalados /
-            pontos_otimos
-
-        ) * 100
-
-    else:
-
-        eficiencia = 0
-
 
     return {
+        jogador[
+            "id"
+        ]:
+            jogador
 
-        "jogadoresEscalados":
-            quantidade_escalada,
-
-        "jogadoresReais":
-            quantidade_reais,
-
-        "identificados":
-            identificados,
-
-        "naoIdentificados":
-            (
-                quantidade_escalada -
-                identificados
-            ),
-
-        "taxaIdentificacao":
-            percentual(
-                identificados,
-                quantidade_escalada
-            ),
-
-        "topN": {
-
-            "tamanhoTop":
-                quantidade_escalada,
-
-            "acertos":
-                acertos_top_n,
-
-            "taxa":
-                percentual(
-                    acertos_top_n,
-                    quantidade_escalada
-                )
-
-        },
-
-        "top5": {
-
-            "tamanhoTop":
-                min(
-                    5,
-                    quantidade_reais
-                ),
-
-            "acertos":
-                acertos_top_5,
-
-            "taxa":
-                percentual(
-                    acertos_top_5,
-                    quantidade_escalada
-                )
-
-        },
-
-        "top10": {
-
-            "tamanhoTop":
-                min(
-                    10,
-                    quantidade_reais
-                ),
-
-            "acertos":
-                acertos_top_10,
-
-            "taxa":
-                percentual(
-                    acertos_top_10,
-                    quantidade_escalada
-                )
-
-        },
-
-        "rankingRealMedio":
-            arredondar(
-                media_segura(
-                    rankings
-                )
-            ),
-
-        "percentilMedio":
-            arredondar(
-                media_segura(
-                    percentis
-                )
-            ),
-
-        "pontosEscalados":
-            arredondar(
-                pontos_escalados
-            ),
-
-        "pontosOtimos":
-            arredondar(
-                pontos_otimos
-            ),
-
-        "eficienciaCapturaPontos":
-            arredondar(
-                eficiencia
-            ),
-
-        "detalhes":
-            detalhes
-
+        for jogador in jogadores
     }
 
 
 # ======================================================
-# AUDITORIA DE UMA ESTRATÉGIA
+# RANKING REAL
 # ======================================================
 
-def auditar_estrategia(
-    estrategia,
-    reais_por_posicao
+def montar_rankings_reais(
+    jogadores
 ):
 
-    jogadores = estrategia.get(
-        "jogadores",
-        []
-    )
-
-
-    resultado_posicoes = {}
-
+    rankings = {}
 
     for posicao in POSICOES:
 
-        selecionados = [
-
+        lista = [
             jogador
-
-            for jogador
-            in jogadores
-
-            if jogador.get(
+            for jogador in jogadores
+            if jogador[
                 "posicao"
-            ) == posicao
-
+            ] == posicao
         ]
 
+        lista.sort(
+            key=lambda jogador:
+                (
+                    jogador[
+                        "pontos"
+                    ],
+                    jogador[
+                        "id"
+                    ]
+                ),
+            reverse=True
+        )
 
-        ranking_real = (
-            reais_por_posicao.get(
-                posicao,
-                []
+        rankings[
+            posicao
+        ] = lista
+
+    return rankings
+
+
+def localizar_ranking(
+    jogador_id,
+    posicao,
+    rankings
+):
+
+    lista = rankings.get(
+        posicao,
+        []
+    )
+
+    for indice, jogador in enumerate(
+        lista,
+        start=1
+    ):
+
+        if (
+            jogador[
+                "id"
+            ]
+            ==
+            jogador_id
+        ):
+
+            return (
+                indice,
+                len(
+                    lista
+                )
+            )
+
+    return (
+        None,
+        len(
+            lista
+        )
+    )
+
+
+def calcular_percentil(
+    ranking,
+    quantidade
+):
+
+    if (
+        ranking is None
+        or
+        quantidade <= 0
+    ):
+
+        return None
+
+    if quantidade == 1:
+        return 100.0
+
+    return (
+        (
+            quantidade
+            -
+            ranking
+        )
+        /
+        (
+            quantidade
+            -
+            1
+        )
+        *
+        100
+    )
+
+
+# ======================================================
+# TOP N
+# ======================================================
+
+def quantidade_escalados_posicao(
+    titulares,
+    posicao
+):
+
+    return sum(
+        1
+        for jogador in titulares
+        if obter_posicao(
+            jogador
+        ) == posicao
+    )
+
+
+def pertence_top_n(
+    ranking,
+    quantidade_escalados
+):
+
+    if ranking is None:
+        return False
+
+    if quantidade_escalados <= 0:
+        return False
+
+    return (
+        ranking
+        <=
+        quantidade_escalados
+    )
+
+
+# ======================================================
+# TIME PERFEITO
+# ======================================================
+
+def calcular_time_perfeito(
+    rankings,
+    titulares
+):
+
+    total = 0.0
+
+    for posicao in POSICOES:
+
+        quantidade = (
+            quantidade_escalados_posicao(
+                titulares,
+                posicao
             )
         )
 
+        if quantidade <= 0:
+            continue
 
-        resultado_posicoes[
-            posicao
-        ] = auditar_posicao(
-
-            selecionados,
-
-            ranking_real
-
+        melhores = (
+            rankings.get(
+                posicao,
+                []
+            )[
+                :quantidade
+            ]
         )
 
-
-    return {
-
-        "id":
-            estrategia.get(
-                "id"
-            ),
-
-        "nome":
-            estrategia.get(
-                "nome"
-            ),
-
-        "formacao":
-            estrategia.get(
-                "formacao"
-            ),
-
-        "pontos":
-            arredondar(
-                estrategia.get(
+        total += sum(
+            numero(
+                jogador[
                     "pontos"
-                )
-            ),
+                ]
+            )
+            for jogador in melhores
+        )
 
-        "posicoes":
-            resultado_posicoes
-
-    }
+    return total
 
 
 # ======================================================
-# ACUMULADOR
+# ACUMULADORES
 # ======================================================
 
-def criar_acumulador():
+def novo_acumulador():
 
     return {
-
         "escalados":
             0,
 
         "identificados":
             0,
 
-        "topNAcertos":
+        "topN":
             0,
 
-        "top5Acertos":
+        "top5":
             0,
 
-        "top10Acertos":
+        "top10":
             0,
 
         "rankings":
@@ -1397,264 +1280,145 @@ def criar_acumulador():
             [],
 
         "pontosEscalados":
-            0,
+            0.0,
 
-        "pontosOtimos":
-            0,
-
-        "eficiencias":
-            []
-
+        "pontosPerfeitos":
+            0.0,
     }
 
 
-def acumular(
+def acumular_jogador(
     acumulador,
-    dados
+    identificado,
+    ranking=None,
+    percentil_real=None,
+    top_n=False,
+    top_5=False,
+    top_10=False
 ):
 
     acumulador[
         "escalados"
-    ] += inteiro(
-        dados.get(
-            "jogadoresEscalados"
-        ),
-        0
-    )
+    ] += 1
 
+    if not identificado:
+        return
 
     acumulador[
         "identificados"
-    ] += inteiro(
-        dados.get(
-            "identificados"
-        ),
-        0
-    )
+    ] += 1
 
+    if ranking is not None:
 
-    acumulador[
-        "topNAcertos"
-    ] += inteiro(
-        dados.get(
-            "topN",
-            {}
-        ).get(
-            "acertos"
-        ),
-        0
-    )
-
-
-    acumulador[
-        "top5Acertos"
-    ] += inteiro(
-        dados.get(
-            "top5",
-            {}
-        ).get(
-            "acertos"
-        ),
-        0
-    )
-
-
-    acumulador[
-        "top10Acertos"
-    ] += inteiro(
-        dados.get(
-            "top10",
-            {}
-        ).get(
-            "acertos"
-        ),
-        0
-    )
-
-
-    for detalhe in dados.get(
-        "detalhes",
-        []
-    ):
-
-        ranking = detalhe.get(
-            "rankingReal"
+        acumulador[
+            "rankings"
+        ].append(
+            ranking
         )
 
+    if percentil_real is not None:
 
-        percentil = detalhe.get(
-            "percentilReal"
+        acumulador[
+            "percentis"
+        ].append(
+            percentil_real
         )
 
+    if top_n:
 
-        if ranking is not None:
+        acumulador[
+            "topN"
+        ] += 1
 
-            acumulador[
-                "rankings"
-            ].append(
-                numero(
-                    ranking,
-                    0
-                )
-            )
+    if top_5:
 
+        acumulador[
+            "top5"
+        ] += 1
 
-        if percentil is not None:
+    if top_10:
 
-            acumulador[
-                "percentis"
-            ].append(
-                numero(
-                    percentil,
-                    0
-                )
-            )
+        acumulador[
+            "top10"
+        ] += 1
 
 
-    acumulador[
-        "pontosEscalados"
-    ] += numero(
-        dados.get(
-            "pontosEscalados"
-        ),
-        0
-    )
-
-
-    acumulador[
-        "pontosOtimos"
-    ] += numero(
-        dados.get(
-            "pontosOtimos"
-        ),
-        0
-    )
-
-
-    acumulador[
-        "eficiencias"
-    ].append(
-
-        numero(
-            dados.get(
-                "eficienciaCapturaPontos"
-            ),
-            0
-        )
-
-    )
-
-
-# ======================================================
-# RESUMO DO ACUMULADOR
-# ======================================================
-
-def resumir_acumulador(
+def finalizar_acumulador(
     acumulador
 ):
 
-    escalados = acumulador[
-        "escalados"
-    ]
+    escalados = (
+        acumulador[
+            "escalados"
+        ]
+    )
 
+    identificados = (
+        acumulador[
+            "identificados"
+        ]
+    )
 
-    identificados = acumulador[
-        "identificados"
-    ]
+    pontos_perfeitos = numero(
+        acumulador[
+            "pontosPerfeitos"
+        ]
+    )
 
-
-    pontos_escalados = acumulador[
-        "pontosEscalados"
-    ]
-
-
-    pontos_otimos = acumulador[
-        "pontosOtimos"
-    ]
-
-
-    if pontos_otimos != 0:
-
-        eficiencia_global = (
-
-            pontos_escalados /
-            pontos_otimos
-
-        ) * 100
-
-    else:
-
-        eficiencia_global = 0
-
+    pontos_escalados = numero(
+        acumulador[
+            "pontosEscalados"
+        ]
+    )
 
     return {
-
         "escalados":
             escalados,
 
         "identificados":
             identificados,
 
-        "taxaIdentificacao":
-            percentual(
-                identificados,
-                escalados
+        "taxaIdentificacaoPercentual":
+            arredondar(
+                percentual(
+                    identificados,
+                    escalados
+                )
             ),
 
-        "topN": {
-
-            "acertos":
-                acumulador[
-                    "topNAcertos"
-                ],
-
-            "taxa":
+        "topNPercentual":
+            arredondar(
                 percentual(
                     acumulador[
-                        "topNAcertos"
+                        "topN"
                     ],
-                    escalados
+                    identificados
                 )
+            ),
 
-        },
-
-        "top5": {
-
-            "acertos":
-                acumulador[
-                    "top5Acertos"
-                ],
-
-            "taxa":
+        "top5Percentual":
+            arredondar(
                 percentual(
                     acumulador[
-                        "top5Acertos"
+                        "top5"
                     ],
-                    escalados
+                    identificados
                 )
+            ),
 
-        },
-
-        "top10": {
-
-            "acertos":
-                acumulador[
-                    "top10Acertos"
-                ],
-
-            "taxa":
+        "top10Percentual":
+            arredondar(
                 percentual(
                     acumulador[
-                        "top10Acertos"
+                        "top10"
                     ],
-                    escalados
+                    identificados
                 )
-
-        },
+            ),
 
         "rankingRealMedio":
             arredondar(
-                media_segura(
+                media(
                     acumulador[
                         "rankings"
                     ]
@@ -1663,7 +1427,7 @@ def resumir_acumulador(
 
         "percentilMedio":
             arredondar(
-                media_segura(
+                media(
                     acumulador[
                         "percentis"
                     ]
@@ -1675,604 +1439,285 @@ def resumir_acumulador(
                 pontos_escalados
             ),
 
-        "pontosOtimos":
+        "pontosTimePerfeito":
             arredondar(
-                pontos_otimos
+                pontos_perfeitos
             ),
 
-        "eficienciaCapturaPontos":
+        "eficienciaCapturaPercentual":
             arredondar(
-                eficiencia_global
+                percentual(
+                    pontos_escalados,
+                    pontos_perfeitos
+                )
             ),
+    }
 
-        "eficienciaMediaRodada":
-            arredondar(
-                media_segura(
-                    acumulador[
-                        "eficiencias"
-                    ]
+
+# ======================================================
+# PROCESSAMENTO DE UMA ESTRATÉGIA
+# ======================================================
+
+def processar_estrategia(
+    estrategia,
+    base_real,
+    rankings,
+    acumulador_global,
+    acumuladores_posicao
+):
+
+    titulares_originais = (
+        extrair_titulares(
+            estrategia
+        )
+    )
+
+    # Retira apenas o cold start verdadeiro.
+    titulares = [
+        jogador
+        for jogador in titulares_originais
+        if possui_historico(
+            jogador
+        )
+    ]
+
+    if not titulares:
+        return {
+            "escalados":
+                0,
+
+            "identificados":
+                0,
+
+            "pontosEscalados":
+                0.0,
+
+            "pontosPerfeitos":
+                0.0,
+        }
+
+    pontos_time = 0.0
+
+    pontos_perfeito = (
+        calcular_time_perfeito(
+            rankings,
+            titulares
+        )
+    )
+
+    identificados = 0
+
+    for jogador in titulares:
+
+        jogador_id = obter_id(
+            jogador
+        )
+
+        posicao = obter_posicao(
+            jogador
+        )
+
+        if not jogador_id:
+            continue
+
+        if posicao not in POSICOES:
+            continue
+
+        real = base_real.get(
+            jogador_id
+        )
+
+        identificado = (
+            real is not None
+        )
+
+        quantidade_posicao = (
+            quantidade_escalados_posicao(
+                titulares,
+                posicao
+            )
+        )
+
+        ranking = None
+
+        quantidade_ranking = 0
+
+        percentil_real = None
+
+        top_n = False
+
+        top_5 = False
+
+        top_10 = False
+
+        if identificado:
+
+            identificados += 1
+
+            pontos_reais = numero(
+                real.get(
+                    "pontos"
                 )
             )
 
-    }
-
-
-# ======================================================
-# RESUMO GERAL
-# ======================================================
-
-def gerar_resumos(
-    rodadas_auditadas,
-    excluir_cold_start=False
-):
-
-    por_estrategia = {}
-
-    por_posicao = {
-
-        posicao:
-            criar_acumulador()
-
-        for posicao
-        in POSICOES
-
-    }
-
-
-    geral = criar_acumulador()
-
-
-    for rodada in rodadas_auditadas:
-
-        if (
-            excluir_cold_start
-            and rodada.get(
-                "coldStart"
+            pontos_time += (
+                pontos_reais
             )
-        ):
 
+            (
+                ranking,
+                quantidade_ranking
+            ) = localizar_ranking(
+                jogador_id,
+                posicao,
+                rankings
+            )
+
+            percentil_real = (
+                calcular_percentil(
+                    ranking,
+                    quantidade_ranking
+                )
+            )
+
+            top_n = pertence_top_n(
+                ranking,
+                quantidade_posicao
+            )
+
+            top_5 = (
+                ranking is not None
+                and
+                ranking <= TOP_5
+            )
+
+            top_10 = (
+                ranking is not None
+                and
+                ranking <= TOP_10
+            )
+
+        acumular_jogador(
+            acumulador_global,
+            identificado,
+            ranking,
+            percentil_real,
+            top_n,
+            top_5,
+            top_10
+        )
+
+        acumular_jogador(
+            acumuladores_posicao[
+                posicao
+            ],
+            identificado,
+            ranking,
+            percentil_real,
+            top_n,
+            top_5,
+            top_10
+        )
+
+    acumulador_global[
+        "pontosEscalados"
+    ] += pontos_time
+
+    acumulador_global[
+        "pontosPerfeitos"
+    ] += pontos_perfeito
+
+    for posicao in POSICOES:
+
+        titulares_posicao = [
+            jogador
+            for jogador in titulares
+            if obter_posicao(
+                jogador
+            ) == posicao
+        ]
+
+        if not titulares_posicao:
             continue
 
+        quantidade = len(
+            titulares_posicao
+        )
 
-        for estrategia in rodada.get(
-            "estrategias",
-            []
-        ):
+        perfeito_posicao = sum(
+            numero(
+                jogador[
+                    "pontos"
+                ]
+            )
+            for jogador in (
+                rankings.get(
+                    posicao,
+                    []
+                )[
+                    :quantidade
+                ]
+            )
+        )
 
-            nome = estrategia.get(
-                "nome"
+        pontos_posicao = 0.0
+
+        for jogador in titulares_posicao:
+
+            jogador_id = obter_id(
+                jogador
             )
 
+            real = base_real.get(
+                jogador_id
+            )
 
-            if nome not in por_estrategia:
+            if real:
 
-                por_estrategia[
-                    nome
-                ] = {
-
-                    posicao:
-                        criar_acumulador()
-
-                    for posicao
-                    in POSICOES
-
-                }
-
-
-            for posicao in POSICOES:
-
-                dados = (
-                    estrategia.get(
-                        "posicoes",
-                        {}
-                    ).get(
-                        posicao,
-                        {}
+                pontos_posicao += numero(
+                    real.get(
+                        "pontos"
                     )
                 )
 
+        acumuladores_posicao[
+            posicao
+        ][
+            "pontosEscalados"
+        ] += pontos_posicao
 
-                acumular(
-
-                    por_estrategia[
-                        nome
-                    ][
-                        posicao
-                    ],
-
-                    dados
-
-                )
-
-
-                acumular(
-
-                    por_posicao[
-                        posicao
-                    ],
-
-                    dados
-
-                )
-
-
-                acumular(
-                    geral,
-                    dados
-                )
-
-
-    resumo_estrategias = {}
-
-
-    for (
-        nome,
-        posicoes
-    ) in por_estrategia.items():
-
-        acumulador_estrategia = (
-            criar_acumulador()
-        )
-
-
-        resumo_posicoes = {}
-
-
-        for (
-            posicao,
-            acumulador
-        ) in posicoes.items():
-
-            resumo_posicoes[
-                posicao
-            ] = resumir_acumulador(
-                acumulador
-            )
-
-
-            acumulador_estrategia[
-                "escalados"
-            ] += acumulador[
-                "escalados"
-            ]
-
-
-            acumulador_estrategia[
-                "identificados"
-            ] += acumulador[
-                "identificados"
-            ]
-
-
-            acumulador_estrategia[
-                "topNAcertos"
-            ] += acumulador[
-                "topNAcertos"
-            ]
-
-
-            acumulador_estrategia[
-                "top5Acertos"
-            ] += acumulador[
-                "top5Acertos"
-            ]
-
-
-            acumulador_estrategia[
-                "top10Acertos"
-            ] += acumulador[
-                "top10Acertos"
-            ]
-
-
-            acumulador_estrategia[
-                "rankings"
-            ].extend(
-                acumulador[
-                    "rankings"
-                ]
-            )
-
-
-            acumulador_estrategia[
-                "percentis"
-            ].extend(
-                acumulador[
-                    "percentis"
-                ]
-            )
-
-
-            acumulador_estrategia[
-                "pontosEscalados"
-            ] += acumulador[
-                "pontosEscalados"
-            ]
-
-
-            acumulador_estrategia[
-                "pontosOtimos"
-            ] += acumulador[
-                "pontosOtimos"
-            ]
-
-
-            acumulador_estrategia[
-                "eficiencias"
-            ].extend(
-                acumulador[
-                    "eficiencias"
-                ]
-            )
-
-
-        resumo_estrategias[
-            nome
-        ] = {
-
-            "geral":
-                resumir_acumulador(
-                    acumulador_estrategia
-                ),
-
-            "posicoes":
-                resumo_posicoes
-
-        }
-
-
-    resumo_posicoes = {
-
-        posicao:
-            resumir_acumulador(
-                acumulador
-            )
-
-        for (
-            posicao,
-            acumulador
-        ) in por_posicao.items()
-
-    }
-
+        acumuladores_posicao[
+            posicao
+        ][
+            "pontosPerfeitos"
+        ] += perfeito_posicao
 
     return {
-
-        "geral":
-            resumir_acumulador(
-                geral
+        "escalados":
+            len(
+                titulares
             ),
 
-        "estrategias":
-            resumo_estrategias,
+        "identificados":
+            identificados,
 
-        "posicoes":
-            resumo_posicoes
+        "pontosEscalados":
+            arredondar(
+                pontos_time
+            ),
 
+        "pontosPerfeitos":
+            arredondar(
+                pontos_perfeito
+            ),
     }
 
 
 # ======================================================
-# DIAGNÓSTICO AUTOMÁTICO
-# ======================================================
-
-def gerar_diagnostico(
-    resumo
-):
-
-    diagnosticos = []
-
-
-    geral = resumo.get(
-        "geral",
-        {}
-    )
-
-
-    taxa_identificacao = numero(
-
-        geral.get(
-            "taxaIdentificacao"
-        ),
-
-        0
-
-    )
-
-
-    if taxa_identificacao < 95:
-
-        diagnosticos.append({
-
-            "nivel":
-                "critico",
-
-            "tipo":
-                "identificacao",
-
-            "mensagem":
-                (
-                    "A taxa de identificação entre "
-                    "jogadores escalados e base real "
-                    f"é de apenas {taxa_identificacao}%. "
-                    "A métrica Top Real não deve ser usada "
-                    "para calibrar pesos antes da correção."
-                )
-
-        })
-
-
-    else:
-
-        diagnosticos.append({
-
-            "nivel":
-                "ok",
-
-            "tipo":
-                "identificacao",
-
-            "mensagem":
-                (
-                    "A identificação dos atletas entre "
-                    "escalação e base real está adequada: "
-                    f"{taxa_identificacao}%."
-                )
-
-        })
-
-
-    top_n = numero(
-
-        geral.get(
-            "topN",
-            {}
-        ).get(
-            "taxa"
-        ),
-
-        0
-
-    )
-
-
-    top_5 = numero(
-
-        geral.get(
-            "top5",
-            {}
-        ).get(
-            "taxa"
-        ),
-
-        0
-
-    )
-
-
-    top_10 = numero(
-
-        geral.get(
-            "top10",
-            {}
-        ).get(
-            "taxa"
-        ),
-
-        0
-
-    )
-
-
-    percentil = numero(
-
-        geral.get(
-            "percentilMedio"
-        ),
-
-        0
-
-    )
-
-
-    eficiencia = numero(
-
-        geral.get(
-            "eficienciaCapturaPontos"
-        ),
-
-        0
-
-    )
-
-
-    diagnosticos.append({
-
-        "nivel":
-            "informativo",
-
-        "tipo":
-            "top_real",
-
-        "mensagem":
-            (
-                f"Top N exato: {top_n}%. "
-                f"Top 5: {top_5}%. "
-                f"Top 10: {top_10}%."
-            )
-
-    })
-
-
-    diagnosticos.append({
-
-        "nivel":
-            "informativo",
-
-        "tipo":
-            "qualidade_ranking",
-
-        "mensagem":
-            (
-                f"O jogador escalado médio está no "
-                f"percentil {percentil} da sua posição."
-            )
-
-    })
-
-
-    diagnosticos.append({
-
-        "nivel":
-            "informativo",
-
-        "tipo":
-            "captura_pontos",
-
-        "mensagem":
-            (
-                "A eficiência global de captura de pontos "
-                f"em relação ao time perfeito é "
-                f"{eficiencia}%."
-            )
-
-    })
-
-
-    # --------------------------------------------------
-    # Melhor e pior posição
-    # --------------------------------------------------
-
-    posicoes = resumo.get(
-        "posicoes",
-        {}
-    )
-
-
-    validas = [
-
-        (
-            posicao,
-            dados
-        )
-
-        for (
-            posicao,
-            dados
-        ) in posicoes.items()
-
-        if dados.get(
-            "escalados",
-            0
-        ) > 0
-
-    ]
-
-
-    if validas:
-
-        melhor_percentil = max(
-
-            validas,
-
-            key=lambda item:
-                numero(
-                    item[
-                        1
-                    ].get(
-                        "percentilMedio"
-                    ),
-                    0
-                )
-
-        )
-
-
-        pior_percentil = min(
-
-            validas,
-
-            key=lambda item:
-                numero(
-                    item[
-                        1
-                    ].get(
-                        "percentilMedio"
-                    ),
-                    0
-                )
-
-        )
-
-
-        diagnosticos.append({
-
-            "nivel":
-                "informativo",
-
-            "tipo":
-                "melhor_posicao_ranking",
-
-            "mensagem":
-                (
-                    f"{melhor_percentil[0]} possui o "
-                    "melhor percentil médio dos escalados: "
-                    f"{melhor_percentil[1].get('percentilMedio')}."
-                )
-
-        })
-
-
-        diagnosticos.append({
-
-            "nivel":
-                "atencao",
-
-            "tipo":
-                "pior_posicao_ranking",
-
-            "mensagem":
-                (
-                    f"{pior_percentil[0]} possui o "
-                    "menor percentil médio dos escalados: "
-                    f"{pior_percentil[1].get('percentilMedio')}."
-                )
-
-        })
-
-
-    return diagnosticos
-
-
-# ======================================================
-# PROCESSAMENTO
+# PROCESSAMENTO PRINCIPAL
 # ======================================================
 
 def processar():
-
-    simulacao = carregar_json(
-        ARQUIVO_SIMULACAO
-    )
-
-
-    if not simulacao:
-
-        print(
-            "[ERRO] data/simulacao-times.json "
-            "não encontrado ou vazio."
-        )
-
-        return
-
-
-    rodadas = simulacao.get(
-        "rodadas",
-        []
-    )
-
-
-    rodadas_auditadas = []
-
 
     print(
         "============================================"
@@ -2286,208 +1731,402 @@ def processar():
         "============================================"
     )
 
+    rodadas = descobrir_rodadas()
 
-    for rodada_dados in rodadas:
+    acumulador_global = (
+        novo_acumulador()
+    )
 
-        rodada = inteiro(
-            rodada_dados.get(
-                "rodada"
+    acumuladores_posicao = {
+        posicao:
+            novo_acumulador()
+
+        for posicao in POSICOES
+    }
+
+    detalhes_rodadas = []
+
+    rodadas_validas = 0
+
+    rodadas_ignoradas = []
+
+    for rodada in rodadas:
+
+        arquivo_escalacao = (
+            carregar_escalacao_rodada(
+                rodada
             )
         )
 
-
-        if rodada is None:
-            continue
-
-
-        jogadores_reais = (
+        jogadores_reais_brutos = (
             carregar_jogadores_reais(
                 rodada
             )
         )
 
+        jogadores_reais = (
+            normalizar_base_real(
+                jogadores_reais_brutos
+            )
+        )
 
-        reais_por_posicao = (
-            preparar_reais(
+        estrategias = (
+            extrair_estrategias(
+                arquivo_escalacao
+            )
+        )
+
+        estrategias = [
+            estrategia
+            for estrategia in estrategias
+            if obter_nome_estrategia(
+                estrategia
+            ) in ESTRATEGIAS_VALIDAS
+        ]
+
+        if (
+            not jogadores_reais
+            or
+            not estrategias
+        ):
+
+            rodadas_ignoradas.append(
+                rodada
+            )
+
+            print(
+                f"[IGNORADA] Rodada "
+                f"{rodada:02d}"
+                f" | jogadores reais: "
+                f"{len(jogadores_reais)}"
+                f" | estratégias: "
+                f"{len(estrategias)}"
+            )
+
+            continue
+
+        rodadas_validas += 1
+
+        base_real = (
+            indexar_base_real(
                 jogadores_reais
             )
         )
 
+        rankings = (
+            montar_rankings_reais(
+                jogadores_reais
+            )
+        )
 
-        registro = {
+        detalhes_estrategias = []
 
-            "rodada":
-                rodada,
+        for estrategia in estrategias:
 
-            "coldStart":
-                rodada ==
-                RODADA_COLD_START,
-
-            "quantidadeJogadoresReais":
-                len(
-                    jogadores_reais
-                ),
-
-            "estrategias":
-                []
-
-        }
-
-
-        for estrategia in rodada_dados.get(
-            "estrategias",
-            []
-        ):
-
-            registro[
-                "estrategias"
-            ].append(
-
-                auditar_estrategia(
-
-                    estrategia,
-
-                    reais_por_posicao
-
+            nome = (
+                obter_nome_estrategia(
+                    estrategia
                 )
-
             )
 
+            resultado_estrategia = (
+                processar_estrategia(
+                    estrategia,
+                    base_real,
+                    rankings,
+                    acumulador_global,
+                    acumuladores_posicao
+                )
+            )
 
-        rodadas_auditadas.append(
-            registro
+            resultado_estrategia[
+                "nome"
+            ] = nome
+
+            detalhes_estrategias.append(
+                resultado_estrategia
+            )
+
+        detalhes_rodadas.append(
+            {
+                "rodada":
+                    rodada,
+
+                "quantidadeJogadoresReais":
+                    len(
+                        jogadores_reais
+                    ),
+
+                "quantidadeEstrategias":
+                    len(
+                        estrategias
+                    ),
+
+                "estrategias":
+                    detalhes_estrategias,
+            }
         )
-
 
         print(
-            f"[OK] Rodada {rodada:02d} | "
-            f"Jogadores reais: "
-            f"{len(jogadores_reais)} | "
-            f"Estratégias: "
-            f"{len(registro['estrategias'])}"
+            f"[OK] Rodada "
+            f"{rodada:02d}"
+            f" | Jogadores reais: "
+            f"{len(jogadores_reais)}"
+            f" | Estratégias: "
+            f"{len(estrategias)}"
         )
 
-
     # ==================================================
-    # RESUMOS
+    # RESULTADOS
     # ==================================================
 
-    resumo_completo = gerar_resumos(
-        rodadas_auditadas,
-        excluir_cold_start=False
+    resultado_global = (
+        finalizar_acumulador(
+            acumulador_global
+        )
     )
 
+    resultado_posicoes = {
+        posicao:
+            finalizar_acumulador(
+                acumuladores_posicao[
+                    posicao
+                ]
+            )
 
-    resumo_sem_cold_start = gerar_resumos(
-        rodadas_auditadas,
-        excluir_cold_start=True
+        for posicao in POSICOES
+    }
+
+    taxa_identificacao = numero(
+        resultado_global[
+            "taxaIdentificacaoPercentual"
+        ]
     )
 
-
-    diagnosticos = gerar_diagnostico(
-        resumo_sem_cold_start
+    top_n = numero(
+        resultado_global[
+            "topNPercentual"
+        ]
     )
 
+    top_5 = numero(
+        resultado_global[
+            "top5Percentual"
+        ]
+    )
+
+    top_10 = numero(
+        resultado_global[
+            "top10Percentual"
+        ]
+    )
+
+    percentil_medio = numero(
+        resultado_global[
+            "percentilMedio"
+        ]
+    )
+
+    eficiencia = numero(
+        resultado_global[
+            "eficienciaCapturaPercentual"
+        ]
+    )
+
+    diagnosticos = []
 
     # ==================================================
-    # RESULTADO
+    # DIAGNÓSTICOS
     # ==================================================
 
-    resultado = {
+    if (
+        resultado_global[
+            "escalados"
+        ] == 0
+    ):
 
+        diagnosticos.append(
+            {
+                "nivel":
+                    "CRITICO",
+
+                "mensagem":
+                    (
+                        "Nenhum jogador histórico "
+                        "elegível foi localizado após "
+                        "a remoção do cold start."
+                    ),
+            }
+        )
+
+    elif taxa_identificacao < 95:
+
+        diagnosticos.append(
+            {
+                "nivel":
+                    "CRITICO",
+
+                "mensagem":
+                    (
+                        "A taxa de identificação entre "
+                        "jogadores escalados e base real "
+                        f"é de apenas "
+                        f"{arredondar(taxa_identificacao)}%. "
+                        "A métrica Top Real não deve ser "
+                        "usada para calibrar pesos antes "
+                        "da correção."
+                    ),
+            }
+        )
+
+    else:
+
+        diagnosticos.append(
+            {
+                "nivel":
+                    "OK",
+
+                "mensagem":
+                    (
+                        "A identificação entre as "
+                        "escalações históricas e a base "
+                        "real está em nível adequado: "
+                        f"{arredondar(taxa_identificacao)}%."
+                    ),
+            }
+        )
+
+    diagnosticos.append(
+        {
+            "nivel":
+                "INFORMATIVO",
+
+            "mensagem":
+                (
+                    f"Top N exato: "
+                    f"{arredondar(top_n)}%. "
+                    f"Top 5: "
+                    f"{arredondar(top_5)}%. "
+                    f"Top 10: "
+                    f"{arredondar(top_10)}%."
+                ),
+        }
+    )
+
+    diagnosticos.append(
+        {
+            "nivel":
+                "INFORMATIVO",
+
+            "mensagem":
+                (
+                    "O jogador escalado médio está "
+                    f"no percentil "
+                    f"{arredondar(percentil_medio)} "
+                    "da sua posição."
+                ),
+        }
+    )
+
+    diagnosticos.append(
+        {
+            "nivel":
+                "INFORMATIVO",
+
+            "mensagem":
+                (
+                    "A eficiência global de captura "
+                    "de pontos em relação ao time "
+                    f"perfeito é "
+                    f"{arredondar(eficiencia)}%."
+                ),
+        }
+    )
+
+    auditoria_valida = (
+        resultado_global[
+            "escalados"
+        ] > 0
+        and
+        taxa_identificacao >= 95
+    )
+
+    saida = {
         "modelo":
-            "auditoria_top_real_v1",
+            MODELO,
 
         "descricao":
             (
-                "Auditoria científica da métrica "
-                "de acerto dos melhores jogadores reais"
+                "Auditoria da posição real dos jogadores "
+                "escalados historicamente pelo modelo."
             ),
 
-        "quantidadeRodadas":
-            len(
-                rodadas_auditadas
-            ),
+        "fonteEscalacoes":
+            "data/historico-escalacoes",
 
-        "rodadaColdStart":
-            RODADA_COLD_START,
+        "rodadas": {
+            "encontradas":
+                rodadas,
 
-        "metodologia": {
+            "validas":
+                rodadas_validas,
 
-            "topN":
-                (
-                    "Compara os N jogadores escalados "
-                    "da posição com os N maiores "
-                    "pontuadores reais da posição."
-                ),
-
-            "top5":
-                (
-                    "Verifica se o escalado terminou "
-                    "entre os cinco maiores pontuadores "
-                    "reais da posição."
-                ),
-
-            "top10":
-                (
-                    "Verifica se o escalado terminou "
-                    "entre os dez maiores pontuadores "
-                    "reais da posição."
-                ),
-
-            "rankingRealMedio":
-                (
-                    "Posição média no ranking real "
-                    "dos jogadores selecionados."
-                ),
-
-            "percentilMedio":
-                (
-                    "Percentil médio dos jogadores "
-                    "escalados dentro de sua posição. "
-                    "Quanto maior, melhor."
-                ),
-
-            "eficienciaCapturaPontos":
-                (
-                    "Razão entre os pontos reais "
-                    "dos escalados e os pontos que "
-                    "seriam obtidos escolhendo os "
-                    "melhores jogadores reais da posição."
-                )
-
+            "ignoradas":
+                rodadas_ignoradas,
         },
 
-        "resumoCompleto":
-            resumo_completo,
+        "resultadoGlobalSemColdStart":
+            resultado_global,
 
-        "resumoSemColdStart":
-            resumo_sem_cold_start,
+        "resultadoPorPosicao":
+            resultado_posicoes,
+
+        "detalhesRodadas":
+            detalhes_rodadas,
 
         "diagnosticos":
             diagnosticos,
 
-        "rodadas":
-            rodadas_auditadas
+        "auditoria": {
+            "aprovada":
+                auditoria_valida,
 
+            "taxaIdentificacaoMinima":
+                95,
+
+            "usaEscalacaoHistorica":
+                True,
+
+            "removeColdStart":
+                True,
+
+            "semVazamentoFuturo":
+                True,
+        },
+
+        "seguranca": {
+            "alteraModeloOficial":
+                False,
+
+            "alteraPesos":
+                False,
+
+            "alteraEscalacoes":
+                False,
+
+            "promocaoAutomatica":
+                False,
+        },
     }
-
 
     salvar_json(
         ARQUIVO_SAIDA,
-        resultado
+        saida
     )
 
-
     # ==================================================
-    # LOG RESUMIDO
+    # LOG FINAL
     # ==================================================
-
-    resumo_log = resumo_sem_cold_start.get(
-        "geral",
-        {}
-    )
-
 
     print()
 
@@ -2495,92 +2134,73 @@ def processar():
         "===== RESULTADO GLOBAL SEM COLD START ====="
     )
 
-
     print(
         "Escalados:",
-        resumo_log.get(
-            "escalados",
-            0
-        )
+        resultado_global[
+            "escalados"
+        ]
     )
 
+    print(
+        "Identificados:",
+        resultado_global[
+            "identificados"
+        ]
+    )
 
     print(
         "Taxa identificação:",
-        resumo_log.get(
-            "taxaIdentificacao",
-            0
-        ),
+        resultado_global[
+            "taxaIdentificacaoPercentual"
+        ],
         "%"
     )
-
 
     print(
         "Top N:",
-        resumo_log.get(
-            "topN",
-            {}
-        ).get(
-            "taxa",
-            0
-        ),
+        resultado_global[
+            "topNPercentual"
+        ],
         "%"
     )
-
 
     print(
         "Top 5:",
-        resumo_log.get(
-            "top5",
-            {}
-        ).get(
-            "taxa",
-            0
-        ),
+        resultado_global[
+            "top5Percentual"
+        ],
         "%"
     )
-
 
     print(
         "Top 10:",
-        resumo_log.get(
-            "top10",
-            {}
-        ).get(
-            "taxa",
-            0
-        ),
+        resultado_global[
+            "top10Percentual"
+        ],
         "%"
     )
-
 
     print(
         "Ranking real médio:",
-        resumo_log.get(
-            "rankingRealMedio",
-            0
-        )
+        resultado_global[
+            "rankingRealMedio"
+        ]
     )
-
 
     print(
         "Percentil médio:",
-        resumo_log.get(
-            "percentilMedio",
-            0
-        )
+        resultado_global[
+            "percentilMedio"
+        ]
     )
-
 
     print(
         "Eficiência captura de pontos:",
-        resumo_log.get(
-            "eficienciaCapturaPontos",
-            0
-        ),
+        resultado_global[
+            "eficienciaCapturaPercentual"
+        ],
         "%"
     )
-
 
     print()
 
@@ -2588,36 +2208,31 @@ def processar():
         "===== RESULTADO POR POSIÇÃO ====="
     )
 
-
     for posicao in POSICOES:
 
         dados = (
-            resumo_sem_cold_start
-            .get(
-                "posicoes",
-                {}
-            )
-            .get(
-                posicao,
-                {}
-            )
+            resultado_posicoes[
+                posicao
+            ]
         )
-
 
         print(
-            f"{posicao} | "
-            f"TopN: "
-            f"{dados.get('topN', {}).get('taxa', 0)}% | "
-            f"Top5: "
-            f"{dados.get('top5', {}).get('taxa', 0)}% | "
-            f"Top10: "
-            f"{dados.get('top10', {}).get('taxa', 0)}% | "
-            f"Percentil: "
-            f"{dados.get('percentilMedio', 0)} | "
-            f"Eficiência: "
-            f"{dados.get('eficienciaCapturaPontos', 0)}%"
+            f"{posicao}"
+            f" | Escalados: "
+            f"{dados['escalados']}"
+            f" | Identificados: "
+            f"{dados['identificados']}"
+            f" | TopN: "
+            f"{dados['topNPercentual']}%"
+            f" | Top5: "
+            f"{dados['top5Percentual']}%"
+            f" | Top10: "
+            f"{dados['top10Percentual']}%"
+            f" | Percentil: "
+            f"{dados['percentilMedio']}"
+            f" | Eficiência: "
+            f"{dados['eficienciaCapturaPercentual']}%"
         )
-
 
     print()
 
@@ -2625,19 +2240,27 @@ def processar():
         "===== DIAGNÓSTICOS ====="
     )
 
-
     for diagnostico in diagnosticos:
 
         print(
-            f"[{diagnostico.get('nivel', '-').upper()}]",
-            diagnostico.get(
-                "mensagem",
-                ""
-            )
+            f"[{diagnostico['nivel']}] "
+            f"{diagnostico['mensagem']}"
         )
 
-
     print()
+
+    print(
+        "AUDITORIA:",
+        (
+            "APROVADA"
+            if auditoria_valida
+            else "REPROVADA"
+        )
+    )
+
+    print(
+        "Modelo oficial alterado: NÃO"
+    )
 
     print(
         "Arquivo:"
@@ -2646,7 +2269,6 @@ def processar():
     print(
         ARQUIVO_SAIDA
     )
-
 
     print(
         "============================================"
