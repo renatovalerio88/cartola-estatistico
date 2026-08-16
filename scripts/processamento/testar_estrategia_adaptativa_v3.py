@@ -9,37 +9,22 @@ Objetivo
 Testar uma terceira versão da estratégia adaptativa,
 mantendo V1 e V2 intactas como benchmarks.
 
-Princípios da V3:
+A V3 utiliza exclusivamente informações disponíveis
+ANTES da rodada que está sendo prevista.
 
-1. Nunca utilizar dados da rodada que está sendo prevista
-   para escolher a estratégia.
-
-2. Trabalhar exclusivamente com histórico anterior.
-
-3. Considerar:
-   - média recente;
-   - média histórica;
-   - taxa de vitórias;
-   - tendência;
-   - estabilidade;
-   - comportamento por regime;
-   - desempenho recente por regime.
-
-4. Permitir efetivamente a escolha da estratégia
-   Agressivo quando houver evidência histórica.
-
-5. Preservar cold start seguro.
-
-6. Não promover automaticamente nenhum modelo.
-
+Também possui validação defensiva da pontuação real
+para impedir que mudanças de estrutura em
+simulacao-times.json transformem silenciosamente
+pontuações válidas em zero.
 ======================================================
 """
 
 import json
 import math
 import statistics
+
 from pathlib import Path
-from collections import Counter, defaultdict
+from collections import Counter
 
 
 # ======================================================
@@ -48,16 +33,26 @@ from collections import Counter, defaultdict
 
 RAIZ = Path(__file__).resolve().parents[2]
 
-ARQUIVO_SIMULACAO = RAIZ / "data" / "simulacao-times.json"
+ARQUIVO_SIMULACAO = (
+    RAIZ
+    / "data"
+    / "simulacao-times.json"
+)
 
-ARQUIVO_SAIDA = RAIZ / "data" / "estrategia-adaptativa-v3.json"
+ARQUIVO_SAIDA = (
+    RAIZ
+    / "data"
+    / "estrategia-adaptativa-v3.json"
+)
 
 
 # ======================================================
 # CONFIGURAÇÕES
 # ======================================================
 
-VERSAO_MODELO = "estrategia_adaptativa_v3"
+VERSAO_MODELO = (
+    "estrategia_adaptativa_v3"
+)
 
 ESTRATEGIAS = [
     "Conservador",
@@ -86,10 +81,15 @@ def carregar_json(caminho):
         encoding="utf-8"
     ) as arquivo:
 
-        return json.load(arquivo)
+        return json.load(
+            arquivo
+        )
 
 
-def salvar_json(caminho, dados):
+def salvar_json(
+    caminho,
+    dados
+):
 
     caminho.parent.mkdir(
         parents=True,
@@ -109,22 +109,62 @@ def salvar_json(caminho, dados):
         )
 
 
-def numero(valor, padrao=0.0):
+def numero(
+    valor,
+    padrao=0.0
+):
 
     try:
 
-        valor = float(valor)
+        valor = float(
+            valor
+        )
 
-        if math.isfinite(valor):
+        if math.isfinite(
+            valor
+        ):
+
             return valor
 
-    except (TypeError, ValueError):
+    except (
+        TypeError,
+        ValueError
+    ):
+
         pass
 
     return padrao
 
 
-def media(valores):
+def numero_ou_none(
+    valor
+):
+
+    try:
+
+        valor = float(
+            valor
+        )
+
+        if math.isfinite(
+            valor
+        ):
+
+            return valor
+
+    except (
+        TypeError,
+        ValueError
+    ):
+
+        pass
+
+    return None
+
+
+def media(
+    valores
+):
 
     valores = [
         numero(v)
@@ -134,10 +174,15 @@ def media(valores):
     if not valores:
         return 0.0
 
-    return sum(valores) / len(valores)
+    return (
+        sum(valores)
+        / len(valores)
+    )
 
 
-def mediana(valores):
+def mediana(
+    valores
+):
 
     valores = [
         numero(v)
@@ -147,10 +192,14 @@ def mediana(valores):
     if not valores:
         return 0.0
 
-    return statistics.median(valores)
+    return statistics.median(
+        valores
+    )
 
 
-def desvio(valores):
+def desvio(
+    valores
+):
 
     valores = [
         numero(v)
@@ -160,10 +209,14 @@ def desvio(valores):
     if len(valores) < 2:
         return 0.0
 
-    return statistics.pstdev(valores)
+    return statistics.pstdev(
+        valores
+    )
 
 
-def arredondar(valor):
+def arredondar(
+    valor
+):
 
     return round(
         numero(valor),
@@ -175,15 +228,25 @@ def arredondar(valor):
 # NORMALIZAÇÃO DA SIMULAÇÃO
 # ======================================================
 
-def extrair_rodadas(dados):
+def extrair_rodadas(
+    dados
+):
 
     if not dados:
         return []
 
-    if isinstance(dados, list):
+    if isinstance(
+        dados,
+        list
+    ):
+
         return dados
 
-    if not isinstance(dados, dict):
+    if not isinstance(
+        dados,
+        dict
+    ):
+
         return []
 
     for chave in [
@@ -193,17 +256,29 @@ def extrair_rodadas(dados):
         "historico",
     ]:
 
-        valor = dados.get(chave)
+        valor = dados.get(
+            chave
+        )
 
-        if isinstance(valor, list):
+        if isinstance(
+            valor,
+            list
+        ):
+
             return valor
 
     return []
 
 
-def obter_numero_rodada(registro):
+def obter_numero_rodada(
+    registro
+):
 
-    if not isinstance(registro, dict):
+    if not isinstance(
+        registro,
+        dict
+    ):
+
         return 0
 
     for chave in [
@@ -212,87 +287,435 @@ def obter_numero_rodada(registro):
         "numero_rodada",
     ]:
 
-        if chave in registro:
+        if chave not in registro:
+            continue
 
-            try:
-                return int(registro[chave])
+        try:
 
-            except (TypeError, ValueError):
-                pass
+            return int(
+                registro[chave]
+            )
+
+        except (
+            TypeError,
+            ValueError
+        ):
+
+            pass
 
     return 0
 
 
-def obter_times(registro):
+def obter_times(
+    registro
+):
 
-    if not isinstance(registro, dict):
+    if not isinstance(
+        registro,
+        dict
+    ):
+
         return []
 
     for chave in [
-        "times",
         "estrategias",
+        "times",
         "resultados",
         "escalacoes",
     ]:
 
-        valor = registro.get(chave)
+        valor = registro.get(
+            chave
+        )
 
-        if isinstance(valor, list):
+        if isinstance(
+            valor,
+            list
+        ):
+
             return valor
 
     return []
 
 
-def obter_nome_estrategia(time):
+def normalizar_nome_estrategia(
+    valor
+):
 
-    if not isinstance(time, dict):
+    if valor is None:
+        return None
+
+    texto = str(
+        valor
+    ).strip().lower()
+
+    mapa = {
+        "conservador": "Conservador",
+        "equilibrado": "Equilibrado",
+        "agressivo": "Agressivo",
+    }
+
+    return mapa.get(
+        texto
+    )
+
+
+def obter_nome_estrategia(
+    time
+):
+
+    if not isinstance(
+        time,
+        dict
+    ):
+
         return None
 
     for chave in [
+        "nome",
         "estrategia",
         "perfil",
-        "nome",
         "tipo",
+        "id",
     ]:
 
-        valor = time.get(chave)
+        estrategia = (
+            normalizar_nome_estrategia(
+                time.get(
+                    chave
+                )
+            )
+        )
 
-        if valor in ESTRATEGIAS:
+        if estrategia in ESTRATEGIAS:
+            return estrategia
+
+    return None
+
+
+# ======================================================
+# PONTUAÇÃO REAL
+# ======================================================
+
+def obter_pontos_diretos(
+    time
+):
+
+    """
+    Primeira fonte:
+    total já calculado pelo simulador.
+
+    A estrutura histórica oficial utiliza principalmente:
+
+        pontos
+
+    Mantemos aliases para compatibilidade.
+    """
+
+    for chave in [
+        "pontos",
+        "pontuacao",
+        "pontuacaoReal",
+        "pontuacao_real",
+        "pontosReais",
+        "pontos_reais",
+        "totalReal",
+        "total_real",
+        "pontosTotal",
+        "pontuacaoTotal",
+    ]:
+
+        if chave not in time:
+            continue
+
+        valor = numero_ou_none(
+            time.get(
+                chave
+            )
+        )
+
+        if valor is not None:
+
             return valor
 
     return None
 
 
-def obter_pontuacao_real(time):
-
-    if not isinstance(time, dict):
-        return 0.0
+def obter_pontos_sem_capitao(
+    time
+):
 
     for chave in [
+        "pontosSemCapitao",
+        "pontos_sem_capitao",
+        "pontuacaoSemCapitao",
+        "pontuacao_sem_capitao",
+    ]:
+
+        if chave not in time:
+            continue
+
+        valor = numero_ou_none(
+            time.get(
+                chave
+            )
+        )
+
+        if valor is not None:
+
+            return valor
+
+    return None
+
+
+def obter_bonus_capitao(
+    time
+):
+
+    for chave in [
+        "bonusCapitao",
+        "bonus_capitao",
+        "bônusCapitao",
+        "bonusDoCapitao",
+    ]:
+
+        if chave not in time:
+            continue
+
+        valor = numero_ou_none(
+            time.get(
+                chave
+            )
+        )
+
+        if valor is not None:
+
+            return valor
+
+    return None
+
+
+def obter_pontos_jogador(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict
+    ):
+
+        return None
+
+    for chave in [
+        "pontos",
+        "pontuacao",
         "pontuacaoReal",
         "pontuacao_real",
         "pontosReais",
         "pontos_reais",
-        "pontos",
-        "pontuacao",
-        "totalReal",
-        "total_real",
     ]:
 
-        if chave in time:
+        if chave not in jogador:
+            continue
 
-            return numero(
-                time[chave]
+        valor = numero_ou_none(
+            jogador.get(
+                chave
             )
+        )
 
-    return 0.0
+        if valor is not None:
+
+            return valor
+
+    return None
 
 
-def normalizar_rodadas(dados):
+def calcular_pontos_pelos_jogadores(
+    time
+):
+
+    jogadores = time.get(
+        "jogadores"
+    )
+
+    if not isinstance(
+        jogadores,
+        list
+    ):
+
+        return None
+
+    if not jogadores:
+        return None
+
+    total = 0.0
+
+    encontrados = 0
+
+    pontos_capitao = None
+
+    for jogador in jogadores:
+
+        pontos = obter_pontos_jogador(
+            jogador
+        )
+
+        if pontos is None:
+            continue
+
+        total += pontos
+
+        encontrados += 1
+
+        if jogador.get(
+            "capitao"
+        ) is True:
+
+            pontos_capitao = pontos
+
+    if encontrados == 0:
+        return None
+
+    bonus = obter_bonus_capitao(
+        time
+    )
+
+    if bonus is not None:
+
+        total += bonus
+
+    elif pontos_capitao is not None:
+
+        # No Cartola o capitão recebe novamente
+        # sua pontuação como bônus.
+        total += pontos_capitao
+
+    return total
+
+
+def obter_pontuacao_real(
+    time
+):
+
+    """
+    Recuperação defensiva da pontuação.
+
+    Ordem:
+
+    1. total direto;
+    2. pontosSemCapitao + bonusCapitao;
+    3. soma dos jogadores + bônus do capitão.
+
+    Se o total direto vier 0, mas uma reconstrução
+    alternativa produzir valor diferente de zero,
+    usamos a reconstrução.
+
+    Isso evita a regressão observada em que todas
+    as estratégias passaram a valer 0.0.
+    """
+
+    if not isinstance(
+        time,
+        dict
+    ):
+
+        return 0.0
+
+    direto = obter_pontos_diretos(
+        time
+    )
+
+    sem_capitao = (
+        obter_pontos_sem_capitao(
+            time
+        )
+    )
+
+    bonus = obter_bonus_capitao(
+        time
+    )
+
+    reconstruido_resumo = None
+
+    if sem_capitao is not None:
+
+        reconstruido_resumo = (
+            sem_capitao
+            +
+            (
+                bonus
+                if bonus is not None
+                else 0.0
+            )
+        )
+
+    reconstruido_jogadores = (
+        calcular_pontos_pelos_jogadores(
+            time
+        )
+    )
+
+    candidatos = [
+        direto,
+        reconstruido_resumo,
+        reconstruido_jogadores,
+    ]
+
+    candidatos_validos = [
+        valor
+        for valor in candidatos
+        if valor is not None
+    ]
+
+    if not candidatos_validos:
+        return 0.0
+
+    # Se o valor direto existe e é diferente
+    # de zero, ele continua sendo a fonte principal.
+
+    if (
+        direto is not None
+        and
+        abs(direto) > 0.000001
+    ):
+
+        return direto
+
+    # Se o direto veio zerado, procuramos
+    # evidência de pontuação real nas fontes
+    # auxiliares.
+
+    for valor in [
+        reconstruido_resumo,
+        reconstruido_jogadores,
+    ]:
+
+        if (
+            valor is not None
+            and
+            abs(valor) > 0.000001
+        ):
+
+            return valor
+
+    # Zero legítimo.
+
+    return numero(
+        direto,
+        0.0
+    )
+
+
+def normalizar_rodadas(
+    dados
+):
 
     resultado = []
 
-    rodadas = extrair_rodadas(dados)
+    rodadas = extrair_rodadas(
+        dados
+    )
 
     for registro in rodadas:
 
@@ -309,60 +732,207 @@ def normalizar_rodadas(dados):
 
         pontuacoes = {}
 
+        fontes = {}
+
         for time in times:
 
-            estrategia = obter_nome_estrategia(
-                time
+            estrategia = (
+                obter_nome_estrategia(
+                    time
+                )
             )
 
             if estrategia not in ESTRATEGIAS:
                 continue
 
-            pontuacoes[estrategia] = (
-                obter_pontuacao_real(
-                    time
-                )
+            pontos = obter_pontuacao_real(
+                time
             )
 
-        if len(pontuacoes) != len(ESTRATEGIAS):
+            pontuacoes[
+                estrategia
+            ] = pontos
+
+            fontes[
+                estrategia
+            ] = {
+                "direto": obter_pontos_diretos(
+                    time
+                ),
+                "pontosSemCapitao": (
+                    obter_pontos_sem_capitao(
+                        time
+                    )
+                ),
+                "bonusCapitao": (
+                    obter_bonus_capitao(
+                        time
+                    )
+                ),
+                "reconstruidoJogadores": (
+                    calcular_pontos_pelos_jogadores(
+                        time
+                    )
+                ),
+                "utilizado": pontos,
+            }
+
+        if (
+            len(pontuacoes)
+            != len(ESTRATEGIAS)
+        ):
+
             continue
 
         resultado.append(
             {
                 "rodada": rodada,
                 "pontuacoes": pontuacoes,
+                "fontesPontuacao": fontes,
             }
         )
 
     resultado.sort(
-        key=lambda item: item["rodada"]
+        key=lambda item:
+        item["rodada"]
     )
 
     return resultado
 
 
 # ======================================================
+# VALIDAÇÃO DA BASE
+# ======================================================
+
+def validar_pontuacoes(
+    rodadas
+):
+
+    if not rodadas:
+
+        raise RuntimeError(
+            "Nenhuma rodada válida encontrada."
+        )
+
+    quantidade_valores = 0
+
+    quantidade_zeros = 0
+
+    quantidade_nao_zero = 0
+
+    soma_absoluta = 0.0
+
+    for rodada in rodadas:
+
+        for estrategia in ESTRATEGIAS:
+
+            valor = numero(
+                rodada[
+                    "pontuacoes"
+                ][
+                    estrategia
+                ]
+            )
+
+            quantidade_valores += 1
+
+            soma_absoluta += abs(
+                valor
+            )
+
+            if abs(valor) <= 0.000001:
+
+                quantidade_zeros += 1
+
+            else:
+
+                quantidade_nao_zero += 1
+
+    if quantidade_valores == 0:
+
+        raise RuntimeError(
+            "Nenhuma pontuação encontrada "
+            "na simulação."
+        )
+
+    if quantidade_nao_zero == 0:
+
+        raise RuntimeError(
+            "ERRO DE INTEGRIDADE: todas as "
+            "pontuações das estratégias estão "
+            "zeradas. O backtest V3 foi "
+            "interrompido para impedir uma "
+            "comparação científica inválida."
+        )
+
+    percentual_zero = (
+        quantidade_zeros
+        /
+        quantidade_valores
+        *
+        100
+    )
+
+    media_absoluta = (
+        soma_absoluta
+        /
+        quantidade_valores
+    )
+
+    return {
+        "quantidadeValores": (
+            quantidade_valores
+        ),
+        "quantidadeZeros": (
+            quantidade_zeros
+        ),
+        "quantidadeNaoZero": (
+            quantidade_nao_zero
+        ),
+        "percentualZeros": (
+            arredondar(
+                percentual_zero
+            )
+        ),
+        "mediaAbsoluta": (
+            arredondar(
+                media_absoluta
+            )
+        ),
+        "baseValida": True,
+    }
+
+
+# ======================================================
 # MELHOR ESTRATÉGIA DA RODADA
 # ======================================================
 
-def melhor_estrategia_rodada(rodada):
+def melhor_estrategia_rodada(
+    rodada
+):
 
-    pontuacoes = rodada["pontuacoes"]
+    pontuacoes = rodada[
+        "pontuacoes"
+    ]
 
     return max(
         ESTRATEGIAS,
         key=lambda estrategia:
-            pontuacoes.get(
-                estrategia,
-                float("-inf")
-            )
+        pontuacoes.get(
+            estrategia,
+            float("-inf")
+        )
     )
 
 
-def maior_pontuacao_rodada(rodada):
+def maior_pontuacao_rodada(
+    rodada
+):
 
     return max(
-        rodada["pontuacoes"].values()
+        rodada[
+            "pontuacoes"
+        ].values()
     )
 
 
@@ -370,10 +940,14 @@ def maior_pontuacao_rodada(rodada):
 # REGIME DA RODADA
 # ======================================================
 
-def media_geral_rodada(rodada):
+def media_geral_rodada(
+    rodada
+):
 
     return media(
-        rodada["pontuacoes"].values()
+        rodada[
+            "pontuacoes"
+        ].values()
     )
 
 
@@ -389,8 +963,10 @@ def classificar_regime(
     ]
 
     medias_rodadas = [
-        media_geral_rodada(r)
-        for r in janela
+        media_geral_rodada(
+            rodada
+        )
+        for rodada in janela
     ]
 
     if not medias_rodadas:
@@ -400,16 +976,22 @@ def classificar_regime(
         medias_rodadas
     )
 
-    ultima_media = medias_rodadas[-1]
+    ultima_media = (
+        medias_rodadas[-1]
+    )
 
     if ultima_media >= (
-        media_base * 1.12
+        media_base
+        * 1.12
     ):
+
         return "alto"
 
     if ultima_media <= (
-        media_base * 0.88
+        media_base
+        * 0.88
     ):
+
         return "baixo"
 
     return "medio"
@@ -426,7 +1008,9 @@ def historico_estrategia(
 
     return [
         numero(
-            rodada["pontuacoes"].get(
+            rodada[
+                "pontuacoes"
+            ].get(
                 estrategia
             )
         )
@@ -447,8 +1031,10 @@ def vitorias_estrategia(
             melhor_estrategia_rodada(
                 rodada
             )
-            == estrategia
+            ==
+            estrategia
         ):
+
             quantidade += 1
 
     return quantidade
@@ -467,7 +1053,8 @@ def taxa_vitorias(
             historico,
             estrategia
         )
-        / len(historico)
+        /
+        len(historico)
     )
 
 
@@ -529,9 +1116,15 @@ def construir_historico_regimes(
 
         registros.append(
             {
-                "rodada": rodada["rodada"],
+                "rodada": (
+                    rodada["rodada"]
+                ),
                 "regime": regime,
-                "pontuacoes": rodada["pontuacoes"],
+                "pontuacoes": (
+                    rodada[
+                        "pontuacoes"
+                    ]
+                ),
             }
         )
 
@@ -548,13 +1141,15 @@ def desempenho_no_regime(
     estrategia
 ):
 
+    vazio = {
+        "amostra": 0,
+        "media": 0.0,
+        "vitorias": 0,
+        "taxaVitorias": 0.0,
+    }
+
     if regime is None:
-        return {
-            "amostra": 0,
-            "media": 0.0,
-            "vitorias": 0,
-            "taxaVitorias": 0.0,
-        }
+        return vazio
 
     registros = (
         construir_historico_regimes(
@@ -565,19 +1160,18 @@ def desempenho_no_regime(
     filtrados = [
         registro
         for registro in registros
-        if registro["regime"] == regime
+        if registro[
+            "regime"
+        ] == regime
     ]
 
     if not filtrados:
-        return {
-            "amostra": 0,
-            "media": 0.0,
-            "vitorias": 0,
-            "taxaVitorias": 0.0,
-        }
+        return vazio
 
     pontos = [
-        registro["pontuacoes"][
+        registro[
+            "pontuacoes"
+        ][
             estrategia
         ]
         for registro in filtrados
@@ -590,19 +1184,26 @@ def desempenho_no_regime(
         melhor = max(
             ESTRATEGIAS,
             key=lambda e:
-                registro["pontuacoes"][e]
+            registro[
+                "pontuacoes"
+            ][e]
         )
 
         if melhor == estrategia:
             vitorias += 1
 
     return {
-        "amostra": len(filtrados),
-        "media": media(pontos),
+        "amostra": len(
+            filtrados
+        ),
+        "media": media(
+            pontos
+        ),
         "vitorias": vitorias,
         "taxaVitorias": (
             vitorias
-            / len(filtrados)
+            /
+            len(filtrados)
         ),
     }
 
@@ -650,8 +1251,10 @@ def calcular_score(
         recentes
     )
 
-    mediana_historica = mediana(
-        valores
+    mediana_historica = (
+        mediana(
+            valores
+        )
     )
 
     volatilidade = desvio(
@@ -675,32 +1278,23 @@ def calcular_score(
         )
     )
 
-    media_regime = desempenho_regime[
-        "media"
-    ]
+    media_regime = (
+        desempenho_regime[
+            "media"
+        ]
+    )
 
-    taxa_regime = desempenho_regime[
-        "taxaVitorias"
-    ]
+    taxa_regime = (
+        desempenho_regime[
+            "taxaVitorias"
+        ]
+    )
 
-    amostra_regime = desempenho_regime[
-        "amostra"
-    ]
-
-    # ==================================================
-    # SCORE BASE
-    # ==================================================
-    #
-    # A V3 aumenta a importância de:
-    #
-    # - desempenho recente;
-    # - tendência;
-    # - desempenho específico no regime.
-    #
-    # Ao mesmo tempo reduz o excesso de preferência
-    # automática pelo perfil Conservador.
-    #
-    # ==================================================
+    amostra_regime = (
+        desempenho_regime[
+            "amostra"
+        ]
+    )
 
     score = 0.0
 
@@ -729,26 +1323,17 @@ def calcular_score(
         * 0.25
     )
 
-    # Penalização de volatilidade moderada.
-    #
-    # Não penalizamos demais o Agressivo porque
-    # justamente queremos permitir que ele apareça
-    # quando a recompensa histórica compensar o risco.
-
     score -= (
         volatilidade
         * 0.08
     )
 
-    # ==================================================
-    # COMPONENTE DE REGIME
-    # ==================================================
-
     if (
         regime is not None
         and
         amostra_regime
-        >= MINIMO_HISTORICO_REGIME
+        >=
+        MINIMO_HISTORICO_REGIME
     ):
 
         score += (
@@ -761,17 +1346,6 @@ def calcular_score(
             * 8.0
         )
 
-    # ==================================================
-    # AJUSTES COMPORTAMENTAIS V3
-    # ==================================================
-
-    #
-    # REGIME ALTO
-    #
-    # Quando o ambiente recente apresenta pontuações
-    # elevadas, permitimos maior exposição ao teto.
-    #
-
     if regime == "alto":
 
         if estrategia == "Agressivo":
@@ -781,13 +1355,6 @@ def calcular_score(
         elif estrategia == "Equilibrado":
 
             score += 0.50
-
-    #
-    # REGIME BAIXO
-    #
-    # Em ambiente de pontuação baixa priorizamos
-    # proteção.
-    #
 
     elif regime == "baixo":
 
@@ -799,12 +1366,6 @@ def calcular_score(
 
             score -= 0.50
 
-    #
-    # REGIME MÉDIO
-    #
-    # Evitamos preferência artificial.
-    #
-
     elif regime == "medio":
 
         if estrategia == "Equilibrado":
@@ -813,16 +1374,30 @@ def calcular_score(
 
     return {
         "score": score,
-        "mediaHistorica": media_historica,
-        "mediaRecente": media_recente,
-        "mediana": mediana_historica,
-        "desvio": volatilidade,
+        "mediaHistorica": (
+            media_historica
+        ),
+        "mediaRecente": (
+            media_recente
+        ),
+        "mediana": (
+            mediana_historica
+        ),
+        "desvio": (
+            volatilidade
+        ),
         "taxaVitorias": taxa,
         "tendencia": tendencia,
         "regime": regime,
-        "mediaRegime": media_regime,
-        "taxaVitoriasRegime": taxa_regime,
-        "amostraRegime": amostra_regime,
+        "mediaRegime": (
+            media_regime
+        ),
+        "taxaVitoriasRegime": (
+            taxa_regime
+        ),
+        "amostraRegime": (
+            amostra_regime
+        ),
     }
 
 
@@ -834,13 +1409,7 @@ def escolher_estrategia(
     historico
 ):
 
-    #
-    # COLD START
-    #
-    # Mesma filosofia das versões anteriores:
-    # não inventar inteligência quando ainda não
-    # existe histórico suficiente.
-    #
+    # Cold start seguro.
 
     if len(historico) < 3:
 
@@ -858,18 +1427,22 @@ def escolher_estrategia(
 
     for estrategia in ESTRATEGIAS:
 
-        scores[estrategia] = (
-            calcular_score(
-                historico,
-                estrategia,
-                regime
-            )
+        scores[
+            estrategia
+        ] = calcular_score(
+            historico,
+            estrategia,
+            regime
         )
 
     escolhida = max(
         ESTRATEGIAS,
         key=lambda estrategia:
-            scores[estrategia]["score"]
+        scores[
+            estrategia
+        ][
+            "score"
+        ]
     )
 
     return (
@@ -893,9 +1466,11 @@ def executar_backtest(
 
     for rodada in rodadas:
 
-        numero_rodada = rodada[
-            "rodada"
-        ]
+        numero_rodada = (
+            rodada[
+                "rodada"
+            ]
+        )
 
         (
             escolhida,
@@ -906,30 +1481,43 @@ def executar_backtest(
         )
 
         pontuacao = numero(
-            rodada["pontuacoes"].get(
+            rodada[
+                "pontuacoes"
+            ].get(
                 escolhida
             )
         )
 
-        melhor = melhor_estrategia_rodada(
-            rodada
+        melhor = (
+            melhor_estrategia_rodada(
+                rodada
+            )
         )
 
-        teto = maior_pontuacao_rodada(
-            rodada
+        teto = (
+            maior_pontuacao_rodada(
+                rodada
+            )
         )
 
         acertou = (
-            escolhida == melhor
+            escolhida
+            ==
+            melhor
         )
 
         perda_oraculo = (
-            teto - pontuacao
+            teto
+            -
+            pontuacao
         )
 
         scores_resumidos = {}
 
-        for estrategia, dados in scores.items():
+        for (
+            estrategia,
+            dados
+        ) in scores.items():
 
             scores_resumidos[
                 estrategia
@@ -938,56 +1526,97 @@ def executar_backtest(
                     dados["score"]
                 ),
                 "mediaHistorica": arredondar(
-                    dados["mediaHistorica"]
+                    dados[
+                        "mediaHistorica"
+                    ]
                 ),
                 "mediaRecente": arredondar(
-                    dados["mediaRecente"]
+                    dados[
+                        "mediaRecente"
+                    ]
                 ),
                 "mediana": arredondar(
-                    dados["mediana"]
+                    dados[
+                        "mediana"
+                    ]
                 ),
                 "desvio": arredondar(
-                    dados["desvio"]
+                    dados[
+                        "desvio"
+                    ]
                 ),
                 "taxaVitorias": arredondar(
-                    dados["taxaVitorias"]
+                    dados[
+                        "taxaVitorias"
+                    ]
                     * 100
                 ),
                 "tendencia": arredondar(
-                    dados["tendencia"]
+                    dados[
+                        "tendencia"
+                    ]
                 ),
                 "mediaRegime": arredondar(
-                    dados["mediaRegime"]
+                    dados[
+                        "mediaRegime"
+                    ]
                 ),
                 "taxaVitoriasRegime": arredondar(
-                    dados["taxaVitoriasRegime"]
+                    dados[
+                        "taxaVitoriasRegime"
+                    ]
                     * 100
                 ),
-                "amostraRegime": dados[
-                    "amostraRegime"
-                ],
+                "amostraRegime": (
+                    dados[
+                        "amostraRegime"
+                    ]
+                ),
             }
 
         resultado = {
             "rodada": numero_rodada,
-            "historicoDisponivel": len(
-                historico
+            "historicoDisponivel": (
+                len(historico)
             ),
             "regime": regime,
-            "estrategiaEscolhida": escolhida,
+            "estrategiaEscolhida": (
+                escolhida
+            ),
             "pontuacao": arredondar(
                 pontuacao
             ),
-            "melhorEstrategia": melhor,
-            "pontuacaoOraculo": arredondar(
-                teto
+            "melhorEstrategia": (
+                melhor
             ),
-            "perdaOraculo": arredondar(
-                perda_oraculo
+            "pontuacaoOraculo": (
+                arredondar(
+                    teto
+                )
             ),
-            "acertouMelhorEstrategia": acertou,
+            "perdaOraculo": (
+                arredondar(
+                    perda_oraculo
+                )
+            ),
+            "acertouMelhorEstrategia": (
+                acertou
+            ),
             "semVazamentoFuturo": True,
-            "scores": scores_resumidos,
+            "pontuacoesEstrategias": {
+                estrategia: arredondar(
+                    rodada[
+                        "pontuacoes"
+                    ][
+                        estrategia
+                    ]
+                )
+                for estrategia
+                in ESTRATEGIAS
+            },
+            "scores": (
+                scores_resumidos
+            ),
         }
 
         resultados.append(
@@ -1004,14 +1633,8 @@ def executar_backtest(
             f" | teto: {arredondar(teto)}"
         )
 
-        #
-        # IMPORTANTE:
-        #
-        # A rodada só entra no histórico DEPOIS
-        # da decisão.
-        #
-        # Isso impede vazamento futuro.
-        #
+        # A rodada entra no histórico somente
+        # DEPOIS da decisão.
 
         historico.append(
             rodada
@@ -1042,34 +1665,45 @@ def calcular_metricas(
         pontos_adaptativo
     )
 
-    mediana_adaptativo = mediana(
-        pontos_adaptativo
+    mediana_adaptativo = (
+        mediana(
+            pontos_adaptativo
+        )
     )
 
-    desvio_adaptativo = desvio(
-        pontos_adaptativo
+    desvio_adaptativo = (
+        desvio(
+            pontos_adaptativo
+        )
     )
 
     acertos = sum(
         1
         for r in resultados
-        if r["acertouMelhorEstrategia"]
+        if r[
+            "acertouMelhorEstrategia"
+        ]
     )
 
     taxa_acerto = (
         acertos
-        / len(resultados)
+        /
+        len(resultados)
         if resultados
         else 0.0
     )
 
     escolhas = Counter(
-        r["estrategiaEscolhida"]
+        r[
+            "estrategiaEscolhida"
+        ]
         for r in resultados
     )
 
     regimes = Counter(
-        str(r["regime"])
+        str(
+            r["regime"]
+        )
         for r in resultados
     )
 
@@ -1079,14 +1713,18 @@ def calcular_metricas(
 
         valores = [
             numero(
-                rodada["pontuacoes"][
+                rodada[
+                    "pontuacoes"
+                ][
                     estrategia
                 ]
             )
             for rodada in rodadas
         ]
 
-        fixas[estrategia] = {
+        fixas[
+            estrategia
+        ] = {
             "media": arredondar(
                 media(valores)
             ),
@@ -1101,12 +1739,14 @@ def calcular_metricas(
             ),
             "vitorias": sum(
                 1
-                for rodada in rodadas
+                for rodada
+                in rodadas
                 if (
                     melhor_estrategia_rodada(
                         rodada
                     )
-                    == estrategia
+                    ==
+                    estrategia
                 )
             ),
         }
@@ -1114,13 +1754,19 @@ def calcular_metricas(
     melhor_fixa = max(
         ESTRATEGIAS,
         key=lambda estrategia:
-            fixas[estrategia]["media"]
+        fixas[
+            estrategia
+        ][
+            "media"
+        ]
     )
 
     media_melhor_fixa = (
         fixas[
             melhor_fixa
-        ]["media"]
+        ][
+            "media"
+        ]
     )
 
     ganho_melhor_fixa = (
@@ -1130,18 +1776,19 @@ def calcular_metricas(
     )
 
     ganho_percentual = (
-
         ganho_melhor_fixa
         /
         media_melhor_fixa
-        * 100
-
+        *
+        100
         if media_melhor_fixa
         else 0.0
     )
 
     pontos_oraculo = [
-        r["pontuacaoOraculo"]
+        r[
+            "pontuacaoOraculo"
+        ]
         for r in resultados
     ]
 
@@ -1150,18 +1797,19 @@ def calcular_metricas(
     )
 
     eficiencia_oraculo = (
-
         media_adaptativo
         /
         media_oraculo
-        * 100
-
+        *
+        100
         if media_oraculo
         else 0.0
     )
 
     return {
-        "rodadas": len(resultados),
+        "rodadas": len(
+            resultados
+        ),
 
         "adaptativoV3": {
             "media": arredondar(
@@ -1178,25 +1826,34 @@ def calcular_metricas(
             ),
             "acertos": acertos,
             "taxaAcerto": arredondar(
-                taxa_acerto * 100
+                taxa_acerto
+                * 100
             ),
         },
 
-        "estrategiasFixas": fixas,
+        "estrategiasFixas": (
+            fixas
+        ),
 
         "melhorEstrategiaFixa": {
-            "estrategia": melhor_fixa,
+            "estrategia": (
+                melhor_fixa
+            ),
             "media": arredondar(
                 media_melhor_fixa
             ),
         },
 
         "comparacaoMelhorFixa": {
-            "ganhoPontosRodada": arredondar(
-                ganho_melhor_fixa
+            "ganhoPontosRodada": (
+                arredondar(
+                    ganho_melhor_fixa
+                )
             ),
-            "ganhoPercentual": arredondar(
-                ganho_percentual
+            "ganhoPercentual": (
+                arredondar(
+                    ganho_percentual
+                )
             ),
         },
 
@@ -1204,17 +1861,19 @@ def calcular_metricas(
             "media": arredondar(
                 media_oraculo
             ),
-            "eficienciaV3": arredondar(
-                eficiencia_oraculo
+            "eficienciaV3": (
+                arredondar(
+                    eficiencia_oraculo
+                )
             ),
         },
 
         "escolhas": {
             estrategia:
-                escolhas.get(
-                    estrategia,
-                    0
-                )
+            escolhas.get(
+                estrategia,
+                0
+            )
             for estrategia
             in ESTRATEGIAS
         },
@@ -1236,13 +1895,17 @@ def definir_decisao(
     adaptativo = (
         metricas[
             "adaptativoV3"
-        ]["media"]
+        ][
+            "media"
+        ]
     )
 
     melhor_fixa = (
         metricas[
             "melhorEstrategiaFixa"
-        ]["media"]
+        ][
+            "media"
+        ]
     )
 
     ganho = (
@@ -1250,13 +1913,6 @@ def definir_decisao(
         -
         melhor_fixa
     )
-
-    #
-    # A V3 é apenas experimental.
-    #
-    # Mesmo se superar a fixa, NÃO haverá promoção
-    # automática nesta etapa.
-    #
 
     if ganho > 0:
 
@@ -1313,6 +1969,69 @@ def main():
             "em simulacao-times.json."
         )
 
+    validacao_base = (
+        validar_pontuacoes(
+            rodadas
+        )
+    )
+
+    print(
+        "VALIDAÇÃO DA BASE"
+    )
+
+    print(
+        "----------------------------------------------"
+    )
+
+    print(
+        "Rodadas válidas:",
+        len(rodadas)
+    )
+
+    print(
+        "Pontuações analisadas:",
+        validacao_base[
+            "quantidadeValores"
+        ]
+    )
+
+    print(
+        "Pontuações não zeradas:",
+        validacao_base[
+            "quantidadeNaoZero"
+        ]
+    )
+
+    print(
+        "Pontuações zeradas:",
+        validacao_base[
+            "quantidadeZeros"
+        ]
+    )
+
+    print(
+        "Percentual de zeros:",
+        validacao_base[
+            "percentualZeros"
+        ],
+        "%"
+    )
+
+    print(
+        "Média absoluta:",
+        validacao_base[
+            "mediaAbsoluta"
+        ]
+    )
+
+    print(
+        "BASE: VALIDADA"
+    )
+
+    print(
+        "=============================================="
+    )
+
     resultados = executar_backtest(
         rodadas
     )
@@ -1327,22 +2046,35 @@ def main():
     )
 
     saida = {
-        "modelo": VERSAO_MODELO,
+        "modelo": (
+            VERSAO_MODELO
+        ),
         "descricao": (
             "Estratégia adaptativa V3 com "
             "média histórica, desempenho recente, "
             "tendência, estabilidade e regime."
         ),
-        "rodadas": resultados,
-        "resumo": metricas,
-        "decisao": decisao,
+        "rodadas": (
+            resultados
+        ),
+        "resumo": (
+            metricas
+        ),
+        "decisao": (
+            decisao
+        ),
         "promocaoAutomatica": False,
+        "validacaoBase": (
+            validacao_base
+        ),
         "auditoria": {
             "historicoProgressivo": True,
             "semVazamentoFuturo": True,
             "v1Preservada": True,
             "v2Preservada": True,
             "modeloExperimental": True,
+            "pontuacoesValidadas": True,
+            "bloqueiaBaseTotalmenteZerada": True,
         },
     }
 
@@ -1351,21 +2083,29 @@ def main():
         saida
     )
 
-    resumo = metricas[
-        "adaptativoV3"
-    ]
+    resumo = (
+        metricas[
+            "adaptativoV3"
+        ]
+    )
 
-    melhor_fixa = metricas[
-        "melhorEstrategiaFixa"
-    ]
+    melhor_fixa = (
+        metricas[
+            "melhorEstrategiaFixa"
+        ]
+    )
 
-    comparacao = metricas[
-        "comparacaoMelhorFixa"
-    ]
+    comparacao = (
+        metricas[
+            "comparacaoMelhorFixa"
+        ]
+    )
 
-    oraculo = metricas[
-        "oraculo"
-    ]
+    oraculo = (
+        metricas[
+            "oraculo"
+        ]
+    )
 
     print(
         "=============================================="
@@ -1461,16 +2201,21 @@ def main():
             ":",
             metricas[
                 "escolhas"
-            ][estrategia]
+            ][
+                estrategia
+            ]
         )
 
     print(
         "REGIMES"
     )
 
-    for regime, quantidade in (
-        metricas["regimes"].items()
-    ):
+    for (
+        regime,
+        quantidade
+    ) in metricas[
+        "regimes"
+    ].items():
 
         print(
             regime,
@@ -1479,7 +2224,8 @@ def main():
         )
 
     print(
-        f"DECISÃO: {decisao}"
+        f"DECISÃO: "
+        f"{decisao}"
     )
 
     print(
@@ -1487,7 +2233,8 @@ def main():
     )
 
     print(
-        f"Arquivo: {ARQUIVO_SAIDA}"
+        f"Arquivo: "
+        f"{ARQUIVO_SAIDA}"
     )
 
     print(
