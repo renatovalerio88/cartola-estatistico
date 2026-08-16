@@ -1,0 +1,185 @@
+{
+  "modelo": "decisao_estrategia_adaptativa_v1",
+  "descricao": "Decisão científica consolidada sobre a estratégia adaptativa V1 e V2.",
+  "status": "experimental",
+  "amostra": {
+    "rodadas": 0,
+    "minimoExigido": 10,
+    "suficiente": false
+  },
+  "auditoria": {
+    "decisao": "COMPARACAO_REPROVADA",
+    "validada": false,
+    "scoreQualidade": 78.26,
+    "falhasCriticas": 5,
+    "alertas": 0
+  },
+  "desempenho": {
+    "v1": {
+      "media": 0.0,
+      "desvioPadrao": 0.0,
+      "eficienciaOraculo": 0.0,
+      "perdaMediaOraculo": 0.0
+    },
+    "v2": {
+      "media": 0.0,
+      "desvioPadrao": 0.0,
+      "eficienciaOraculo": 0.0,
+      "perdaMediaOraculo": 0.0
+    },
+    "melhorFixa": {
+      "nome": "Conservador",
+      "media": 0.0
+    },
+    "oraculo": {
+      "media": 0.0
+    }
+  },
+  "ganhosV2": {
+    "vsV1": {
+      "pontosPorRodada": 0.0,
+      "percentual": 0.0
+    },
+    "vsMelhorFixa": {
+      "pontosPorRodada": 0.0,
+      "percentual": 0.0
+    }
+  },
+  "comparacaoPareada": {
+    "rodadas": 0,
+    "vitoriasV1": 0,
+    "vitoriasV2": 0,
+    "empates": 0,
+    "taxaVitoriasV2": 0.0
+  },
+  "criterios": [
+    {
+      "nome": "arquivo_comparacao_existe",
+      "passou": true,
+      "valor": true,
+      "limite": true,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "arquivo_auditoria_existe",
+      "passou": true,
+      "valor": true,
+      "limite": true,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "versao_comparacao",
+      "passou": true,
+      "valor": "comparacao_estrategias_adaptativas_v1",
+      "limite": "comparacao_estrategias_adaptativas_v1",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "versao_auditoria",
+      "passou": true,
+      "valor": "auditoria_comparacao_adaptativas_v1",
+      "limite": "auditoria_comparacao_adaptativas_v1",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "amostra_minima",
+      "passou": false,
+      "valor": 0,
+      "limite": 10,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "auditoria_validada",
+      "passou": false,
+      "valor": "COMPARACAO_REPROVADA",
+      "limite": "COMPARACAO_VALIDADA",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "auditoria_sem_falhas_criticas",
+      "passou": false,
+      "valor": 5,
+      "limite": 0,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "score_auditoria",
+      "passou": false,
+      "valor": 78.26,
+      "limite": 95.0,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_supera_v1_media",
+      "passou": false,
+      "valor": 0.0,
+      "limite": "> 0",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_ganho_minimo_v1",
+      "passou": false,
+      "valor": 0.0,
+      "limite": 0.5,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_supera_melhor_fixa",
+      "passou": false,
+      "valor": 0.0,
+      "limite": "> 0",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_vence_maioria_pareada",
+      "passou": false,
+      "valor": 0.0,
+      "limite": 55.0,
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_mais_proximo_oraculo",
+      "passou": false,
+      "valor": 0.0,
+      "limite": "< 0.0",
+      "nivel": "CRITICO"
+    },
+    {
+      "nome": "v2_mais_estavel",
+      "passou": false,
+      "valor": 0.0,
+      "limite": "< 0.0",
+      "nivel": "DESEJAVEL"
+    }
+  ],
+  "resumoCriterios": {
+    "criticos": 13,
+    "criticosAprovados": 4,
+    "criticosReprovados": 9,
+    "desejaveis": 1,
+    "desejaveisAprovados": 0,
+    "scoreCriticosPercentual": 30.77
+  },
+  "evidencia": {
+    "forte": false,
+    "suficiente": false,
+    "comparacaoFavoravelV2": false,
+    "coerenciaDecisao": true
+  },
+  "decisaoComparacao": "COMPARACAO_INCONCLUSIVA",
+  "recomendacao": {
+    "decisao": "BLOQUEAR_DECISAO",
+    "motivo": "A comparação V1 x V2 não foi validada pela auditoria independente.",
+    "promoverAutomaticamente": false,
+    "necessitaAprovacaoManual": true
+  },
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraEstrategiaOficial": false,
+    "alteraPesos": false,
+    "alteraProjecoes": false,
+    "alteraEscalacoes": false,
+    "promocaoAutomatica": false
+  },
+  "proximoPasso": "Integrar comparação, auditoria e decisão ao workflow e executar validação completa."
+}

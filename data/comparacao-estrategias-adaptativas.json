@@ -1,0 +1,164 @@
+{
+  "modelo": "comparacao_estrategias_adaptativas_v1",
+  "descricao": "Comparação pareada entre as estratégias adaptativas V1 e V2, estratégias fixas e oráculo histórico.",
+  "amostra": {
+    "rodadasComuns": 0,
+    "rodadas": [],
+    "amostraMinima": 10,
+    "amostraSuficiente": false
+  },
+  "validacaoEntradas": {
+    "versaoV1Correta": false,
+    "versaoV2Correta": false,
+    "modeloV1": null,
+    "modeloV2": null
+  },
+  "metricas": {
+    "adaptativoV1": {
+      "rodadas": 0,
+      "total": 0,
+      "media": 0,
+      "mediana": 0,
+      "desvioPadrao": 0,
+      "minimo": 0,
+      "maximo": 0
+    },
+    "adaptativoV2": {
+      "rodadas": 0,
+      "total": 0,
+      "media": 0,
+      "mediana": 0,
+      "desvioPadrao": 0,
+      "minimo": 0,
+      "maximo": 0
+    },
+    "estrategiasFixas": {
+      "Conservador": {
+        "rodadas": 0,
+        "total": 0,
+        "media": 0,
+        "mediana": 0,
+        "desvioPadrao": 0,
+        "minimo": 0,
+        "maximo": 0
+      },
+      "Equilibrado": {
+        "rodadas": 0,
+        "total": 0,
+        "media": 0,
+        "mediana": 0,
+        "desvioPadrao": 0,
+        "minimo": 0,
+        "maximo": 0
+      },
+      "Agressivo": {
+        "rodadas": 0,
+        "total": 0,
+        "media": 0,
+        "mediana": 0,
+        "desvioPadrao": 0,
+        "minimo": 0,
+        "maximo": 0
+      }
+    },
+    "melhorEstrategiaFixa": "Conservador",
+    "oraculo": {
+      "rodadas": 0,
+      "total": 0,
+      "media": 0,
+      "mediana": 0,
+      "desvioPadrao": 0,
+      "minimo": 0,
+      "maximo": 0
+    }
+  },
+  "comparacaoPareadaV1V2": {
+    "rodadas": 0,
+    "vitoriasV1": 0,
+    "vitoriasV2": 0,
+    "empates": 0,
+    "taxaVitoriasV1": 0.0,
+    "taxaVitoriasV2": 0.0,
+    "diferencaMediaV2MenosV1": 0.0,
+    "diferencaMedianaV2MenosV1": 0.0,
+    "desvioDiferencas": 0.0,
+    "rodadasV2Melhor": 0,
+    "rodadasV1Melhor": 0
+  },
+  "escolhas": {
+    "v1": {
+      "estrategias": {
+        "Conservador": 0,
+        "Equilibrado": 0,
+        "Agressivo": 0
+      },
+      "invalidas": 0
+    },
+    "v2": {
+      "estrategias": {
+        "Conservador": 0,
+        "Equilibrado": 0,
+        "Agressivo": 0
+      },
+      "invalidas": 0
+    }
+  },
+  "oraculo": {
+    "v1": {
+      "acertos": 0,
+      "taxaAcerto": 0.0,
+      "perdaMediaParaOraculo": 0.0,
+      "perdaMedianaParaOraculo": 0.0
+    },
+    "v2": {
+      "acertos": 0,
+      "taxaAcerto": 0.0,
+      "perdaMediaParaOraculo": 0.0,
+      "perdaMedianaParaOraculo": 0.0
+    },
+    "eficienciaV1Percentual": 0.0,
+    "eficienciaV2Percentual": 0.0
+  },
+  "ganhos": {
+    "v2VsV1": {
+      "pontosPorRodada": 0.0,
+      "percentual": 0.0
+    },
+    "v2VsMelhorFixa": {
+      "estrategia": "Conservador",
+      "pontosPorRodada": 0.0,
+      "percentual": 0.0
+    },
+    "v1VsMelhorFixa": {
+      "estrategia": "Conservador",
+      "pontosPorRodada": 0.0
+    }
+  },
+  "estabilidade": {
+    "desvioPadraoV1": 0.0,
+    "desvioPadraoV2": 0.0,
+    "v2MaisEstavel": false
+  },
+  "criterios": {
+    "amostraSuficiente": false,
+    "v2SuperaV1": false,
+    "v2SuperaMelhorFixa": false,
+    "v2TemMaisVitoriasPareadas": false,
+    "v2MaisProximoOraculo": false,
+    "v2MaisEstavel": false,
+    "ganhoMinimoPromissor": false,
+    "ganhoForte": false
+  },
+  "decisao": {
+    "decisao": "COMPARACAO_INCONCLUSIVA",
+    "promoverV2": false,
+    "promocaoAutomatica": false,
+    "observacao": "Resultado experimental. A comparação não altera nenhuma estratégia oficial."
+  },
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraEstrategiasOficiais": false,
+    "alteraPesos": false,
+    "promocaoAutomatica": false
+  }
+}

@@ -279,21 +279,21 @@
   ],
   "simulacaoTimes": {
     "disponivel": true,
-    "melhorEstrategia": "Equilibrado",
+    "melhorEstrategia": "Conservador",
     "estrategias": [
       {
+        "nome": "Conservador",
+        "mediaPontos": 0.0,
+        "rodadas": 22
+      },
+      {
         "nome": "Equilibrado",
-        "mediaPontos": 59.93,
+        "mediaPontos": 0.0,
         "rodadas": 22
       },
       {
         "nome": "Agressivo",
-        "mediaPontos": 58.04,
-        "rodadas": 22
-      },
-      {
-        "nome": "Conservador",
-        "mediaPontos": 57.16,
+        "mediaPontos": 0.0,
         "rodadas": 22
       }
     ]

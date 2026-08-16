@@ -1,0 +1,222 @@
+{
+  "modelo": "auditoria_comparacao_adaptativas_v1",
+  "descricao": "Auditoria científica da comparação pareada entre Adaptativo V1 e V2.",
+  "resumo": {
+    "rodadasAuditadas": 0,
+    "testes": 23,
+    "testesAprovados": 18,
+    "falhasCriticas": 5,
+    "alertas": 0,
+    "scoreQualidadePercentual": 78.26,
+    "mediaV1": 0.0,
+    "mediaV2": 0.0,
+    "melhorEstrategiaFixa": "Conservador",
+    "mediaMelhorFixa": 0.0,
+    "ganhoV2VsV1": 0.0,
+    "ganhoV2VsMelhorFixa": 0.0,
+    "eficienciaV1Oraculo": 0.0,
+    "eficienciaV2Oraculo": 0.0
+  },
+  "testes": [
+    {
+      "nome": "arquivo_v1_existe",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "arquivo_v2_existe",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "arquivo_comparacao_existe",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "arquivo_simulacao_existe",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_v1",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_v2",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_comparacao",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "rodadas_comuns_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "esperadas": [],
+        "publicadas": []
+      }
+    },
+    {
+      "nome": "quantidade_rodadas_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "esperado": 0,
+        "encontrado": 0
+      }
+    },
+    {
+      "nome": "amostra_minima",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "pontuacoes_v1_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "pontuacoes_v2_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "metricas_v1_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "metricas_v2_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "metricas_fixas_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "metricas_oraculo_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "melhor_fixa_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "esperada": "Conservador",
+        "publicada": "Conservador"
+      }
+    },
+    {
+      "nome": "comparacao_pareada_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "ganhos_consistentes",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": []
+    },
+    {
+      "nome": "estabilidade_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "eficiencia_oraculo_consistente",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "decisao_reproduzivel",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": {
+        "esperada": "COMPARACAO_INCONCLUSIVA",
+        "publicada": "COMPARACAO_INCONCLUSIVA"
+      }
+    },
+    {
+      "nome": "seguranca_promocao",
+      "passou": true,
+      "nivel": "CRITICO",
+      "detalhes": null
+    }
+  ],
+  "falhasCriticas": [
+    {
+      "nome": "arquivo_v1_existe",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "arquivo_v2_existe",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_v1",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "versao_v2",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    },
+    {
+      "nome": "amostra_minima",
+      "passou": false,
+      "nivel": "CRITICO",
+      "detalhes": null
+    }
+  ],
+  "alertas": [],
+  "decisaoComparacao": {
+    "publicada": "COMPARACAO_INCONCLUSIVA",
+    "recalculada": "COMPARACAO_INCONCLUSIVA"
+  },
+  "decisao": {
+    "decisao": "COMPARACAO_REPROVADA",
+    "validado": false,
+    "promoverV2": false,
+    "promocaoAutomatica": false
+  },
+  "seguranca": {
+    "alteraModeloOficial": false,
+    "alteraEstrategiasOficiais": false,
+    "alteraPesos": false,
+    "alteraProjecoes": false,
+    "promocaoAutomatica": false
+  }
+}
