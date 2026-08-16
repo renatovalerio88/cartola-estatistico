@@ -4,33 +4,33 @@ CARTOLA ESTATÍSTICO
 Promoção Controlada da Calibração
 
 Versão:
-promover_calibracao_v1
+promover_calibracao_v2
 
 Objetivo:
+Promover para uso oficial somente as calibrações por
+posição que foram aprovadas pelo backtest A/B.
 
-Transformar a calibração candidata validada pelo
-backtest A/B em uma configuração oficial de calibração.
-
-REGRAS:
-
-- Só promove se o backtest A/B recomendar promoção.
-- GOL, LAT, ZAG, MEI e ATA podem receber calibração.
-- TEC permanece no modelo original.
-- Não altera pesos.
-- Não altera arquivos históricos.
-- Não altera escalações históricas.
-- Não altera o motor original.
-- Gera arquivo independente e reversível.
+Política oficial:
+- GOL: calibrado
+- LAT: calibrado
+- ZAG: calibrado
+- MEI: calibrado
+- ATA: calibrado
+- TEC: modelo original preservado
 
 Entradas:
-
 data/backtest-ab-calibracao.json
 data/calibracao-posicoes-candidata.json
 
 Saída:
-
 data/calibracao-posicoes-oficial.json
 
+O script:
+- não altera pesos;
+- não altera histórico;
+- não altera escalações históricas;
+- não altera o motor base;
+- gera configuração independente e reversível.
 =========================================================
 """
 
@@ -54,10 +54,7 @@ BASE_DIR = (
     .parent
 )
 
-PASTA_DATA = (
-    BASE_DIR /
-    "data"
-)
+PASTA_DATA = BASE_DIR / "data"
 
 ARQUIVO_BACKTEST = (
     PASTA_DATA /
@@ -76,10 +73,10 @@ ARQUIVO_SAIDA = (
 
 
 # ======================================================
-# CONFIGURAÇÕES
+# CONFIGURAÇÃO
 # ======================================================
 
-VERSAO = "calibracao_posicoes_oficial_v1"
+VERSAO = "calibracao_posicoes_oficial_v2"
 
 POSICOES = [
     "GOL",
@@ -87,19 +84,19 @@ POSICOES = [
     "ZAG",
     "MEI",
     "ATA",
-    "TEC"
+    "TEC",
 ]
 
-POSICOES_AUTORIZADAS = [
+POSICOES_CALIBRADAS = [
     "GOL",
     "LAT",
     "ZAG",
     "MEI",
-    "ATA"
+    "ATA",
 ]
 
-POSICOES_BLOQUEADAS = [
-    "TEC"
+POSICOES_ORIGINAIS = [
+    "TEC",
 ]
 
 
@@ -111,33 +108,17 @@ def carregar_json(caminho):
 
     if not caminho.exists():
 
-        print(
-            f"[ERRO] Arquivo não encontrado: "
-            f"{caminho}"
+        raise FileNotFoundError(
+            f"Arquivo não encontrado: {caminho}"
         )
 
-        return {}
+    with open(
+        caminho,
+        "r",
+        encoding="utf-8"
+    ) as arquivo:
 
-    try:
-
-        with open(
-            caminho,
-            "r",
-            encoding="utf-8"
-        ) as arquivo:
-
-            return json.load(
-                arquivo
-            )
-
-    except Exception as erro:
-
-        print(
-            f"[ERRO] Falha ao carregar "
-            f"{caminho}: {erro}"
-        )
-
-        return {}
+        return json.load(arquivo)
 
 
 def salvar_json(
@@ -174,14 +155,9 @@ def numero(
         if valor is None:
             return padrao
 
-        resultado = float(
-            valor
-        )
+        resultado = float(valor)
 
-        if math.isfinite(
-            resultado
-        ):
-
+        if math.isfinite(resultado):
             return resultado
 
     except Exception:
@@ -200,54 +176,44 @@ def inteiro(
         if valor is None:
             return padrao
 
-        return int(
-            float(
-                valor
-            )
-        )
+        return int(float(valor))
 
     except Exception:
-
         return padrao
 
 
 def agora():
 
     return datetime.now(
-        ZoneInfo(
-            "America/Sao_Paulo"
-        )
+        ZoneInfo("America/Sao_Paulo")
     ).isoformat(
         timespec="seconds"
     )
 
 
 # ======================================================
-# LEITURA DA DECISÃO DO BACKTEST
+# DECISÃO DO BACKTEST
 # ======================================================
 
-def extrair_decisao_backtest(
-    backtest
-):
+def extrair_decisao_backtest(backtest):
 
-    decisao_promocao = backtest.get(
+    bloco = backtest.get(
         "decisaoPromocao",
         {}
     )
 
+    if not isinstance(bloco, dict):
+        bloco = {}
+
     decisao = (
-        decisao_promocao.get(
-            "decisao"
-        )
+        bloco.get("decisao")
         or
-        backtest.get(
-            "decisao"
-        )
+        backtest.get("decisao")
         or
         ""
     )
 
-    promover = decisao_promocao.get(
+    promover = bloco.get(
         "promoverModeloB"
     )
 
@@ -260,221 +226,426 @@ def extrair_decisao_backtest(
         )
 
     return {
-        "decisao":
-            decisao,
-
-        "promover":
-            bool(
-                promover
-            )
+        "decisao": decisao,
+        "promover": bool(promover),
     }
 
 
 # ======================================================
-# EXTRAÇÃO DAS POSIÇÕES
+# EXTRAÇÃO DAS CALIBRAÇÕES
 # ======================================================
 
-def extrair_posicoes_candidatas(
-    candidata
-):
+def extrair_posicoes_candidatas(candidata):
 
-    if not isinstance(
-        candidata,
-        dict
-    ):
+    """
+    Estrutura real:
 
-        return {}
+    {
+        "posicoes": [
+            {
+                "posicao": "GOL",
+                ...
+                "calibracaoCandidata": {
+                    "fatorMultiplicativo": ...,
+                    "correcaoAditiva": ...
+                }
+            }
+        ]
+    }
 
-    for chave in [
-        "posicoes",
-        "calibracoes",
-        "porPosicao",
-        "ajustes"
-    ]:
+    Converte a lista para:
 
-        valor = candidata.get(
-            chave
-        )
-
-        if isinstance(
-            valor,
-            dict
-        ):
-
-            return valor
-
-    # Compatibilidade caso o JSON tenha
-    # GOL/LAT/ZAG/... diretamente na raiz.
+    {
+        "GOL": {...},
+        "LAT": {...}
+    }
+    """
 
     resultado = {}
 
-    for posicao in POSICOES:
+    posicoes = candidata.get(
+        "posicoes",
+        []
+    )
 
-        valor = candidata.get(
-            posicao
-        )
+    if not isinstance(
+        posicoes,
+        list
+    ):
 
-        if isinstance(
-            valor,
+        return resultado
+
+    for item in posicoes:
+
+        if not isinstance(
+            item,
             dict
         ):
+            continue
 
-            resultado[
-                posicao
-            ] = valor
+        posicao = str(
+            item.get(
+                "posicao",
+                ""
+            )
+        ).upper().strip()
+
+        if posicao not in POSICOES:
+            continue
+
+        resultado[posicao] = item
 
     return resultado
 
 
 # ======================================================
-# NORMALIZAÇÃO DA CALIBRAÇÃO
+# NORMALIZAÇÃO
 # ======================================================
 
-def normalizar_calibracao(
+def criar_configuracao_calibrada(
     posicao,
-    dados
+    item
 ):
 
+    calibracao = item.get(
+        "calibracaoCandidata",
+        {}
+    )
+
     if not isinstance(
-        dados,
+        calibracao,
         dict
     ):
 
-        dados = {}
+        calibracao = {}
+
+    amostra = item.get(
+        "amostra",
+        {}
+    )
+
+    if not isinstance(
+        amostra,
+        dict
+    ):
+
+        amostra = {}
+
+    diagnostico = item.get(
+        "diagnostico",
+        {}
+    )
+
+    if not isinstance(
+        diagnostico,
+        dict
+    ):
+
+        diagnostico = {}
 
     fator = numero(
-        dados.get(
-            "fatorMultiplicativo",
-            dados.get(
-                "fator",
-                1.0
-            )
+        calibracao.get(
+            "fatorMultiplicativo"
         ),
         1.0
     )
 
     correcao = numero(
-        dados.get(
-            "correcaoAditiva",
-            dados.get(
-                "correcao",
-                dados.get(
-                    "ajuste",
-                    0.0
-                )
-            )
+        calibracao.get(
+            "correcaoAditiva"
         ),
         0.0
     )
 
-    amostras = inteiro(
-        dados.get(
-            "amostras",
-            dados.get(
-                "quantidade",
-                0
-            )
+    quantidade = inteiro(
+        amostra.get(
+            "quantidade"
         ),
         0
     )
 
     confianca = (
-        dados.get(
-            "confianca"
-        )
-        or
-        dados.get(
+        amostra.get(
             "nivelConfianca"
         )
         or
         "nao_informada"
     )
 
-    if posicao in POSICOES_BLOQUEADAS:
+    return {
+        "posicao": posicao,
 
-        return {
-            "posicao":
-                posicao,
+        "ativa": True,
 
-            "ativa":
-                False,
+        "modelo": "calibrado",
 
-            "modelo":
-                "original",
+        "fatorMultiplicativo": round(
+            fator,
+            5
+        ),
 
-            "fatorMultiplicativo":
-                1.0,
+        "correcaoAditiva": round(
+            correcao,
+            5
+        ),
 
-            "correcaoAditiva":
-                0.0,
+        "formula": (
+            "projecao_calibrada = "
+            "(projecao_original * "
+            "fatorMultiplicativo) + "
+            "correcaoAditiva"
+        ),
 
-            "amostras":
-                amostras,
+        "amostra": {
+            "quantidade": quantidade,
 
-            "confianca":
+            "nivelConfianca":
                 confianca,
 
-            "motivo":
-                (
-                    "Calibração não promovida para "
-                    "esta posição porque o backtest "
-                    "não demonstrou benefício."
+            "fatorConfianca":
+                numero(
+                    amostra.get(
+                        "fatorConfianca"
+                    ),
+                    0
                 )
-        }
+        },
+
+        "prioridade":
+            item.get(
+                "prioridade",
+                "nao_informada"
+            ),
+
+        "diagnosticoOriginal":
+            diagnostico,
+
+        "motivos":
+            item.get(
+                "motivos",
+                []
+            ),
+
+        "origem":
+            "calibracaoCandidata",
+
+        "motivoPromocao":
+            (
+                "Posição beneficiada pela "
+                "calibração no backtest A/B."
+            )
+    }
+
+
+def criar_configuracao_original(
+    posicao,
+    item
+):
+
+    amostra = item.get(
+        "amostra",
+        {}
+    )
+
+    if not isinstance(
+        amostra,
+        dict
+    ):
+        amostra = {}
+
+    diagnostico = item.get(
+        "diagnostico",
+        {}
+    )
+
+    if not isinstance(
+        diagnostico,
+        dict
+    ):
+        diagnostico = {}
+
+    calibracao_candidata = item.get(
+        "calibracaoCandidata",
+        {}
+    )
+
+    if not isinstance(
+        calibracao_candidata,
+        dict
+    ):
+        calibracao_candidata = {}
 
     return {
-        "posicao":
-            posicao,
+        "posicao": posicao,
 
-        "ativa":
-            True,
+        "ativa": False,
 
-        "modelo":
-            "calibrado",
+        "modelo": "original",
 
-        "fatorMultiplicativo":
-            round(
-                fator,
-                5
+        "fatorMultiplicativo": 1.0,
+
+        "correcaoAditiva": 0.0,
+
+        "formula": "projecao_final = projecao_original",
+
+        "amostra": {
+            "quantidade":
+                inteiro(
+                    amostra.get(
+                        "quantidade"
+                    )
+                ),
+
+            "nivelConfianca":
+                amostra.get(
+                    "nivelConfianca",
+                    "nao_informada"
+                ),
+
+            "fatorConfianca":
+                numero(
+                    amostra.get(
+                        "fatorConfianca"
+                    )
+                )
+        },
+
+        "prioridade":
+            item.get(
+                "prioridade",
+                "nao_informada"
             ),
 
-        "correcaoAditiva":
-            round(
-                correcao,
-                5
-            ),
+        "diagnosticoOriginal":
+            diagnostico,
 
-        "amostras":
-            amostras,
+        "calibracaoCandidataDescartada":
+            {
+                "fatorMultiplicativo":
+                    numero(
+                        calibracao_candidata.get(
+                            "fatorMultiplicativo"
+                        ),
+                        1.0
+                    ),
 
-        "confianca":
-            confianca,
+                "correcaoAditiva":
+                    numero(
+                        calibracao_candidata.get(
+                            "correcaoAditiva"
+                        ),
+                        0.0
+                    )
+            },
 
-        "motivo":
+        "origem":
+            "modelo_original",
+
+        "motivoPreservacao":
             (
-                "Calibração promovida após validação "
-                "favorável no backtest A/B progressivo."
+                "A calibração candidata de TEC "
+                "não foi promovida. O backtest "
+                "por posição indicou piora em "
+                "relação ao modelo original."
             )
     }
 
 
 # ======================================================
-# VALIDAÇÃO DE SEGURANÇA
+# VALIDAÇÃO DA CANDIDATA
 # ======================================================
 
-def validar_backtest(
-    backtest
+def validar_candidata(
+    candidata,
+    posicoes
 ):
 
     erros = []
 
-    if not backtest:
+    modelo = str(
+        candidata.get(
+            "modelo",
+            ""
+        )
+    )
+
+    if (
+        modelo
+        !=
+        "calibracao_posicoes_candidata_v1"
+    ):
 
         erros.append(
-            "Backtest inexistente ou vazio."
+            "Versão da calibração candidata "
+            "não reconhecida."
         )
 
-        return erros
+    for posicao in POSICOES:
+
+        if posicao not in posicoes:
+
+            erros.append(
+                f"Posição ausente na candidata: "
+                f"{posicao}"
+            )
+
+    for posicao in POSICOES_CALIBRADAS:
+
+        item = posicoes.get(
+            posicao,
+            {}
+        )
+
+        calibracao = item.get(
+            "calibracaoCandidata",
+            {}
+        )
+
+        if not isinstance(
+            calibracao,
+            dict
+        ):
+
+            erros.append(
+                f"Calibração inválida para "
+                f"{posicao}."
+            )
+
+            continue
+
+        fator = numero(
+            calibracao.get(
+                "fatorMultiplicativo"
+            ),
+            0
+        )
+
+        if fator <= 0:
+
+            erros.append(
+                f"Fator inválido para "
+                f"{posicao}."
+            )
+
+    return erros
+
+
+# ======================================================
+# VALIDAÇÃO DO BACKTEST
+# ======================================================
+
+def validar_backtest(backtest):
+
+    erros = []
+
+    if not isinstance(
+        backtest,
+        dict
+    ):
+
+        return [
+            "Backtest inválido."
+        ]
 
     modelo = str(
         backtest.get(
@@ -496,12 +667,20 @@ def validar_backtest(
         {}
     )
 
+    if not isinstance(
+        metodologia,
+        dict
+    ):
+
+        metodologia = {}
+
     if not metodologia.get(
         "progressivo"
     ):
 
         erros.append(
-            "Backtest não declarado como progressivo."
+            "Backtest não está marcado como "
+            "progressivo."
         )
 
     if not metodologia.get(
@@ -509,35 +688,34 @@ def validar_backtest(
     ):
 
         erros.append(
-            "Backtest não confirmou ausência de "
-            "vazamento futuro."
+            "Backtest não confirmou ausência "
+            "de vazamento futuro."
         )
 
-    quantidade_rodadas = inteiro(
+    rodadas = inteiro(
         backtest.get(
             "quantidadeRodadasAvaliaveis"
         ),
         0
     )
 
-    if quantidade_rodadas < 10:
-
-        erros.append(
-            "Quantidade insuficiente de rodadas "
-            "avaliáveis."
-        )
-
-    quantidade_jogadores = inteiro(
+    jogadores = inteiro(
         backtest.get(
             "quantidadeJogadoresAvaliados"
         ),
         0
     )
 
-    if quantidade_jogadores <= 0:
+    if rodadas < 10:
 
         erros.append(
-            "Backtest sem jogadores avaliados."
+            "Amostra de rodadas insuficiente."
+        )
+
+    if jogadores <= 0:
+
+        erros.append(
+            "Nenhum jogador avaliado."
         )
 
     resumo = backtest.get(
@@ -545,30 +723,35 @@ def validar_backtest(
         {}
     )
 
+    if not isinstance(
+        resumo,
+        dict
+    ):
+
+        resumo = {}
+
     mae_a = numero(
         resumo.get(
             "maeA"
-        ),
-        0
+        )
     )
 
     mae_b = numero(
         resumo.get(
             "maeB"
-        ),
-        0
+        )
     )
 
     if mae_a <= 0:
 
         erros.append(
-            "MAE do Modelo A inválido."
+            "MAE A inválido."
         )
 
     if mae_b <= 0:
 
         erros.append(
-            "MAE do Modelo B inválido."
+            "MAE B inválido."
         )
 
     if (
@@ -578,20 +761,19 @@ def validar_backtest(
     ):
 
         erros.append(
-            "Modelo B não superou o Modelo A no MAE."
+            "Modelo B não superou o Modelo A."
         )
 
     decisao = extrair_decisao_backtest(
         backtest
     )
 
-    if not decisao.get(
+    if not decisao[
         "promover"
-    ):
+    ]:
 
         erros.append(
-            "Backtest não autorizou promoção "
-            "da calibração."
+            "Backtest não autorizou a promoção."
         )
 
     return erros
@@ -619,16 +801,31 @@ def processar():
         "===================================================="
     )
 
-    backtest = carregar_json(
-        ARQUIVO_BACKTEST
-    )
-
     candidata = carregar_json(
         ARQUIVO_CANDIDATA
     )
 
-    erros = validar_backtest(
-        backtest
+    backtest = carregar_json(
+        ARQUIVO_BACKTEST
+    )
+
+    posicoes = extrair_posicoes_candidatas(
+        candidata
+    )
+
+    erros = []
+
+    erros.extend(
+        validar_candidata(
+            candidata,
+            posicoes
+        )
+    )
+
+    erros.extend(
+        validar_backtest(
+            backtest
+        )
     )
 
     if erros:
@@ -653,93 +850,60 @@ def processar():
         print()
 
         print(
-            "Nenhuma configuração oficial foi promovida."
+            "Arquivo oficial não foi gerado."
         )
 
         print(
             "===================================================="
         )
 
-        raise SystemExit(
-            1
-        )
-
-    posicoes_candidatas = (
-        extrair_posicoes_candidatas(
-            candidata
-        )
-    )
-
-    if not posicoes_candidatas:
-
-        print(
-            "[ERRO] Não foi possível localizar "
-            "as calibrações por posição no arquivo "
-            "candidato."
-        )
-
-        raise SystemExit(
-            1
-        )
+        raise SystemExit(1)
 
     configuracoes = {}
 
-    faltantes = []
-
     for posicao in POSICOES:
 
-        dados = posicoes_candidatas.get(
+        item = posicoes[
             posicao
-        )
+        ]
 
         if (
             posicao
-            in POSICOES_AUTORIZADAS
-            and
-            not isinstance(
-                dados,
-                dict
-            )
+            in POSICOES_CALIBRADAS
         ):
 
-            faltantes.append(
+            configuracoes[
                 posicao
+            ] = (
+                criar_configuracao_calibrada(
+                    posicao,
+                    item
+                )
             )
 
-            continue
+        else:
 
-        configuracoes[
-            posicao
-        ] = normalizar_calibracao(
-            posicao,
-            dados or {}
-        )
-
-    if faltantes:
-
-        print(
-            "[ERRO] Calibrações candidatas "
-            "não encontradas para:"
-        )
-
-        print(
-            ", ".join(
-                faltantes
+            configuracoes[
+                posicao
+            ] = (
+                criar_configuracao_original(
+                    posicao,
+                    item
+                )
             )
-        )
 
-        raise SystemExit(
-            1
-        )
-
-    resumo_backtest = backtest.get(
+    resumo = backtest.get(
         "resumoGlobal",
         {}
     )
 
-    por_posicao_backtest = backtest.get(
+    por_posicao = backtest.get(
         "porPosicao",
         {}
+    )
+
+    decisao = extrair_decisao_backtest(
+        backtest
     )
 
     resultado = {
@@ -752,59 +916,41 @@ def processar():
         "status":
             "ATIVA",
 
-        "origem":
-            {
-                "backtest":
-                    "data/backtest-ab-calibracao.json",
+        "descricao":
+            (
+                "Configuração oficial de "
+                "calibração por posição "
+                "promovida após backtest A/B."
+            ),
 
-                "calibracaoCandidata":
-                    (
-                        "data/"
-                        "calibracao-posicoes-candidata.json"
-                    )
-            },
+        "modeloBase":
+            "A",
+
+        "modeloPromovido":
+            "B",
+
+        "origem": {
+            "calibracaoCandidata":
+                (
+                    "data/"
+                    "calibracao-posicoes-candidata.json"
+                ),
+
+            "backtest":
+                (
+                    "data/"
+                    "backtest-ab-calibracao.json"
+                )
+        },
 
         "validacao": {
-            "backtestAprovado":
+            "decisaoBacktest":
+                decisao[
+                    "decisao"
+                ],
+
+            "promocaoAutorizada":
                 True,
-
-            "modeloVencedor":
-                "B",
-
-            "maeModeloA":
-                numero(
-                    resumo_backtest.get(
-                        "maeA"
-                    )
-                ),
-
-            "maeModeloB":
-                numero(
-                    resumo_backtest.get(
-                        "maeB"
-                    )
-                ),
-
-            "melhoraPercentual":
-                numero(
-                    resumo_backtest.get(
-                        "melhoraPercentual"
-                    )
-                ),
-
-            "viesModeloA":
-                numero(
-                    resumo_backtest.get(
-                        "viesA"
-                    )
-                ),
-
-            "viesModeloB":
-                numero(
-                    resumo_backtest.get(
-                        "viesB"
-                    )
-                ),
 
             "rodadasAvaliaveis":
                 inteiro(
@@ -820,19 +966,54 @@ def processar():
                     )
                 ),
 
+            "maeModeloA":
+                numero(
+                    resumo.get(
+                        "maeA"
+                    )
+                ),
+
+            "maeModeloB":
+                numero(
+                    resumo.get(
+                        "maeB"
+                    )
+                ),
+
+            "melhoraPercentual":
+                numero(
+                    resumo.get(
+                        "melhoraPercentual"
+                    )
+                ),
+
+            "viesModeloA":
+                numero(
+                    resumo.get(
+                        "viesA"
+                    )
+                ),
+
+            "viesModeloB":
+                numero(
+                    resumo.get(
+                        "viesB"
+                    )
+                ),
+
             "semVazamentoFuturo":
                 True
         },
 
         "politica": {
-            "modo":
-                "calibracao_hibrida_por_posicao",
+            "tipo":
+                "hibrida_por_posicao",
 
             "posicoesCalibradas":
-                POSICOES_AUTORIZADAS,
+                POSICOES_CALIBRADAS,
 
             "posicoesModeloOriginal":
-                POSICOES_BLOQUEADAS,
+                POSICOES_ORIGINAIS,
 
             "alterarPesos":
                 False,
@@ -854,19 +1035,19 @@ def processar():
             configuracoes,
 
         "resultadoBacktestPorPosicao":
-            por_posicao_backtest,
+            por_posicao,
 
         "seguranca": {
-            "promocaoAutomaticaFutura":
-                False,
-
-            "arquivoIndependente":
-                True,
-
             "modeloOriginalPreservado":
                 True,
 
             "pesosOriginaisPreservados":
+                True,
+
+            "promocaoAutomaticaFutura":
+                False,
+
+            "arquivoIndependente":
                 True
         }
     }
@@ -879,11 +1060,29 @@ def processar():
     print()
 
     print(
-        "BACKTEST"
+        "BACKTEST A/B"
     )
 
     print(
         "----------------------------------------------------"
+    )
+
+    print(
+        "Rodadas:",
+        resultado[
+            "validacao"
+        ][
+            "rodadasAvaliaveis"
+        ]
+    )
+
+    print(
+        "Jogadores:",
+        resultado[
+            "validacao"
+        ][
+            "jogadoresAvaliados"
+        ]
     )
 
     print(
@@ -915,27 +1114,27 @@ def processar():
     )
 
     print(
-        "Rodadas:",
+        "Viés A:",
         resultado[
             "validacao"
         ][
-            "rodadasAvaliaveis"
+            "viesModeloA"
         ]
     )
 
     print(
-        "Jogadores:",
+        "Viés B:",
         resultado[
             "validacao"
         ][
-            "jogadoresAvaliados"
+            "viesModeloB"
         ]
     )
 
     print()
 
     print(
-        "CONFIGURAÇÃO OFICIAL"
+        "CONFIGURAÇÃO PROMOVIDA"
     )
 
     print(
@@ -944,26 +1143,29 @@ def processar():
 
     for posicao in POSICOES:
 
-        dados = configuracoes[
+        configuracao = configuracoes[
             posicao
         ]
 
-        status = (
-            "CALIBRADO"
-            if dados.get(
-                "ativa"
-            )
-            else "ORIGINAL"
-        )
+        if configuracao[
+            "ativa"
+        ]:
 
-        print(
-            f"{posicao}: "
-            f"{status} | "
-            f"fator="
-            f"{dados.get('fatorMultiplicativo')} | "
-            f"aditivo="
-            f"{dados.get('correcaoAditiva')}"
-        )
+            print(
+                f"{posicao}: CALIBRADO | "
+                f"fator="
+                f"{configuracao['fatorMultiplicativo']} | "
+                f"aditivo="
+                f"{configuracao['correcaoAditiva']}"
+            )
+
+        else:
+
+            print(
+                f"{posicao}: ORIGINAL | "
+                f"fator=1.0 | "
+                f"aditivo=0.0"
+            )
 
     print()
 
@@ -972,7 +1174,11 @@ def processar():
     )
 
     print(
-        "TEC: MODELO ORIGINAL PRESERVADO"
+        "GOL/LAT/ZAG/MEI/ATA: MODELO B"
+    )
+
+    print(
+        "TEC: MODELO ORIGINAL"
     )
 
     print(
@@ -980,7 +1186,11 @@ def processar():
     )
 
     print(
-        "Motor original alterado: NÃO"
+        "Motor base alterado: NÃO"
+    )
+
+    print(
+        "Histórico alterado: NÃO"
     )
 
     print()
