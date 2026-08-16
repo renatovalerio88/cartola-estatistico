@@ -473,7 +473,86 @@ function criarCardEscalacao(
 
 
 /* =========================================================
-   3. CAPITÃO
+   3. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
+   ========================================================= */
+
+function obterNomeCurtoJogador(
+  jogador
+) {
+  if (!jogador) {
+    return "Jogador";
+  }
+
+  const apelido =
+    String(
+      jogador.apelido ||
+      ""
+    ).trim();
+
+  if (apelido) {
+    return apelido;
+  }
+
+  const nome =
+    String(
+      jogador.nome ||
+      ""
+    ).trim();
+
+  if (!nome) {
+    return "Jogador";
+  }
+
+  const partes =
+    nome
+      .split(/\s+/)
+      .filter(Boolean);
+
+  if (partes.length <= 2) {
+    return nome;
+  }
+
+  return `${partes[0]} ${partes[partes.length - 1]}`;
+}
+
+
+function normalizarScoreVisual(
+  valor
+) {
+  let score =
+    Number(valor);
+
+  if (!Number.isFinite(score)) {
+    return "--";
+  }
+
+  /*
+   * Alguns dados históricos podem chegar
+   * com o score multiplicado por 100.
+   *
+   * Exemplos:
+   *
+   * 1080 -> 10.8
+   * 1883 -> 18.83
+   * 2626 -> 26.26
+   *
+   * Scores já normalizados, como 80.8,
+   * permanecem inalterados.
+   */
+
+  if (Math.abs(score) >= 1000) {
+    score =
+      score / 100;
+  }
+
+  return score
+    .toFixed(1)
+    .replace(".", ",");
+}
+
+
+/* =========================================================
+   4. CAPITÃO
    ========================================================= */
 
 function criarCapitaoHtml(
@@ -519,8 +598,9 @@ function criarCapitaoHtml(
 
         <strong>
           ${escaparHtml(
-            capitao.nome ||
-            "Não informado"
+            obterNomeCurtoJogador(
+              capitao
+            )
           )}
         </strong>
 
@@ -539,7 +619,7 @@ function criarCapitaoHtml(
 
 
 /* =========================================================
-   4. JOGADOR TITULAR
+   5. JOGADOR TITULAR
    ========================================================= */
 
 function criarJogadorTitularHtml(
@@ -565,8 +645,9 @@ function criarJogadorTitularHtml(
         <strong>
 
           ${escaparHtml(
-            jogador.nome ||
-            "Jogador"
+            obterNomeCurtoJogador(
+              jogador
+            )
           )}
 
           ${
@@ -597,13 +678,15 @@ function criarJogadorTitularHtml(
       <div class="lineup-player-numbers">
 
         <strong>
-            ${formatarPontos(
-              jogador.projecao
+          ${formatarPontos(
+            jogador.projecao
+          )}
+
+          <small>
+            ⭐ ${normalizarScoreVisual(
+              jogador.score
             )}
-            
-            <small>
-            ⭐ ${jogador.score?.toFixed(1) ?? "--"}
-            </small>
+          </small>
         </strong>
 
         <small>
@@ -620,7 +703,7 @@ function criarJogadorTitularHtml(
 
 
 /* =========================================================
-   5. BANCO
+   6. BANCO
    ========================================================= */
 
 function criarBancoHtml(
@@ -663,8 +746,9 @@ function criarJogadorBancoHtml(
 
       <strong>
         ${escaparHtml(
-          jogador.nome ||
-          "Jogador"
+          obterNomeCurtoJogador(
+            jogador
+          )
         )}
       </strong>
 
@@ -678,13 +762,15 @@ function criarJogadorBancoHtml(
 
         •
 
-         ${formatarPontos(
-             jogador.projecao
-         )}
-         
-         •
-         
-         ⭐ ${jogador.score?.toFixed(1) ?? "--"}
+        ${formatarPontos(
+          jogador.projecao
+        )}
+
+        •
+
+        ⭐ ${normalizarScoreVisual(
+          jogador.score
+        )}
 
       </small>
 
@@ -694,7 +780,7 @@ function criarJogadorBancoHtml(
 
 
 /* =========================================================
-   6. RESERVA DE LUXO
+   7. RESERVA DE LUXO
    ========================================================= */
 
 function criarReservaLuxoHtml(
@@ -722,8 +808,9 @@ function criarReservaLuxoHtml(
 
         <strong>
           ${escaparHtml(
-            jogador.nome ||
-            "Jogador"
+            obterNomeCurtoJogador(
+              jogador
+            )
           )}
         </strong>
 
@@ -739,21 +826,23 @@ function criarReservaLuxoHtml(
 
       <div>
 
-         <strong>
-             ${formatarPontos(
-                 jogador.projecao
-             )}
-         </strong>
-         
-         <small>
-             ⭐ ${jogador.score?.toFixed(1) ?? "--"}
-         </small>
-         
-         <small>
-             ${formatarCartoletas(
-                 jogador.preco
-             )}
-         </small>
+        <strong>
+          ${formatarPontos(
+            jogador.projecao
+          )}
+        </strong>
+
+        <small>
+          ⭐ ${normalizarScoreVisual(
+            jogador.score
+          )}
+        </small>
+
+        <small>
+          ${formatarCartoletas(
+            jogador.preco
+          )}
+        </small>
 
       </div>
 
@@ -763,7 +852,7 @@ function criarReservaLuxoHtml(
 
 
 /* =========================================================
-   7. PERFIL DA ESCALAÇÃO
+   8. PERFIL DA ESCALAÇÃO
    ========================================================= */
 
 function obterClassePerfilEscalacao(
@@ -797,7 +886,7 @@ function obterClassePerfilEscalacao(
 
 
 /* =========================================================
-   8. BOTÃO DE DETALHES
+   9. BOTÃO DE DETALHES
    ========================================================= */
 
 function configurarBotoesDetalhesEscalacao() {
