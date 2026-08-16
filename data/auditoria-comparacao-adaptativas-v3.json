@@ -121,17 +121,17 @@
     },
     {
       "nome": "media_v1_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": 0.0,
-      "encontrado": 0.0
+      "encontrado": 55.37
     },
     {
       "nome": "media_v2_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": 0.0,
-      "encontrado": 0.0
+      "encontrado": 56.36
     },
     {
       "nome": "media_v3_consistente",
@@ -142,14 +142,14 @@
     },
     {
       "nome": "desvio_v1_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "desvio_v2_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -191,14 +191,14 @@
     },
     {
       "nome": "ganho_v3_v1_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "ganho_v3_v2_consistente",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -212,28 +212,28 @@
     },
     {
       "nome": "pareado_v2_v3_vitorias_v2",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "pareado_v2_v3_vitorias_v3",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "pareado_v2_v3_empates",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
     },
     {
       "nome": "pareado_v2_v3_taxa",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -303,7 +303,7 @@
     },
     {
       "nome": "detalhes_rodadas_consistentes",
-      "passou": true,
+      "passou": false,
       "critico": true,
       "esperado": null,
       "encontrado": null
@@ -353,11 +353,11 @@
   ],
   "resumoTestes": {
     "quantidade": 43,
-    "aprovados": 42,
-    "falhas": 1,
-    "falhasCriticas": 1,
+    "aprovados": 31,
+    "falhas": 12,
+    "falhasCriticas": 12,
     "alertas": 0,
-    "scoreQualidade": 97.67
+    "scoreQualidade": 72.09
   },
   "resultados": {
     "mediaV1": 0.0,
