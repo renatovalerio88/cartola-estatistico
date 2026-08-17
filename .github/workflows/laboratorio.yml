@@ -164,6 +164,11 @@ jobs:
           python scripts/processamento/backtest_patrimonio.py
 
 
+      - name: Auditar Backtest de Patrimônio
+        run: |
+          python scripts/processamento/auditar_backtest_patrimonio.py
+
+
       # ======================================
       # SIMULAÇÃO HISTÓRICA DE TIMES
       # ======================================
