@@ -59,6 +59,17 @@ const MotorEscalacao = (() => {
             ATA: 3,
             TEC: 1
 
+        },
+
+        "4-3-3": {
+
+            GOL: 1,
+            LAT: 2,
+            ZAG: 2,
+            MEI: 3,
+            ATA: 3,
+            TEC: 1
+
         }
 
     };
