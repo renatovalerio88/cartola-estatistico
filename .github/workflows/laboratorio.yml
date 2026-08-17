@@ -24,7 +24,6 @@ jobs:
 
       - name: Configurar Python
         uses: actions/setup-python@v5
-
         with:
           python-version: "3.11"
 
@@ -153,20 +152,6 @@ jobs:
       - name: Diagnosticar Escalações
         run: |
           python scripts/processamento/diagnosticar_escalacoes.py
-
-
-      # ======================================
-      # LABORATÓRIO DE PATRIMÔNIO
-      # ======================================
-
-      - name: Backtest de Patrimônio
-        run: |
-          python scripts/processamento/backtest_patrimonio.py
-
-
-      - name: Auditar Backtest de Patrimônio
-        run: |
-          python scripts/processamento/auditar_backtest_patrimonio.py
 
 
       # ======================================
@@ -299,9 +284,7 @@ jobs:
 
               "data/comparacao-estrategias-adaptativas-v3.json",
 
-              "data/auditoria-comparacao-adaptativas-v3.json",
-
-              "data/backtest-patrimonio.json"
+              "data/auditoria-comparacao-adaptativas-v3.json"
 
           ]
 
@@ -1445,7 +1428,6 @@ jobs:
       # ======================================
 
       - name: Commit resultados
-
         run: |
 
           git config user.name github-actions
