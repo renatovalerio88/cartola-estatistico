@@ -283,7 +283,6 @@ function compararJogadoresRanking(
   jogadorA,
   jogadorB
 ) {
-
   const diferencaProjecao =
     obterProjecaoRanking(
       jogadorB
@@ -305,8 +304,12 @@ function compararJogadoresRanking(
   }
 
   const diferencaConfianca =
-    numeroSeguro(jogadorB.confiancaNumerica) -
-    numeroSeguro(jogadorA.confiancaNumerica);
+    numeroSeguro(
+      jogadorB.confiancaNumerica
+    ) -
+    numeroSeguro(
+      jogadorA.confiancaNumerica
+    );
 
   if (diferencaConfianca !== 0) {
     return diferencaConfianca;
@@ -323,10 +326,11 @@ function compararJogadoresRanking(
   return String(
     jogadorA.nome || ""
   ).localeCompare(
-    String(jogadorB.nome || ""),
+    String(
+      jogadorB.nome || ""
+    ),
     "pt-BR"
   );
-
 }
 
 
@@ -631,7 +635,9 @@ function converterPontuacaoEmNota(
   pontuacao
 ) {
   const valor =
-    numeroSeguro(pontuacao);
+    numeroSeguro(
+      pontuacao
+    );
 
   return limitarValor(
     valor * 10,
@@ -649,7 +655,9 @@ function converterMinutosEmNota(
   minutos
 ) {
   const valor =
-    numeroSeguro(minutos);
+    numeroSeguro(
+      minutos
+    );
 
   return limitarValor(
     (
@@ -749,9 +757,13 @@ function converterRiscoEmNotaPositiva(
   riscoTexto
 ) {
   const numero =
-    Number(riscoNumerico);
+    Number(
+      riscoNumerico
+    );
 
-  if (Number.isFinite(numero)) {
+  if (
+    Number.isFinite(numero)
+  ) {
     return limitarValor(
       100 - numero,
       0,
@@ -783,7 +795,70 @@ function converterRiscoEmNotaPositiva(
 
 
 /* =========================================================
-   18. DESTAQUES DO TOPO
+   18. NOME CURTO DO JOGADOR
+   ========================================================= */
+
+function obterNomeCurtoRanking(
+  jogador
+) {
+  if (!jogador) {
+    return "Jogador";
+  }
+
+  /*
+   * Primeira opção:
+   * apelido oficial fornecido pela API.
+   */
+
+  const apelido =
+    String(
+      jogador.apelido ||
+      ""
+    ).trim();
+
+  if (apelido) {
+    return apelido;
+  }
+
+  /*
+   * Segunda opção:
+   * nome do jogador.
+   *
+   * Quando houver mais de dois nomes,
+   * utiliza primeiro + último para
+   * evitar textos excessivamente longos.
+   */
+
+  const nome =
+    String(
+      jogador.nome ||
+      ""
+    ).trim();
+
+  if (!nome) {
+    return "Jogador";
+  }
+
+  const partes =
+    nome
+      .split(/\s+/)
+      .filter(Boolean);
+
+  if (
+    partes.length <= 2
+  ) {
+    return nome;
+  }
+
+  return (
+    `${partes[0]} ` +
+    `${partes[partes.length - 1]}`
+  );
+}
+
+
+/* =========================================================
+   19. DESTAQUES DO TOPO
    ========================================================= */
 
 function exibirDestaquesGerais() {
@@ -850,7 +925,7 @@ function exibirDestaquesGerais() {
 
 
 /* =========================================================
-   19. MAIOR VALOR DE UM CAMPO
+   20. MAIOR VALOR DE UM CAMPO
    ========================================================= */
 
 function obterMaiorPorCampo(
@@ -870,7 +945,7 @@ function obterMaiorPorCampo(
 
 
 /* =========================================================
-   20. EXIBIÇÃO DE UM DESTAQUE
+   21. EXIBIÇÃO DE UM DESTAQUE
    ========================================================= */
 
 function exibirDestaque(
@@ -887,10 +962,8 @@ function exibirDestaque(
   definirTextoElemento(
     idNome,
     jogador
-      ? (
-          jogador.apelido ||
-          jogador.nome ||
-          "Jogador"
+      ? obterNomeCurtoRanking(
+          jogador
         )
       : "Aguardando dados"
   );
@@ -898,7 +971,7 @@ function exibirDestaque(
 
 
 /* =========================================================
-   21. LIMPEZA DOS DESTAQUES
+   22. LIMPEZA DOS DESTAQUES
    ========================================================= */
 
 function limparDestaquesGerais() {
@@ -935,7 +1008,7 @@ function limparDestaquesGerais() {
 
 
 /* =========================================================
-   22. COMPARAÇÃO ENTRE COLOCAÇÕES
+   23. COMPARAÇÃO ENTRE COLOCAÇÕES
    Preparado para o recurso:
    "Por que ficou em 1º e não em 2º?"
    ========================================================= */
@@ -944,7 +1017,10 @@ function compararJogadoresDoRanking(
   jogadorA,
   jogadorB
 ) {
-  if (!jogadorA || !jogadorB) {
+  if (
+    !jogadorA ||
+    !jogadorB
+  ) {
     return null;
   }
 
@@ -960,46 +1036,66 @@ function compararJogadoresDoRanking(
 
   const comparacao =
     typeof compararResultadosEstatisticos ===
-      "function"
+    "function"
       ? compararResultadosEstatisticos(
           resultadoA,
           resultadoB
         )
       : {
           vencedor:
-            obterNotaRanking(jogadorA) >=
-            obterNotaRanking(jogadorB)
+            obterNotaRanking(
+              jogadorA
+            ) >=
+            obterNotaRanking(
+              jogadorB
+            )
               ? "A"
               : "B",
 
           notaA:
-            obterNotaRanking(jogadorA),
+            obterNotaRanking(
+              jogadorA
+            ),
 
           notaB:
-            obterNotaRanking(jogadorB),
+            obterNotaRanking(
+              jogadorB
+            ),
 
           diferenca:
             Math.abs(
-              obterNotaRanking(jogadorA) -
-              obterNotaRanking(jogadorB)
+              obterNotaRanking(
+                jogadorA
+              ) -
+              obterNotaRanking(
+                jogadorB
+              )
             )
         };
 
   return {
     jogadorA: {
-      id: jogadorA.id,
+      id:
+        jogadorA.id,
+
       nome:
-        jogadorA.apelido ||
-        jogadorA.nome,
+        obterNomeCurtoRanking(
+          jogadorA
+        ),
+
       nota:
         comparacao.notaA
     },
 
     jogadorB: {
-      id: jogadorB.id,
+      id:
+        jogadorB.id,
+
       nome:
-        jogadorB.apelido ||
-        jogadorB.nome,
+        obterNomeCurtoRanking(
+          jogadorB
+        ),
+
       nota:
         comparacao.notaB
     },
