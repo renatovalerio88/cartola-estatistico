@@ -4,18 +4,36 @@ CARTOLA ESTATÍSTICO
 Diagnóstico das Escalações Históricas
 
 Objetivo:
-- validar a nova camada data/historico-escalacoes
+- validar a camada data/historico-escalacoes
 - verificar rodadas disponíveis
 - verificar estratégias por rodada
 - validar quantidade de titulares
 - validar auditorias
 - detectar arquivos ausentes ou estruturas inválidas
 
+Estrutura esperada:
+
+data/
+└── historico-escalacoes/
+    ├── indice.json
+    ├── rodada-02.json
+    ├── rodada-03.json
+    ├── rodada-04.json
+    └── ...
+
+Cada arquivo rodada-XX.json deve conter
+as estratégias:
+
+- conservador
+- equilibrado
+- agressivo
+
 =========================================================
 """
 
 from pathlib import Path
 import json
+import re
 
 
 # ======================================================
@@ -25,9 +43,9 @@ import json
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 PASTA_HISTORICO = (
-    BASE_DIR /
-    "data" /
-    "historico-escalacoes"
+    BASE_DIR
+    / "data"
+    / "historico-escalacoes"
 )
 
 ESTRATEGIAS_ESPERADAS = [
@@ -69,25 +87,28 @@ def carregar_json(caminho):
         return None
 
 
-def numero_rodada(pasta):
+def numero_rodada(caminho):
+
+    nome = caminho.stem
+
+    correspondencia = re.fullmatch(
+        r"rodada-(\d+)",
+        nome,
+    )
+
+    if not correspondencia:
+
+        return 999
 
     try:
 
         return int(
-            pasta.name.replace(
-                "rodada-",
-                ""
-            )
+            correspondencia.group(1)
         )
 
     except Exception:
 
         return 999
-
-
-def nome_estrategia(caminho):
-
-    return caminho.stem.lower()
 
 
 # ======================================================
@@ -100,29 +121,110 @@ def localizar_rodadas():
 
         return []
 
-    pastas = [
-        pasta
-        for pasta in PASTA_HISTORICO.glob(
-            "rodada-*"
+    arquivos = [
+        arquivo
+        for arquivo in PASTA_HISTORICO.glob(
+            "rodada-*.json"
         )
-        if pasta.is_dir()
+        if (
+            arquivo.is_file()
+            and numero_rodada(arquivo) != 999
+        )
     ]
 
     return sorted(
-        pastas,
-        key=numero_rodada
+        arquivos,
+        key=numero_rodada,
     )
 
 
 # ======================================================
-# EXTRAÇÃO DA ESCALAÇÃO
+# EXTRAÇÃO DAS ESTRATÉGIAS
+# ======================================================
+
+def obter_estrategias(dados):
+
+    if not isinstance(
+        dados,
+        dict,
+    ):
+
+        return {}
+
+    estrategias = dados.get(
+        "estrategias"
+    )
+
+    if isinstance(
+        estrategias,
+        dict,
+    ):
+
+        resultado = {}
+
+        for chave, valor in (
+            estrategias.items()
+        ):
+
+            nome = str(
+                chave
+            ).strip().lower()
+
+            resultado[
+                nome
+            ] = valor
+
+        return resultado
+
+    if isinstance(
+        estrategias,
+        list,
+    ):
+
+        resultado = {}
+
+        for item in estrategias:
+
+            if not isinstance(
+                item,
+                dict,
+            ):
+
+                continue
+
+            nome = (
+                item.get("id")
+                or item.get("estrategia")
+                or item.get("perfil")
+                or item.get("nome")
+            )
+
+            if not nome:
+
+                continue
+
+            nome = str(
+                nome
+            ).strip().lower()
+
+            resultado[
+                nome
+            ] = item
+
+        return resultado
+
+    return {}
+
+
+# ======================================================
+# EXTRAÇÃO DOS TITULARES
 # ======================================================
 
 def obter_titulares(dados):
 
     if not isinstance(
         dados,
-        dict
+        dict,
     ):
 
         return []
@@ -143,7 +245,7 @@ def obter_titulares(dados):
 
         if isinstance(
             candidato,
-            list
+            list,
         ):
 
             return candidato
@@ -154,7 +256,7 @@ def obter_titulares(dados):
 
     if isinstance(
         time,
-        dict
+        dict,
     ):
 
         for chave in [
@@ -169,7 +271,7 @@ def obter_titulares(dados):
 
             if isinstance(
                 candidato,
-                list
+                list,
             ):
 
                 return candidato
@@ -177,11 +279,15 @@ def obter_titulares(dados):
     return []
 
 
+# ======================================================
+# AUDITORIA
+# ======================================================
+
 def obter_auditoria(dados):
 
     if not isinstance(
         dados,
-        dict
+        dict,
     ):
 
         return None
@@ -192,7 +298,7 @@ def obter_auditoria(dados):
 
     if isinstance(
         auditoria,
-        dict
+        dict,
     ):
 
         return auditoria
@@ -200,15 +306,49 @@ def obter_auditoria(dados):
     return None
 
 
-def auditoria_aprovada(
-    dados
-):
+def auditoria_aprovada(dados):
+
+    if not isinstance(
+        dados,
+        dict,
+    ):
+
+        return None
 
     auditoria = obter_auditoria(
         dados
     )
 
     if auditoria is None:
+
+        valores_diretos = [
+            dados.get(
+                "auditoriaAprovada"
+            ),
+            dados.get(
+                "aprovada"
+            ),
+            dados.get(
+                "aprovado"
+            ),
+            dados.get(
+                "valida"
+            ),
+            dados.get(
+                "valido"
+            ),
+        ]
+
+        for valor in (
+            valores_diretos
+        ):
+
+            if isinstance(
+                valor,
+                bool,
+            ):
+
+                return valor
 
         return None
 
@@ -231,7 +371,7 @@ def auditoria_aprovada(
 
         if isinstance(
             valor,
-            bool
+            bool,
         ):
 
             return valor
@@ -239,7 +379,7 @@ def auditoria_aprovada(
     status = str(
         auditoria.get(
             "status",
-            ""
+            "",
         )
     ).strip().lower()
 
@@ -277,12 +417,9 @@ def auditoria_aprovada(
 def diagnosticar_estrategia(
     rodada,
     estrategia,
+    dados,
     arquivo,
 ):
-
-    dados = carregar_json(
-        arquivo
-    )
 
     resultado = {
         "rodada": rodada,
@@ -292,7 +429,9 @@ def diagnosticar_estrategia(
                 BASE_DIR
             )
         ),
-        "existe": arquivo.exists(),
+        "existe": (
+            dados is not None
+        ),
         "valido": False,
         "titulares": 0,
         "auditoria": None,
@@ -304,20 +443,21 @@ def diagnosticar_estrategia(
         resultado[
             "problemas"
         ].append(
-            "arquivo ausente ou JSON inválido"
+            "estratégia não encontrada"
         )
 
         return resultado
 
     if not isinstance(
         dados,
-        dict
+        dict,
     ):
 
         resultado[
             "problemas"
         ].append(
-            "estrutura principal não é objeto"
+            "estrutura da estratégia "
+            "não é objeto"
         )
 
         return resultado
@@ -376,68 +516,100 @@ def diagnosticar_estrategia(
 # ======================================================
 
 def diagnosticar_rodada(
-    pasta
+    arquivo
 ):
 
     rodada = numero_rodada(
-        pasta
+        arquivo
+    )
+
+    dados = carregar_json(
+        arquivo
     )
 
     resultados = []
 
-    arquivos_json = sorted(
-        pasta.glob(
-            "*.json"
-        )
-    )
+    if dados is None:
 
-    arquivos_por_nome = {
-        nome_estrategia(
-            arquivo
+        for estrategia in (
+            ESTRATEGIAS_ESPERADAS
         ):
-        arquivo
 
-        for arquivo in arquivos_json
-    }
+            resultados.append(
+                {
+                    "rodada": rodada,
+                    "estrategia": estrategia,
+                    "arquivo": str(
+                        arquivo.relative_to(
+                            BASE_DIR
+                        )
+                    ),
+                    "existe": False,
+                    "valido": False,
+                    "titulares": 0,
+                    "auditoria": None,
+                    "problemas": [
+                        "arquivo ausente "
+                        "ou JSON inválido"
+                    ],
+                }
+            )
+
+        return resultados
+
+    if not isinstance(
+        dados,
+        dict,
+    ):
+
+        for estrategia in (
+            ESTRATEGIAS_ESPERADAS
+        ):
+
+            resultados.append(
+                {
+                    "rodada": rodada,
+                    "estrategia": estrategia,
+                    "arquivo": str(
+                        arquivo.relative_to(
+                            BASE_DIR
+                        )
+                    ),
+                    "existe": True,
+                    "valido": False,
+                    "titulares": 0,
+                    "auditoria": None,
+                    "problemas": [
+                        "estrutura principal "
+                        "não é objeto"
+                    ],
+                }
+            )
+
+        return resultados
+
+    estrategias = obter_estrategias(
+        dados
+    )
 
     for estrategia in (
         ESTRATEGIAS_ESPERADAS
     ):
 
-        arquivo = (
-            arquivos_por_nome.get(
+        dados_estrategia = (
+            estrategias.get(
                 estrategia
             )
         )
 
-        if arquivo is None:
-
-            resultado = {
-                "rodada": rodada,
-                "estrategia": estrategia,
-                "arquivo": (
-                    f"data/historico-escalacoes/"
-                    f"rodada-{rodada:02d}/"
-                    f"{estrategia}.json"
-                ),
-                "existe": False,
-                "valido": False,
-                "titulares": 0,
-                "auditoria": None,
-                "problemas": [
-                    "arquivo da estratégia não encontrado"
-                ],
-            }
-
-        else:
-
-            resultado = (
-                diagnosticar_estrategia(
-                    rodada,
-                    estrategia,
-                    arquivo,
-                )
+        resultado = (
+            diagnosticar_estrategia(
+                rodada,
+                estrategia,
+                dados_estrategia,
+                arquivo,
             )
+        )
 
         resultados.append(
             resultado
@@ -530,7 +702,7 @@ def executar():
     )
 
     print(
-        "DIAGNÓSTICO DAS ESCALAÇÕES HISTÓRICAS V2"
+        "DIAGNÓSTICO DAS ESCALAÇÕES HISTÓRICAS V3"
     )
 
     print(
@@ -554,6 +726,24 @@ def executar():
         )
 
         print(
+            "Esperado:"
+        )
+
+        print(
+            "data/historico-escalacoes/"
+            "rodada-02.json"
+        )
+
+        print(
+            "data/historico-escalacoes/"
+            "rodada-03.json"
+        )
+
+        print(
+            "..."
+        )
+
+        print(
             "============================================"
         )
 
@@ -563,9 +753,9 @@ def executar():
 
     numeros = [
         numero_rodada(
-            pasta
+            arquivo
         )
-        for pasta in rodadas
+        for arquivo in rodadas
     ]
 
     print(
@@ -573,7 +763,8 @@ def executar():
     )
 
     print(
-        f"Total de rodadas: {len(rodadas)}"
+        f"Total de rodadas: "
+        f"{len(rodadas)}"
     )
 
     print(
@@ -582,11 +773,11 @@ def executar():
 
     resultados = []
 
-    for pasta in rodadas:
+    for arquivo in rodadas:
 
         resultados_rodada = (
             diagnosticar_rodada(
-                pasta
+                arquivo
             )
         )
 
@@ -615,8 +806,8 @@ def executar():
     )
 
     reprovadas = (
-        total -
-        aprovadas
+        total
+        - aprovadas
     )
 
     rodadas_com_erro = sorted(
@@ -633,8 +824,8 @@ def executar():
 
     cobertura = (
         (
-            aprovadas /
-            total
+            aprovadas
+            / total
         ) * 100
         if total
         else 0
