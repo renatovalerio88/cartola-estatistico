@@ -156,6 +156,15 @@ jobs:
 
 
       # ======================================
+      # LABORATÓRIO DE PATRIMÔNIO
+      # ======================================
+
+      - name: Backtest de Patrimônio
+        run: |
+          python scripts/processamento/backtest_patrimonio.py
+
+
+      # ======================================
       # SIMULAÇÃO HISTÓRICA DE TIMES
       # ======================================
 
@@ -285,7 +294,9 @@ jobs:
 
               "data/comparacao-estrategias-adaptativas-v3.json",
 
-              "data/auditoria-comparacao-adaptativas-v3.json"
+              "data/auditoria-comparacao-adaptativas-v3.json",
+
+              "data/backtest-patrimonio.json"
 
           ]
 
