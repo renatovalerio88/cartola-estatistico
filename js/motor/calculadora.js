@@ -76,6 +76,57 @@ const MotorCalculadora = (() => {
   }
 
 
+  function pontuacaoHistoricaValida(
+    valor
+  ) {
+    if (
+      valor === null ||
+      valor === undefined ||
+      valor === ""
+    ) {
+      return false;
+    }
+
+    return Number.isFinite(
+      Number(valor)
+    );
+  }
+
+
+  function obterPontuacaoRegistro(
+    registro
+  ) {
+    if (
+      !registro ||
+      typeof registro !== "object"
+    ) {
+      return null;
+    }
+
+    if (
+      pontuacaoHistoricaValida(
+        registro.pontuacao
+      )
+    ) {
+      return Number(
+        registro.pontuacao
+      );
+    }
+
+    if (
+      pontuacaoHistoricaValida(
+        registro.pontos
+      )
+    ) {
+      return Number(
+        registro.pontos
+      );
+    }
+
+    return null;
+  }
+
+
   function obterHistoricoPontuacoes(
     jogador
   ) {
@@ -89,18 +140,22 @@ const MotorCalculadora = (() => {
       historicoDireto.length
     ) {
       return historicoDireto
-        .map(Number)
-        .filter(Number.isFinite);
+        .filter(
+          pontuacaoHistoricaValida
+        )
+        .map(Number);
     }
 
     return obterHistoricoRegistros(
       jogador
     )
       .map(
-        registro =>
-          Number(registro.pontuacao ?? registro.pontos)
+        obterPontuacaoRegistro
       )
-      .filter(Number.isFinite);
+      .filter(
+        pontuacaoHistoricaValida
+      )
+      .map(Number);
   }
 
 
@@ -1128,38 +1183,38 @@ const MotorCalculadora = (() => {
       "undefined"
     ) {
       const dadosProjecao = {
-          ...jogadorCompleto,
-      
-          score: jogadorCompleto.score,
-      
-          media3:
-              jogadorCompleto.mediaRecente,
-      
-          media5:
-              jogadorCompleto.mediaRecente
+        ...jogadorCompleto,
+
+        score:
+          jogadorCompleto.score,
+
+        media3:
+          jogadorCompleto.mediaRecente,
+
+        media5:
+          jogadorCompleto.mediaRecente
       };
-      
+
       const resultadoProjecao =
-          MotorProjecao.calcular(
-              dadosProjecao
-          );
-      
+        MotorProjecao.calcular(
+          dadosProjecao
+        );
+
       if (
-          resultadoProjecao &&
-          typeof resultadoProjecao === "object"
+        resultadoProjecao &&
+        typeof resultadoProjecao ===
+          "object"
       ) {
-      
-          Object.assign(
-              jogadorCompleto,
-              resultadoProjecao
-          );
-      
+        Object.assign(
+          jogadorCompleto,
+          resultadoProjecao
+        );
+
       } else {
-      
-          jogadorCompleto.projecao =
-              Number(resultadoProjecao) || 0;
-      
+        jogadorCompleto.projecao =
+          Number(resultadoProjecao) || 0;
       }
+
     } else {
       jogadorCompleto.projecao =
         arredondar(
@@ -1172,31 +1227,30 @@ const MotorCalculadora = (() => {
         jogadorCompleto.projecao
       );
 
-     /* PROBABILIDADES */
 
-      if (
-        typeof MotorProbabilidade !==
-        "undefined"
-      ) {
-      
-        const probabilidades =
-          MotorProbabilidade.calcular(
-            historico
-          );
-      
-        jogadorCompleto.chance5 =
-          probabilidades.chance5;
-      
-        jogadorCompleto.chance10 =
-          probabilidades.chance10;
-      
-        jogadorCompleto.chance15 =
-          probabilidades.chance15;
-      
-        jogadorCompleto.chanceNegativar =
-          probabilidades.chanceNegativar;
-      
-      }
+    /* PROBABILIDADES */
+
+    if (
+      typeof MotorProbabilidade !==
+      "undefined"
+    ) {
+      const probabilidades =
+        MotorProbabilidade.calcular(
+          historico
+        );
+
+      jogadorCompleto.chance5 =
+        probabilidades.chance5;
+
+      jogadorCompleto.chance10 =
+        probabilidades.chance10;
+
+      jogadorCompleto.chance15 =
+        probabilidades.chance15;
+
+      jogadorCompleto.chanceNegativar =
+        probabilidades.chanceNegativar;
+    }
 
 
     /* CUSTO-BENEFÍCIO FINAL */
