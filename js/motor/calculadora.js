@@ -974,6 +974,26 @@ const MotorCalculadora = (() => {
         jogador
       );
 
+    /*
+    ======================================================
+    IMPORTANTE
+    ======================================================
+
+    As notas do motor permanecem normalizadas em 0-100
+    dentro de notasCriterios/calculo.notas.
+
+    Os campos exibidos no site como média, mediana,
+    piso e teto devem representar PONTOS REAIS.
+
+    Por isso a mediana real é calculada separadamente
+    e não pode ser substituída pela nota normalizada.
+    */
+
+    const medianaHistoricaReal =
+      mediana(
+        calculo.historicoPontuacoes
+      );
+
     const jogadorCompleto = {
       ...jogador,
 
@@ -982,7 +1002,16 @@ const MotorCalculadora = (() => {
       historicoPontuacoes:
         calculo.historicoPontuacoes,
 
-      ...calculo.notas
+      /*
+      Mantemos as notas auxiliares disponíveis,
+      porém a mediana real será sobrescrita abaixo.
+      */
+      ...calculo.notas,
+
+      mediana:
+        arredondar(
+          medianaHistoricaReal
+        )
     };
 
 
@@ -1004,7 +1033,7 @@ const MotorCalculadora = (() => {
 
     const formaMedia =
       typeof MotorForma !==
-        "undefined"
+      "undefined"
         ? MotorForma.mediaRecente(
             calculo.historicoPontuacoes
           )
@@ -1012,7 +1041,7 @@ const MotorCalculadora = (() => {
 
     const tendenciaForma =
       typeof MotorForma !==
-        "undefined"
+      "undefined"
         ? MotorForma.tendencia(
             calculo.historicoPontuacoes
           )
@@ -1020,7 +1049,7 @@ const MotorCalculadora = (() => {
 
     const fase =
       typeof MotorForma !==
-        "undefined"
+      "undefined"
         ? MotorForma.fase(
             historico
           )
@@ -1044,7 +1073,7 @@ const MotorCalculadora = (() => {
 
     const regularidadeHistorica =
       typeof MotorRegularidade !==
-        "undefined"
+      "undefined"
         ? MotorRegularidade.calcular(
             calculo.historicoPontuacoes
           )
@@ -1082,11 +1111,21 @@ const MotorCalculadora = (() => {
       );
 
 
+    /* MEDIANA REAL EM PONTOS */
+
+    jogadorCompleto.mediana =
+      arredondar(
+        mediana(
+          calculo.historicoPontuacoes
+        )
+      );
+
+
     /* PISO E TETO */
 
     const pisoTeto =
       typeof MotorPisoTeto !==
-        "undefined"
+      "undefined"
         ? MotorPisoTeto.calcular(
             calculo.historicoPontuacoes
           )
@@ -1133,7 +1172,7 @@ const MotorCalculadora = (() => {
 
     jogadorCompleto.risco =
       typeof MotorRisco !==
-        "undefined"
+      "undefined"
         ? MotorRisco.calcular(
             jogadorCompleto
           )
@@ -1148,7 +1187,7 @@ const MotorCalculadora = (() => {
 
     jogadorCompleto.riscoTexto =
       typeof MotorRisco !==
-        "undefined"
+      "undefined"
         ? MotorRisco.nivel(
             jogadorCompleto.risco
           )
@@ -1159,7 +1198,7 @@ const MotorCalculadora = (() => {
 
     jogadorCompleto.confianca =
       typeof MotorConfianca !==
-        "undefined"
+      "undefined"
         ? MotorConfianca.calcular(
             jogadorCompleto
           )
@@ -1203,13 +1242,12 @@ const MotorCalculadora = (() => {
       if (
         resultadoProjecao &&
         typeof resultadoProjecao ===
-          "object"
+        "object"
       ) {
         Object.assign(
           jogadorCompleto,
           resultadoProjecao
         );
-
       } else {
         jogadorCompleto.projecao =
           Number(resultadoProjecao) || 0;
@@ -1274,6 +1312,13 @@ const MotorCalculadora = (() => {
 
     return {
       ...jogadorCompleto,
+
+      /*
+      As notas normalizadas continuam preservadas aqui.
+      Exemplo:
+      notasCriterios.mediana = nota 0-100
+      jogadorCompleto.mediana = pontuação real
+      */
 
       notasCriterios:
         calculo.notas,
