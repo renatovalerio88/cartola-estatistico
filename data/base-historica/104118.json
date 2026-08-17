@@ -212,8 +212,11 @@
       "rodada": 23,
       "preco": 8.88,
       "media": 5.42,
-      "pontos": null,
-      "scouts": {}
+      "pontos": 8.9,
+      "scouts": {
+        "DE": 3,
+        "SG": 1
+      }
     }
   ]
 }

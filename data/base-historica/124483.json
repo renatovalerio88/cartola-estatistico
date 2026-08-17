@@ -1,6 +1,6 @@
 {
   "id": 124483,
-  "nome": "Lucas Gabriel Monzón Lemos",
+  "nome": "Lucas Gabriel Nunes Monzón Lemos",
   "posicao": "ZAG",
   "clube": "BOT",
   "historico": [
@@ -162,8 +162,12 @@
       "rodada": 23,
       "preco": 4,
       "media": 0,
-      "pontos": null,
-      "scouts": {}
+      "pontos": -0.4,
+      "scouts": {
+        "CA": 1,
+        "FC": 2,
+        "FD": 1
+      }
     }
   ]
 }
