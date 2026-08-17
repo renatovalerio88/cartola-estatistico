@@ -1051,16 +1051,16 @@
       "historicoDisponivel": 21,
       "regime": "medio",
       "estrategiaEscolhida": "Equilibrado",
-      "pontuacao": 56.7,
-      "melhorEstrategia": "Agressivo",
-      "pontuacaoOraculo": 64.3,
-      "perdaOraculo": 7.6,
+      "pontuacao": 57.45,
+      "melhorEstrategia": "Conservador",
+      "pontuacaoOraculo": 66.23,
+      "perdaOraculo": 8.78,
       "acertouMelhorEstrategia": false,
       "semVazamentoFuturo": true,
       "pontuacoesEstrategias": {
-        "Conservador": 37.5,
-        "Equilibrado": 56.7,
-        "Agressivo": 64.3
+        "Conservador": 66.23,
+        "Equilibrado": 57.45,
+        "Agressivo": 55.95
       },
       "scores": {
         "Conservador": {
@@ -1105,47 +1105,47 @@
   "resumo": {
     "rodadas": 22,
     "adaptativoV3": {
-      "media": 55.12,
-      "total": 1212.65,
+      "media": 55.15,
+      "total": 1213.4,
       "mediana": 55.63,
-      "desvio": 12.77,
+      "desvio": 12.78,
       "acertos": 4,
       "taxaAcerto": 18.18
     },
     "estrategiasFixas": {
       "Conservador": {
-        "media": 56.32,
-        "total": 1239.1,
-        "mediana": 56.32,
-        "desvio": 14.14,
-        "vitorias": 9
+        "media": 57.63,
+        "total": 1267.83,
+        "mediana": 58.47,
+        "desvio": 13.66,
+        "vitorias": 10
       },
       "Equilibrado": {
-        "media": 57.58,
-        "total": 1266.79,
+        "media": 57.62,
+        "total": 1267.54,
         "mediana": 55.64,
         "desvio": 16.7,
         "vitorias": 8
       },
       "Agressivo": {
-        "media": 55.1,
-        "total": 1212.15,
+        "media": 54.72,
+        "total": 1203.8,
         "mediana": 54.77,
-        "desvio": 13.69,
-        "vitorias": 5
+        "desvio": 13.55,
+        "vitorias": 4
       }
     },
     "melhorEstrategiaFixa": {
-      "estrategia": "Equilibrado",
-      "media": 57.58
+      "estrategia": "Conservador",
+      "media": 57.63
     },
     "comparacaoMelhorFixa": {
-      "ganhoPontosRodada": -2.46,
-      "ganhoPercentual": -4.27
+      "ganhoPontosRodada": -2.48,
+      "ganhoPercentual": -4.3
     },
     "oraculo": {
-      "media": 63.9,
-      "eficienciaV3": 86.26
+      "media": 63.99,
+      "eficienciaV3": 86.19
     },
     "escolhas": {
       "Conservador": 14,
@@ -1166,7 +1166,7 @@
     "quantidadeZeros": 0,
     "quantidadeNaoZero": 66,
     "percentualZeros": 0.0,
-    "mediaAbsoluta": 56.33,
+    "mediaAbsoluta": 56.65,
     "baseValida": true
   },
   "auditoria": {

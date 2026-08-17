@@ -21,30 +21,30 @@
   "resumo": {
     "rodadas": 22,
     "adaptativo": {
-      "total": 1239.9,
-      "media": 56.36,
-      "mediana": 56.21,
+      "total": 1240.65,
+      "media": 56.39,
+      "mediana": 56.32,
       "acertosMelhorEstrategia": 7,
       "taxaAcertoMelhorEstrategia": 31.82
     },
-    "melhorEstrategiaFixa": "Equilibrado",
+    "melhorEstrategiaFixa": "Conservador",
     "melhorFixa": {
       "rodadas": 22,
-      "total": 1266.79,
-      "media": 57.58,
-      "mediana": 55.64,
-      "vitoriasRodada": 8,
-      "taxaVitoriasPercentual": 36.36
+      "total": 1267.83,
+      "media": 57.63,
+      "mediana": 58.47,
+      "vitoriasRodada": 10,
+      "taxaVitoriasPercentual": 45.45
     },
     "comparacaoAdaptativoVsMelhorFixa": {
-      "ganhoMedia": -1.22,
-      "ganhoTotal": -26.89,
-      "ganhoPercentual": -2.12
+      "ganhoMedia": -1.24,
+      "ganhoTotal": -27.18,
+      "ganhoPercentual": -2.15
     },
     "oraculo": {
-      "total": 1405.85,
-      "media": 63.9,
-      "eficienciaAdaptativoPercentual": 88.2
+      "total": 1407.78,
+      "media": 63.99,
+      "eficienciaAdaptativoPercentual": 88.13
     },
     "escolhasAdaptativo": {
       "Conservador": 12,
@@ -55,27 +55,27 @@
   "estrategiasFixas": {
     "Conservador": {
       "rodadas": 22,
-      "total": 1239.1,
-      "media": 56.32,
-      "mediana": 56.32,
-      "vitoriasRodada": 9,
-      "taxaVitoriasPercentual": 40.91
+      "total": 1267.83,
+      "media": 57.63,
+      "mediana": 58.47,
+      "vitoriasRodada": 10,
+      "taxaVitoriasPercentual": 45.45
     },
     "Equilibrado": {
       "rodadas": 22,
-      "total": 1266.79,
-      "media": 57.58,
+      "total": 1267.54,
+      "media": 57.62,
       "mediana": 55.64,
       "vitoriasRodada": 8,
       "taxaVitoriasPercentual": 36.36
     },
     "Agressivo": {
       "rodadas": 22,
-      "total": 1212.15,
-      "media": 55.1,
+      "total": 1203.8,
+      "media": 54.72,
       "mediana": 54.77,
-      "vitoriasRodada": 6,
-      "taxaVitoriasPercentual": 27.27
+      "vitoriasRodada": 5,
+      "taxaVitoriasPercentual": 22.73
     }
   },
   "rodadas": [
@@ -612,10 +612,10 @@
         "Equilibrado": 84.481,
         "Agressivo": 5.466
       },
-      "pontosAdaptativo": 56.7,
-      "melhorEstrategiaReal": "Agressivo",
-      "pontosMelhorEstrategia": 64.3,
-      "perdaParaOraculo": 7.6,
+      "pontosAdaptativo": 57.45,
+      "melhorEstrategiaReal": "Conservador",
+      "pontosMelhorEstrategia": 66.23,
+      "perdaParaOraculo": 8.78,
       "acertouMelhorEstrategia": false
     }
   ],

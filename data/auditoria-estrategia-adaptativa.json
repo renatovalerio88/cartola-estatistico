@@ -8,13 +8,13 @@
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "melhorEstrategiaFixa": "Equilibrado",
-    "mediaAdaptativo": 55.37,
-    "mediaMelhorFixa": 57.58,
-    "ganhoAdaptativoVsMelhorFixa": -2.21,
-    "ganhoPercentualAdaptativoVsMelhorFixa": -3.84,
-    "mediaOraculo": 63.9,
-    "eficienciaVsOraculoPercentual": 86.65
+    "melhorEstrategiaFixa": "Conservador",
+    "mediaAdaptativo": 56.67,
+    "mediaMelhorFixa": 57.63,
+    "ganhoAdaptativoVsMelhorFixa": -0.96,
+    "ganhoPercentualAdaptativoVsMelhorFixa": -1.66,
+    "mediaOraculo": 63.99,
+    "eficienciaVsOraculoPercentual": 88.57
   },
   "testes": [
     {
@@ -145,10 +145,10 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1218.12,
-        "mediaCalculada": 55.37,
-        "medianaCalculada": 55.28,
-        "acertosCalculados": 7
+        "totalCalculado": 1246.85,
+        "mediaCalculada": 56.67,
+        "medianaCalculada": 56.32,
+        "acertosCalculados": 8
       }
     },
     {
@@ -156,8 +156,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": 31.82,
-        "informada": 31.82
+        "calculada": 36.36,
+        "informada": 36.36
       }
     },
     {
@@ -188,8 +188,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": "Equilibrado",
-        "informada": "Equilibrado"
+        "calculada": "Conservador",
+        "informada": "Conservador"
       }
     },
     {
@@ -197,9 +197,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "ganhoMediaCalculado": -2.21,
-        "ganhoTotalCalculado": -48.67,
-        "ganhoPercentualCalculado": -3.84
+        "ganhoMediaCalculado": -0.96,
+        "ganhoTotalCalculado": -20.98,
+        "ganhoPercentualCalculado": -1.66
       }
     },
     {
@@ -207,9 +207,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1405.85,
-        "mediaCalculada": 63.9,
-        "eficienciaCalculada": 86.65
+        "totalCalculado": 1407.78,
+        "mediaCalculada": 63.99,
+        "eficienciaCalculada": 88.57
       }
     },
     {

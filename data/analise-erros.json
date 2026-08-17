@@ -1,49 +1,49 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 6283,
-  "erroMedio": 2.9,
+  "totalJogadores": 6476,
+  "erroMedio": 2.91,
   "porPosicao": {
     "MEI": {
-      "quantidade": 2017,
-      "erroMedio": 2.58
+      "quantidade": 2085,
+      "erroMedio": 2.59
     },
     "LAT": {
-      "quantidade": 957,
+      "quantidade": 987,
       "erroMedio": 3.34
     },
     "ATA": {
-      "quantidade": 1651,
-      "erroMedio": 3.03
+      "quantidade": 1704,
+      "erroMedio": 3.04
     },
     "GOL": {
-      "quantidade": 390,
-      "erroMedio": 3.49
+      "quantidade": 403,
+      "erroMedio": 3.48
     },
     "ZAG": {
-      "quantidade": 898,
-      "erroMedio": 2.88
+      "quantidade": 927,
+      "erroMedio": 2.89
     },
     "TEC": {
       "quantidade": 370,
-      "erroMedio": 2.42
+      "erroMedio": 2.37
     }
   },
   "porPreco": {
     "15+": {
-      "quantidade": 69,
+      "quantidade": 72,
       "erroMedio": 5.66
     },
     "5-10": {
-      "quantidade": 3635,
+      "quantidade": 3745,
       "erroMedio": 3.11
     },
     "10-15": {
-      "quantidade": 757,
-      "erroMedio": 4.14
+      "quantidade": 774,
+      "erroMedio": 4.12
     },
     "0-5": {
-      "quantidade": 1822,
-      "erroMedio": 1.88
+      "quantidade": 1885,
+      "erroMedio": 1.91
     }
   },
   "maioresErros": [
@@ -64,11 +64,27 @@
       "erro": 25.46
     },
     {
+      "nome": "Giovanni Augusto Oliveira Cardoso",
+      "posicao": "MEI",
+      "rodada": 23,
+      "projecao": 1.44,
+      "real": 23.2,
+      "erro": 21.76
+    },
+    {
       "nome": "Arthur Mendonça Cabral",
       "posicao": "ATA",
       "rodada": 16,
       "projecao": 4.37,
       "real": 26,
+      "erro": 21.63
+    },
+    {
+      "nome": "Jorge Andrés Carrascal Guardo",
+      "posicao": "MEI",
+      "rodada": 23,
+      "projecao": 3.27,
+      "real": 24.9,
       "erro": 21.63
     },
     {
@@ -190,26 +206,10 @@
       "projecao": -0.9,
       "real": 16,
       "erro": 16.9
-    },
-    {
-      "nome": "André Luiz Santos Dias",
-      "posicao": "MEI",
-      "rodada": 18,
-      "projecao": 1.59,
-      "real": 18.4,
-      "erro": 16.81
-    },
-    {
-      "nome": "Gabriel Armando de Abreu",
-      "posicao": "ZAG",
-      "rodada": 3,
-      "projecao": -0.1,
-      "real": 16.6,
-      "erro": 16.7
     }
   ],
   "tendenciaErro": {
-    "superestimou": 2859,
-    "subestimou": 3352
+    "superestimou": 2921,
+    "subestimou": 3482
   }
 }

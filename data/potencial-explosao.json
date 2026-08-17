@@ -2,6 +2,45 @@
   "modelo": "potencial_explosao_v3",
   "jogadores": [
     {
+      "id": 94583,
+      "nome": "Pedro Guilherme Abreu dos Santos",
+      "posicao": "ATA",
+      "notaExplosao": 71.36,
+      "perfilExplosao": "Explosao_Comprovada_EmQueda",
+      "explosoes": 5,
+      "taxaExplosao": 21.74,
+      "teto": 20.6,
+      "tendencia": -6.37,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "5 explosões históricas",
+        "taxa 21.74%",
+        "teto 20.6",
+        "momento em queda",
+        "Explosao_Comprovada_EmQueda"
+      ]
+    },
+    {
+      "id": 88963,
+      "nome": "José Leonardo Nunes Alves Sousa Jardim",
+      "posicao": "TEC",
+      "notaExplosao": 69.25,
+      "perfilExplosao": "Explosao_Comprovada_EmQueda",
+      "explosoes": 5,
+      "taxaExplosao": 21.74,
+      "teto": 11.64,
+      "tendencia": -0.77,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "5 explosões históricas",
+        "taxa 21.74%",
+        "momento em queda",
+        "Explosao_Comprovada_EmQueda"
+      ]
+    },
+    {
       "id": 110426,
       "nome": "Alexandro Ezequiel Bernabei",
       "posicao": "LAT",
@@ -22,23 +61,43 @@
       ]
     },
     {
-      "id": 94583,
-      "nome": "Pedro Guilherme Abreu dos Santos",
+      "id": 98909,
+      "nome": "Tomás Esteban Cuello",
       "posicao": "ATA",
-      "notaExplosao": 66.14,
-      "perfilExplosao": "Explosao_Comprovada_EmQueda",
-      "explosoes": 4,
-      "taxaExplosao": 17.39,
-      "teto": 20.6,
-      "tendencia": -13.1,
+      "notaExplosao": 66.96,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 20.5,
+      "tendencia": 5.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "4 explosões históricas",
-        "taxa 17.39%",
-        "teto 20.6",
-        "momento em queda",
-        "Explosao_Comprovada_EmQueda"
+        "2 explosões históricas",
+        "taxa 8.7%",
+        "teto 20.5",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 105436,
+      "nome": "Jorge Andrés Carrascal Guardo",
+      "posicao": "MEI",
+      "notaExplosao": 62.14,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 24.9,
+      "tendencia": 14.37,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 24.9",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -57,6 +116,26 @@
         "2 explosões históricas",
         "taxa 8.7%",
         "teto 18",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 68938,
+      "nome": "Giovanni Augusto Oliveira Cardoso",
+      "posicao": "MEI",
+      "notaExplosao": 58.21,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 23.2,
+      "tendencia": 4.43,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 23.2",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -82,25 +161,6 @@
       ]
     },
     {
-      "id": 88963,
-      "nome": "José Leonardo Nunes Alves Sousa Jardim",
-      "posicao": "TEC",
-      "notaExplosao": 57.73,
-      "perfilExplosao": "Explosao_Comprovada_EmQueda",
-      "explosoes": 4,
-      "taxaExplosao": 17.39,
-      "teto": 11.48,
-      "tendencia": -4.65,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "4 explosões históricas",
-        "taxa 17.39%",
-        "momento em queda",
-        "Explosao_Comprovada_EmQueda"
-      ]
-    },
-    {
       "id": 143193,
       "nome": "Kevin Stiven Viveros Rodallega",
       "posicao": "ATA",
@@ -118,6 +178,26 @@
         "teto 21.1",
         "momento em queda",
         "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 101727,
+      "nome": "Matheus França Silva",
+      "posicao": "LAT",
+      "notaExplosao": 56.3,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 18.5,
+      "tendencia": 6.63,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 18.5",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -161,6 +241,26 @@
       ]
     },
     {
+      "id": 83528,
+      "nome": "Leonardo Pereira",
+      "posicao": "ZAG",
+      "notaExplosao": 54.66,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 17.4,
+      "tendencia": 0.83,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "2 explosões históricas",
+        "taxa 8.7%",
+        "teto 17.4",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
       "id": 93988,
       "nome": "Breno Henrique Vasconcelos Lopes",
       "posicao": "ATA",
@@ -176,6 +276,26 @@
         "1 explosões históricas",
         "taxa 4.35%",
         "teto 21",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 107231,
+      "nome": "Danilo dos Santos de Oliveira",
+      "posicao": "MEI",
+      "notaExplosao": 54.15,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 19.9,
+      "tendencia": 3.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 19.9",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -201,35 +321,15 @@
       ]
     },
     {
-      "id": 83528,
-      "nome": "Leonardo Pereira",
-      "posicao": "ZAG",
-      "notaExplosao": 53.86,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 2,
-      "taxaExplosao": 8.7,
-      "teto": 17.4,
-      "tendencia": 0.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "2 explosões históricas",
-        "taxa 8.7%",
-        "teto 17.4",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
       "id": 105563,
       "nome": "Carlos Vinícius Alves Morais",
       "posicao": "ATA",
-      "notaExplosao": 53.44,
+      "notaExplosao": 53.76,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
       "teto": 24.1,
-      "tendencia": 0.8,
+      "tendencia": 1.0,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -241,63 +341,63 @@
       ]
     },
     {
-      "id": 91101,
-      "nome": "Ronaldo de Oliveira Strada",
-      "posicao": "GOL",
-      "notaExplosao": 52.92,
-      "perfilExplosao": "Explosao_Em_Evolucao",
+      "id": 92171,
+      "nome": "Arthur Mendonça Cabral",
+      "posicao": "ATA",
+      "notaExplosao": 52.76,
+      "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 16.7,
-      "tendencia": 6.07,
+      "teto": 26,
+      "tendencia": -0.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
-        "teto 16.7",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
+        "teto 26",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
-      "id": 107231,
-      "nome": "Danilo dos Santos de Oliveira",
-      "posicao": "MEI",
-      "notaExplosao": 52.28,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 19.9,
-      "tendencia": 1.97,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 19.9",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 101727,
-      "nome": "Matheus França Silva",
+      "id": 105531,
+      "nome": "Matheus Lima Beltrão Oliveira Valin",
       "posicao": "LAT",
-      "notaExplosao": 52.16,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 18.5,
-      "tendencia": 3.67,
+      "notaExplosao": 52.46,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 19,
+      "tendencia": -1.77,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 18.5",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
+        "2 explosões históricas",
+        "taxa 8.7%",
+        "teto 19",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 63007,
+      "nome": "Neymar da Silva Santos Júnior",
+      "posicao": "MEI",
+      "notaExplosao": 51.89,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 22.8,
+      "tendencia": -4.8,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "2 explosões históricas",
+        "taxa 8.7%",
+        "teto 22.8",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
@@ -310,6 +410,25 @@
       "taxaExplosao": 4.35,
       "teto": 12.7,
       "tendencia": 6.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 97460,
+      "nome": "João Victor Carroll Santana - Caroll",
+      "posicao": "ZAG",
+      "notaExplosao": 51.7,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 12.5,
+      "tendencia": 6.47,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -340,61 +459,60 @@
       ]
     },
     {
-      "id": 92171,
-      "nome": "Arthur Mendonça Cabral",
-      "posicao": "ATA",
-      "notaExplosao": 50.9,
-      "perfilExplosao": "Explosao_Ocasional",
+      "id": 91101,
+      "nome": "Ronaldo de Oliveira Strada",
+      "posicao": "GOL",
+      "notaExplosao": 51.32,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 26,
-      "tendencia": -1.5,
+      "teto": 16.7,
+      "tendencia": 5.07,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
-        "teto 26",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 105531,
-      "nome": "Matheus Lima Beltrão Oliveira Valin",
-      "posicao": "LAT",
-      "notaExplosao": 50.22,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "taxaExplosao": 8.7,
-      "teto": 19,
-      "tendencia": -3.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "2 explosões históricas",
-        "taxa 8.7%",
-        "teto 19",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "teto 16.7",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
       "id": 111831,
       "nome": "Matheus Martins Silva dos Santos",
       "posicao": "ATA",
-      "notaExplosao": 50.12,
-      "perfilExplosao": "Explosao_Ocasional",
+      "notaExplosao": 50.82,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
       "teto": 21.6,
-      "tendencia": -0.33,
+      "tendencia": 0.1,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
         "teto 21.6",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 72605,
+      "nome": "Vitor Hugo Franchescoli de Souza",
+      "posicao": "ZAG",
+      "notaExplosao": 50.31,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 14.5,
+      "tendencia": -0.8,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "2 explosões históricas",
+        "taxa 8.7%",
         "momento em queda",
         "Explosao_Ocasional"
       ]
@@ -420,23 +538,42 @@
       ]
     },
     {
-      "id": 63007,
-      "nome": "Neymar da Silva Santos Júnior",
-      "posicao": "MEI",
-      "notaExplosao": 49.57,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "taxaExplosao": 8.7,
-      "teto": 22.8,
-      "tendencia": -7.6,
+      "id": 101574,
+      "nome": "Hugo de Souza Nogueira",
+      "posicao": "GOL",
+      "notaExplosao": 49.67,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 15.9,
+      "tendencia": 4.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "2 explosões históricas",
-        "taxa 8.7%",
-        "teto 22.8",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 15.9",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 84847,
+      "nome": "Luan Peres Petroni",
+      "posicao": "ZAG",
+      "notaExplosao": 49.55,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 13.5,
+      "tendencia": 4.53,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -498,26 +635,6 @@
       ]
     },
     {
-      "id": 101574,
-      "nome": "Hugo de Souza Nogueira",
-      "posicao": "GOL",
-      "notaExplosao": 47.96,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 15.9,
-      "tendencia": 3.27,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 15.9",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
       "id": 105647,
       "nome": "Maurício Magalhães Prado",
       "posicao": "MEI",
@@ -538,25 +655,6 @@
       ]
     },
     {
-      "id": 97460,
-      "nome": "João Victor Carroll Santana - Caroll",
-      "posicao": "ZAG",
-      "notaExplosao": 47.83,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 12.5,
-      "tendencia": 3.83,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
       "id": 78117,
       "nome": "Everaldo Stum",
       "posicao": "ATA",
@@ -574,6 +672,26 @@
         "teto 18.8",
         "momento em queda",
         "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 102975,
+      "nome": "Gonzalo Daniel Escobar",
+      "posicao": "LAT",
+      "notaExplosao": 47.73,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 18.4,
+      "tendencia": 0.93,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 18.4",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -697,23 +815,23 @@
       ]
     },
     {
-      "id": 98909,
-      "nome": "Tomás Esteban Cuello",
-      "posicao": "ATA",
-      "notaExplosao": 46.67,
-      "perfilExplosao": "Explosao_Ocasional",
+      "id": 130048,
+      "nome": "Erick Carlos Noriega Loret de Mola",
+      "posicao": "ZAG",
+      "notaExplosao": 46.55,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 19.4,
-      "tendencia": -1.67,
+      "teto": 15.7,
+      "tendencia": 1.83,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
-        "teto 19.4",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "teto 15.7",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -759,12 +877,12 @@
       "id": 71631,
       "nome": "Weverton Pereira da Silva",
       "posicao": "GOL",
-      "notaExplosao": 45.67,
+      "notaExplosao": 45.46,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
       "teto": 15.9,
-      "tendencia": 1.83,
+      "tendencia": 1.7,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -776,21 +894,20 @@
       ]
     },
     {
-      "id": 130048,
-      "nome": "Erick Carlos Noriega Loret de Mola",
+      "id": 105300,
+      "nome": "Nahuel Adolfo Ferraresi Hernández",
       "posicao": "ZAG",
-      "notaExplosao": 45.64,
+      "notaExplosao": 44.6,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 15.7,
-      "tendencia": 1.27,
+      "teto": 12.1,
+      "tendencia": 1.97,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
-        "teto 15.7",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -836,6 +953,26 @@
       ]
     },
     {
+      "id": 98873,
+      "nome": "Samuel Dias Lino",
+      "posicao": "ATA",
+      "notaExplosao": 44.23,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 26,
+      "tendencia": -5.67,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 26",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
       "id": 72951,
       "nome": "Gabriel Iván Mercado",
       "posicao": "ZAG",
@@ -875,21 +1012,21 @@
       ]
     },
     {
-      "id": 98873,
-      "nome": "Samuel Dias Lino",
-      "posicao": "ATA",
-      "notaExplosao": 43.3,
+      "id": 72294,
+      "nome": "Everson Felipe Marques Pires",
+      "posicao": "GOL",
+      "notaExplosao": 43.38,
       "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 26,
-      "tendencia": -9.63,
+      "explosoes": 2,
+      "taxaExplosao": 8.7,
+      "teto": 15.9,
+      "tendencia": -5.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 26",
+        "2 explosões históricas",
+        "taxa 8.7%",
+        "teto 15.9",
         "momento em queda",
         "Explosao_Ocasional"
       ]
@@ -915,6 +1052,25 @@
       ]
     },
     {
+      "id": 102340,
+      "nome": "Carlos de Menezes Júnior",
+      "posicao": "ZAG",
+      "notaExplosao": 43.06,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 13,
+      "tendencia": 0.67,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
       "id": 97867,
       "nome": "Leonardo Rech Ortiz",
       "posicao": "ZAG",
@@ -934,6 +1090,45 @@
       ]
     },
     {
+      "id": 104118,
+      "nome": "Lucas Willians Assis Arcanjo",
+      "posicao": "GOL",
+      "notaExplosao": 42.8,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 12.8,
+      "tendencia": 1.2,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 69208,
+      "nome": "Gabriel Armando de Abreu",
+      "posicao": "ZAG",
+      "notaExplosao": 42.72,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 16.6,
+      "tendencia": -0.9,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 16.6",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
       "id": 110708,
       "nome": "Pedro Felipe de Faria Rangel",
       "posicao": "GOL",
@@ -948,26 +1143,6 @@
       "motivos": [
         "2 explosões históricas",
         "taxa 8.7%",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 69208,
-      "nome": "Gabriel Armando de Abreu",
-      "posicao": "ZAG",
-      "notaExplosao": 41.92,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 16.6,
-      "tendencia": -1.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 16.6",
         "momento em queda",
         "Explosao_Ocasional"
       ]
@@ -1001,65 +1176,6 @@
       "taxaExplosao": 4.35,
       "teto": 14.7,
       "tendencia": -0.73,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 102975,
-      "nome": "Gonzalo Daniel Escobar",
-      "posicao": "LAT",
-      "notaExplosao": 41.76,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 18.4,
-      "tendencia": -2.8,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "teto 18.4",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 72294,
-      "nome": "Everson Felipe Marques Pires",
-      "posicao": "GOL",
-      "notaExplosao": 41.43,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "taxaExplosao": 8.7,
-      "teto": 15.9,
-      "tendencia": -7.13,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "2 explosões históricas",
-        "taxa 8.7%",
-        "teto 15.9",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 105300,
-      "nome": "Nahuel Adolfo Ferraresi Hernández",
-      "posicao": "ZAG",
-      "notaExplosao": 41.03,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 12.1,
-      "tendencia": -0.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1127,15 +1243,15 @@
       ]
     },
     {
-      "id": 94514,
-      "nome": "Lucas da Cruz Oliveira",
-      "posicao": "ZAG",
-      "notaExplosao": 39.96,
+      "id": 99552,
+      "nome": "Agustín Daniel Rossi",
+      "posicao": "GOL",
+      "notaExplosao": 40.45,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 12,
-      "tendencia": -0.9,
+      "teto": 12.8,
+      "tendencia": -0.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1146,15 +1262,15 @@
       ]
     },
     {
-      "id": 102340,
-      "nome": "Carlos de Menezes Júnior",
+      "id": 94514,
+      "nome": "Lucas da Cruz Oliveira",
       "posicao": "ZAG",
-      "notaExplosao": 39.76,
+      "notaExplosao": 39.96,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 13,
-      "tendencia": -1.4,
+      "teto": 12,
+      "tendencia": -0.9,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1185,6 +1301,26 @@
       ]
     },
     {
+      "id": 130209,
+      "nome": "Carlos Renê de Sousa Ferreira - Souza",
+      "posicao": "ATA",
+      "notaExplosao": 39.38,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 18.1,
+      "tendencia": -5.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "teto 18.1",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
       "id": 110506,
       "nome": "Abel Fernando Moreira Ferreira",
       "posicao": "TEC",
@@ -1204,23 +1340,22 @@
       ]
     },
     {
-      "id": 130209,
-      "nome": "Carlos Renê de Sousa Ferreira - Souza",
-      "posicao": "ATA",
-      "notaExplosao": 38.56,
-      "perfilExplosao": "Explosao_Ocasional",
+      "id": 42411,
+      "nome": "Alexi Stival",
+      "posicao": "TEC",
+      "notaExplosao": 38.59,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "taxaExplosao": 4.35,
-      "teto": 18.1,
-      "tendencia": -6.5,
+      "teto": 10.31,
+      "tendencia": 0.13,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "1 explosões históricas",
         "taxa 4.35%",
-        "teto 18.1",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -1239,44 +1374,6 @@
         "1 explosões históricas",
         "taxa 4.35%",
         "teto 18.4",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 99552,
-      "nome": "Agustín Daniel Rossi",
-      "posicao": "GOL",
-      "notaExplosao": 38.21,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 12.8,
-      "tendencia": -1.67,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 104118,
-      "nome": "Lucas Willians Assis Arcanjo",
-      "posicao": "GOL",
-      "notaExplosao": 38.05,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 12.8,
-      "tendencia": -1.77,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
         "momento em queda",
         "Explosao_Ocasional"
       ]
@@ -1302,20 +1399,58 @@
       ]
     },
     {
-      "id": 105436,
-      "nome": "Jorge Andrés Carrascal Guardo",
+      "id": 72391,
+      "nome": "Fernando Diniz Silva",
+      "posicao": "TEC",
+      "notaExplosao": 37.06,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 10.48,
+      "tendencia": -0.89,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 92747,
+      "nome": "Eduardo Rodrigo Domínguez",
+      "posicao": "TEC",
+      "notaExplosao": 36.56,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "taxaExplosao": 4.35,
+      "teto": 12.13,
+      "tendencia": -1.82,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "1 explosões históricas",
+        "taxa 4.35%",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 104783,
+      "nome": "Nicolás Brian Acevedo Tabárez",
       "posicao": "MEI",
-      "notaExplosao": 37.33,
+      "notaExplosao": 36.38,
       "perfilExplosao": "Promessa",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 15.2,
-      "tendencia": 6.07,
+      "teto": 15.4,
+      "tendencia": 5.4,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "teto 15.2",
+        "teto 15.4",
         "momento positivo",
         "Promessa"
       ]
@@ -1399,6 +1534,25 @@
       ]
     },
     {
+      "id": 117632,
+      "nome": "Rodrigo Garro",
+      "posicao": "MEI",
+      "notaExplosao": 35.11,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 15.6,
+      "tendencia": 4.53,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 15.6",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 146430,
       "nome": "Gabriel Pereira Justino",
       "posicao": "ZAG",
@@ -1408,25 +1562,6 @@
       "taxaExplosao": 4.35,
       "teto": 14.2,
       "tendencia": -4.83,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 72605,
-      "nome": "Vitor Hugo Franchescoli de Souza",
-      "posicao": "ZAG",
-      "notaExplosao": 34.84,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 14.5,
-      "tendencia": -5.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1456,22 +1591,58 @@
       ]
     },
     {
-      "id": 72391,
-      "nome": "Fernando Diniz Silva",
-      "posicao": "TEC",
-      "notaExplosao": 34.08,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 10.48,
-      "tendencia": -2.75,
+      "id": 106302,
+      "nome": "Ángelo Smit Preciado Quiñónez",
+      "posicao": "LAT",
+      "notaExplosao": 34.42,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 13.6,
+      "tendencia": 6.1,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "taxa 0.0%",
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
+      "id": 94930,
+      "nome": "Lucas Tolentino Coelho de Lima",
+      "posicao": "MEI",
+      "notaExplosao": 33.52,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 15.7,
+      "tendencia": 3.5,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 15.7",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 122121,
+      "nome": "Túlio Eduardo Silva de Oliveira",
+      "posicao": "ATA",
+      "notaExplosao": 33.39,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.4,
+      "tendencia": 5.47,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Promessa"
       ]
     },
     {
@@ -1489,6 +1660,24 @@
       "motivos": [
         "taxa 0.0%",
         "teto 16",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 92811,
+      "nome": "Bruno Rafael Rodrigues do Nascimento",
+      "posicao": "ATA",
+      "notaExplosao": 33.21,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11.6,
+      "tendencia": 4.53,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -1512,33 +1701,69 @@
       ]
     },
     {
-      "id": 106302,
-      "nome": "Ángelo Smit Preciado Quiñónez",
-      "posicao": "LAT",
-      "notaExplosao": 32.77,
-      "perfilExplosao": "Promessa",
+      "id": 109096,
+      "nome": "Gonzalo Jordy Plata Jiménez",
+      "posicao": "ATA",
+      "notaExplosao": 32.99,
+      "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 13.6,
-      "tendencia": 5.07,
+      "teto": 14.6,
+      "tendencia": 3.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
-        "Promessa"
+        "Baixo_Risco"
       ]
     },
     {
       "id": 91908,
       "nome": "Cristian David Pavón",
       "posicao": "ATA",
-      "notaExplosao": 32.49,
+      "notaExplosao": 32.97,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
       "teto": 14.4,
-      "tendencia": 3.03,
+      "tendencia": 3.33,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 98517,
+      "nome": "Jean Lucas de Souza Oliveira",
+      "posicao": "MEI",
+      "notaExplosao": 32.7,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.2,
+      "tendencia": 4.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 98225,
+      "nome": "Pedro Raul Garay da Silva",
+      "posicao": "ATA",
+      "notaExplosao": 32.45,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.5,
+      "tendencia": 4.47,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1566,22 +1791,77 @@
       ]
     },
     {
-      "id": 92747,
-      "nome": "Eduardo Rodrigo Domínguez",
-      "posicao": "TEC",
-      "notaExplosao": 32.18,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "taxaExplosao": 4.35,
-      "teto": 12.13,
-      "tendencia": -4.56,
+      "id": 87863,
+      "nome": "Giorgian Daniel de Arrascaeta Benedetti",
+      "posicao": "MEI",
+      "notaExplosao": 32.43,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 13,
+      "tendencia": 3.83,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
-        "1 explosões históricas",
-        "taxa 4.35%",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 94034,
+      "nome": "Kevin Federik Ramírez Dutra",
+      "posicao": "ATA",
+      "notaExplosao": 32.16,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.2,
+      "tendencia": 4.4,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 82627,
+      "nome": "Luiz de Araújo Guimarães Neto",
+      "posicao": "ATA",
+      "notaExplosao": 32.07,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 17.6,
+      "tendencia": 1.57,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 17.6",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 83257,
+      "nome": "Gabriel Barbosa Almeida",
+      "posicao": "ATA",
+      "notaExplosao": 31.49,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 16.2,
+      "tendencia": 1.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 16.2",
+        "momento positivo",
+        "Baixo_Risco"
       ]
     },
     {
@@ -1594,6 +1874,24 @@
       "taxaExplosao": 0.0,
       "teto": 11.5,
       "tendencia": 3.43,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 132412,
+      "nome": "Román Agustín Gómez",
+      "posicao": "LAT",
+      "notaExplosao": 31.31,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.5,
+      "tendencia": 4.57,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1715,24 +2013,6 @@
       ]
     },
     {
-      "id": 98225,
-      "nome": "Pedro Raul Garay da Silva",
-      "posicao": "ATA",
-      "notaExplosao": 30.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.5,
-      "tendencia": 3.5,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 116447,
       "nome": "Hércules Pereira do Nascimento",
       "posicao": "MEI",
@@ -1788,6 +2068,24 @@
       ]
     },
     {
+      "id": 78850,
+      "nome": "Reinaldo Manoel da Silva",
+      "posicao": "LAT",
+      "notaExplosao": 30.47,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8,
+      "tendencia": 5.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
       "id": 124424,
       "nome": "Rodrigo Castillo",
       "posicao": "ATA",
@@ -1806,15 +2104,15 @@
       ]
     },
     {
-      "id": 94034,
-      "nome": "Kevin Federik Ramírez Dutra",
-      "posicao": "ATA",
-      "notaExplosao": 30.29,
+      "id": 95466,
+      "nome": "Igor Vinícius de Souza",
+      "posicao": "LAT",
+      "notaExplosao": 30.35,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 10.2,
-      "tendencia": 3.23,
+      "teto": 14.2,
+      "tendencia": 3.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1860,19 +2158,38 @@
       ]
     },
     {
-      "id": 115986,
-      "nome": "Denilson Alves Borges",
-      "posicao": "MEI",
-      "notaExplosao": 30.05,
+      "id": 114208,
+      "nome": "Alejo Véliz",
+      "posicao": "ATA",
+      "notaExplosao": 29.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14.1,
-      "tendencia": 1.93,
+      "teto": 9.6,
+      "tendencia": 3.2,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 102256,
+      "nome": "Benjamín Rollheiser",
+      "posicao": "MEI",
+      "notaExplosao": 29.87,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 15.4,
+      "tendencia": 1.33,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 15.4",
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -1887,24 +2204,6 @@
       "taxaExplosao": 0.0,
       "teto": 9.5,
       "tendencia": 3.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 87863,
-      "nome": "Giorgian Daniel de Arrascaeta Benedetti",
-      "posicao": "MEI",
-      "notaExplosao": 29.77,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 13,
-      "tendencia": 2.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -1932,25 +2231,6 @@
       ]
     },
     {
-      "id": 117632,
-      "nome": "Rodrigo Garro",
-      "posicao": "MEI",
-      "notaExplosao": 29.67,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 15.6,
-      "tendencia": 1.13,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 15.6",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 87258,
       "nome": "Yeferson Julio Soteldo Martínez",
       "posicao": "ATA",
@@ -1960,24 +2240,6 @@
       "taxaExplosao": 0.0,
       "teto": 7.3,
       "tendencia": 3.93,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 122121,
-      "nome": "Túlio Eduardo Silva de Oliveira",
-      "posicao": "ATA",
-      "notaExplosao": 29.65,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.4,
-      "tendencia": 3.13,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2023,6 +2285,24 @@
       ]
     },
     {
+      "id": 86686,
+      "nome": "Danilo das Neves Pinheiro",
+      "posicao": "MEI",
+      "notaExplosao": 29.49,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.7,
+      "tendencia": 3.23,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 68685,
       "nome": "Alan Patrick Lourenço",
       "posicao": "MEI",
@@ -2041,15 +2321,15 @@
       ]
     },
     {
-      "id": 132412,
-      "nome": "Román Agustín Gómez",
-      "posicao": "LAT",
-      "notaExplosao": 29.01,
+      "id": 115986,
+      "nome": "Denilson Alves Borges",
+      "posicao": "MEI",
+      "notaExplosao": 29.15,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 12.5,
-      "tendencia": 3.13,
+      "teto": 14.1,
+      "tendencia": 1.37,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2077,20 +2357,37 @@
       ]
     },
     {
-      "id": 94930,
-      "nome": "Lucas Tolentino Coelho de Lima",
-      "posicao": "MEI",
-      "notaExplosao": 28.72,
+      "id": 105047,
+      "nome": "João Marcelo Messias Ferreira",
+      "posicao": "ZAG",
+      "notaExplosao": 28.89,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 15.7,
-      "tendencia": 0.5,
+      "teto": 10.4,
+      "tendencia": 4.47,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "teto 15.7",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 87747,
+      "nome": "Yago Felipe da Costa Rocha",
+      "posicao": "MEI",
+      "notaExplosao": 28.81,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.1,
+      "tendencia": 3.03,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -2132,6 +2429,24 @@
       ]
     },
     {
+      "id": 90703,
+      "nome": "Matheus Martins Fogaça de Paulo",
+      "posicao": "MEI",
+      "notaExplosao": 28.39,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11.5,
+      "tendencia": 1.87,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 94067,
       "nome": "Matheus Fernandes Siqueira",
       "posicao": "MEI",
@@ -2150,15 +2465,33 @@
       ]
     },
     {
-      "id": 86686,
-      "nome": "Danilo das Neves Pinheiro",
-      "posicao": "MEI",
-      "notaExplosao": 28.27,
+      "id": 132264,
+      "nome": "Keny Alexander Arroyo Alvarado",
+      "posicao": "ATA",
+      "notaExplosao": 28.32,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.7,
-      "tendencia": 2.47,
+      "teto": 11.8,
+      "tendencia": 1.4,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 142004,
+      "nome": "Francis Amuzu",
+      "posicao": "ATA",
+      "notaExplosao": 28.3,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11.5,
+      "tendencia": 1.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2204,6 +2537,24 @@
       ]
     },
     {
+      "id": 123795,
+      "nome": "Luciano Rodríguez Rosales",
+      "posicao": "ATA",
+      "notaExplosao": 28.07,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8,
+      "tendencia": 2.67,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 109127,
       "nome": "Tiago Cóser",
       "posicao": "ZAG",
@@ -2218,6 +2569,25 @@
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 109987,
+      "nome": "Cristian Nicolás Medina",
+      "posicao": "MEI",
+      "notaExplosao": 28.01,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 17,
+      "tendencia": -0.43,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 17",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -2240,15 +2610,15 @@
       ]
     },
     {
-      "id": 98517,
-      "nome": "Jean Lucas de Souza Oliveira",
-      "posicao": "MEI",
-      "notaExplosao": 27.74,
+      "id": 84816,
+      "nome": "Guillermo Varela Olivera",
+      "posicao": "LAT",
+      "notaExplosao": 27.77,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 12.2,
-      "tendencia": 1.2,
+      "teto": 9.9,
+      "tendencia": 3.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2368,24 +2738,6 @@
       ]
     },
     {
-      "id": 105047,
-      "nome": "João Marcelo Messias Ferreira",
-      "posicao": "ZAG",
-      "notaExplosao": 27.45,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.4,
-      "tendencia": 3.57,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 87225,
       "nome": "Pedro Henrique Ribeiro Gonçalves",
       "posicao": "ZAG",
@@ -2440,6 +2792,24 @@
       ]
     },
     {
+      "id": 97810,
+      "nome": "Erick de Arruda Serafim",
+      "posicao": "ATA",
+      "notaExplosao": 27.19,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 14,
+      "tendencia": -0.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 84735,
       "nome": "Jorge Luiz Frello Filho",
       "posicao": "MEI",
@@ -2475,6 +2845,60 @@
       ]
     },
     {
+      "id": 68708,
+      "nome": "Carlos Eduardo de Oliveira Alves",
+      "posicao": "MEI",
+      "notaExplosao": 27.07,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.5,
+      "tendencia": 2.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 93716,
+      "nome": "Paulo Henrique de Oliveira Alves",
+      "posicao": "LAT",
+      "notaExplosao": 27.01,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.7,
+      "tendencia": 2.93,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 103388,
+      "nome": "Leandro Emmanuel Martínez",
+      "posicao": "MEI",
+      "notaExplosao": 27.0,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 6.7,
+      "tendencia": 2.8,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 112886,
       "nome": "Lucas Henrique Barbosa",
       "posicao": "ATA",
@@ -2489,25 +2913,6 @@
       "motivos": [
         "taxa 0.0%",
         "teto 15.2",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 102256,
-      "nome": "Benjamín Rollheiser",
-      "posicao": "MEI",
-      "notaExplosao": 26.94,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 15.4,
-      "tendencia": -0.5,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 15.4",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -2638,15 +3043,33 @@
       ]
     },
     {
-      "id": 84816,
-      "nome": "Guillermo Varela Olivera",
-      "posicao": "LAT",
-      "notaExplosao": 26.71,
+      "id": 105089,
+      "nome": "Mateus Cardoso Lemos Martins",
+      "posicao": "ATA",
+      "notaExplosao": 26.74,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.9,
-      "tendencia": 2.67,
+      "teto": 11.3,
+      "tendencia": 0.6,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101597,
+      "nome": "Ramon Ramos Lima",
+      "posicao": "LAT",
+      "notaExplosao": 26.67,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 14.2,
+      "tendencia": 1.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2674,61 +3097,6 @@
       ]
     },
     {
-      "id": 78850,
-      "nome": "Reinaldo Manoel da Silva",
-      "posicao": "LAT",
-      "notaExplosao": 26.63,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8,
-      "tendencia": 3.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 132264,
-      "nome": "Keny Alexander Arroyo Alvarado",
-      "posicao": "ATA",
-      "notaExplosao": 26.56,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.8,
-      "tendencia": 0.3,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 82627,
-      "nome": "Luiz de Araújo Guimarães Neto",
-      "posicao": "ATA",
-      "notaExplosao": 26.52,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 17.6,
-      "tendencia": -1.9,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 17.6",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 37656,
       "nome": "Fábio Deivson Lopes Maciel",
       "posicao": "GOL",
@@ -2738,43 +3106,6 @@
       "taxaExplosao": 0.0,
       "teto": 10.2,
       "tendencia": 3.67,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 83257,
-      "nome": "Gabriel Barbosa Almeida",
-      "posicao": "ATA",
-      "notaExplosao": 26.37,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 16.2,
-      "tendencia": -1.47,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 16.2",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 93716,
-      "nome": "Paulo Henrique de Oliveira Alves",
-      "posicao": "LAT",
-      "notaExplosao": 26.32,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.7,
-      "tendencia": 2.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2872,6 +3203,24 @@
       ]
     },
     {
+      "id": 101405,
+      "nome": "Wallisson Luiz Alves Máximo",
+      "posicao": "MEI",
+      "notaExplosao": 26.13,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.2,
+      "tendencia": 2.07,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 130843,
       "nome": "Arthur dos Santos Barbosa Dias",
       "posicao": "ZAG",
@@ -2890,6 +3239,24 @@
       ]
     },
     {
+      "id": 105584,
+      "nome": "Lucas Piton Crivellaro",
+      "posicao": "LAT",
+      "notaExplosao": 26.07,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 14,
+      "tendencia": 0.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 132580,
       "nome": "Vinicius Mendonça Pereira",
       "posicao": "ATA",
@@ -2899,6 +3266,24 @@
       "taxaExplosao": 0.0,
       "teto": 6.1,
       "tendencia": 2.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101002,
+      "nome": "José Antonio dos Santos Júnior",
+      "posicao": "ATA",
+      "notaExplosao": 26.03,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.4,
+      "tendencia": 0.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -2944,6 +3329,42 @@
       ]
     },
     {
+      "id": 42500,
+      "nome": "Fagner Conserva Lemos",
+      "posicao": "LAT",
+      "notaExplosao": 25.87,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 13.4,
+      "tendencia": 0.83,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 77777,
+      "nome": "João Felipe Schmidt Urbano",
+      "posicao": "MEI",
+      "notaExplosao": 25.84,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 4.5,
+      "tendencia": 2.9,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 111690,
       "nome": "Matheus Cunha Queiroz",
       "posicao": "GOL",
@@ -2979,6 +3400,24 @@
       ]
     },
     {
+      "id": 92696,
+      "nome": "Renato Kayzer de Souza",
+      "posicao": "ATA",
+      "notaExplosao": 25.81,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11.7,
+      "tendencia": -0.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 112863,
       "nome": "Ramón Sosa Acosta",
       "posicao": "ATA",
@@ -2997,21 +3436,38 @@
       ]
     },
     {
-      "id": 109987,
-      "nome": "Cristian Nicolás Medina",
-      "posicao": "MEI",
-      "notaExplosao": 25.77,
+      "id": 97095,
+      "nome": "Carlos Eccehomo Cuesta Figueroa",
+      "posicao": "ZAG",
+      "notaExplosao": 25.72,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 17,
-      "tendencia": -1.83,
+      "teto": 8.5,
+      "tendencia": 3.2,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "teto 17",
-        "momento em queda",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 143153,
+      "nome": "Diego Tarzia",
+      "posicao": "ATA",
+      "notaExplosao": 25.71,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11,
+      "tendencia": 0.07,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3052,15 +3508,15 @@
       ]
     },
     {
-      "id": 106593,
-      "nome": "Lucas Hernán Villalba",
-      "posicao": "ZAG",
-      "notaExplosao": 25.59,
+      "id": 93478,
+      "nome": "Wanderson Maciel Sousa Campos",
+      "posicao": "ATA",
+      "notaExplosao": 25.66,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.2,
-      "tendencia": 3.23,
+      "teto": 9.5,
+      "tendencia": 0.6,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3088,6 +3544,24 @@
       ]
     },
     {
+      "id": 71123,
+      "nome": "Thiago Henrique Mendes Ribeiro",
+      "posicao": "MEI",
+      "notaExplosao": 25.52,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.9,
+      "tendencia": 0.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 113397,
       "nome": "Cristian Gonzalo Olivera Ibarra - Kike",
       "posicao": "ATA",
@@ -3106,20 +3580,39 @@
       ]
     },
     {
-      "id": 142004,
-      "nome": "Francis Amuzu",
-      "posicao": "ATA",
-      "notaExplosao": 25.37,
+      "id": 98022,
+      "nome": "Erick Luis Conrado de Carvalho",
+      "posicao": "MEI",
+      "notaExplosao": 25.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 11.5,
-      "tendencia": -0.33,
+      "teto": 15.5,
+      "tendencia": -1.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "teto 15.5",
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106593,
+      "nome": "Lucas Hernán Villalba",
+      "posicao": "ZAG",
+      "notaExplosao": 25.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.2,
+      "tendencia": 3.1,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3127,12 +3620,12 @@
       "id": 130307,
       "nome": "Wallace Gomes da Silva Santos",
       "posicao": "ZAG",
-      "notaExplosao": 25.36,
+      "notaExplosao": 25.31,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
       "teto": 8.7,
-      "tendencia": 2.9,
+      "tendencia": 2.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3214,20 +3707,20 @@
       ]
     },
     {
-      "id": 109096,
-      "nome": "Gonzalo Jordy Plata Jiménez",
-      "posicao": "ATA",
-      "notaExplosao": 25.08,
+      "id": 94154,
+      "nome": "Maycon de Andrade Barberan",
+      "posicao": "MEI",
+      "notaExplosao": 25.19,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14.4,
-      "tendencia": -1.6,
+      "teto": 10.7,
+      "tendencia": 0.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3268,15 +3761,15 @@
       ]
     },
     {
-      "id": 97095,
-      "nome": "Carlos Eccehomo Cuesta Figueroa",
-      "posicao": "ZAG",
-      "notaExplosao": 24.81,
+      "id": 81720,
+      "nome": "Jesse Ellis Lingard",
+      "posicao": "ATA",
+      "notaExplosao": 24.89,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.5,
-      "tendencia": 2.63,
+      "teto": 5.2,
+      "tendencia": 1.73,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3286,15 +3779,15 @@
       ]
     },
     {
-      "id": 105584,
-      "nome": "Lucas Piton Crivellaro",
-      "posicao": "LAT",
-      "notaExplosao": 24.79,
+      "id": 108162,
+      "nome": "Juan Ignacio Martín Nardoni",
+      "posicao": "MEI",
+      "notaExplosao": 24.83,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14,
-      "tendencia": -0.07,
+      "teto": 11,
+      "tendencia": -0.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3304,20 +3797,20 @@
       ]
     },
     {
-      "id": 97810,
-      "nome": "Erick de Arruda Serafim",
-      "posicao": "ATA",
-      "notaExplosao": 24.79,
+      "id": 95541,
+      "nome": "Gustavo Cazonatti",
+      "posicao": "MEI",
+      "notaExplosao": 24.81,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14,
-      "tendencia": -1.63,
+      "teto": 5.1,
+      "tendencia": 2.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3331,6 +3824,24 @@
       "taxaExplosao": 0.0,
       "teto": 13,
       "tendencia": 0.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 96652,
+      "nome": "Allan Rodrigues de Souza",
+      "posicao": "MEI",
+      "notaExplosao": 24.78,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 5.4,
+      "tendencia": 1.9,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3357,24 +3868,6 @@
       ]
     },
     {
-      "id": 108162,
-      "nome": "Juan Ignacio Martín Nardoni",
-      "posicao": "MEI",
-      "notaExplosao": 24.73,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11,
-      "tendencia": -0.23,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 90588,
       "nome": "Caique de Jesus Gonçalves",
       "posicao": "MEI",
@@ -3389,25 +3882,6 @@
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 98022,
-      "nome": "Erick Luis Conrado de Carvalho",
-      "posicao": "MEI",
-      "notaExplosao": 24.71,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 15.5,
-      "tendencia": -1.93,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 15.5",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3447,19 +3921,20 @@
       ]
     },
     {
-      "id": 101002,
-      "nome": "José Antonio dos Santos Júnior",
-      "posicao": "ATA",
-      "notaExplosao": 24.64,
+      "id": 117910,
+      "nome": "Breno de Souza Bidon",
+      "posicao": "MEI",
+      "notaExplosao": 24.65,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.4,
-      "tendencia": 0.0,
+      "teto": 14.7,
+      "tendencia": -1.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3553,33 +4028,15 @@
       ]
     },
     {
-      "id": 81720,
-      "nome": "Jesse Ellis Lingard",
-      "posicao": "ATA",
-      "notaExplosao": 24.57,
+      "id": 147088,
+      "nome": "Mamady Cissé",
+      "posicao": "MEI",
+      "notaExplosao": 24.55,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 5.2,
-      "tendencia": 1.53,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 92811,
-      "nome": "Bruno Rafael Rodrigues do Nascimento",
-      "posicao": "ATA",
-      "notaExplosao": 24.57,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.5,
-      "tendencia": 0.67,
+      "teto": 9.2,
+      "tendencia": 0.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3606,15 +4063,15 @@
       ]
     },
     {
-      "id": 103388,
-      "nome": "Leandro Emmanuel Martínez",
-      "posicao": "MEI",
+      "id": 78248,
+      "nome": "Gustavo Henrique Vernes",
+      "posicao": "ZAG",
       "notaExplosao": 24.49,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 6.7,
-      "tendencia": 1.23,
+      "teto": 10,
+      "tendencia": 1.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3660,15 +4117,33 @@
       ]
     },
     {
-      "id": 104783,
-      "nome": "Nicolás Brian Acevedo Tabárez",
+      "id": 101352,
+      "nome": "Bruno Matias dos Santos",
       "posicao": "MEI",
       "notaExplosao": 24.45,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.2,
-      "tendencia": 0.27,
+      "teto": 4.5,
+      "tendencia": 2.03,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 110598,
+      "nome": "Marino Hinestroza Angulo",
+      "posicao": "ATA",
+      "notaExplosao": 24.45,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.3,
+      "tendencia": 0.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3696,56 +4171,38 @@
       ]
     },
     {
-      "id": 68708,
-      "nome": "Carlos Eduardo de Oliveira Alves",
-      "posicao": "MEI",
+      "id": 103445,
+      "nome": "Kaio Jorge Pinto Ramos",
+      "posicao": "ATA",
       "notaExplosao": 24.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.5,
-      "tendencia": 0.5,
+      "teto": 13,
+      "tendencia": -1.5,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 68952,
+      "nome": "Mário Sérgio Santos Costa",
+      "posicao": "ATA",
+      "notaExplosao": 24.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.9,
+      "tendencia": 1.9,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 94154,
-      "nome": "Maycon de Andrade Barberan",
-      "posicao": "MEI",
-      "notaExplosao": 24.39,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.7,
-      "tendencia": -0.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 92696,
-      "nome": "Renato Kayzer de Souza",
-      "posicao": "ATA",
-      "notaExplosao": 24.37,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.7,
-      "tendencia": -1.03,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3768,33 +4225,33 @@
       ]
     },
     {
-      "id": 95541,
-      "nome": "Gustavo Cazonatti",
-      "posicao": "MEI",
-      "notaExplosao": 24.28,
+      "id": 96591,
+      "nome": "Renan Augusto Lodi dos Santos",
+      "posicao": "LAT",
+      "notaExplosao": 24.31,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 5.1,
-      "tendencia": 1.7,
+      "teto": 14,
+      "tendencia": -0.37,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 101405,
-      "nome": "Wallisson Luiz Alves Máximo",
-      "posicao": "MEI",
-      "notaExplosao": 24.26,
+      "id": 101995,
+      "nome": "Emanuel Fermín Brítez",
+      "posicao": "ZAG",
+      "notaExplosao": 24.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 7.2,
-      "tendencia": 0.9,
+      "teto": 5.7,
+      "tendencia": 3.3,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3875,33 +4332,15 @@
       ]
     },
     {
-      "id": 101597,
-      "nome": "Ramon Ramos Lima",
-      "posicao": "LAT",
-      "notaExplosao": 24.06,
+      "id": 109401,
+      "nome": "Erick da Costa Farias",
+      "posicao": "ATA",
+      "notaExplosao": 24.05,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14.2,
-      "tendencia": -0.6,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101352,
-      "nome": "Bruno Matias dos Santos",
-      "posicao": "MEI",
-      "notaExplosao": 24.03,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 4.5,
-      "tendencia": 1.77,
+      "teto": 7.7,
+      "tendencia": 0.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -3929,20 +4368,38 @@
       ]
     },
     {
-      "id": 95466,
-      "nome": "Igor Vinícius de Souza",
-      "posicao": "LAT",
-      "notaExplosao": 24.01,
+      "id": 89256,
+      "nome": "Gerson Santos da Silva",
+      "posicao": "MEI",
+      "notaExplosao": 24.0,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14.2,
-      "tendencia": -0.63,
+      "teto": 12.1,
+      "tendencia": -1.1,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 39656,
+      "nome": "Alan Steven Franco Palma",
+      "posicao": "MEI",
+      "notaExplosao": 23.99,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.9,
+      "tendencia": 0.47,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3965,42 +4422,6 @@
       ]
     },
     {
-      "id": 105089,
-      "nome": "Mateus Cardoso Lemos Martins",
-      "posicao": "ATA",
-      "notaExplosao": 23.91,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.3,
-      "tendencia": -1.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 110598,
-      "nome": "Marino Hinestroza Angulo",
-      "posicao": "ATA",
-      "notaExplosao": 23.91,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.3,
-      "tendencia": 0.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 87999,
       "nome": "Gustavo Henrique Furtado Scarpa",
       "posicao": "MEI",
@@ -4018,38 +4439,20 @@
       ]
     },
     {
-      "id": 39656,
-      "nome": "Alan Steven Franco Palma",
-      "posicao": "MEI",
-      "notaExplosao": 23.88,
+      "id": 101908,
+      "nome": "Willian Estefani Machado",
+      "posicao": "ZAG",
+      "notaExplosao": 23.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 7.9,
-      "tendencia": 0.4,
+      "teto": 10.4,
+      "tendencia": 1.3,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 103445,
-      "nome": "Kaio Jorge Pinto Ramos",
-      "posicao": "ATA",
-      "notaExplosao": 23.87,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 13,
-      "tendencia": -1.83,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -4063,6 +4466,42 @@
       "taxaExplosao": 0.0,
       "teto": 8.2,
       "tendencia": -0.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 117330,
+      "nome": "Robert Renan Alves Barbosa",
+      "posicao": "ZAG",
+      "notaExplosao": 23.7,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11,
+      "tendencia": 1.0,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 97321,
+      "nome": "Alesson dos Santos Batista",
+      "posicao": "ATA",
+      "notaExplosao": 23.69,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.7,
+      "tendencia": -1.83,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4109,15 +4548,15 @@
       ]
     },
     {
-      "id": 147088,
-      "nome": "Mamady Cissé",
-      "posicao": "MEI",
+      "id": 104204,
+      "nome": "Edson Guilherme Mendes dos Santos",
+      "posicao": "ATA",
       "notaExplosao": 23.65,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.2,
-      "tendencia": -0.23,
+      "teto": 8.2,
+      "tendencia": -0.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4140,6 +4579,24 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 114801,
+      "nome": "Danilo Pereira da Silva",
+      "posicao": "ATA",
+      "notaExplosao": 23.61,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.5,
+      "tendencia": 1.57,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4179,6 +4636,42 @@
       ]
     },
     {
+      "id": 91130,
+      "nome": "Fernando José Marques Maciel",
+      "posicao": "ATA",
+      "notaExplosao": 23.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 4.8,
+      "tendencia": 1.07,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 95362,
+      "nome": "Zander Mateo Casierra Cabezas",
+      "posicao": "ATA",
+      "notaExplosao": 23.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.1,
+      "tendencia": -1.67,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 126182,
       "nome": "Paulo Lucas Santos de Paula",
       "posicao": "MEI",
@@ -4188,6 +4681,43 @@
       "taxaExplosao": 0.0,
       "teto": 8.2,
       "tendencia": 0.1,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 116706,
+      "nome": "Carlos Andrés Gómez Hinestroza",
+      "posicao": "ATA",
+      "notaExplosao": 23.54,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 16.9,
+      "tendencia": -3.5,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 16.9",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 117404,
+      "nome": "Otávio Eleodoro Rezende Costa",
+      "posicao": "GOL",
+      "notaExplosao": 23.52,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.1,
+      "tendencia": 2.6,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4233,6 +4763,24 @@
       ]
     },
     {
+      "id": 90370,
+      "nome": "Matheus Pereira da Silva",
+      "posicao": "MEI",
+      "notaExplosao": 23.43,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 4.3,
+      "tendencia": 1.47,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 104330,
       "nome": "Eduardo Marcelo Rodrigues Nunes",
       "posicao": "MEI",
@@ -4250,24 +4798,6 @@
       ]
     },
     {
-      "id": 68952,
-      "nome": "Mário Sérgio Santos Costa",
-      "posicao": "ATA",
-      "notaExplosao": 23.42,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 3.9,
-      "tendencia": 1.3,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 90608,
       "nome": "Francisco da Costa Aragão",
       "posicao": "ATA",
@@ -4277,6 +4807,24 @@
       "taxaExplosao": 0.0,
       "teto": 7.1,
       "tendencia": 0.1,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 142764,
+      "nome": "Franco Andrés Rossi Donazar",
+      "posicao": "ATA",
+      "notaExplosao": 23.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.3,
+      "tendencia": 1.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4303,6 +4851,24 @@
       ]
     },
     {
+      "id": 90061,
+      "nome": "Bruno de Jesus Pacheco",
+      "posicao": "LAT",
+      "notaExplosao": 23.33,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12,
+      "tendencia": -0.23,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 125926,
       "nome": "Bruno Zapelli",
       "posicao": "MEI",
@@ -4312,6 +4878,24 @@
       "taxaExplosao": 0.0,
       "teto": 6.7,
       "tendencia": 0.5,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 124912,
+      "nome": "Jonathan de Jesus Alves",
+      "posicao": "ZAG",
+      "notaExplosao": 23.29,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.6,
+      "tendencia": 1.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4339,15 +4923,15 @@
       ]
     },
     {
-      "id": 77777,
-      "nome": "João Felipe Schmidt Urbano",
-      "posicao": "MEI",
-      "notaExplosao": 23.26,
+      "id": 100848,
+      "nome": "Luan Cândido de Almeida",
+      "posicao": "LAT",
+      "notaExplosao": 23.28,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 4.2,
-      "tendencia": 1.4,
+      "teto": 9.7,
+      "tendencia": 0.6,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4374,24 +4958,6 @@
       ]
     },
     {
-      "id": 117910,
-      "nome": "Breno de Souza Bidon",
-      "posicao": "MEI",
-      "notaExplosao": 23.21,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 14.7,
-      "tendencia": -2.57,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 123689,
       "nome": "Pedro Milans Carámbula",
       "posicao": "LAT",
@@ -4401,6 +4967,24 @@
       "taxaExplosao": 0.0,
       "teto": 7,
       "tendencia": 1.57,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 122781,
+      "nome": "Gustavo Rubén Caballero González",
+      "posicao": "ATA",
+      "notaExplosao": 23.19,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.7,
+      "tendencia": 1.23,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4464,6 +5048,24 @@
       ]
     },
     {
+      "id": 125488,
+      "nome": "João Pedro de Sousa Rodrigues - Tchoca",
+      "posicao": "ZAG",
+      "notaExplosao": 23.08,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.9,
+      "tendencia": 1.4,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 81005,
       "nome": "André Luis Silva de Aguiar",
       "posicao": "ATA",
@@ -4509,42 +5111,6 @@
       "taxaExplosao": 0.0,
       "teto": 8.7,
       "tendencia": -0.43,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 136955,
-      "nome": "Mateo Naín Sanabria Doracio",
-      "posicao": "ATA",
-      "notaExplosao": 23.03,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.5,
-      "tendencia": -0.67,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97321,
-      "nome": "Alesson dos Santos Batista",
-      "posicao": "ATA",
-      "notaExplosao": 22.99,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 12.7,
-      "tendencia": -2.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4609,15 +5175,52 @@
       ]
     },
     {
-      "id": 96652,
-      "nome": "Allan Rodrigues de Souza",
+      "id": 96610,
+      "nome": "Matheus Fellipe Costa Pereira",
       "posicao": "MEI",
-      "notaExplosao": 22.86,
+      "notaExplosao": 22.91,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 5.4,
-      "tendencia": 0.7,
+      "teto": 15.8,
+      "tendencia": -3.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "teto 15.8",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 84558,
+      "nome": "Lucas Daniel Romero",
+      "posicao": "MEI",
+      "notaExplosao": 22.9,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.4,
+      "tendencia": -1.9,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 141776,
+      "nome": "Gustavo Henrique Pereira",
+      "posicao": "MEI",
+      "notaExplosao": 22.89,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 4.2,
+      "tendencia": 1.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4627,20 +5230,20 @@
       ]
     },
     {
-      "id": 104204,
-      "nome": "Edson Guilherme Mendes dos Santos",
-      "posicao": "ATA",
-      "notaExplosao": 22.85,
+      "id": 116461,
+      "nome": "Jamerson Santos de Jesus",
+      "posicao": "LAT",
+      "notaExplosao": 22.83,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.2,
-      "tendencia": -0.67,
+      "teto": 7.8,
+      "tendencia": 1.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4663,15 +5266,15 @@
       ]
     },
     {
-      "id": 117330,
-      "nome": "Robert Renan Alves Barbosa",
-      "posicao": "ZAG",
-      "notaExplosao": 22.79,
+      "id": 97450,
+      "nome": "Gustavo Henric da Silva",
+      "posicao": "ATA",
+      "notaExplosao": 22.83,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 11,
-      "tendencia": 0.43,
+      "teto": 3.1,
+      "tendencia": 1.23,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4681,20 +5284,56 @@
       ]
     },
     {
-      "id": 71123,
-      "nome": "Thiago Henrique Mendes Ribeiro",
+      "id": 100084,
+      "nome": "Igor Silveira Gomes",
       "posicao": "MEI",
-      "notaExplosao": 22.75,
+      "notaExplosao": 22.81,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 10.9,
-      "tendencia": -1.43,
+      "teto": 9.5,
+      "tendencia": -0.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 136955,
+      "nome": "Mateo Naín Sanabria Doracio",
+      "posicao": "ATA",
+      "notaExplosao": 22.77,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.5,
+      "tendencia": -0.83,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 114323,
+      "nome": "Facundo Colidio",
+      "posicao": "ATA",
+      "notaExplosao": 22.74,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.3,
+      "tendencia": 1.1,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4734,6 +5373,59 @@
       ]
     },
     {
+      "id": 141160,
+      "nome": "José Lucas Gomes da Silva",
+      "posicao": "MEI",
+      "notaExplosao": 22.69,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.9,
+      "tendencia": 1.53,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 151292,
+      "nome": "Felipe de Morais Barbosa Penna dos Santos",
+      "posicao": "MEI",
+      "notaExplosao": 22.68,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.7,
+      "tendencia": 1.6,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 72493,
+      "nome": "Alex Nicolao Telles",
+      "posicao": "LAT",
+      "notaExplosao": 22.68,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.3,
+      "tendencia": 0.0,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 97101,
       "nome": "Gabriel Hernán Rojas",
       "posicao": "LAT",
@@ -4752,15 +5444,33 @@
       ]
     },
     {
-      "id": 90370,
-      "nome": "Matheus Pereira da Silva",
-      "posicao": "MEI",
-      "notaExplosao": 22.63,
+      "id": 99213,
+      "nome": "José Luis Rodríguez Bebanz",
+      "posicao": "LAT",
+      "notaExplosao": 22.65,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 4.3,
-      "tendencia": 0.97,
+      "teto": 13,
+      "tendencia": -1.03,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 123717,
+      "nome": "José Guilherme de Lima Costa",
+      "posicao": "LAT",
+      "notaExplosao": 22.64,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 6.5,
+      "tendencia": 1.4,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4770,15 +5480,33 @@
       ]
     },
     {
-      "id": 91130,
-      "nome": "Fernando José Marques Maciel",
-      "posicao": "ATA",
-      "notaExplosao": 22.57,
+      "id": 105214,
+      "nome": "Santiago Mariano Rodríguez Molina",
+      "posicao": "MEI",
+      "notaExplosao": 22.61,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 4.8,
+      "teto": 5.7,
       "tendencia": 0.43,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 102318,
+      "nome": "Caio Fernando de Oliveira",
+      "posicao": "LAT",
+      "notaExplosao": 22.58,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.8,
+      "tendencia": 0.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4806,20 +5534,20 @@
       ]
     },
     {
-      "id": 89256,
-      "nome": "Gerson Santos da Silva",
-      "posicao": "MEI",
-      "notaExplosao": 22.51,
+      "id": 103967,
+      "nome": "Bruno Santos de Oliveira",
+      "posicao": "ATA",
+      "notaExplosao": 22.5,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 12.1,
-      "tendencia": -2.03,
+      "teto": 2.9,
+      "tendencia": 1.1,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4914,15 +5642,15 @@
       ]
     },
     {
-      "id": 97642,
-      "nome": "Félix Eduardo Torres Caicedo",
-      "posicao": "ZAG",
-      "notaExplosao": 22.42,
+      "id": 145379,
+      "nome": "Kauê Junior Furquim da Silva",
+      "posicao": "ATA",
+      "notaExplosao": 22.43,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 10.2,
-      "tendencia": 0.5,
+      "teto": 2.7,
+      "tendencia": 1.13,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -4932,15 +5660,15 @@
       ]
     },
     {
-      "id": 97450,
-      "nome": "Gustavo Henric da Silva",
-      "posicao": "ATA",
-      "notaExplosao": 22.41,
+      "id": 97642,
+      "nome": "Félix Eduardo Torres Caicedo",
+      "posicao": "ZAG",
+      "notaExplosao": 22.42,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 3.1,
-      "tendencia": 0.97,
+      "teto": 10.2,
+      "tendencia": 0.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5020,38 +5748,38 @@
       ]
     },
     {
-      "id": 42500,
-      "nome": "Fagner Conserva Lemos",
-      "posicao": "LAT",
-      "notaExplosao": 22.3,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 13.4,
-      "tendencia": -1.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 90061,
-      "nome": "Bruno de Jesus Pacheco",
-      "posicao": "LAT",
+      "id": 105990,
+      "nome": "Santiago Martín Ramos Mingo",
+      "posicao": "ZAG",
       "notaExplosao": 22.26,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 12,
-      "tendencia": -0.9,
+      "teto": 7,
+      "tendencia": 1.6,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 87742,
+      "nome": "Antônio Francisco Moura Neto",
+      "posicao": "MEI",
+      "notaExplosao": 22.25,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 5.8,
+      "tendencia": 0.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5065,24 +5793,6 @@
       "taxaExplosao": 0.0,
       "teto": 8.4,
       "tendencia": -1.13,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 109401,
-      "nome": "Erick da Costa Farias",
-      "posicao": "ATA",
-      "notaExplosao": 22.23,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.7,
-      "tendencia": -0.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5146,20 +5856,20 @@
       ]
     },
     {
-      "id": 87742,
-      "nome": "Antônio Francisco Moura Neto",
+      "id": 122660,
+      "nome": "João Wellington Gadelha Melo de Oliveira",
       "posicao": "MEI",
-      "notaExplosao": 22.14,
+      "notaExplosao": 22.13,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 5.8,
-      "tendencia": 0.1,
+      "teto": 8,
+      "tendencia": -0.73,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5173,6 +5883,42 @@
       "taxaExplosao": 0.0,
       "teto": 9.1,
       "tendencia": 0.1,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 77485,
+      "nome": "André Martín Carrillo Díaz",
+      "posicao": "MEI",
+      "notaExplosao": 22.09,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 5,
+      "tendencia": 0.37,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 127273,
+      "nome": "Artur Jorge Torres Gomes Araújo Amorim",
+      "posicao": "TEC",
+      "notaExplosao": 22.05,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.78,
+      "tendencia": 1.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5200,20 +5946,37 @@
       ]
     },
     {
-      "id": 116706,
-      "nome": "Carlos Andrés Gómez Hinestroza",
+      "id": 141595,
+      "nome": "Gabriel Ferreira de Carvalho",
       "posicao": "ATA",
       "notaExplosao": 21.99,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 16.9,
-      "tendencia": -4.47,
+      "teto": 14.5,
+      "tendencia": -3.57,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "teto 16.9",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 116034,
+      "nome": "Victor Hugo Gomes Silva",
+      "posicao": "MEI",
+      "notaExplosao": 21.95,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 13.3,
+      "tendencia": -2.83,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -5254,24 +6017,6 @@
       ]
     },
     {
-      "id": 101908,
-      "nome": "Willian Estefani Machado",
-      "posicao": "ZAG",
-      "notaExplosao": 21.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.4,
-      "tendencia": 0.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 130906,
       "nome": "Diogo Riquelme Rivas do Nascimento",
       "posicao": "MEI",
@@ -5290,15 +6035,15 @@
       ]
     },
     {
-      "id": 95362,
-      "nome": "Zander Mateo Casierra Cabezas",
+      "id": 91607,
+      "nome": "Ronielson da Silva Barbosa",
       "posicao": "ATA",
-      "notaExplosao": 21.89,
+      "notaExplosao": 21.87,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 12.1,
-      "tendencia": -2.73,
+      "teto": 5.5,
+      "tendencia": -0.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5378,24 +6123,6 @@
       ]
     },
     {
-      "id": 141160,
-      "nome": "José Lucas Gomes da Silva",
-      "posicao": "MEI",
-      "notaExplosao": 21.79,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 2.9,
-      "tendencia": 0.97,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 98617,
       "nome": "Guillermo Alfonso Maripán Loaysa",
       "posicao": "ZAG",
@@ -5410,23 +6137,6 @@
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 102318,
-      "nome": "Caio Fernando de Oliveira",
-      "posicao": "LAT",
-      "notaExplosao": 21.78,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.8,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
         "Baixo_Risco"
       ]
     },
@@ -5448,6 +6158,42 @@
       ]
     },
     {
+      "id": 101807,
+      "nome": "Christian Gabriel Oliva Giménez",
+      "posicao": "MEI",
+      "notaExplosao": 21.72,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.5,
+      "tendencia": -0.8,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 107173,
+      "nome": "Michel Daryl Araújo Villar",
+      "posicao": "MEI",
+      "notaExplosao": 21.72,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.7,
+      "tendencia": 1.0,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 97145,
       "nome": "Mathías Adalberto Villasanti Rolón",
       "posicao": "MEI",
@@ -5457,6 +6203,24 @@
       "taxaExplosao": 0.0,
       "teto": 3.4,
       "tendencia": 0.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 133543,
+      "nome": "Guilherme William Silva Inácio",
+      "posicao": "ATA",
+      "notaExplosao": 21.69,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.7,
+      "tendencia": 0.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5535,24 +6299,6 @@
       ]
     },
     {
-      "id": 106323,
-      "nome": "Caio Alexandre Souza e Silva",
-      "posicao": "MEI",
-      "notaExplosao": 21.57,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 4.4,
-      "tendencia": 0.27,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 95799,
       "nome": "Artur Victor Guimarães",
       "posicao": "ATA",
@@ -5590,24 +6336,6 @@
       ]
     },
     {
-      "id": 151292,
-      "nome": "Felipe de Morais Barbosa Penna dos Santos",
-      "posicao": "MEI",
-      "notaExplosao": 21.56,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 2.7,
-      "tendencia": 0.9,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 70360,
       "nome": "Eduardo Colcenti Antunes",
       "posicao": "ATA",
@@ -5626,33 +6354,15 @@
       ]
     },
     {
-      "id": 107173,
-      "nome": "Michel Daryl Araújo Villar",
+      "id": 78478,
+      "nome": "Willian Souza Arão da Silva",
       "posicao": "MEI",
-      "notaExplosao": 21.45,
+      "notaExplosao": 21.53,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 2.7,
-      "tendencia": 0.83,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105214,
-      "nome": "Santiago Mariano Rodríguez Molina",
-      "posicao": "MEI",
-      "notaExplosao": 21.44,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5.7,
-      "tendencia": -0.3,
+      "teto": 9.5,
+      "tendencia": -1.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -5675,25 +6385,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 96610,
-      "nome": "Matheus Fellipe Costa Pereira",
-      "posicao": "MEI",
-      "notaExplosao": 21.42,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 15.8,
-      "tendencia": -4.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "teto 15.8",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -5753,24 +6444,6 @@
       ]
     },
     {
-      "id": 143153,
-      "nome": "Diego Tarzia",
-      "posicao": "ATA",
-      "notaExplosao": 21.33,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11,
-      "tendencia": -2.67,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 84339,
       "nome": "Bruno Ferreira Melo",
       "posicao": "LAT",
@@ -5789,20 +6462,38 @@
       ]
     },
     {
-      "id": 122660,
-      "nome": "João Wellington Gadelha Melo de Oliveira",
-      "posicao": "MEI",
+      "id": 141594,
+      "nome": "Pedro Gabriel Crisostomo Pinheiro",
+      "posicao": "LAT",
       "notaExplosao": 21.27,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8,
-      "tendencia": -1.27,
+      "teto": 6.8,
+      "tendencia": 0.43,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106323,
+      "nome": "Caio Alexandre Souza e Silva",
+      "posicao": "MEI",
+      "notaExplosao": 21.25,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 4.4,
+      "tendencia": 0.07,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5825,20 +6516,38 @@
       ]
     },
     {
-      "id": 72493,
-      "nome": "Alex Nicolao Telles",
-      "posicao": "LAT",
-      "notaExplosao": 21.24,
+      "id": 102255,
+      "nome": "Santiago Leonel Sosa",
+      "posicao": "MEI",
+      "notaExplosao": 21.22,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 10.3,
-      "tendencia": -0.9,
+      "teto": 2.4,
+      "tendencia": 0.8,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 130121,
+      "nome": "João Gabriel e Costa Cesco",
+      "posicao": "ATA",
+      "notaExplosao": 21.22,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.1,
+      "tendencia": 0.6,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5879,6 +6588,24 @@
       ]
     },
     {
+      "id": 106950,
+      "nome": "Fernando Augusto Pereira Bueno Júnior",
+      "posicao": "LAT",
+      "notaExplosao": 21.16,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 5.9,
+      "tendencia": 0.7,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 82775,
       "nome": "Lucas Ramon Batista Silva",
       "posicao": "LAT",
@@ -5897,20 +6624,56 @@
       ]
     },
     {
-      "id": 123717,
-      "nome": "José Guilherme de Lima Costa",
-      "posicao": "LAT",
+      "id": 107256,
+      "nome": "Jose Vitor Silva Neves",
+      "posicao": "MEI",
       "notaExplosao": 21.15,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 6.5,
-      "tendencia": 0.47,
+      "teto": 13.4,
+      "tendencia": -3.37,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 100596,
+      "nome": "Filip Krovinović",
+      "posicao": "MEI",
+      "notaExplosao": 21.11,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.3,
+      "tendencia": 0.77,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 88393,
+      "nome": "Ayrton Lucas Dantas de Medeiros",
+      "posicao": "LAT",
+      "notaExplosao": 21.11,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 12.3,
+      "tendencia": -1.73,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5950,6 +6713,24 @@
       ]
     },
     {
+      "id": 97341,
+      "nome": "Rogério Mücke Ceni",
+      "posicao": "TEC",
+      "notaExplosao": 21.05,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.96,
+      "tendencia": 0.98,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 130620,
       "nome": "Edenílson Santos Nascimento Filho",
       "posicao": "MEI",
@@ -5963,41 +6744,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 141776,
-      "nome": "Gustavo Henrique Pereira",
-      "posicao": "MEI",
-      "notaExplosao": 21.02,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 4.2,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 77485,
-      "nome": "André Martín Carrillo Díaz",
-      "posicao": "MEI",
-      "notaExplosao": 21.02,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5,
-      "tendencia": -0.3,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6055,15 +6801,15 @@
       ]
     },
     {
-      "id": 116034,
-      "nome": "Victor Hugo Gomes Silva",
+      "id": 126471,
+      "nome": "Álvaro Martín Barreal",
       "posicao": "MEI",
       "notaExplosao": 20.99,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 13.3,
-      "tendencia": -3.43,
+      "teto": 12.6,
+      "tendencia": -3.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6086,24 +6832,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101807,
-      "nome": "Christian Gabriel Oliva Giménez",
-      "posicao": "MEI",
-      "notaExplosao": 20.97,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.5,
-      "tendencia": -1.27,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6234,6 +6962,24 @@
       ]
     },
     {
+      "id": 102906,
+      "nome": "Anderson Silva da Paixão",
+      "posicao": "GOL",
+      "notaExplosao": 20.92,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 11.5,
+      "tendencia": -0.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 111829,
       "nome": "Kayky da Silva Chagas",
       "posicao": "ATA",
@@ -6251,6 +6997,24 @@
       ]
     },
     {
+      "id": 128177,
+      "nome": "Pedro Emanuel dos Santos Martins Silva",
+      "posicao": "TEC",
+      "notaExplosao": 20.91,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.3,
+      "tendencia": 1.9,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 87887,
       "nome": "Fabián Cornelio Balbuena González",
       "posicao": "ZAG",
@@ -6264,6 +7028,24 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 103056,
+      "nome": "Gabriel Nascimento Rezende Brazão - Resende",
+      "posicao": "GOL",
+      "notaExplosao": 20.89,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.2,
+      "tendencia": 0.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -6304,23 +7086,6 @@
       ]
     },
     {
-      "id": 125488,
-      "nome": "João Pedro de Sousa Rodrigues - Tchoca",
-      "posicao": "ZAG",
-      "notaExplosao": 20.84,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.9,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 84428,
       "nome": "Fernando Pereira do Nascimento",
       "posicao": "MEI",
@@ -6339,32 +7104,15 @@
       ]
     },
     {
-      "id": 122781,
-      "nome": "Gustavo Rubén Caballero González",
-      "posicao": "ATA",
-      "notaExplosao": 20.8,
+      "id": 111309,
+      "nome": "Gustavo Martins de Souza Santos",
+      "posicao": "ZAG",
+      "notaExplosao": 20.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 3,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 142890,
-      "nome": "Álvaro Montoro",
-      "posicao": "MEI",
-      "notaExplosao": 20.8,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 6.5,
-      "tendencia": -1.0,
+      "teto": 10.2,
+      "tendencia": -0.5,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6374,20 +7122,38 @@
       ]
     },
     {
-      "id": 87008,
-      "nome": "Leonardo César Jardim",
-      "posicao": "GOL",
-      "notaExplosao": 20.8,
+      "id": 95332,
+      "nome": "Márcio Antônio de Sousa Júnior",
+      "posicao": "ATA",
+      "notaExplosao": 20.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.9,
-      "tendencia": 0.6,
+      "teto": 10.5,
+      "tendencia": -2.8,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento positivo",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106708,
+      "nome": "Igor Marques Paciência Cardoso",
+      "posicao": "LAT",
+      "notaExplosao": 20.79,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 14,
+      "tendencia": -2.57,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6410,6 +7176,24 @@
       ]
     },
     {
+      "id": 104027,
+      "nome": "Rafael Silva Guanaes",
+      "posicao": "TEC",
+      "notaExplosao": 20.72,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.2,
+      "tendencia": 1.44,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 111760,
       "nome": "Fábio Silva de Freitas",
       "posicao": "MEI",
@@ -6419,24 +7203,6 @@
       "taxaExplosao": 0.0,
       "teto": 3.9,
       "tendencia": -0.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 84558,
-      "nome": "Lucas Daniel Romero",
-      "posicao": "MEI",
-      "notaExplosao": 20.66,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 12.4,
-      "tendencia": -3.3,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6481,32 +7247,15 @@
       ]
     },
     {
-      "id": 133543,
-      "nome": "Guilherme William Silva Inácio",
+      "id": 110144,
+      "nome": "Claudio Paul Spinelli",
       "posicao": "ATA",
-      "notaExplosao": 20.62,
+      "notaExplosao": 20.61,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 2.7,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 99213,
-      "nome": "José Luis Rodríguez Bebanz",
-      "posicao": "LAT",
-      "notaExplosao": 20.62,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 13,
-      "tendencia": -2.3,
+      "teto": 9.7,
+      "tendencia": -2.63,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6534,24 +7283,6 @@
       ]
     },
     {
-      "id": 117404,
-      "nome": "Otávio Eleodoro Rezende Costa",
-      "posicao": "GOL",
-      "notaExplosao": 20.59,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.1,
-      "tendencia": 0.77,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 151404,
       "nome": "Lucas Emanuel Jales do Nascimento",
       "posicao": "ATA",
@@ -6570,15 +7301,51 @@
       ]
     },
     {
-      "id": 90703,
-      "nome": "Matheus Martins Fogaça de Paulo",
-      "posicao": "MEI",
-      "notaExplosao": 20.57,
+      "id": 87008,
+      "nome": "Leonardo César Jardim",
+      "posicao": "GOL",
+      "notaExplosao": 20.59,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.7,
-      "tendencia": -1.97,
+      "teto": 8.9,
+      "tendencia": 0.47,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106822,
+      "nome": "Rodrigo Nestor Bertalia",
+      "posicao": "MEI",
+      "notaExplosao": 20.56,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 14.1,
+      "tendencia": -4.0,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 100842,
+      "nome": "Ruan Tressoldi Netto",
+      "posicao": "ZAG",
+      "notaExplosao": 20.55,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.2,
+      "tendencia": -0.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6618,6 +7385,42 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 100898,
+      "nome": "Victor Alexander da Silva",
+      "posicao": "LAT",
+      "notaExplosao": 20.49,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.5,
+      "tendencia": -1.07,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104649,
+      "nome": "Heitor Rodrigues da Fonseca",
+      "posicao": "LAT",
+      "notaExplosao": 20.47,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 3.5,
+      "tendencia": 1.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -6676,24 +7479,6 @@
       ]
     },
     {
-      "id": 93478,
-      "nome": "Wanderson Maciel Sousa Campos",
-      "posicao": "ATA",
-      "notaExplosao": 20.41,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.2,
-      "tendencia": -2.57,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 141611,
       "nome": "Maik Gomes Viegas",
       "posicao": "LAT",
@@ -6707,24 +7492,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 145379,
-      "nome": "Kauê Junior Furquim da Silva",
-      "posicao": "ATA",
-      "notaExplosao": 20.39,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.7,
-      "tendencia": 0.23,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -6746,33 +7513,15 @@
       ]
     },
     {
-      "id": 114801,
-      "nome": "Danilo Pereira da Silva",
-      "posicao": "ATA",
-      "notaExplosao": 20.36,
+      "id": 92180,
+      "nome": "Jair Ventura",
+      "posicao": "TEC",
+      "notaExplosao": 20.35,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 1.2,
-      "tendencia": 0.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 142764,
-      "nome": "Franco Andrés Rossi Donazar",
-      "posicao": "ATA",
-      "notaExplosao": 20.36,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.2,
-      "tendencia": 0.4,
+      "teto": 9.46,
+      "tendencia": 0.74,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6800,15 +7549,15 @@
       ]
     },
     {
-      "id": 106708,
-      "nome": "Igor Marques Paciência Cardoso",
-      "posicao": "LAT",
-      "notaExplosao": 20.31,
+      "id": 142890,
+      "nome": "Álvaro Montoro",
+      "posicao": "MEI",
+      "notaExplosao": 20.32,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14,
-      "tendencia": -2.87,
+      "teto": 6.5,
+      "tendencia": -1.3,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -6922,6 +7671,24 @@
       ]
     },
     {
+      "id": 144976,
+      "nome": "Domingos Paulo Andrade",
+      "posicao": "MEI",
+      "notaExplosao": 20.2,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 1.5,
+      "tendencia": 0.5,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 147560,
       "nome": "Caio Suassuna Gonçalves Ferreira",
       "posicao": "ATA",
@@ -6957,24 +7724,6 @@
       ]
     },
     {
-      "id": 102906,
-      "nome": "Anderson Silva da Paixão",
-      "posicao": "GOL",
-      "notaExplosao": 20.17,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.5,
-      "tendencia": -0.77,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 115479,
       "nome": "Paulo César Pezzolano Suárez",
       "posicao": "TEC",
@@ -6993,42 +7742,6 @@
       ]
     },
     {
-      "id": 124912,
-      "nome": "Jonathan de Jesus Alves",
-      "posicao": "ZAG",
-      "notaExplosao": 20.14,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.6,
-      "tendencia": -0.7,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 111309,
-      "nome": "Gustavo Martins de Souza Santos",
-      "posicao": "ZAG",
-      "notaExplosao": 20.13,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.2,
-      "tendencia": -0.93,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 117403,
       "nome": "Renato Marques de Oliveira Júnior",
       "posicao": "ATA",
@@ -7038,60 +7751,6 @@
       "taxaExplosao": 0.0,
       "teto": 3,
       "tendencia": -0.43,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 91607,
-      "nome": "Ronielson da Silva Barbosa",
-      "posicao": "ATA",
-      "notaExplosao": 20.06,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5.5,
-      "tendencia": -1.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 103967,
-      "nome": "Bruno Santos de Oliveira",
-      "posicao": "ATA",
-      "notaExplosao": 20.05,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.4,
-      "tendencia": 0.13,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 100084,
-      "nome": "Igor Silveira Gomes",
-      "posicao": "MEI",
-      "notaExplosao": 20.04,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.5,
-      "tendencia": -2.6,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -7187,24 +7846,6 @@
       ]
     },
     {
-      "id": 105990,
-      "nome": "Santiago Martín Ramos Mingo",
-      "posicao": "ZAG",
-      "notaExplosao": 19.97,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7,
-      "tendencia": 0.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 114405,
       "nome": "Luis Fernando Sinisterra Lucumí",
       "posicao": "ATA",
@@ -7223,20 +7864,20 @@
       ]
     },
     {
-      "id": 141595,
-      "nome": "Gabriel Ferreira de Carvalho",
-      "posicao": "ATA",
+      "id": 145563,
+      "nome": "João Paulo Ananias Bento",
+      "posicao": "ZAG",
       "notaExplosao": 19.97,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 14.5,
-      "tendencia": -4.83,
+      "teto": 4.7,
+      "tendencia": 1.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -7259,15 +7900,33 @@
       ]
     },
     {
-      "id": 116461,
-      "nome": "Jamerson Santos de Jesus",
-      "posicao": "LAT",
-      "notaExplosao": 19.9,
+      "id": 99267,
+      "nome": "Tomás Pochettino",
+      "posicao": "MEI",
+      "notaExplosao": 19.97,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 7.8,
-      "tendencia": -0.8,
+      "teto": 2,
+      "tendencia": 0.17,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101393,
+      "nome": "Eduardo Vinícius Domachowski",
+      "posicao": "ZAG",
+      "notaExplosao": 19.91,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.5,
+      "tendencia": -0.43,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -7347,24 +8006,6 @@
       ]
     },
     {
-      "id": 100898,
-      "nome": "Victor Alexander da Silva",
-      "posicao": "LAT",
-      "notaExplosao": 19.85,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.5,
-      "tendencia": -1.47,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 107700,
       "nome": "Eduardo de Queiroz Melo",
       "posicao": "ATA",
@@ -7434,23 +8075,6 @@
       ]
     },
     {
-      "id": 114208,
-      "nome": "Alejo Véliz",
-      "posicao": "ATA",
-      "notaExplosao": 19.78,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.3,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 97969,
       "nome": "Marcos Vinícius da Silva Santos",
       "posicao": "LAT",
@@ -7461,24 +8085,6 @@
       "teto": 5.2,
       "tendencia": 0.1,
       "jogos": 22,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 84847,
-      "nome": "Luan Peres Petroni",
-      "posicao": "ZAG",
-      "notaExplosao": 19.75,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7,
-      "tendencia": 0.03,
-      "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
@@ -7534,24 +8140,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 89883,
-      "nome": "Douglas Moreira Fagundes",
-      "posicao": "MEI",
-      "notaExplosao": 19.72,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 2.3,
-      "tendencia": -0.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -7786,20 +8374,20 @@
       ]
     },
     {
-      "id": 101995,
-      "nome": "Emanuel Fermín Brítez",
-      "posicao": "ZAG",
+      "id": 122670,
+      "nome": "Diego Caito Barcellos Oliveira dos Santos",
+      "posicao": "LAT",
       "notaExplosao": 19.54,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 3,
-      "tendencia": 1.4,
+      "teto": 8.8,
+      "tendencia": -1.4,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -7822,20 +8410,20 @@
       ]
     },
     {
-      "id": 99267,
-      "nome": "Tomás Pochettino",
+      "id": 88479,
+      "nome": "Walace Souza Silva",
       "posicao": "MEI",
       "notaExplosao": 19.54,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 2,
-      "tendencia": -0.1,
+      "teto": 1.2,
+      "tendencia": 0.2,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -7927,24 +8515,6 @@
       ]
     },
     {
-      "id": 110144,
-      "nome": "Claudio Paul Spinelli",
-      "posicao": "ATA",
-      "notaExplosao": 19.49,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.7,
-      "tendencia": -3.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 70449,
       "nome": "Gabriel Vasconcelos Ferreira",
       "posicao": "GOL",
@@ -7980,24 +8550,6 @@
       ]
     },
     {
-      "id": 128177,
-      "nome": "Pedro Emanuel dos Santos Martins Silva",
-      "posicao": "TEC",
-      "notaExplosao": 19.47,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.3,
-      "tendencia": 1.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 130608,
       "nome": "Riquelme Fillipi Marinho de Souza",
       "posicao": "ATA",
@@ -8012,24 +8564,6 @@
       "motivos": [
         "taxa 0.0%",
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 88479,
-      "nome": "Walace Souza Silva",
-      "posicao": "MEI",
-      "notaExplosao": 19.43,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.2,
-      "tendencia": 0.13,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -8065,6 +8599,42 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 89883,
+      "nome": "Douglas Moreira Fagundes",
+      "posicao": "MEI",
+      "notaExplosao": 19.4,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 2.3,
+      "tendencia": -0.3,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 88037,
+      "nome": "Luís Manuel Ribeiro de Castro",
+      "posicao": "TEC",
+      "notaExplosao": 19.37,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 7.92,
+      "tendencia": 0.7,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -8138,24 +8708,6 @@
       ]
     },
     {
-      "id": 141594,
-      "nome": "Pedro Gabriel Crisostomo Pinheiro",
-      "posicao": "LAT",
-      "notaExplosao": 19.3,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 6.8,
-      "tendencia": -0.8,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 143488,
       "nome": "Raykkonen Pereira Soares",
       "posicao": "ATA",
@@ -8186,24 +8738,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 126471,
-      "nome": "Álvaro Martín Barreal",
-      "posicao": "MEI",
-      "notaExplosao": 19.29,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 12.6,
-      "tendencia": -4.23,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -8587,31 +9121,13 @@
       "explosoes": 0,
       "taxaExplosao": 0.0,
       "teto": 16.7,
-      "tendencia": -10.17,
+      "tendencia": -8.87,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
         "teto 16.7",
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 104027,
-      "nome": "Rafael Silva Guanaes",
-      "posicao": "TEC",
-      "notaExplosao": 19.01,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.2,
-      "tendencia": 0.37,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -8633,42 +9149,8 @@
       ]
     },
     {
-      "id": 114323,
-      "nome": "Facundo Colidio",
-      "posicao": "ATA",
-      "notaExplosao": 19.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 115266,
       "nome": "Renan Rodrigues Fonseca Viana",
-      "posicao": "ATA",
-      "notaExplosao": 19.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 123795,
-      "nome": "Luciano Rodríguez Rosales",
       "posicao": "ATA",
       "notaExplosao": 19.0,
       "perfilExplosao": "Baixo_Risco",
@@ -9248,24 +9730,6 @@
       ]
     },
     {
-      "id": 130121,
-      "nome": "João Gabriel e Costa Cesco",
-      "posicao": "ATA",
-      "notaExplosao": 18.84,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": -0.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 140542,
       "nome": "Ryan Francisco Rodrigues dos Santos Silva",
       "posicao": "ATA",
@@ -9383,24 +9847,6 @@
       "taxaExplosao": 0.0,
       "teto": 8.5,
       "tendencia": -1.8,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 78248,
-      "nome": "Gustavo Henrique Vernes",
-      "posicao": "ZAG",
-      "notaExplosao": 18.67,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.2,
-      "tendencia": -1.47,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -9642,40 +10088,6 @@
       ]
     },
     {
-      "id": 100596,
-      "nome": "Filip Krovinović",
-      "posicao": "MEI",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 102255,
-      "nome": "Santiago Leonel Sosa",
-      "posicao": "MEI",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 107744,
       "nome": "Bruno Conceição Praxedes",
       "posicao": "MEI",
@@ -9831,23 +10243,6 @@
     {
       "id": 123005,
       "nome": "Sidney de Carvalho Duarte",
-      "posicao": "MEI",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 124961,
-      "nome": "Kevin Duván Castaño Gil",
       "posicao": "MEI",
       "notaExplosao": 18.5,
       "perfilExplosao": "Baixo_Risco",
@@ -10137,23 +10532,6 @@
     {
       "id": 144889,
       "nome": "Victor Gabriel Leite dos Santos",
-      "posicao": "MEI",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 144976,
-      "nome": "Domingos Paulo Andrade",
       "posicao": "MEI",
       "notaExplosao": 18.5,
       "perfilExplosao": "Baixo_Risco",
@@ -10509,58 +10887,6 @@
       ]
     },
     {
-      "id": 87747,
-      "nome": "Yago Felipe da Costa Rocha",
-      "posicao": "MEI",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97432,
-      "nome": "Victor Henrique Carvalho Caetano",
-      "posicao": "ZAG",
-      "notaExplosao": 18.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 100848,
-      "nome": "Luan Cândido de Almeida",
-      "posicao": "LAT",
-      "notaExplosao": 18.48,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.7,
-      "tendencia": -2.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 83433,
       "nome": "Patrick Bezerra do Nascimento",
       "posicao": "MEI",
@@ -10579,33 +10905,15 @@
       ]
     },
     {
-      "id": 101393,
-      "nome": "Eduardo Vinícius Domachowski",
-      "posicao": "ZAG",
-      "notaExplosao": 18.31,
+      "id": 91204,
+      "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
+      "posicao": "GOL",
+      "notaExplosao": 18.43,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.5,
-      "tendencia": -1.43,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97341,
-      "nome": "Rogério Mücke Ceni",
-      "posicao": "TEC",
-      "notaExplosao": 18.31,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.96,
-      "tendencia": -0.73,
+      "teto": 11,
+      "tendencia": -1.67,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -10633,15 +10941,15 @@
       ]
     },
     {
-      "id": 127273,
-      "nome": "Artur Jorge Torres Gomes Araújo Amorim",
-      "posicao": "TEC",
-      "notaExplosao": 18.14,
+      "id": 69783,
+      "nome": "Danilo Luiz da Silva",
+      "posicao": "ZAG",
+      "notaExplosao": 18.23,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.78,
-      "tendencia": -0.77,
+      "teto": 5,
+      "tendencia": -0.17,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -10651,15 +10959,33 @@
       ]
     },
     {
-      "id": 122670,
-      "nome": "Diego Caito Barcellos Oliveira dos Santos",
-      "posicao": "LAT",
-      "notaExplosao": 18.1,
+      "id": 124961,
+      "nome": "Kevin Duván Castaño Gil",
+      "posicao": "MEI",
+      "notaExplosao": 18.18,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 8.8,
-      "tendencia": -2.3,
+      "teto": 0,
+      "tendencia": -0.2,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 72460,
+      "nome": "Bernard Anício Caldeira Duarte",
+      "posicao": "MEI",
+      "notaExplosao": 18.03,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 9.7,
+      "tendencia": -3.93,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -10704,15 +11030,15 @@
       ]
     },
     {
-      "id": 88037,
-      "nome": "Luís Manuel Ribeiro de Castro",
-      "posicao": "TEC",
-      "notaExplosao": 17.99,
+      "id": 97432,
+      "nome": "Victor Henrique Carvalho Caetano",
+      "posicao": "ZAG",
+      "notaExplosao": 17.97,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 7.92,
-      "tendencia": -0.17,
+      "teto": 5,
+      "tendencia": -0.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -10774,24 +11100,6 @@
       ]
     },
     {
-      "id": 51413,
-      "nome": "Walter Leandro Capeloza Artune",
-      "posicao": "GOL",
-      "notaExplosao": 17.8,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 6.3,
-      "tendencia": -0.3,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 69012,
       "nome": "Aderbar Melo dos Santos Neto",
       "posicao": "GOL",
@@ -10819,42 +11127,6 @@
       "taxaExplosao": 0.0,
       "teto": 8,
       "tendencia": -3.77,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 72460,
-      "nome": "Bernard Anício Caldeira Duarte",
-      "posicao": "MEI",
-      "notaExplosao": 17.76,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 9.7,
-      "tendencia": -4.1,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 106822,
-      "nome": "Rodrigo Nestor Bertalia",
-      "posicao": "MEI",
-      "notaExplosao": 17.73,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 14.1,
-      "tendencia": -5.77,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -10917,24 +11189,6 @@
       ]
     },
     {
-      "id": 106950,
-      "nome": "Fernando Augusto Pereira Bueno Júnior",
-      "posicao": "LAT",
-      "notaExplosao": 17.47,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5,
-      "tendencia": -1.27,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 110510,
       "nome": "Braian Nahuel Aguirre",
       "posicao": "LAT",
@@ -10988,42 +11242,6 @@
       ]
     },
     {
-      "id": 145563,
-      "nome": "João Paulo Ananias Bento",
-      "posicao": "ZAG",
-      "notaExplosao": 17.35,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 4.5,
-      "tendencia": -0.53,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 91204,
-      "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
-      "posicao": "GOL",
-      "notaExplosao": 17.31,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11,
-      "tendencia": -2.37,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 70666,
       "nome": "Marllon Gonçalves Jerônimo Borges",
       "posicao": "ZAG",
@@ -11051,24 +11269,6 @@
       "taxaExplosao": 0.0,
       "teto": 14.6,
       "tendencia": -6.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 107256,
-      "nome": "Jose Vitor Silva Neves",
-      "posicao": "MEI",
-      "notaExplosao": 17.21,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 13.4,
-      "tendencia": -5.83,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -11150,6 +11350,24 @@
       ]
     },
     {
+      "id": 106907,
+      "nome": "Rafael dos Santos Lacerda",
+      "posicao": "TEC",
+      "notaExplosao": 17.08,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 6.56,
+      "tendencia": -0.22,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 63013,
       "nome": "Marcos Luis Rocha Aquino",
       "posicao": "LAT",
@@ -11195,24 +11413,6 @@
       "taxaExplosao": 0.0,
       "teto": 9.85,
       "tendencia": -1.59,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 68938,
-      "nome": "Giovanni Augusto Oliveira Cardoso",
-      "posicao": "MEI",
-      "notaExplosao": 16.7,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5.8,
-      "tendencia": -3.3,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -11294,24 +11494,6 @@
       ]
     },
     {
-      "id": 69783,
-      "nome": "Danilo Luiz da Silva",
-      "posicao": "ZAG",
-      "notaExplosao": 16.63,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 5,
-      "tendencia": -1.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 148092,
       "nome": "Vitor Ramon Ribeiro de Oliveira",
       "posicao": "LAT",
@@ -11383,19 +11565,20 @@
       ]
     },
     {
-      "id": 104649,
-      "nome": "Heitor Rodrigues da Fonseca",
-      "posicao": "LAT",
-      "notaExplosao": 16.5,
+      "id": 51413,
+      "nome": "Walter Leandro Capeloza Artune",
+      "posicao": "GOL",
+      "notaExplosao": 16.52,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
+      "teto": 6.3,
+      "tendencia": -1.1,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -11843,6 +12026,24 @@
       ]
     },
     {
+      "id": 149990,
+      "nome": "Franclim Pereira da Silva Maia Carvalho",
+      "posicao": "TEC",
+      "notaExplosao": 16.43,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 8.17,
+      "tendencia": -1.23,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 105842,
       "nome": "Lucas Eduardo Ribeiro de Souza",
       "posicao": "ZAG",
@@ -11896,24 +12097,6 @@
       ]
     },
     {
-      "id": 141400,
-      "nome": "Victor Hugo Custódio de Melo Moura",
-      "posicao": "MEI",
-      "notaExplosao": 16.33,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.6,
-      "tendencia": -5.33,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 104085,
       "nome": "Bruno de Lara Fuchs",
       "posicao": "ZAG",
@@ -11941,24 +12124,6 @@
       "taxaExplosao": 0.0,
       "teto": 4.9,
       "tendencia": -1.47,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 95332,
-      "nome": "Márcio Antônio de Sousa Júnior",
-      "posicao": "ATA",
-      "notaExplosao": 16.07,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.5,
-      "tendencia": -5.77,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -12022,24 +12187,6 @@
       ]
     },
     {
-      "id": 103056,
-      "nome": "Gabriel Nascimento Rezende Brazão - Resende",
-      "posicao": "GOL",
-      "notaExplosao": 15.87,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.2,
-      "tendencia": -2.97,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 133679,
       "nome": "Luis Gustavo Roncholeta Benedetti - Luiz",
       "posicao": "ZAG",
@@ -12076,15 +12223,15 @@
       ]
     },
     {
-      "id": 92180,
-      "nome": "Jair Ventura",
-      "posicao": "TEC",
-      "notaExplosao": 15.74,
+      "id": 104519,
+      "nome": "Camilo Reijers de Oliveira",
+      "posicao": "MEI",
+      "notaExplosao": 15.81,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 9.46,
-      "tendencia": -2.15,
+      "teto": 6.9,
+      "tendencia": -4.27,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -12112,24 +12259,6 @@
       ]
     },
     {
-      "id": 100842,
-      "nome": "Ruan Tressoldi Netto",
-      "posicao": "ZAG",
-      "notaExplosao": 15.65,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 10.2,
-      "tendencia": -3.73,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 126013,
       "nome": "Ythallo Ryckelm Rodrigues de Oliveira - Rycklem",
       "posicao": "ZAG",
@@ -12143,24 +12272,6 @@
       "confianca": 100,
       "motivos": [
         "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 88393,
-      "nome": "Ayrton Lucas Dantas de Medeiros",
-      "posicao": "LAT",
-      "notaExplosao": 15.61,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 12.3,
-      "tendencia": -5.17,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -12179,41 +12290,6 @@
       "motivos": [
         "taxa 0.0%",
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 96591,
-      "nome": "Renan Augusto Lodi dos Santos",
-      "posicao": "LAT",
-      "notaExplosao": 15.59,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.9,
-      "tendencia": -5.03,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 85425,
-      "nome": "João Paulo Silva Martins",
-      "posicao": "GOL",
-      "notaExplosao": 15.52,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 1.7,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
         "Baixo_Risco"
       ]
     },
@@ -12237,23 +12313,6 @@
     {
       "id": 122755,
       "nome": "Lucas de Souza Cunha",
-      "posicao": "ZAG",
-      "notaExplosao": 15.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 124483,
-      "nome": "Lucas Gabriel Monzón Lemos",
       "posicao": "ZAG",
       "notaExplosao": 15.5,
       "perfilExplosao": "Baixo_Risco",
@@ -12660,24 +12719,6 @@
       ]
     },
     {
-      "id": 78478,
-      "nome": "Willian Souza Arão da Silva",
-      "posicao": "MEI",
-      "notaExplosao": 15.39,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 7.7,
-      "tendencia": -4.83,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 103347,
       "nome": "Matheus Alexandre Anastácio de Souza",
       "posicao": "LAT",
@@ -12696,15 +12737,33 @@
       ]
     },
     {
-      "id": 130806,
-      "nome": "Kauan Faria Gomes",
+      "id": 124483,
+      "nome": "Lucas Gabriel Nunes Monzón Lemos",
       "posicao": "ZAG",
-      "notaExplosao": 15.18,
+      "notaExplosao": 15.29,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
       "teto": 0,
-      "tendencia": -0.2,
+      "tendencia": -0.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 141400,
+      "nome": "Victor Hugo Custódio de Melo Moura",
+      "posicao": "MEI",
+      "notaExplosao": 15.21,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 10.6,
+      "tendencia": -6.03,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -12750,6 +12809,24 @@
       ]
     },
     {
+      "id": 87342,
+      "nome": "Walter Kannemann",
+      "posicao": "ZAG",
+      "notaExplosao": 15.09,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 0.2,
+      "tendencia": -0.33,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 100742,
       "nome": "Matheus Henrique de Souza",
       "posicao": "MEI",
@@ -12768,33 +12845,15 @@
       ]
     },
     {
-      "id": 87342,
-      "nome": "Walter Kannemann",
-      "posicao": "ZAG",
-      "notaExplosao": 14.98,
+      "id": 85425,
+      "nome": "João Paulo Silva Martins",
+      "posicao": "GOL",
+      "notaExplosao": 14.99,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 0.2,
-      "tendencia": -0.4,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 149990,
-      "nome": "Franclim Pereira da Silva Maia Carvalho",
-      "posicao": "TEC",
-      "notaExplosao": 14.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.17,
-      "tendencia": -2.19,
+      "teto": 1.7,
+      "tendencia": -0.33,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -13711,15 +13770,33 @@
       ]
     },
     {
-      "id": 104519,
-      "nome": "Camilo Reijers de Oliveira",
-      "posicao": "MEI",
-      "notaExplosao": 14.16,
+      "id": 91772,
+      "nome": "David de Duarte Macedo",
+      "posicao": "ZAG",
+      "notaExplosao": 14.43,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "taxaExplosao": 0.0,
-      "teto": 6.9,
-      "tendencia": -5.3,
+      "teto": 11.9,
+      "tendencia": -5.13,
+      "jogos": 23,
+      "confianca": 100,
+      "motivos": [
+        "taxa 0.0%",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 130806,
+      "nome": "Kauan Faria Gomes",
+      "posicao": "ZAG",
+      "notaExplosao": 14.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "taxaExplosao": 0.0,
+      "teto": 0,
+      "tendencia": -0.7,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -13774,42 +13851,6 @@
       "taxaExplosao": 0.0,
       "teto": 6.5,
       "tendencia": -3.6,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 42411,
-      "nome": "Alexi Stival",
-      "posicao": "TEC",
-      "notaExplosao": 13.57,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 8.93,
-      "tendencia": -3.3,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 91772,
-      "nome": "David de Duarte Macedo",
-      "posicao": "ZAG",
-      "notaExplosao": 13.52,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 11.9,
-      "tendencia": -5.7,
       "jogos": 23,
       "confianca": 100,
       "motivos": [
@@ -13918,24 +13959,6 @@
       "taxaExplosao": 0.0,
       "teto": 9.31,
       "tendencia": -4.27,
-      "jogos": 23,
-      "confianca": 100,
-      "motivos": [
-        "taxa 0.0%",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 106907,
-      "nome": "Rafael dos Santos Lacerda",
-      "posicao": "TEC",
-      "notaExplosao": 11.76,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "taxaExplosao": 0.0,
-      "teto": 3.52,
-      "tendencia": -2.41,
       "jogos": 23,
       "confianca": 100,
       "motivos": [

@@ -16,41 +16,41 @@
   },
   "desempenho": {
     "v1": {
-      "media": 55.37,
-      "desvioPadrao": 13.8,
-      "eficienciaOraculo": 86.65,
-      "perdaMediaOraculo": 8.53
+      "media": 56.67,
+      "desvioPadrao": 13.4,
+      "eficienciaOraculo": 88.56,
+      "perdaMediaOraculo": 7.32
     },
     "v2": {
-      "media": 56.36,
+      "media": 56.39,
       "desvioPadrao": 12.82,
-      "eficienciaOraculo": 88.2,
-      "perdaMediaOraculo": 7.54
+      "eficienciaOraculo": 88.12,
+      "perdaMediaOraculo": 7.6
     },
     "melhorFixa": {
-      "nome": "Equilibrado",
-      "media": 57.58
+      "nome": "Conservador",
+      "media": 57.63
     },
     "oraculo": {
-      "media": 63.9
+      "media": 63.99
     }
   },
   "ganhosV2": {
     "vsV1": {
-      "pontosPorRodada": 0.99,
-      "percentual": 1.79
+      "pontosPorRodada": -0.28,
+      "percentual": -0.49
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": -1.22,
-      "percentual": -2.12
+      "pontosPorRodada": -1.24,
+      "percentual": -2.15
     }
   },
   "comparacaoPareada": {
     "rodadas": 22,
-    "vitoriasV1": 2,
-    "vitoriasV2": 4,
+    "vitoriasV1": 3,
+    "vitoriasV2": 3,
     "empates": 16,
-    "taxaVitoriasV2": 18.18
+    "taxaVitoriasV2": 13.64
   },
   "criterios": [
     {
@@ -111,54 +111,54 @@
     },
     {
       "nome": "v2_supera_v1_media",
-      "passou": true,
-      "valor": 0.99,
+      "passou": false,
+      "valor": -0.28,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_ganho_minimo_v1",
-      "passou": true,
-      "valor": 0.99,
+      "passou": false,
+      "valor": -0.28,
       "limite": 0.5,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": -1.22,
+      "valor": -1.24,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_vence_maioria_pareada",
       "passou": false,
-      "valor": 18.18,
+      "valor": 13.64,
       "limite": 55.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_proximo_oraculo",
-      "passou": true,
-      "valor": 7.54,
-      "limite": "< 8.53",
+      "passou": false,
+      "valor": 7.6,
+      "limite": "< 7.32",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
       "passou": true,
       "valor": 12.82,
-      "limite": "< 13.8",
+      "limite": "< 13.4",
       "nivel": "DESEJAVEL"
     }
   ],
   "resumoCriterios": {
     "criticos": 13,
-    "criticosAprovados": 11,
-    "criticosReprovados": 2,
+    "criticosAprovados": 8,
+    "criticosReprovados": 5,
     "desejaveis": 1,
     "desejaveisAprovados": 1,
-    "scoreCriticosPercentual": 84.62
+    "scoreCriticosPercentual": 61.54
   },
   "evidencia": {
     "forte": false,
@@ -166,7 +166,7 @@
     "comparacaoFavoravelV2": false,
     "coerenciaDecisao": true
   },
-  "decisaoComparacao": "MANTER_TESTES",
+  "decisaoComparacao": "V1_SUPERIOR_A_V2",
   "recomendacao": {
     "decisao": "MANTER_V1",
     "motivo": "V2 não apresentou evidência suficiente de superioridade sobre V1.",

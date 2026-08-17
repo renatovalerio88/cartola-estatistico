@@ -40,95 +40,95 @@
   "metricas": {
     "adaptativoV1": {
       "quantidade": 22,
-      "media": 55.37,
-      "mediana": 55.28,
-      "desvioPadrao": 13.8,
+      "media": 56.67,
+      "mediana": 56.32,
+      "desvioPadrao": 13.4,
       "minimo": 31.75,
       "maximo": 87.11,
-      "total": 1218.12
+      "total": 1246.85
     },
     "adaptativoV2": {
       "quantidade": 22,
-      "media": 56.36,
-      "mediana": 56.21,
+      "media": 56.39,
+      "mediana": 56.32,
       "desvioPadrao": 12.82,
       "minimo": 31.75,
       "maximo": 87.11,
-      "total": 1239.9
+      "total": 1240.65
     },
     "adaptativoV3": {
       "quantidade": 22,
-      "media": 55.12,
+      "media": 55.15,
       "mediana": 55.63,
-      "desvioPadrao": 12.77,
+      "desvioPadrao": 12.78,
       "minimo": 31.75,
       "maximo": 87.11,
-      "total": 1212.65
+      "total": 1213.4
     },
     "estrategiasFixas": {
       "Conservador": {
         "quantidade": 22,
-        "media": 56.32,
-        "mediana": 56.32,
-        "desvioPadrao": 14.14,
+        "media": 57.63,
+        "mediana": 58.47,
+        "desvioPadrao": 13.66,
         "minimo": 31.75,
         "maximo": 87.11,
-        "total": 1239.1
+        "total": 1267.83
       },
       "Equilibrado": {
         "quantidade": 22,
-        "media": 57.58,
+        "media": 57.62,
         "mediana": 55.64,
         "desvioPadrao": 16.7,
         "minimo": 37.16,
         "maximo": 115.78,
-        "total": 1266.79
+        "total": 1267.54
       },
       "Agressivo": {
         "quantidade": 22,
-        "media": 55.1,
+        "media": 54.72,
         "mediana": 54.77,
-        "desvioPadrao": 13.69,
+        "desvioPadrao": 13.55,
         "minimo": 33.84,
         "maximo": 85.31,
-        "total": 1212.15
+        "total": 1203.8
       }
     },
-    "melhorEstrategiaFixa": "Equilibrado",
+    "melhorEstrategiaFixa": "Conservador",
     "oraculo": {
       "quantidade": 22,
-      "media": 63.9,
+      "media": 63.99,
       "mediana": 66.63,
-      "desvioPadrao": 15.61,
+      "desvioPadrao": 15.62,
       "minimo": 38.25,
       "maximo": 115.78,
-      "total": 1405.85
+      "total": 1407.78
     }
   },
   "ganhos": {
     "v2VsV1": {
-      "pontosPorRodada": 0.99,
-      "percentual": 1.79
+      "pontosPorRodada": -0.28,
+      "percentual": -0.49
     },
     "v3VsV1": {
-      "pontosPorRodada": -0.25,
-      "percentual": -0.45
+      "pontosPorRodada": -1.52,
+      "percentual": -2.68
     },
     "v3VsV2": {
       "pontosPorRodada": -1.24,
       "percentual": -2.2
     },
     "v1VsMelhorFixa": {
-      "pontosPorRodada": -2.21,
-      "percentual": -3.84
+      "pontosPorRodada": -0.96,
+      "percentual": -1.67
     },
     "v2VsMelhorFixa": {
-      "pontosPorRodada": -1.22,
-      "percentual": -2.12
+      "pontosPorRodada": -1.24,
+      "percentual": -2.15
     },
     "v3VsMelhorFixa": {
-      "pontosPorRodada": -2.46,
-      "percentual": -4.27
+      "pontosPorRodada": -2.48,
+      "percentual": -4.3
     }
   },
   "comparacoesPareadas": {
@@ -136,24 +136,24 @@
       "modeloA": "V1",
       "modeloB": "V2",
       "rodadas": 22,
-      "vitoriasA": 2,
-      "vitoriasB": 4,
+      "vitoriasA": 3,
+      "vitoriasB": 3,
       "empates": 16,
-      "taxaVitoriasA": 9.09,
-      "taxaVitoriasB": 18.18,
-      "diferencaMediaBmenosA": 0.99,
+      "taxaVitoriasA": 13.64,
+      "taxaVitoriasB": 13.64,
+      "diferencaMediaBmenosA": -0.28,
       "medianaDiferencaBmenosA": 0.0
     },
     "v1VsV3": {
       "modeloA": "V1",
       "modeloB": "V3",
       "rodadas": 22,
-      "vitoriasA": 4,
-      "vitoriasB": 2,
+      "vitoriasA": 5,
+      "vitoriasB": 1,
       "empates": 16,
-      "taxaVitoriasA": 18.18,
-      "taxaVitoriasB": 9.09,
-      "diferencaMediaBmenosA": -0.25,
+      "taxaVitoriasA": 22.73,
+      "taxaVitoriasB": 4.55,
+      "diferencaMediaBmenosA": -1.52,
       "medianaDiferencaBmenosA": 0.0
     },
     "v2VsV3": {
@@ -170,24 +170,24 @@
     }
   },
   "oraculo": {
-    "media": 63.9,
+    "media": 63.99,
     "v1": {
-      "eficienciaPercentual": 86.65,
-      "perdaMedia": 8.53
+      "eficienciaPercentual": 88.56,
+      "perdaMedia": 7.32
     },
     "v2": {
-      "eficienciaPercentual": 88.2,
-      "perdaMedia": 7.54
+      "eficienciaPercentual": 88.12,
+      "perdaMedia": 7.6
     },
     "v3": {
-      "eficienciaPercentual": 86.26,
-      "perdaMedia": 8.78
+      "eficienciaPercentual": 86.19,
+      "perdaMedia": 8.84
     }
   },
   "estabilidade": {
-    "desvioV1": 13.8,
+    "desvioV1": 13.4,
     "desvioV2": 12.82,
-    "desvioV3": 12.77,
+    "desvioV3": 12.78,
     "v3MaisEstavelQueV1": true,
     "v3MaisEstavelQueV2": true
   },
@@ -765,27 +765,27 @@
       "rodada": 23,
       "v1": {
         "estrategia": "Conservador",
-        "pontuacao": 37.5
+        "pontuacao": 66.23
       },
       "v2": {
         "estrategia": "Equilibrado",
-        "pontuacao": 56.7
+        "pontuacao": 57.45
       },
       "v3": {
         "estrategia": "Equilibrado",
         "regime": "medio",
-        "pontuacao": 56.7
+        "pontuacao": 57.45
       },
       "fixas": {
-        "Conservador": 37.5,
-        "Equilibrado": 56.7,
-        "Agressivo": 64.3
+        "Conservador": 66.23,
+        "Equilibrado": 57.45,
+        "Agressivo": 55.95
       },
-      "melhorEstrategia": "Agressivo",
-      "oraculo": 64.3,
-      "perdaV1Oraculo": 26.8,
-      "perdaV2Oraculo": 7.6,
-      "perdaV3Oraculo": 7.6
+      "melhorEstrategia": "Conservador",
+      "oraculo": 66.23,
+      "perdaV1Oraculo": 0.0,
+      "perdaV2Oraculo": 8.78,
+      "perdaV3Oraculo": 8.78
     }
   ],
   "decisao": {
