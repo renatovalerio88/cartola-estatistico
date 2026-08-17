@@ -3,30 +3,34 @@
 CARTOLA ESTATÍSTICO
 Diagnóstico das Escalações Históricas
 
+Versão:
+diagnostico_escalacoes_v4
+
 Objetivo:
-- validar a camada data/historico-escalacoes
+- validar data/historico-escalacoes
 - verificar rodadas disponíveis
-- verificar estratégias por rodada
-- validar quantidade de titulares
-- validar auditorias
-- detectar arquivos ausentes ou estruturas inválidas
+- validar as 3 estratégias por rodada
+- validar formação
+- validar titulares
+- validar técnico
+- validar capitão
+- validar banco
+- validar Reserva de Luxo
+- validar auditoria interna
+- validar regra temporal
+- detectar estruturas inválidas
 
-Estrutura esperada:
+IMPORTANTE:
 
-data/
-└── historico-escalacoes/
-    ├── indice.json
-    ├── rodada-02.json
-    ├── rodada-03.json
-    ├── rodada-04.json
-    └── ...
+No Cartola, a escalação completa possui:
 
-Cada arquivo rodada-XX.json deve conter
-as estratégias:
+11 atletas de linha/goleiro
++
+1 técnico
 
-- conservador
-- equilibrado
-- agressivo
+Portanto:
+
+12 integrantes no campo "titulares".
 
 =========================================================
 """
@@ -40,13 +44,25 @@ import re
 # CONFIGURAÇÕES
 # ======================================================
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = (
+    Path(__file__)
+    .resolve()
+    .parent
+    .parent
+    .parent
+)
 
 PASTA_HISTORICO = (
     BASE_DIR
     / "data"
     / "historico-escalacoes"
 )
+
+ARQUIVO_INDICE = (
+    PASTA_HISTORICO
+    / "indice.json"
+)
+
 
 ESTRATEGIAS_ESPERADAS = [
     "conservador",
@@ -55,11 +71,45 @@ ESTRATEGIAS_ESPERADAS = [
 ]
 
 
+FORMACOES = {
+
+    "4-4-2": {
+        "GOL": 1,
+        "LAT": 2,
+        "ZAG": 2,
+        "MEI": 4,
+        "ATA": 2,
+        "TEC": 1,
+    },
+
+    "3-4-3": {
+        "GOL": 1,
+        "LAT": 0,
+        "ZAG": 3,
+        "MEI": 4,
+        "ATA": 3,
+        "TEC": 1,
+    },
+
+    "4-3-3": {
+        "GOL": 1,
+        "LAT": 2,
+        "ZAG": 2,
+        "MEI": 3,
+        "ATA": 3,
+        "TEC": 1,
+    },
+
+}
+
+
 # ======================================================
 # UTILIDADES
 # ======================================================
 
-def carregar_json(caminho):
+def carregar_json(
+    caminho
+):
 
     if not caminho.exists():
 
@@ -80,25 +130,29 @@ def carregar_json(caminho):
     except Exception as erro:
 
         print(
-            f"[ERRO] Falha ao ler {caminho}: "
+            f"[ERRO] "
+            f"Falha ao ler "
+            f"{caminho}: "
             f"{erro}"
         )
 
         return None
 
 
-def numero_rodada(caminho):
+def numero_rodada(
+    caminho
+):
 
-    nome = caminho.stem
-
-    correspondencia = re.fullmatch(
-        r"rodada-(\d+)",
-        nome,
+    correspondencia = (
+        re.fullmatch(
+            r"rodada-(\d+)",
+            caminho.stem,
+        )
     )
 
     if not correspondencia:
 
-        return 999
+        return None
 
     try:
 
@@ -108,7 +162,31 @@ def numero_rodada(caminho):
 
     except Exception:
 
-        return 999
+        return None
+
+
+def texto(
+    valor
+):
+
+    if valor is None:
+
+        return ""
+
+    return (
+        str(valor)
+        .strip()
+    )
+
+
+def normalizar(
+    valor
+):
+
+    return (
+        texto(valor)
+        .lower()
+    )
 
 
 # ======================================================
@@ -121,28 +199,152 @@ def localizar_rodadas():
 
         return []
 
-    arquivos = [
-        arquivo
-        for arquivo in PASTA_HISTORICO.glob(
+    arquivos = []
+
+    for arquivo in (
+        PASTA_HISTORICO.glob(
             "rodada-*.json"
         )
-        if (
-            arquivo.is_file()
-            and numero_rodada(arquivo) != 999
+    ):
+
+        if not arquivo.is_file():
+
+            continue
+
+        rodada = numero_rodada(
+            arquivo
         )
-    ]
+
+        if rodada is None:
+
+            continue
+
+        arquivos.append(
+            arquivo
+        )
 
     return sorted(
         arquivos,
-        key=numero_rodada,
+        key=lambda caminho:
+            numero_rodada(
+                caminho
+            )
     )
 
 
 # ======================================================
-# EXTRAÇÃO DAS ESTRATÉGIAS
+# ÍNDICE
 # ======================================================
 
-def obter_estrategias(dados):
+def diagnosticar_indice():
+
+    resultado = {
+        "valido": True,
+        "problemas": [],
+        "dados": None,
+    }
+
+    dados = carregar_json(
+        ARQUIVO_INDICE
+    )
+
+    resultado[
+        "dados"
+    ] = dados
+
+    if not isinstance(
+        dados,
+        dict,
+    ):
+
+        resultado[
+            "valido"
+        ] = False
+
+        resultado[
+            "problemas"
+        ].append(
+            "indice.json ausente "
+            "ou inválido"
+        )
+
+        return resultado
+
+    rodadas = dados.get(
+        "rodadasProcessadas"
+    )
+
+    if not isinstance(
+        rodadas,
+        list,
+    ):
+
+        resultado[
+            "valido"
+        ] = False
+
+        resultado[
+            "problemas"
+        ].append(
+            "rodadasProcessadas "
+            "não encontrada"
+        )
+
+    quantidade = dados.get(
+        "quantidadeRodadas"
+    )
+
+    if (
+        isinstance(
+            rodadas,
+            list,
+        )
+        and quantidade != len(
+            rodadas
+        )
+    ):
+
+        resultado[
+            "valido"
+        ] = False
+
+        resultado[
+            "problemas"
+        ].append(
+            "quantidadeRodadas "
+            "diverge de "
+            "rodadasProcessadas"
+        )
+
+    auditoria_global = (
+        dados.get(
+            "auditoriaGlobalAprovada"
+        )
+    )
+
+    if auditoria_global is False:
+
+        resultado[
+            "valido"
+        ] = False
+
+        resultado[
+            "problemas"
+        ].append(
+            "auditoria global "
+            "do índice reprovada"
+        )
+
+    return resultado
+
+
+# ======================================================
+# ESTRATÉGIAS
+# ======================================================
+
+def obter_estrategias(
+    dados
+):
 
     if not isinstance(
         dados,
@@ -160,21 +362,12 @@ def obter_estrategias(dados):
         dict,
     ):
 
-        resultado = {}
-
-        for chave, valor in (
-            estrategias.items()
-        ):
-
-            nome = str(
-                chave
-            ).strip().lower()
-
-            resultado[
-                nome
-            ] = valor
-
-        return resultado
+        return {
+            normalizar(chave):
+                valor
+            for chave, valor
+            in estrategias.items()
+        }
 
     if isinstance(
         estrategias,
@@ -192,23 +385,22 @@ def obter_estrategias(dados):
 
                 continue
 
-            nome = (
+            identificador = (
                 item.get("id")
-                or item.get("estrategia")
                 or item.get("perfil")
-                or item.get("nome")
+                or item.get(
+                    "estrategia"
+                )
             )
 
-            if not nome:
+            if not identificador:
 
                 continue
 
-            nome = str(
-                nome
-            ).strip().lower()
-
             resultado[
-                nome
+                normalizar(
+                    identificador
+                )
             ] = item
 
         return resultado
@@ -217,73 +409,12 @@ def obter_estrategias(dados):
 
 
 # ======================================================
-# EXTRAÇÃO DOS TITULARES
-# ======================================================
-
-def obter_titulares(dados):
-
-    if not isinstance(
-        dados,
-        dict,
-    ):
-
-        return []
-
-    candidatos = [
-        dados.get(
-            "titulares"
-        ),
-        dados.get(
-            "jogadores"
-        ),
-        dados.get(
-            "escalacao"
-        ),
-    ]
-
-    for candidato in candidatos:
-
-        if isinstance(
-            candidato,
-            list,
-        ):
-
-            return candidato
-
-    time = dados.get(
-        "time"
-    )
-
-    if isinstance(
-        time,
-        dict,
-    ):
-
-        for chave in [
-            "titulares",
-            "jogadores",
-            "escalacao",
-        ]:
-
-            candidato = time.get(
-                chave
-            )
-
-            if isinstance(
-                candidato,
-                list,
-            ):
-
-                return candidato
-
-    return []
-
-
-# ======================================================
 # AUDITORIA
 # ======================================================
 
-def obter_auditoria(dados):
+def auditoria_aprovada(
+    dados
+):
 
     if not isinstance(
         dados,
@@ -296,219 +427,628 @@ def obter_auditoria(dados):
         "auditoria"
     )
 
-    if isinstance(
+    if not isinstance(
         auditoria,
         dict,
     ):
 
-        return auditoria
-
-    return None
-
-
-def auditoria_aprovada(dados):
-
-    if not isinstance(
-        dados,
-        dict,
-    ):
-
         return None
 
-    auditoria = obter_auditoria(
-        dados
+    valor = auditoria.get(
+        "aprovada"
     )
 
-    if auditoria is None:
+    if isinstance(
+        valor,
+        bool,
+    ):
 
-        valores_diretos = [
-            dados.get(
-                "auditoriaAprovada"
-            ),
-            dados.get(
-                "aprovada"
-            ),
-            dados.get(
-                "aprovado"
-            ),
-            dados.get(
-                "valida"
-            ),
-            dados.get(
-                "valido"
-            ),
-        ]
-
-        for valor in (
-            valores_diretos
-        ):
-
-            if isinstance(
-                valor,
-                bool,
-            ):
-
-                return valor
-
-        return None
-
-    valores = [
-        auditoria.get(
-            "aprovada"
-        ),
-        auditoria.get(
-            "aprovado"
-        ),
-        auditoria.get(
-            "valida"
-        ),
-        auditoria.get(
-            "valido"
-        ),
-    ]
-
-    for valor in valores:
-
-        if isinstance(
-            valor,
-            bool,
-        ):
-
-            return valor
-
-    status = str(
-        auditoria.get(
-            "status",
-            "",
-        )
-    ).strip().lower()
-
-    if status in [
-        "aprovada",
-        "aprovado",
-        "ok",
-        "válida",
-        "valida",
-        "válido",
-        "valido",
-    ]:
-
-        return True
-
-    if status in [
-        "reprovada",
-        "reprovado",
-        "erro",
-        "inválida",
-        "invalida",
-        "inválido",
-        "invalido",
-    ]:
-
-        return False
+        return valor
 
     return None
 
 
 # ======================================================
-# DIAGNÓSTICO DE UMA ESTRATÉGIA
+# FORMAÇÃO
+# ======================================================
+
+def quantidade_esperada(
+    estrategia
+):
+
+    if not isinstance(
+        estrategia,
+        dict,
+    ):
+
+        return 0
+
+    informada = (
+        estrategia.get(
+            "quantidadeEsperada"
+        )
+    )
+
+    try:
+
+        informada = int(
+            informada
+        )
+
+        if informada > 0:
+
+            return informada
+
+    except Exception:
+
+        pass
+
+    formacao = texto(
+        estrategia.get(
+            "formacao"
+        )
+    )
+
+    estrutura = FORMACOES.get(
+        formacao
+    )
+
+    if not estrutura:
+
+        return 0
+
+    return sum(
+        estrutura.values()
+    )
+
+
+def contar_posicoes(
+    titulares
+):
+
+    resultado = {
+        "GOL": 0,
+        "LAT": 0,
+        "ZAG": 0,
+        "MEI": 0,
+        "ATA": 0,
+        "TEC": 0,
+    }
+
+    for jogador in titulares:
+
+        if not isinstance(
+            jogador,
+            dict,
+        ):
+
+            continue
+
+        posicao = texto(
+            jogador.get(
+                "posicao"
+            )
+        ).upper()
+
+        if posicao in resultado:
+
+            resultado[
+                posicao
+            ] += 1
+
+    return resultado
+
+
+# ======================================================
+# CAPITÃO
+# ======================================================
+
+def validar_capitao(
+    estrategia,
+    titulares
+):
+
+    capitao = estrategia.get(
+        "capitao"
+    )
+
+    if not isinstance(
+        capitao,
+        dict,
+    ):
+
+        return False
+
+    capitao_id = (
+        capitao.get(
+            "id"
+        )
+    )
+
+    if capitao_id is None:
+
+        return False
+
+    for jogador in titulares:
+
+        if not isinstance(
+            jogador,
+            dict,
+        ):
+
+            continue
+
+        if str(
+            jogador.get(
+                "id"
+            )
+        ) == str(
+            capitao_id
+        ):
+
+            return (
+                texto(
+                    jogador.get(
+                        "posicao"
+                    )
+                ).upper()
+                != "TEC"
+            )
+
+    return False
+
+
+# ======================================================
+# BANCO
+# ======================================================
+
+def validar_banco(
+    estrategia,
+    titulares
+):
+
+    banco = estrategia.get(
+        "banco"
+    )
+
+    if not isinstance(
+        banco,
+        list,
+    ):
+
+        return False
+
+    if len(
+        banco
+    ) == 0:
+
+        return False
+
+    ids_titulares = {
+        str(
+            jogador.get(
+                "id"
+            )
+        )
+        for jogador in titulares
+        if isinstance(
+            jogador,
+            dict,
+        )
+    }
+
+    ids_banco = []
+
+    for jogador in banco:
+
+        if not isinstance(
+            jogador,
+            dict,
+        ):
+
+            return False
+
+        jogador_id = jogador.get(
+            "id"
+        )
+
+        if jogador_id is None:
+
+            return False
+
+        jogador_id = str(
+            jogador_id
+        )
+
+        if jogador_id in (
+            ids_titulares
+        ):
+
+            return False
+
+        ids_banco.append(
+            jogador_id
+        )
+
+    return (
+        len(ids_banco)
+        ==
+        len(set(ids_banco))
+    )
+
+
+# ======================================================
+# RESERVA DE LUXO
+# ======================================================
+
+def validar_reserva_luxo(
+    estrategia
+):
+
+    reserva = estrategia.get(
+        "reservaLuxo"
+    )
+
+    banco = estrategia.get(
+        "banco"
+    )
+
+    if not isinstance(
+        reserva,
+        dict,
+    ):
+
+        return False
+
+    if not isinstance(
+        banco,
+        list,
+    ):
+
+        return False
+
+    reserva_id = reserva.get(
+        "id"
+    )
+
+    if reserva_id is None:
+
+        return False
+
+    return any(
+
+        isinstance(
+            jogador,
+            dict,
+        )
+
+        and
+
+        str(
+            jogador.get(
+                "id"
+            )
+        ) == str(
+            reserva_id
+        )
+
+        for jogador in banco
+
+    )
+
+
+# ======================================================
+# VAZAMENTO FUTURO
+# ======================================================
+
+def possui_resultado_real(
+    jogador
+):
+
+    if not isinstance(
+        jogador,
+        dict,
+    ):
+
+        return False
+
+    campos_proibidos = {
+        "pontuacaoReal",
+        "resultadoReal",
+        "pontuacaoDaRodada",
+        "real",
+    }
+
+    return any(
+        campo in jogador
+        for campo
+        in campos_proibidos
+    )
+
+
+def validar_sem_vazamento(
+    estrategia
+):
+
+    jogadores = []
+
+    titulares = estrategia.get(
+        "titulares",
+        []
+    )
+
+    banco = estrategia.get(
+        "banco",
+        []
+    )
+
+    if isinstance(
+        titulares,
+        list,
+    ):
+
+        jogadores.extend(
+            titulares
+        )
+
+    if isinstance(
+        banco,
+        list,
+    ):
+
+        jogadores.extend(
+            banco
+        )
+
+    capitao = estrategia.get(
+        "capitao"
+    )
+
+    if isinstance(
+        capitao,
+        dict,
+    ):
+
+        jogadores.append(
+            capitao
+        )
+
+    reserva = estrategia.get(
+        "reservaLuxo"
+    )
+
+    if isinstance(
+        reserva,
+        dict,
+    ):
+
+        jogadores.append(
+            reserva
+        )
+
+    return not any(
+        possui_resultado_real(
+            jogador
+        )
+        for jogador
+        in jogadores
+    )
+
+
+# ======================================================
+# DIAGNÓSTICO DA ESTRATÉGIA
 # ======================================================
 
 def diagnosticar_estrategia(
     rodada,
+    estrategia_id,
     estrategia,
-    dados,
-    arquivo,
 ):
 
-    resultado = {
-        "rodada": rodada,
-        "estrategia": estrategia,
-        "arquivo": str(
-            arquivo.relative_to(
-                BASE_DIR
-            )
-        ),
-        "existe": (
-            dados is not None
-        ),
-        "valido": False,
-        "titulares": 0,
-        "auditoria": None,
-        "problemas": [],
-    }
-
-    if dados is None:
-
-        resultado[
-            "problemas"
-        ].append(
-            "estratégia não encontrada"
-        )
-
-        return resultado
+    problemas = []
 
     if not isinstance(
-        dados,
+        estrategia,
         dict,
     ):
 
-        resultado[
-            "problemas"
-        ].append(
-            "estrutura da estratégia "
-            "não é objeto"
+        return {
+            "rodada": rodada,
+            "estrategia":
+                estrategia_id,
+            "valido": False,
+            "titulares": 0,
+            "esperados": 0,
+            "auditoria": None,
+            "problemas": [
+                "estratégia ausente"
+            ],
+        }
+
+    titulares = estrategia.get(
+        "titulares"
+    )
+
+    if not isinstance(
+        titulares,
+        list,
+    ):
+
+        titulares = []
+
+        problemas.append(
+            "titulares ausentes"
         )
 
-        return resultado
-
-    titulares = obter_titulares(
-        dados
+    esperados = quantidade_esperada(
+        estrategia
     )
 
-    resultado[
-        "titulares"
-    ] = len(
+    quantidade = len(
         titulares
     )
+
+    if esperados <= 0:
+
+        problemas.append(
+            "formação inválida"
+        )
+
+    elif quantidade != esperados:
+
+        problemas.append(
+            f"titulares = "
+            f"{quantidade}; "
+            f"esperado = "
+            f"{esperados}"
+        )
+
+    formacao = texto(
+        estrategia.get(
+            "formacao"
+        )
+    )
+
+    estrutura = FORMACOES.get(
+        formacao
+    )
+
+    if estrutura:
+
+        contagem = contar_posicoes(
+            titulares
+        )
+
+        for (
+            posicao,
+            quantidade_posicao
+        ) in estrutura.items():
+
+            encontrados = (
+                contagem.get(
+                    posicao,
+                    0
+                )
+            )
+
+            if (
+                encontrados
+                != quantidade_posicao
+            ):
+
+                problemas.append(
+                    f"{posicao}: "
+                    f"{encontrados}/"
+                    f"{quantidade_posicao}"
+                )
+
+    ids = [
+
+        str(
+            jogador.get(
+                "id"
+            )
+        )
+
+        for jogador in titulares
+
+        if (
+            isinstance(
+                jogador,
+                dict,
+            )
+            and jogador.get(
+                "id"
+            ) is not None
+        )
+
+    ]
+
+    if len(ids) != quantidade:
+
+        problemas.append(
+            "titular sem ID"
+        )
 
     if len(
-        titulares
-    ) != 11:
+        ids
+    ) != len(
+        set(ids)
+    ):
 
-        resultado[
-            "problemas"
-        ].append(
-            f"quantidade de titulares = "
-            f"{len(titulares)}"
+        problemas.append(
+            "titular duplicado"
         )
 
-    auditoria = auditoria_aprovada(
-        dados
-    )
+    if not validar_capitao(
+        estrategia,
+        titulares,
+    ):
 
-    resultado[
-        "auditoria"
-    ] = auditoria
+        problemas.append(
+            "capitão inválido"
+        )
+
+    if not validar_banco(
+        estrategia,
+        titulares,
+    ):
+
+        problemas.append(
+            "banco inválido"
+        )
+
+    if not validar_reserva_luxo(
+        estrategia
+    ):
+
+        problemas.append(
+            "Reserva de Luxo inválida"
+        )
+
+    if not validar_sem_vazamento(
+        estrategia
+    ):
+
+        problemas.append(
+            "possível vazamento "
+            "de resultado real"
+        )
+
+    auditoria = (
+        auditoria_aprovada(
+            estrategia
+        )
+    )
 
     if auditoria is False:
 
-        resultado[
-            "problemas"
-        ].append(
-            "auditoria reprovada"
+        problemas.append(
+            "auditoria interna "
+            "reprovada"
         )
 
-    resultado[
-        "valido"
-    ] = (
+    valido = (
         len(
-            titulares
-        ) == 11
-        and auditoria is not False
+            problemas
+        ) == 0
     )
 
-    return resultado
+    return {
+        "rodada": rodada,
+        "estrategia":
+            estrategia_id,
+        "valido":
+            valido,
+        "titulares":
+            quantidade,
+        "esperados":
+            esperados,
+        "auditoria":
+            auditoria,
+        "problemas":
+            problemas,
+    }
 
 
 # ======================================================
@@ -529,34 +1069,6 @@ def diagnosticar_rodada(
 
     resultados = []
 
-    if dados is None:
-
-        for estrategia in (
-            ESTRATEGIAS_ESPERADAS
-        ):
-
-            resultados.append(
-                {
-                    "rodada": rodada,
-                    "estrategia": estrategia,
-                    "arquivo": str(
-                        arquivo.relative_to(
-                            BASE_DIR
-                        )
-                    ),
-                    "existe": False,
-                    "valido": False,
-                    "titulares": 0,
-                    "auditoria": None,
-                    "problemas": [
-                        "arquivo ausente "
-                        "ou JSON inválido"
-                    ],
-                }
-            )
-
-        return resultados
-
     if not isinstance(
         dados,
         dict,
@@ -566,48 +1078,94 @@ def diagnosticar_rodada(
             ESTRATEGIAS_ESPERADAS
         ):
 
-            resultados.append(
-                {
-                    "rodada": rodada,
-                    "estrategia": estrategia,
-                    "arquivo": str(
-                        arquivo.relative_to(
-                            BASE_DIR
-                        )
-                    ),
-                    "existe": True,
-                    "valido": False,
-                    "titulares": 0,
-                    "auditoria": None,
-                    "problemas": [
-                        "estrutura principal "
-                        "não é objeto"
-                    ],
-                }
-            )
+            resultados.append({
+                "rodada":
+                    rodada,
+                "estrategia":
+                    estrategia,
+                "valido":
+                    False,
+                "titulares":
+                    0,
+                "esperados":
+                    0,
+                "auditoria":
+                    None,
+                "problemas": [
+                    "arquivo da rodada "
+                    "inválido"
+                ],
+            })
 
         return resultados
+
+    rodada_interna = dados.get(
+        "rodada"
+    )
+
+    try:
+
+        rodada_interna = int(
+            rodada_interna
+        )
+
+    except Exception:
+
+        rodada_interna = None
+
+    if (
+        rodada_interna
+        != rodada
+    ):
+
+        print(
+            f"[AVISO] "
+            f"R{rodada:02d}: "
+            f"campo rodada interno "
+            f"= {rodada_interna}"
+        )
+
+    limite_historico = dados.get(
+        "dadosUtilizadosAteRodada"
+    )
+
+    esperado_limite = (
+        rodada - 1
+    )
+
+    if (
+        limite_historico
+        != esperado_limite
+    ):
+
+        print(
+            f"[AVISO] "
+            f"R{rodada:02d}: "
+            f"histórico encerra em "
+            f"R{limite_historico}; "
+            f"esperado R"
+            f"{esperado_limite:02d}"
+        )
 
     estrategias = obter_estrategias(
         dados
     )
 
-    for estrategia in (
+    for estrategia_id in (
         ESTRATEGIAS_ESPERADAS
     ):
 
-        dados_estrategia = (
-            estrategias.get(
-                estrategia
-            )
-        )
-
         resultado = (
             diagnosticar_estrategia(
+
                 rodada,
-                estrategia,
-                dados_estrategia,
-                arquivo,
+
+                estrategia_id,
+
+                estrategias.get(
+                    estrategia_id
+                ),
+
             )
         )
 
@@ -626,31 +1184,21 @@ def imprimir_resultado(
     resultado
 ):
 
-    rodada = resultado[
-        "rodada"
-    ]
-
-    estrategia = resultado[
-        "estrategia"
-    ]
-
-    titulares = resultado[
-        "titulares"
-    ]
+    status = (
+        "OK"
+        if resultado[
+            "valido"
+        ]
+        else "ERRO"
+    )
 
     auditoria = resultado[
         "auditoria"
     ]
 
-    valido = resultado[
-        "valido"
-    ]
-
     if auditoria is True:
 
-        texto_auditoria = (
-            "OK"
-        )
+        texto_auditoria = "OK"
 
     elif auditoria is False:
 
@@ -660,30 +1208,37 @@ def imprimir_resultado(
 
     else:
 
-        texto_auditoria = (
-            "N/D"
-        )
-
-    status = (
-        "OK"
-        if valido
-        else "ERRO"
-    )
+        texto_auditoria = "N/D"
 
     print(
+
         f"[{status}] "
-        f"R{rodada:02d} | "
-        f"{estrategia.capitalize():11} | "
-        f"Titulares: {titulares:2d} | "
-        f"Auditoria: {texto_auditoria}"
+
+        f"R"
+        f"{resultado['rodada']:02d}"
+
+        f" | "
+
+        f"{resultado['estrategia'].capitalize():11}"
+
+        f" | Titulares: "
+        f"{resultado['titulares']}/"
+        f"{resultado['esperados']}"
+
+        f" | Auditoria: "
+        f"{texto_auditoria}"
+
     )
 
-    for problema in resultado[
-        "problemas"
-    ]:
+    for problema in (
+        resultado[
+            "problemas"
+        ]
+    ):
 
         print(
-            f"       -> {problema}"
+            f"       -> "
+            f"{problema}"
         )
 
 
@@ -702,7 +1257,7 @@ def executar():
     )
 
     print(
-        "DIAGNÓSTICO DAS ESCALAÇÕES HISTÓRICAS V3"
+        "DIAGNÓSTICO DAS ESCALAÇÕES HISTÓRICAS V4"
     )
 
     print(
@@ -710,41 +1265,69 @@ def executar():
     )
 
     print(
-        f"Pasta: {PASTA_HISTORICO}"
+        f"Pasta: "
+        f"{PASTA_HISTORICO}"
+    )
+
+    print(
+        "Regra de escalação: "
+        "11 atletas + 1 técnico "
+        "= 12 titulares"
     )
 
     print(
         "============================================"
     )
 
-    rodadas = localizar_rodadas()
+    # ==================================================
+    # ÍNDICE
+    # ==================================================
 
-    if not rodadas:
+    resultado_indice = (
+        diagnosticar_indice()
+    )
+
+    if resultado_indice[
+        "valido"
+    ]:
 
         print(
-            "[ERRO] Nenhuma rodada histórica encontrada."
+            "[OK] indice.json"
         )
 
-        print(
-            "Esperado:"
-        )
+    else:
 
         print(
-            "data/historico-escalacoes/"
-            "rodada-02.json"
+            "[ERRO] indice.json"
         )
 
-        print(
-            "data/historico-escalacoes/"
-            "rodada-03.json"
-        )
+        for problema in (
+            resultado_indice[
+                "problemas"
+            ]
+        ):
+
+            print(
+                f"       -> "
+                f"{problema}"
+            )
+
+    print(
+        "============================================"
+    )
+
+    # ==================================================
+    # RODADAS
+    # ==================================================
+
+    arquivos = localizar_rodadas()
+
+    if not arquivos:
 
         print(
-            "..."
-        )
-
-        print(
-            "============================================"
+            "[ERRO] "
+            "Nenhuma rodada histórica "
+            "encontrada."
         )
 
         raise SystemExit(
@@ -752,19 +1335,23 @@ def executar():
         )
 
     numeros = [
+
         numero_rodada(
             arquivo
         )
-        for arquivo in rodadas
+
+        for arquivo in arquivos
+
     ]
 
     print(
-        f"Rodadas encontradas: {numeros}"
+        f"Rodadas encontradas: "
+        f"{numeros}"
     )
 
     print(
         f"Total de rodadas: "
-        f"{len(rodadas)}"
+        f"{len(arquivos)}"
     )
 
     print(
@@ -773,7 +1360,7 @@ def executar():
 
     resultados = []
 
-    for arquivo in rodadas:
+    for arquivo in arquivos:
 
         resultados_rodada = (
             diagnosticar_rodada(
@@ -793,42 +1380,62 @@ def executar():
                 resultado
             )
 
+    # ==================================================
+    # RESUMO
+    # ==================================================
+
     total = len(
         resultados
     )
 
     aprovadas = sum(
+
         1
-        for resultado in resultados
+
+        for resultado
+        in resultados
+
         if resultado[
             "valido"
         ]
+
     )
 
     reprovadas = (
         total
-        - aprovadas
+        -
+        aprovadas
     )
 
-    rodadas_com_erro = sorted(
-        {
-            resultado[
-                "rodada"
-            ]
-            for resultado in resultados
-            if not resultado[
-                "valido"
-            ]
-        }
-    )
+    rodadas_com_erro = sorted({
+
+        resultado[
+            "rodada"
+        ]
+
+        for resultado
+        in resultados
+
+        if not resultado[
+            "valido"
+        ]
+
+    })
 
     cobertura = (
+
         (
             aprovadas
-            / total
-        ) * 100
+            /
+            total
+        )
+        *
+        100
+
         if total
+
         else 0
+
     )
 
     print(
@@ -845,7 +1452,7 @@ def executar():
 
     print(
         f"Rodadas analisadas: "
-        f"{len(rodadas)}"
+        f"{len(arquivos)}"
     )
 
     print(
@@ -877,10 +1484,24 @@ def executar():
         "============================================"
     )
 
-    if reprovadas:
+    # ==================================================
+    # RESULTADO FINAL
+    # ==================================================
+
+    indice_ok = (
+        resultado_indice[
+            "valido"
+        ]
+    )
+
+    if (
+        reprovadas > 0
+        or not indice_ok
+    ):
 
         print(
-            "AUDITORIA GLOBAL: REPROVADA"
+            "AUDITORIA GLOBAL: "
+            "REPROVADA"
         )
 
         print(
@@ -892,7 +1513,8 @@ def executar():
         )
 
     print(
-        "AUDITORIA GLOBAL: APROVADA"
+        "AUDITORIA GLOBAL: "
+        "APROVADA"
     )
 
     print(
