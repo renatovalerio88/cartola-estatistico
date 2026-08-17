@@ -37,8 +37,8 @@
     "empates": 63,
     "taxaVitoriasA": 0.0,
     "taxaVitoriasB": 0.0,
-    "mediaPontosA": 4.262,
-    "mediaPontosB": 4.262,
+    "mediaPontosA": 4.443,
+    "mediaPontosB": 4.443,
     "ganhoMedioBvsA": 0.0,
     "acertoMelhorRealA": {
       "quantidade": 6,
@@ -4469,16 +4469,16 @@
           "estrategia": "Conservador",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "89493",
-            "nome": "Igor Rabello da Costa",
-            "posicao": "ZAG",
-            "projecao": 6.79,
-            "real": 4.5,
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 7.34,
+            "real": 8.4,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.79,
+                "valor": 7.34,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -4486,16 +4486,16 @@
             }
           },
           "modeloB": {
-            "id": "89493",
-            "nome": "Igor Rabello da Costa",
-            "posicao": "ZAG",
-            "projecao": 6.79,
-            "real": 4.5,
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 7.34,
+            "real": 8.4,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.79,
+                "valor": 7.34,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -4503,30 +4503,30 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "94968",
-            "nome": "Luis Antônio da Rocha Júnior",
-            "posicao": "LAT",
-            "projecao": 6.13,
-            "real": 7.5,
-            "scoreCapitao": 83.582,
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 7.33,
+            "real": 11.9,
+            "scoreCapitao": 99.615,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.13,
-                "normalizado": 0.8358,
+                "valor": 7.33,
+                "normalizado": 0.9962,
                 "peso": 0.32,
-                "contribuicao": 0.26746
+                "contribuicao": 0.31877
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 4.5,
-            "pontosCapitaoB": 4.5,
-            "melhorPontuacaoReal": 7.5,
+            "pontosCapitaoA": 8.4,
+            "pontosCapitaoB": 8.4,
+            "melhorPontuacaoReal": 11.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 3.0,
-            "perdaBParaOtimo": 3.0,
+            "perdaAParaOtimo": 3.5,
+            "perdaBParaOtimo": 3.5,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -4535,16 +4535,16 @@
           "estrategia": "Equilibrado",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "99815",
-            "nome": "Jhon Adolfo Arias Andrade",
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
             "posicao": "MEI",
-            "projecao": 9.82,
-            "real": 0.9,
+            "projecao": 10.08,
+            "real": 8.4,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 9.82,
+                "valor": 10.08,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -4552,16 +4552,16 @@
             }
           },
           "modeloB": {
-            "id": "99815",
-            "nome": "Jhon Adolfo Arias Andrade",
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
             "posicao": "MEI",
-            "projecao": 9.82,
-            "real": 0.9,
+            "projecao": 10.08,
+            "real": 8.4,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 9.82,
+                "valor": 10.08,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -4569,30 +4569,30 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "102928",
-            "nome": "Agustín Canobbio Graviz",
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
             "posicao": "ATA",
-            "projecao": 5.47,
-            "real": 8.8,
-            "scoreCapitao": 23.009,
+            "projecao": 9.99,
+            "real": 11.9,
+            "scoreCapitao": 97.541,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 5.47,
-                "normalizado": 0.2301,
+                "valor": 9.99,
+                "normalizado": 0.9754,
                 "peso": 0.32,
-                "contribuicao": 0.07363
+                "contribuicao": 0.31213
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 0.9,
-            "pontosCapitaoB": 0.9,
-            "melhorPontuacaoReal": 8.8,
+            "pontosCapitaoA": 8.4,
+            "pontosCapitaoB": 8.4,
+            "melhorPontuacaoReal": 11.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 7.9,
-            "perdaBParaOtimo": 7.9,
+            "perdaAParaOtimo": 3.5,
+            "perdaBParaOtimo": 3.5,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -4635,19 +4635,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "102928",
-            "nome": "Agustín Canobbio Graviz",
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
             "posicao": "ATA",
-            "projecao": 6.34,
-            "real": 8.8,
-            "scoreCapitao": 20.392,
+            "projecao": 12.22,
+            "real": 11.9,
+            "scoreCapitao": 96.506,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.34,
-                "normalizado": 0.2039,
+                "valor": 12.22,
+                "normalizado": 0.9651,
                 "peso": 0.32,
-                "contribuicao": 0.06525
+                "contribuicao": 0.30882
               }
             }
           },
@@ -4655,10 +4655,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 0.9,
             "pontosCapitaoB": 0.9,
-            "melhorPontuacaoReal": 8.8,
+            "melhorPontuacaoReal": 11.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 7.9,
-            "perdaBParaOtimo": 7.9,
+            "perdaAParaOtimo": 11.0,
+            "perdaBParaOtimo": 11.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
