@@ -11,6 +11,9 @@
 const CAMINHO_CONFIGURACAO =
   "data/configuracao.json";
 
+const CAMINHO_STATUS_CARTOLA =
+  "data/api/status.json";
+
 const TITULOS_PAGINAS = {
   recomendacoes: "Recomendações",
   times: "Times sugeridos",
@@ -26,7 +29,8 @@ const TITULOS_PAGINAS = {
 
 const estadoInterface = {
   abaAtiva: "recomendacoes",
-  configuracao: null
+  configuracao: null,
+  statusCartola: null
 };
 
 
@@ -335,21 +339,42 @@ async function carregarConfiguracao() {
   atualizarStatusCarregamento();
 
   try {
-    const resposta = await fetch(
-      CAMINHO_CONFIGURACAO,
-      {
-        cache: "no-store"
-      }
-    );
+    /*
+     * A configuração continua sendo carregada normalmente,
+     * pois contém parâmetros próprios do projeto.
+     *
+     * A rodada, porém, passa a ser obtida prioritariamente
+     * do status atualizado da API do Cartola.
+     */
 
-    if (!resposta.ok) {
+    const [
+      respostaConfiguracao,
+      respostaStatus
+    ] =
+      await Promise.all([
+        fetch(
+          CAMINHO_CONFIGURACAO,
+          {
+            cache: "no-store"
+          }
+        ),
+
+        fetch(
+          CAMINHO_STATUS_CARTOLA,
+          {
+            cache: "no-store"
+          }
+        ).catch(() => null)
+      ]);
+
+    if (!respostaConfiguracao.ok) {
       throw new Error(
-        `Erro HTTP ${resposta.status}`
+        `Erro HTTP ${respostaConfiguracao.status}`
       );
     }
 
     const configuracao =
-      await resposta.json();
+      await respostaConfiguracao.json();
 
     if (
       !configuracao ||
@@ -360,14 +385,36 @@ async function carregarConfiguracao() {
       );
     }
 
+    let statusCartola = null;
+
+    if (
+      respostaStatus &&
+      respostaStatus.ok
+    ) {
+      try {
+        statusCartola =
+          await respostaStatus.json();
+      } catch (erroStatus) {
+        console.warn(
+          "Não foi possível interpretar status.json:",
+          erroStatus
+        );
+      }
+    }
+
     estadoInterface.configuracao =
       configuracao;
 
+    estadoInterface.statusCartola =
+      statusCartola;
+
     exibirConfiguracao(
-      configuracao
+      configuracao,
+      statusCartola
     );
 
     return configuracao;
+
   } catch (erro) {
     console.error(
       "Erro ao carregar configuração:",
@@ -382,29 +429,178 @@ async function carregarConfiguracao() {
 
 
 /* =========================================================
+   RODADA ATUAL
+   ========================================================= */
+
+function obterRodadaAtualInterface(
+  configuracao,
+  statusCartola
+) {
+  const rodadaStatus =
+    Number(
+      statusCartola?.rodada_atual
+    );
+
+  if (
+    Number.isInteger(rodadaStatus) &&
+    rodadaStatus > 0
+  ) {
+    return rodadaStatus;
+  }
+
+  const rodadaConfiguracao =
+    Number(
+      configuracao?.rodada
+    );
+
+  if (
+    Number.isInteger(
+      rodadaConfiguracao
+    ) &&
+    rodadaConfiguracao > 0
+  ) {
+    return rodadaConfiguracao;
+  }
+
+  return "--";
+}
+
+
+/* =========================================================
+   STATUS DO MERCADO
+   ========================================================= */
+
+function obterTextoStatusInterface(
+  configuracao,
+  statusCartola
+) {
+  const statusMercado =
+    Number(
+      statusCartola?.status_mercado
+    );
+
+  if (statusMercado === 1) {
+    return "Mercado aberto";
+  }
+
+  if (statusMercado === 2) {
+    return "Mercado fechado";
+  }
+
+  if (statusMercado === 3) {
+    return "Mercado em manutenção";
+  }
+
+  if (statusMercado === 4) {
+    return "Fim de temporada";
+  }
+
+  return (
+    configuracao?.status ||
+    "Cartola Estatístico carregado"
+  );
+}
+
+
+/* =========================================================
+   ÚLTIMA ATUALIZAÇÃO
+   ========================================================= */
+
+function obterTextoUltimaAtualizacao(
+  configuracao,
+  statusCartola
+) {
+  /*
+   * O status da API confirma a rodada corrente, mas não
+   * possui necessariamente o horário em que o GitHub
+   * terminou de gerar os arquivos.
+   *
+   * Por isso, mantemos a data da configuração como
+   * fallback até ligarmos esse campo ao pipeline.
+   */
+
+  const atualizacao =
+    configuracao?.ultimaAtualizacao;
+
+  if (atualizacao) {
+    return (
+      `Última atualização: ${atualizacao}`
+    );
+  }
+
+  const fechamento =
+    statusCartola?.fechamento;
+
+  if (
+    fechamento &&
+    fechamento.dia &&
+    fechamento.mes &&
+    fechamento.ano
+  ) {
+    const dia =
+      String(
+        fechamento.dia
+      ).padStart(2, "0");
+
+    const mes =
+      String(
+        fechamento.mes
+      ).padStart(2, "0");
+
+    const hora =
+      String(
+        fechamento.hora ?? 0
+      ).padStart(2, "0");
+
+    const minuto =
+      String(
+        fechamento.minuto ?? 0
+      ).padStart(2, "0");
+
+    return (
+      `Fechamento da rodada: ` +
+      `${dia}/${mes}/${fechamento.ano} ` +
+      `${hora}:${minuto}`
+    );
+  }
+
+  return "Última atualização: --";
+}
+
+
+/* =========================================================
    EXIBIÇÃO DA CONFIGURAÇÃO
    ========================================================= */
 
 function exibirConfiguracao(
-  configuracao
+  configuracao,
+  statusCartola = null
 ) {
+  const rodadaAtual =
+    obterRodadaAtualInterface(
+      configuracao,
+      statusCartola
+    );
+
   definirTextoElemento(
     "roundNumber",
-    configuracao.rodada ?? "--"
+    rodadaAtual
   );
 
   definirTextoElemento(
     "statusText",
-    configuracao.status ||
-    "Cartola Estatístico carregado"
+    obterTextoStatusInterface(
+      configuracao,
+      statusCartola
+    )
   );
 
   definirTextoElemento(
     "lastUpdate",
-    `Última atualização: ${
-      configuracao.ultimaAtualizacao ||
-      "não informada"
-    }`
+    obterTextoUltimaAtualizacao(
+      configuracao,
+      statusCartola
+    )
   );
 
   atualizarStatusVisual(
@@ -443,7 +639,7 @@ function exibirErroConfiguracao() {
 
   definirTextoElemento(
     "lastUpdate",
-    "Verifique o arquivo data/configuracao.json"
+    "Verifique os arquivos de configuração"
   );
 
   atualizarStatusVisual(
@@ -512,6 +708,19 @@ function atualizarStatusVisual(
 
 function obterConfiguracaoAtual() {
   return estadoInterface.configuracao;
+}
+
+
+function obterStatusCartolaAtual() {
+  return estadoInterface.statusCartola;
+}
+
+
+function obterRodadaAtual() {
+  return obterRodadaAtualInterface(
+    estadoInterface.configuracao,
+    estadoInterface.statusCartola
+  );
 }
 
 
