@@ -10,6 +10,7 @@
    - respeitar o limite de patrimônio;
    - preservar projeção original e calibrada;
    - consolidar projeção, piso, teto, confiança e risco;
+   - comparar formações sem preferência artificial;
    - selecionar capitão;
    - montar banco;
    - selecionar Reserva de Luxo;
@@ -39,6 +40,13 @@ const POSICOES_BANCO = [
   "ZAG",
   "MEI",
   "ATA"
+];
+
+
+const FORMACOES_CANDIDATAS_ESCALACAO = [
+  "4-4-2",
+  "3-4-3",
+  "4-3-3"
 ];
 
 
@@ -434,7 +442,7 @@ function jogadorPossuiCalibracao(
 
   return (
     jogador.calibracaoPosicao
-    ?.aplicada === true
+      ?.aplicada === true
   );
 
 }
@@ -969,6 +977,12 @@ function gerarJustificativaEstrategia(
     );
 
 
+  const formacao =
+    escalacao.formacao ??
+    perfil?.formacao ??
+    "--";
+
+
   if (
     nomePerfil.includes(
       "conserv"
@@ -976,9 +990,9 @@ function gerarJustificativaEstrategia(
   ) {
 
     return (
-      `Escalação voltada à segurança, priorizando ` +
-      `regularidade, confiança e proteção contra risco. ` +
-      `Projeção total de ${projecao} pontos, ` +
+      `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
+      `voltada à segurança, priorizando regularidade, confiança ` +
+      `e proteção contra risco. Projeção total de ${projecao} pontos, ` +
       `piso de ${piso} e confiança média de ${confianca}%.`
     );
 
@@ -992,20 +1006,20 @@ function gerarJustificativaEstrategia(
   ) {
 
     return (
-      `Escalação orientada ao maior potencial de pontuação, ` +
-      `aceitando mais volatilidade para buscar teto. ` +
-      `Projeção total de ${projecao} pontos e ` +
-      `teto histórico agregado de ${teto}.`
+      `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
+      `orientada ao maior potencial de pontuação, aceitando mais ` +
+      `volatilidade para buscar teto. Projeção total de ${projecao} ` +
+      `pontos e teto histórico agregado de ${teto}.`
     );
 
   }
 
 
   return (
-    `Escalação equilibrada entre projeção, segurança, ` +
-    `teto e confiança. O objetivo é buscar boa pontuação ` +
-    `sem elevar excessivamente o risco. ` +
-    `Projeção total de ${projecao} pontos.`
+    `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
+    `equilibrando projeção, segurança, teto e confiança. ` +
+    `O objetivo é buscar boa pontuação sem elevar excessivamente ` +
+    `o risco. Projeção total de ${projecao} pontos.`
   );
 
 }
@@ -1200,6 +1214,19 @@ function gerarPontosPositivosEscalacao(
 
 
   if (
+    escalacao.formacaoAutomatica ===
+    true
+  ) {
+
+    positivos.push(
+      `Formação ${escalacao.formacao} escolhida pelo motor ` +
+      `após comparação automática entre as formações disponíveis.`
+    );
+
+  }
+
+
+  if (
     positivos.length === 0
   ) {
 
@@ -1298,6 +1325,248 @@ function gerarPontosAtencaoEscalacao(
 
 
 /* =========================================================
+   ESCOLHA AUTOMÁTICA DA FORMAÇÃO
+   ========================================================= */
+
+
+function obterNotaTitularEscalacao(
+  jogador
+) {
+
+  const score =
+    Number(
+      jogador?.score
+    );
+
+
+  if (
+    Number.isFinite(
+      score
+    )
+  ) {
+
+    return score;
+
+  }
+
+
+  return obterProjecaoFinalEscalacao(
+    jogador
+  );
+
+}
+
+
+function calcularNotaFormacaoEscalacao(
+  jogadores
+) {
+
+  return somarCampoEscalacao(
+    jogadores,
+    obterNotaTitularEscalacao
+  );
+
+}
+
+
+function compararFormacoesEscalacao(
+  opcaoA,
+  opcaoB
+) {
+
+  /*
+   * Uma escalação completa sempre vence
+   * uma escalação incompleta.
+   */
+
+  if (
+    opcaoA.completa !==
+    opcaoB.completa
+  ) {
+
+    return opcaoB.completa
+      ? 1
+      : -1;
+
+  }
+
+
+  /*
+   * Critério principal:
+   * soma do score calculado pelo motor.
+   *
+   * Como o score já reflete o perfil
+   * Conservador / Equilibrado / Agressivo,
+   * não é necessário criar bônus artificial
+   * para nenhuma formação.
+   */
+
+  if (
+    Math.abs(
+      opcaoB.nota -
+      opcaoA.nota
+    ) > 0.000001
+  ) {
+
+    return (
+      opcaoB.nota -
+      opcaoA.nota
+    );
+
+  }
+
+
+  /*
+   * Primeiro desempate:
+   * maior projeção total.
+   */
+
+  if (
+    Math.abs(
+      opcaoB.projecao -
+      opcaoA.projecao
+    ) > 0.000001
+  ) {
+
+    return (
+      opcaoB.projecao -
+      opcaoA.projecao
+    );
+
+  }
+
+
+  /*
+   * Segundo desempate:
+   * menor custo.
+   */
+
+  if (
+    Math.abs(
+      opcaoA.custo -
+      opcaoB.custo
+    ) > 0.000001
+  ) {
+
+    return (
+      opcaoA.custo -
+      opcaoB.custo
+    );
+
+  }
+
+
+  /*
+   * Empate absoluto:
+   * mantém apenas uma ordem determinística.
+   *
+   * Isso NÃO representa bônus estatístico.
+   */
+
+  return (
+    FORMACOES_CANDIDATAS_ESCALACAO
+      .indexOf(
+        opcaoA.formacao
+      ) -
+    FORMACOES_CANDIDATAS_ESCALACAO
+      .indexOf(
+        opcaoB.formacao
+      )
+  );
+
+}
+
+
+function escolherMelhorFormacaoEscalacao(
+  jogadores,
+  perfil,
+  limitePatrimonio
+) {
+
+  const opcoes =
+    FORMACOES_CANDIDATAS_ESCALACAO
+      .map(
+        formacao => {
+
+          const titulares =
+            MotorEscalacao.montar(
+              jogadores,
+              formacao,
+              limitePatrimonio ??
+                Infinity,
+              perfil?.perfil
+            );
+
+
+          const listaTitulares =
+            Array.isArray(
+              titulares
+            )
+              ? titulares
+              : [];
+
+
+          return {
+
+            formacao,
+
+            jogadores:
+              listaTitulares,
+
+            completa:
+              listaTitulares.length === 12,
+
+            nota:
+              calcularNotaFormacaoEscalacao(
+                listaTitulares
+              ),
+
+            projecao:
+              somarCampoEscalacao(
+                listaTitulares,
+                obterProjecaoFinalEscalacao
+              ),
+
+            custo:
+              somarCampoEscalacao(
+                listaTitulares,
+                jogador =>
+                  jogador?.preco
+              )
+
+          };
+
+        }
+      )
+      .sort(
+        compararFormacoesEscalacao
+      );
+
+
+  return (
+    opcoes[0] ?? {
+
+      formacao:
+        perfil?.formacao ??
+        null,
+
+      jogadores: [],
+
+      completa: false,
+
+      nota: 0,
+
+      projecao: 0,
+
+      custo: 0
+
+    }
+  );
+
+}
+
+
+/* =========================================================
    CARREGAMENTO
    ========================================================= */
 
@@ -1380,17 +1649,19 @@ async function carregarEscalacoes() {
 
 
       /* ===================================================
-         TITULARES
+         TITULARES + ESCOLHA DA FORMAÇÃO
          =================================================== */
 
-      const titulares =
-        MotorEscalacao.montar(
+      const melhorFormacao =
+        escolherMelhorFormacaoEscalacao(
           jogadores,
-          perfil.formacao,
-          limitePatrimonio ??
-            Infinity,
-          perfil.perfil
+          perfil,
+          limitePatrimonio
         );
+
+
+      const titulares =
+        melhorFormacao.jogadores;
 
 
       const listaTitulares =
@@ -1510,6 +1781,34 @@ async function carregarEscalacoes() {
       const escalacao = {
 
         ...perfil,
+
+
+        /*
+         * A formação original continua registrada
+         * para auditoria.
+         */
+
+        formacaoOriginal:
+          perfil.formacao,
+
+
+        /*
+         * formacao passa a representar a formação
+         * realmente escolhida pelo motor.
+         */
+
+        formacao:
+          melhorFormacao.formacao,
+
+
+        formacaoAutomatica:
+          true,
+
+
+        notaFormacao:
+          arredondarEscalacao(
+            melhorFormacao.nota
+          ),
 
 
         jogadores:
