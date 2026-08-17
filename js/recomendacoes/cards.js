@@ -57,7 +57,51 @@ function exibirJogadoresDaPosicao() {
 
 
 /* =========================================================
-   2. CRIAÇÃO DO CARD
+   2. NOME CURTO DO JOGADOR
+   ========================================================= */
+
+function obterNomeCurtoRecomendacao(
+  jogador
+) {
+  if (!jogador) {
+    return "Jogador";
+  }
+
+  const apelido =
+    String(
+      jogador.apelido ||
+      ""
+    ).trim();
+
+  if (apelido) {
+    return apelido;
+  }
+
+  const nome =
+    String(
+      jogador.nome ||
+      ""
+    ).trim();
+
+  if (!nome) {
+    return "Jogador";
+  }
+
+  const partes =
+    nome
+      .split(/\s+/)
+      .filter(Boolean);
+
+  if (partes.length <= 2) {
+    return nome;
+  }
+
+  return `${partes[0]} ${partes[partes.length - 1]}`;
+}
+
+
+/* =========================================================
+   3. CRIAÇÃO DO CARD
    ========================================================= */
 
 function criarCardJogador(
@@ -139,8 +183,9 @@ function criarCardJogador(
 
           <h3>
             ${escaparHtml(
-              jogador.apelido ||
-              jogador.nome
+              obterNomeCurtoRecomendacao(
+                jogador
+              )
             )}
           </h3>
 
@@ -487,7 +532,7 @@ function criarCardJogador(
 
 
 /* =========================================================
-   3. NOTA EXIBIDA
+   4. NOTA EXIBIDA
    ========================================================= */
 
 function obterNotaExibicaoJogador(
@@ -514,7 +559,7 @@ function obterNotaExibicaoJogador(
 
 
 /* =========================================================
-   4. RESULTADO DO MOTOR
+   5. RESULTADO DO MOTOR
    ========================================================= */
 
 function obterResultadoMotorJogador(
@@ -545,7 +590,7 @@ function obterResultadoMotorJogador(
 
 
 /* =========================================================
-   5. RESUMO DO MOTOR NO CARD
+   6. RESUMO DO MOTOR NO CARD
    ========================================================= */
 
 function criarResumoMotorHtml(
@@ -642,7 +687,7 @@ function criarResumoMotorHtml(
 
 
 /* =========================================================
-   6. MOTIVO PRINCIPAL
+   7. MOTIVO PRINCIPAL
    ========================================================= */
 
 function obterMotivoPrincipal(
@@ -680,7 +725,7 @@ function obterMotivoPrincipal(
 
 
 /* =========================================================
-   7. ETIQUETAS ESPECIAIS
+   8. ETIQUETAS ESPECIAIS
    ========================================================= */
 
 function criarEtiquetasEspeciaisJogador(
@@ -769,7 +814,7 @@ function criarEtiquetasEspeciaisJogador(
 
 
 /* =========================================================
-   8. COMPONENTES DA NOTA
+   9. COMPONENTES DA NOTA
    ========================================================= */
 
 function criarComponentesNotaJogador(
@@ -813,7 +858,7 @@ function criarComponentesNotaJogador(
 
 
 /* =========================================================
-   9. COMPONENTES DO JSON
+   10. COMPONENTES DO JSON
    ========================================================= */
 
 function criarComponentesPorObjeto(
@@ -869,7 +914,7 @@ function criarComponentesPorObjeto(
 
 
 /* =========================================================
-   10. COMPONENTES DO MOTOR
+   11. COMPONENTES DO MOTOR
    ========================================================= */
 
 function criarComponentesMotor(
@@ -943,7 +988,7 @@ function criarComponentesMotor(
 
 
 /* =========================================================
-   11. BOTÕES DA ANÁLISE COMPLETA
+   12. BOTÕES DA ANÁLISE COMPLETA
    ========================================================= */
 
 function configurarBotoesAnaliseJogador() {
@@ -966,7 +1011,7 @@ function configurarBotoesAnaliseJogador() {
 
 
 /* =========================================================
-   12. ABRIR E FECHAR ANÁLISE
+   13. ABRIR E FECHAR ANÁLISE
    ========================================================= */
 
 function alternarAnaliseJogador(
