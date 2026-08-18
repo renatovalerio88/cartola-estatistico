@@ -11,6 +11,7 @@ Responsabilidades:
 - utilizar projeção calibrada quando disponível;
 - preservar compatibilidade com projeção tradicional;
 - respeitar patrimônio;
+- reservar orçamento mínimo para o banco;
 - limitar jogadores por clube;
 - montar banco;
 - gerar justificativa da escalação.
@@ -75,6 +76,15 @@ const MotorEscalacao = (() => {
     };
 
 
+    const POSICOES_BANCO = [
+        "GOL",
+        "LAT",
+        "ZAG",
+        "MEI",
+        "ATA"
+    ];
+
+
     // ==================================================
     // UTILIDADES
     // ==================================================
@@ -118,6 +128,169 @@ const MotorEscalacao = (() => {
             )
             /
             fator
+        );
+
+    }
+
+
+    // ==================================================
+    // IDENTIFICAÇÃO DO JOGADOR
+    // ==================================================
+
+    function obterIdJogador(
+        jogador
+    ) {
+
+        return String(
+            jogador?.id ??
+            jogador?.atletaId ??
+            jogador?.atleta_id ??
+            ""
+        );
+
+    }
+
+
+    // ==================================================
+    // RESERVA MÍNIMA PARA O BANCO
+    // ==================================================
+
+    function calcularCustoMinimoBanco(
+        jogadores,
+        titulares = []
+    ) {
+
+        const listaJogadores =
+            Array.isArray(
+                jogadores
+            )
+                ? jogadores
+                : [];
+
+
+        const listaTitulares =
+            Array.isArray(
+                titulares
+            )
+                ? titulares
+                : [];
+
+
+        const objetosTitulares =
+            new Set(
+                listaTitulares
+            );
+
+
+        const idsTitulares =
+            new Set(
+                listaTitulares
+                    .map(
+                        obterIdJogador
+                    )
+                    .filter(
+                        Boolean
+                    )
+            );
+
+
+        let custoMinimo = 0;
+
+
+        for (
+            const posicao of
+            POSICOES_BANCO
+        ) {
+
+            const candidatos =
+                listaJogadores
+                    .filter(
+                        jogador => {
+
+                            if (
+                                jogador?.posicao !==
+                                posicao
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            if (
+                                objetosTitulares.has(
+                                    jogador
+                                )
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            const id =
+                                obterIdJogador(
+                                    jogador
+                                );
+
+
+                            if (
+                                id &&
+                                idsTitulares.has(
+                                    id
+                                )
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            const preco =
+                                Number(
+                                    jogador?.preco
+                                );
+
+
+                            return (
+                                Number.isFinite(
+                                    preco
+                                ) &&
+                                preco >= 0
+                            );
+
+                        }
+                    )
+                    .sort(
+                        (a, b) =>
+                            numero(
+                                a?.preco
+                            ) -
+                            numero(
+                                b?.preco
+                            )
+                    );
+
+
+            if (
+                candidatos.length === 0
+            ) {
+
+                return null;
+
+            }
+
+
+            custoMinimo +=
+                numero(
+                    candidatos[0]?.preco
+                );
+
+        }
+
+
+        return arredondar(
+            custoMinimo
         );
 
     }
@@ -924,6 +1097,52 @@ const MotorEscalacao = (() => {
                 }
 
 
+                /*
+                ------------------------------------------
+                Reserva de orçamento para o banco.
+
+                Antes de aceitar o titular, verificamos
+                quanto custaria o banco mais barato
+                possível com os jogadores que continuariam
+                disponíveis.
+
+                Isso impede que os titulares consumam todo
+                o patrimônio e inviabilizem as 5 reservas.
+                ------------------------------------------
+                */
+
+                if (
+                    Number.isFinite(
+                        patrimonio
+                    )
+                ) {
+
+                    const custoMinimoBanco =
+                        calcularCustoMinimoBanco(
+                            jogadores,
+                            [
+                                ...titulares,
+                                jogador
+                            ]
+                        );
+
+
+                    if (
+                        custoMinimoBanco !== null &&
+                        custo +
+                        preco +
+                        custoMinimoBanco >
+                        patrimonio +
+                        0.000001
+                    ) {
+
+                        continue;
+
+                    }
+
+                }
+
+
                 // ======================================
                 // SELEÇÃO
                 // ======================================
@@ -1323,6 +1542,13 @@ const MotorEscalacao = (() => {
             );
 
 
+        const custoMinimoBanco =
+            calcularCustoMinimoBanco(
+                jogadores,
+                titulares
+            );
+
+
         const notaTotal =
             scoreTime(
                 titulares,
@@ -1356,6 +1582,21 @@ const MotorEscalacao = (() => {
                 arredondar(
                     custo
                 ),
+
+            reservaMinimaBanco:
+                custoMinimoBanco !== null
+                    ? arredondar(
+                        custoMinimoBanco
+                    )
+                    : null,
+
+            custoMinimoComBanco:
+                custoMinimoBanco !== null
+                    ? arredondar(
+                        custo +
+                        custoMinimoBanco
+                    )
+                    : null,
 
             nota:
                 arredondar(
@@ -1439,7 +1680,9 @@ const MotorEscalacao = (() => {
 
         obterProjecao,
 
-        obterResumoCalibracao
+        obterResumoCalibracao,
+
+        calcularCustoMinimoBanco
 
     };
 
