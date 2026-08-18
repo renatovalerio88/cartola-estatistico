@@ -1,6 +1,6 @@
 {
-  "modelo": "analise_estrategias_escalacao_v3",
-  "descricao": "Avaliação histórica das estratégias Conservador, Equilibrado e Agressivo com validação de desempenho real, estabilidade e robustez.",
+  "modelo": "analise_estrategias_escalacao_v4",
+  "descricao": "Avaliação histórica das estratégias Conservador, Equilibrado e Agressivo com validação de desempenho real, estabilidade, robustez e calibração experimental segura.",
   "configuracao": {
     "minimoRodadasAnalise": 5,
     "minimoRodadasPromocao": 10,
@@ -12,7 +12,9 @@
     "minimoConsistencia": 45.0,
     "minimoRobustez": 60.0,
     "minimoScoreConfianca": 65.0,
-    "janelaRecente": 5
+    "janelaRecente": 5,
+    "fatorExperimentalMin": 0.92,
+    "fatorExperimentalMax": 1.08
   },
   "resumo": {
     "rodadas": 22,
@@ -572,6 +574,99 @@
       }
     }
   ],
+  "calibracaoExperimental": {
+    "status": "experimental",
+    "metodo": "blend_normalizado_v1",
+    "aplicarAutomaticamente": false,
+    "limiteFatorMinimo": 0.92,
+    "limiteFatorMaximo": 1.08,
+    "pesos": {
+      "mediaReal": 0.3,
+      "momentoRecente": 0.2,
+      "taxaVitorias": 0.15,
+      "consistencia": 0.15,
+      "robustez": 0.1,
+      "mae": 0.1
+    },
+    "estrategias": [
+      {
+        "nome": "Equilibrado",
+        "scoreCalibracao": 71.819,
+        "componentes": {
+          "mediaReal": 100.0,
+          "momentoRecente": 100.0,
+          "taxaVitorias": 0.0,
+          "consistencia": 52.3,
+          "robustez": 75.0,
+          "mae": 64.73
+        },
+        "fatorExperimental": 1.08
+      },
+      {
+        "nome": "Agressivo",
+        "scoreCalibracao": 37.057,
+        "componentes": {
+          "mediaReal": 11.5,
+          "momentoRecente": 43.03,
+          "taxaVitorias": 100.0,
+          "consistencia": 0.0,
+          "robustez": 100.0,
+          "mae": 0.0
+        },
+        "fatorExperimental": 0.92
+      },
+      {
+        "nome": "Conservador",
+        "scoreCalibracao": 32.508,
+        "componentes": {
+          "mediaReal": 0.0,
+          "momentoRecente": 0.0,
+          "taxaVitorias": 50.06,
+          "consistencia": 100.0,
+          "robustez": 0.0,
+          "mae": 100.0
+        },
+        "fatorExperimental": 0.92
+      }
+    ],
+    "liderExperimental": "Equilibrado"
+  },
+  "formacoesObservadas": {
+    "observadas": [
+      {
+        "formacao": "3-4-3",
+        "amostras": 44,
+        "rodadas": 22,
+        "estrategias": [
+          "Agressivo",
+          "Equilibrado"
+        ],
+        "mediaPontos": 50.49,
+        "medianaPontos": 47.51,
+        "desvioPadrao": 16.13
+      },
+      {
+        "formacao": "4-4-2",
+        "amostras": 22,
+        "rodadas": 22,
+        "estrategias": [
+          "Conservador"
+        ],
+        "mediaPontos": 48.12,
+        "medianaPontos": 46.41,
+        "desvioPadrao": 12.67
+      }
+    ],
+    "formacoesTestadas": [
+      "3-4-3",
+      "4-4-2"
+    ],
+    "formacoesAindaSemTesteIsolado": [
+      "4-3-3"
+    ],
+    "melhorMediaObservada": "3-4-3",
+    "observacao": "Resultados por formação são observacionais. Uma formação somente poderá ser promovida após backtest comparável entre as formações sob a mesma estratégia e orçamento."
+  },
   "ranking": [
     {
       "nome": "Equilibrado",
@@ -717,6 +812,8 @@
     "alteraModeloOficial": false,
     "alteraPerfilOficial": false,
     "alteraPesos": false,
+    "calibracaoExperimentalAlteraPesos": false,
+    "formacaoObservadaAlteraModelo": false,
     "promocaoAutomatica": false,
     "bloqueiaPromocaoComDivergenciaScoreMedia": true
   }
