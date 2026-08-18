@@ -5,6 +5,13 @@
 
    Responsabilidades:
 
+/* =========================================================
+   CARTOLA ESTATÍSTICO
+   Escalações — carregamento e montagem dos times sugeridos
+   =========================================================
+
+   Responsabilidades:
+
    - carregar Conservador, Equilibrado e Agressivo;
    - utilizar os jogadores já calculados pelo motor;
    - respeitar o limite de patrimônio;
@@ -12,7 +19,8 @@
    - consolidar projeção, piso, teto, confiança e risco;
    - comparar formações sem preferência artificial;
    - selecionar capitão;
-   - montar banco;
+   - montar banco dentro do saldo disponível;
+   - consolidar custo total de titulares + banco;
    - selecionar Reserva de Luxo;
    - gerar justificativas automáticas;
    - manter compatibilidade com os cards atuais.
@@ -633,7 +641,8 @@ function compararCandidatosBancoEscalacao(
 
 function montarBancoEscalacao(
   jogadores,
-  titulares
+  titulares,
+  limiteBanco = null
 ) {
 
   const candidatos =
@@ -664,14 +673,24 @@ function montarBancoEscalacao(
     );
 
 
-  const banco = [];
+  const limite =
+    Number(
+      limiteBanco
+    );
 
 
-  POSICOES_BANCO.forEach(
-    posicao => {
+  const possuiLimite =
+    Number.isFinite(
+      limite
+    ) &&
+    limite >= 0;
 
-      const candidatosPosicao =
-        candidatos
+
+  const candidatosPorPosicao =
+    POSICOES_BANCO.map(
+      posicao => {
+
+        return candidatos
           .filter(
             jogador => {
 
@@ -706,22 +725,257 @@ function montarBancoEscalacao(
             compararCandidatosBancoEscalacao
           );
 
-
-      if (
-        candidatosPosicao.length
-      ) {
-
-        banco.push(
-          candidatosPosicao[0]
-        );
-
       }
+    );
+
+
+  if (
+    candidatosPorPosicao.some(
+      lista =>
+        lista.length === 0
+    )
+  ) {
+
+    return [];
+
+  }
+
+
+  if (!possuiLimite) {
+
+    return candidatosPorPosicao.map(
+      lista =>
+        lista[0]
+    );
+
+  }
+
+
+  const limiteCentavos =
+    Math.max(
+      0,
+      Math.round(
+        limite * 100
+      )
+    );
+
+
+  let estados =
+    new Map([
+      [
+        0,
+        {
+          custoCentavos: 0,
+          nota: 0,
+          projecao: 0,
+          confianca: 0,
+          jogadores: []
+        }
+      ]
+    ]);
+
+
+  candidatosPorPosicao.forEach(
+    listaPosicao => {
+
+      const proximos =
+        new Map();
+
+
+      estados.forEach(
+        estado => {
+
+          listaPosicao.forEach(
+            jogador => {
+
+              const preco =
+                Math.max(
+                  0,
+                  numeroEscalacao(
+                    jogador?.preco
+                  )
+                );
+
+
+              const precoCentavos =
+                Math.round(
+                  preco * 100
+                );
+
+
+              const novoCusto =
+                estado.custoCentavos +
+                precoCentavos;
+
+
+              if (
+                novoCusto >
+                limiteCentavos
+              ) {
+
+                return;
+
+              }
+
+
+              const candidato = {
+
+                custoCentavos:
+                  novoCusto,
+
+                nota:
+                  estado.nota +
+                  obterNotaBancoEscalacao(
+                    jogador
+                  ),
+
+                projecao:
+                  estado.projecao +
+                  obterProjecaoFinalEscalacao(
+                    jogador
+                  ),
+
+                confianca:
+                  estado.confianca +
+                  numeroEscalacao(
+                    jogador?.confianca
+                  ),
+
+                jogadores: [
+                  ...estado.jogadores,
+                  jogador
+                ]
+
+              };
+
+
+              const atual =
+                proximos.get(
+                  novoCusto
+                );
+
+
+              const candidatoMelhor =
+                !atual ||
+                candidato.nota >
+                  atual.nota +
+                  0.000001 ||
+                (
+                  Math.abs(
+                    candidato.nota -
+                    atual.nota
+                  ) <= 0.000001 &&
+                  candidato.projecao >
+                    atual.projecao +
+                    0.000001
+                ) ||
+                (
+                  Math.abs(
+                    candidato.nota -
+                    atual.nota
+                  ) <= 0.000001 &&
+                  Math.abs(
+                    candidato.projecao -
+                    atual.projecao
+                  ) <= 0.000001 &&
+                  candidato.confianca >
+                    atual.confianca
+                );
+
+
+              if (candidatoMelhor) {
+
+                proximos.set(
+                  novoCusto,
+                  candidato
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+      estados = proximos;
 
     }
   );
 
 
-  return banco;
+  const solucoes =
+    Array.from(
+      estados.values()
+    );
+
+
+  if (
+    solucoes.length === 0
+  ) {
+
+    return [];
+
+  }
+
+
+  solucoes.sort(
+    (a, b) => {
+
+      if (
+        Math.abs(
+          b.nota -
+          a.nota
+        ) > 0.000001
+      ) {
+
+        return b.nota - a.nota;
+
+      }
+
+
+      if (
+        Math.abs(
+          b.projecao -
+          a.projecao
+        ) > 0.000001
+      ) {
+
+        return (
+          b.projecao -
+          a.projecao
+        );
+
+      }
+
+
+      if (
+        Math.abs(
+          b.confianca -
+          a.confianca
+        ) > 0.000001
+      ) {
+
+        return (
+          b.confianca -
+          a.confianca
+        );
+
+      }
+
+
+      return (
+        a.custoCentavos -
+        b.custoCentavos
+      );
+
+    }
+  );
+
+
+  return solucoes[0]
+    .jogadores;
 
 }
 
@@ -1280,6 +1534,18 @@ function gerarPontosAtencaoEscalacao(
 
 
   if (
+    escalacao.bancoCompleto ===
+    false
+  ) {
+
+    atencao.push(
+      "Patrimônio insuficiente para completar o banco com uma reserva por posição."
+    );
+
+  }
+
+
+  if (
     numeroEscalacao(
       escalacao.risco
     ) >= 55
@@ -1375,8 +1641,25 @@ function compararFormacoesEscalacao(
 ) {
 
   /*
-   * Uma escalação completa sempre vence
-   * uma escalação incompleta.
+   * Primeiro, priorizamos a escalação completa no Cartola:
+   * 12 titulares + 5 reservas dentro do patrimônio.
+   */
+
+  if (
+    opcaoA.completaTotal !==
+    opcaoB.completaTotal
+  ) {
+
+    return opcaoB.completaTotal
+      ? 1
+      : -1;
+
+  }
+
+
+  /*
+   * Depois, uma escalação com os 12 titulares completos
+   * vence uma escalação incompleta.
    */
 
   if (
@@ -1438,19 +1721,19 @@ function compararFormacoesEscalacao(
 
   /*
    * Segundo desempate:
-   * menor custo.
+   * menor custo total, incluindo banco.
    */
 
   if (
     Math.abs(
-      opcaoA.custo -
-      opcaoB.custo
+      opcaoA.custoTotal -
+      opcaoB.custoTotal
     ) > 0.000001
   ) {
 
     return (
-      opcaoA.custo -
-      opcaoB.custo
+      opcaoA.custoTotal -
+      opcaoB.custoTotal
     );
 
   }
@@ -1506,6 +1789,40 @@ function escolherMelhorFormacaoEscalacao(
               : [];
 
 
+          const custoTitulares =
+            somarCampoEscalacao(
+              listaTitulares,
+              jogador =>
+                jogador?.preco
+            );
+
+
+          const saldoParaBanco =
+            limitePatrimonio !== null
+              ? Math.max(
+                  0,
+                  limitePatrimonio -
+                  custoTitulares
+                )
+              : null;
+
+
+          const banco =
+            montarBancoEscalacao(
+              jogadores,
+              listaTitulares,
+              saldoParaBanco
+            );
+
+
+          const custoBanco =
+            somarCampoEscalacao(
+              banco,
+              jogador =>
+                jogador?.preco
+            );
+
+
           return {
 
             formacao,
@@ -1515,6 +1832,23 @@ function escolherMelhorFormacaoEscalacao(
 
             completa:
               listaTitulares.length === 12,
+
+            bancoCompleto:
+              banco.length ===
+              POSICOES_BANCO.length,
+
+            completaTotal:
+              listaTitulares.length === 12 &&
+              banco.length ===
+                POSICOES_BANCO.length,
+
+            banco,
+
+            custoBanco,
+
+            custoTotal:
+              custoTitulares +
+              custoBanco,
 
             nota:
               calcularNotaFormacaoEscalacao(
@@ -1528,11 +1862,7 @@ function escolherMelhorFormacaoEscalacao(
               ),
 
             custo:
-              somarCampoEscalacao(
-                listaTitulares,
-                jogador =>
-                  jogador?.preco
-              )
+              custoTitulares
 
           };
 
@@ -1553,6 +1883,16 @@ function escolherMelhorFormacaoEscalacao(
       jogadores: [],
 
       completa: false,
+
+      bancoCompleto: false,
+
+      completaTotal: false,
+
+      banco: [],
+
+      custoBanco: 0,
+
+      custoTotal: 0,
 
       nota: 0,
 
@@ -1703,7 +2043,7 @@ async function carregarEscalacoes() {
         );
 
 
-      const custo =
+      const custoTitulares =
         somarCampoEscalacao(
           listaTitulares,
           jogador =>
@@ -1748,10 +2088,24 @@ async function carregarEscalacoes() {
          =================================================== */
 
       const banco =
-        montarBancoEscalacao(
-          jogadores,
-          listaTitulares
+        Array.isArray(
+          melhorFormacao.banco
+        )
+          ? melhorFormacao.banco
+          : [];
+
+
+      const custoBanco =
+        somarCampoEscalacao(
+          banco,
+          jogador =>
+            jogador?.preco
         );
+
+
+      const custoTotal =
+        custoTitulares +
+        custoBanco;
 
 
       /* ===================================================
@@ -1823,9 +2177,33 @@ async function carregarEscalacoes() {
             : null,
 
 
+        /*
+         * Mantemos "custo" para compatibilidade com
+         * os cards atuais. A partir daqui ele representa
+         * o custo completo: titulares + banco.
+         */
+
         custo:
           arredondarEscalacao(
-            custo
+            custoTotal
+          ),
+
+
+        custoTitulares:
+          arredondarEscalacao(
+            custoTitulares
+          ),
+
+
+        custoBanco:
+          arredondarEscalacao(
+            custoBanco
+          ),
+
+
+        custoTotal:
+          arredondarEscalacao(
+            custoTotal
           ),
 
 
@@ -1833,9 +2211,14 @@ async function carregarEscalacoes() {
           limitePatrimonio !== null
             ? arredondarEscalacao(
                 limitePatrimonio -
-                custo
+                custoTotal
               )
             : null,
+
+
+        bancoCompleto:
+          banco.length ===
+          POSICOES_BANCO.length,
 
 
         projecao:
