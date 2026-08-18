@@ -9,6 +9,7 @@
    ========================================================= */
 
 function exibirEscalacoes() {
+
   const container =
     obterContainerEscalacoes();
 
@@ -16,43 +17,96 @@ function exibirEscalacoes() {
     return;
   }
 
+
   const escalacoes =
     obterEscalacoesCarregadas();
+
 
   if (
     !Array.isArray(escalacoes) ||
     escalacoes.length === 0
   ) {
+
     exibirSemEscalacoes();
     return;
+
   }
 
+
+  /*
+   * IMPORTANTE
+   *
+   * O container original suggestedLineupsGrid
+   * deixa de ser o grid direto dos cards.
+   *
+   * Dentro dele teremos:
+   *
+   * 1. controle de patrimônio;
+   * 2. grid separado contendo os três times.
+   *
+   * Isso impede o seletor de patrimônio de
+   * ocupar a primeira coluna dos cards.
+   */
+
   container.innerHTML = "";
+
+
+  container.classList.add(
+    "suggested-lineups-container"
+  );
+
 
   const controlePatrimonio =
     criarControlePatrimonioEscalacoes(
       escalacoes
     );
 
+
   if (controlePatrimonio) {
+
     container.appendChild(
       controlePatrimonio
     );
+
   }
 
+
+  const grid =
+    document.createElement(
+      "div"
+    );
+
+
+  grid.className =
+    "suggested-lineups-cards-grid";
+
+
   escalacoes.forEach(
-    (escalacao) => {
+    escalacao => {
+
       const card =
         criarCardEscalacao(
           escalacao
         );
 
-      container.appendChild(card);
+
+      grid.appendChild(
+        card
+      );
+
     }
   );
 
+
+  container.appendChild(
+    grid
+  );
+
+
   configurarBotoesDetalhesEscalacao();
+
   configurarControlePatrimonioEscalacoes();
+
 }
 
 
@@ -63,33 +117,47 @@ function exibirEscalacoes() {
 function criarControlePatrimonioEscalacoes(
   escalacoes
 ) {
+
   const lista =
-    Array.isArray(escalacoes)
+    Array.isArray(
+      escalacoes
+    )
       ? escalacoes
       : [];
+
 
   const primeiraEscalacao =
     lista[0] || null;
 
+
   const patrimonioSelecionado =
-    typeof obterPatrimonioSelecionadoEscalacoes === "function"
+    typeof obterPatrimonioSelecionadoEscalacoes ===
+      "function"
       ? obterPatrimonioSelecionadoEscalacoes()
       : null;
+
 
   const limiteAtual =
     patrimonioSelecionado ??
     numeroSeguro(
-      primeiraEscalacao?.limitePatrimonio ??
+      primeiraEscalacao
+        ?.limitePatrimonio ??
       120
     );
 
+
   const controle =
-    document.createElement("section");
+    document.createElement(
+      "section"
+    );
+
 
   controle.className =
     "lineup-budget-control";
 
+
   controle.innerHTML = `
+
     <div class="lineup-budget-copy">
 
       <span class="lineup-budget-kicker">
@@ -101,17 +169,19 @@ function criarControlePatrimonioEscalacoes(
       </strong>
 
       <p>
-        Os três times serão recalculados respeitando o valor disponível,
-        incluindo titulares e banco.
+        Os três times serão recalculados respeitando
+        o valor disponível, incluindo titulares e banco.
       </p>
 
     </div>
+
 
     <div class="lineup-budget-actions">
 
       <label for="lineupBudgetInput">
         Patrimônio disponível
       </label>
+
 
       <div class="lineup-budget-input-wrap">
 
@@ -126,12 +196,14 @@ function criarControlePatrimonioEscalacoes(
           step="0.01"
           inputmode="decimal"
           value="${escaparHtml(
-            numeroSeguro(limiteAtual)
-              .toFixed(2)
+            numeroSeguro(
+              limiteAtual
+            ).toFixed(2)
           )}"
         >
 
       </div>
+
 
       <button
         id="lineupBudgetApply"
@@ -141,6 +213,7 @@ function criarControlePatrimonioEscalacoes(
         Recalcular times
       </button>
 
+
       <button
         id="lineupBudgetReset"
         class="lineup-budget-reset"
@@ -149,138 +222,202 @@ function criarControlePatrimonioEscalacoes(
         Restaurar padrão
       </button>
 
+
       <small
         id="lineupBudgetStatus"
         class="lineup-budget-status"
         aria-live="polite"
       >
+
         ${
           patrimonioSelecionado !== null
+
             ? `Patrimônio personalizado: ${formatarCartoletas(
                 patrimonioSelecionado
               )}`
+
             : `Limite atual: ${formatarCartoletas(
                 limiteAtual
               )}`
         }
+
       </small>
 
     </div>
+
   `;
 
+
   return controle;
+
 }
 
 
+/* =========================================================
+   3. EVENTOS DO PATRIMÔNIO
+   ========================================================= */
+
 function configurarControlePatrimonioEscalacoes() {
+
   const input =
     document.getElementById(
       "lineupBudgetInput"
     );
+
 
   const botaoAplicar =
     document.getElementById(
       "lineupBudgetApply"
     );
 
+
   const botaoRestaurar =
     document.getElementById(
       "lineupBudgetReset"
     );
+
 
   const status =
     document.getElementById(
       "lineupBudgetStatus"
     );
 
-  if (!input || !botaoAplicar) {
+
+  if (
+    !input ||
+    !botaoAplicar
+  ) {
+
     return;
+
   }
 
-  const definirEstadoCarregando =
-    (carregando) => {
-      input.disabled =
+
+  function definirEstadoCarregando(
+    carregando
+  ) {
+
+    input.disabled =
+      carregando;
+
+
+    botaoAplicar.disabled =
+      carregando;
+
+
+    if (
+      botaoRestaurar
+    ) {
+
+      botaoRestaurar.disabled =
         carregando;
 
-      botaoAplicar.disabled =
-        carregando;
-
-      if (botaoRestaurar) {
-        botaoRestaurar.disabled =
-          carregando;
-      }
-
-      botaoAplicar.textContent =
-        carregando
-          ? "Recalculando..."
-          : "Recalcular times";
-    };
+    }
 
 
-  const aplicarPatrimonio =
-    async () => {
-      const valor =
-        Number(
-          String(input.value)
-            .replace(",", ".")
-        );
+    botaoAplicar.textContent =
+      carregando
+        ? "Recalculando..."
+        : "Recalcular times";
 
-      if (
-        !Number.isFinite(valor) ||
-        valor <= 0
-      ) {
-        if (status) {
-          status.textContent =
-            "Informe um patrimônio válido.";
-        }
+  }
 
-        input.focus();
 
-        return;
-      }
+  async function aplicarPatrimonio() {
 
-      if (
-        typeof definirPatrimonioEscalacoes !==
-        "function"
-      ) {
-        if (status) {
-          status.textContent =
-            "Motor de patrimônio indisponível.";
-        }
-
-        return;
-      }
-
-      definirEstadoCarregando(
-        true
+    const valor =
+      Number(
+        String(
+          input.value
+        )
+          .replace(
+            ",",
+            "."
+          )
       );
 
+
+    if (
+      !Number.isFinite(valor) ||
+      valor <= 0
+    ) {
+
       if (status) {
+
         status.textContent =
-          "Recalculando as três estratégias...";
+          "Informe um patrimônio válido.";
+
       }
 
-      try {
-        await definirPatrimonioEscalacoes(
-          valor
-        );
-      } catch (erro) {
-        console.error(
-          "Erro ao recalcular patrimônio:",
-          erro
-        );
 
-        definirEstadoCarregando(
-          false
-        );
+      input.focus();
 
-        if (status) {
-          status.textContent =
-            erro?.message ||
-            "Não foi possível recalcular os times.";
-        }
+      return;
+
+    }
+
+
+    if (
+      typeof definirPatrimonioEscalacoes !==
+      "function"
+    ) {
+
+      if (status) {
+
+        status.textContent =
+          "Motor de patrimônio indisponível.";
+
       }
-    };
+
+
+      return;
+
+    }
+
+
+    definirEstadoCarregando(
+      true
+    );
+
+
+    if (status) {
+
+      status.textContent =
+        "Recalculando as três estratégias...";
+
+    }
+
+
+    try {
+
+      await definirPatrimonioEscalacoes(
+        valor
+      );
+
+    } catch (erro) {
+
+      console.error(
+        "Erro ao recalcular patrimônio:",
+        erro
+      );
+
+
+      definirEstadoCarregando(
+        false
+      );
+
+
+      if (status) {
+
+        status.textContent =
+          erro?.message ||
+          "Não foi possível recalcular os times.";
+
+      }
+
+    }
+
+  }
 
 
   botaoAplicar.addEventListener(
@@ -291,99 +428,136 @@ function configurarControlePatrimonioEscalacoes() {
 
   input.addEventListener(
     "keydown",
-    (evento) => {
+    evento => {
+
       if (
-        evento.key === "Enter"
+        evento.key ===
+        "Enter"
       ) {
+
         evento.preventDefault();
 
         aplicarPatrimonio();
+
       }
+
     }
   );
 
 
-  if (botaoRestaurar) {
+  if (
+    botaoRestaurar
+  ) {
+
     botaoRestaurar.addEventListener(
       "click",
       async () => {
+
         if (
           typeof restaurarPatrimonioPadraoEscalacoes !==
           "function"
         ) {
+
           return;
+
         }
+
 
         definirEstadoCarregando(
           true
         );
 
+
         if (status) {
+
           status.textContent =
             "Restaurando orçamento padrão...";
+
         }
 
+
         try {
+
           await restaurarPatrimonioPadraoEscalacoes();
+
         } catch (erro) {
+
           console.error(
             "Erro ao restaurar patrimônio:",
             erro
           );
 
+
           definirEstadoCarregando(
             false
           );
 
+
           if (status) {
+
             status.textContent =
               erro?.message ||
               "Não foi possível restaurar o orçamento.";
+
           }
+
         }
+
       }
     );
+
   }
+
 }
 
 
 /* =========================================================
-   3. CRIAÇÃO DO CARD PRINCIPAL
+   4. CRIAÇÃO DO CARD PRINCIPAL
    ========================================================= */
 
 function criarCardEscalacao(
   escalacao
 ) {
+
   const card =
-    document.createElement("article");
+    document.createElement(
+      "article"
+    );
+
 
   const classePerfil =
     obterClassePerfilEscalacao(
       escalacao
     );
 
+
   const classeRisco =
     obterClasseRisco(
       escalacao.risco
     );
+
 
   const classeConfianca =
     obterClasseConfiancaNumerica(
       escalacao.confianca
     );
 
+
   const idDetalhes =
     `lineup-details-${escalacao.id}`;
 
+
   const jogadoresOrdenados =
-    [...escalacao.jogadores].sort(
-      compararJogadoresEscalacao
-    );
+    [...escalacao.jogadores]
+      .sort(
+        compararJogadoresEscalacao
+      );
+
 
   const jogadoresHtml =
     jogadoresOrdenados
       .map(
-        (jogador) =>
+        jogador =>
           criarJogadorTitularHtml(
             jogador,
             escalacao.capitao
@@ -391,10 +565,12 @@ function criarCardEscalacao(
       )
       .join("");
 
+
   const bancoHtml =
     criarBancoHtml(
       escalacao.banco
     );
+
 
   const pontosPositivos =
     criarItensLista(
@@ -402,30 +578,21 @@ function criarCardEscalacao(
       "Nenhum ponto positivo cadastrado."
     );
 
+
   const pontosAtencao =
     criarItensLista(
       escalacao.pontosAtencao,
       "Nenhum ponto de atenção cadastrado."
     );
 
-  /*
-   * custo agora representa o custo completo
-   * da escalação: titulares + banco.
-   *
-   * Mantemos fallback para custoTotal para
-   * compatibilidade com versões futuras.
-   */
+
   const custoTotal =
     numeroSeguro(
       escalacao.custoTotal ??
       escalacao.custo
     );
 
-  /*
-   * O saldo já é calculado pela camada de dados.
-   * O cálculo local abaixo fica apenas como
-   * fallback para compatibilidade.
-   */
+
   const saldo =
     escalacao.saldo !== null &&
     escalacao.saldo !== undefined &&
@@ -434,9 +601,11 @@ function criarCardEscalacao(
         escalacao.saldo
       )
     )
+
       ? numeroSeguro(
           escalacao.saldo
         )
+
       : (
           numeroSeguro(
             escalacao.limitePatrimonio
@@ -444,35 +613,47 @@ function criarCardEscalacao(
           custoTotal
         );
 
+
   card.className =
     `suggested-lineup-card ${classePerfil}`;
 
+
   card.innerHTML = `
+
     <div class="lineup-card-header">
 
       <div>
 
         <span class="lineup-profile-tag">
+
           ${escaparHtml(
             escalacao.perfil ||
             escalacao.nome
           )}
+
         </span>
 
+
         <h3>
+
           ${escaparHtml(
             escalacao.nome
           )}
+
         </h3>
 
+
         <p>
+
           ${escaparHtml(
             escalacao.subtitulo ||
             ""
           )}
+
         </p>
 
       </div>
+
 
       <div class="lineup-formation">
 
@@ -481,10 +662,12 @@ function criarCardEscalacao(
         </span>
 
         <strong>
+
           ${escaparHtml(
             escalacao.formacao ||
             "--"
           )}
+
         </strong>
 
       </div>
@@ -495,30 +678,53 @@ function criarCardEscalacao(
     <div class="lineup-cost-row">
 
       <div>
-        <span>Custo total</span>
+
+        <span>
+          Custo total
+        </span>
+
         <strong>
+
           ${formatarCartoletas(
             custoTotal
           )}
+
         </strong>
+
       </div>
 
+
       <div>
-        <span>Limite</span>
+
+        <span>
+          Limite
+        </span>
+
         <strong>
+
           ${formatarCartoletas(
             escalacao.limitePatrimonio
           )}
+
         </strong>
+
       </div>
 
+
       <div>
-        <span>Saldo</span>
+
+        <span>
+          Saldo
+        </span>
+
         <strong>
+
           ${formatarCartoletas(
             saldo
           )}
+
         </strong>
+
       </div>
 
     </div>
@@ -526,31 +732,59 @@ function criarCardEscalacao(
 
     <div class="lineup-main-metrics">
 
-      <div class="lineup-main-metric projection">
-        <span>Projeção</span>
+      <div
+        class="
+          lineup-main-metric
+          projection
+        "
+      >
+
+        <span>
+          Projeção
+        </span>
+
         <strong>
+
           ${formatarPontos(
             escalacao.projecao
           )}
+
         </strong>
+
       </div>
 
+
       <div class="lineup-main-metric">
-        <span>Piso</span>
+
+        <span>
+          Piso
+        </span>
+
         <strong>
+
           ${formatarPontos(
             escalacao.piso
           )}
+
         </strong>
+
       </div>
 
+
       <div class="lineup-main-metric">
-        <span>Teto</span>
+
+        <span>
+          Teto
+        </span>
+
         <strong>
+
           ${formatarPontos(
             escalacao.teto
           )}
+
         </strong>
+
       </div>
 
     </div>
@@ -569,12 +803,20 @@ function criarCardEscalacao(
 
     <div class="lineup-badges">
 
-      <span class="lineup-badge formation">
+      <span
+        class="
+          lineup-badge
+          formation
+        "
+      >
+
         ${escaparHtml(
           escalacao.formacao ||
           "--"
         )}
+
       </span>
+
 
       <span
         class="
@@ -582,16 +824,26 @@ function criarCardEscalacao(
           ${classeRisco}
         "
       >
+
         Risco
         ${escaparHtml(
           escalacao.risco ||
           "Não informado"
         )}
+
       </span>
 
-      <span class="lineup-badge players-count">
+
+      <span
+        class="
+          lineup-badge
+          players-count
+        "
+      >
+
         ${jogadoresOrdenados.length}
         titulares
+
       </span>
 
     </div>
@@ -604,12 +856,16 @@ function criarCardEscalacao(
 
 
     <div class="lineup-players-title">
+
       TITULARES
+
     </div>
 
 
     <div class="lineup-players-list">
+
       ${jogadoresHtml}
+
     </div>
 
 
@@ -620,10 +876,12 @@ function criarCardEscalacao(
       </strong>
 
       <p>
+
         ${escaparHtml(
           escalacao.justificativa ||
           "Justificativa não informada."
         )}
+
       </p>
 
     </div>
@@ -654,6 +912,7 @@ function criarCardEscalacao(
       hidden
     >
 
+
       <section class="lineup-detail-section">
 
         <div class="lineup-detail-heading">
@@ -667,6 +926,7 @@ function criarCardEscalacao(
             R
           </span>
 
+
           <div>
 
             <strong>
@@ -674,18 +934,23 @@ function criarCardEscalacao(
             </strong>
 
             <p>
+
               ${escaparHtml(
                 escalacao.justificativaBanco ||
                 "Justificativa do banco não informada."
               )}
+
             </p>
 
           </div>
 
         </div>
 
+
         <div class="lineup-bench-grid">
+
           ${bancoHtml}
+
         </div>
 
       </section>
@@ -704,6 +969,7 @@ function criarCardEscalacao(
             ★
           </span>
 
+
           <div>
 
             <strong>
@@ -711,15 +977,18 @@ function criarCardEscalacao(
             </strong>
 
             <p>
+
               ${escaparHtml(
                 escalacao.justificativaReservaLuxo ||
                 "Justificativa da Reserva de Luxo não informada."
               )}
+
             </p>
 
           </div>
 
         </div>
+
 
         ${criarReservaLuxoHtml(
           escalacao.reservaLuxo
@@ -742,10 +1011,13 @@ function criarCardEscalacao(
           </h4>
 
           <ul>
+
             ${pontosPositivos}
+
           </ul>
 
         </div>
+
 
         <div
           class="
@@ -759,7 +1031,9 @@ function criarCardEscalacao(
           </h4>
 
           <ul>
+
             ${pontosAtencao}
+
           </ul>
 
         </div>
@@ -767,22 +1041,29 @@ function criarCardEscalacao(
       </div>
 
     </div>
+
   `;
 
+
   return card;
+
 }
 
 
 /* =========================================================
-   4. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
+   5. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
    ========================================================= */
 
 function obterNomeCurtoJogador(
   jogador
 ) {
+
   if (!jogador) {
+
     return "Jogador";
+
   }
+
 
   const apelido =
     String(
@@ -790,9 +1071,13 @@ function obterNomeCurtoJogador(
       ""
     ).trim();
 
+
   if (apelido) {
+
     return apelido;
+
   }
+
 
   const nome =
     String(
@@ -800,79 +1085,99 @@ function obterNomeCurtoJogador(
       ""
     ).trim();
 
+
   if (!nome) {
+
     return "Jogador";
+
   }
+
 
   const partes =
     nome
       .split(/\s+/)
       .filter(Boolean);
 
-  if (partes.length <= 2) {
+
+  if (
+    partes.length <= 2
+  ) {
+
     return nome;
+
   }
 
-  return `${partes[0]} ${partes[partes.length - 1]}`;
+
+  return (
+    `${partes[0]} ` +
+    `${partes[partes.length - 1]}`
+  );
+
 }
 
 
 /* =========================================================
-   5. NORMALIZAÇÃO VISUAL DO SCORE
+   6. NORMALIZAÇÃO VISUAL DO SCORE
    ========================================================= */
 
 function normalizarScoreVisual(
   valor
 ) {
+
   let score =
     Number(valor);
 
-  if (!Number.isFinite(score)) {
+
+  if (
+    !Number.isFinite(
+      score
+    )
+  ) {
+
     return "--";
+
   }
 
-  /*
-   * O score visual deve permanecer
-   * na escala de 0 a 100.
-   *
-   * Alguns registros históricos chegam
-   * com casas decimais deslocadas.
-   *
-   * Exemplos:
-   *
-   * 1080  -> 10.8
-   * 269.3 -> 26.93
-   * 188.3 -> 18.83
-   * 80.8  -> 80.8
-   *
-   * A correção abaixo é SOMENTE VISUAL.
-   * Não modifica a projeção estatística.
-   */
 
   score =
-    Math.abs(score);
+    Math.abs(
+      score
+    );
 
-  while (score > 100) {
+
+  while (
+    score > 100
+  ) {
+
     score =
       score / 10;
+
   }
+
 
   return score
     .toFixed(1)
-    .replace(".", ",");
+    .replace(
+      ".",
+      ","
+    );
+
 }
 
 
 /* =========================================================
-   6. CAPITÃO
+   7. CAPITÃO
    ========================================================= */
 
 function criarCapitaoHtml(
   capitao,
   justificativa
 ) {
+
   if (!capitao) {
+
     return `
+
       <div class="lineup-captain-highlight">
 
         <span class="lineup-special-symbol">
@@ -892,15 +1197,20 @@ function criarCapitaoHtml(
         </div>
 
       </div>
+
     `;
+
   }
 
+
   return `
+
     <div class="lineup-captain-highlight">
 
       <span class="lineup-special-symbol">
         C
       </span>
+
 
       <div>
 
@@ -908,49 +1218,67 @@ function criarCapitaoHtml(
           Capitão
         </small>
 
+
         <strong>
+
           ${escaparHtml(
             obterNomeCurtoJogador(
               capitao
             )
           )}
+
         </strong>
 
+
         <p>
+
           ${escaparHtml(
             justificativa ||
             "Justificativa não informada."
           )}
+
         </p>
 
       </div>
 
     </div>
+
   `;
+
 }
 
 
 /* =========================================================
-   7. JOGADOR TITULAR
+   8. JOGADOR TITULAR
    ========================================================= */
 
 function criarJogadorTitularHtml(
   jogador,
   capitao
 ) {
+
   const ehCapitao =
-    String(jogador.id) ===
-    String(capitao?.id);
+    String(
+      jogador.id
+    ) ===
+    String(
+      capitao?.id
+    );
+
 
   return `
+
     <div class="lineup-player-row">
 
       <span class="lineup-position-pill">
+
         ${escaparHtml(
           jogador.posicao ||
           "--"
         )}
+
       </span>
+
 
       <div class="lineup-player-name">
 
@@ -962,75 +1290,97 @@ function criarJogadorTitularHtml(
             )
           )}
 
+
           ${
             ehCapitao
               ? `
+
                 <span
                   class="lineup-captain-mini"
                   title="Capitão"
                 >
                   C
                 </span>
+
               `
               : ""
           }
 
         </strong>
 
+
         <small>
+
           ${escaparHtml(
             jogador.siglaClube ||
             jogador.clube ||
             "--"
           )}
+
         </small>
 
       </div>
 
+
       <div class="lineup-player-numbers">
 
         <strong>
+
           ${formatarPontos(
             jogador.projecao
           )}
 
           <small>
+
             ⭐ ${normalizarScoreVisual(
               jogador.score
             )}
+
           </small>
+
         </strong>
 
+
         <small>
+
           ${formatarCartoletas(
             jogador.preco
           )}
+
         </small>
 
       </div>
 
     </div>
+
   `;
+
 }
 
 
 /* =========================================================
-   8. BANCO
+   9. BANCO
    ========================================================= */
 
 function criarBancoHtml(
   banco
 ) {
+
   if (
     !Array.isArray(banco) ||
     banco.length === 0
   ) {
+
     return `
+
       <p>
         Banco não informado.
       </p>
+
     `;
+
   }
+
 
   return [...banco]
     .sort(
@@ -1040,29 +1390,38 @@ function criarBancoHtml(
       criarJogadorBancoHtml
     )
     .join("");
+
 }
 
 
 function criarJogadorBancoHtml(
   jogador
 ) {
+
   return `
+
     <article class="lineup-bench-player">
 
       <span>
+
         ${escaparHtml(
           jogador.posicao ||
           "--"
         )}
+
       </span>
 
+
       <strong>
+
         ${escaparHtml(
           obterNomeCurtoJogador(
             jogador
           )
         )}
+
       </strong>
+
 
       <small>
 
@@ -1087,89 +1446,118 @@ function criarJogadorBancoHtml(
       </small>
 
     </article>
+
   `;
+
 }
 
 
 /* =========================================================
-   9. RESERVA DE LUXO
+   10. RESERVA DE LUXO
    ========================================================= */
 
 function criarReservaLuxoHtml(
   jogador
 ) {
+
   if (!jogador) {
+
     return `
+
       <div class="lineup-luxury-player">
         Reserva de Luxo não informado.
       </div>
+
     `;
+
   }
 
+
   return `
+
     <div class="lineup-luxury-player">
 
       <div>
 
         <span>
+
           ${escaparHtml(
             jogador.posicao ||
             "--"
           )}
+
         </span>
 
+
         <strong>
+
           ${escaparHtml(
             obterNomeCurtoJogador(
               jogador
             )
           )}
+
         </strong>
 
+
         <small>
+
           ${escaparHtml(
             jogador.siglaClube ||
             jogador.clube ||
             "--"
           )}
+
         </small>
 
       </div>
 
+
       <div>
 
         <strong>
+
           ${formatarPontos(
             jogador.projecao
           )}
+
         </strong>
 
+
         <small>
+
           ⭐ ${normalizarScoreVisual(
             jogador.score
           )}
+
         </small>
 
+
         <small>
+
           ${formatarCartoletas(
             jogador.preco
           )}
+
         </small>
 
       </div>
 
     </div>
+
   `;
+
 }
 
 
 /* =========================================================
-   10. PERFIL DA ESCALAÇÃO
+   11. PERFIL DA ESCALAÇÃO
    ========================================================= */
 
 function obterClassePerfilEscalacao(
   escalacao
 ) {
+
   const perfil =
     normalizarTexto(
       escalacao.corPerfil ||
@@ -1178,103 +1566,151 @@ function obterClassePerfilEscalacao(
       escalacao.nome
     );
 
-  if (
-    perfil.includes("azul") ||
-    perfil.includes("equilibr")
-  ) {
-    return "balanced";
-  }
 
   if (
-    perfil.includes("dourado") ||
-    perfil.includes("agress") ||
-    perfil.includes("teto")
+    perfil.includes(
+      "azul"
+    ) ||
+    perfil.includes(
+      "equilibr"
+    )
   ) {
-    return "aggressive";
+
+    return "balanced";
+
   }
+
+
+  if (
+    perfil.includes(
+      "dourado"
+    ) ||
+    perfil.includes(
+      "agress"
+    ) ||
+    perfil.includes(
+      "teto"
+    )
+  ) {
+
+    return "aggressive";
+
+  }
+
 
   return "conservative";
+
 }
 
 
 /* =========================================================
-   11. BOTÃO DE DETALHES
+   12. BOTÃO DE DETALHES
    ========================================================= */
 
 function configurarBotoesDetalhesEscalacao() {
+
   const botoes =
     document.querySelectorAll(
       "[data-lineup-details-button]"
     );
 
-  botoes.forEach((botao) => {
-    botao.addEventListener(
-      "click",
-      () => {
-        alternarDetalhesEscalacao(
-          botao
-        );
-      }
-    );
-  });
+
+  botoes.forEach(
+    botao => {
+
+      botao.addEventListener(
+        "click",
+        () => {
+
+          alternarDetalhesEscalacao(
+            botao
+          );
+
+        }
+      );
+
+    }
+  );
+
 }
 
 
 function alternarDetalhesEscalacao(
   botao
 ) {
+
   const idDetalhes =
     botao.dataset
       .lineupDetailsButton;
+
 
   const detalhes =
     document.getElementById(
       idDetalhes
     );
 
+
   if (!detalhes) {
+
     return;
+
   }
+
 
   const estaAberto =
     botao.getAttribute(
       "aria-expanded"
-    ) === "true";
+    ) ===
+    "true";
+
 
   botao.setAttribute(
     "aria-expanded",
-    String(!estaAberto)
+    String(
+      !estaAberto
+    )
   );
+
 
   detalhes.hidden =
     estaAberto;
+
 
   const texto =
     botao.querySelector(
       "span:first-child"
     );
 
+
   const seta =
     botao.querySelector(
       ".lineup-details-arrow"
     );
 
+
   if (texto) {
+
     texto.textContent =
       estaAberto
         ? "Ver banco e análise completa"
         : "Ocultar banco e análise";
+
   }
 
+
   if (seta) {
+
     seta.textContent =
       estaAberto
         ? "+"
         : "−";
+
   }
+
 
   botao.classList.toggle(
     "open",
     !estaAberto
   );
+
 }
