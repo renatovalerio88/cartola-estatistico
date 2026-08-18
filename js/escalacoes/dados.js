@@ -5,16 +5,9 @@
 
    Responsabilidades:
 
-/* =========================================================
-   CARTOLA ESTATÍSTICO
-   Escalações — carregamento e montagem dos times sugeridos
-   =========================================================
-
-   Responsabilidades:
-
    - carregar Conservador, Equilibrado e Agressivo;
    - utilizar os jogadores já calculados pelo motor;
-   - respeitar o limite de patrimônio;
+   - respeitar patrimônio definido pelo usuário;
    - preservar projeção original e calibrada;
    - consolidar projeção, piso, teto, confiança e risco;
    - comparar formações sem preferência artificial;
@@ -66,7 +59,16 @@ const estadoEscalacoes = {
 
   carregando: false,
 
-  erro: null
+  erro: null,
+
+  /*
+   * null:
+   * usa limite do perfil/configuração.
+   *
+   * número > 0:
+   * patrimônio escolhido pelo usuário.
+   */
+  patrimonioSelecionado: null
 
 };
 
@@ -83,7 +85,6 @@ function numeroEscalacao(
 
   const convertido =
     Number(valor);
-
 
   return Number.isFinite(
     convertido
@@ -153,8 +154,34 @@ function obterIdJogadorEscalacao(
 
 
 /* =========================================================
-   LIMITE DE PATRIMÔNIO
+   PATRIMÔNIO
    ========================================================= */
+
+
+function obterPatrimonioSelecionadoEscalacoes() {
+
+  const patrimonio =
+    Number(
+      estadoEscalacoes
+        .patrimonioSelecionado
+    );
+
+
+  if (
+    Number.isFinite(
+      patrimonio
+    ) &&
+    patrimonio > 0
+  ) {
+
+    return patrimonio;
+
+  }
+
+
+  return null;
+
+}
 
 
 function obterLimitePatrimonioEscalacao(
@@ -162,8 +189,38 @@ function obterLimitePatrimonioEscalacao(
 ) {
 
   /*
-   * 1. Caso algum perfil possua limite específico,
-   *    ele tem prioridade.
+   * PRIORIDADE 1
+   *
+   * Patrimônio escolhido pelo usuário.
+   *
+   * Isso permite que a interface solicite, por exemplo:
+   *
+   * C$ 80
+   * C$ 100
+   * C$ 120
+   * C$ 150
+   *
+   * e obrigue o motor a reconstruir as escalações
+   * dentro daquele orçamento.
+   */
+
+  const patrimonioSelecionado =
+    obterPatrimonioSelecionadoEscalacoes();
+
+
+  if (
+    patrimonioSelecionado !== null
+  ) {
+
+    return patrimonioSelecionado;
+
+  }
+
+
+  /*
+   * PRIORIDADE 2
+   *
+   * Limite específico do perfil.
    */
 
   const limitePerfil =
@@ -185,8 +242,9 @@ function obterLimitePatrimonioEscalacao(
 
 
   /*
-   * 2. Utiliza data/configuracao.json, que já foi
-   *    carregado pelo ui.js antes das escalações.
+   * PRIORIDADE 3
+   *
+   * Configuração geral.
    */
 
   const configuracao =
@@ -215,11 +273,69 @@ function obterLimitePatrimonioEscalacao(
 
 
   /*
-   * 3. Sem limite conhecido, o motor continua
-   *    funcionando sem bloqueio de orçamento.
+   * Sem limite conhecido.
    */
 
   return null;
+
+}
+
+
+/*
+ * Define patrimônio manualmente e recalcula
+ * imediatamente todas as escalações.
+ *
+ * Esta função será chamada pelo filtro visual
+ * que criaremos na próxima etapa.
+ */
+
+async function definirPatrimonioEscalacoes(
+  valor
+) {
+
+  const patrimonio =
+    Number(valor);
+
+
+  if (
+    !Number.isFinite(
+      patrimonio
+    ) ||
+    patrimonio <= 0
+  ) {
+
+    throw new Error(
+      "Patrimônio inválido."
+    );
+
+  }
+
+
+  estadoEscalacoes
+    .patrimonioSelecionado =
+      arredondarEscalacao(
+        patrimonio
+      );
+
+
+  return carregarEscalacoes();
+
+}
+
+
+/*
+ * Remove o patrimônio manual e volta
+ * para o limite padrão do projeto.
+ */
+
+async function restaurarPatrimonioPadraoEscalacoes() {
+
+  estadoEscalacoes
+    .patrimonioSelecionado =
+      null;
+
+
+  return carregarEscalacoes();
 
 }
 
@@ -639,6 +755,11 @@ function compararCandidatosBancoEscalacao(
 }
 
 
+/* =========================================================
+   MONTAGEM DO BANCO COM ORÇAMENTO
+   ========================================================= */
+
+
 function montarBancoEscalacao(
   jogadores,
   titulares,
@@ -729,6 +850,11 @@ function montarBancoEscalacao(
     );
 
 
+  /*
+   * Não existe candidato para pelo menos
+   * uma das posições obrigatórias.
+   */
+
   if (
     candidatosPorPosicao.some(
       lista =>
@@ -741,6 +867,11 @@ function montarBancoEscalacao(
   }
 
 
+  /*
+   * Sem orçamento:
+   * pega simplesmente o melhor de cada posição.
+   */
+
   if (!possuiLimite) {
 
     return candidatosPorPosicao.map(
@@ -750,6 +881,13 @@ function montarBancoEscalacao(
 
   }
 
+
+  /*
+   * Otimização combinatória do banco.
+   *
+   * Trabalhamos em centavos para evitar
+   * erros de ponto flutuante.
+   */
 
   const limiteCentavos =
     Math.max(
@@ -857,33 +995,41 @@ function montarBancoEscalacao(
 
               const candidatoMelhor =
                 !atual ||
+
                 candidato.nota >
                   atual.nota +
                   0.000001 ||
+
                 (
                   Math.abs(
                     candidato.nota -
                     atual.nota
                   ) <= 0.000001 &&
+
                   candidato.projecao >
                     atual.projecao +
                     0.000001
                 ) ||
+
                 (
                   Math.abs(
                     candidato.nota -
                     atual.nota
                   ) <= 0.000001 &&
+
                   Math.abs(
                     candidato.projecao -
                     atual.projecao
                   ) <= 0.000001 &&
+
                   candidato.confianca >
                     atual.confianca
                 );
 
 
-              if (candidatoMelhor) {
+              if (
+                candidatoMelhor
+              ) {
 
                 proximos.set(
                   novoCusto,
@@ -899,7 +1045,8 @@ function montarBancoEscalacao(
       );
 
 
-      estados = proximos;
+      estados =
+        proximos;
 
     }
   );
@@ -921,7 +1068,10 @@ function montarBancoEscalacao(
 
 
   solucoes.sort(
-    (a, b) => {
+    (
+      a,
+      b
+    ) => {
 
       if (
         Math.abs(
@@ -930,7 +1080,10 @@ function montarBancoEscalacao(
         ) > 0.000001
       ) {
 
-        return b.nota - a.nota;
+        return (
+          b.nota -
+          a.nota
+        );
 
       }
 
@@ -974,8 +1127,11 @@ function montarBancoEscalacao(
   );
 
 
-  return solucoes[0]
-    .jogadores;
+  return (
+    solucoes[0]
+      ?.jogadores ??
+    []
+  );
 
 }
 
@@ -1086,7 +1242,10 @@ function escolherReservaLuxoEscalacao(
           0.000001
         ) {
 
-          return notaB - notaA;
+          return (
+            notaB -
+            notaA
+          );
 
         }
 
@@ -1469,7 +1628,7 @@ function gerarPontosPositivosEscalacao(
 
   if (
     escalacao.formacaoAutomatica ===
-    true
+      true
   ) {
 
     positivos.push(
@@ -1535,7 +1694,7 @@ function gerarPontosAtencaoEscalacao(
 
   if (
     escalacao.bancoCompleto ===
-    false
+      false
   ) {
 
     atencao.push(
@@ -1641,8 +1800,8 @@ function compararFormacoesEscalacao(
 ) {
 
   /*
-   * Primeiro, priorizamos a escalação completa no Cartola:
-   * 12 titulares + 5 reservas dentro do patrimônio.
+   * Prioridade:
+   * escalação completa incluindo banco.
    */
 
   if (
@@ -1658,8 +1817,8 @@ function compararFormacoesEscalacao(
 
 
   /*
-   * Depois, uma escalação com os 12 titulares completos
-   * vence uma escalação incompleta.
+   * Depois:
+   * 12 titulares completos.
    */
 
   if (
@@ -1676,12 +1835,9 @@ function compararFormacoesEscalacao(
 
   /*
    * Critério principal:
-   * soma do score calculado pelo motor.
+   * score do motor.
    *
-   * Como o score já reflete o perfil
-   * Conservador / Equilibrado / Agressivo,
-   * não é necessário criar bônus artificial
-   * para nenhuma formação.
+   * Nenhuma formação recebe bônus artificial.
    */
 
   if (
@@ -1700,8 +1856,8 @@ function compararFormacoesEscalacao(
 
 
   /*
-   * Primeiro desempate:
-   * maior projeção total.
+   * Desempate:
+   * maior projeção.
    */
 
   if (
@@ -1721,7 +1877,7 @@ function compararFormacoesEscalacao(
 
   /*
    * Segundo desempate:
-   * menor custo total, incluindo banco.
+   * menor custo total.
    */
 
   if (
@@ -1740,10 +1896,8 @@ function compararFormacoesEscalacao(
 
 
   /*
-   * Empate absoluto:
-   * mantém apenas uma ordem determinística.
-   *
-   * Isso NÃO representa bônus estatístico.
+   * Ordem determinística.
+   * Não representa preferência estatística.
    */
 
   return (
@@ -1760,6 +1914,11 @@ function compararFormacoesEscalacao(
 }
 
 
+/* =========================================================
+   MONTA UMA FORMAÇÃO COMPLETA
+   ========================================================= */
+
+
 function escolherMelhorFormacaoEscalacao(
   jogadores,
   perfil,
@@ -1770,6 +1929,13 @@ function escolherMelhorFormacaoEscalacao(
     FORMACOES_CANDIDATAS_ESCALACAO
       .map(
         formacao => {
+
+          /*
+           * O MotorEscalacao recebe o patrimônio total.
+           *
+           * Depois o banco também precisa caber dentro
+           * do saldo restante.
+           */
 
           const titulares =
             MotorEscalacao.montar(
@@ -1831,14 +1997,16 @@ function escolherMelhorFormacaoEscalacao(
               listaTitulares,
 
             completa:
-              listaTitulares.length === 12,
+              listaTitulares.length ===
+              12,
 
             bancoCompleto:
               banco.length ===
               POSICOES_BANCO.length,
 
             completaTotal:
-              listaTitulares.length === 12 &&
+              listaTitulares.length ===
+                12 &&
               banco.length ===
                 POSICOES_BANCO.length,
 
@@ -1989,7 +2157,7 @@ async function carregarEscalacoes() {
 
 
       /* ===================================================
-         TITULARES + ESCOLHA DA FORMAÇÃO
+         TITULARES + FORMAÇÃO
          =================================================== */
 
       const melhorFormacao =
@@ -2109,6 +2277,35 @@ async function carregarEscalacoes() {
 
 
       /* ===================================================
+         SEGURANÇA DO ORÇAMENTO
+         =================================================== */
+
+      if (
+        limitePatrimonio !== null &&
+        custoTotal >
+          limitePatrimonio +
+          0.001
+      ) {
+
+        console.warn(
+          "Escalação descartada por ultrapassar patrimônio:",
+          {
+            perfil:
+              perfil?.perfil ??
+              perfil?.nome,
+
+            limite:
+              limitePatrimonio,
+
+            custo:
+              custoTotal
+          }
+        );
+
+      }
+
+
+      /* ===================================================
          CAPITÃO
          =================================================== */
 
@@ -2138,8 +2335,7 @@ async function carregarEscalacoes() {
 
 
         /*
-         * A formação original continua registrada
-         * para auditoria.
+         * Formação original do perfil.
          */
 
         formacaoOriginal:
@@ -2147,8 +2343,7 @@ async function carregarEscalacoes() {
 
 
         /*
-         * formacao passa a representar a formação
-         * realmente escolhida pelo motor.
+         * Formação escolhida pelo motor.
          */
 
         formacao:
@@ -2169,6 +2364,11 @@ async function carregarEscalacoes() {
           listaTitulares,
 
 
+        /*
+         * Patrimônio efetivamente utilizado
+         * para gerar esta escalação.
+         */
+
         limitePatrimonio:
           limitePatrimonio !== null
             ? arredondarEscalacao(
@@ -2178,9 +2378,17 @@ async function carregarEscalacoes() {
 
 
         /*
-         * Mantemos "custo" para compatibilidade com
-         * os cards atuais. A partir daqui ele representa
-         * o custo completo: titulares + banco.
+         * Indica se o orçamento veio
+         * do filtro do usuário.
+         */
+
+        patrimonioPersonalizado:
+          obterPatrimonioSelecionadoEscalacoes()
+            !== null,
+
+
+        /*
+         * custo representa titulares + banco.
          */
 
         custo:
@@ -2214,6 +2422,13 @@ async function carregarEscalacoes() {
                 custoTotal
               )
             : null,
+
+
+        dentroDoOrcamento:
+          limitePatrimonio === null ||
+          custoTotal <=
+            limitePatrimonio +
+            0.001,
 
 
         bancoCompleto:
