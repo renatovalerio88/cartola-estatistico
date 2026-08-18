@@ -105,13 +105,41 @@ function criarCardEscalacao(
       "Nenhum ponto de atenção cadastrado."
     );
 
-  const saldo =
+  /*
+   * custo agora representa o custo completo
+   * da escalação: titulares + banco.
+   *
+   * Mantemos fallback para custoTotal para
+   * compatibilidade com versões futuras.
+   */
+  const custoTotal =
     numeroSeguro(
-      escalacao.limitePatrimonio
-    ) -
-    numeroSeguro(
+      escalacao.custoTotal ??
       escalacao.custo
     );
+
+  /*
+   * O saldo já é calculado pela camada de dados.
+   * O cálculo local abaixo fica apenas como
+   * fallback para compatibilidade.
+   */
+  const saldo =
+    escalacao.saldo !== null &&
+    escalacao.saldo !== undefined &&
+    Number.isFinite(
+      Number(
+        escalacao.saldo
+      )
+    )
+      ? numeroSeguro(
+          escalacao.saldo
+        )
+      : (
+          numeroSeguro(
+            escalacao.limitePatrimonio
+          ) -
+          custoTotal
+        );
 
   card.className =
     `suggested-lineup-card ${classePerfil}`;
@@ -164,10 +192,10 @@ function criarCardEscalacao(
     <div class="lineup-cost-row">
 
       <div>
-        <span>Custo</span>
+        <span>Custo total</span>
         <strong>
           ${formatarCartoletas(
-            escalacao.custo
+            custoTotal
           )}
         </strong>
       </div>
