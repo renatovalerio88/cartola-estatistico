@@ -29,6 +29,17 @@ function exibirEscalacoes() {
 
   container.innerHTML = "";
 
+  const controlePatrimonio =
+    criarControlePatrimonioEscalacoes(
+      escalacoes
+    );
+
+  if (controlePatrimonio) {
+    container.appendChild(
+      controlePatrimonio
+    );
+  }
+
   escalacoes.forEach(
     (escalacao) => {
       const card =
@@ -41,11 +52,303 @@ function exibirEscalacoes() {
   );
 
   configurarBotoesDetalhesEscalacao();
+  configurarControlePatrimonioEscalacoes();
 }
 
 
 /* =========================================================
-   2. CRIAÇÃO DO CARD PRINCIPAL
+   2. CONTROLE DE PATRIMÔNIO
+   ========================================================= */
+
+function criarControlePatrimonioEscalacoes(
+  escalacoes
+) {
+  const lista =
+    Array.isArray(escalacoes)
+      ? escalacoes
+      : [];
+
+  const primeiraEscalacao =
+    lista[0] || null;
+
+  const patrimonioSelecionado =
+    typeof obterPatrimonioSelecionadoEscalacoes === "function"
+      ? obterPatrimonioSelecionadoEscalacoes()
+      : null;
+
+  const limiteAtual =
+    patrimonioSelecionado ??
+    numeroSeguro(
+      primeiraEscalacao?.limitePatrimonio ??
+      120
+    );
+
+  const controle =
+    document.createElement("section");
+
+  controle.className =
+    "lineup-budget-control";
+
+  controle.innerHTML = `
+    <div class="lineup-budget-copy">
+
+      <span class="lineup-budget-kicker">
+        ORÇAMENTO DA ESCALAÇÃO
+      </span>
+
+      <strong>
+        Defina seu patrimônio
+      </strong>
+
+      <p>
+        Os três times serão recalculados respeitando o valor disponível,
+        incluindo titulares e banco.
+      </p>
+
+    </div>
+
+    <div class="lineup-budget-actions">
+
+      <label for="lineupBudgetInput">
+        Patrimônio disponível
+      </label>
+
+      <div class="lineup-budget-input-wrap">
+
+        <span>
+          C$
+        </span>
+
+        <input
+          id="lineupBudgetInput"
+          type="number"
+          min="1"
+          step="0.01"
+          inputmode="decimal"
+          value="${escaparHtml(
+            numeroSeguro(limiteAtual)
+              .toFixed(2)
+          )}"
+        >
+
+      </div>
+
+      <button
+        id="lineupBudgetApply"
+        class="lineup-budget-apply"
+        type="button"
+      >
+        Recalcular times
+      </button>
+
+      <button
+        id="lineupBudgetReset"
+        class="lineup-budget-reset"
+        type="button"
+      >
+        Restaurar padrão
+      </button>
+
+      <small
+        id="lineupBudgetStatus"
+        class="lineup-budget-status"
+        aria-live="polite"
+      >
+        ${
+          patrimonioSelecionado !== null
+            ? `Patrimônio personalizado: ${formatarCartoletas(
+                patrimonioSelecionado
+              )}`
+            : `Limite atual: ${formatarCartoletas(
+                limiteAtual
+              )}`
+        }
+      </small>
+
+    </div>
+  `;
+
+  return controle;
+}
+
+
+function configurarControlePatrimonioEscalacoes() {
+  const input =
+    document.getElementById(
+      "lineupBudgetInput"
+    );
+
+  const botaoAplicar =
+    document.getElementById(
+      "lineupBudgetApply"
+    );
+
+  const botaoRestaurar =
+    document.getElementById(
+      "lineupBudgetReset"
+    );
+
+  const status =
+    document.getElementById(
+      "lineupBudgetStatus"
+    );
+
+  if (!input || !botaoAplicar) {
+    return;
+  }
+
+  const definirEstadoCarregando =
+    (carregando) => {
+      input.disabled =
+        carregando;
+
+      botaoAplicar.disabled =
+        carregando;
+
+      if (botaoRestaurar) {
+        botaoRestaurar.disabled =
+          carregando;
+      }
+
+      botaoAplicar.textContent =
+        carregando
+          ? "Recalculando..."
+          : "Recalcular times";
+    };
+
+
+  const aplicarPatrimonio =
+    async () => {
+      const valor =
+        Number(
+          String(input.value)
+            .replace(",", ".")
+        );
+
+      if (
+        !Number.isFinite(valor) ||
+        valor <= 0
+      ) {
+        if (status) {
+          status.textContent =
+            "Informe um patrimônio válido.";
+        }
+
+        input.focus();
+
+        return;
+      }
+
+      if (
+        typeof definirPatrimonioEscalacoes !==
+        "function"
+      ) {
+        if (status) {
+          status.textContent =
+            "Motor de patrimônio indisponível.";
+        }
+
+        return;
+      }
+
+      definirEstadoCarregando(
+        true
+      );
+
+      if (status) {
+        status.textContent =
+          "Recalculando as três estratégias...";
+      }
+
+      try {
+        await definirPatrimonioEscalacoes(
+          valor
+        );
+      } catch (erro) {
+        console.error(
+          "Erro ao recalcular patrimônio:",
+          erro
+        );
+
+        definirEstadoCarregando(
+          false
+        );
+
+        if (status) {
+          status.textContent =
+            erro?.message ||
+            "Não foi possível recalcular os times.";
+        }
+      }
+    };
+
+
+  botaoAplicar.addEventListener(
+    "click",
+    aplicarPatrimonio
+  );
+
+
+  input.addEventListener(
+    "keydown",
+    (evento) => {
+      if (
+        evento.key === "Enter"
+      ) {
+        evento.preventDefault();
+
+        aplicarPatrimonio();
+      }
+    }
+  );
+
+
+  if (botaoRestaurar) {
+    botaoRestaurar.addEventListener(
+      "click",
+      async () => {
+        if (
+          typeof restaurarPatrimonioPadraoEscalacoes !==
+          "function"
+        ) {
+          return;
+        }
+
+        definirEstadoCarregando(
+          true
+        );
+
+        if (status) {
+          status.textContent =
+            "Restaurando orçamento padrão...";
+        }
+
+        try {
+          await restaurarPatrimonioPadraoEscalacoes();
+        } catch (erro) {
+          console.error(
+            "Erro ao restaurar patrimônio:",
+            erro
+          );
+
+          definirEstadoCarregando(
+            false
+          );
+
+          if (status) {
+            status.textContent =
+              erro?.message ||
+              "Não foi possível restaurar o orçamento.";
+          }
+        }
+      }
+    );
+  }
+}
+
+
+/* =========================================================
+   3. CRIAÇÃO DO CARD PRINCIPAL
    ========================================================= */
 
 function criarCardEscalacao(
@@ -471,7 +774,7 @@ function criarCardEscalacao(
 
 
 /* =========================================================
-   3. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
+   4. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
    ========================================================= */
 
 function obterNomeCurtoJogador(
@@ -515,7 +818,7 @@ function obterNomeCurtoJogador(
 
 
 /* =========================================================
-   4. NORMALIZAÇÃO VISUAL DO SCORE
+   5. NORMALIZAÇÃO VISUAL DO SCORE
    ========================================================= */
 
 function normalizarScoreVisual(
@@ -561,7 +864,7 @@ function normalizarScoreVisual(
 
 
 /* =========================================================
-   5. CAPITÃO
+   6. CAPITÃO
    ========================================================= */
 
 function criarCapitaoHtml(
@@ -628,7 +931,7 @@ function criarCapitaoHtml(
 
 
 /* =========================================================
-   6. JOGADOR TITULAR
+   7. JOGADOR TITULAR
    ========================================================= */
 
 function criarJogadorTitularHtml(
@@ -712,7 +1015,7 @@ function criarJogadorTitularHtml(
 
 
 /* =========================================================
-   7. BANCO
+   8. BANCO
    ========================================================= */
 
 function criarBancoHtml(
@@ -789,7 +1092,7 @@ function criarJogadorBancoHtml(
 
 
 /* =========================================================
-   8. RESERVA DE LUXO
+   9. RESERVA DE LUXO
    ========================================================= */
 
 function criarReservaLuxoHtml(
@@ -861,7 +1164,7 @@ function criarReservaLuxoHtml(
 
 
 /* =========================================================
-   9. PERFIL DA ESCALAÇÃO
+   10. PERFIL DA ESCALAÇÃO
    ========================================================= */
 
 function obterClassePerfilEscalacao(
@@ -895,7 +1198,7 @@ function obterClassePerfilEscalacao(
 
 
 /* =========================================================
-   10. BOTÃO DE DETALHES
+   11. BOTÃO DE DETALHES
    ========================================================= */
 
 function configurarBotoesDetalhesEscalacao() {
