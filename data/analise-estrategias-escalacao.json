@@ -17,46 +17,46 @@
   "resumo": {
     "rodadas": 22,
     "estrategias": 3,
-    "liderScoreGlobal": "Conservador",
-    "liderMediaReal": "Conservador",
-    "liderMediana": "Conservador",
-    "liderVitorias": "Conservador",
+    "liderScoreGlobal": "Equilibrado",
+    "liderMediaReal": "Equilibrado",
+    "liderMediana": "Agressivo",
+    "liderVitorias": "Agressivo",
     "liderConsistencia": "Conservador",
     "menorMae": "Conservador",
-    "taxaVitoriasLider": 45.45,
-    "estabilidadeLider": 45.45,
+    "taxaVitoriasLider": 27.27,
+    "estabilidadeLider": 27.27,
     "coberturaLider": 100.0,
-    "robustezLider": 90.0,
-    "scoreConfianca": 69.8,
+    "robustezLider": 40.0,
+    "scoreConfianca": 66.2,
     "liderancaConsistente": true,
     "divergenciaScoreMedia": false
   },
   "comparacaoPorMedia": {
-    "lider": "Conservador",
-    "segundo": "Equilibrado",
-    "mediaLider": 57.63,
-    "mediaSegundo": 57.62,
-    "vantagemMedia": 0.01,
-    "vantagemMediaPercentual": 0.02
+    "lider": "Equilibrado",
+    "segundo": "Agressivo",
+    "mediaLider": 52.38,
+    "mediaSegundo": 48.61,
+    "vantagemMedia": 3.77,
+    "vantagemMediaPercentual": 7.76
   },
   "lideresPorCriterio": {
-    "scoreGlobal": "Conservador",
-    "mediaPontos": "Conservador",
-    "medianaPontos": "Conservador",
-    "vitorias": "Conservador",
+    "scoreGlobal": "Equilibrado",
+    "mediaPontos": "Equilibrado",
+    "medianaPontos": "Agressivo",
+    "vitorias": "Agressivo",
     "consistencia": "Conservador",
     "menorMae": "Conservador"
   },
   "divergenciaLideres": {
-    "liderScore": "Conservador",
-    "liderMedia": "Conservador",
-    "liderMediana": "Conservador",
+    "liderScore": "Equilibrado",
+    "liderMedia": "Equilibrado",
+    "liderMediana": "Agressivo",
     "scoreIgualMedia": true,
-    "scoreIgualMediana": true,
-    "mediaIgualMediana": true,
+    "scoreIgualMediana": false,
+    "mediaIgualMediana": false,
     "divergenciaCritica": false,
-    "classificacao": "LIDERANCA_CONSISTENTE",
-    "explicacao": "O líder por score global também lidera os principais indicadores de pontuação real."
+    "classificacao": "DIVERGENCIA_SECUNDARIA",
+    "explicacao": "O líder por score e média coincide, mas existe divergência na mediana."
   },
   "desempenhoRecente": {
     "Conservador": {
@@ -68,10 +68,10 @@
         23
       ],
       "quantidade": 5,
-      "media": 63.94,
-      "mediana": 66.64,
-      "total": 319.68,
-      "desvioPadrao": 7.61
+      "media": 50.25,
+      "mediana": 51.35,
+      "total": 251.24,
+      "desvioPadrao": 8.84
     },
     "Equilibrado": {
       "rodadas": [
@@ -82,10 +82,10 @@
         23
       ],
       "quantidade": 5,
-      "media": 63.86,
-      "mediana": 66.62,
-      "total": 319.32,
-      "desvioPadrao": 8.92
+      "media": 62.59,
+      "mediana": 70.44,
+      "total": 312.95,
+      "desvioPadrao": 16.01
     },
     "Agressivo": {
       "rodadas": [
@@ -96,10 +96,10 @@
         23
       ],
       "quantidade": 5,
-      "media": 58.19,
+      "media": 55.56,
       "mediana": 57.38,
-      "total": 290.94,
-      "desvioPadrao": 10.36
+      "total": 277.8,
+      "desvioPadrao": 14.58
     }
   },
   "desempenhoPorPeriodo": {
@@ -119,10 +119,10 @@
           12
         ],
         "quantidade": 11,
-        "media": 56.1,
-        "mediana": 56.92,
-        "total": 617.13,
-        "desvioPadrao": 13.2
+        "media": 45.17,
+        "mediana": 44.04,
+        "total": 496.91,
+        "desvioPadrao": 12.19
       },
       "segundaMetade": {
         "rodadas": [
@@ -139,10 +139,10 @@
           23
         ],
         "quantidade": 11,
-        "media": 59.15,
-        "mediana": 60.01,
-        "total": 650.7,
-        "desvioPadrao": 13.95
+        "media": 51.06,
+        "mediana": 50.77,
+        "total": 561.62,
+        "desvioPadrao": 12.46
       }
     },
     "Equilibrado": {
@@ -161,10 +161,10 @@
           12
         ],
         "quantidade": 11,
-        "media": 53.66,
-        "mediana": 55.2,
-        "total": 590.23,
-        "desvioPadrao": 9.29
+        "media": 47.26,
+        "mediana": 43.73,
+        "total": 519.81,
+        "desvioPadrao": 9.48
       },
       "segundaMetade": {
         "rodadas": [
@@ -181,10 +181,10 @@
           23
         ],
         "quantidade": 11,
-        "media": 61.57,
-        "mediana": 57.45,
-        "total": 677.31,
-        "desvioPadrao": 20.97
+        "media": 57.5,
+        "mediana": 54.85,
+        "total": 632.47,
+        "desvioPadrao": 18.63
       }
     },
     "Agressivo": {
@@ -203,10 +203,10 @@
           12
         ],
         "quantidade": 11,
-        "media": 52.85,
-        "mediana": 47.85,
-        "total": 581.36,
-        "desvioPadrao": 13.21
+        "media": 43.38,
+        "mediana": 42.95,
+        "total": 477.21,
+        "desvioPadrao": 13.74
       },
       "segundaMetade": {
         "rodadas": [
@@ -223,51 +223,38 @@
           23
         ],
         "quantidade": 11,
-        "media": 56.59,
-        "mediana": 55.95,
-        "total": 622.44,
-        "desvioPadrao": 13.62
+        "media": 53.83,
+        "mediana": 54.36,
+        "total": 592.13,
+        "desvioPadrao": 17.15
       }
     }
   },
   "disputas": {
     "Conservador": {
       "participacoes": 22,
-      "vitorias": 10,
+      "vitorias": 7,
       "empates": 0,
-      "derrotas": 12
+      "derrotas": 15
     },
     "Equilibrado": {
       "participacoes": 22,
-      "vitorias": 7,
+      "vitorias": 6,
       "empates": 1,
-      "derrotas": 14
+      "derrotas": 15
     },
     "Agressivo": {
       "participacoes": 22,
-      "vitorias": 4,
+      "vitorias": 8,
       "empates": 1,
-      "derrotas": 17
+      "derrotas": 13
     }
   },
   "robustez": {
-    "Conservador": {
-      "score": 90.0,
+    "Equilibrado": {
+      "score": 40.0,
       "criterios": {
         "liderMedia": true,
-        "liderMediana": true,
-        "liderVitorias": true,
-        "liderConsistencia": true,
-        "taxaVitoriasMinima": true,
-        "estabilidadeMinima": false,
-        "segundaMetadeCompetitiva": true,
-        "momentoRecentePositivo": true
-      }
-    },
-    "Equilibrado": {
-      "score": 15.0,
-      "criterios": {
-        "liderMedia": false,
         "liderMediana": false,
         "liderVitorias": false,
         "liderConsistencia": false,
@@ -278,12 +265,25 @@
       }
     },
     "Agressivo": {
-      "score": 15.0,
+      "score": 45.0,
+      "criterios": {
+        "liderMedia": false,
+        "liderMediana": true,
+        "liderVitorias": true,
+        "liderConsistencia": false,
+        "taxaVitoriasMinima": false,
+        "estabilidadeMinima": false,
+        "segundaMetadeCompetitiva": true,
+        "momentoRecentePositivo": true
+      }
+    },
+    "Conservador": {
+      "score": 25.0,
       "criterios": {
         "liderMedia": false,
         "liderMediana": false,
         "liderVitorias": false,
-        "liderConsistencia": false,
+        "liderConsistencia": true,
         "taxaVitoriasMinima": false,
         "estabilidadeMinima": false,
         "segundaMetadeCompetitiva": true,
@@ -293,120 +293,27 @@
   },
   "diagnosticoEstrategias": [
     {
-      "nome": "Conservador",
-      "mediaPontos": 57.63,
-      "medianaPontos": 58.47,
-      "pontosTotal": 1267.83,
-      "scoreGlobal": 61.387,
-      "consistencia": 76.29,
-      "maeMedioJogadores": 5.191,
-      "vitorias": 10,
-      "empates": 0,
-      "derrotas": 12,
-      "taxaVitorias": 45.45,
-      "estabilidade": {
-        "estrategia": "Conservador",
-        "comparacoes": 22,
-        "rodadasSuperior": 10,
-        "rodadasEmpatado": 0,
-        "rodadasInferior": 12,
-        "taxaSuperioridadePercentual": 45.45,
-        "taxaNaoDerrotaPercentual": 45.45,
-        "margemMediaContraMelhorAdversario": -3.37,
-        "desvioMargem": 11.44
-      },
-      "recente": {
-        "rodadas": [
-          19,
-          20,
-          21,
-          22,
-          23
-        ],
-        "quantidade": 5,
-        "media": 63.94,
-        "mediana": 66.64,
-        "total": 319.68,
-        "desvioPadrao": 7.61
-      },
-      "periodos": {
-        "primeiraMetade": {
-          "rodadas": [
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12
-          ],
-          "quantidade": 11,
-          "media": 56.1,
-          "mediana": 56.92,
-          "total": 617.13,
-          "desvioPadrao": 13.2
-        },
-        "segundaMetade": {
-          "rodadas": [
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23
-          ],
-          "quantidade": 11,
-          "media": 59.15,
-          "mediana": 60.01,
-          "total": 650.7,
-          "desvioPadrao": 13.95
-        }
-      },
-      "robustez": {
-        "score": 90.0,
-        "criterios": {
-          "liderMedia": true,
-          "liderMediana": true,
-          "liderVitorias": true,
-          "liderConsistencia": true,
-          "taxaVitoriasMinima": true,
-          "estabilidadeMinima": false,
-          "segundaMetadeCompetitiva": true,
-          "momentoRecentePositivo": true
-        }
-      }
-    },
-    {
       "nome": "Equilibrado",
-      "mediaPontos": 57.62,
-      "medianaPontos": 55.64,
-      "pontosTotal": 1267.54,
-      "scoreGlobal": 58.76,
-      "consistencia": 71.02,
-      "maeMedioJogadores": 5.652,
-      "vitorias": 7,
+      "mediaPontos": 52.38,
+      "medianaPontos": 47.51,
+      "pontosTotal": 1152.28,
+      "scoreGlobal": 54.623,
+      "consistencia": 70.14,
+      "maeMedioJogadores": 5.265,
+      "vitorias": 6,
       "empates": 1,
-      "derrotas": 14,
-      "taxaVitorias": 31.82,
+      "derrotas": 15,
+      "taxaVitorias": 27.27,
       "estabilidade": {
         "estrategia": "Equilibrado",
         "comparacoes": 22,
-        "rodadasSuperior": 7,
+        "rodadasSuperior": 6,
         "rodadasEmpatado": 1,
-        "rodadasInferior": 14,
-        "taxaSuperioridadePercentual": 31.82,
-        "taxaNaoDerrotaPercentual": 36.36,
-        "margemMediaContraMelhorAdversario": -4.21,
-        "desvioMargem": 10.64
+        "rodadasInferior": 15,
+        "taxaSuperioridadePercentual": 27.27,
+        "taxaNaoDerrotaPercentual": 31.82,
+        "margemMediaContraMelhorAdversario": -1.94,
+        "desvioMargem": 9.49
       },
       "recente": {
         "rodadas": [
@@ -417,10 +324,10 @@
           23
         ],
         "quantidade": 5,
-        "media": 63.86,
-        "mediana": 66.62,
-        "total": 319.32,
-        "desvioPadrao": 8.92
+        "media": 62.59,
+        "mediana": 70.44,
+        "total": 312.95,
+        "desvioPadrao": 16.01
       },
       "periodos": {
         "primeiraMetade": {
@@ -438,10 +345,10 @@
             12
           ],
           "quantidade": 11,
-          "media": 53.66,
-          "mediana": 55.2,
-          "total": 590.23,
-          "desvioPadrao": 9.29
+          "media": 47.26,
+          "mediana": 43.73,
+          "total": 519.81,
+          "desvioPadrao": 9.48
         },
         "segundaMetade": {
           "rodadas": [
@@ -458,16 +365,16 @@
             23
           ],
           "quantidade": 11,
-          "media": 61.57,
-          "mediana": 57.45,
-          "total": 677.31,
-          "desvioPadrao": 20.97
+          "media": 57.5,
+          "mediana": 54.85,
+          "total": 632.47,
+          "desvioPadrao": 18.63
         }
       },
       "robustez": {
-        "score": 15.0,
+        "score": 40.0,
         "criterios": {
-          "liderMedia": false,
+          "liderMedia": true,
           "liderMediana": false,
           "liderVitorias": false,
           "liderConsistencia": false,
@@ -480,26 +387,26 @@
     },
     {
       "nome": "Agressivo",
-      "mediaPontos": 54.72,
-      "medianaPontos": 54.77,
-      "pontosTotal": 1203.8,
-      "scoreGlobal": 55.173,
-      "consistencia": 75.24,
-      "maeMedioJogadores": 6.453,
-      "vitorias": 4,
+      "mediaPontos": 48.61,
+      "medianaPontos": 47.95,
+      "pontosTotal": 1069.34,
+      "scoreGlobal": 53.065,
+      "consistencia": 66.28,
+      "maeMedioJogadores": 6.113,
+      "vitorias": 8,
       "empates": 1,
-      "derrotas": 17,
-      "taxaVitorias": 18.18,
+      "derrotas": 13,
+      "taxaVitorias": 36.36,
       "estabilidade": {
         "estrategia": "Agressivo",
         "comparacoes": 22,
-        "rodadasSuperior": 4,
+        "rodadasSuperior": 8,
         "rodadasEmpatado": 1,
-        "rodadasInferior": 17,
-        "taxaSuperioridadePercentual": 18.18,
-        "taxaNaoDerrotaPercentual": 22.73,
-        "margemMediaContraMelhorAdversario": -6.77,
-        "desvioMargem": 13.33
+        "rodadasInferior": 13,
+        "taxaSuperioridadePercentual": 36.36,
+        "taxaNaoDerrotaPercentual": 40.91,
+        "margemMediaContraMelhorAdversario": -5.33,
+        "desvioMargem": 13.28
       },
       "recente": {
         "rodadas": [
@@ -510,10 +417,10 @@
           23
         ],
         "quantidade": 5,
-        "media": 58.19,
+        "media": 55.56,
         "mediana": 57.38,
-        "total": 290.94,
-        "desvioPadrao": 10.36
+        "total": 277.8,
+        "desvioPadrao": 14.58
       },
       "periodos": {
         "primeiraMetade": {
@@ -531,10 +438,10 @@
             12
           ],
           "quantidade": 11,
-          "media": 52.85,
-          "mediana": 47.85,
-          "total": 581.36,
-          "desvioPadrao": 13.21
+          "media": 43.38,
+          "mediana": 42.95,
+          "total": 477.21,
+          "desvioPadrao": 13.74
         },
         "segundaMetade": {
           "rodadas": [
@@ -551,19 +458,112 @@
             23
           ],
           "quantidade": 11,
-          "media": 56.59,
-          "mediana": 55.95,
-          "total": 622.44,
-          "desvioPadrao": 13.62
+          "media": 53.83,
+          "mediana": 54.36,
+          "total": 592.13,
+          "desvioPadrao": 17.15
         }
       },
       "robustez": {
-        "score": 15.0,
+        "score": 45.0,
+        "criterios": {
+          "liderMedia": false,
+          "liderMediana": true,
+          "liderVitorias": true,
+          "liderConsistencia": false,
+          "taxaVitoriasMinima": false,
+          "estabilidadeMinima": false,
+          "segundaMetadeCompetitiva": true,
+          "momentoRecentePositivo": true
+        }
+      }
+    },
+    {
+      "nome": "Conservador",
+      "mediaPontos": 48.12,
+      "medianaPontos": 46.41,
+      "pontosTotal": 1058.53,
+      "scoreGlobal": 52.933,
+      "consistencia": 73.66,
+      "maeMedioJogadores": 4.803,
+      "vitorias": 7,
+      "empates": 0,
+      "derrotas": 15,
+      "taxaVitorias": 31.82,
+      "estabilidade": {
+        "estrategia": "Conservador",
+        "comparacoes": 22,
+        "rodadasSuperior": 7,
+        "rodadasEmpatado": 0,
+        "rodadasInferior": 15,
+        "taxaSuperioridadePercentual": 31.82,
+        "taxaNaoDerrotaPercentual": 31.82,
+        "margemMediaContraMelhorAdversario": -7.33,
+        "desvioMargem": 10.8
+      },
+      "recente": {
+        "rodadas": [
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "quantidade": 5,
+        "media": 50.25,
+        "mediana": 51.35,
+        "total": 251.24,
+        "desvioPadrao": 8.84
+      },
+      "periodos": {
+        "primeiraMetade": {
+          "rodadas": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "quantidade": 11,
+          "media": 45.17,
+          "mediana": 44.04,
+          "total": 496.91,
+          "desvioPadrao": 12.19
+        },
+        "segundaMetade": {
+          "rodadas": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "quantidade": 11,
+          "media": 51.06,
+          "mediana": 50.77,
+          "total": 561.62,
+          "desvioPadrao": 12.46
+        }
+      },
+      "robustez": {
+        "score": 25.0,
         "criterios": {
           "liderMedia": false,
           "liderMediana": false,
           "liderVitorias": false,
-          "liderConsistencia": false,
+          "liderConsistencia": true,
           "taxaVitoriasMinima": false,
           "estabilidadeMinima": false,
           "segundaMetadeCompetitiva": true,
@@ -574,96 +574,96 @@
   ],
   "ranking": [
     {
-      "nome": "Conservador",
-      "perfil": "conservador",
-      "formacao": "4-4-2",
-      "rodadas": 22,
-      "pontosTotal": 1267.83,
-      "mediaPontos": 57.63,
-      "medianaPontos": 58.47,
-      "desvioPadrao": 13.66,
-      "consistencia": 76.29,
-      "mediaSemCapitao": 55.3,
-      "mediaBonusCapitao": 2.33,
-      "ganhoMedioCapitaoPercentual": 4.21,
-      "maeMedioJogadores": 5.191,
-      "coberturaMediaPercentual": 100.0,
-      "escalacoesCompletas": 22,
-      "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 10,
-      "empatesNaLideranca": 0,
-      "taxaVitorias": 45.45,
-      "melhorRodada": {
-        "rodada": 13,
-        "pontos": 87.11
-      },
-      "piorRodada": {
-        "rodada": 9,
-        "pontos": 31.75
-      },
-      "scoreGlobal": 61.387,
-      "posicao": 1
-    },
-    {
       "nome": "Equilibrado",
       "perfil": "equilibrado",
       "formacao": "3-4-3",
       "rodadas": 22,
-      "pontosTotal": 1267.54,
-      "mediaPontos": 57.62,
-      "medianaPontos": 55.64,
-      "desvioPadrao": 16.7,
-      "consistencia": 71.02,
-      "mediaSemCapitao": 52.32,
-      "mediaBonusCapitao": 5.3,
-      "ganhoMedioCapitaoPercentual": 10.13,
-      "maeMedioJogadores": 5.652,
+      "pontosTotal": 1152.28,
+      "mediaPontos": 52.38,
+      "medianaPontos": 47.51,
+      "desvioPadrao": 15.64,
+      "consistencia": 70.14,
+      "mediaSemCapitao": 46.14,
+      "mediaBonusCapitao": 6.24,
+      "ganhoMedioCapitaoPercentual": 13.52,
+      "maeMedioJogadores": 5.265,
       "coberturaMediaPercentual": 100.0,
       "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 7,
+      "vitorias": 6,
       "empatesNaLideranca": 1,
-      "taxaVitorias": 31.82,
+      "taxaVitorias": 27.27,
       "melhorRodada": {
         "rodada": 13,
-        "pontos": 115.78
+        "pontos": 92.53
       },
       "piorRodada": {
-        "rodada": 17,
-        "pontos": 37.16
+        "rodada": 5,
+        "pontos": 33.42
       },
-      "scoreGlobal": 58.76,
-      "posicao": 2
+      "scoreGlobal": 54.623,
+      "posicao": 1
     },
     {
       "nome": "Agressivo",
       "perfil": "agressivo",
       "formacao": "3-4-3",
       "rodadas": 22,
-      "pontosTotal": 1203.8,
-      "mediaPontos": 54.72,
-      "medianaPontos": 54.77,
-      "desvioPadrao": 13.55,
-      "consistencia": 75.24,
-      "mediaSemCapitao": 50.6,
-      "mediaBonusCapitao": 4.11,
-      "ganhoMedioCapitaoPercentual": 8.13,
-      "maeMedioJogadores": 6.453,
+      "pontosTotal": 1069.34,
+      "mediaPontos": 48.61,
+      "medianaPontos": 47.95,
+      "desvioPadrao": 16.39,
+      "consistencia": 66.28,
+      "mediaSemCapitao": 43.83,
+      "mediaBonusCapitao": 4.78,
+      "ganhoMedioCapitaoPercentual": 10.9,
+      "maeMedioJogadores": 6.113,
       "coberturaMediaPercentual": 100.0,
       "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 4,
+      "vitorias": 8,
       "empatesNaLideranca": 1,
-      "taxaVitorias": 18.18,
+      "taxaVitorias": 36.36,
       "melhorRodada": {
         "rodada": 13,
-        "pontos": 85.31
+        "pontos": 86.33
       },
       "piorRodada": {
-        "rodada": 15,
-        "pontos": 33.84
+        "rodada": 5,
+        "pontos": 22.5
       },
-      "scoreGlobal": 55.173,
+      "scoreGlobal": 53.065,
+      "posicao": 2
+    },
+    {
+      "nome": "Conservador",
+      "perfil": "conservador",
+      "formacao": "4-4-2",
+      "rodadas": 22,
+      "pontosTotal": 1058.53,
+      "mediaPontos": 48.12,
+      "medianaPontos": 46.41,
+      "desvioPadrao": 12.67,
+      "consistencia": 73.66,
+      "mediaSemCapitao": 45.6,
+      "mediaBonusCapitao": 2.51,
+      "ganhoMedioCapitaoPercentual": 5.51,
+      "maeMedioJogadores": 4.803,
+      "coberturaMediaPercentual": 100.0,
+      "escalacoesCompletas": 22,
+      "taxaEscalacoesCompletas": 100.0,
+      "vitorias": 7,
+      "empatesNaLideranca": 0,
+      "taxaVitorias": 31.82,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 80.15
+      },
+      "piorRodada": {
+        "rodada": 9,
+        "pontos": 26.13
+      },
+      "scoreGlobal": 52.933,
       "posicao": 3
     }
   ],
@@ -674,12 +674,12 @@
     "amostraMinimaPromocao": true,
     "coberturaMinima": true,
     "liderScoreTambemLiderMedia": true,
-    "vantagemMediaMinima": false,
-    "vantagemPercentualMinima": false,
-    "taxaVitoriasMinima": true,
+    "vantagemMediaMinima": true,
+    "vantagemPercentualMinima": true,
+    "taxaVitoriasMinima": false,
     "estabilidadeMinima": false,
     "consistenciaMinima": true,
-    "robustezMinima": true,
+    "robustezMinima": false,
     "scoreConfiancaMinimo": true
   },
   "criteriosPromocao": {
@@ -689,27 +689,27 @@
       "amostraMinimaPromocao",
       "coberturaMinima",
       "liderScoreTambemLiderMedia",
-      "taxaVitoriasMinima",
+      "vantagemMediaMinima",
+      "vantagemPercentualMinima",
       "consistenciaMinima",
-      "robustezMinima",
       "scoreConfiancaMinimo"
     ],
     "falhas": [
-      "vantagemMediaMinima",
-      "vantagemPercentualMinima",
-      "estabilidadeMinima"
+      "taxaVitoriasMinima",
+      "estabilidadeMinima",
+      "robustezMinima"
     ]
   },
   "decisao": {
     "decisao": "MANTER_ESTRATEGIAS_ATUAIS",
     "estrategiaRecomendada": null,
-    "liderAtual": "Conservador",
-    "liderScoreGlobal": "Conservador",
-    "liderMediaReal": "Conservador",
+    "liderAtual": "Equilibrado",
+    "liderScoreGlobal": "Equilibrado",
+    "liderMediaReal": "Equilibrado",
     "promover": false,
     "promocaoAutomatica": false,
-    "scoreConfianca": 69.8,
-    "robustez": 90.0,
+    "scoreConfianca": 66.2,
+    "robustez": 40.0,
     "divergenciaScoreMedia": false,
     "observacao": "Os dados históricos ainda não demonstram superioridade suficiente para substituir as estratégias atuais."
   },

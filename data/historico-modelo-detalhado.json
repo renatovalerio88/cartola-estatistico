@@ -3678,32 +3678,32 @@
     },
     {
       "rodada": 23,
-      "mae": 2.99,
-      "quantidadeJogadores": 310,
+      "mae": 2.89,
+      "quantidadeJogadores": 342,
       "posicoes": {
         "ATA": {
-          "quantidade": 84,
+          "quantidade": 91,
           "mae": 3.32
         },
         "MEI": {
-          "quantidade": 98,
-          "mae": 2.71
+          "quantidade": 112,
+          "mae": 2.57
         },
         "TEC": {
           "quantidade": 21,
-          "mae": 2.64
+          "mae": 2.24
         },
         "LAT": {
-          "quantidade": 45,
-          "mae": 2.9
+          "quantidade": 49,
+          "mae": 2.91
         },
         "GOL": {
-          "quantidade": 19,
-          "mae": 3.13
+          "quantidade": 21,
+          "mae": 2.88
         },
         "ZAG": {
-          "quantidade": 43,
-          "mae": 3.21
+          "quantidade": 48,
+          "mae": 3.05
         }
       },
       "maioresErros": [
@@ -3808,6 +3808,13 @@
           "erro": 0.02
         },
         {
+          "nome": "Rogério Mücke Ceni",
+          "posicao": "TEC",
+          "projecao": 5.24,
+          "real": 5.21,
+          "erro": -0.03
+        },
+        {
           "nome": "Walace Souza Silva",
           "posicao": "MEI",
           "projecao": 0.17,
@@ -3819,6 +3826,13 @@
           "posicao": "ATA",
           "projecao": 3.34,
           "real": 3.4,
+          "erro": 0.06
+        },
+        {
+          "nome": "Matheus Cunha Queiroz",
+          "posicao": "GOL",
+          "projecao": 2.04,
+          "real": 2.1,
           "erro": 0.06
         },
         {
@@ -3834,48 +3848,34 @@
           "projecao": 1.21,
           "real": 1.3,
           "erro": 0.09
-        },
-        {
-          "nome": "Rogério Mücke Ceni",
-          "posicao": "TEC",
-          "projecao": 5.24,
-          "real": 5.14,
-          "erro": -0.1
-        },
-        {
-          "nome": "Anderson Silva da Paixão",
-          "posicao": "GOL",
-          "projecao": 1.26,
-          "real": 1.4,
-          "erro": 0.14
         }
       ]
     }
   ],
   "resumoPosicoes": {
     "MEI": {
-      "quantidade": 2085,
-      "mae": 2.59
+      "quantidade": 2099,
+      "mae": 2.58
     },
     "LAT": {
-      "quantidade": 987,
+      "quantidade": 991,
       "mae": 3.34
     },
     "ATA": {
-      "quantidade": 1704,
-      "mae": 3.04
+      "quantidade": 1711,
+      "mae": 3.05
     },
     "GOL": {
-      "quantidade": 403,
-      "mae": 3.48
+      "quantidade": 405,
+      "mae": 3.47
     },
     "ZAG": {
-      "quantidade": 927,
-      "mae": 2.89
+      "quantidade": 932,
+      "mae": 2.88
     },
     "TEC": {
       "quantidade": 370,
-      "mae": 2.37
+      "mae": 2.35
     }
   },
   "simulacaoTimes": {

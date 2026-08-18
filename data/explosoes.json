@@ -90,6 +90,17 @@
       "riscoExplosao": 70
     },
     {
+      "id": 107989,
+      "nome": "Johan Stiven Carbonero Balanta",
+      "posicao": "ATA",
+      "media": 5.22,
+      "media3": 6.87,
+      "media5": 6.62,
+      "explosoes": 1,
+      "jogos": 23,
+      "riscoExplosao": 70
+    },
+    {
       "id": 118844,
       "nome": "Kaio César Andrade Lima",
       "posicao": "ATA",
@@ -115,9 +126,9 @@
       "id": 95131,
       "nome": "Gabriel Pereira Taliari",
       "posicao": "ATA",
-      "media": 2.48,
-      "media3": 4.33,
-      "media5": 2.64,
+      "media": 2.58,
+      "media3": 5.13,
+      "media5": 3.12,
       "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 70
@@ -167,12 +178,23 @@
       "riscoExplosao": 65
     },
     {
+      "id": 110426,
+      "nome": "Alexandro Ezequiel Bernabei",
+      "posicao": "LAT",
+      "media": 5.34,
+      "media3": 6.2,
+      "media5": 4.62,
+      "explosoes": 3,
+      "jogos": 23,
+      "riscoExplosao": 65
+    },
+    {
       "id": 113125,
       "nome": "Leonel Marcelo Picco",
       "posicao": "MEI",
-      "media": 3.0,
-      "media3": 5.63,
-      "media5": 3.96,
+      "media": 3.06,
+      "media3": 6.13,
+      "media5": 4.26,
       "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 65
@@ -200,12 +222,23 @@
       "riscoExplosao": 65
     },
     {
+      "id": 87552,
+      "nome": "Vitor Frezarin Bueno",
+      "posicao": "MEI",
+      "media": 2.68,
+      "media3": 5.13,
+      "media5": 3.5,
+      "explosoes": 1,
+      "jogos": 23,
+      "riscoExplosao": 65
+    },
+    {
       "id": 101960,
       "nome": "Vitor Hugo Naum dos Santos",
       "posicao": "ATA",
-      "media": 4.37,
-      "media3": 6.0,
-      "media5": 4.78,
+      "media": 4.42,
+      "media3": 6.4,
+      "media5": 5.02,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 60
@@ -225,9 +258,9 @@
       "id": 105048,
       "nome": "Jandir Breno Souza Silva",
       "posicao": "ATA",
-      "media": 4.37,
-      "media3": 4.93,
-      "media5": 5.26,
+      "media": 4.39,
+      "media3": 5.07,
+      "media5": 5.34,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 60
@@ -431,6 +464,17 @@
       "riscoExplosao": 55
     },
     {
+      "id": 102911,
+      "nome": "José Ricardo Araújo Fernandes",
+      "posicao": "MEI",
+      "media": 2.46,
+      "media3": 3.2,
+      "media5": 3.26,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 55
+    },
+    {
       "id": 105068,
       "nome": "Reinier Jesus Carvalho",
       "posicao": "MEI",
@@ -596,6 +640,17 @@
       "riscoExplosao": 55
     },
     {
+      "id": 70944,
+      "nome": "Bruno Henrique Corsini",
+      "posicao": "MEI",
+      "media": 1.64,
+      "media3": 1.73,
+      "media5": 1.8,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 55
+    },
+    {
       "id": 71536,
       "nome": "Luiz Gustavo Dias",
       "posicao": "MEI",
@@ -643,9 +698,9 @@
       "id": 83433,
       "nome": "Patrick Bezerra do Nascimento",
       "posicao": "MEI",
-      "media": 3.24,
-      "media3": 3.3,
-      "media5": 4.28,
+      "media": 3.46,
+      "media3": 4.97,
+      "media5": 5.28,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 55
@@ -669,17 +724,6 @@
       "media3": 3.4,
       "media5": 2.14,
       "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 55
-    },
-    {
-      "id": 87552,
-      "nome": "Vitor Frezarin Bueno",
-      "posicao": "MEI",
-      "media": 2.31,
-      "media3": 2.33,
-      "media5": 1.82,
-      "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 55
     },
@@ -794,17 +838,6 @@
       "riscoExplosao": 50
     },
     {
-      "id": 110426,
-      "nome": "Alexandro Ezequiel Bernabei",
-      "posicao": "LAT",
-      "media": 5.2,
-      "media3": 5.13,
-      "media5": 3.98,
-      "explosoes": 3,
-      "jogos": 23,
-      "riscoExplosao": 50
-    },
-    {
       "id": 114208,
       "nome": "Alejo Véliz",
       "posicao": "ATA",
@@ -874,9 +907,9 @@
       "id": 123795,
       "nome": "Luciano Rodríguez Rosales",
       "posicao": "ATA",
-      "media": 0.35,
-      "media3": 2.67,
-      "media5": 1.6,
+      "media": 0.3,
+      "media3": 2.33,
+      "media5": 1.4,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 50
@@ -1182,9 +1215,9 @@
       "id": 101254,
       "nome": "Alef Mangueira Severino Pereira",
       "posicao": "ATA",
-      "media": 4.6,
-      "media3": 2.57,
-      "media5": 4.14,
+      "media": 4.63,
+      "media3": 2.8,
+      "media5": 4.28,
       "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 45
@@ -1259,9 +1292,9 @@
       "id": 101715,
       "nome": "Alerrandro Barra Mansa Realino de Souza",
       "posicao": "ATA",
-      "media": 3.13,
-      "media3": 0.0,
-      "media5": 1.32,
+      "media": 3.14,
+      "media3": 0.1,
+      "media5": 1.38,
       "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 45
@@ -1355,6 +1388,17 @@
       "riscoExplosao": 45
     },
     {
+      "id": 106202,
+      "nome": "Bruno Gomes da Silva Clevelário",
+      "posicao": "MEI",
+      "media": 3.37,
+      "media3": 3.47,
+      "media5": 2.4,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 45
+    },
+    {
       "id": 106302,
       "nome": "Ángelo Smit Preciado Quiñónez",
       "posicao": "LAT",
@@ -1377,23 +1421,12 @@
       "riscoExplosao": 45
     },
     {
-      "id": 107989,
-      "nome": "Johan Stiven Carbonero Balanta",
-      "posicao": "ATA",
-      "media": 4.7,
-      "media3": 2.87,
-      "media5": 4.22,
-      "explosoes": 1,
-      "jogos": 23,
-      "riscoExplosao": 45
-    },
-    {
       "id": 109461,
       "nome": "Calebe Gonçalves Ferreira da Silva",
       "posicao": "MEI",
-      "media": 0.02,
-      "media3": 0.17,
-      "media5": 0.1,
+      "media": 0.1,
+      "media3": 0.77,
+      "media5": 0.46,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 45
@@ -1765,9 +1798,9 @@
       "id": 68685,
       "nome": "Alan Patrick Lourenço",
       "posicao": "MEI",
-      "media": 2.86,
-      "media3": 2.93,
-      "media5": 1.86,
+      "media": 2.92,
+      "media3": 3.43,
+      "media5": 2.16,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 45
@@ -2095,9 +2128,9 @@
       "id": 97899,
       "nome": "Matheus Bahia Santos",
       "posicao": "LAT",
-      "media": 2.68,
-      "media3": 4.37,
-      "media5": 4.92,
+      "media": 3.13,
+      "media3": 7.8,
+      "media5": 6.98,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 45
@@ -2131,17 +2164,6 @@
       "media": 2.89,
       "media3": 4.07,
       "media5": 5.28,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 40
-    },
-    {
-      "id": 102911,
-      "nome": "José Ricardo Araújo Fernandes",
-      "posicao": "MEI",
-      "media": 2.25,
-      "media3": 1.63,
-      "media5": 2.32,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 40
@@ -2433,6 +2455,17 @@
       "riscoExplosao": 40
     },
     {
+      "id": 86859,
+      "nome": "José Welison da Silva - Zé",
+      "posicao": "MEI",
+      "media": 2.19,
+      "media3": 1.83,
+      "media5": 2.7,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 40
+    },
+    {
       "id": 87225,
       "nome": "Pedro Henrique Ribeiro Gonçalves",
       "posicao": "ZAG",
@@ -2469,9 +2502,9 @@
       "id": 91772,
       "nome": "David de Duarte Macedo",
       "posicao": "ZAG",
-      "media": 2.74,
-      "media3": 3.23,
-      "media5": 4.58,
+      "media": 2.77,
+      "media3": 3.5,
+      "media5": 4.74,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 40
@@ -2711,9 +2744,9 @@
       "id": 111690,
       "nome": "Matheus Cunha Queiroz",
       "posicao": "GOL",
-      "media": 1.7,
-      "media3": 3.33,
-      "media5": 2.0,
+      "media": 1.79,
+      "media3": 4.03,
+      "media5": 2.42,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 35
@@ -2888,8 +2921,8 @@
       "nome": "Artur Jorge Torres Gomes Araújo Amorim",
       "posicao": "TEC",
       "media": 4.38,
-      "media3": 7.29,
-      "media5": 6.66,
+      "media3": 7.26,
+      "media5": 6.64,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 35
@@ -3055,6 +3088,17 @@
       "media": 1.53,
       "media3": 0.0,
       "media5": 1.24,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 35
+    },
+    {
+      "id": 86864,
+      "nome": "Marlon Matheus Lopes do Nascimento",
+      "posicao": "LAT",
+      "media": 0.01,
+      "media3": 0.07,
+      "media5": 0.04,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 35
@@ -3371,9 +3415,9 @@
       "id": 105157,
       "nome": "Rodrigo Román Villagra",
       "posicao": "MEI",
-      "media": 1.37,
-      "media3": 0.57,
-      "media5": 1.14,
+      "media": 1.41,
+      "media3": 0.87,
+      "media5": 1.32,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -3396,17 +3440,6 @@
       "media": 1.36,
       "media3": 0.0,
       "media5": -0.06,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 30
-    },
-    {
-      "id": 106202,
-      "nome": "Bruno Gomes da Silva Clevelário",
-      "posicao": "MEI",
-      "media": 3.26,
-      "media3": 2.57,
-      "media5": 1.86,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -3602,9 +3635,9 @@
       "id": 126182,
       "nome": "Paulo Lucas Santos de Paula",
       "posicao": "MEI",
-      "media": 1.36,
-      "media3": 0.4,
-      "media5": 0.18,
+      "media": 1.49,
+      "media3": 1.4,
+      "media5": 0.78,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -3808,17 +3841,6 @@
       "riscoExplosao": 30
     },
     {
-      "id": 70944,
-      "nome": "Bruno Henrique Corsini",
-      "posicao": "MEI",
-      "media": 1.43,
-      "media3": 0.17,
-      "media5": 0.86,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 30
-    },
-    {
       "id": 71123,
       "nome": "Thiago Henrique Mendes Ribeiro",
       "posicao": "MEI",
@@ -3844,9 +3866,9 @@
       "id": 80196,
       "nome": "Glaybson Yago Souza Lisboa",
       "posicao": "MEI",
-      "media": 1.97,
-      "media3": 0.17,
-      "media5": 0.7,
+      "media": 2.02,
+      "media3": 0.57,
+      "media5": 0.94,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -3880,17 +3902,6 @@
       "media": 2.21,
       "media3": 0.4,
       "media5": 1.18,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 30
-    },
-    {
-      "id": 86859,
-      "nome": "José Welison da Silva - Zé",
-      "posicao": "MEI",
-      "media": 2.02,
-      "media3": 0.53,
-      "media5": 1.92,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -3958,6 +3969,17 @@
       "media3": 1.17,
       "media5": 0.84,
       "explosoes": 1,
+      "jogos": 23,
+      "riscoExplosao": 30
+    },
+    {
+      "id": 91866,
+      "nome": "José Ivaldo Almeida Silva",
+      "posicao": "ZAG",
+      "media": 0.87,
+      "media3": 1.0,
+      "media5": 2.5,
+      "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
     },
@@ -4031,9 +4053,9 @@
       "id": 97795,
       "nome": "Marcelo Rodrigues Souza",
       "posicao": "LAT",
-      "media": 4.0,
-      "media3": 0.87,
-      "media5": 2.04,
+      "media": 4.1,
+      "media3": 1.6,
+      "media5": 2.48,
       "explosoes": 1,
       "jogos": 23,
       "riscoExplosao": 30
@@ -4042,9 +4064,9 @@
       "id": 98617,
       "nome": "Guillermo Alfonso Maripán Loaysa",
       "posicao": "ZAG",
-      "media": 0.33,
-      "media3": 2.37,
-      "media5": 1.54,
+      "media": 0.41,
+      "media3": 2.93,
+      "media5": 1.88,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 30
@@ -4218,9 +4240,9 @@
       "id": 108713,
       "nome": "Antonio Javier Galeano Ferreira",
       "posicao": "ATA",
-      "media": 0.52,
-      "media3": 0.0,
-      "media5": 0.0,
+      "media": 0.59,
+      "media3": 0.57,
+      "media5": 0.34,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 25
@@ -4287,6 +4309,17 @@
       "media": 0.0,
       "media3": 0.0,
       "media5": 0.0,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 25
+    },
+    {
+      "id": 115479,
+      "nome": "Paulo César Pezzolano Suárez",
+      "posicao": "TEC",
+      "media": 4.77,
+      "media3": 5.02,
+      "media5": 4.23,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 25
@@ -5087,9 +5120,9 @@
       "id": 97341,
       "nome": "Rogério Mücke Ceni",
       "posicao": "TEC",
-      "media": 5.34,
-      "media3": 5.83,
-      "media5": 5.16,
+      "media": 5.35,
+      "media3": 5.85,
+      "media5": 5.17,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 25
@@ -6162,6 +6195,17 @@
       "riscoExplosao": 20
     },
     {
+      "id": 37457,
+      "nome": "Leonardo Rodrigues Condé",
+      "posicao": "TEC",
+      "media": 4.03,
+      "media3": 3.85,
+      "media5": 4.63,
+      "explosoes": 0,
+      "jogos": 23,
+      "riscoExplosao": 20
+    },
+    {
       "id": 40990,
       "nome": "Dorival Silvestre Júnior",
       "posicao": "TEC",
@@ -6495,9 +6539,9 @@
       "id": 100804,
       "nome": "Duplexe Tchamba Bangou",
       "posicao": "ZAG",
-      "media": 1.27,
-      "media3": 0.0,
-      "media5": 0.0,
+      "media": 1.43,
+      "media3": 1.27,
+      "media5": 0.76,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 15
@@ -6693,9 +6737,9 @@
       "id": 72951,
       "nome": "Gabriel Iván Mercado",
       "posicao": "ZAG",
-      "media": 2.17,
-      "media3": 1.33,
-      "media5": 1.4,
+      "media": 2.29,
+      "media3": 2.23,
+      "media5": 1.94,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 15
@@ -6707,17 +6751,6 @@
       "media": 1.2,
       "media3": 0.0,
       "media5": 0.0,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 15
-    },
-    {
-      "id": 91866,
-      "nome": "José Ivaldo Almeida Silva",
-      "posicao": "ZAG",
-      "media": 0.75,
-      "media3": 0.07,
-      "media5": 1.94,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 15
@@ -6894,17 +6927,6 @@
       "media": 0.01,
       "media3": 0.0,
       "media5": 0.06,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 10
-    },
-    {
-      "id": 115479,
-      "nome": "Paulo César Pezzolano Suárez",
-      "posicao": "TEC",
-      "media": 4.58,
-      "media3": 3.57,
-      "media5": 3.36,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 10
@@ -7273,17 +7295,6 @@
       "riscoExplosao": 10
     },
     {
-      "id": 37457,
-      "nome": "Leonardo Rodrigues Condé",
-      "posicao": "TEC",
-      "media": 3.87,
-      "media3": 2.59,
-      "media5": 3.87,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 10
-    },
-    {
       "id": 39850,
       "nome": "Vagner Carmo Mancini",
       "posicao": "TEC",
@@ -7375,9 +7386,9 @@
       "id": 82730,
       "nome": "Marcelo Rangel da Rosa",
       "posicao": "GOL",
-      "media": 3.53,
-      "media3": -0.03,
-      "media5": 2.72,
+      "media": 3.65,
+      "media3": 0.93,
+      "media5": 3.3,
       "explosoes": 0,
       "jogos": 23,
       "riscoExplosao": 10
@@ -7387,17 +7398,6 @@
       "nome": "Victor Luis Chuab Zamblauskas",
       "posicao": "LAT",
       "media": 0.37,
-      "media3": 0.0,
-      "media5": 0.0,
-      "explosoes": 0,
-      "jogos": 23,
-      "riscoExplosao": 10
-    },
-    {
-      "id": 86864,
-      "nome": "Marlon Matheus Lopes do Nascimento",
-      "posicao": "LAT",
-      "media": 0.0,
       "media3": 0.0,
       "media5": 0.0,
       "explosoes": 0,
@@ -8606,8 +8606,8 @@
   ],
   "resumo": {
     "totalJogadores": 782,
-    "altoRisco": 12,
-    "medioRisco": 220,
-    "baixoRisco": 550
+    "altoRisco": 13,
+    "medioRisco": 222,
+    "baixoRisco": 547
   }
 }

@@ -1,6 +1,6 @@
 {
-  "modelo": "historico_escalacoes_indice_v2",
-  "descricao": "Índice do histórico progressivo de escalações sem vazamento futuro.",
+  "modelo": "historico_escalacoes_indice_v4",
+  "descricao": "Índice do histórico progressivo de escalações sem vazamento futuro e com proteção financeira completa.",
   "rodadasProcessadas": [
     2,
     3,
@@ -62,6 +62,9 @@
     "rodadaPrevistaNaoEntraNoHistorico": true,
     "pontuacaoRealNaoSerializada": true,
     "limiteJogadoresClube": 3,
-    "formacoesSincronizadasComMotor": true
+    "formacoesSincronizadasComMotor": true,
+    "orcamentoIncluiBanco": true,
+    "reservaTitularesFuturos": true,
+    "reservaMinimaBanco": true
   }
 }

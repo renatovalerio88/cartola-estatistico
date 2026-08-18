@@ -21,61 +21,61 @@
   "resumo": {
     "rodadas": 22,
     "adaptativo": {
-      "total": 1240.65,
-      "media": 56.39,
-      "mediana": 56.32,
-      "acertosMelhorEstrategia": 7,
-      "taxaAcertoMelhorEstrategia": 31.82
+      "total": 1078.75,
+      "media": 49.03,
+      "mediana": 44.72,
+      "acertosMelhorEstrategia": 4,
+      "taxaAcertoMelhorEstrategia": 18.18
     },
-    "melhorEstrategiaFixa": "Conservador",
+    "melhorEstrategiaFixa": "Equilibrado",
     "melhorFixa": {
       "rodadas": 22,
-      "total": 1267.83,
-      "media": 57.63,
-      "mediana": 58.47,
-      "vitoriasRodada": 10,
-      "taxaVitoriasPercentual": 45.45
+      "total": 1152.28,
+      "media": 52.38,
+      "mediana": 47.51,
+      "vitoriasRodada": 7,
+      "taxaVitoriasPercentual": 31.82
     },
     "comparacaoAdaptativoVsMelhorFixa": {
-      "ganhoMedia": -1.24,
-      "ganhoTotal": -27.18,
-      "ganhoPercentual": -2.15
+      "ganhoMedia": -3.35,
+      "ganhoTotal": -73.53,
+      "ganhoPercentual": -6.39
     },
     "oraculo": {
-      "total": 1407.78,
-      "media": 63.99,
-      "eficienciaAdaptativoPercentual": 88.13
+      "total": 1254.21,
+      "media": 57.01,
+      "eficienciaAdaptativoPercentual": 86.01
     },
     "escolhasAdaptativo": {
-      "Conservador": 12,
-      "Equilibrado": 10,
-      "Agressivo": 0
+      "Conservador": 4,
+      "Equilibrado": 15,
+      "Agressivo": 3
     }
   },
   "estrategiasFixas": {
     "Conservador": {
       "rodadas": 22,
-      "total": 1267.83,
-      "media": 57.63,
-      "mediana": 58.47,
-      "vitoriasRodada": 10,
-      "taxaVitoriasPercentual": 45.45
+      "total": 1058.53,
+      "media": 48.12,
+      "mediana": 46.41,
+      "vitoriasRodada": 7,
+      "taxaVitoriasPercentual": 31.82
     },
     "Equilibrado": {
       "rodadas": 22,
-      "total": 1267.54,
-      "media": 57.62,
-      "mediana": 55.64,
-      "vitoriasRodada": 8,
-      "taxaVitoriasPercentual": 36.36
+      "total": 1152.28,
+      "media": 52.38,
+      "mediana": 47.51,
+      "vitoriasRodada": 7,
+      "taxaVitoriasPercentual": 31.82
     },
     "Agressivo": {
       "rodadas": 22,
-      "total": 1203.8,
-      "media": 54.72,
-      "mediana": 54.77,
-      "vitoriasRodada": 5,
-      "taxaVitoriasPercentual": 22.73
+      "total": 1069.34,
+      "media": 48.61,
+      "mediana": 47.95,
+      "vitoriasRodada": 9,
+      "taxaVitoriasPercentual": 40.91
     }
   },
   "rodadas": [
@@ -88,10 +88,10 @@
       "limitesRegimeAntesRodada": null,
       "rankingAntesRodada": [],
       "scoresAntesRodada": {},
-      "pontosAdaptativo": 63.01,
+      "pontosAdaptativo": 60.05,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 71.91,
-      "perdaParaOraculo": 8.9,
+      "pontosMelhorEstrategia": 64.35,
+      "perdaParaOraculo": 4.3,
       "acertouMelhorEstrategia": false
     },
     {
@@ -103,9 +103,9 @@
       "limitesRegimeAntesRodada": null,
       "rankingAntesRodada": [],
       "scoresAntesRodada": {},
-      "pontosAdaptativo": 47.85,
+      "pontosAdaptativo": 42.95,
       "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 47.85,
+      "pontosMelhorEstrategia": 42.95,
       "perdaParaOraculo": 0.0,
       "acertouMelhorEstrategia": true
     },
@@ -118,10 +118,10 @@
       "limitesRegimeAntesRodada": null,
       "rankingAntesRodada": [],
       "scoresAntesRodada": {},
-      "pontosAdaptativo": 53.2,
+      "pontosAdaptativo": 59.38,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 70.8,
-      "perdaParaOraculo": 17.6,
+      "pontosMelhorEstrategia": 63.4,
+      "perdaParaOraculo": 4.02,
       "acertouMelhorEstrategia": false
     },
     {
@@ -131,8 +131,8 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "medio",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 50.98,
-        "medioAte": 58.1
+        "baixoAte": 47.97,
+        "medioAte": 54.76
       },
       "rankingAntesRodada": [
         "Conservador",
@@ -141,50 +141,50 @@
       ],
       "scoresAntesRodada": {
         "Conservador": 88.0,
-        "Equilibrado": 43.08,
-        "Agressivo": 7.086
+        "Equilibrado": 75.813,
+        "Agressivo": 5.218
       },
-      "pontosAdaptativo": 55.72,
-      "melhorEstrategiaReal": "Agressivo",
-      "pontosMelhorEstrategia": 73.4,
-      "perdaParaOraculo": 17.68,
+      "pontosAdaptativo": 31.8,
+      "melhorEstrategiaReal": "Equilibrado",
+      "pontosMelhorEstrategia": 33.42,
+      "perdaParaOraculo": 1.62,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 6,
       "quantidadeRodadasAnteriores": 4,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "medio",
+      "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 54.17,
-        "medioAte": 61.44
+        "baixoAte": 41.12,
+        "medioAte": 51.39
       },
       "rankingAntesRodada": [
+        "Equilibrado",
         "Conservador",
-        "Agressivo",
-        "Equilibrado"
+        "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 72.457,
-        "Equilibrado": 12.0,
-        "Agressivo": 36.653
+        "Conservador": 77.039,
+        "Equilibrado": 88.623,
+        "Agressivo": 4.0
       },
-      "pontosAdaptativo": 69.29,
+      "pontosAdaptativo": 43.73,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 69.29,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosMelhorEstrategia": 47.63,
+      "perdaParaOraculo": 3.9,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 7,
       "quantidadeRodadasAnteriores": 5,
       "estrategiaEscolhida": "Conservador",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "medio",
+      "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 55.82,
-        "medioAte": 60.67
+        "baixoAte": 40.01,
+        "medioAte": 47.97
       },
       "rankingAntesRodada": [
         "Conservador",
@@ -193,40 +193,40 @@
       ],
       "scoresAntesRodada": {
         "Conservador": 88.0,
-        "Equilibrado": 49.695,
-        "Agressivo": 8.0
+        "Equilibrado": 80.512,
+        "Agressivo": 4.0
       },
-      "pontosAdaptativo": 63.31,
+      "pontosAdaptativo": 54.37,
       "melhorEstrategiaReal": "Agressivo",
-      "pontosMelhorEstrategia": 78.06,
-      "perdaParaOraculo": 14.75,
+      "pontosMelhorEstrategia": 65.37,
+      "perdaParaOraculo": 11.0,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 8,
       "quantidadeRodadasAnteriores": 6,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 57.47,
-        "medioAte": 62.95
+        "baixoAte": 40.57,
+        "medioAte": 54.42
       },
       "rankingAntesRodada": [
-        "Conservador",
         "Equilibrado",
+        "Conservador",
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 79.337,
-        "Equilibrado": 35.453,
-        "Agressivo": 28.0
+        "Conservador": 68.845,
+        "Equilibrado": 75.164,
+        "Agressivo": 20.0
       },
-      "pontosAdaptativo": 66.78,
+      "pontosAdaptativo": 49.31,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 66.78,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosMelhorEstrategia": 53.81,
+      "perdaParaOraculo": 4.5,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 9,
@@ -235,128 +235,128 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "medio",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 59.13,
-        "medioAte": 61.44
+        "baixoAte": 41.12,
+        "medioAte": 51.39
       },
       "rankingAntesRodada": [
         "Conservador",
-        "Agressivo",
-        "Equilibrado"
+        "Equilibrado",
+        "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 84.33,
-        "Equilibrado": 24.419,
-        "Agressivo": 26.0
+        "Conservador": 91.367,
+        "Equilibrado": 74.44,
+        "Agressivo": 4.0
       },
-      "pontosAdaptativo": 31.75,
+      "pontosAdaptativo": 26.13,
       "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 38.25,
-      "perdaParaOraculo": 6.5,
+      "pontosMelhorEstrategia": 41.53,
+      "perdaParaOraculo": 15.4,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 10,
       "quantidadeRodadasAnteriores": 8,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 55.82,
-        "medioAte": 60.74
+        "baixoAte": 40.01,
+        "medioAte": 50.53
       },
       "rankingAntesRodada": [
-        "Conservador",
         "Equilibrado",
+        "Conservador",
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 88.0,
-        "Equilibrado": 37.796,
-        "Agressivo": 25.151
+        "Conservador": 68.376,
+        "Equilibrado": 84.825,
+        "Agressivo": 4.0
       },
-      "pontosAdaptativo": 46.16,
+      "pontosAdaptativo": 41.15,
       "melhorEstrategiaReal": "Agressivo",
-      "pontosMelhorEstrategia": 56.56,
-      "perdaParaOraculo": 10.4,
+      "pontosMelhorEstrategia": 56.15,
+      "perdaParaOraculo": 15.0,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 11,
       "quantidadeRodadasAnteriores": 9,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "baixo",
+      "regimeReferencia": "medio",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 52.09,
-        "medioAte": 60.04
+        "baixoAte": 40.57,
+        "medioAte": 49.67
       },
       "rankingAntesRodada": [
+        "Equilibrado",
         "Conservador",
-        "Agressivo",
-        "Equilibrado"
+        "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 72.0,
-        "Equilibrado": 19.351,
-        "Agressivo": 31.624
+        "Conservador": 42.458,
+        "Equilibrado": 61.409,
+        "Agressivo": 21.5
       },
-      "pontosAdaptativo": 46.34,
-      "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 46.34,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosAdaptativo": 34.88,
+      "melhorEstrategiaReal": "Agressivo",
+      "pontosMelhorEstrategia": 40.18,
+      "perdaParaOraculo": 5.3,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 12,
       "quantidadeRodadasAnteriores": 10,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 47.93,
-        "medioAte": 59.35
+        "baixoAte": 39.46,
+        "medioAte": 48.81
       },
       "rankingAntesRodada": [
+        "Equilibrado",
         "Conservador",
-        "Agressivo",
-        "Equilibrado"
+        "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 53.784,
-        "Equilibrado": 22.393,
-        "Agressivo": 52.802
+        "Conservador": 45.297,
+        "Equilibrado": 69.313,
+        "Agressivo": 38.0
       },
-      "pontosAdaptativo": 56.92,
-      "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 56.95,
-      "perdaParaOraculo": 0.03,
+      "pontosAdaptativo": 51.74,
+      "melhorEstrategiaReal": "Agressivo",
+      "pontosMelhorEstrategia": 56.24,
+      "perdaParaOraculo": 4.5,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 13,
       "quantidadeRodadasAnteriores": 11,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "medio",
+      "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 49.56,
-        "medioAte": 59.27
+        "baixoAte": 40.01,
+        "medioAte": 50.05
       },
       "rankingAntesRodada": [
-        "Conservador",
         "Equilibrado",
-        "Agressivo"
+        "Agressivo",
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 88.0,
-        "Equilibrado": 37.331,
-        "Agressivo": 8.0
+        "Conservador": 43.58,
+        "Equilibrado": 69.716,
+        "Agressivo": 44.0
       },
-      "pontosAdaptativo": 87.11,
+      "pontosAdaptativo": 92.53,
       "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 115.78,
-      "perdaParaOraculo": 28.67,
-      "acertouMelhorEstrategia": false
+      "pontosMelhorEstrategia": 92.53,
+      "perdaParaOraculo": 0.0,
+      "acertouMelhorEstrategia": true
     },
     {
       "rodada": 14,
@@ -365,23 +365,23 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 51.2,
-        "medioAte": 60.04
+        "baixoAte": 40.57,
+        "medioAte": 50.91
       },
       "rankingAntesRodada": [
         "Equilibrado",
-        "Conservador",
-        "Agressivo"
+        "Agressivo",
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 47.668,
-        "Equilibrado": 78.788,
-        "Agressivo": 18.278
+        "Conservador": 40.111,
+        "Equilibrado": 71.321,
+        "Agressivo": 48.0
       },
-      "pontosAdaptativo": 39.15,
+      "pontosAdaptativo": 39.23,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 49.25,
-      "perdaParaOraculo": 10.1,
+      "pontosMelhorEstrategia": 42.35,
+      "perdaParaOraculo": 3.12,
       "acertouMelhorEstrategia": false
     },
     {
@@ -391,8 +391,8 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 47.93,
-        "medioAte": 59.35
+        "baixoAte": 39.46,
+        "medioAte": 50.67
       },
       "rankingAntesRodada": [
         "Equilibrado",
@@ -400,14 +400,14 @@
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 57.521,
-        "Equilibrado": 61.62,
-        "Agressivo": 20.0
+        "Conservador": 46.647,
+        "Equilibrado": 64.465,
+        "Agressivo": 42.0
       },
-      "pontosAdaptativo": 44.14,
+      "pontosAdaptativo": 37.65,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 45.64,
-      "perdaParaOraculo": 1.5,
+      "pontosMelhorEstrategia": 45.05,
+      "perdaParaOraculo": 7.4,
       "acertouMelhorEstrategia": false
     },
     {
@@ -417,8 +417,8 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "baixo",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 46.37,
-        "medioAte": 59.27
+        "baixoAte": 38.27,
+        "medioAte": 50.05
       },
       "rankingAntesRodada": [
         "Equilibrado",
@@ -426,15 +426,15 @@
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 75.128,
-        "Equilibrado": 77.644,
-        "Agressivo": 4.0
+        "Conservador": 55.272,
+        "Equilibrado": 71.956,
+        "Agressivo": 16.0
       },
-      "pontosAdaptativo": 66.91,
-      "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 66.91,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosAdaptativo": 58.76,
+      "melhorEstrategiaReal": "Agressivo",
+      "pontosMelhorEstrategia": 59.84,
+      "perdaParaOraculo": 1.08,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 17,
@@ -443,8 +443,8 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 47.15,
-        "medioAte": 60.04
+        "baixoAte": 38.87,
+        "medioAte": 50.91
       },
       "rankingAntesRodada": [
         "Equilibrado",
@@ -452,14 +452,14 @@
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 65.201,
-        "Equilibrado": 83.884,
-        "Agressivo": 15.039
+        "Conservador": 60.98,
+        "Equilibrado": 69.714,
+        "Agressivo": 20.0
       },
-      "pontosAdaptativo": 37.16,
+      "pontosAdaptativo": 36.5,
       "melhorEstrategiaReal": "Agressivo",
       "pontosMelhorEstrategia": 54.36,
-      "perdaParaOraculo": 17.2,
+      "perdaParaOraculo": 17.86,
       "acertouMelhorEstrategia": false
     },
     {
@@ -467,36 +467,36 @@
       "quantidadeRodadasAnteriores": 16,
       "estrategiaEscolhida": "Equilibrado",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "baixo",
+      "regimeReferencia": "medio",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 45.59,
-        "medioAte": 59.35
+        "baixoAte": 39.46,
+        "medioAte": 50.67
       },
       "rankingAntesRodada": [
         "Equilibrado",
-        "Conservador",
-        "Agressivo"
+        "Agressivo",
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 52.815,
-        "Equilibrado": 70.3,
-        "Agressivo": 23.322
+        "Conservador": 37.04,
+        "Equilibrado": 55.804,
+        "Agressivo": 51.953
       },
       "pontosAdaptativo": 54.85,
-      "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 55.55,
-      "perdaParaOraculo": 0.7,
-      "acertouMelhorEstrategia": false
+      "melhorEstrategiaReal": "Equilibrado",
+      "pontosMelhorEstrategia": 54.85,
+      "perdaParaOraculo": 0.0,
+      "acertouMelhorEstrategia": true
     },
     {
       "rodada": 19,
       "quantidadeRodadasAnteriores": 17,
       "estrategiaEscolhida": "Conservador",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "medio",
+      "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 46.37,
-        "medioAte": 59.27
+        "baixoAte": 40.01,
+        "medioAte": 51.15
       },
       "rankingAntesRodada": [
         "Conservador",
@@ -504,93 +504,93 @@
         "Agressivo"
       ],
       "scoresAntesRodada": {
-        "Conservador": 79.541,
-        "Equilibrado": 50.543,
-        "Agressivo": 28.0
+        "Conservador": 68.543,
+        "Equilibrado": 44.414,
+        "Agressivo": 31.481
       },
-      "pontosAdaptativo": 66.64,
-      "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 66.64,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosAdaptativo": 37.6,
+      "melhorEstrategiaReal": "Agressivo",
+      "pontosMelhorEstrategia": 60.06,
+      "perdaParaOraculo": 22.46,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 20,
       "quantidadeRodadasAnteriores": 18,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Agressivo",
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "medio",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 47.15,
-        "medioAte": 59.2
+        "baixoAte": 40.57,
+        "medioAte": 50.91
       },
       "rankingAntesRodada": [
-        "Conservador",
+        "Agressivo",
         "Equilibrado",
-        "Agressivo"
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 96.0,
-        "Equilibrado": 33.843,
-        "Agressivo": 17.705
+        "Conservador": 17.929,
+        "Equilibrado": 32.197,
+        "Agressivo": 78.165
       },
-      "pontosAdaptativo": 48.92,
+      "pontosAdaptativo": 57.38,
       "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 66.62,
-      "perdaParaOraculo": 17.7,
+      "pontosMelhorEstrategia": 77.55,
+      "perdaParaOraculo": 20.17,
       "acertouMelhorEstrategia": false
     },
     {
       "rodada": 21,
       "quantidadeRodadasAnteriores": 19,
-      "estrategiaEscolhida": "Conservador",
+      "estrategiaEscolhida": "Agressivo",
       "motivoEscolha": "score_adaptativo_v2",
-      "regimeReferencia": "medio",
+      "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 47.93,
-        "medioAte": 59.13
+        "baixoAte": 41.12,
+        "medioAte": 51.39
       },
       "rankingAntesRodada": [
-        "Conservador",
+        "Agressivo",
         "Equilibrado",
-        "Agressivo"
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 70.96,
-        "Equilibrado": 67.869,
-        "Agressivo": 28.0
+        "Conservador": 15.292,
+        "Equilibrado": 59.743,
+        "Agressivo": 72.709
       },
-      "pontosAdaptativo": 69.68,
-      "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 76.3,
-      "perdaParaOraculo": 6.62,
-      "acertouMelhorEstrategia": false
+      "pontosAdaptativo": 79.35,
+      "melhorEstrategiaReal": "Agressivo",
+      "pontosMelhorEstrategia": 79.35,
+      "perdaParaOraculo": 0.0,
+      "acertouMelhorEstrategia": true
     },
     {
       "rodada": 22,
       "quantidadeRodadasAnteriores": 20,
-      "estrategiaEscolhida": "Equilibrado",
+      "estrategiaEscolhida": "Agressivo",
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 49.56,
-        "medioAte": 59.27
+        "baixoAte": 41.25,
+        "medioAte": 52.2
       },
       "rankingAntesRodada": [
+        "Agressivo",
         "Equilibrado",
-        "Conservador",
-        "Agressivo"
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 48.096,
-        "Equilibrado": 67.935,
-        "Agressivo": 37.655
+        "Conservador": 11.733,
+        "Equilibrado": 62.643,
+        "Agressivo": 77.538
       },
-      "pontosAdaptativo": 68.31,
+      "pontosAdaptativo": 43.71,
       "melhorEstrategiaReal": "Equilibrado",
-      "pontosMelhorEstrategia": 68.31,
-      "perdaParaOraculo": 0.0,
-      "acertouMelhorEstrategia": true
+      "pontosMelhorEstrategia": 70.44,
+      "perdaParaOraculo": 26.73,
+      "acertouMelhorEstrategia": false
     },
     {
       "rodada": 23,
@@ -599,23 +599,23 @@
       "motivoEscolha": "score_adaptativo_v2",
       "regimeReferencia": "alto",
       "limitesRegimeAntesRodada": {
-        "baixoAte": 51.2,
-        "medioAte": 59.59
+        "baixoAte": 41.39,
+        "medioAte": 53.46
       },
       "rankingAntesRodada": [
         "Equilibrado",
-        "Conservador",
-        "Agressivo"
+        "Agressivo",
+        "Conservador"
       ],
       "scoresAntesRodada": {
-        "Conservador": 66.725,
-        "Equilibrado": 84.481,
-        "Agressivo": 5.466
+        "Conservador": 8.267,
+        "Equilibrado": 71.883,
+        "Agressivo": 60.752
       },
-      "pontosAdaptativo": 57.45,
+      "pontosAdaptativo": 45.7,
       "melhorEstrategiaReal": "Conservador",
-      "pontosMelhorEstrategia": 66.23,
-      "perdaParaOraculo": 8.78,
+      "pontosMelhorEstrategia": 52.8,
+      "perdaParaOraculo": 7.1,
       "acertouMelhorEstrategia": false
     }
   ],

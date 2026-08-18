@@ -16,41 +16,41 @@
   },
   "desempenho": {
     "v1": {
-      "media": 56.67,
-      "desvioPadrao": 13.4,
-      "eficienciaOraculo": 88.56,
-      "perdaMediaOraculo": 7.32
+      "media": 49.24,
+      "desvioPadrao": 15.07,
+      "eficienciaOraculo": 86.37,
+      "perdaMediaOraculo": 7.77
     },
     "v2": {
-      "media": 56.39,
-      "desvioPadrao": 12.82,
-      "eficienciaOraculo": 88.12,
-      "perdaMediaOraculo": 7.6
+      "media": 49.03,
+      "desvioPadrao": 15.04,
+      "eficienciaOraculo": 86.0,
+      "perdaMediaOraculo": 7.98
     },
     "melhorFixa": {
-      "nome": "Conservador",
-      "media": 57.63
+      "nome": "Equilibrado",
+      "media": 52.38
     },
     "oraculo": {
-      "media": 63.99
+      "media": 57.01
     }
   },
   "ganhosV2": {
     "vsV1": {
-      "pontosPorRodada": -0.28,
-      "percentual": -0.49
+      "pontosPorRodada": -0.21,
+      "percentual": -0.43
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": -1.24,
-      "percentual": -2.15
+      "pontosPorRodada": -3.35,
+      "percentual": -6.4
     }
   },
   "comparacaoPareada": {
     "rodadas": 22,
-    "vitoriasV1": 3,
-    "vitoriasV2": 3,
-    "empates": 16,
-    "taxaVitoriasV2": 13.64
+    "vitoriasV1": 1,
+    "vitoriasV2": 0,
+    "empates": 21,
+    "taxaVitoriasV2": 0.0
   },
   "criterios": [
     {
@@ -112,43 +112,43 @@
     {
       "nome": "v2_supera_v1_media",
       "passou": false,
-      "valor": -0.28,
+      "valor": -0.21,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_ganho_minimo_v1",
       "passou": false,
-      "valor": -0.28,
+      "valor": -0.21,
       "limite": 0.5,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": -1.24,
+      "valor": -3.35,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_vence_maioria_pareada",
       "passou": false,
-      "valor": 13.64,
+      "valor": 0.0,
       "limite": 55.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_proximo_oraculo",
       "passou": false,
-      "valor": 7.6,
-      "limite": "< 7.32",
+      "valor": 7.98,
+      "limite": "< 7.77",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
       "passou": true,
-      "valor": 12.82,
-      "limite": "< 13.4",
+      "valor": 15.04,
+      "limite": "< 15.07",
       "nivel": "DESEJAVEL"
     }
   ],

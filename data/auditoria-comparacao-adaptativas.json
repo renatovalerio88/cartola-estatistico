@@ -8,14 +8,14 @@
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "mediaV1": 56.67,
-    "mediaV2": 56.39,
-    "melhorEstrategiaFixa": "Conservador",
-    "mediaMelhorFixa": 57.63,
-    "ganhoV2VsV1": -0.28,
-    "ganhoV2VsMelhorFixa": -1.24,
-    "eficienciaV1Oraculo": 88.56,
-    "eficienciaV2Oraculo": 88.12
+    "mediaV1": 49.24,
+    "mediaV2": 49.03,
+    "melhorEstrategiaFixa": "Equilibrado",
+    "mediaMelhorFixa": 52.38,
+    "ganhoV2VsV1": -0.21,
+    "ganhoV2VsMelhorFixa": -3.35,
+    "eficienciaV1Oraculo": 86.37,
+    "eficienciaV2Oraculo": 86.0
   },
   "testes": [
     {
@@ -171,8 +171,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperada": "Conservador",
-        "publicada": "Conservador"
+        "esperada": "Equilibrado",
+        "publicada": "Equilibrado"
       }
     },
     {

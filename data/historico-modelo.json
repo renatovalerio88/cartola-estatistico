@@ -126,8 +126,8 @@
     },
     {
       "rodada": 23,
-      "mae": 2.99,
-      "taxaAcerto": 64.19
+      "mae": 2.89,
+      "taxaAcerto": 65.79
     }
   ],
   "evolucao": [
@@ -217,33 +217,33 @@
     },
     {
       "rodada": 23,
-      "mae": 2.99
+      "mae": 2.89
     }
   ],
   "posicoes": {
     "MEI": {
-      "quantidade": 2085,
-      "erroMedio": 2.59
+      "quantidade": 2099,
+      "erroMedio": 2.58
     },
     "LAT": {
-      "quantidade": 987,
+      "quantidade": 991,
       "erroMedio": 3.34
     },
     "ATA": {
-      "quantidade": 1704,
-      "erroMedio": 3.04
+      "quantidade": 1711,
+      "erroMedio": 3.05
     },
     "GOL": {
-      "quantidade": 403,
-      "erroMedio": 3.48
+      "quantidade": 405,
+      "erroMedio": 3.47
     },
     "ZAG": {
-      "quantidade": 927,
-      "erroMedio": 2.89
+      "quantidade": 932,
+      "erroMedio": 2.88
     },
     "TEC": {
       "quantidade": 370,
-      "erroMedio": 2.37
+      "erroMedio": 2.35
     }
   },
   "versoes": [
@@ -271,8 +271,8 @@
       "nome": "Índice Explosão",
       "tipo": "camada estratégica",
       "resultado": "não incorporado na projeção",
-      "erroOriginal": 2.908,
-      "erroComExplosao": 2.902,
+      "erroOriginal": 2.903,
+      "erroComExplosao": 2.897,
       "impacto": 0.006,
       "decisao": "usar futuramente em capitão e diferenciais"
     }

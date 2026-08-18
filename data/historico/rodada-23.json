@@ -1,10 +1,10 @@
 {
   "rodada": 23,
-  "erroMedio": 2.99,
+  "erroMedio": 2.89,
   "maiorErro": 21.76,
   "menorErro": 0.0,
-  "taxaAcerto": 64.19,
-  "quantidade": 310,
+  "taxaAcerto": 65.79,
+  "quantidade": 342,
   "jogadores": [
     {
       "id": 143193,
@@ -115,6 +115,18 @@
       "erro": -0.33
     },
     {
+      "id": 110426,
+      "nome": "Alexandro Ezequiel Bernabei",
+      "posicao": "LAT",
+      "clube": "INT",
+      "preco": 10.84,
+      "media": 6.28,
+      "jogos": null,
+      "projecao": 5.92,
+      "real": 3.2,
+      "erro": -2.72
+    },
+    {
       "id": 105531,
       "nome": "Matheus Lima Beltrão Oliveira Valin",
       "posicao": "LAT",
@@ -127,6 +139,18 @@
       "erro": -1.5
     },
     {
+      "id": 105048,
+      "nome": "Jandir Breno Souza Silva",
+      "posicao": "ATA",
+      "clube": "REM",
+      "preco": 7.63,
+      "media": 5.59,
+      "jogos": null,
+      "projecao": 5.55,
+      "real": 0.4,
+      "erro": -5.15
+    },
+    {
       "id": 127273,
       "nome": "Artur Jorge Torres Gomes Araújo Amorim",
       "posicao": "TEC",
@@ -135,8 +159,8 @@
       "media": 6.37,
       "jogos": null,
       "projecao": 5.55,
-      "real": 7.32,
-      "erro": 1.77
+      "real": 7.23,
+      "erro": 1.68
     },
     {
       "id": 107093,
@@ -171,8 +195,20 @@
       "media": 5.46,
       "jogos": null,
       "projecao": 5.24,
-      "real": 5.14,
-      "erro": -0.1
+      "real": 5.21,
+      "erro": -0.03
+    },
+    {
+      "id": 107989,
+      "nome": "Johan Stiven Carbonero Balanta",
+      "posicao": "ATA",
+      "clube": "INT",
+      "preco": 8.68,
+      "media": 5.15,
+      "jogos": null,
+      "projecao": 5.16,
+      "real": 12,
+      "erro": 6.84
     },
     {
       "id": 130209,
@@ -197,6 +233,18 @@
       "projecao": 5.06,
       "real": 5.58,
       "erro": 0.52
+    },
+    {
+      "id": 97795,
+      "nome": "Marcelo Rodrigues Souza",
+      "posicao": "LAT",
+      "clube": "REM",
+      "preco": 5.98,
+      "media": 5.1,
+      "jogos": null,
+      "projecao": 5.04,
+      "real": 2.2,
+      "erro": -2.84
     },
     {
       "id": 94968,
@@ -233,6 +281,18 @@
       "projecao": 4.99,
       "real": 4.2,
       "erro": -0.79
+    },
+    {
+      "id": 101960,
+      "nome": "Vitor Hugo Naum dos Santos",
+      "posicao": "ATA",
+      "clube": "INT",
+      "preco": 7.68,
+      "media": 4.78,
+      "jogos": null,
+      "projecao": 4.98,
+      "real": 1.2,
+      "erro": -3.78
     },
     {
       "id": 126977,
@@ -279,8 +339,8 @@
       "media": 4.78,
       "jogos": null,
       "projecao": 4.86,
-      "real": 0,
-      "erro": -4.86
+      "real": 4.37,
+      "erro": -0.49
     },
     {
       "id": 112886,
@@ -303,8 +363,8 @@
       "media": 4.72,
       "jogos": null,
       "projecao": 4.78,
-      "real": 0,
-      "erro": -4.78
+      "real": 3.8,
+      "erro": -0.98
     },
     {
       "id": 117632,
@@ -343,6 +403,18 @@
       "erro": -2.56
     },
     {
+      "id": 83433,
+      "nome": "Patrick Bezerra do Nascimento",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 5.3,
+      "media": 3.92,
+      "jogos": null,
+      "projecao": 4.45,
+      "real": 5,
+      "erro": 0.55
+    },
+    {
       "id": 92747,
       "nome": "Eduardo Rodrigo Domínguez",
       "posicao": "TEC",
@@ -365,6 +437,18 @@
       "projecao": 4.45,
       "real": 6.3,
       "erro": 1.85
+    },
+    {
+      "id": 101254,
+      "nome": "Alef Mangueira Severino Pereira",
+      "posicao": "ATA",
+      "clube": "REM",
+      "preco": 8.35,
+      "media": 4.8,
+      "jogos": null,
+      "projecao": 4.42,
+      "real": 0.7,
+      "erro": -3.72
     },
     {
       "id": 113103,
@@ -523,6 +607,18 @@
       "erro": -2.98
     },
     {
+      "id": 97899,
+      "nome": "Matheus Bahia Santos",
+      "posicao": "LAT",
+      "clube": "INT",
+      "preco": 7.54,
+      "media": 4.32,
+      "jogos": null,
+      "projecao": 3.95,
+      "real": 10.3,
+      "erro": 6.35
+    },
+    {
       "id": 104118,
       "nome": "Lucas Willians Assis Arcanjo",
       "posicao": "GOL",
@@ -533,6 +629,18 @@
       "projecao": 3.93,
       "real": 8.9,
       "erro": 4.97
+    },
+    {
+      "id": 82730,
+      "nome": "Marcelo Rangel da Rosa",
+      "posicao": "GOL",
+      "clube": "REM",
+      "preco": 5.11,
+      "media": 3.86,
+      "jogos": null,
+      "projecao": 3.93,
+      "real": 2.9,
+      "erro": -1.03
     },
     {
       "id": 123101,
@@ -747,8 +855,8 @@
       "media": 4.38,
       "jogos": null,
       "projecao": 3.64,
-      "real": 1.7,
-      "erro": -1.94
+      "real": 2.5,
+      "erro": -1.14
     },
     {
       "id": 72460,
@@ -797,6 +905,18 @@
       "projecao": 3.59,
       "real": 9.3,
       "erro": 5.71
+    },
+    {
+      "id": 101715,
+      "nome": "Alerrandro Barra Mansa Realino de Souza",
+      "posicao": "ATA",
+      "clube": "INT",
+      "preco": 6.33,
+      "media": 3.61,
+      "jogos": null,
+      "projecao": 3.58,
+      "real": 0.3,
+      "erro": -3.28
     },
     {
       "id": 91908,
@@ -1099,6 +1219,18 @@
       "erro": 6.0
     },
     {
+      "id": 106202,
+      "nome": "Bruno Gomes da Silva Clevelário",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 6.37,
+      "media": 3.41,
+      "jogos": null,
+      "projecao": 3.28,
+      "real": 2.7,
+      "erro": -0.58
+    },
+    {
       "id": 105436,
       "nome": "Jorge Andrés Carrascal Guardo",
       "posicao": "MEI",
@@ -1171,6 +1303,18 @@
       "erro": -1.69
     },
     {
+      "id": 97642,
+      "nome": "Félix Eduardo Torres Caicedo",
+      "posicao": "ZAG",
+      "clube": "INT",
+      "preco": 5.55,
+      "media": 3.69,
+      "jogos": null,
+      "projecao": 3.19,
+      "real": 0,
+      "erro": -3.19
+    },
+    {
       "id": 112863,
       "nome": "Ramón Sosa Acosta",
       "posicao": "ATA",
@@ -1217,6 +1361,18 @@
       "projecao": 3.12,
       "real": -0.4,
       "erro": -3.52
+    },
+    {
+      "id": 113125,
+      "nome": "Leonel Marcelo Picco",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 6.34,
+      "media": 3.63,
+      "jogos": null,
+      "projecao": 3.11,
+      "real": 1.5,
+      "erro": -1.61
     },
     {
       "id": 130843,
@@ -1411,6 +1567,18 @@
       "erro": -1.17
     },
     {
+      "id": 86859,
+      "nome": "José Welison da Silva - Zé",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 3.57,
+      "media": 2.59,
+      "jogos": null,
+      "projecao": 2.87,
+      "real": 3.9,
+      "erro": 1.03
+    },
+    {
       "id": 114040,
       "nome": "Alan Steve Minda García",
       "posicao": "ATA",
@@ -1469,6 +1637,18 @@
       "projecao": 2.8,
       "real": 9,
       "erro": 6.2
+    },
+    {
+      "id": 95131,
+      "nome": "Gabriel Pereira Taliari",
+      "posicao": "ATA",
+      "clube": "REM",
+      "preco": 10.06,
+      "media": 5.7,
+      "jogos": null,
+      "projecao": 2.77,
+      "real": 2.4,
+      "erro": -0.37
     },
     {
       "id": 87863,
@@ -1687,6 +1867,18 @@
       "erro": -0.82
     },
     {
+      "id": 68685,
+      "nome": "Alan Patrick Lourenço",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 7.28,
+      "media": 3.86,
+      "jogos": null,
+      "projecao": 2.5,
+      "real": 1.5,
+      "erro": -1.0
+    },
+    {
       "id": 71536,
       "nome": "Luiz Gustavo Dias",
       "posicao": "MEI",
@@ -1879,6 +2071,18 @@
       "erro": 1.34
     },
     {
+      "id": 102911,
+      "nome": "José Ricardo Araújo Fernandes",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 4.31,
+      "media": 2.57,
+      "jogos": null,
+      "projecao": 2.1,
+      "real": 4.7,
+      "erro": 2.6
+    },
+    {
       "id": 105990,
       "nome": "Santiago Martín Ramos Mingo",
       "posicao": "ZAG",
@@ -1915,6 +2119,30 @@
       "erro": -0.55
     },
     {
+      "id": 87552,
+      "nome": "Vitor Frezarin Bueno",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 7.61,
+      "media": 3.56,
+      "jogos": null,
+      "projecao": 2.05,
+      "real": 8.4,
+      "erro": 6.35
+    },
+    {
+      "id": 111690,
+      "nome": "Matheus Cunha Queiroz",
+      "posicao": "GOL",
+      "clube": "INT",
+      "preco": 5.02,
+      "media": 3.55,
+      "jogos": null,
+      "projecao": 2.04,
+      "real": 2.1,
+      "erro": 0.06
+    },
+    {
       "id": 102256,
       "nome": "Benjamín Rollheiser",
       "posicao": "MEI",
@@ -1949,6 +2177,30 @@
       "projecao": 1.97,
       "real": 5.3,
       "erro": 3.33
+    },
+    {
+      "id": 72951,
+      "nome": "Gabriel Iván Mercado",
+      "posicao": "ZAG",
+      "clube": "INT",
+      "preco": 6.38,
+      "media": 3.84,
+      "jogos": null,
+      "projecao": 1.97,
+      "real": 2.7,
+      "erro": 0.73
+    },
+    {
+      "id": 80196,
+      "nome": "Glaybson Yago Souza Lisboa",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 4.77,
+      "media": 2.15,
+      "jogos": null,
+      "projecao": 1.97,
+      "real": 1.2,
+      "erro": -0.77
     },
     {
       "id": 105213,
@@ -2059,6 +2311,18 @@
       "erro": 1.35
     },
     {
+      "id": 70944,
+      "nome": "Bruno Henrique Corsini",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 3.74,
+      "media": 1.73,
+      "jogos": null,
+      "projecao": 1.75,
+      "real": 4.7,
+      "erro": 2.95
+    },
+    {
       "id": 93716,
       "nome": "Paulo Henrique de Oliveira Alves",
       "posicao": "LAT",
@@ -2105,6 +2369,18 @@
       "projecao": 1.67,
       "real": 0.8,
       "erro": -0.87
+    },
+    {
+      "id": 105157,
+      "nome": "Rodrigo Román Villagra",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 5.2,
+      "media": 2.05,
+      "jogos": null,
+      "projecao": 1.65,
+      "real": 0.9,
+      "erro": -0.75
     },
     {
       "id": 108683,
@@ -2309,6 +2585,18 @@
       "projecao": 1.39,
       "real": 2.7,
       "erro": 1.31
+    },
+    {
+      "id": 100804,
+      "nome": "Duplexe Tchamba Bangou",
+      "posicao": "ZAG",
+      "clube": "REM",
+      "preco": 5.11,
+      "media": 2.08,
+      "jogos": null,
+      "projecao": 1.37,
+      "real": 3.8,
+      "erro": 2.43
     },
     {
       "id": 90309,
@@ -2683,6 +2971,18 @@
       "erro": 1.72
     },
     {
+      "id": 126182,
+      "nome": "Paulo Lucas Santos de Paula",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 3.84,
+      "media": 1.95,
+      "jogos": null,
+      "projecao": 0.97,
+      "real": 3,
+      "erro": 2.03
+    },
+    {
       "id": 123717,
       "nome": "José Guilherme de Lima Costa",
       "posicao": "LAT",
@@ -2789,6 +3089,18 @@
       "projecao": 0.86,
       "real": 2.7,
       "erro": 1.84
+    },
+    {
+      "id": 91866,
+      "nome": "José Ivaldo Almeida Silva",
+      "posicao": "ZAG",
+      "clube": "REM",
+      "preco": 5.48,
+      "media": 2.47,
+      "jogos": null,
+      "projecao": 0.86,
+      "real": 2.8,
+      "erro": 1.94
     },
     {
       "id": 68920,
@@ -2971,6 +3283,18 @@
       "erro": -0.45
     },
     {
+      "id": 98617,
+      "nome": "Guillermo Alfonso Maripán Loaysa",
+      "posicao": "ZAG",
+      "clube": "INT",
+      "preco": 4.74,
+      "media": 1.92,
+      "jogos": null,
+      "projecao": 0.65,
+      "real": 1.7,
+      "erro": 1.05
+    },
+    {
       "id": 125803,
       "nome": "Pedro Luccas Morisco da Silva",
       "posicao": "GOL",
@@ -3017,6 +3341,18 @@
       "projecao": 0.6,
       "real": 1.5,
       "erro": 0.9
+    },
+    {
+      "id": 124270,
+      "nome": "Allex Rodrigues Pereira da Silva",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 2.38,
+      "media": 1.55,
+      "jogos": null,
+      "projecao": 0.57,
+      "real": 0,
+      "erro": -0.57
     },
     {
       "id": 69783,
@@ -3103,6 +3439,18 @@
       "erro": 11.03
     },
     {
+      "id": 123016,
+      "nome": "David Francisco Trindade Braga",
+      "posicao": "MEI",
+      "clube": "REM",
+      "preco": 3.03,
+      "media": 1.26,
+      "jogos": null,
+      "projecao": 0.44,
+      "real": 0,
+      "erro": -0.44
+    },
+    {
       "id": 95541,
       "nome": "Gustavo Cazonatti",
       "posicao": "MEI",
@@ -3161,6 +3509,18 @@
       "projecao": 0.36,
       "real": 0.5,
       "erro": 0.14
+    },
+    {
+      "id": 108713,
+      "nome": "Antonio Javier Galeano Ferreira",
+      "posicao": "ATA",
+      "clube": "REM",
+      "preco": 4.42,
+      "media": 1.19,
+      "jogos": null,
+      "projecao": 0.33,
+      "real": 1.7,
+      "erro": 1.37
     },
     {
       "id": 62977,
@@ -3439,6 +3799,18 @@
       "erro": 3.14
     },
     {
+      "id": 109461,
+      "nome": "Calebe Gonçalves Ferreira da Silva",
+      "posicao": "MEI",
+      "clube": "INT",
+      "preco": 5.63,
+      "media": 0.5,
+      "jogos": null,
+      "projecao": 0.04,
+      "real": 1.8,
+      "erro": 1.76
+    },
+    {
       "id": 84428,
       "nome": "Fernando Pereira do Nascimento",
       "posicao": "MEI",
@@ -3531,8 +3903,8 @@
       "media": 0,
       "jogos": null,
       "projecao": 0.0,
-      "real": 8,
-      "erro": 8.0
+      "real": 7,
+      "erro": 7.0
     },
     {
       "id": 124483,
@@ -3641,6 +4013,18 @@
       "projecao": 0.0,
       "real": 8.23,
       "erro": 8.23
+    },
+    {
+      "id": 86864,
+      "nome": "Marlon Matheus Lopes do Nascimento",
+      "posicao": "LAT",
+      "clube": "REM",
+      "preco": 5,
+      "media": 0,
+      "jogos": null,
+      "projecao": 0.0,
+      "real": 0.2,
+      "erro": 0.2
     },
     {
       "id": 87747,

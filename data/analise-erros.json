@@ -1,31 +1,31 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 6476,
-  "erroMedio": 2.91,
+  "totalJogadores": 6508,
+  "erroMedio": 2.9,
   "porPosicao": {
     "MEI": {
-      "quantidade": 2085,
-      "erroMedio": 2.59
+      "quantidade": 2099,
+      "erroMedio": 2.58
     },
     "LAT": {
-      "quantidade": 987,
+      "quantidade": 991,
       "erroMedio": 3.34
     },
     "ATA": {
-      "quantidade": 1704,
-      "erroMedio": 3.04
+      "quantidade": 1711,
+      "erroMedio": 3.05
     },
     "GOL": {
-      "quantidade": 403,
-      "erroMedio": 3.48
+      "quantidade": 405,
+      "erroMedio": 3.47
     },
     "ZAG": {
-      "quantidade": 927,
-      "erroMedio": 2.89
+      "quantidade": 932,
+      "erroMedio": 2.88
     },
     "TEC": {
       "quantidade": 370,
-      "erroMedio": 2.37
+      "erroMedio": 2.35
     }
   },
   "porPreco": {
@@ -34,15 +34,15 @@
       "erroMedio": 5.66
     },
     "5-10": {
-      "quantidade": 3745,
-      "erroMedio": 3.11
+      "quantidade": 3766,
+      "erroMedio": 3.1
     },
     "10-15": {
-      "quantidade": 774,
-      "erroMedio": 4.12
+      "quantidade": 776,
+      "erroMedio": 4.11
     },
     "0-5": {
-      "quantidade": 1885,
+      "quantidade": 1894,
       "erroMedio": 1.91
     }
   },
@@ -209,7 +209,7 @@
     }
   ],
   "tendenciaErro": {
-    "superestimou": 2921,
-    "subestimou": 3482
+    "superestimou": 2937,
+    "subestimou": 3498
   }
 }

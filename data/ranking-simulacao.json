@@ -4,7 +4,7 @@
   "fonte": "data/simulacao-times.json",
   "modeloSimulacao": "simulacao_times_v3",
   "quantidadeRodadas": 22,
-  "melhorEstrategia": "Conservador",
+  "melhorEstrategia": "Equilibrado",
   "criterioRanking": {
     "principal": "scoreGlobal",
     "desempate1": "mediaPontos",
@@ -19,96 +19,96 @@
   },
   "ranking": [
     {
-      "nome": "Conservador",
-      "perfil": "conservador",
-      "formacao": "4-4-2",
-      "rodadas": 22,
-      "pontosTotal": 1267.83,
-      "mediaPontos": 57.63,
-      "medianaPontos": 58.47,
-      "desvioPadrao": 13.66,
-      "consistencia": 76.29,
-      "mediaSemCapitao": 55.3,
-      "mediaBonusCapitao": 2.33,
-      "ganhoMedioCapitaoPercentual": 4.21,
-      "maeMedioJogadores": 5.191,
-      "coberturaMediaPercentual": 100.0,
-      "escalacoesCompletas": 22,
-      "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 10,
-      "empatesNaLideranca": 0,
-      "taxaVitorias": 45.45,
-      "melhorRodada": {
-        "rodada": 13,
-        "pontos": 87.11
-      },
-      "piorRodada": {
-        "rodada": 9,
-        "pontos": 31.75
-      },
-      "scoreGlobal": 61.387,
-      "posicao": 1
-    },
-    {
       "nome": "Equilibrado",
       "perfil": "equilibrado",
       "formacao": "3-4-3",
       "rodadas": 22,
-      "pontosTotal": 1267.54,
-      "mediaPontos": 57.62,
-      "medianaPontos": 55.64,
-      "desvioPadrao": 16.7,
-      "consistencia": 71.02,
-      "mediaSemCapitao": 52.32,
-      "mediaBonusCapitao": 5.3,
-      "ganhoMedioCapitaoPercentual": 10.13,
-      "maeMedioJogadores": 5.652,
+      "pontosTotal": 1152.28,
+      "mediaPontos": 52.38,
+      "medianaPontos": 47.51,
+      "desvioPadrao": 15.64,
+      "consistencia": 70.14,
+      "mediaSemCapitao": 46.14,
+      "mediaBonusCapitao": 6.24,
+      "ganhoMedioCapitaoPercentual": 13.52,
+      "maeMedioJogadores": 5.265,
       "coberturaMediaPercentual": 100.0,
       "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 7,
+      "vitorias": 6,
       "empatesNaLideranca": 1,
-      "taxaVitorias": 31.82,
+      "taxaVitorias": 27.27,
       "melhorRodada": {
         "rodada": 13,
-        "pontos": 115.78
+        "pontos": 92.53
       },
       "piorRodada": {
-        "rodada": 17,
-        "pontos": 37.16
+        "rodada": 5,
+        "pontos": 33.42
       },
-      "scoreGlobal": 58.76,
-      "posicao": 2
+      "scoreGlobal": 54.623,
+      "posicao": 1
     },
     {
       "nome": "Agressivo",
       "perfil": "agressivo",
       "formacao": "3-4-3",
       "rodadas": 22,
-      "pontosTotal": 1203.8,
-      "mediaPontos": 54.72,
-      "medianaPontos": 54.77,
-      "desvioPadrao": 13.55,
-      "consistencia": 75.24,
-      "mediaSemCapitao": 50.6,
-      "mediaBonusCapitao": 4.11,
-      "ganhoMedioCapitaoPercentual": 8.13,
-      "maeMedioJogadores": 6.453,
+      "pontosTotal": 1069.34,
+      "mediaPontos": 48.61,
+      "medianaPontos": 47.95,
+      "desvioPadrao": 16.39,
+      "consistencia": 66.28,
+      "mediaSemCapitao": 43.83,
+      "mediaBonusCapitao": 4.78,
+      "ganhoMedioCapitaoPercentual": 10.9,
+      "maeMedioJogadores": 6.113,
       "coberturaMediaPercentual": 100.0,
       "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
-      "vitorias": 4,
+      "vitorias": 8,
       "empatesNaLideranca": 1,
-      "taxaVitorias": 18.18,
+      "taxaVitorias": 36.36,
       "melhorRodada": {
         "rodada": 13,
-        "pontos": 85.31
+        "pontos": 86.33
       },
       "piorRodada": {
-        "rodada": 15,
-        "pontos": 33.84
+        "rodada": 5,
+        "pontos": 22.5
       },
-      "scoreGlobal": 55.173,
+      "scoreGlobal": 53.065,
+      "posicao": 2
+    },
+    {
+      "nome": "Conservador",
+      "perfil": "conservador",
+      "formacao": "4-4-2",
+      "rodadas": 22,
+      "pontosTotal": 1058.53,
+      "mediaPontos": 48.12,
+      "medianaPontos": 46.41,
+      "desvioPadrao": 12.67,
+      "consistencia": 73.66,
+      "mediaSemCapitao": 45.6,
+      "mediaBonusCapitao": 2.51,
+      "ganhoMedioCapitaoPercentual": 5.51,
+      "maeMedioJogadores": 4.803,
+      "coberturaMediaPercentual": 100.0,
+      "escalacoesCompletas": 22,
+      "taxaEscalacoesCompletas": 100.0,
+      "vitorias": 7,
+      "empatesNaLideranca": 0,
+      "taxaVitorias": 31.82,
+      "melhorRodada": {
+        "rodada": 13,
+        "pontos": 80.15
+      },
+      "piorRodada": {
+        "rodada": 9,
+        "pontos": 26.13
+      },
+      "scoreGlobal": 52.933,
       "posicao": 3
     }
   ],

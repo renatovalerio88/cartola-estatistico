@@ -1,9 +1,9 @@
 {
   "modelo": "ponderado_atual",
   "rodadasAnalisadas": 22,
-  "jogadoresAnalisados": 6476,
-  "mae": 2.91,
-  "rmse": 4.12,
+  "jogadoresAnalisados": 6508,
+  "mae": 2.9,
+  "rmse": 4.11,
   "top5": 33.64,
   "top10": 35.0,
   "melhorPosicao": "TEC",

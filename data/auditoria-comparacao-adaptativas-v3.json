@@ -229,69 +229,69 @@
   "resultados": {
     "v1": {
       "quantidade": 22,
-      "media": 56.67,
-      "desvioPadrao": 13.4,
-      "total": 1246.85
+      "media": 49.24,
+      "desvioPadrao": 15.07,
+      "total": 1083.25
     },
     "v2": {
       "quantidade": 22,
-      "media": 56.39,
-      "desvioPadrao": 12.82,
-      "total": 1240.65
+      "media": 49.03,
+      "desvioPadrao": 15.04,
+      "total": 1078.75
     },
     "v3": {
       "quantidade": 22,
-      "media": 55.15,
-      "desvioPadrao": 12.78,
-      "total": 1213.4
+      "media": 50.53,
+      "desvioPadrao": 13.2,
+      "total": 1111.57
     },
     "estrategiasFixas": {
       "Conservador": {
         "quantidade": 22,
-        "media": 57.63,
-        "desvioPadrao": 13.66,
-        "total": 1267.83
+        "media": 48.12,
+        "desvioPadrao": 12.67,
+        "total": 1058.53
       },
       "Equilibrado": {
         "quantidade": 22,
-        "media": 57.62,
-        "desvioPadrao": 16.7,
-        "total": 1267.54
+        "media": 52.38,
+        "desvioPadrao": 15.64,
+        "total": 1152.28
       },
       "Agressivo": {
         "quantidade": 22,
-        "media": 54.72,
-        "desvioPadrao": 13.55,
-        "total": 1203.8
+        "media": 48.61,
+        "desvioPadrao": 16.39,
+        "total": 1069.34
       }
     },
-    "melhorEstrategiaFixa": "Conservador",
+    "melhorEstrategiaFixa": "Equilibrado",
     "oraculo": {
       "quantidade": 22,
-      "media": 63.99,
-      "desvioPadrao": 15.62,
-      "total": 1407.78
+      "media": 57.01,
+      "desvioPadrao": 13.99,
+      "total": 1254.21
     },
     "ganhos": {
-      "v3VsV1": -1.52,
-      "v3VsV2": -1.24,
-      "v3VsMelhorFixa": -2.48
+      "v3VsV1": 1.29,
+      "v3VsV2": 1.5,
+      "v3VsMelhorFixa": -1.85
     },
     "eficiencia": {
-      "v1": 88.56,
-      "v2": 88.12,
-      "v3": 86.19
+      "v1": 86.37,
+      "v2": 86.0,
+      "v3": 88.63
     },
     "pareadoV2V3": {
-      "vitoriasV2": 5,
-      "vitoriasV3": 1,
-      "empates": 16,
-      "taxaV3": 4.55
+      "vitoriasV2": 6,
+      "vitoriasV3": 5,
+      "empates": 11,
+      "taxaV3": 22.73
     },
     "escolhasV3": {
-      "Conservador": 14,
-      "Equilibrado": 7,
-      "Agressivo": 1
+      "Conservador": 8,
+      "Equilibrado": 9,
+      "Agressivo": 5
     }
   },
   "decisao": "COMPARACAO_V3_VALIDADA",

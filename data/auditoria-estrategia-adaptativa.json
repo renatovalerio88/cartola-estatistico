@@ -8,13 +8,13 @@
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "melhorEstrategiaFixa": "Conservador",
-    "mediaAdaptativo": 56.67,
-    "mediaMelhorFixa": 57.63,
-    "ganhoAdaptativoVsMelhorFixa": -0.96,
-    "ganhoPercentualAdaptativoVsMelhorFixa": -1.66,
-    "mediaOraculo": 63.99,
-    "eficienciaVsOraculoPercentual": 88.57
+    "melhorEstrategiaFixa": "Equilibrado",
+    "mediaAdaptativo": 49.24,
+    "mediaMelhorFixa": 52.38,
+    "ganhoAdaptativoVsMelhorFixa": -3.14,
+    "ganhoPercentualAdaptativoVsMelhorFixa": -6.0,
+    "mediaOraculo": 57.01,
+    "eficienciaVsOraculoPercentual": 86.37
   },
   "testes": [
     {
@@ -145,10 +145,10 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1246.85,
-        "mediaCalculada": 56.67,
-        "medianaCalculada": 56.32,
-        "acertosCalculados": 8
+        "totalCalculado": 1083.25,
+        "mediaCalculada": 49.24,
+        "medianaCalculada": 44.72,
+        "acertosCalculados": 5
       }
     },
     {
@@ -156,8 +156,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": 36.36,
-        "informada": 36.36
+        "calculada": 22.73,
+        "informada": 22.73
       }
     },
     {
@@ -166,14 +166,14 @@
       "nivel": "CRITICO",
       "detalhes": {
         "calculadas": {
-          "Conservador": 16,
-          "Equilibrado": 6,
-          "Agressivo": 0
+          "Conservador": 5,
+          "Equilibrado": 14,
+          "Agressivo": 3
         },
         "informadas": {
-          "Conservador": 16,
-          "Equilibrado": 6,
-          "Agressivo": 0
+          "Conservador": 5,
+          "Equilibrado": 14,
+          "Agressivo": 3
         }
       }
     },
@@ -188,8 +188,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": "Conservador",
-        "informada": "Conservador"
+        "calculada": "Equilibrado",
+        "informada": "Equilibrado"
       }
     },
     {
@@ -197,9 +197,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "ganhoMediaCalculado": -0.96,
-        "ganhoTotalCalculado": -20.98,
-        "ganhoPercentualCalculado": -1.66
+        "ganhoMediaCalculado": -3.14,
+        "ganhoTotalCalculado": -69.03,
+        "ganhoPercentualCalculado": -6.0
       }
     },
     {
@@ -207,9 +207,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1407.78,
-        "mediaCalculada": 63.99,
-        "eficienciaCalculada": 88.57
+        "totalCalculado": 1254.21,
+        "mediaCalculada": 57.01,
+        "eficienciaCalculada": 86.37
       }
     },
     {

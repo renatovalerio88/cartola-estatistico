@@ -1,10 +1,13 @@
 {
-  "modelo": "historico_escalacoes_v2",
+  "modelo": "historico_escalacoes_v4",
   "rodada": 2,
   "dadosUtilizadosAteRodada": 1,
   "regraTemporal": "rodadas_1_a_1",
   "semVazamentoFuturo": true,
   "limiteJogadoresClube": 3,
+  "limitePatrimonio": 120.0,
+  "orcamentoIncluiBanco": true,
+  "reservaTitularesFuturos": true,
   "estrategias": [
     {
       "id": "conservador",
@@ -12,9 +15,17 @@
       "perfil": "conservador",
       "formacao": "4-4-2",
       "escalacaoCompleta": true,
+      "bancoCompleto": true,
+      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "custoTitulares": 126.35,
+      "quantidadeBanco": 5,
+      "limitePatrimonio": 120.0,
+      "reservaMinimaBanco": 14.37,
+      "custoTitulares": 105.23,
+      "custoBanco": 14.37,
+      "custoTotal": 119.6,
+      "saldo": 0.4,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -198,11 +209,11 @@
           }
         },
         {
-          "id": "113103",
-          "nome": "José Manuel Alberto López",
+          "id": "70360",
+          "nome": "Eduardo Colcenti Antunes",
           "posicao": "ATA",
-          "clube": "PAL",
-          "preco": 12.92,
+          "clube": "RBB",
+          "preco": 4.09,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -218,11 +229,11 @@
           }
         },
         {
-          "id": "80287",
-          "nome": "Luciano da Rocha Neves",
+          "id": "142265",
+          "nome": "Wendeson Wanderley Santos de Melo",
           "posicao": "ATA",
-          "clube": "SAO",
-          "preco": 12.89,
+          "clube": "BAH",
+          "preco": 1.82,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -238,11 +249,11 @@
           }
         },
         {
-          "id": "92180",
-          "nome": "Jair Ventura",
+          "id": "104027",
+          "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
-          "clube": "VIT",
-          "preco": 8.21,
+          "clube": "MIR",
+          "preco": 6.99,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -280,11 +291,11 @@
       },
       "banco": [
         {
-          "id": "93882",
-          "nome": "Cleiton Schwengber",
+          "id": "70449",
+          "nome": "Gabriel Vasconcelos Ferreira",
           "posicao": "GOL",
-          "clube": "RBB",
-          "preco": 6.19,
+          "clube": "VIT",
+          "preco": 5.02,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -300,11 +311,11 @@
           }
         },
         {
-          "id": "111879",
-          "nome": "Mateus da Silva Duarte",
+          "id": "89273",
+          "nome": "João Pedro Maturano dos Santos",
           "posicao": "LAT",
-          "clube": "VIT",
-          "preco": 4.95,
+          "clube": "GRE",
+          "preco": 3.11,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -320,11 +331,11 @@
           }
         },
         {
-          "id": "132553",
-          "nome": "Jemmes Bruno Ribeiro da Silva",
+          "id": "95620",
+          "nome": "Bruno Leonardo dos Santos Covas",
           "posicao": "ZAG",
-          "clube": "FLU",
-          "preco": 6.82,
+          "clube": "CHA",
+          "preco": 2.91,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -340,11 +351,11 @@
           }
         },
         {
-          "id": "99440",
-          "nome": "Gabriel Baralhas dos Santos",
+          "id": "146410",
+          "nome": "Marcos Felipe Vinagre Souza",
           "posicao": "MEI",
-          "clube": "VIT",
-          "preco": 9.25,
+          "clube": "BOT",
+          "preco": 0.85,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -360,11 +371,11 @@
           }
         },
         {
-          "id": "97810",
-          "nome": "Erick de Arruda Serafim",
+          "id": "116066",
+          "nome": "Rubens Tadeu Hartmann Ricoldi",
           "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 7.98,
+          "clube": "CHA",
+          "preco": 2.48,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -381,11 +392,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "93882",
-        "nome": "Cleiton Schwengber",
+        "id": "70449",
+        "nome": "Gabriel Vasconcelos Ferreira",
         "posicao": "GOL",
-        "clube": "RBB",
-        "preco": 6.19,
+        "clube": "VIT",
+        "preco": 5.02,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -411,9 +422,17 @@
       "perfil": "equilibrado",
       "formacao": "3-4-3",
       "escalacaoCompleta": true,
+      "bancoCompleto": true,
+      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "custoTitulares": 118.42,
+      "quantidadeBanco": 5,
+      "limitePatrimonio": 120.0,
+      "reservaMinimaBanco": 14.37,
+      "custoTitulares": 105.16,
+      "custoBanco": 14.37,
+      "custoTotal": 119.53,
+      "saldo": 0.47,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -597,11 +616,11 @@
           }
         },
         {
-          "id": "80287",
-          "nome": "Luciano da Rocha Neves",
+          "id": "111831",
+          "nome": "Matheus Martins Silva dos Santos",
           "posicao": "ATA",
-          "clube": "SAO",
-          "preco": 12.89,
+          "clube": "BOT",
+          "preco": 7.01,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -617,11 +636,11 @@
           }
         },
         {
-          "id": "97810",
-          "nome": "Erick de Arruda Serafim",
+          "id": "142265",
+          "nome": "Wendeson Wanderley Santos de Melo",
           "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 7.98,
+          "clube": "BAH",
+          "preco": 1.82,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -637,11 +656,11 @@
           }
         },
         {
-          "id": "92180",
-          "nome": "Jair Ventura",
+          "id": "104027",
+          "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
-          "clube": "VIT",
-          "preco": 8.21,
+          "clube": "MIR",
+          "preco": 6.99,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -679,71 +698,11 @@
       },
       "banco": [
         {
-          "id": "93882",
-          "nome": "Cleiton Schwengber",
+          "id": "70449",
+          "nome": "Gabriel Vasconcelos Ferreira",
           "posicao": "GOL",
-          "clube": "RBB",
-          "preco": 6.19,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "94968",
-          "nome": "Luis Antônio da Rocha Júnior",
-          "posicao": "LAT",
-          "clube": "RBB",
-          "preco": 13.21,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "104075",
-          "nome": "José Sabino Chagas Monteiro",
-          "posicao": "ZAG",
-          "clube": "SAO",
-          "preco": 6.86,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "99440",
-          "nome": "Gabriel Baralhas dos Santos",
-          "posicao": "MEI",
           "clube": "VIT",
-          "preco": 9.25,
+          "preco": 5.02,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -759,11 +718,71 @@
           }
         },
         {
-          "id": "105563",
-          "nome": "Carlos Vinícius Alves Morais",
-          "posicao": "ATA",
+          "id": "89273",
+          "nome": "João Pedro Maturano dos Santos",
+          "posicao": "LAT",
           "clube": "GRE",
-          "preco": 14.47,
+          "preco": 3.11,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "95620",
+          "nome": "Bruno Leonardo dos Santos Covas",
+          "posicao": "ZAG",
+          "clube": "CHA",
+          "preco": 2.91,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "146410",
+          "nome": "Marcos Felipe Vinagre Souza",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 0.85,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "116066",
+          "nome": "Rubens Tadeu Hartmann Ricoldi",
+          "posicao": "ATA",
+          "clube": "CHA",
+          "preco": 2.48,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -780,11 +799,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "93882",
-        "nome": "Cleiton Schwengber",
+        "id": "70449",
+        "nome": "Gabriel Vasconcelos Ferreira",
         "posicao": "GOL",
-        "clube": "RBB",
-        "preco": 6.19,
+        "clube": "VIT",
+        "preco": 5.02,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -810,9 +829,17 @@
       "perfil": "agressivo",
       "formacao": "3-4-3",
       "escalacaoCompleta": true,
+      "bancoCompleto": true,
+      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "custoTitulares": 118.42,
+      "quantidadeBanco": 5,
+      "limitePatrimonio": 120.0,
+      "reservaMinimaBanco": 14.37,
+      "custoTitulares": 105.16,
+      "custoBanco": 14.37,
+      "custoTotal": 119.53,
+      "saldo": 0.47,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -996,11 +1023,11 @@
           }
         },
         {
-          "id": "80287",
-          "nome": "Luciano da Rocha Neves",
+          "id": "111831",
+          "nome": "Matheus Martins Silva dos Santos",
           "posicao": "ATA",
-          "clube": "SAO",
-          "preco": 12.89,
+          "clube": "BOT",
+          "preco": 7.01,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1016,11 +1043,11 @@
           }
         },
         {
-          "id": "97810",
-          "nome": "Erick de Arruda Serafim",
+          "id": "142265",
+          "nome": "Wendeson Wanderley Santos de Melo",
           "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 7.98,
+          "clube": "BAH",
+          "preco": 1.82,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1036,11 +1063,11 @@
           }
         },
         {
-          "id": "92180",
-          "nome": "Jair Ventura",
+          "id": "104027",
+          "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
-          "clube": "VIT",
-          "preco": 8.21,
+          "clube": "MIR",
+          "preco": 6.99,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1078,71 +1105,11 @@
       },
       "banco": [
         {
-          "id": "93882",
-          "nome": "Cleiton Schwengber",
+          "id": "70449",
+          "nome": "Gabriel Vasconcelos Ferreira",
           "posicao": "GOL",
-          "clube": "RBB",
-          "preco": 6.19,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "94968",
-          "nome": "Luis Antônio da Rocha Júnior",
-          "posicao": "LAT",
-          "clube": "RBB",
-          "preco": 13.21,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "104075",
-          "nome": "José Sabino Chagas Monteiro",
-          "posicao": "ZAG",
-          "clube": "SAO",
-          "preco": 6.86,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "99440",
-          "nome": "Gabriel Baralhas dos Santos",
-          "posicao": "MEI",
           "clube": "VIT",
-          "preco": 9.25,
+          "preco": 5.02,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1158,11 +1125,71 @@
           }
         },
         {
-          "id": "105563",
-          "nome": "Carlos Vinícius Alves Morais",
-          "posicao": "ATA",
+          "id": "89273",
+          "nome": "João Pedro Maturano dos Santos",
+          "posicao": "LAT",
           "clube": "GRE",
-          "preco": 14.47,
+          "preco": 3.11,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "95620",
+          "nome": "Bruno Leonardo dos Santos Covas",
+          "posicao": "ZAG",
+          "clube": "CHA",
+          "preco": 2.91,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "146410",
+          "nome": "Marcos Felipe Vinagre Souza",
+          "posicao": "MEI",
+          "clube": "BOT",
+          "preco": 0.85,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "116066",
+          "nome": "Rubens Tadeu Hartmann Ricoldi",
+          "posicao": "ATA",
+          "clube": "CHA",
+          "preco": 2.48,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1179,11 +1206,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "93882",
-        "nome": "Cleiton Schwengber",
+        "id": "70449",
+        "nome": "Gabriel Vasconcelos Ferreira",
         "posicao": "GOL",
-        "clube": "RBB",
-        "preco": 6.19,
+        "clube": "VIT",
+        "preco": 5.02,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -1209,6 +1236,8 @@
     "estrategiasAprovadas": 3,
     "estrategiasTotal": 3,
     "usaPontuacaoRealDaRodadaNaPrevisao": false,
-    "dadosHistoricosEncerramNaRodada": 1
+    "dadosHistoricosEncerramNaRodada": 1,
+    "orcamentoIncluiBanco": true,
+    "reservaTitularesFuturos": true
   }
 }

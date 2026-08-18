@@ -1,9 +1,9 @@
 {
   "modelo": "experimento_explosao_v1",
-  "jogadoresAnalisados": 6476,
-  "erroMedioOriginal": 2.908,
-  "erroMedioComExplosao": 2.902,
-  "melhorouEm": 3322,
+  "jogadoresAnalisados": 6508,
+  "erroMedioOriginal": 2.903,
+  "erroMedioComExplosao": 2.897,
+  "melhorouEm": 3335,
   "impacto": 0.006,
   "amostras": [
     {
@@ -620,11 +620,11 @@
       "rodada": 2,
       "nome": "Bruno Gomes da Silva Clevelário",
       "projecaoOriginal": 5.1,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 5.49,
+      "ajusteExplosao": 0.41,
+      "novaProjecao": 5.51,
       "real": 3.4,
       "erroOriginal": 1.7,
-      "erroComExplosao": 2.09
+      "erroComExplosao": 2.11
     },
     {
       "rodada": 2,
@@ -980,11 +980,11 @@
       "rodada": 2,
       "nome": "Marcelo Rangel da Rosa",
       "projecaoOriginal": 3.2,
-      "ajusteExplosao": 0.21,
-      "novaProjecao": 3.41,
+      "ajusteExplosao": 0.23,
+      "novaProjecao": 3.43,
       "real": 3.2,
       "erroOriginal": 0.0,
-      "erroComExplosao": 0.21
+      "erroComExplosao": 0.23
     },
     {
       "rodada": 2,
