@@ -18,6 +18,10 @@ const estadoRecomendacoes = {
 };
 
 
+/* =========================================================
+   CARREGAMENTO DOS JOGADORES
+   ========================================================= */
+
 async function carregarJogadores() {
 
     estadoRecomendacoes.carregando = true;
@@ -52,7 +56,9 @@ async function carregarJogadores() {
 
 
         const rodada =
-            Number(status.rodada_atual);
+            Number(
+                status.rodada_atual
+            );
 
 
         CAMINHO_JOGADORES =
@@ -184,6 +190,9 @@ async function carregarJogadores() {
 }
 
 
+/* =========================================================
+   CÓPIA SEGURA DO JOGADOR
+   ========================================================= */
 
 function copiarJogador(jogador) {
 
@@ -200,6 +209,9 @@ function copiarJogador(jogador) {
 }
 
 
+/* =========================================================
+   VALIDAÇÃO
+   ========================================================= */
 
 function validarJogador(jogador) {
 
@@ -215,6 +227,9 @@ function validarJogador(jogador) {
 }
 
 
+/* =========================================================
+   INICIALIZAÇÃO DAS RECOMENDAÇÕES
+   ========================================================= */
 
 function iniciarRecomendacoes() {
 
@@ -234,6 +249,9 @@ function iniciarRecomendacoes() {
 }
 
 
+/* =========================================================
+   ACESSO AOS JOGADORES
+   ========================================================= */
 
 function obterJogadoresCarregados() {
 
@@ -244,26 +262,63 @@ function obterJogadoresCarregados() {
 }
 
 
+/*
+ * Interface compatível com o módulo de escalações.
+ *
+ * IMPORTANTE:
+ *
+ * Não recarrega jogadores.
+ * Não executa novamente o motor estatístico.
+ * Não recalibra projeções.
+ *
+ * Apenas devolve os jogadores que já foram processados
+ * pelo módulo de Recomendações.
+ */
+function obterJogadores() {
+
+    return obterJogadoresCarregados();
+
+}
+
+
+/*
+ * Interface explícita para outros módulos da aplicação.
+ *
+ * Mantemos também obterJogadores() por compatibilidade.
+ */
+function obterJogadoresParaEscalacoes() {
+
+    return obterJogadoresCarregados();
+
+}
+
+
+/* =========================================================
+   ACESSO POR ID
+   ========================================================= */
 
 function obterJogadorPorId(id) {
 
     return estadoRecomendacoes.jogadores.find(
 
         jogador =>
-            String(jogador.id) === String(id)
+            String(jogador.id) ===
+            String(id)
 
     ) || null;
 
 }
 
 
+/* =========================================================
+   POSIÇÃO ATIVA
+   ========================================================= */
 
 function obterPosicaoAtiva() {
 
     return estadoRecomendacoes.posicaoAtiva;
 
 }
-
 
 
 function definirPosicaoAtiva(posicao) {
@@ -275,13 +330,15 @@ function definirPosicaoAtiva(posicao) {
 }
 
 
+/* =========================================================
+   ESTADO DAS RECOMENDAÇÕES
+   ========================================================= */
 
 function recomendacoesCarregadas() {
 
     return estadoRecomendacoes.carregado;
 
 }
-
 
 
 function obterErroRecomendacoes() {
@@ -291,7 +348,6 @@ function obterErroRecomendacoes() {
 }
 
 
-
 function calculadoraEstatisticaAplicada() {
 
     return estadoRecomendacoes.calculadoraAplicada;
@@ -299,6 +355,62 @@ function calculadoraEstatisticaAplicada() {
 }
 
 
+/* =========================================================
+   EXPOSIÇÃO GLOBAL
+   ========================================================= */
+
+/*
+ * Os scripts do projeto são carregados diretamente pelo
+ * navegador. Por isso deixamos uma API explícita no window
+ * para que outros módulos possam acessar os jogadores já
+ * processados sem depender de variáveis internas.
+ */
+
+if (
+    typeof window !==
+    "undefined"
+) {
+
+    window.obterJogadores =
+        obterJogadores;
+
+
+    window.obterJogadoresCarregados =
+        obterJogadoresCarregados;
+
+
+    window.obterJogadoresParaEscalacoes =
+        obterJogadoresParaEscalacoes;
+
+
+    window.CartolaRecomendacoes = {
+
+        obterJogadores:
+            obterJogadores,
+
+        obterJogadoresCarregados:
+            obterJogadoresCarregados,
+
+        obterJogadoresParaEscalacoes:
+            obterJogadoresParaEscalacoes,
+
+        obterJogadorPorId:
+            obterJogadorPorId,
+
+        carregadas:
+            recomendacoesCarregadas,
+
+        calculadoraAplicada:
+            calculadoraEstatisticaAplicada
+
+    };
+
+}
+
+
+/* =========================================================
+   ESTADO DE CARREGAMENTO
+   ========================================================= */
 
 function exibirCarregamentoJogadores() {
 
@@ -330,6 +442,9 @@ function exibirCarregamentoJogadores() {
 }
 
 
+/* =========================================================
+   ESTADO DE ERRO
+   ========================================================= */
 
 function exibirErroJogadores(
     mensagem = ""
