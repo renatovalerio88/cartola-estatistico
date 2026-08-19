@@ -4548,3 +4548,654 @@ body.dark-theme
     font-size: 0.74rem;
   }
 }
+
+/* =========================================================
+   67. AJUSTE FINAL DE LAYOUT — RECOMENDAÇÕES
+   ========================================================= */
+
+/*
+   Camada final de responsividade.
+   Mantida no final do arquivo propositalmente para prevalecer
+   sobre regras antigas sem interferir na lógica dos componentes.
+*/
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.main-area {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 2.2vw, 34px);
+  padding-right: clamp(20px, 2.2vw, 34px);
+}
+
+
+/* =========================================================
+   CABEÇALHO DAS SEÇÕES
+   ========================================================= */
+
+.section-header {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 16px 24px;
+}
+
+.section-header > div:first-child {
+  min-width: 220px;
+  flex: 1 1 320px;
+}
+
+.section-header h2 {
+  max-width: 100%;
+
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+
+/* =========================================================
+   FILTROS DE POSIÇÃO
+   ========================================================= */
+
+.position-filters {
+  min-width: 0;
+
+  flex: 0 1 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.position-filter-button {
+  flex: 0 0 auto;
+
+  min-height: 36px;
+
+  padding: 8px 13px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  width: 100%;
+  min-width: 0;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(360px, 0.85fr);
+
+  align-items: stretch;
+}
+
+.hero-text,
+.hero-summary {
+  min-width: 0;
+}
+
+.hero-text {
+  height: 100%;
+}
+
+.hero-summary {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+.summary-card {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   GRID DE JOGADORES
+   ========================================================= */
+
+.players-grid {
+  width: 100%;
+  min-width: 0;
+
+  grid-template-columns:
+    repeat(3, minmax(280px, 1fr));
+
+  align-items: start;
+  gap: 18px;
+}
+
+.player-card {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CABEÇALHO DOS CARDS
+   ========================================================= */
+
+.player-card-header {
+  min-width: 0;
+}
+
+.player-main-info {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.player-main-info > div:last-child {
+  min-width: 0;
+}
+
+.player-main-info h3 {
+  max-width: 100%;
+}
+
+.player-price {
+  flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   MÉTRICAS DOS JOGADORES
+   ========================================================= */
+
+.player-main-metrics {
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+}
+
+.main-metric {
+  min-width: 0;
+}
+
+.main-metric span,
+.main-metric strong {
+  overflow-wrap: anywhere;
+}
+
+.player-secondary-metrics {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   TEXTOS E JUSTIFICATIVAS
+   ========================================================= */
+
+.player-main-reason,
+.player-analysis-box,
+.player-details {
+  min-width: 0;
+}
+
+.player-main-reason p,
+.player-analysis-box li,
+.component-label span,
+.component-label strong {
+  overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   FILTROS / CONTROLES GERAIS
+   ========================================================= */
+
+select,
+input,
+button {
+  max-width: 100%;
+}
+
+select {
+  text-overflow: ellipsis;
+}
+
+.manual-filters,
+.round-filters,
+.exclusion-filters,
+.filters-panel,
+.filters-card,
+.filter-card,
+.filter-group {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   TIMES SUGERIDOS
+   ========================================================= */
+
+.suggested-lineups-grid {
+  width: 100%;
+  min-width: 0;
+
+  grid-template-columns:
+    repeat(3, minmax(290px, 1fr));
+
+  align-items: start;
+  gap: 18px;
+}
+
+.lineup-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.lineup-card-header {
+  min-width: 0;
+}
+
+.lineup-main-metrics {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+.lineup-player-row,
+.lineup-bench-player,
+.lineup-luxury-player {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CONTROLE DE PATRIMÔNIO
+   ========================================================= */
+
+.lineup-budget-control {
+  width: 100%;
+  min-width: 0;
+}
+
+.lineup-budget-copy {
+  flex: 1 1 420px;
+}
+
+.lineup-budget-actions {
+  flex: 0 1 420px;
+  min-width: 300px;
+}
+
+
+/* =========================================================
+   HISTÓRICO
+   ========================================================= */
+
+.history-toolbar {
+  align-items: flex-end;
+}
+
+.history-toolbar label {
+  min-width: 180px;
+  flex: 0 1 230px;
+}
+
+.history-toolbar select {
+  width: 100%;
+  min-width: 0;
+}
+
+.history-summary {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+.history-table {
+  min-width: 700px;
+}
+
+.history-table-wrapper,
+.history-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   METODOLOGIA
+   ========================================================= */
+
+.methodology-summary {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+.methodology-grid {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+.methodology-flow {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   ANÁLISE DA RODADA
+   ========================================================= */
+
+.analysis-summary {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   DESKTOP INTERMEDIÁRIO
+   ========================================================= */
+
+@media (max-width: 1450px) {
+
+  .players-grid {
+    grid-template-columns:
+      repeat(2, minmax(300px, 1fr));
+  }
+
+  .suggested-lineups-grid {
+    grid-template-columns:
+      repeat(2, minmax(300px, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP COM MENU LATERAL + ÁREA MAIS ESTREITA
+   ========================================================= */
+
+@media (max-width: 1240px) {
+
+  .content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-summary {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .methodology-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .methodology-summary,
+  .analysis-summary,
+  .history-summary {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / NOTEBOOK PEQUENO
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .section-header {
+    align-items: flex-start;
+  }
+
+  .section-header > div:first-child {
+    flex-basis: 100%;
+  }
+
+  .position-filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .lineup-budget-control {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lineup-budget-actions {
+    width: 100%;
+    min-width: 0;
+    flex-basis: auto;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .content {
+    max-width: none;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .players-grid,
+  .suggested-lineups-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .methodology-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .methodology-flow-arrow {
+    min-height: 22px;
+
+    transform: rotate(90deg);
+  }
+
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 680px) {
+
+  .content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .section-header {
+    margin-top: 26px;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 14px;
+  }
+
+  .section-header > div:first-child {
+    min-width: 0;
+    flex-basis: auto;
+  }
+
+  .section-header h2 {
+    font-size: 1.28rem;
+  }
+
+  .position-filters {
+    width: 100%;
+
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 2px 0 7px;
+
+    justify-content: flex-start;
+
+    scrollbar-width: thin;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .position-filter-button {
+    flex-shrink: 0;
+  }
+
+  .hero {
+    display: block;
+  }
+
+  .hero-summary {
+    margin-top: 14px;
+
+    grid-template-columns: 1fr;
+  }
+
+  .players-grid,
+  .suggested-lineups-grid,
+  .methodology-grid,
+  .methodology-summary,
+  .analysis-summary,
+  .history-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .player-card,
+  .lineup-card {
+    max-width: 100%;
+  }
+
+  .player-secondary-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .lineup-budget-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .history-toolbar {
+    width: 100%;
+
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .history-toolbar label {
+    width: 100%;
+    min-width: 0;
+    flex-basis: auto;
+  }
+
+  .history-toolbar select {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero-text {
+    padding: 21px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .player-card-header {
+    gap: 11px;
+  }
+
+  .player-main-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .main-metric.projection {
+    grid-column: 1 / -1;
+  }
+
+  .lineup-main-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .lineup-main-metric.projection {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =========================================================
+   PROTEÇÃO FINAL CONTRA ESTOURO HORIZONTAL
+   ========================================================= */
+
+.tab-content,
+.hero,
+.hero-text,
+.hero-summary,
+.section-header,
+.players-grid,
+.player-card,
+.suggested-lineups-grid,
+.lineup-card,
+.methodology-section,
+.analysis-summary,
+.history-summary {
+  max-width: 100%;
+}
+
+.player-card *,
+.lineup-card * {
+  min-width: 0;
+}
+
+.player-card button,
+.lineup-card button,
+.position-filter-button {
+  min-width: auto;
+}
