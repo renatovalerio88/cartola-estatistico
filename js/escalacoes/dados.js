@@ -6555,56 +6555,116 @@ async function carregarPerfisEscalacao() {
 }
 
 
-/* =========================================================
-   RENDERIZAÇÃO
-   ========================================================= */
-
-
 function renderizarEscalacoesCarregadas() {
 
+  /*
+   * =====================================================
+   * API ATUAL DOS CARDS
+   * =====================================================
+   *
+   * Esta é a API utilizada atualmente pela interface.
+   *
+   * Importante:
+   * CartolaEscalacoesCards.renderizar() lê diretamente
+   * o estado já montado por EscalacoesDados.
+   *
+   * Portanto, não devemos iniciar novo carregamento aqui.
+   * Apenas solicitamos a renderização do estado atual.
+   */
+
   if (
-    typeof EscalacoesCards !==
-      "undefined" &&
+    typeof window !== "undefined" &&
+    window.CartolaEscalacoesCards &&
+    typeof window.CartolaEscalacoesCards.renderizar === "function"
+  ) {
+
+    window.CartolaEscalacoesCards.renderizar();
+
+    return true;
+
+  }
+
+
+  /*
+   * =====================================================
+   * COMPATIBILIDADE COM VERSÕES ANTERIORES
+   * =====================================================
+   */
+
+  if (
+    typeof EscalacoesCards !== "undefined" &&
     EscalacoesCards &&
-    typeof EscalacoesCards.render ===
-      "function"
+    typeof EscalacoesCards.render === "function"
   ) {
 
     EscalacoesCards.render(
       estadoEscalacoes.escalacoes
     );
 
-
-    return;
+    return true;
 
   }
 
 
   if (
-    typeof renderizarEscalacoes ===
-      "function"
+    typeof renderizarEscalacoes === "function"
   ) {
 
     renderizarEscalacoes(
       estadoEscalacoes.escalacoes
     );
 
-
-    return;
+    return true;
 
   }
 
 
   if (
-    typeof renderEscalacoes ===
-      "function"
+    typeof renderEscalacoes === "function"
   ) {
 
     renderEscalacoes(
       estadoEscalacoes.escalacoes
     );
 
+    return true;
+
   }
+
+
+  /*
+   * O motor pode terminar antes de cards.js estar
+   * disponível. Nesse caso não iniciamos novo
+   * carregamento e não criamos recursão.
+   *
+   * Fazemos somente uma nova tentativa de renderização
+   * após o carregamento dos scripts da página.
+   */
+
+  if (
+    typeof window !== "undefined"
+  ) {
+
+    window.setTimeout(
+      () => {
+
+        if (
+          window.CartolaEscalacoesCards &&
+          typeof window.CartolaEscalacoesCards.renderizar === "function"
+        ) {
+
+          window.CartolaEscalacoesCards.renderizar();
+
+        }
+
+      },
+      0
+    );
+
+  }
+
+
+  return false;
 
 }
 
