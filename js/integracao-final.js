@@ -1,18 +1,16 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Integração final da interface — PACOTE FINAL
+   Integração final da interface
 
-   Responsabilidades:
-
-   - manter Recomendações e Times sincronizados;
-   - garantir filtros de exclusão nas duas abas;
-   - corrigir contraste dos filtros em desktop/mobile;
-   - corrigir a data/hora de última atualização;
-   - complementar a composição da nota;
-   - adicionar gráfico histórico dos 3 perfis;
-   - melhorar a leitura da aba Análise da rodada;
-   - manter patrimônio e renderizações estáveis.
-
+   Pacote final:
+   - sincronização Recomendações / Times;
+   - filtros nas duas abas;
+   - contraste desktop/mobile;
+   - data/hora real;
+   - gráfico histórico dos 3 perfis;
+   - pontuação visível em cada ponto do gráfico;
+   - leitura complementar da Análise da rodada;
+   - estabilidade das renderizações.
    ========================================================= */
 
 
@@ -28,29 +26,21 @@ const CartolaIntegracaoFinal =
 
   const estado = {
 
-    inicializado:
-      false,
+    inicializado: false,
 
-    inicializando:
-      false,
+    inicializando: false,
 
-    recalculando:
-      false,
+    recalculando: false,
 
-    ultimaAtualizacao:
-      null,
+    ultimaAtualizacao: null,
 
-    erros:
-      [],
+    erros: [],
 
-    graficoHistoricoCarregado:
-      false,
+    graficoHistoricoCarregado: false,
 
-    timerReconstruirFiltros:
-      null,
+    timerReconstruirFiltros: null,
 
-    observer:
-      null
+    observer: null
 
   };
 
@@ -161,8 +151,7 @@ const CartolaIntegracaoFinal =
 
 
     if (
-      estado.erros.length >
-      20
+      estado.erros.length > 20
     ) {
 
       estado.erros.shift();
@@ -190,9 +179,7 @@ const CartolaIntegracaoFinal =
       );
 
 
-    if (
-      antigo
-    ) {
+    if (antigo) {
 
       antigo.remove();
 
@@ -213,7 +200,7 @@ const CartolaIntegracaoFinal =
 
 
       /* ===================================================
-         FILTROS — CONTRASTE E ESTABILIDADE
+         FILTROS
          =================================================== */
 
 
@@ -245,28 +232,13 @@ const CartolaIntegracaoFinal =
         background:
           linear-gradient(
             180deg,
-            rgba(
-              16,
-              48,
-              31,
-              .97
-            ),
-            rgba(
-              8,
-              28,
-              18,
-              .98
-            )
+            rgba(16, 48, 31, .97),
+            rgba(8, 28, 18, .98)
           )
           !important;
 
         border-color:
-          rgba(
-            72,
-            214,
-            139,
-            .28
-          )
+          rgba(72, 214, 139, .28)
           !important;
 
       }
@@ -290,12 +262,7 @@ const CartolaIntegracaoFinal =
       .ce-filter-dropdown > summary {
 
         border-color:
-          rgba(
-            255,
-            255,
-            255,
-            .14
-          )
+          rgba(255, 255, 255, .14)
           !important;
 
       }
@@ -304,12 +271,7 @@ const CartolaIntegracaoFinal =
       .ce-filter-dropdown-body {
 
         border-color:
-          rgba(
-            255,
-            255,
-            255,
-            .15
-          )
+          rgba(255, 255, 255, .15)
           !important;
 
       }
@@ -318,12 +280,7 @@ const CartolaIntegracaoFinal =
       .ce-filter-search::placeholder {
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .48
-          )
+          rgba(255, 255, 255, .48)
           !important;
 
       }
@@ -356,12 +313,7 @@ const CartolaIntegracaoFinal =
       .ce-filter-option:hover {
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .07
-          )
+          rgba(255, 255, 255, .07)
           !important;
 
       }
@@ -383,12 +335,7 @@ const CartolaIntegracaoFinal =
           !important;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .045
-          )
+          rgba(255, 255, 255, .045)
           !important;
 
       }
@@ -406,10 +353,6 @@ const CartolaIntegracaoFinal =
 
       }
 
-
-      /*
-       * GARANTE O FILTRO NAS DUAS ABAS.
-       */
 
       #times
       #ceFilterTeams,
@@ -469,12 +412,7 @@ const CartolaIntegracaoFinal =
           3px;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .55
-          );
+          rgba(255, 255, 255, .55);
 
         font-size:
           9px;
@@ -491,18 +429,13 @@ const CartolaIntegracaoFinal =
           10px;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .55
-          );
+          rgba(255, 255, 255, .55);
 
       }
 
 
       /* ===================================================
-         HISTÓRICO — GRÁFICO
+         HISTÓRICO
          =================================================== */
 
 
@@ -518,23 +451,13 @@ const CartolaIntegracaoFinal =
 
         border:
           1px solid
-          rgba(
-            255,
-            255,
-            255,
-            .08
-          );
+          rgba(255, 255, 255, .08);
 
         border-radius:
           16px;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .025
-          );
+          rgba(255, 255, 255, .025);
 
       }
 
@@ -580,12 +503,7 @@ const CartolaIntegracaoFinal =
           0;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .56
-          );
+          rgba(255, 255, 255, .56);
 
         font-size:
           11px;
@@ -629,12 +547,7 @@ const CartolaIntegracaoFinal =
           999px;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .045
-          );
+          rgba(255, 255, 255, .045);
 
         font-size:
           10px;
@@ -670,6 +583,9 @@ const CartolaIntegracaoFinal =
         overflow-y:
           hidden;
 
+        padding-top:
+          10px;
+
       }
 
 
@@ -682,10 +598,13 @@ const CartolaIntegracaoFinal =
           100%;
 
         min-width:
-          760px;
+          920px;
 
         height:
-          330px;
+          380px;
+
+        overflow:
+          visible;
 
       }
 
@@ -693,12 +612,7 @@ const CartolaIntegracaoFinal =
       .history-chart-grid {
 
         stroke:
-          rgba(
-            255,
-            255,
-            255,
-            .08
-          );
+          rgba(255, 255, 255, .08);
 
         stroke-width:
           1;
@@ -709,12 +623,7 @@ const CartolaIntegracaoFinal =
       .history-chart-axis-text {
 
         fill:
-          rgba(
-            255,
-            255,
-            255,
-            .48
-          );
+          rgba(255, 255, 255, .48);
 
         font-size:
           10px;
@@ -750,6 +659,64 @@ const CartolaIntegracaoFinal =
       }
 
 
+      /*
+       * NOVO:
+       * rótulo visível da pontuação.
+       */
+
+      .history-chart-value {
+
+        font-size:
+          9px;
+
+        font-weight:
+          800;
+
+        text-anchor:
+          middle;
+
+        paint-order:
+          stroke;
+
+        stroke:
+          #0b1d13;
+
+        stroke-width:
+          3px;
+
+        stroke-linejoin:
+          round;
+
+        pointer-events:
+          none;
+
+      }
+
+
+      .history-chart-value.conservador {
+
+        fill:
+          #67dfa0;
+
+      }
+
+
+      .history-chart-value.equilibrado {
+
+        fill:
+          #72b8ff;
+
+      }
+
+
+      .history-chart-value.agressivo {
+
+        fill:
+          #ffb45f;
+
+      }
+
+
       .history-evolution-cards {
 
         display:
@@ -758,10 +725,7 @@ const CartolaIntegracaoFinal =
         grid-template-columns:
           repeat(
             3,
-            minmax(
-              0,
-              1fr
-            )
+            minmax(0, 1fr)
           );
 
         gap:
@@ -780,23 +744,13 @@ const CartolaIntegracaoFinal =
 
         border:
           1px solid
-          rgba(
-            255,
-            255,
-            255,
-            .07
-          );
+          rgba(255, 255, 255, .07);
 
         border-radius:
           12px;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .025
-          );
+          rgba(255, 255, 255, .025);
 
       }
 
@@ -807,12 +761,7 @@ const CartolaIntegracaoFinal =
           block;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .52
-          );
+          rgba(255, 255, 255, .52);
 
         font-size:
           9px;
@@ -849,12 +798,7 @@ const CartolaIntegracaoFinal =
           3px;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .52
-          );
+          rgba(255, 255, 255, .52);
 
         font-size:
           10px;
@@ -870,12 +814,7 @@ const CartolaIntegracaoFinal =
           0;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .48
-          );
+          rgba(255, 255, 255, .48);
 
         font-size:
           10px;
@@ -887,7 +826,7 @@ const CartolaIntegracaoFinal =
 
 
       /* ===================================================
-         ANÁLISE — LEITURA RÁPIDA
+         ANÁLISE
          =================================================== */
 
 
@@ -901,23 +840,13 @@ const CartolaIntegracaoFinal =
 
         border:
           1px solid
-          rgba(
-            72,
-            214,
-            139,
-            .18
-          );
+          rgba(72, 214, 139, .18);
 
         border-radius:
           15px;
 
         background:
-          rgba(
-            28,
-            79,
-            49,
-            .15
-          );
+          rgba(28, 79, 49, .15);
 
       }
 
@@ -943,10 +872,7 @@ const CartolaIntegracaoFinal =
         grid-template-columns:
           repeat(
             2,
-            minmax(
-              0,
-              1fr
-            )
+            minmax(0, 1fr)
           );
 
         gap:
@@ -965,12 +891,7 @@ const CartolaIntegracaoFinal =
           10px;
 
         background:
-          rgba(
-            255,
-            255,
-            255,
-            .035
-          );
+          rgba(255, 255, 255, .035);
 
       }
 
@@ -1021,12 +942,7 @@ const CartolaIntegracaoFinal =
           3px;
 
         color:
-          rgba(
-            255,
-            255,
-            255,
-            .52
-          );
+          rgba(255, 255, 255, .52);
 
         font-size:
           10px;
@@ -1108,6 +1024,28 @@ const CartolaIntegracaoFinal =
         }
 
 
+        /*
+         * Mantém o gráfico largo no celular.
+         * O usuário desliza horizontalmente,
+         * permitindo que os valores continuem legíveis.
+         */
+
+        .history-chart-svg {
+
+          min-width:
+            1000px;
+
+        }
+
+
+        .history-chart-value {
+
+          font-size:
+            8px;
+
+        }
+
+
         .history-evolution-cards,
         .round-strategy-reading-grid {
 
@@ -1178,7 +1116,8 @@ const CartolaIntegracaoFinal =
 
       return true;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "atualizarRecomendacoes",
@@ -1246,7 +1185,8 @@ const CartolaIntegracaoFinal =
 
       }
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "renderizarEscalacoes",
@@ -1336,7 +1276,8 @@ const CartolaIntegracaoFinal =
 
       return resultado;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "recalcularTudo",
@@ -1346,7 +1287,8 @@ const CartolaIntegracaoFinal =
 
       return false;
 
-    } finally {
+    }
+    finally {
 
       estado.recalculando =
         false;
@@ -1447,7 +1389,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     FILTROS — GARANTIA NAS DUAS ABAS
+     FILTROS
      ======================================================= */
 
   function reconstruirFiltros(
@@ -1522,7 +1464,8 @@ const CartolaIntegracaoFinal =
 
             }
 
-          } catch (erro) {
+          }
+          catch (erro) {
 
             registrarErro(
               "reconstruirFiltros",
@@ -1571,7 +1514,8 @@ const CartolaIntegracaoFinal =
 
       return true;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "configurarFiltrosExclusao",
@@ -1587,7 +1531,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     DATA/HORA REAL
+     DATA/HORA
      ======================================================= */
 
   function formatarDataHoraBrasil(
@@ -1656,7 +1600,8 @@ const CartolaIntegracaoFinal =
           " às"
         );
 
-    } catch (_) {
+    }
+    catch (_) {
 
       return data
         .toLocaleString(
@@ -1794,7 +1739,8 @@ const CartolaIntegracaoFinal =
 
       return textoData;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "atualizarUltimaAtualizacao",
@@ -1810,7 +1756,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     RESULTADOS DE UMA RODADA
+     RESULTADOS HISTÓRICOS
      ======================================================= */
 
   async function buscarResultadosRodada(
@@ -1939,8 +1885,7 @@ const CartolaIntegracaoFinal =
             const pontuacao =
               (
                 pontuacaoRaw === null ||
-                pontuacaoRaw ===
-                  undefined ||
+                pontuacaoRaw === undefined ||
                 pontuacaoRaw === ""
               )
                 ? null
@@ -2000,11 +1945,10 @@ const CartolaIntegracaoFinal =
 
         }
 
-      } catch (_) {
+      }
+      catch (_) {
 
-        /*
-         * Tenta próxima fonte.
-         */
+        /* próxima fonte */
 
       }
 
@@ -2059,7 +2003,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     PONTUAÇÃO EFETIVA DO TIME
+     PONTUAÇÃO EFETIVA
      ======================================================= */
 
   function calcularPontuacaoEfetiva(
@@ -2116,13 +2060,8 @@ const CartolaIntegracaoFinal =
           );
 
 
-        /*
-         * Titular jogou.
-         */
-
         if (
-          realTitular
-            ?.entrouEmCampo
+          realTitular?.entrouEmCampo
         ) {
 
           total +=
@@ -2137,13 +2076,6 @@ const CartolaIntegracaoFinal =
 
         }
 
-
-        /*
-         * Titular não jogou:
-         *
-         * procura reserva elegível
-         * da mesma posição.
-         */
 
         const reserva =
           banco.find(
@@ -2186,8 +2118,7 @@ const CartolaIntegracaoFinal =
 
 
               return Boolean(
-                realReserva
-                  ?.entrouEmCampo
+                realReserva?.entrouEmCampo
               );
 
             }
@@ -2217,8 +2148,7 @@ const CartolaIntegracaoFinal =
 
           total +=
             numero(
-              realReserva
-                ?.pontuacao,
+              realReserva?.pontuacao,
               0
             );
 
@@ -2250,10 +2180,7 @@ const CartolaIntegracaoFinal =
 
 
     /*
-     * CAPITÃO:
-     *
-     * pontuação do capitão é duplicada
-     * somente se ele entrou em campo.
+     * Bônus do capitão.
      */
 
     const capitaoId =
@@ -2270,14 +2197,12 @@ const CartolaIntegracaoFinal =
 
     if (
       capitaoId &&
-      capitaoReal
-        ?.entrouEmCampo
+      capitaoReal?.entrouEmCampo
     ) {
 
       total +=
         numero(
-          capitaoReal
-            .pontuacao,
+          capitaoReal.pontuacao,
           0
         );
 
@@ -2318,14 +2243,11 @@ const CartolaIntegracaoFinal =
 
     const series = {
 
-      Conservador:
-        [],
+      Conservador: [],
 
-      Equilibrado:
-        [],
+      Equilibrado: [],
 
-      Agressivo:
-        []
+      Agressivo: []
 
     };
 
@@ -2382,10 +2304,8 @@ const CartolaIntegracaoFinal =
               series
             ).find(
               item =>
-                item
-                  .toLowerCase() ===
-                nome
-                  .toLowerCase()
+                item.toLowerCase() ===
+                nome.toLowerCase()
             );
 
 
@@ -2409,12 +2329,8 @@ const CartolaIntegracaoFinal =
                 resultados
               );
 
-          } else {
-
-            /*
-             * Fallback:
-             * usa a simulação histórica já calculada.
-             */
+          }
+          else {
 
             efetiva = {
 
@@ -2443,8 +2359,7 @@ const CartolaIntegracaoFinal =
               efetiva.pontuacao,
 
             substituicoes:
-              efetiva
-                .substituicoes
+              efetiva.substituicoes
 
           });
 
@@ -2539,31 +2454,36 @@ const CartolaIntegracaoFinal =
       );
 
 
+    /*
+     * Aumentamos o espaçamento horizontal
+     * para os rótulos não se comprimirem.
+     */
+
     const largura =
       Math.max(
-        860,
+        1000,
         rodadas.length *
-        42
+        54
       );
 
 
     const altura =
-      330;
+      380;
 
 
     const margem = {
 
       topo:
-        20,
+        42,
 
       direita:
-        22,
+        30,
 
       baixo:
-        36,
+        42,
 
       esquerda:
-        48
+        50
 
     };
 
@@ -2596,12 +2516,12 @@ const CartolaIntegracaoFinal =
 
     const folga =
       Math.max(
-        5,
+        8,
         (
           maximo -
           minimo
         ) *
-        .08
+        .12
       );
 
 
@@ -2630,8 +2550,7 @@ const CartolaIntegracaoFinal =
         (
           rodadas.length <= 1
 
-            ? internoW /
-              2
+            ? internoW / 2
 
             : (
                 indice /
@@ -2683,6 +2602,40 @@ const CartolaIntegracaoFinal =
 
       Agressivo:
         "#f2a45a"
+
+    };
+
+
+    const classes = {
+
+      Conservador:
+        "conservador",
+
+      Equilibrado:
+        "equilibrado",
+
+      Agressivo:
+        "agressivo"
+
+    };
+
+
+    /*
+     * Cada estratégia recebe um deslocamento
+     * vertical diferente para diminuir
+     * sobreposição entre os valores.
+     */
+
+    const deslocamentos = {
+
+      Conservador:
+        -10,
+
+      Equilibrado:
+        16,
+
+      Agressivo:
+        -23
 
     };
 
@@ -2754,8 +2707,7 @@ const CartolaIntegracaoFinal =
 
 
     const passoLabel =
-      rodadas.length >
-      18
+      rodadas.length > 18
         ? 2
         : 1;
 
@@ -2844,6 +2796,10 @@ const CartolaIntegracaoFinal =
               );
 
 
+          /*
+           * Linha.
+           */
+
           linhas += `
 
             <polyline
@@ -2857,6 +2813,18 @@ const CartolaIntegracaoFinal =
 
           lista.forEach(
             item => {
+
+              const px =
+                x(
+                  item.rodada
+                );
+
+
+              const py =
+                y(
+                  item.pontuacao
+                );
+
 
               const substituicoes =
                 item
@@ -2880,21 +2848,17 @@ const CartolaIntegracaoFinal =
                   : "Sem substituições";
 
 
+              /*
+               * Ponto.
+               */
+
               linhas += `
 
                 <circle
                   class="history-chart-dot"
-                  cx="${
-                    x(
-                      item.rodada
-                    )
-                  }"
-                  cy="${
-                    y(
-                      item.pontuacao
-                    )
-                  }"
-                  r="4"
+                  cx="${px}"
+                  cy="${py}"
+                  r="4.5"
                   fill="${cores[nome]}"
                 >
 
@@ -2906,6 +2870,36 @@ const CartolaIntegracaoFinal =
                   </title>
 
                 </circle>
+
+              `;
+
+
+              /*
+               * NOVO:
+               * pontuação sempre visível.
+               */
+
+              linhas += `
+
+                <text
+                  class="
+                    history-chart-value
+                    ${classes[nome]}
+                  "
+                  x="${px}"
+                  y="${
+                    py +
+                    deslocamentos[nome]
+                  }"
+                >
+                  ${
+                    item
+                      .pontuacao
+                      .toFixed(
+                        1
+                      )
+                  }
+                </text>
 
               `;
 
@@ -2944,7 +2938,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     RESUMO DE UMA SÉRIE
+     RESUMO DAS SÉRIES
      ======================================================= */
 
   function calcularResumoSerie(
@@ -2960,14 +2954,11 @@ const CartolaIntegracaoFinal =
 
       return {
 
-        media:
-          0,
+        media: 0,
 
-        total:
-          0,
+        total: 0,
 
-        melhor:
-          0
+        melhor: 0
 
       };
 
@@ -3015,7 +3006,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     RENDERIZA GRÁFICO HISTÓRICO
+     GRÁFICO HISTÓRICO
      ======================================================= */
 
   async function renderizarGraficoHistorico() {
@@ -3104,7 +3095,8 @@ const CartolaIntegracaoFinal =
               toolbar
             );
 
-        } else {
+        }
+        else {
 
           secao.prepend(
             bloco
@@ -3226,11 +3218,13 @@ const CartolaIntegracaoFinal =
             </h3>
 
             <p>
+
               Pontuação real por rodada,
               considerando capitão e
               substituição por reserva da
               mesma posição quando o titular
               não entrou em campo.
+
             </p>
 
           </div>
@@ -3275,7 +3269,11 @@ const CartolaIntegracaoFinal =
         </div>
 
 
-        <div class="history-chart-wrap">
+        <div
+          class="
+            history-chart-wrap
+          "
+        >
 
           ${
             criarSvgHistorico(
@@ -3297,12 +3295,20 @@ const CartolaIntegracaoFinal =
         </div>
 
 
-        <p class="history-chart-note">
+        <p
+          class="
+            history-chart-note
+          "
+        >
 
-          Quando a base histórica da rodada
-          informa que um titular não entrou
-          em campo, o cálculo procura o
-          reserva elegível da mesma posição.
+          Os números exibidos junto a cada
+          ponto representam a pontuação real
+          da estratégia naquela rodada.
+
+          Quando a base histórica informa
+          que um titular não entrou em campo,
+          o cálculo procura o reserva
+          elegível da mesma posição.
 
           O bônus do capitão só é aplicado
           quando o próprio capitão entrou
@@ -3320,7 +3326,8 @@ const CartolaIntegracaoFinal =
 
       return true;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "renderizarGraficoHistorico",
@@ -3336,7 +3343,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     ANÁLISE DA RODADA — LEITURA RÁPIDA
+     ANÁLISE DA RODADA
      ======================================================= */
 
   function atualizarLeituraAnalise() {
@@ -3367,8 +3374,7 @@ const CartolaIntegracaoFinal =
 
 
     if (
-      cards.length <
-      4
+      cards.length < 4
     ) {
 
       return false;
@@ -3439,9 +3445,7 @@ const CartolaIntegracaoFinal =
         );
 
 
-      if (
-        resumo
-      ) {
+      if (resumo) {
 
         resumo
           .insertAdjacentElement(
@@ -3486,6 +3490,7 @@ const CartolaIntegracaoFinal =
                 >
 
                   <span>
+
                     ${
                       escaparHtml(
                         item.titulo
@@ -3493,9 +3498,11 @@ const CartolaIntegracaoFinal =
                         "Indicador"
                       )
                     }
+
                   </span>
 
                   <strong>
+
                     ${
                       escaparHtml(
                         item.valor
@@ -3503,9 +3510,11 @@ const CartolaIntegracaoFinal =
                         "--"
                       )
                     }
+
                   </strong>
 
                   <small>
+
                     ${
                       escaparHtml(
                         item.detalhe
@@ -3513,6 +3522,7 @@ const CartolaIntegracaoFinal =
                         "Aguardando dados"
                       )
                     }
+
                   </small>
 
                 </div>
@@ -3535,7 +3545,7 @@ const CartolaIntegracaoFinal =
 
 
   /* =======================================================
-     TRATA ABA ATIVA
+     ABA ATIVA
      ======================================================= */
 
   function tratarAbaAtiva(
@@ -3583,7 +3593,8 @@ const CartolaIntegracaoFinal =
             window
               .renderizarHistorico();
 
-          } catch (_) {}
+          }
+          catch (_) {}
 
         }
 
@@ -3617,7 +3628,8 @@ const CartolaIntegracaoFinal =
                 )
             );
 
-        } else {
+        }
+        else {
 
           setTimeout(
             atualizarLeituraAnalise,
@@ -3675,9 +3687,7 @@ const CartolaIntegracaoFinal =
 
               const aba =
                 texto(
-                  botao
-                    .dataset
-                    .tab
+                  botao.dataset.tab
                 );
 
 
@@ -3987,7 +3997,8 @@ const CartolaIntegracaoFinal =
         problemas
       );
 
-    } else {
+    }
+    else {
 
       console.info(
         "Interface integrada sem falhas críticas visíveis."
@@ -4002,8 +4013,7 @@ const CartolaIntegracaoFinal =
     return {
 
       aprovado:
-        problemas.length ===
-        0,
+        problemas.length === 0,
 
       problemas,
 
@@ -4025,8 +4035,7 @@ const CartolaIntegracaoFinal =
       estado.inicializando
     ) {
 
-      return estado
-        .inicializado;
+      return estado.inicializado;
 
     }
 
@@ -4045,12 +4054,6 @@ const CartolaIntegracaoFinal =
 
       configurarObservadorDom();
 
-
-      /*
-       * Dá tempo para app.js e os módulos
-       * principais terminarem a primeira
-       * renderização.
-       */
 
       await esperar(
         350
@@ -4098,7 +4101,8 @@ const CartolaIntegracaoFinal =
 
       return true;
 
-    } catch (erro) {
+    }
+    catch (erro) {
 
       registrarErro(
         "inicializar",
@@ -4108,7 +4112,8 @@ const CartolaIntegracaoFinal =
 
       return false;
 
-    } finally {
+    }
+    finally {
 
       estado.inicializando =
         false;
