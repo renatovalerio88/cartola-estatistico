@@ -89,6 +89,7 @@
         Histórico
       </span>
     </button>
+
     <button
       class="menu-item"
       type="button"
@@ -439,18 +440,25 @@
           </div>
 
 
-          <div class="empty-state">
+          <div
+            id="suggestedLineupsGrid"
+            class="suggested-lineups-container"
+          >
 
-            <strong>
-              Escalações em construção
-            </strong>
+            <div class="empty-state">
 
-            <p>
-              Cada escalação terá formação,
-              custo, projeção, piso, teto,
-              capitão, banco, Reserva de Luxo
-              e justificativas.
-            </p>
+              <strong>
+                Escalações em construção
+              </strong>
+
+              <p>
+                Cada escalação terá formação,
+                custo, projeção, piso, teto,
+                capitão, banco, Reserva de Luxo
+                e justificativas.
+              </p>
+
+            </div>
 
           </div>
 
@@ -791,7 +799,7 @@
                     queda de rendimento.
                   </p>
 
-                  <h4>
+                                  <h4>
                     Dados considerados
                   </h4>
 
@@ -1591,7 +1599,7 @@
 
                 </summary>
 
-                <div class="methodology-detail-content">
+                                <div class="methodology-detail-content">
 
                   <h4>
                     Risco
@@ -2391,7 +2399,8 @@
             <div class="methodology-section-header">
 
               <span class="methodology-section-number">
-                07
+
+                           07
               </span>
 
               <div>
@@ -3019,78 +3028,84 @@
           </div>
 
         </section>
+
+
         <!-- =================================================
-     ABA HISTÓRICO
-     ================================================= -->
+             ABA HISTÓRICO
+             ================================================= -->
 
-<section
-  class="tab-content"
-  id="historico"
->
+        <section
+          class="tab-content"
+          id="historico"
+        >
 
-  <div class="section-header">
+          <div class="section-header">
 
-    <div>
+            <div>
 
-      <p class="section-label">
-        BACKTEST DO MODELO
-      </p>
+              <p class="section-label">
+                BACKTEST DO MODELO
+              </p>
 
-      <h2>
-        Histórico das projeções
-      </h2>
+              <h2>
+                Histórico das projeções
+              </h2>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-  <div class="history-toolbar">
 
-    <label>
+          <div class="history-toolbar">
 
-      Rodada
+            <label>
 
-      <select id="historyRound"></select>
+              Rodada
 
-    </label>
+              <select id="historyRound"></select>
 
-    <label>
+            </label>
 
-      Posição
+            <label>
 
-      <select id="historyPosition"></select>
+              Posição
 
-    </label>
+              <select id="historyPosition"></select>
 
-  </div>
+            </label>
 
-  <div
-    class="history-summary"
-    id="historySummary"
-  >
-  </div>
+          </div>
 
-  <div
-    id="historyGrid"
-  >
 
-    <div class="empty-state">
+          <div
+            class="history-summary"
+            id="historySummary"
+          >
+          </div>
 
-      <strong>
-        Nenhum backtest disponível
-      </strong>
 
-      <p>
-        Aqui serão exibidas as projeções do modelo,
-        os resultados reais da rodada e as métricas
-        de desempenho para evolução dos pesos.
-      </p>
+          <div
+            id="historyGrid"
+          >
 
-    </div>
+            <div class="empty-state">
 
-  </div>
+              <strong>
+                Nenhum backtest disponível
+              </strong>
 
-</section>
+              <p>
+                Aqui serão exibidas as projeções do modelo,
+                os resultados reais da rodada e as métricas
+                de desempenho para evolução dos pesos.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
       </main>
 
     </div>
@@ -3108,47 +3123,48 @@
   >
   </div>
 
-    <script src="js/utils.js"></script>
-    
-    <script src="js/ui.js"></script>
-        
-    <script src="js/motor/pesos.js"></script>
-    <script src="js/motor/estatistico.js"></script>
-    <script src="js/motor/score.js"></script>
-    <script src="js/motor/metricas.js"></script>
-    <script src="js/motor/forma.js"></script>
-    <script src="js/motor/forma_v2.js"></script>
-    <script src="js/motor/regularidade.js"></script>
-    <script src="js/motor/piso_teto.js"></script>
-    <script src="js/motor/confianca.js"></script>
-    <script src="js/motor/risco.js"></script>
-    <script src="js/motor/calibracao.js"></script>
-    <script src="js/motor/calibracao-posicao.js"></script>
-    <script src="js/motor/projecao.js"></script>
-    <script src="js/motor/probabilidade.js"></script>
-    <script src="js/capitao.js"></script>
-    <script src="js/motor/reserva_luxo.js"></script>
-    <script src="js/motor/perfis.js"></script>
-    <script src="js/motor/escalacao.js"></script>
-    <script src="js/motor/calculadora.js"></script>
-    <script src="js/motor/adequacao-rodada.js"></script>
-    <script src="js/motor/viabilidade.js"></script>
-    
-    <script src="js/recomendacoes/historico.js"></script>
-    <script src="js/recomendacoes/dados.js"></script>
-    <script src="js/recomendacoes/ranking.js"></script>
-    <script src="js/recomendacoes/cards.js"></script>
-    
-    <script src="js/escalacoes/dados.js"></script>
-    <script src="js/escalacoes/cards.js"></script>
-    
-    <script src="js/historico/dados.js"></script>
-    <script src="js/historico/cards.js"></script>
-    <script src="js/historico/filtros.js"></script>
-    <script src="js/historico/metricas.js"></script>
-    
-    <script src="js/app.js"></script>
+
+  <script src="js/utils.js"></script>
+
+  <script src="js/ui.js"></script>
+
+  <script src="js/motor/pesos.js"></script>
+  <script src="js/motor/estatistico.js"></script>
+  <script src="js/motor/score.js"></script>
+  <script src="js/motor/metricas.js"></script>
+  <script src="js/motor/forma.js"></script>
+  <script src="js/motor/forma_v2.js"></script>
+  <script src="js/motor/regularidade.js"></script>
+  <script src="js/motor/piso_teto.js"></script>
+  <script src="js/motor/confianca.js"></script>
+  <script src="js/motor/risco.js"></script>
+  <script src="js/motor/calibracao.js"></script>
+  <script src="js/motor/calibracao-posicao.js"></script>
+  <script src="js/motor/projecao.js"></script>
+  <script src="js/motor/probabilidade.js"></script>
+  <script src="js/capitao.js"></script>
+  <script src="js/motor/reserva_luxo.js"></script>
+  <script src="js/motor/perfis.js"></script>
+  <script src="js/motor/escalacao.js"></script>
+  <script src="js/motor/calculadora.js"></script>
+  <script src="js/motor/adequacao-rodada.js"></script>
+  <script src="js/motor/viabilidade.js"></script>
+
+  <script src="js/recomendacoes/historico.js"></script>
+  <script src="js/recomendacoes/dados.js"></script>
+  <script src="js/recomendacoes/ranking.js"></script>
+  <script src="js/recomendacoes/cards.js"></script>
+
+  <script src="js/escalacoes/dados.js"></script>
+  <script src="js/escalacoes/cards.js"></script>
+
+  <script src="js/historico/dados.js"></script>
+  <script src="js/historico/cards.js"></script>
+  <script src="js/historico/filtros.js"></script>
+  <script src="js/historico/metricas.js"></script>
+
+  <script src="js/app.js"></script>
 
 
 </body>
-</html>
+</html>     
