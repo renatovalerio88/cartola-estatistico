@@ -2,15 +2,18 @@
 ======================================================
 CARTOLA ESTATÍSTICO
 
-Coleta histórica completa das rodadas
+Coleta de dados públicos da rodada atual.
 
 Gera:
 
+data/api/status.json
+
 data/api/rodada-XX/
-    jogadores.json
+    mercado.json
     partidas.json
     pontuados.json
-    mercado.json
+    jogadores.json
+    resumo.json
 
 ======================================================
 """
@@ -19,253 +22,895 @@ from __future__ import annotations
 
 import json
 import sys
+
+from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError, URLError
+
+from urllib.error import (
+    HTTPError,
+    URLError,
+)
+
+from urllib.request import (
+    Request,
+    urlopen,
+)
 
 
 API_BASE = "https://api.cartolafc.globo.com"
 
 
-PASTA_RAIZ = Path(__file__).resolve().parent.parent
+PASTA_RAIZ = (
+    Path(__file__)
+    .resolve()
+    .parent
+    .parent
+)
 
-PASTA_API = (
+
+PASTA_DADOS = (
     PASTA_RAIZ
-    /
-    "data"
-    /
-    "api"
+    / "data"
+    / "api"
 )
 
 
 CABECALHOS = {
-    "User-Agent": "Mozilla/5.0",
-    "Accept": "application/json",
+
+    "User-Agent":
+        (
+            "Mozilla/5.0 "
+            "(Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 "
+            "Chrome/150 Safari/537.36"
+        ),
+
+    "Accept":
+        "application/json",
+
 }
 
 
 POSICOES = {
+
     1: "GOL",
+
     2: "LAT",
+
     3: "ZAG",
+
     4: "MEI",
+
     5: "ATA",
+
     6: "TEC",
+
 }
 
 
+STATUS_PROVAVEL = 7
 
-def buscar_json(endpoint: str) -> Any:
 
-    url = API_BASE + endpoint
+STATUS_INDISPONIVEIS = {
+    2,
+    3,
+    5,
+    6,
+}
+
+
+# ======================================================
+# API
+# ======================================================
+
+
+def buscar_json(
+    endpoint: str,
+    obrigatorio: bool = True,
+) -> Any:
+
+    url = (
+        f"{API_BASE}{endpoint}"
+    )
+
 
     requisicao = Request(
+
         url,
-        headers=CABECALHOS
+
+        headers=CABECALHOS,
+
+        method="GET",
+
     )
+
+
+    mensagem = ""
+
 
     try:
 
         with urlopen(
             requisicao,
-            timeout=30
+            timeout=30,
         ) as resposta:
 
+            conteudo = (
+                resposta
+                .read()
+                .decode(
+                    "utf-8"
+                )
+            )
+
+
             return json.loads(
-                resposta.read()
-                .decode("utf-8")
+                conteudo
             )
 
 
     except HTTPError as erro:
 
-        raise RuntimeError(
-            f"Erro HTTP {erro.code}: {url}"
+        mensagem = (
+
+            f"Erro HTTP {erro.code} "
+            f"ao consultar {url}"
+
         )
 
 
     except URLError as erro:
 
-        raise RuntimeError(
-            f"Erro conexão: {erro.reason}"
+        mensagem = (
+
+            f"Erro de conexão "
+            f"ao consultar {url}: "
+            f"{erro.reason}"
+
         )
 
+
+    except json.JSONDecodeError:
+
+        mensagem = (
+
+            f"A API retornou JSON "
+            f"inválido em {url}"
+
+        )
+
+
+    if obrigatorio:
+
+        raise RuntimeError(
+            mensagem
+        )
+
+
+    print(
+        f"AVISO: {mensagem}"
+    )
+
+
+    return None
+
+
+# ======================================================
+# ARQUIVOS
+# ======================================================
 
 
 def salvar_json(
     caminho: Path,
-    dados: Any
-):
+    dados: Any,
+) -> None:
 
     caminho.parent.mkdir(
+
         parents=True,
-        exist_ok=True
+
+        exist_ok=True,
+
     )
+
 
     caminho.write_text(
 
         json.dumps(
+
             dados,
+
             ensure_ascii=False,
-            indent=2
+
+            indent=2,
+
         ),
 
-        encoding="utf-8"
+        encoding="utf-8",
+
     )
 
 
+    print(
 
-def buscar_mercado_historico(
-    rodada:int
-):
+        "Arquivo salvo: "
+        f"{caminho.relative_to(PASTA_RAIZ)}"
+
+    )
+
+
+# ======================================================
+# RODADA
+# ======================================================
+
+
+def obter_numero_rodada(
+    status: dict[str, Any],
+) -> int:
+
+    rodada = (
+
+        status.get(
+            "rodada_atual"
+        )
+
+        or
+
+        status.get(
+            "rodada"
+        )
+
+    )
+
 
     try:
 
-        mercado = buscar_json(
-            f"/atletas/mercado/{rodada}"
+        return int(
+            rodada
         )
 
 
-        # Algumas rodadas antigas retornam
-        # resposta válida, porém sem atletas.
-        # Nesse caso precisamos usar fallback.
+    except (
+        TypeError,
+        ValueError,
+    ) as erro:
 
-        if (
-            not isinstance(
-                mercado,
-                dict
-            )
-            or not mercado.get("atletas")
-        ):
+        raise RuntimeError(
 
-            raise RuntimeError(
-                "Mercado histórico sem atletas"
-            )
+            "Não foi possível "
+            "identificar a rodada atual."
+
+        ) from erro
 
 
-        return mercado
+# ======================================================
+# CLUBES
+# ======================================================
 
 
-    except Exception:
-
-        print(
-            f"Mercado histórico rodada {rodada} incompleto. "
-            "Usando mercado atual."
-        )
-
-
-        return buscar_json(
-            "/atletas/mercado"
-        )
-
-
-
-def buscar_pontuados_historico(
-    rodada:int
-):
+def para_inteiro(
+    valor: Any,
+) -> int | None:
 
     try:
 
-        return buscar_json(
-            f"/atletas/pontuados/{rodada}"
+        return int(
+            valor
         )
 
-    except Exception:
+    except (
+        TypeError,
+        ValueError,
+    ):
 
-        return buscar_json(
-            "/atletas/pontuados"
-        )
-
+        return None
 
 
 def indexar_clubes(
-    mercado
-):
+    mercado: dict[str, Any],
+) -> dict[int, dict[str, Any]]:
 
-    clubes = {}
-
-    if not isinstance(
-        mercado,
-        dict
-    ):
-        return clubes
-
-
-    lista = mercado.get(
-        "clubes"
+    clubes = (
+        mercado.get(
+            "clubes",
+            {},
+        )
+        or {}
     )
 
 
+    resultado: dict[
+        int,
+        dict[str, Any]
+    ] = {}
+
+
     if not isinstance(
-        lista,
-        dict
+        clubes,
+        dict,
     ):
-        return clubes
+
+        return resultado
 
 
-    for chave, valor in lista.items():
+    for clube_id, clube in clubes.items():
 
-        try:
+        id_numerico = para_inteiro(
+            clube_id
+        )
 
-            clubes[
-                int(chave)
-            ] = valor
 
-        except:
+        if (
+            id_numerico is None
+            or not isinstance(
+                clube,
+                dict,
+            )
+        ):
 
             continue
 
 
-    return clubes
+        resultado[
+            id_numerico
+        ] = clube
 
-def normalizar_jogadores(
-    mercado,
-    pontuados,
-    rodada
-):
+
+    return resultado
+
+
+def indexar_posicoes(
+    mercado: dict[str, Any],
+) -> dict[int, dict[str, Any]]:
+
+    posicoes = (
+        mercado.get(
+            "posicoes",
+            {},
+        )
+        or {}
+    )
+
+
+    resultado: dict[
+        int,
+        dict[str, Any]
+    ] = {}
+
+
+    if not isinstance(
+        posicoes,
+        dict,
+    ):
+
+        return resultado
+
+
+    for posicao_id, posicao in posicoes.items():
+
+        id_numerico = para_inteiro(
+            posicao_id
+        )
+
+
+        if (
+            id_numerico is None
+            or not isinstance(
+                posicao,
+                dict,
+            )
+        ):
+
+            continue
+
+
+        resultado[
+            id_numerico
+        ] = posicao
+
+
+    return resultado
+
+
+def obter_nome_clube(
+    clube: dict[str, Any] | None,
+) -> str:
+
+    if not clube:
+
+        return ""
+
+
+    return str(
+
+        clube.get(
+            "nome"
+        )
+
+        or
+
+        ""
+
+    )
+
+
+def obter_sigla_clube(
+    clube: dict[str, Any] | None,
+) -> str:
+
+    if not clube:
+
+        return ""
+
+
+    return str(
+
+        clube.get(
+            "abreviacao"
+        )
+
+        or
+
+        clube.get(
+            "nome"
+        )
+
+        or
+
+        ""
+
+    )
+
+
+# ======================================================
+# PARTIDAS
+# ======================================================
+
+
+def extrair_lista_partidas(
+    partidas: Any,
+) -> list[dict[str, Any]]:
+
+    if isinstance(
+        partidas,
+        list,
+    ):
+
+        return [
+
+            partida
+
+            for partida in partidas
+
+            if isinstance(
+                partida,
+                dict,
+            )
+
+        ]
+
+
+    if isinstance(
+        partidas,
+        dict,
+    ):
+
+        lista = partidas.get(
+            "partidas"
+        )
+
+
+        if isinstance(
+            lista,
+            list,
+        ):
+
+            return [
+
+                partida
+
+                for partida in lista
+
+                if isinstance(
+                    partida,
+                    dict,
+                )
+
+            ]
+
+
+    return []
+
+
+def obter_id_clube_casa(
+    partida: dict[str, Any],
+) -> int | None:
+
+    return para_inteiro(
+
+        partida.get(
+            "clube_casa_id"
+        )
+
+        or
+
+        partida.get(
+            "clubeCasaId"
+        )
+
+        or
+
+        partida.get(
+            "mandante_id"
+        )
+
+    )
+
+
+def obter_id_clube_visitante(
+    partida: dict[str, Any],
+) -> int | None:
+
+    return para_inteiro(
+
+        partida.get(
+            "clube_visitante_id"
+        )
+
+        or
+
+        partida.get(
+            "clubeVisitanteId"
+        )
+
+        or
+
+        partida.get(
+            "visitante_id"
+        )
+
+    )
+
+
+def obter_data_partida(
+    partida: dict[str, Any],
+) -> Any:
+
+    return (
+
+        partida.get(
+            "partida_data"
+        )
+
+        or
+
+        partida.get(
+            "data"
+        )
+
+        or
+
+        partida.get(
+            "data_hora"
+        )
+
+        or
+
+        partida.get(
+            "inicio"
+        )
+
+    )
+
+
+def criar_contexto_partidas(
+    partidas: Any,
+    clubes: dict[int, dict[str, Any]],
+) -> dict[int, dict[str, Any]]:
+
+    resultado: dict[
+        int,
+        dict[str, Any]
+    ] = {}
+
+
+    for partida in extrair_lista_partidas(
+        partidas
+    ):
+
+        clube_casa_id = (
+            obter_id_clube_casa(
+                partida
+            )
+        )
+
+
+        clube_visitante_id = (
+            obter_id_clube_visitante(
+                partida
+            )
+        )
+
+
+        if (
+            clube_casa_id is None
+            or clube_visitante_id is None
+        ):
+
+            continue
+
+
+        clube_casa = clubes.get(
+            clube_casa_id,
+            {},
+        )
+
+
+        clube_visitante = clubes.get(
+            clube_visitante_id,
+            {},
+        )
+
+
+        dados_comuns = {
+
+            "partidaId":
+                (
+                    partida.get(
+                        "partida_id"
+                    )
+                    or
+                    partida.get(
+                        "id"
+                    )
+                ),
+
+            "local":
+                (
+                    partida.get(
+                        "local"
+                    )
+                    or ""
+                ),
+
+            "dataPartida":
+                obter_data_partida(
+                    partida
+                ),
+
+            "partidaValida":
+                partida.get(
+                    "valida"
+                ),
+
+        }
+
+
+        resultado[
+            clube_casa_id
+        ] = {
+
+            **dados_comuns,
+
+            "mando":
+                "casa",
+
+            "adversarioId":
+                clube_visitante_id,
+
+            "adversario":
+                obter_nome_clube(
+                    clube_visitante
+                ),
+
+            "siglaAdversario":
+                obter_sigla_clube(
+                    clube_visitante
+                ),
+
+        }
+
+
+        resultado[
+            clube_visitante_id
+        ] = {
+
+            **dados_comuns,
+
+            "mando":
+                "fora",
+
+            "adversarioId":
+                clube_casa_id,
+
+            "adversario":
+                obter_nome_clube(
+                    clube_casa
+                ),
+
+            "siglaAdversario":
+                obter_sigla_clube(
+                    clube_casa
+                ),
+
+        }
+
+
+    return resultado
+
+
+# ======================================================
+# PONTUADOS
+# ======================================================
+
+
+def indexar_pontuados(
+    pontuados: Any,
+) -> dict[Any, dict[str, Any]]:
+
+    if not isinstance(
+        pontuados,
+        dict,
+    ):
+
+        return {}
+
+
+    atletas = (
+        pontuados.get(
+            "atletas",
+            {},
+        )
+        or {}
+    )
+
+
+    return (
+        atletas
+        if isinstance(
+            atletas,
+            dict,
+        )
+        else {}
+    )
+
+
+def obter_pontuacao_atleta(
+    pontuacoes: dict[Any, dict[str, Any]],
+    atleta_id: Any,
+) -> dict[str, Any]:
+
+    return (
+
+        pontuacoes.get(
+            str(
+                atleta_id
+            )
+        )
+
+        or
+
+        pontuacoes.get(
+            atleta_id
+        )
+
+        or
+
+        {}
+
+    )
+
+
+# ======================================================
+# TITULARIDADE
+# ======================================================
+
+
+def estimar_titularidade(
+    status_id: Any,
+) -> float | None:
+
+    status = para_inteiro(
+        status_id
+    )
+
+
+    if status == STATUS_PROVAVEL:
+
+        return 95.0
+
+
+    if status in STATUS_INDISPONIVEIS:
+
+        return 10.0
+
+
+    return None
+
+
+def estimar_minutos(
+    status_id: Any,
+) -> float | None:
+
+    status = para_inteiro(
+        status_id
+    )
+
+
+    if status == STATUS_PROVAVEL:
+
+        return 85.0
+
+
+    if status in STATUS_INDISPONIVEIS:
+
+        return 10.0
+
+
+    return None
+
+
+# ======================================================
+# NORMALIZAÇÃO
+# ======================================================
+
+
+def normalizar_atletas(
+    mercado: dict[str, Any],
+    pontuados: dict[str, Any] | None,
+    partidas: Any,
+    rodada: int,
+) -> list[dict[str, Any]]:
+
+    atletas = (
+        mercado.get(
+            "atletas",
+            [],
+        )
+        or []
+    )
+
 
     clubes = indexar_clubes(
         mercado
     )
 
 
-    pontuacoes = {}
+    posicoes_api = indexar_posicoes(
+        mercado
+    )
 
-    if isinstance(
-        pontuados,
-        dict
-    ):
 
-        pontuacoes = (
-            pontuados.get(
-                "atletas",
-                {}
-            )
-            or {}
+    contexto_partidas = (
+        criar_contexto_partidas(
+            partidas,
+            clubes,
         )
+    )
 
 
-    jogadores = []
-
-
-    atletas = []
-
-    if isinstance(
-        mercado,
-        dict
-    ):
-
-        atletas = (
-            mercado.get(
-                "atletas",
-                []
-            )
-            or []
+    pontuacoes = (
+        indexar_pontuados(
+            pontuados
         )
+    )
+
+
+    jogadores: list[
+        dict[str, Any]
+    ] = []
 
 
     for atleta in atletas:
+
+        if not isinstance(
+            atleta,
+            dict,
+        ):
+
+            continue
+
 
         atleta_id = atleta.get(
             "atleta_id"
@@ -273,74 +918,153 @@ def normalizar_jogadores(
 
 
         if atleta_id is None:
+
             continue
 
 
+        posicao_id = para_inteiro(
+
+            atleta.get(
+                "posicao_id"
+            )
+
+        )
+
+
+        clube_id = para_inteiro(
+
+            atleta.get(
+                "clube_id"
+            )
+
+        )
+
+
+        clube = clubes.get(
+            clube_id,
+            {},
+        )
+
+
+        posicao_api = (
+            posicoes_api.get(
+                posicao_id,
+                {},
+            )
+        )
+
+
         pontuacao = (
-            pontuacoes.get(
-                str(atleta_id),
-                {}
+            obter_pontuacao_atleta(
+                pontuacoes,
+                atleta_id,
             )
-            or {}
         )
 
 
-        clube = (
-            clubes.get(
-                atleta.get(
-                    "clube_id"
-                ),
-                {}
+        contexto = (
+            contexto_partidas.get(
+                clube_id,
+                {},
             )
-            or {}
         )
 
 
-        jogadores.append({
+        codigo_posicao = (
 
-            "id": atleta_id,
+            POSICOES.get(
+                posicao_id
+            )
 
-            "rodada": rodada,
+            or
 
-            "nome": atleta.get(
-                "nome"
-            ),
+            str(
+                posicao_api.get(
+                    "abreviacao"
+                )
+                or ""
+            ).upper()
 
-            "apelido": atleta.get(
-                "apelido"
-            ),
+        )
 
-            "foto": atleta.get(
-                "foto"
-            ),
 
-            "posicao": POSICOES.get(
+        status_id = atleta.get(
+            "status_id"
+        )
+
+
+        scouts = (
+
+            pontuacao.get(
+                "scout"
+            )
+
+            or
+
+            atleta.get(
+                "scout"
+            )
+
+            or
+
+            {}
+
+        )
+
+
+        jogador = {
+
+            "id":
+                atleta_id,
+
+            "rodada":
+                rodada,
+
+            "nome":
                 atleta.get(
-                    "posicao_id"
+                    "nome"
                 ),
-                ""
-            ),
+
+            "apelido":
+                atleta.get(
+                    "apelido"
+                ),
+
+            "foto":
+                atleta.get(
+                    "foto"
+                ),
+
+            "posicao":
+                codigo_posicao,
 
             "posicaoId":
-                atleta.get(
-                    "posicao_id"
-                ),
+                posicao_id,
+
+            "clubeId":
+                clube_id,
 
             "clube":
-                clube.get(
-                    "nome",
-                    ""
+                obter_nome_clube(
+                    clube
                 ),
 
             "siglaClube":
-                clube.get(
-                    "abreviacao",
-                    ""
+                obter_sigla_clube(
+                    clube
                 ),
+
+            "statusId":
+                status_id,
 
             "preco":
                 atleta.get(
                     "preco_num"
+                ),
+
+            "variacao":
+                atleta.get(
+                    "variacao_num"
                 ),
 
             "media":
@@ -353,142 +1077,339 @@ def normalizar_jogadores(
                     "jogos_num"
                 ),
 
+            "pontosUltimaRodada":
+                atleta.get(
+                    "pontos_num"
+                ),
+
             "pontuacaoReal":
-                pontuacao.get(
-                    "pontuacao"
+                (
+                    pontuacao.get(
+                        "pontuacao"
+                    )
+                    if pontuacao
+                    else None
                 ),
 
             "entrouEmCampo":
-                pontuacao.get(
-                    "entrou_em_campo"
+                (
+                    pontuacao.get(
+                        "entrou_em_campo"
+                    )
+                    if pontuacao
+                    else None
                 ),
 
             "scouts":
-                pontuacao.get(
-                    "scout",
-                    {}
-                )
+                scouts,
 
-        })
+            "mando":
+                contexto.get(
+                    "mando"
+                ),
+
+            "adversarioId":
+                contexto.get(
+                    "adversarioId"
+                ),
+
+            "adversario":
+                contexto.get(
+                    "adversario"
+                ),
+
+            "siglaAdversario":
+                contexto.get(
+                    "siglaAdversario"
+                ),
+
+            "partidaId":
+                contexto.get(
+                    "partidaId"
+                ),
+
+            "partidaValida":
+                contexto.get(
+                    "partidaValida"
+                ),
+
+            "local":
+                contexto.get(
+                    "local"
+                ),
+
+            "dataPartida":
+                contexto.get(
+                    "dataPartida"
+                ),
+
+            "titularidade":
+                estimar_titularidade(
+                    status_id
+                ),
+
+            "minutosEsperados":
+                estimar_minutos(
+                    status_id
+                ),
+
+        }
+
+
+        jogadores.append(
+            jogador
+        )
 
 
     return jogadores
 
 
+# ======================================================
+# RESUMO
+# ======================================================
 
-def coletar_rodada(
-    rodada:int
-):
+
+def criar_resumo(
+    rodada: int,
+    status: dict[str, Any],
+    mercado: dict[str, Any],
+    jogadores: list[dict[str, Any]],
+) -> dict[str, Any]:
+
+    pontuados = [
+
+        jogador
+
+        for jogador in jogadores
+
+        if jogador.get(
+            "pontuacaoReal"
+        ) is not None
+
+    ]
+
+
+    com_confronto = [
+
+        jogador
+
+        for jogador in jogadores
+
+        if jogador.get(
+            "adversarioId"
+        ) is not None
+
+    ]
+
+
+    return {
+
+        "rodada":
+            rodada,
+
+        "coletadoEm":
+            datetime.now()
+            .isoformat(
+                timespec="seconds"
+            ),
+
+        "statusMercado":
+            status.get(
+                "status_mercado"
+            ),
+
+        "quantidadeJogadores":
+            len(
+                mercado.get(
+                    "atletas",
+                    [],
+                )
+                or []
+            ),
+
+        "quantidadePontuados":
+            len(
+                pontuados
+            ),
+
+        "quantidadeComConfronto":
+            len(
+                com_confronto
+            ),
+
+        "dadosDemonstrativos":
+            False,
+
+    }
+
+
+# ======================================================
+# EXECUÇÃO
+# ======================================================
+
+
+def executar() -> None:
 
     print(
-        f"Coletando rodada {rodada}"
+        "Iniciando coleta do Cartola..."
     )
 
-
-    pasta = (
-        PASTA_API
-        /
-        f"rodada-{rodada:02d}"
-    )
-
-
-    mercado = buscar_mercado_historico(
-        rodada
-    )
-
-
-    partidas = buscar_json(
-        f"/partidas/{rodada}"
-    )
-
-
-    pontuados = buscar_pontuados_historico(
-        rodada
-    )
-
-
-    jogadores = normalizar_jogadores(
-        mercado,
-        pontuados,
-        rodada
-    )
-
-
-    salvar_json(
-        pasta / "mercado.json",
-        mercado
-    )
-
-
-    salvar_json(
-        pasta / "partidas.json",
-        partidas
-    )
-
-
-    salvar_json(
-        pasta / "pontuados.json",
-        pontuados
-    )
-
-
-    salvar_json(
-        pasta / "jogadores.json",
-        jogadores
-    )
-
-
-    print(
-        f"Rodada {rodada}: "
-        f"{len(jogadores)} jogadores"
-    )
-
-
-
-def executar():
 
     status = buscar_json(
         "/mercado/status"
     )
 
 
-    rodada_atual = int(
-        status.get(
-            "rodada_atual",
-            1
+    rodada = obter_numero_rodada(
+        status
+    )
+
+
+    pasta_rodada = (
+
+        PASTA_DADOS
+        /
+        f"rodada-{rodada:02d}"
+
+    )
+
+
+    mercado = buscar_json(
+        "/atletas/mercado"
+    )
+
+
+    partidas = buscar_json(
+
+        f"/partidas/{rodada}",
+
+        obrigatorio=False,
+
+    )
+
+
+    if partidas is None:
+
+        partidas = buscar_json(
+
+            "/partidas",
+
+            obrigatorio=False,
+
         )
+
+
+    pontuados = buscar_json(
+
+        "/atletas/pontuados",
+
+        obrigatorio=False,
+
+    )
+
+
+    jogadores = normalizar_atletas(
+
+        mercado,
+
+        pontuados,
+
+        partidas,
+
+        rodada,
+
+    )
+
+
+    resumo = criar_resumo(
+
+        rodada,
+
+        status,
+
+        mercado,
+
+        jogadores,
+
+    )
+
+
+    salvar_json(
+
+        PASTA_DADOS
+        / "status.json",
+
+        status,
+
+    )
+
+
+    salvar_json(
+
+        pasta_rodada
+        / "mercado.json",
+
+        mercado,
+
+    )
+
+
+    salvar_json(
+
+        pasta_rodada
+        / "partidas.json",
+
+        partidas
+        or {},
+
+    )
+
+
+    salvar_json(
+
+        pasta_rodada
+        / "pontuados.json",
+
+        pontuados
+        or {},
+
+    )
+
+
+    salvar_json(
+
+        pasta_rodada
+        / "jogadores.json",
+
+        jogadores,
+
+    )
+
+
+    salvar_json(
+
+        pasta_rodada
+        / "resumo.json",
+
+        resumo,
+
     )
 
 
     print(
-        "Rodada atual:",
-        rodada_atual
+
+        f"Coleta da rodada {rodada} concluída: "
+        f"{len(jogadores)} jogadores."
+
     )
-
-
-    for rodada in range(
-        1,
-        rodada_atual + 1
-    ):
-
-        try:
-
-            coletar_rodada(
-                rodada
-            )
-
-
-        except Exception as erro:
-
-            print(
-                f"Falha rodada {rodada}: {erro}"
-            )
 
 
     print(
-        "Histórico completo finalizado."
-    )
 
+        "Jogadores com adversário/mando: "
+        f"{resumo['quantidadeComConfronto']}"
+
+    )
 
 
 if __name__ == "__main__":
@@ -501,9 +1422,11 @@ if __name__ == "__main__":
     except Exception as erro:
 
         print(
-            "ERRO:",
-            erro,
-            file=sys.stderr
+
+            f"ERRO: {erro}",
+
+            file=sys.stderr,
+
         )
 
 
