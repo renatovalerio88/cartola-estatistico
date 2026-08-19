@@ -3,434 +3,283 @@
    Histórico — filtros
    ========================================================= */
 
-const HistoricoFiltros = (() => {
+
+const POSICOES_FILTRO_HISTORICO = [
+
+  {
+    id: "TODOS",
+    nome: "Todas"
+  },
+
+  {
+    id: "GOL",
+    nome: "Goleiros"
+  },
+
+  {
+    id: "LAT",
+    nome: "Laterais"
+  },
+
+  {
+    id: "ZAG",
+    nome: "Zagueiros"
+  },
+
+  {
+    id: "MEI",
+    nome: "Meias"
+  },
+
+  {
+    id: "ATA",
+    nome: "Atacantes"
+  },
+
+  {
+    id: "TEC",
+    nome: "Treinadores"
+  }
+
+];
 
 
-    /* =====================================================
-       UTILITÁRIOS
-       ===================================================== */
+/* =========================================================
+   CRIA FILTROS
+   ========================================================= */
 
 
-    function obterNumeroRodada(
-        rodada
-    ) {
+function criarFiltrosHistorico() {
 
-        if (
-            rodada === null ||
-            rodada === undefined
-        ) {
-
-            return null;
-
-        }
+  const selectRodada =
+    document.getElementById(
+      "historyRound"
+    );
 
 
-        const valor =
-            typeof rodada === "object"
-                ? rodada.numero
-                : rodada;
+  const selectPosicao =
+    document.getElementById(
+      "historyPosition"
+    );
 
 
-        const numero =
-            Number(
-                valor
-            );
+  if (
+    !selectRodada ||
+    !selectPosicao
+  ) {
+
+    return;
+
+  }
 
 
-        if (
-            !Number.isInteger(numero) ||
-            numero <= 0
-        ) {
+  const estado =
+    typeof HistoricoDados !==
+      "undefined"
 
-            return null;
+      ? HistoricoDados
+          .obterEstado()
 
-        }
-
-
-        return numero;
-
-    }
+      : null;
 
 
-
-    /* =====================================================
-       FILTRO DE RODADAS
-       ===================================================== */
-
-
-    function preencherRodadas(
-        indice
-    ) {
-
-        const select =
-            document.getElementById(
-                "historyRound"
-            );
+  const rodadas =
+    estado
+      ?.rodadasDisponiveis
+    ||
+    [];
 
 
-        if (!select) {
-
-            return;
-
-        }
+  selectRodada.innerHTML =
+    "";
 
 
-        select.innerHTML = "";
+  rodadas
+
+    .slice()
+
+    .sort(
+      (
+        a,
+        b
+      ) =>
+        b -
+        a
+    )
+
+    .forEach(
+      rodada => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
 
 
-        if (
-            !indice ||
-            !Array.isArray(indice.rodadas) ||
-            indice.rodadas.length === 0
-        ) {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
+        option.value =
+          String(
+            rodada
+          );
 
 
-            option.value = "";
-
-            option.textContent =
-                "Nenhuma rodada disponível";
-
-
-            select.appendChild(
-                option
-            );
-
-
-            select.disabled = true;
-
-
-            return;
-
-        }
-
-
-        /*
-         * Normaliza e remove rodadas inválidas.
-         */
-
-        const rodadas =
-            indice.rodadas
-                .map(
-                    rodada => ({
-                        rodada,
-                        numero:
-                            obterNumeroRodada(
-                                rodada
-                            )
-                    })
-                )
-                .filter(
-                    item =>
-                        item.numero !== null
-                );
+        option.textContent =
+          `Rodada ${rodada}`;
 
 
         if (
-            rodadas.length === 0
+          Number(
+            estado.rodadaSelecionada
+          ) ===
+          Number(
+            rodada
+          )
         ) {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value = "";
-
-            option.textContent =
-                "Nenhuma rodada disponível";
-
-
-            select.appendChild(
-                option
-            );
-
-
-            select.disabled = true;
-
-
-            return;
+          option.selected =
+            true;
 
         }
 
 
-        select.disabled = false;
+        selectRodada
+          .appendChild(
+            option
+          );
+
+      }
+    );
 
 
-        /*
-         * Exibe da rodada mais recente
-         * para a mais antiga.
-         *
-         * Exemplo:
-         *
-         * Rodada 23
-         * Rodada 22
-         * Rodada 21
-         * ...
-         */
+  selectPosicao.innerHTML =
+    "";
 
 
-        rodadas.sort(
-            (itemA, itemB) =>
-                itemB.numero -
-                itemA.numero
-        );
+  POSICOES_FILTRO_HISTORICO
+    .forEach(
+      posicao => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
 
 
-        rodadas.forEach(
-            item => {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
+        option.value =
+          posicao.id;
 
 
-                option.value =
-                    String(
-                        item.numero
-                    );
+        option.textContent =
+          posicao.nome;
 
 
-                option.textContent =
-                    `Rodada ${item.numero}`;
+        if (
+          posicao.id ===
+          estado
+            ?.posicaoSelecionada
+        ) {
 
-
-                select.appendChild(
-                    option
-                );
-
-            }
-        );
-
-
-        /*
-         * Descobre a rodada mais recente.
-         *
-         * Primeiro tenta usar ultimaRodada
-         * informada pelo índice.
-         *
-         * Caso ela não exista ou não esteja
-         * disponível, usa a maior rodada
-         * encontrada.
-         */
-
-
-        const ultimaRodadaIndice =
-            obterNumeroRodada(
-                indice.ultimaRodada
-            );
-
-
-        const rodadaMaisRecente =
-            (
-                ultimaRodadaIndice !== null &&
-                rodadas.some(
-                    item =>
-                        item.numero ===
-                        ultimaRodadaIndice
-                )
-            )
-                ? ultimaRodadaIndice
-                : rodadas[0].numero;
-
-
-        /*
-         * Seleciona automaticamente
-         * a rodada mais recente.
-         */
-
-
-        select.value =
-            String(
-                rodadaMaisRecente
-            );
-
-
-        console.log(
-            "Histórico:",
-            `Rodada ${rodadaMaisRecente}`,
-            "selecionada automaticamente."
-        );
-
-    }
-
-
-
-    /* =====================================================
-       FILTRO DE POSIÇÕES
-       ===================================================== */
-
-
-    function preencherPosicoes() {
-
-        const select =
-            document.getElementById(
-                "historyPosition"
-            );
-
-
-        if (!select) {
-
-            return;
+          option.selected =
+            true;
 
         }
 
 
-        select.innerHTML = "";
+        selectPosicao
+          .appendChild(
+            option
+          );
+
+      }
+    );
 
 
-        const posicoes = [
+  selectRodada.onchange =
+    async () => {
 
-            {
-                valor: "TODOS",
-                texto: "Todas as posições"
-            },
+      if (
+        typeof HistoricoDados ===
+          "undefined"
+      ) {
 
-            {
-                valor: "GOL",
-                texto: "Goleiros"
-            },
+        return;
 
-            {
-                valor: "LAT",
-                texto: "Laterais"
-            },
-
-            {
-                valor: "ZAG",
-                texto: "Zagueiros"
-            },
-
-            {
-                valor: "MEI",
-                texto: "Meias"
-            },
-
-            {
-                valor: "ATA",
-                texto: "Atacantes"
-            },
-
-            {
-                valor: "TEC",
-                texto: "Treinadores"
-            }
-
-        ];
+      }
 
 
-        posicoes.forEach(
-            posicao => {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    posicao.valor;
-
-
-                option.textContent =
-                    posicao.texto;
-
-
-                select.appendChild(
-                    option
-                );
-
-            }
+      await HistoricoDados
+        .selecionarRodada(
+          selectRodada.value
         );
 
 
-        /*
-         * Sempre inicia mostrando
-         * todas as posições.
-         */
+      if (
+        typeof renderizarHistorico ===
+          "function"
+      ) {
 
+        renderizarHistorico();
 
-        select.value =
-            "TODOS";
-
-    }
-
-
-
-    /* =====================================================
-       CONSULTAS
-       ===================================================== */
-
-
-    function obterRodadaSelecionada() {
-
-        const select =
-            document.getElementById(
-                "historyRound"
-            );
-
-
-        if (!select) {
-
-            return null;
-
-        }
-
-
-        return obterNumeroRodada(
-            select.value
-        );
-
-    }
-
-
-
-    function obterPosicaoSelecionada() {
-
-        const select =
-            document.getElementById(
-                "historyPosition"
-            );
-
-
-        if (!select) {
-
-            return "TODOS";
-
-        }
-
-
-        return (
-            select.value ||
-            "TODOS"
-        );
-
-    }
-
-
-
-    /* =====================================================
-       API PÚBLICA
-       ===================================================== */
-
-
-    return {
-
-        preencherRodadas,
-
-        preencherPosicoes,
-
-        obterRodadaSelecionada,
-
-        obterPosicaoSelecionada
+      }
 
     };
 
 
-})();
+  selectPosicao.onchange =
+    () => {
+
+      if (
+        typeof HistoricoDados ===
+          "undefined"
+      ) {
+
+        return;
+
+      }
+
+
+      HistoricoDados
+        .selecionarPosicao(
+          selectPosicao.value
+        );
+
+
+      if (
+        typeof renderizarHistorico ===
+          "function"
+      ) {
+
+        renderizarHistorico();
+
+      }
+
+    };
+
+}
+
+
+/* =========================================================
+   API
+   ========================================================= */
+
+
+const HistoricoFiltros = {
+
+  criar:
+    criarFiltrosHistorico
+
+};
+
+
+if (
+  typeof window !==
+  "undefined"
+) {
+
+  window.HistoricoFiltros =
+    HistoricoFiltros;
+
+
+  window.criarFiltrosHistorico =
+    criarFiltrosHistorico;
+
+}
