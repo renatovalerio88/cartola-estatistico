@@ -1,65 +1,136 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Recomendações — composição real da nota
+   Recomendações — composição completa da nota
 
    Objetivo:
-
-   - usar as contribuições JÁ calculadas pelo MotorCalculadora;
-   - impedir recálculo parcial da nota no momento do card;
-   - mostrar todos os critérios que realmente contribuíram;
-   - preservar pesos especializados por posição;
+   - usar as contribuições completas calculadas pelo motor;
+   - priorizar contribuicoesCalculadas do MotorCalculadora;
+   - mostrar TODOS os 18 critérios;
+   - exibir nota, peso e contribuição;
+   - não esconder critérios zerados/indisponíveis;
    - não alterar ranking, projeção ou escalações.
-
    ========================================================= */
-
 
 (function () {
 
   "use strict";
+
+  const ORDEM_CRITERIOS = [
+    "formaRecente",
+    "mediaGeral",
+    "mediana",
+    "regularidade",
+    "pontuacaoBasica",
+    "scoutsOfensivos",
+    "scoutsDefensivos",
+    "casaFora",
+    "forcaAdversario",
+    "pontosCedidos",
+    "chanceSG",
+    "titularidade",
+    "minutosEsperados",
+    "bolaParada",
+    "penaltis",
+    "custoBeneficio",
+    "tendenciaRecente",
+    "riscoNegativar"
+  ];
+
+  const NOMES_CRITERIOS = {
+    formaRecente: "Forma recente",
+    mediaGeral: "Média geral",
+    mediana: "Mediana",
+    regularidade: "Regularidade",
+    pontuacaoBasica: "Pontuação básica",
+    scoutsOfensivos: "Scouts ofensivos",
+    scoutsDefensivos: "Scouts defensivos",
+    casaFora: "Mando (casa/fora)",
+    forcaAdversario: "Força do adversário",
+    pontosCedidos: "Pontos cedidos à posição",
+    chanceSG: "Chance de SG",
+    titularidade: "Titularidade",
+    minutosEsperados: "Minutos esperados",
+    bolaParada: "Bola parada",
+    penaltis: "Pênaltis",
+    custoBeneficio: "Custo-benefício",
+    tendenciaRecente: "Tendência recente",
+    riscoNegativar: "Proteção contra negativação"
+  };
 
 
   /* =======================================================
      UTILITÁRIOS
      ======================================================= */
 
-
-  function numeroSeguro(
+  function numero(
     valor,
-    padrao = 0
+    padrao = null
   ) {
 
-    const numero =
+    if (
+      valor === null ||
+      valor === undefined ||
+      valor === ""
+    ) {
+
+      return padrao;
+
+    }
+
+    const n =
       Number(
         valor
       );
 
-
     return Number.isFinite(
-      numero
+      n
     )
-      ? numero
+      ? n
       : padrao;
 
   }
 
 
+  function limitar(
+    valor,
+    minimo = 0,
+    maximo = 100
+  ) {
+
+    const n =
+      numero(
+        valor,
+        minimo
+      );
+
+    return Math.max(
+      minimo,
+      Math.min(
+        maximo,
+        n
+      )
+    );
+
+  }
+
+
   function objetoValido(
-    objeto
+    valor
   ) {
 
     return Boolean(
 
-      objeto &&
+      valor &&
 
-      typeof objeto ===
+      typeof valor ===
         "object" &&
 
       !Array.isArray(
-        objeto
+        valor
       ) &&
 
       Object.keys(
-        objeto
+        valor
       ).length > 0
 
     );
@@ -98,126 +169,411 @@
   }
 
 
-  function limitar(
-    valor,
-    minimo = 0,
-    maximo = 100
-  ) {
-
-    return Math.max(
-      minimo,
-      Math.min(
-        maximo,
-        numeroSeguro(
-          valor,
-          minimo
-        )
-      )
-    );
-
-  }
-
-
   function formatar(
     valor,
-    casas = 2
+    casas = 1
   ) {
 
-    return numeroSeguro(
-      valor,
-      0
-    ).toFixed(
-      casas
-    );
+    const n =
+      numero(
+        valor,
+        null
+      );
+
+    return n === null
+      ? "--"
+      : n.toFixed(
+          casas
+        );
 
   }
 
 
   /* =======================================================
-     RESULTADO REAL DO MOTOR
+     RESULTADO MAIS COMPLETO DISPONÍVEL
      ======================================================= */
 
-
-  function obterResultadoMotorPrecalculado(
+  function obterResultadoMaisCompleto(
     jogador
   ) {
 
+    const candidatos = [];
+
+
+    /*
+     * PRIORIDADE 1:
+     *
+     * O MotorCalculadora salva o resultado completo
+     * nesses campos.
+     */
+
     if (
-      !jogador ||
-      !objetoValido(
-        jogador.contribuicoes
+      objetoValido(
+        jogador?.contribuicoesCalculadas
       )
+    ) {
+
+      candidatos.push({
+
+        notaFinal:
+          numero(
+            jogador?.notaFinal
+            ??
+            jogador?.notaCalculada
+            ??
+            jogador?.score,
+            0
+          ),
+
+        classificacao:
+          jogador?.classificacaoCalculada
+          ??
+          jogador?.classificacao
+          ??
+          "",
+
+        notas:
+          jogador?.notasCriterios
+          ??
+          jogador?.notas
+          ??
+          {},
+
+        pesosAplicados:
+          jogador?.pesosAplicados
+          ??
+          {},
+
+        contribuicoes:
+          jogador
+            .contribuicoesCalculadas,
+
+        explicacao:
+          jogador?.explicacaoCalculada
+          ??
+          jogador?.explicacaoEstatistica
+          ??
+          jogador?.explicacao
+          ??
+          null,
+
+        origem:
+          "contribuicoesCalculadas"
+
+      });
+
+    }
+
+
+    /*
+     * PRIORIDADE 2:
+     *
+     * Se necessário, recalcula somente a decomposição
+     * para garantir que o card não fique com um objeto
+     * parcial.
+     */
+
+    if (
+      typeof window
+        .calcularNotaJogadorComMotor ===
+        "function"
+    ) {
+
+      try {
+
+        const calculado =
+          window
+            .calcularNotaJogadorComMotor(
+              jogador
+            );
+
+
+        if (
+          calculado &&
+          typeof calculado ===
+            "object"
+        ) {
+
+          candidatos.push({
+
+            ...calculado,
+
+            origem:
+              "calcularNotaJogadorComMotor"
+
+          });
+
+        }
+
+      } catch (erro) {
+
+        console.warn(
+          "Não foi possível recalcular a composição:",
+          erro
+        );
+
+      }
+
+    }
+
+
+    /*
+     * PRIORIDADE 3:
+     *
+     * Compatibilidade com formato antigo.
+     */
+
+    if (
+      objetoValido(
+        jogador?.contribuicoes
+      )
+    ) {
+
+      candidatos.push({
+
+        notaFinal:
+          numero(
+            jogador?.notaFinal
+            ??
+            jogador?.nota
+            ??
+            jogador?.score,
+            0
+          ),
+
+        classificacao:
+          jogador?.classificacao
+          ??
+          "",
+
+        notas:
+          jogador?.notas
+          ??
+          {},
+
+        pesosAplicados:
+          jogador?.pesosAplicados
+          ??
+          {},
+
+        contribuicoes:
+          jogador.contribuicoes,
+
+        explicacao:
+          jogador?.explicacaoEstatistica
+          ??
+          jogador?.explicacao
+          ??
+          null,
+
+        origem:
+          "contribuicoes-legado"
+
+      });
+
+    }
+
+
+    if (
+      candidatos.length === 0
     ) {
 
       return null;
 
     }
+
+
+    /*
+     * Escolhe o resultado que tiver a maior
+     * quantidade de critérios.
+     */
+
+    candidatos.sort(
+      (
+        a,
+        b
+      ) => {
+
+        const quantidadeA =
+          Object.keys(
+            a?.contribuicoes
+            ||
+            {}
+          ).length;
+
+
+        const quantidadeB =
+          Object.keys(
+            b?.contribuicoes
+            ||
+            {}
+          ).length;
+
+
+        return (
+          quantidadeB -
+          quantidadeA
+        );
+
+      }
+    );
+
+
+    return candidatos[0];
+
+  }
+
+
+  /* =======================================================
+     MONTA UM CRITÉRIO
+     ======================================================= */
+
+  function montarItemDoCriterio(
+    criterio,
+    resultado,
+    jogador
+  ) {
+
+    const contribuicoes =
+      resultado?.contribuicoes
+      ||
+      {};
+
+
+    const notas =
+      resultado?.notas
+      ||
+      jogador?.notasCriterios
+      ||
+      {};
+
+
+    const pesos =
+      resultado?.pesosAplicados
+      ||
+      jogador?.pesosAplicados
+      ||
+      {};
+
+
+    const bruto =
+      contribuicoes[
+        criterio
+      ];
+
+
+    if (
+      bruto &&
+      typeof bruto ===
+        "object"
+    ) {
+
+      return {
+
+        criterio,
+
+        nome:
+          bruto.nome
+          ||
+          bruto.criterio
+          ||
+          NOMES_CRITERIOS[
+            criterio
+          ]
+          ||
+          criterio,
+
+        nota:
+          numero(
+            bruto.nota,
+            numero(
+              notas[
+                criterio
+              ],
+              null
+            )
+          ),
+
+        peso:
+          numero(
+            bruto.peso,
+            numero(
+              pesos[
+                criterio
+              ],
+              null
+            )
+          ),
+
+        contribuicao:
+          numero(
+            bruto.contribuicao,
+            null
+          ),
+
+        disponivel:
+          bruto.disponivel !==
+            false &&
+          bruto.temDados !==
+            false,
+
+        valorOriginal:
+          bruto.valorOriginal
+
+      };
+
+    }
+
+
+    const nota =
+      numero(
+        notas[
+          criterio
+        ],
+        null
+      );
+
+
+    const peso =
+      numero(
+        pesos[
+          criterio
+        ],
+        null
+      );
 
 
     return {
 
-      notaFinal:
-        numeroSeguro(
+      criterio,
 
-          jogador.notaFinal
+      nome:
+        NOMES_CRITERIOS[
+          criterio
+        ]
+        ||
+        criterio,
 
-          ??
+      nota,
 
-          jogador.nota
+      peso,
 
-          ??
+      contribuicao:
+        nota !== null &&
+        peso !== null
+          ? (
+              nota *
+              peso /
+              100
+            )
+          : null,
 
-          jogador.score
+      disponivel:
+        nota !== null ||
+        peso !== null,
 
-        ),
-
-      classificacao:
-
-        jogador.classificacao
-
-        ??
-
-        "",
-
-      notas:
-
-        objetoValido(
-          jogador.notas
-        )
-
-          ? jogador.notas
-
-          : {},
-
-      pesosAplicados:
-
-        objetoValido(
-          jogador.pesosAplicados
-        )
-
-          ? jogador.pesosAplicados
-
-          : {},
-
-      contribuicoes:
-
-        jogador.contribuicoes,
-
-      explicacao:
-
-        jogador.explicacaoEstatistica
-
-        ??
-
-        jogador.explicacao
-
-        ??
-
-        null,
-
-      origem:
-
-        "motor-precalculado"
+      valorOriginal:
+        null
 
     };
 
@@ -225,194 +581,287 @@
 
 
   /* =======================================================
-     PRESERVA FUNÇÃO ORIGINAL
+     TODOS OS CRITÉRIOS
      ======================================================= */
 
-
-  const obterResultadoMotorOriginal =
-
-    typeof window
-      .obterResultadoMotorJogador ===
-      "function"
-
-      ? window
-          .obterResultadoMotorJogador
-
-      : null;
-
-
-  /* =======================================================
-     SOBRESCREVE RESULTADO DO CARD
-     ======================================================= */
-
-
-  window.obterResultadoMotorJogador =
-    function (
-      jogador
-    ) {
-
-      /*
-       * PRIMEIRA OPÇÃO:
-       *
-       * usa o cálculo completo que já veio do
-       * MotorCalculadora.
-       */
-
-      const pronto =
-        obterResultadoMotorPrecalculado(
-          jogador
-        );
-
-
-      if (
-        pronto
-      ) {
-
-        return pronto;
-
-      }
-
-
-      /*
-       * FALLBACK:
-       *
-       * somente jogadores antigos que não tenham
-       * contribuições previamente calculadas.
-       */
-
-      if (
-        obterResultadoMotorOriginal
-      ) {
-
-        try {
-
-          return obterResultadoMotorOriginal(
-            jogador
-          );
-
-
-        } catch (erro) {
-
-          console.warn(
-
-            "Falha ao usar motor original:",
-
-            erro
-
-          );
-
-        }
-
-      }
-
-
-      return null;
-
-    };
-
-
-  /*
-   * Também substituímos a referência global direta.
-   *
-   * Como os scripts do projeto usam function declarations
-   * no escopo global, isso garante que criarCardJogador()
-   * use a nova versão.
-   */
-
-  try {
-
-    obterResultadoMotorJogador =
-      window.obterResultadoMotorJogador;
-
-  } catch (_) {
-
-    /*
-     * Não faz nada.
-     */
-
-  }
-
-
-  /* =======================================================
-     VALIDA COMPONENTE
-     ======================================================= */
-
-
-  function componenteValido(
-    item
+  function obterTodosComponentes(
+    resultado,
+    jogador
   ) {
 
-    if (
-      !item ||
-      typeof item !==
-        "object"
-    ) {
+    const chavesExtras =
+      new Set([
 
-      return false;
+        ...Object.keys(
+          resultado
+            ?.contribuicoes
+          ||
+          {}
+        ),
 
-    }
+        ...Object.keys(
+          resultado?.notas
+          ||
+          jogador?.notasCriterios
+          ||
+          {}
+        ),
+
+        ...Object.keys(
+          resultado
+            ?.pesosAplicados
+          ||
+          jogador?.pesosAplicados
+          ||
+          {}
+        )
+
+      ]);
 
 
-    const peso =
-      numeroSeguro(
-        item.peso,
-        0
-      );
+    const ordem = [
+
+      ...ORDEM_CRITERIOS,
+
+      ...[
+        ...chavesExtras
+      ].filter(
+        chave =>
+          !ORDEM_CRITERIOS
+            .includes(
+              chave
+            )
+      )
+
+    ];
 
 
-    const contribuicao =
-      numeroSeguro(
-        item.contribuicao,
-        0
-      );
-
-
-    /*
-     * O critério entra na composição quando:
-     *
-     * 1) tem peso estatístico;
-     * 2) efetivamente gerou contribuição diferente de zero.
-     *
-     * Critérios sem dado e com contribuição 0 não serão
-     * exibidos como se tivessem influenciado a nota.
-     */
-
-    return (
-      peso > 0 &&
-      Math.abs(
-        contribuicao
-      ) > 0.000001
+    return ordem.map(
+      criterio =>
+        montarItemDoCriterio(
+          criterio,
+          resultado,
+          jogador
+        )
     );
 
   }
 
 
   /* =======================================================
-     CRIA HTML DA COMPOSIÇÃO
+     HTML DE UM CRITÉRIO
      ======================================================= */
 
-
-  function criarComponentesCompletos(
-    contribuicoes
+  function criarHtmlComponente(
+    item
   ) {
 
-    if (
-      !objetoValido(
-        contribuicoes
-      )
-    ) {
+    const temNota =
+      numero(
+        item.nota,
+        null
+      ) !== null;
+
+
+    const temPeso =
+      numero(
+        item.peso,
+        null
+      ) !== null;
+
+
+    const temContribuicao =
+      numero(
+        item.contribuicao,
+        null
+      ) !== null;
+
+
+    const disponivel =
+      Boolean(
+
+        item.disponivel &&
+
+        (
+          temNota ||
+          temPeso ||
+          temContribuicao
+        )
+
+      );
+
+
+    const nota =
+      temNota
+        ? limitar(
+            item.nota,
+            0,
+            100
+          )
+        : 0;
+
+
+    const textoNota =
+      temNota
+        ? Math.round(
+            nota
+          )
+        : "--";
+
+
+    const textoPeso =
+      temPeso
+        ? `${
+            formatar(
+              item.peso,
+              1
+            )
+          }%`
+        : "--";
+
+
+    const textoContribuicao =
+      temContribuicao
+        ? formatar(
+            item.contribuicao,
+            2
+          )
+        : "--";
+
+
+    return `
+
+      <div
+        class="
+          component-row
+          ${
+            disponivel
+              ? ""
+              : "component-unavailable"
+          }
+        "
+      >
+
+        <div class="component-label">
+
+          <span>
+
+            ${escapar(
+              item.nome
+            )}
+
+            <small>
+
+              Peso:
+              ${textoPeso}
+
+              •
+
+              contribuição:
+              ${textoContribuicao}
+
+              ${
+                disponivel
+                  ? ""
+                  : " • dado ainda não disponível"
+              }
+
+            </small>
+
+          </span>
+
+
+          <strong>
+            ${textoNota}
+          </strong>
+
+        </div>
+
+
+        <div class="component-track">
+
+          <div
+            class="component-fill"
+            style="
+              width:
+              ${
+                temNota
+                  ? nota
+                  : 0
+              }%;
+            "
+          ></div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* =======================================================
+     COMPOSIÇÃO COMPLETA
+     ======================================================= */
+
+  function criarComposicaoCompleta(
+    jogador,
+    resultadoRecebido = null
+  ) {
+
+    const calculado =
+      obterResultadoMaisCompleto(
+        jogador
+      );
+
+
+    const quantidadeCalculado =
+      Object.keys(
+        calculado
+          ?.contribuicoes
+        ||
+        {}
+      ).length;
+
+
+    const quantidadeRecebido =
+      Object.keys(
+        resultadoRecebido
+          ?.contribuicoes
+        ||
+        {}
+      ).length;
+
+
+    const resultado =
+      quantidadeCalculado >=
+      quantidadeRecebido
+        ? (
+            calculado
+            ||
+            resultadoRecebido
+          )
+        : (
+            resultadoRecebido
+            ||
+            calculado
+          );
+
+
+    if (!resultado) {
 
       return `
 
         <div class="components-empty">
 
           <strong>
-            Componentes ainda não disponíveis
+            Composição ainda não disponível
           </strong>
 
           <p>
-            O motor ainda não informou a decomposição
-            estatística deste jogador.
+            O motor ainda não devolveu
+            a decomposição desta nota.
           </p>
 
         </div>
@@ -423,186 +872,65 @@
 
 
     const componentes =
-      Object.values(
-        contribuicoes
-      )
-        .filter(
-          componenteValido
-        )
-        .sort(
-          (
-            itemA,
-            itemB
-          ) =>
-
-            Math.abs(
-              numeroSeguro(
-                itemB.contribuicao
-              )
-            )
-
-            -
-
-            Math.abs(
-              numeroSeguro(
-                itemA.contribuicao
-              )
-            )
-        );
+      obterTodosComponentes(
+        resultado,
+        jogador
+      );
 
 
-    if (
-      componentes.length === 0
-    ) {
-
-      return `
-
-        <div class="components-empty">
-
-          <strong>
-            Critérios sem contribuição mensurável
-          </strong>
-
-          <p>
-            Nenhum critério recebeu dados suficientes para
-            contribuir numericamente para a nota.
-          </p>
-
-        </div>
-
-      `;
-
-    }
+    const disponiveis =
+      componentes.filter(
+        item =>
+          item.disponivel
+      ).length;
 
 
-    return componentes
-      .map(
-        item => {
+    return `
 
-          const nota =
-            limitar(
-              item.nota,
-              0,
-              100
-            );
+      <div class="components-summary">
 
+        <small>
 
-          const peso =
-            numeroSeguro(
-              item.peso,
-              0
-            );
+          ${componentes.length}
+          critérios do modelo
 
+          •
 
-          const contribuicao =
-            numeroSeguro(
-              item.contribuicao,
-              0
-            );
+          ${disponiveis}
+          com dados disponíveis
+
+        </small>
+
+      </div>
 
 
-          const nome =
+      ${
+        componentes
+          .map(
+            criarHtmlComponente
+          )
+          .join("")
+      }
 
-            item.nome
-
-            ||
-
-            item.criterio
-
-            ||
-
-            "Critério";
-
-
-          return `
-
-            <div class="component-row">
-
-              <div class="component-label">
-
-                <span>
-
-                  ${escapar(
-                    nome
-                  )}
-
-                  <small>
-
-                    Peso:
-
-                    ${formatar(
-                      peso,
-                      1
-                    )}%
-
-                    •
-
-                    contribuição:
-
-                    ${formatar(
-                      contribuicao,
-                      2
-                    )}
-
-                  </small>
-
-                </span>
-
-
-                <strong>
-
-                  ${Math.round(
-                    nota
-                  )}
-
-                </strong>
-
-              </div>
-
-
-              <div class="component-track">
-
-                <div
-                  class="component-fill"
-                  style="
-                    width:
-                    ${nota}%;
-                  "
-                ></div>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
+    `;
 
   }
 
 
   /* =======================================================
-     PRESERVA COMPONENTES ORIGINAIS
+     SUBSTITUI FUNÇÕES GLOBAIS
      ======================================================= */
 
+  window.obterResultadoMotorJogador =
+    function (
+      jogador
+    ) {
 
-  const criarComponentesOriginal =
+      return obterResultadoMaisCompleto(
+        jogador
+      );
 
-    typeof window
-      .criarComponentesNotaJogador ===
-      "function"
-
-      ? window
-          .criarComponentesNotaJogador
-
-      : null;
-
-
-  /* =======================================================
-     SUBSTITUI COMPOSIÇÃO
-     ======================================================= */
+    };
 
 
   window.criarComponentesNotaJogador =
@@ -611,76 +939,26 @@
       resultadoMotor = null
     ) {
 
-      /*
-       * Prioridade absoluta:
-       * contribuições calculadas e armazenadas no jogador.
-       */
-
-      if (
-        objetoValido(
-          jogador?.contribuicoes
-        )
-      ) {
-
-        return criarComponentesCompletos(
-          jogador.contribuicoes
-        );
-
-      }
-
-
-      /*
-       * Segunda opção:
-       * resultado recebido diretamente do motor.
-       */
-
-      if (
-        objetoValido(
-          resultadoMotor
-            ?.contribuicoes
-        )
-      ) {
-
-        return criarComponentesCompletos(
-          resultadoMotor
-            .contribuicoes
-        );
-
-      }
-
-
-      /*
-       * Compatibilidade.
-       */
-
-      if (
-        criarComponentesOriginal
-      ) {
-
-        return criarComponentesOriginal(
-
-          jogador,
-
-          resultadoMotor
-
-        );
-
-      }
-
-
-      return `
-
-        <div class="components-empty">
-
-          <strong>
-            Componentes ainda não disponíveis
-          </strong>
-
-        </div>
-
-      `;
+      return criarComposicaoCompleta(
+        jogador,
+        resultadoMotor
+      );
 
     };
+
+
+  /*
+   * Garante compatibilidade com chamadas
+   * diretas nos scripts clássicos.
+   */
+
+  try {
+
+    obterResultadoMotorJogador =
+      window
+        .obterResultadoMotorJogador;
+
+  } catch (_) {}
 
 
   try {
@@ -689,145 +967,28 @@
       window
         .criarComponentesNotaJogador;
 
-  } catch (_) {
-
-    /*
-     * Não faz nada.
-     */
-
-  }
-
-
-  /* =======================================================
-     DIAGNÓSTICO
-     ======================================================= */
-
-
-  function diagnosticar(
-    jogador
-  ) {
-
-    if (!jogador) {
-
-      return null;
-
-    }
-
-
-    const contribuicoes =
-      jogador.contribuicoes
-      ?? {};
-
-
-    const componentes =
-      Object.values(
-        contribuicoes
-      );
-
-
-    const efetivos =
-      componentes.filter(
-        componenteValido
-      );
-
-
-    const diagnostico = {
-
-      jogador:
-
-        jogador.apelido
-
-        ??
-
-        jogador.nome
-
-        ??
-
-        jogador.id,
-
-      posicao:
-        jogador.posicao,
-
-      notaFinal:
-
-        jogador.notaFinal
-
-        ??
-
-        jogador.nota
-
-        ??
-
-        jogador.score,
-
-      criteriosDoMotor:
-        componentes.length,
-
-      criteriosComContribuicao:
-        efetivos.length,
-
-      componentes:
-        efetivos.map(
-          item => ({
-
-            criterio:
-              item.criterio,
-
-            nome:
-              item.nome,
-
-            nota:
-              item.nota,
-
-            peso:
-              item.peso,
-
-            contribuicao:
-              item.contribuicao
-
-          })
-        )
-
-    };
-
-
-    console.table(
-      diagnostico.componentes
-    );
-
-
-    console.info(
-      "Diagnóstico da composição:",
-      diagnostico
-    );
-
-
-    return diagnostico;
-
-  }
+  } catch (_) {}
 
 
   /* =======================================================
      API
      ======================================================= */
 
-
   window.CartolaComposicaoNota = {
 
     obterResultado:
-      obterResultadoMotorPrecalculado,
+      obterResultadoMaisCompleto,
 
     criarHtml:
-      criarComponentesCompletos,
+      criarComposicaoCompleta,
 
-    diagnosticar
+    obterTodosComponentes
 
   };
 
 
   console.info(
-    "Composição real da nota carregada."
+    "Composição completa da nota carregada — 18 critérios."
   );
-
 
 })();
