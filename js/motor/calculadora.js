@@ -3,7 +3,9 @@
    Calculadora integrada do modelo estatístico
    ========================================================= */
 
+
 const MotorCalculadora = (() => {
+
 
   const POSICOES_VALIDAS = [
     "GOL",
@@ -15,16 +17,35 @@ const MotorCalculadora = (() => {
   ];
 
 
+  const STATUS_INDISPONIVEIS =
+    new Set([
+      2,
+      3,
+      5,
+      6
+    ]);
+
+
   /* =======================================================
      UTILITÁRIOS
      ======================================================= */
 
-  function numero(valor, padrao = 0) {
-    const convertido = Number(valor);
 
-    return Number.isFinite(convertido)
+  function numero(
+    valor,
+    padrao = 0
+  ) {
+
+    const convertido =
+      Number(valor);
+
+
+    return Number.isFinite(
+      convertido
+    )
       ? convertido
       : padrao;
+
   }
 
 
@@ -33,6 +54,7 @@ const MotorCalculadora = (() => {
     minimo = 0,
     maximo = 100
   ) {
+
     return Math.min(
       maximo,
       Math.max(
@@ -40,6 +62,7 @@ const MotorCalculadora = (() => {
         numero(valor)
       )
     );
+
   }
 
 
@@ -47,197 +70,147 @@ const MotorCalculadora = (() => {
     valor,
     casas = 2
   ) {
+
     return Number(
-      numero(valor).toFixed(casas)
+      numero(valor)
+        .toFixed(casas)
     );
+
   }
 
 
-  function obterHistoricoRegistros(
-    jogador
+  function media(
+    valores
   ) {
-    if (
-      Array.isArray(jogador?.historico)
-    ) {
-      return jogador.historico
-        .filter(
-          registro =>
-            registro &&
-            typeof registro === "object"
-        )
-        .sort(
-          (registroA, registroB) =>
-            numero(registroA.rodada) -
-            numero(registroB.rodada)
-        );
-    }
 
-    return [];
-  }
-
-
-  function pontuacaoHistoricaValida(
-    valor
-  ) {
-    if (
-      valor === null ||
-      valor === undefined ||
-      valor === ""
-    ) {
-      return false;
-    }
-
-    return Number.isFinite(
-      Number(valor)
-    );
-  }
-
-
-  function obterPontuacaoRegistro(
-    registro
-  ) {
-    if (
-      !registro ||
-      typeof registro !== "object"
-    ) {
-      return null;
-    }
-
-    if (
-      pontuacaoHistoricaValida(
-        registro.pontuacao
-      )
-    ) {
-      return Number(
-        registro.pontuacao
-      );
-    }
-
-    if (
-      pontuacaoHistoricaValida(
-        registro.pontos
-      )
-    ) {
-      return Number(
-        registro.pontos
-      );
-    }
-
-    return null;
-  }
-
-
-  function obterHistoricoPontuacoes(
-    jogador
-  ) {
-    const historicoDireto =
-      jogador?.historicoPontuacoes ||
-      jogador?.pontuacoes ||
-      jogador?.pontuacoesRecentes;
-
-    if (
-      Array.isArray(historicoDireto) &&
-      historicoDireto.length
-    ) {
-      return historicoDireto
-        .filter(
-          pontuacaoHistoricaValida
-        )
-        .map(Number);
-    }
-
-    return obterHistoricoRegistros(
-      jogador
-    )
-      .map(
-        obterPontuacaoRegistro
-      )
-      .filter(
-        pontuacaoHistoricaValida
-      )
-      .map(Number);
-  }
-
-
-  function media(valores) {
     if (
       !Array.isArray(valores) ||
       valores.length === 0
     ) {
+
       return 0;
+
     }
+
 
     return valores.reduce(
-      (total, valor) =>
-        total + numero(valor),
+      (
+        total,
+        valor
+      ) =>
+        total +
+        numero(valor),
       0
     ) / valores.length;
+
   }
 
 
-  function mediana(valores) {
+  function mediana(
+    valores
+  ) {
+
     if (
       !Array.isArray(valores) ||
       valores.length === 0
     ) {
+
       return 0;
+
     }
 
-    const ordenados = valores
-      .map(Number)
-      .filter(Number.isFinite)
-      .sort(
-        (valorA, valorB) =>
-          valorA - valorB
-      );
 
-    if (!ordenados.length) {
+    const ordenados =
+      valores
+        .map(Number)
+        .filter(Number.isFinite)
+        .sort(
+          (a, b) =>
+            a - b
+        );
+
+
+    if (
+      ordenados.length === 0
+    ) {
+
       return 0;
+
     }
+
 
     const meio =
       Math.floor(
         ordenados.length / 2
       );
 
+
     if (
       ordenados.length % 2 === 0
     ) {
+
       return (
-        ordenados[meio - 1] +
-        ordenados[meio]
+        ordenados[
+          meio - 1
+        ] +
+        ordenados[
+          meio
+        ]
       ) / 2;
+
     }
 
-    return ordenados[meio];
+
+    return ordenados[
+      meio
+    ];
+
   }
 
 
-  function desvioPadrao(valores) {
+  function desvioPadrao(
+    valores
+  ) {
+
     if (
       !Array.isArray(valores) ||
       valores.length === 0
     ) {
+
       return 0;
+
     }
+
 
     const valorMedio =
       media(valores);
 
+
     const variancia =
       valores.reduce(
-        (total, valor) =>
-          total +
-          (
-            numero(valor) -
-            valorMedio
-          ) ** 2,
+        (
+          total,
+          valor
+        ) => {
+
+          return (
+            total +
+            (
+              numero(valor) -
+              valorMedio
+            ) ** 2
+          );
+
+        },
         0
-      ) / valores.length;
+      ) /
+      valores.length;
+
 
     return Math.sqrt(
       variancia
     );
+
   }
 
 
@@ -246,31 +219,405 @@ const MotorCalculadora = (() => {
     minimo,
     maximo
   ) {
-    const limiteMinimo =
+
+    const min =
       numero(minimo);
 
-    const limiteMaximo =
+
+    const max =
       numero(maximo);
 
+
     if (
-      limiteMaximo ===
-      limiteMinimo
+      min === max
     ) {
+
       return 50;
+
     }
+
 
     return limitar(
       (
         (
           numero(valor) -
-          limiteMinimo
+          min
         ) /
         (
-          limiteMaximo -
-          limiteMinimo
+          max -
+          min
         )
       ) * 100
     );
+
+  }
+
+
+  function possuiValor(
+    valor
+  ) {
+
+    return !(
+      valor === null ||
+      valor === undefined ||
+      valor === ""
+    );
+
+  }
+
+
+  /* =======================================================
+     HISTÓRICO
+     ======================================================= */
+
+
+  function obterHistoricoRegistros(
+    jogador
+  ) {
+
+    if (
+      !Array.isArray(
+        jogador?.historico
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    return [
+      ...jogador.historico
+    ]
+      .filter(
+        registro =>
+          registro &&
+          typeof registro ===
+            "object"
+      )
+      .sort(
+        (a, b) =>
+          numero(a.rodada) -
+          numero(b.rodada)
+      );
+
+  }
+
+
+  function pontuacaoValida(
+    valor
+  ) {
+
+    if (
+      !possuiValor(valor)
+    ) {
+
+      return false;
+
+    }
+
+
+    return Number.isFinite(
+      Number(valor)
+    );
+
+  }
+
+
+  function obterPontuacaoRegistro(
+    registro
+  ) {
+
+    if (
+      !registro ||
+      typeof registro !==
+        "object"
+    ) {
+
+      return null;
+
+    }
+
+
+    if (
+      pontuacaoValida(
+        registro.pontuacao
+      )
+    ) {
+
+      return Number(
+        registro.pontuacao
+      );
+
+    }
+
+
+    if (
+      pontuacaoValida(
+        registro.pontos
+      )
+    ) {
+
+      return Number(
+        registro.pontos
+      );
+
+    }
+
+
+    return null;
+
+  }
+
+
+  function obterHistoricoPontuacoes(
+    jogador
+  ) {
+
+    const direto =
+      jogador?.historicoPontuacoes ??
+      jogador?.pontuacoes ??
+      jogador?.pontuacoesRecentes;
+
+
+    if (
+      Array.isArray(direto) &&
+      direto.length > 0
+    ) {
+
+      return direto
+        .filter(
+          pontuacaoValida
+        )
+        .map(Number);
+
+    }
+
+
+    return obterHistoricoRegistros(
+      jogador
+    )
+      .map(
+        obterPontuacaoRegistro
+      )
+      .filter(
+        pontuacaoValida
+      )
+      .map(Number);
+
+  }
+
+
+  /* =======================================================
+     MÉDIAS
+     ======================================================= */
+
+
+  function mediaUltimas(
+    historico,
+    quantidade
+  ) {
+
+    if (
+      !Array.isArray(historico) ||
+      historico.length === 0
+    ) {
+
+      return 0;
+
+    }
+
+
+    return media(
+      historico.slice(
+        -quantidade
+      )
+    );
+
+  }
+
+
+  /* =======================================================
+     SCOUTS HISTÓRICOS
+     ======================================================= */
+
+
+  function obterValorScout(
+    scouts,
+    nomes
+  ) {
+
+    for (
+      const nome of nomes
+    ) {
+
+      if (
+        possuiValor(
+          scouts?.[nome]
+        )
+      ) {
+
+        return numero(
+          scouts[nome]
+        );
+
+      }
+
+    }
+
+
+    return 0;
+
+  }
+
+
+  function possuiScouts(
+    scouts
+  ) {
+
+    return (
+      scouts &&
+      typeof scouts ===
+        "object" &&
+      Object.keys(
+        scouts
+      ).length > 0
+    );
+
+  }
+
+
+  function agregarScoutsHistoricos(
+    jogador
+  ) {
+
+    const registros =
+      obterHistoricoRegistros(
+        jogador
+      )
+        .filter(
+          registro =>
+            possuiScouts(
+              registro?.scouts
+            )
+        );
+
+
+    if (
+      registros.length === 0
+    ) {
+
+      return {};
+
+    }
+
+
+    const totais = {};
+
+
+    registros.forEach(
+      registro => {
+
+        Object.entries(
+          registro.scouts || {}
+        )
+          .forEach(
+            (
+              [
+                chave,
+                valor
+              ]
+            ) => {
+
+              const numeroScout =
+                Number(valor);
+
+
+              if (
+                !Number.isFinite(
+                  numeroScout
+                )
+              ) {
+
+                return;
+
+              }
+
+
+              totais[chave] =
+                numero(
+                  totais[chave]
+                ) +
+                numeroScout;
+
+            }
+          );
+
+      }
+    );
+
+
+    const medias = {};
+
+
+    Object.entries(
+      totais
+    )
+      .forEach(
+        (
+          [
+            chave,
+            total
+          ]
+        ) => {
+
+          medias[chave] =
+            total /
+            registros.length;
+
+        }
+      );
+
+
+    return medias;
+
+  }
+
+
+  function obterScoutsAnalise(
+    jogador
+  ) {
+
+    const historicos =
+      agregarScoutsHistoricos(
+        jogador
+      );
+
+
+    if (
+      possuiScouts(
+        historicos
+      )
+    ) {
+
+      return historicos;
+
+    }
+
+
+    if (
+      possuiScouts(
+        jogador?.scouts
+      )
+    ) {
+
+      return jogador.scouts;
+
+    }
+
+
+    return {};
+
   }
 
 
@@ -278,119 +625,196 @@ const MotorCalculadora = (() => {
      MÉTRICAS HISTÓRICAS
      ======================================================= */
 
+
   function calcularFormaRecente(
     historico
   ) {
-    if (!historico.length) {
+
+    if (
+      historico.length === 0
+    ) {
+
       return 50;
+
     }
 
-    const ultimosCinco =
-      historico.slice(-5);
 
-    const pesosRecentes =
-      [1, 1.15, 1.3, 1.5, 1.75]
+    const ultimos =
+      historico.slice(
+        -5
+      );
+
+
+    const pesos =
+      [
+        1,
+        1.15,
+        1.3,
+        1.5,
+        1.75
+      ]
         .slice(
-          -ultimosCinco.length
+          -ultimos.length
         );
 
+
     const somaPesos =
-      pesosRecentes.reduce(
-        (total, peso) =>
-          total + peso,
+      pesos.reduce(
+        (
+          total,
+          peso
+        ) =>
+          total +
+          peso,
         0
       );
 
-    const mediaPonderada =
-      ultimosCinco.reduce(
-        (total, pontuacao, indice) =>
-          total +
-          numero(pontuacao) *
-          pesosRecentes[indice],
+
+    const resultado =
+      ultimos.reduce(
+        (
+          total,
+          pontuacao,
+          indice
+        ) => {
+
+          return (
+            total +
+            numero(
+              pontuacao
+            ) *
+            pesos[indice]
+          );
+
+        },
         0
-      ) / somaPesos;
+      ) /
+      somaPesos;
+
 
     return normalizar(
-      mediaPonderada,
+      resultado,
       -2,
       15
     );
+
   }
 
 
   function calcularMediaGeral(
     historico
   ) {
-    if (!historico.length) {
+
+    if (
+      historico.length === 0
+    ) {
+
       return 50;
+
     }
+
 
     return normalizar(
       media(historico),
       -2,
       15
     );
+
   }
 
 
   function calcularNotaMediana(
     historico
   ) {
-    if (!historico.length) {
+
+    if (
+      historico.length === 0
+    ) {
+
       return 50;
+
     }
+
 
     return normalizar(
       mediana(historico),
       -2,
       15
     );
+
   }
 
 
   function calcularRegularidade(
     historico
   ) {
-    if (!historico.length) {
+
+    if (
+      historico.length === 0
+    ) {
+
       return 50;
+
     }
 
-    const valorMedio =
+
+    const mediaAbs =
       Math.abs(
         media(historico)
       );
 
-    const desvio =
-      desvioPadrao(historico);
 
-    if (valorMedio === 0) {
-      return desvio === 0
-        ? 100
-        : 0;
+    const desvio =
+      desvioPadrao(
+        historico
+      );
+
+
+    if (
+      mediaAbs === 0
+    ) {
+
+      return (
+        desvio === 0
+          ? 100
+          : 0
+      );
+
     }
 
-    const coeficienteVariacao =
-      desvio /
-      valorMedio;
 
     return limitar(
       100 -
-      coeficienteVariacao * 70
+      (
+        desvio /
+        mediaAbs
+      ) *
+      70
     );
+
   }
 
 
   function calcularTendenciaRecente(
     historico
   ) {
-    if (historico.length < 2) {
+
+    if (
+      historico.length < 2
+    ) {
+
       return 50;
+
     }
 
-    const recentes =
-      historico.slice(-6);
 
-    const tamanhoMetade =
+    const recentes =
+      historico.slice(
+        -6
+      );
+
+
+    const tamanho =
       Math.max(
         1,
         Math.floor(
@@ -398,394 +822,953 @@ const MotorCalculadora = (() => {
         )
       );
 
+
     const inicio =
       recentes.slice(
         0,
-        tamanhoMetade
+        tamanho
       );
+
 
     const fim =
       recentes.slice(
-        -tamanhoMetade
+        -tamanho
       );
 
-    const diferenca =
-      media(fim) -
-      media(inicio);
 
     return limitar(
       50 +
-      diferenca * 8
+      (
+        media(fim) -
+        media(inicio)
+      ) *
+      8
     );
+
   }
 
 
   function calcularProtecaoNegativacao(
     historico
   ) {
-    if (!historico.length) {
+
+    if (
+      historico.length === 0
+    ) {
+
       return 50;
+
     }
+
 
     const negativas =
       historico.filter(
-        pontuacao =>
-          pontuacao < 0
+        valor =>
+          valor < 0
       ).length;
+
 
     return limitar(
       100 -
       (
         negativas /
         historico.length
-      ) * 100
+      ) *
+      100
     );
+
   }
 
 
   /* =======================================================
-     SCOUTS E CONTEXTO DA RODADA
+     PONTUAÇÃO BÁSICA
      ======================================================= */
+
 
   function calcularPontuacaoBasica(
     jogador
   ) {
+
     const scouts =
-      jogador?.scouts || {};
+      obterScoutsAnalise(
+        jogador
+      );
+
 
     const posicao =
       String(
         jogador?.posicao || ""
-      ).toUpperCase();
+      )
+        .toUpperCase();
+
 
     let valor = 0;
 
-    if (posicao === "GOL") {
+
+    if (
+      posicao === "GOL"
+    ) {
+
       valor =
-        numero(
-          scouts.defesas ??
-          scouts.DE
-        ) * 1.3 +
-        numero(
-          scouts.defesasDificeis ??
-          scouts.DD
-        ) * 2;
+        obterValorScout(
+          scouts,
+          [
+            "defesas",
+            "DE"
+          ]
+        ) *
+        1.3
+        +
+        obterValorScout(
+          scouts,
+          [
+            "defesasDificeis",
+            "DD"
+          ]
+        ) *
+        2;
+
     }
 
-    if (posicao === "LAT") {
+
+    if (
+      posicao === "LAT"
+    ) {
+
       valor =
-        numero(
-          scouts.desarmes ??
-          scouts.DS
-        ) * 1.4 +
-        numero(
-          scouts.cruzamentos
-        ) * 0.35 +
-        numero(
-          scouts.faltasSofridas ??
-          scouts.FS
-        ) * 0.5;
+        obterValorScout(
+          scouts,
+          [
+            "desarmes",
+            "DS"
+          ]
+        ) *
+        1.4
+        +
+        obterValorScout(
+          scouts,
+          [
+            "cruzamentos"
+          ]
+        ) *
+        0.35
+        +
+        obterValorScout(
+          scouts,
+          [
+            "faltasSofridas",
+            "FS"
+          ]
+        ) *
+        0.5;
+
     }
 
-    if (posicao === "ZAG") {
+
+    if (
+      posicao === "ZAG"
+    ) {
+
       valor =
-        numero(
-          scouts.desarmes ??
-          scouts.DS
-        ) * 1.5 +
-        numero(
-          scouts.cortes
-        ) * 0.25;
+        obterValorScout(
+          scouts,
+          [
+            "desarmes",
+            "DS"
+          ]
+        ) *
+        1.5
+        +
+        obterValorScout(
+          scouts,
+          [
+            "cortes"
+          ]
+        ) *
+        0.25;
+
     }
 
-    if (posicao === "MEI") {
+
+    if (
+      posicao === "MEI"
+    ) {
+
       valor =
-        numero(
-          scouts.desarmes ??
-          scouts.DS
-        ) * 1.2 +
-        numero(
-          scouts.finalizacoes
-        ) * 0.5 +
-        numero(
-          scouts.faltasSofridas ??
-          scouts.FS
-        ) * 0.5;
+        obterValorScout(
+          scouts,
+          [
+            "desarmes",
+            "DS"
+          ]
+        ) *
+        1.2
+        +
+        (
+          obterValorScout(
+            scouts,
+            [
+              "finalizacoes",
+              "FD",
+              "FF",
+              "FT"
+            ]
+          )
+        ) *
+        0.5
+        +
+        obterValorScout(
+          scouts,
+          [
+            "faltasSofridas",
+            "FS"
+          ]
+        ) *
+        0.5;
+
     }
 
-    if (posicao === "ATA") {
+
+    if (
+      posicao === "ATA"
+    ) {
+
       valor =
-        numero(
-          scouts.finalizacoes
-        ) * 0.7 +
-        numero(
-          scouts.finalizacoesNoAlvo ??
-          scouts.FD
-        ) +
-        numero(
-          scouts.faltasSofridas ??
-          scouts.FS
-        ) * 0.5;
+        (
+          obterValorScout(
+            scouts,
+            [
+              "FD"
+            ]
+          ) *
+          1.0
+        )
+        +
+        (
+          obterValorScout(
+            scouts,
+            [
+              "FF"
+            ]
+          ) *
+          0.6
+        )
+        +
+        (
+          obterValorScout(
+            scouts,
+            [
+              "FT"
+            ]
+          ) *
+          0.8
+        )
+        +
+        (
+          obterValorScout(
+            scouts,
+            [
+              "FS"
+            ]
+          ) *
+          0.5
+        );
+
     }
 
-    if (posicao === "TEC") {
-      valor =
-        numero(
-          scouts.favoritismo
-        ) / 10;
+
+    if (
+      posicao === "TEC"
+    ) {
+
+      /*
+       * Treinador normalmente não possui
+       * scouts individuais comparáveis.
+       * Neutro quando não houver dado.
+       */
+
+      return 50;
+
     }
+
+
+    if (
+      valor === 0 &&
+      !possuiScouts(
+        scouts
+      )
+    ) {
+
+      return 50;
+
+    }
+
 
     return normalizar(
       valor,
       0,
       12
     );
+
   }
+
+
+  /* =======================================================
+     SCOUTS OFENSIVOS
+     ======================================================= */
 
 
   function calcularScoutsOfensivos(
     jogador
   ) {
+
     const scouts =
-      jogador?.scouts || {};
+      obterScoutsAnalise(
+        jogador
+      );
+
+
+    if (
+      !possuiScouts(
+        scouts
+      )
+    ) {
+
+      return 50;
+
+    }
+
 
     const valor =
-      numero(
-        scouts.gols ??
-        scouts.G
-      ) * 8 +
-      numero(
-        scouts.assistencias ??
-        scouts.A
-      ) * 5 +
-      numero(
-        scouts.finalizacoes
-      ) * 0.7 +
-      numero(
-        scouts.finalizacoesNoAlvo ??
-        scouts.FD
-      ) * 1.2 +
-      numero(
-        scouts.forcaAtaque
-      ) / 12;
+      obterValorScout(
+        scouts,
+        [
+          "gols",
+          "G"
+        ]
+      ) *
+      8
+      +
+      obterValorScout(
+        scouts,
+        [
+          "assistencias",
+          "A"
+        ]
+      ) *
+      5
+      +
+      obterValorScout(
+        scouts,
+        [
+          "FD"
+        ]
+      ) *
+      1.2
+      +
+      obterValorScout(
+        scouts,
+        [
+          "FT"
+        ]
+      ) *
+      1.0
+      +
+      obterValorScout(
+        scouts,
+        [
+          "FF"
+        ]
+      ) *
+      0.6
+      +
+      obterValorScout(
+        scouts,
+        [
+          "FS"
+        ]
+      ) *
+      0.25;
+
 
     return normalizar(
       valor,
       0,
       12
     );
+
   }
+
+
+  /* =======================================================
+     SCOUTS DEFENSIVOS
+     ======================================================= */
 
 
   function calcularScoutsDefensivos(
     jogador
   ) {
+
     const scouts =
-      jogador?.scouts || {};
+      obterScoutsAnalise(
+        jogador
+      );
+
+
+    if (
+      !possuiScouts(
+        scouts
+      )
+    ) {
+
+      return 50;
+
+    }
+
 
     const valor =
-      numero(
-        scouts.desarmes ??
-        scouts.DS
-      ) * 1.5 +
-      numero(
-        scouts.cortes
-      ) * 0.3 +
-      numero(
-        scouts.defesas ??
-        scouts.DE
-      ) * 1.3 +
-      numero(
-        scouts.defesasDificeis ??
-        scouts.DD
-      ) * 2 +
-      numero(
-        scouts.forcaDefesa
-      ) / 12;
+      obterValorScout(
+        scouts,
+        [
+          "desarmes",
+          "DS"
+        ]
+      ) *
+      1.5
+      +
+      obterValorScout(
+        scouts,
+        [
+          "defesas",
+          "DE"
+        ]
+      ) *
+      1.3
+      +
+      obterValorScout(
+        scouts,
+        [
+          "defesasDificeis",
+          "DD"
+        ]
+      ) *
+      2
+      +
+      obterValorScout(
+        scouts,
+        [
+          "SG"
+        ]
+      ) *
+      4;
+
 
     return normalizar(
       valor,
       0,
       12
     );
+
   }
+
+
+  /* =======================================================
+     MANDO
+     ======================================================= */
 
 
   function calcularCasaFora(
     jogador
   ) {
+
     const mando =
       String(
         jogador?.mando || ""
-      ).toLowerCase();
+      )
+        .toLowerCase()
+        .trim();
+
 
     if (
       mando === "casa" ||
       mando === "mandante"
     ) {
+
       return 70;
+
     }
+
 
     if (
       mando === "fora" ||
       mando === "visitante"
     ) {
+
       return 45;
+
     }
 
+
     return 50;
+
   }
+
+
+  /* =======================================================
+     FORÇA DO ADVERSÁRIO
+     ======================================================= */
 
 
   function calcularForcaAdversario(
     jogador
   ) {
-    const notaInformada =
-      Number(
-        jogador
-          ?.notaForcaAdversario
-      );
 
-    if (
-      Number.isFinite(
-        notaInformada
-      )
+    const candidatos = [
+
+      jogador?.notaForcaAdversario,
+
+      jogador?.forcaAdversario,
+
+      jogador?.notaConfronto,
+
+      jogador?.componentes
+        ?.forcaAdversario,
+
+      jogador?.componentes
+        ?.Confronto,
+
+      jogador?.componentes
+        ?.confronto
+
+    ];
+
+
+    for (
+      const candidato of candidatos
     ) {
-      return limitar(
-        notaInformada
-      );
+
+      if (
+        possuiValor(
+          candidato
+        ) &&
+        Number.isFinite(
+          Number(candidato)
+        )
+      ) {
+
+        return limitar(
+          Number(candidato)
+        );
+
+      }
+
     }
 
-    const componentes =
-      jogador?.componentes || {};
 
-    return limitar(
-      componentes.forcaAdversario ??
-      componentes.Confronto ??
-      componentes.confronto ??
-      jogador?.notaConfronto ??
-      50
-    );
+    /*
+     * Temos adversário, mas ainda não temos
+     * uma nota confiável de força.
+     * Portanto utilizamos o ponto neutro,
+     * e não zero.
+     */
+
+    return 50;
+
   }
+
+
+  /* =======================================================
+     PONTOS CEDIDOS
+     ======================================================= */
 
 
   function calcularPontosCedidos(
     jogador
   ) {
-    const notaInformada =
-      Number(
-        jogador
-          ?.pontosCedidosNota ??
-        jogador
-          ?.notaPontosCedidos
-      );
 
-    if (
-      Number.isFinite(
-        notaInformada
-      )
+    const candidatos = [
+
+      jogador?.pontosCedidosNota,
+
+      jogador?.notaPontosCedidos,
+
+      jogador?.pontosCedidosPosicao
+
+    ];
+
+
+    for (
+      const candidato of candidatos
     ) {
-      return limitar(
-        notaInformada
-      );
+
+      if (
+        possuiValor(
+          candidato
+        ) &&
+        Number.isFinite(
+          Number(candidato)
+        )
+      ) {
+
+        return limitar(
+          Number(candidato)
+        );
+
+      }
+
     }
 
+
     return 50;
+
+  }
+
+
+  /* =======================================================
+     SG
+     ======================================================= */
+
+
+  function calcularChanceSGHistorica(
+    jogador
+  ) {
+
+    const posicao =
+      String(
+        jogador?.posicao || ""
+      )
+        .toUpperCase();
+
+
+    if (
+      ![
+        "GOL",
+        "LAT",
+        "ZAG"
+      ].includes(
+        posicao
+      )
+    ) {
+
+      return 50;
+
+    }
+
+
+    const registros =
+      obterHistoricoRegistros(
+        jogador
+      )
+        .filter(
+          registro =>
+            registro?.entrouEmCampo !==
+              false &&
+            possuiScouts(
+              registro?.scouts
+            )
+        );
+
+
+    if (
+      registros.length < 2
+    ) {
+
+      return 50;
+
+    }
+
+
+    const comSG =
+      registros.filter(
+        registro => {
+
+          return (
+            obterValorScout(
+              registro.scouts,
+              [
+                "SG"
+              ]
+            ) > 0
+          );
+
+        }
+      ).length;
+
+
+    return limitar(
+      (
+        comSG /
+        registros.length
+      ) *
+      100
+    );
+
   }
 
 
   function calcularChanceSG(
     jogador
   ) {
-    return limitar(
-      jogador?.chanceSG ?? 50
+
+    if (
+      possuiValor(
+        jogador?.chanceSG
+      ) &&
+      Number.isFinite(
+        Number(
+          jogador.chanceSG
+        )
+      )
+    ) {
+
+      return limitar(
+        Number(
+          jogador.chanceSG
+        )
+      );
+
+    }
+
+
+    return calcularChanceSGHistorica(
+      jogador
     );
+
   }
+
+
+  /* =======================================================
+     TITULARIDADE
+     ======================================================= */
 
 
   function calcularTitularidade(
     jogador
   ) {
+
     if (
-      jogador?.statusId === 7
+      possuiValor(
+        jogador?.titularidade
+      ) &&
+      Number.isFinite(
+        Number(
+          jogador.titularidade
+        )
+      )
     ) {
-      return 95;
+
+      return limitar(
+        Number(
+          jogador.titularidade
+        )
+      );
+
     }
 
-    return limitar(
-      jogador?.titularidade ??
-      50
-    );
+
+    const status =
+      numero(
+        jogador?.statusId ??
+        jogador?.status_id,
+        0
+      );
+
+
+    if (
+      status === 7
+    ) {
+
+      return 95;
+
+    }
+
+
+    if (
+      STATUS_INDISPONIVEIS.has(
+        status
+      )
+    ) {
+
+      return 10;
+
+    }
+
+
+    return 50;
+
   }
+
+
+  /* =======================================================
+     MINUTOS
+     ======================================================= */
 
 
   function calcularMinutosEsperados(
     jogador
   ) {
-    const minutos =
-      numero(
-        jogador
-          ?.minutosEsperados,
-        jogador?.statusId === 7
-          ? 85
-          : 45
+
+    if (
+      possuiValor(
+        jogador?.minutosEsperados
+      ) &&
+      Number.isFinite(
+        Number(
+          jogador.minutosEsperados
+        )
+      )
+    ) {
+
+      return limitar(
+        Number(
+          jogador.minutosEsperados
+        ) /
+        90 *
+        100
       );
 
-    return limitar(
-      minutos /
-      90 *
-      100
-    );
+    }
+
+
+    const status =
+      numero(
+        jogador?.statusId ??
+        jogador?.status_id,
+        0
+      );
+
+
+    if (
+      status === 7
+    ) {
+
+      return 94;
+
+    }
+
+
+    if (
+      STATUS_INDISPONIVEIS.has(
+        status
+      )
+    ) {
+
+      return 10;
+
+    }
+
+
+    return 50;
+
+  }
+
+
+  /* =======================================================
+     BOLA PARADA / PÊNALTI
+     ======================================================= */
+
+
+  function calcularFlagEspecial(
+    jogador,
+    campo
+  ) {
+
+    if (
+      Object.prototype
+        .hasOwnProperty
+        .call(
+          jogador,
+          campo
+        )
+    ) {
+
+      return jogador[campo]
+        ? 100
+        : 0;
+
+    }
+
+
+    /*
+     * Ausência de informação não significa
+     * que o atleta NÃO cobre.
+     */
+
+    return 50;
+
   }
 
 
   function calcularBolaParada(
     jogador
   ) {
-    return jogador?.cobraBolaParada
-      ? 100
-      : 0;
+
+    return calcularFlagEspecial(
+      jogador,
+      "cobraBolaParada"
+    );
+
   }
 
 
   function calcularPenaltis(
     jogador
   ) {
-    return jogador?.cobraPenalti
-      ? 100
-      : 0;
+
+    return calcularFlagEspecial(
+      jogador,
+      "cobraPenalti"
+    );
+
   }
+
+
+  /* =======================================================
+     CUSTO-BENEFÍCIO
+     ======================================================= */
 
 
   function calcularCustoBeneficio(
     jogador,
     mediaHistorica
   ) {
+
     const preco =
       numero(
         jogador?.preco
       );
 
-    if (preco <= 0) {
-      return 0;
+
+    if (
+      preco <= 0
+    ) {
+
+      return 50;
+
     }
 
+
     return normalizar(
-      numero(mediaHistorica) /
+      numero(
+        mediaHistorica
+      ) /
       preco,
       0,
       1.5
     );
+
   }
 
 
   /* =======================================================
-     CÁLCULO DOS 18 CRITÉRIOS
+     18 CRITÉRIOS
      ======================================================= */
+
 
   function calcularNotasJogador(
     jogador
   ) {
+
     const posicao =
       String(
         jogador?.posicao || ""
@@ -793,31 +1776,63 @@ const MotorCalculadora = (() => {
         .toUpperCase()
         .trim();
 
+
     if (
       !POSICOES_VALIDAS.includes(
         posicao
       )
     ) {
+
       return {
+
         erro:
           "Posição inválida.",
+
         posicao,
+
         notas: {},
-        historicoPontuacoes: []
+
+        historicoPontuacoes: [],
+
+        media3: 0,
+
+        media5: 0,
+
+        mediaHistorica: 0
+
       };
+
     }
+
 
     const historicoPontuacoes =
       obterHistoricoPontuacoes(
         jogador
       );
 
+
     const mediaHistorica =
       media(
         historicoPontuacoes
       );
 
+
+    const media3 =
+      mediaUltimas(
+        historicoPontuacoes,
+        3
+      );
+
+
+    const media5 =
+      mediaUltimas(
+        historicoPontuacoes,
+        5
+      );
+
+
     return {
+
       erro: null,
 
       posicao,
@@ -826,7 +1841,12 @@ const MotorCalculadora = (() => {
 
       mediaHistorica,
 
+      media3,
+
+      media5,
+
       notas: {
+
         formaRecente:
           calcularFormaRecente(
             historicoPontuacoes
@@ -917,36 +1937,52 @@ const MotorCalculadora = (() => {
           calcularProtecaoNegativacao(
             historicoPontuacoes
           )
+
       }
+
     };
+
   }
 
 
   /* =======================================================
-     INTEGRAÇÃO DOS MOTORES
+     JOGADOR
      ======================================================= */
+
 
   function analisarJogador(
     jogador
   ) {
+
     const calculo =
       calcularNotasJogador(
         jogador
       );
 
-    if (calculo.erro) {
+
+    if (
+      calculo.erro
+    ) {
+
       return {
+
         ...jogador,
+
         erroCalculadora:
           calculo.erro
+
       };
+
     }
+
 
     if (
       typeof executarMotorEstatistico !==
-      "function"
+        "function"
     ) {
+
       return {
+
         ...jogador,
 
         notasCriterios:
@@ -954,11 +1990,15 @@ const MotorCalculadora = (() => {
 
         erroCalculadora:
           "Motor estatístico não carregado."
+
       };
+
     }
+
 
     const resultadoMotor =
       executarMotorEstatistico({
+
         jogadorId:
           jogador.id,
 
@@ -967,200 +2007,305 @@ const MotorCalculadora = (() => {
 
         notas:
           calculo.notas
+
       });
+
 
     const historico =
       obterHistoricoRegistros(
         jogador
       );
 
-    /*
-    ======================================================
-    IMPORTANTE
-    ======================================================
-
-    As notas do motor permanecem normalizadas em 0-100
-    dentro de notasCriterios/calculo.notas.
-
-    Os campos exibidos no site como média, mediana,
-    piso e teto devem representar PONTOS REAIS.
-
-    Por isso a mediana real é calculada separadamente
-    e não pode ser substituída pela nota normalizada.
-    */
-
-    const medianaHistoricaReal =
-      mediana(
-        calculo.historicoPontuacoes
-      );
 
     const jogadorCompleto = {
+
       ...jogador,
 
       historico,
 
       historicoPontuacoes:
-        calculo.historicoPontuacoes,
+        [
+          ...calculo
+            .historicoPontuacoes
+        ],
+
+      notasCriterios:
+        {
+          ...calculo.notas
+        },
 
       /*
-      Mantemos as notas auxiliares disponíveis,
-      porém a mediana real será sobrescrita abaixo.
-      */
-      ...calculo.notas,
+       * Notas normalizadas também continuam
+       * acessíveis diretamente para módulos antigos.
+       */
 
-      mediana:
-        arredondar(
-          medianaHistoricaReal
-        )
+      ...calculo.notas
+
     };
 
 
-    /* SCORE */
+    /* ===================================================
+       MÉDIAS REAIS
+       =================================================== */
+
+
+    jogadorCompleto.media3 =
+      arredondar(
+        calculo.media3
+      );
+
+
+    jogadorCompleto.media5 =
+      arredondar(
+        calculo.media5
+      );
+
+
+    jogadorCompleto.mediaRecente =
+      arredondar(
+        calculo.media5 ||
+        calculo.mediaHistorica
+      );
+
+
+    jogadorCompleto.mediaGeral =
+      arredondar(
+        calculo.mediaHistorica
+      );
+
+
+    jogadorCompleto.mediana =
+      arredondar(
+        mediana(
+          calculo
+            .historicoPontuacoes
+        )
+      );
+
+
+    /* ===================================================
+       SCORE
+       =================================================== */
+
 
     const score =
-      typeof MotorScore !==
-        "undefined"
+      (
+        typeof MotorScore !==
+          "undefined" &&
+        MotorScore &&
+        typeof MotorScore.calcular ===
+          "function"
+      )
         ? MotorScore.calcular(
             jogadorCompleto
           )
         : resultadoMotor.notaFinal;
 
+
     jogadorCompleto.score =
-      arredondar(score);
-
-
-    /* FORMA */
-
-    const formaMedia =
-      typeof MotorForma !==
-      "undefined"
-        ? MotorForma.mediaRecente(
-            calculo.historicoPontuacoes
-          )
-        : calculo.mediaHistorica;
-
-    const tendenciaForma =
-      typeof MotorForma !==
-      "undefined"
-        ? MotorForma.tendencia(
-            calculo.historicoPontuacoes
-          )
-        : 0;
-
-    const fase =
-      typeof MotorForma !==
-      "undefined"
-        ? MotorForma.fase(
-            historico
-          )
-        : "Sem histórico";
-
-    jogadorCompleto.mediaRecente =
       arredondar(
-        formaMedia
+        score
       );
 
-    jogadorCompleto.tendencia =
-      arredondar(
-        tendenciaForma
-      );
 
-    jogadorCompleto.fase =
-      fase;
+    /* ===================================================
+       FORMA
+       =================================================== */
 
 
-    /* REGULARIDADE */
+    if (
+      typeof MotorForma !==
+        "undefined" &&
+      MotorForma
+    ) {
 
-    const regularidadeHistorica =
-      typeof MotorRegularidade !==
-      "undefined"
-        ? MotorRegularidade.calcular(
-            calculo.historicoPontuacoes
-          )
-        : {
-            media:
-              calculo.mediaHistorica,
+      if (
+        typeof MotorForma.mediaRecente ===
+          "function"
+      ) {
 
-            desvio:
-              desvioPadrao(
-                calculo
-                  .historicoPontuacoes
-              ),
-
-            regularidade:
+        jogadorCompleto.mediaRecente =
+          arredondar(
+            MotorForma.mediaRecente(
               calculo
-                .notas
-                .regularidade
-          };
+                .historicoPontuacoes
+            )
+          );
 
-    jogadorCompleto.mediaGeral =
-      arredondar(
-        regularidadeHistorica.media
-      );
-
-    jogadorCompleto.desvioPadrao =
-      arredondar(
-        regularidadeHistorica.desvio
-      );
-
-    jogadorCompleto.regularidade =
-      arredondar(
-        regularidadeHistorica
-          .regularidade,
-        1
-      );
+      }
 
 
-    /* MEDIANA REAL EM PONTOS */
+      if (
+        typeof MotorForma.tendencia ===
+          "function"
+      ) {
 
-    jogadorCompleto.mediana =
-      arredondar(
-        mediana(
-          calculo.historicoPontuacoes
-        )
-      );
+        jogadorCompleto.tendencia =
+          arredondar(
+            MotorForma.tendencia(
+              calculo
+                .historicoPontuacoes
+            )
+          );
+
+      }
 
 
-    /* PISO E TETO */
+      if (
+        typeof MotorForma.fase ===
+          "function"
+      ) {
 
-    const pisoTeto =
-      typeof MotorPisoTeto !==
-      "undefined"
-        ? MotorPisoTeto.calcular(
-            calculo.historicoPontuacoes
+        jogadorCompleto.fase =
+          MotorForma.fase(
+            historico
+          );
+
+      }
+
+    }
+
+
+    if (
+      !possuiValor(
+        jogadorCompleto.tendencia
+      )
+    ) {
+
+      jogadorCompleto.tendencia =
+        arredondar(
+          calculo.notas
+            .tendenciaRecente -
+          50
+        );
+
+    }
+
+
+    /* ===================================================
+       REGULARIDADE
+       =================================================== */
+
+
+    if (
+      typeof MotorRegularidade !==
+        "undefined" &&
+      MotorRegularidade &&
+      typeof MotorRegularidade.calcular ===
+        "function"
+    ) {
+
+      const resultado =
+        MotorRegularidade.calcular(
+          calculo
+            .historicoPontuacoes
+        );
+
+
+      jogadorCompleto.desvioPadrao =
+        arredondar(
+          resultado?.desvio ??
+          desvioPadrao(
+            calculo
+              .historicoPontuacoes
           )
-        : {
-            piso:
-              calculo.historicoPontuacoes
-                .length
-                ? Math.min(
-                    ...calculo
-                      .historicoPontuacoes
-                  )
-                : 0,
-
-            teto:
-              calculo.historicoPontuacoes
-                .length
-                ? Math.max(
-                    ...calculo
-                      .historicoPontuacoes
-                  )
-                : 0
-          };
-
-    jogadorCompleto.piso =
-      arredondar(
-        pisoTeto.piso
-      );
-
-    jogadorCompleto.teto =
-      arredondar(
-        pisoTeto.teto
-      );
+        );
 
 
-    /* RISCO */
+      jogadorCompleto.regularidade =
+        arredondar(
+          resultado?.regularidade ??
+          calculo.notas
+            .regularidade,
+          1
+        );
+
+    } else {
+
+      jogadorCompleto.desvioPadrao =
+        arredondar(
+          desvioPadrao(
+            calculo
+              .historicoPontuacoes
+          )
+        );
+
+
+      jogadorCompleto.regularidade =
+        arredondar(
+          calculo.notas
+            .regularidade,
+          1
+        );
+
+    }
+
+
+    /* ===================================================
+       PISO / TETO
+       =================================================== */
+
+
+    if (
+      typeof MotorPisoTeto !==
+        "undefined" &&
+      MotorPisoTeto &&
+      typeof MotorPisoTeto.calcular ===
+        "function"
+    ) {
+
+      const resultado =
+        MotorPisoTeto.calcular(
+          calculo
+            .historicoPontuacoes
+        );
+
+
+      jogadorCompleto.piso =
+        arredondar(
+          resultado?.piso
+        );
+
+
+      jogadorCompleto.teto =
+        arredondar(
+          resultado?.teto
+        );
+
+    } else {
+
+      jogadorCompleto.piso =
+        calculo
+          .historicoPontuacoes
+          .length
+          ? arredondar(
+              Math.min(
+                ...calculo
+                  .historicoPontuacoes
+              )
+            )
+          : 0;
+
+
+      jogadorCompleto.teto =
+        calculo
+          .historicoPontuacoes
+          .length
+          ? arredondar(
+              Math.max(
+                ...calculo
+                  .historicoPontuacoes
+              )
+            )
+          : 0;
+
+    }
+
+
+    /* ===================================================
+       RISCO
+       =================================================== */
+
 
     jogadorCompleto.riscoNegativar =
       arredondar(
@@ -1170,14 +2315,21 @@ const MotorCalculadora = (() => {
         1
       );
 
+
     jogadorCompleto.risco =
-      typeof MotorRisco !==
-      "undefined"
+      (
+        typeof MotorRisco !==
+          "undefined" &&
+        MotorRisco &&
+        typeof MotorRisco.calcular ===
+          "function"
+      )
         ? MotorRisco.calcular(
             jogadorCompleto
           )
         : jogadorCompleto
             .riscoNegativar;
+
 
     jogadorCompleto.risco =
       arredondar(
@@ -1185,24 +2337,45 @@ const MotorCalculadora = (() => {
         1
       );
 
+
     jogadorCompleto.riscoTexto =
-      typeof MotorRisco !==
-      "undefined"
+      (
+        typeof MotorRisco !==
+          "undefined" &&
+        MotorRisco &&
+        typeof MotorRisco.nivel ===
+          "function"
+      )
         ? MotorRisco.nivel(
             jogadorCompleto.risco
           )
-        : "Não calculado";
+        : (
+            jogadorCompleto.risco <= 30
+              ? "Baixo"
+              : jogadorCompleto.risco <= 60
+                ? "Médio"
+                : "Alto"
+          );
 
 
-    /* CONFIANÇA */
+    /* ===================================================
+       CONFIANÇA
+       =================================================== */
+
 
     jogadorCompleto.confianca =
-      typeof MotorConfianca !==
-      "undefined"
+      (
+        typeof MotorConfianca !==
+          "undefined" &&
+        MotorConfianca &&
+        typeof MotorConfianca.calcular ===
+          "function"
+      )
         ? MotorConfianca.calcular(
             jogadorCompleto
           )
         : 50;
+
 
     jogadorCompleto.confianca =
       arredondar(
@@ -1210,55 +2383,83 @@ const MotorCalculadora = (() => {
         1
       );
 
-    jogadorCompleto
-      .confiancaNumerica =
-        jogadorCompleto.confianca;
+
+    jogadorCompleto.confiancaNumerica =
+      jogadorCompleto.confianca;
 
 
-    /* PROJEÇÃO */
+    /* ===================================================
+       PROJEÇÃO
+       =================================================== */
+
 
     if (
       typeof MotorProjecao !==
-      "undefined"
+        "undefined" &&
+      MotorProjecao &&
+      typeof MotorProjecao.calcular ===
+        "function"
     ) {
+
       const dadosProjecao = {
+
         ...jogadorCompleto,
 
         score:
           jogadorCompleto.score,
 
+        /*
+         * CORREÇÃO:
+         * media3 e media5 agora são diferentes.
+         */
+
         media3:
-          jogadorCompleto.mediaRecente,
+          calculo.media3,
 
         media5:
-          jogadorCompleto.mediaRecente
+          calculo.media5,
+
+        mediaGeral:
+          calculo.mediaHistorica
+
       };
 
-      const resultadoProjecao =
+
+      const resultado =
         MotorProjecao.calcular(
           dadosProjecao
         );
 
+
       if (
-        resultadoProjecao &&
-        typeof resultadoProjecao ===
-        "object"
+        resultado &&
+        typeof resultado ===
+          "object"
       ) {
+
         Object.assign(
           jogadorCompleto,
-          resultadoProjecao
+          resultado
         );
+
       } else {
+
         jogadorCompleto.projecao =
-          Number(resultadoProjecao) || 0;
+          numero(
+            resultado
+          );
+
       }
 
     } else {
+
       jogadorCompleto.projecao =
         arredondar(
           calculo.mediaHistorica
         );
+
     }
+
 
     jogadorCompleto.projecao =
       arredondar(
@@ -1266,62 +2467,108 @@ const MotorCalculadora = (() => {
       );
 
 
-    /* PROBABILIDADES */
+    /* ===================================================
+       PROBABILIDADES
+       =================================================== */
+
 
     if (
       typeof MotorProbabilidade !==
-      "undefined"
+        "undefined" &&
+      MotorProbabilidade &&
+      typeof MotorProbabilidade.calcular ===
+        "function"
     ) {
+
       const probabilidades =
         MotorProbabilidade.calcular(
           historico
         );
 
+
       jogadorCompleto.chance5 =
-        probabilidades.chance5;
+        probabilidades?.chance5;
+
 
       jogadorCompleto.chance10 =
-        probabilidades.chance10;
+        probabilidades?.chance10;
+
 
       jogadorCompleto.chance15 =
-        probabilidades.chance15;
+        probabilidades?.chance15;
+
 
       jogadorCompleto.chanceNegativar =
-        probabilidades.chanceNegativar;
+        probabilidades
+          ?.chanceNegativar;
+
     }
 
 
-    /* CUSTO-BENEFÍCIO FINAL */
+    /* ===================================================
+       CUSTO-BENEFÍCIO REAL
+       =================================================== */
+
 
     const preco =
       numero(
         jogadorCompleto.preco
       );
 
-    jogadorCompleto
-      .custoBeneficio =
-        preco > 0
-          ? arredondar(
-              jogadorCompleto
-                .projecao /
-              preco,
-              2
-            )
-          : 0;
+
+    jogadorCompleto.custoBeneficio =
+      preco > 0
+        ? arredondar(
+            jogadorCompleto
+              .projecao /
+            preco,
+            2
+          )
+        : 0;
+
+
+    /* ===================================================
+       CAMPOS DE CONTEXTO
+       =================================================== */
+
+
+    jogadorCompleto.mando =
+      jogador?.mando ??
+      null;
+
+
+    jogadorCompleto.adversario =
+      jogador?.adversario ??
+      null;
+
+
+    jogadorCompleto.siglaAdversario =
+      jogador?.siglaAdversario ??
+      null;
+
+
+    jogadorCompleto.chanceSG =
+      arredondar(
+        calcularChanceSG(
+          jogadorCompleto
+        ),
+        1
+      );
+
+
+    /* ===================================================
+       RESULTADO
+       =================================================== */
 
 
     return {
+
       ...jogadorCompleto,
 
-      /*
-      As notas normalizadas continuam preservadas aqui.
-      Exemplo:
-      notasCriterios.mediana = nota 0-100
-      jogadorCompleto.mediana = pontuação real
-      */
-
       notasCriterios:
-        calculo.notas,
+        {
+          ...calculo.notas
+        },
 
       notaCalculada:
         resultadoMotor.notaFinal,
@@ -1344,33 +2591,58 @@ const MotorCalculadora = (() => {
       explicacaoCalculada:
         resultadoMotor.explicacao,
 
-      calculadoPeloMotor: true,
+      calculadoPeloMotor:
+        true,
 
       erroCalculadora:
         resultadoMotor.erro
+
     };
+
   }
+
+
+  /* =======================================================
+     LISTA
+     ======================================================= */
 
 
   function analisarListaJogadores(
     jogadores
   ) {
+
     if (
-      !Array.isArray(jogadores)
+      !Array.isArray(
+        jogadores
+      )
     ) {
+
       return [];
+
     }
+
 
     return jogadores.map(
       analisarJogador
     );
+
   }
 
 
+  /* =======================================================
+     API
+     ======================================================= */
+
+
   return {
+
     calcularNotasJogador,
+
     analisarJogador,
+
     analisarListaJogadores
+
   };
+
 
 })();
