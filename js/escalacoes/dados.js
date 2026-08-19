@@ -16,6 +16,8 @@
    - consolidar custo total de titulares + banco;
    - selecionar Reserva de Luxo;
    - aplicar viabilidade/titularidade da rodada;
+   - aplicar adequação contextual à rodada;
+   - limitar qualquer time sugerido a C$ 120;
    - gerar justificativas automáticas;
    - manter compatibilidade com os cards atuais.
 
@@ -95,6 +97,9 @@ const ORDEM_POSICOES_ESCALACAO = [
 
 
 const LIMITE_JOGADORES_CLUBE_ESCALACAO = 3;
+
+
+const LIMITE_PATRIMONIO_MAXIMO_ESCALACAO = 120;
 
 
 const estadoEscalacoes = {
@@ -293,7 +298,7 @@ function obterPesoViabilidadePerfilEscalacao(
     )
   ) {
 
-    return 0.45;
+    return 1.00;
 
   }
 
@@ -304,12 +309,12 @@ function obterPesoViabilidadePerfilEscalacao(
     )
   ) {
 
-    return 0.18;
+    return 0.70;
 
   }
 
 
-  return 0.30;
+  return 0.85;
 
 }
 
@@ -337,9 +342,22 @@ function prepararJogadorViabilidadeEscalacao(
   const scoreOriginal =
     numeroEscalacao(
       jogador?.score,
-      obterProjecaoFinalEscalacao(
+      obterProjecaoEstatisticaEscalacao(
         jogador
       )
+    );
+
+
+  const projecaoEstatistica =
+    obterProjecaoEstatisticaEscalacao(
+      jogador
+    );
+
+
+  const projecaoContextualizada =
+    numeroEscalacao(
+      analise.projecaoAjustada,
+      projecaoEstatistica
     );
 
 
@@ -359,20 +377,94 @@ function prepararJogadorViabilidadeEscalacao(
     );
 
 
-  const pesoViabilidade =
+  const adequacao =
+    analise?.adequacaoRodada &&
+    typeof analise.adequacaoRodada ===
+      "object"
+      ? analise.adequacaoRodada
+      : null;
+
+
+  const notaAdequacao =
+    adequacao?.nota !== null &&
+    adequacao?.nota !== undefined
+      ? numeroEscalacao(
+          adequacao.nota,
+          50
+        )
+      : null;
+
+
+  const coberturaAdequacao =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        numeroEscalacao(
+          adequacao?.cobertura,
+          0
+        )
+      )
+    );
+
+
+  /*
+   * O MotorViabilidade já produziu a projeção contextualizada.
+   * Aqui apenas transferimos o MESMO impacto para o score usado
+   * pelo MotorEscalacao, sem recalcular titularidade ou confronto.
+   */
+
+  let fatorContextualScore = 1;
+
+
+  if (
+    Math.abs(
+      projecaoEstatistica
+    ) > 0.000001
+  ) {
+
+    fatorContextualScore =
+      projecaoContextualizada /
+      projecaoEstatistica;
+
+  }
+
+
+  fatorContextualScore =
+    Math.max(
+      0.55,
+      Math.min(
+        1.20,
+        fatorContextualScore
+      )
+    );
+
+
+  /*
+   * Perfis não recebem pesos novos de futebol.
+   * Apenas variamos a intensidade da contextualização:
+   *
+   * Conservador -> absorve 100% do ajuste;
+   * Equilibrado -> absorve 85%;
+   * Agressivo   -> absorve 70%, preservando mais teto.
+   *
+   * Bloqueios objetivos continuam iguais para todos.
+   */
+
+  const intensidadePerfil =
     obterPesoViabilidadePerfilEscalacao(
       perfil
     );
 
 
   const fatorPerfil =
+    1 +
     (
-      1 -
-      pesoViabilidade
-    ) +
-    (
-      pesoViabilidade *
-      fatorDisponibilidade
+      (
+        fatorContextualScore -
+        1
+      ) *
+      intensidadePerfil
     );
 
 
@@ -394,6 +486,15 @@ function prepararJogadorViabilidadeEscalacao(
         4
       ),
 
+    fatorContextualScore:
+      arredondarEscalacao(
+        fatorContextualScore,
+        4
+      ),
+
+    intensidadeContextualPerfil:
+      intensidadePerfil,
+
     viabilidade:
       analise,
 
@@ -412,11 +513,28 @@ function prepararJogadorViabilidadeEscalacao(
     fatorDisponibilidade,
 
     projecaoViabilidade:
+      projecaoContextualizada,
+
+    projecaoContextualizada:
+      projecaoContextualizada,
+
+    adequacaoRodada:
+      adequacao,
+
+    notaAdequacaoRodada:
+      notaAdequacao,
+
+    classificacaoAdequacaoRodada:
+      adequacao?.classificacao ??
+      "SEM_DADOS",
+
+    coberturaAdequacaoRodada:
+      coberturaAdequacao,
+
+    fatorAdequacaoRodada:
       numeroEscalacao(
-        analise.projecaoAjustada,
-        obterProjecaoFinalEscalacao(
-          jogador
-        )
+        analise.fatorAdequacao,
+        1
       ),
 
     classificacaoViabilidade:
@@ -442,6 +560,24 @@ function prepararJogadorViabilidadeEscalacao(
       )
         ? analise.alertas
         : [],
+
+    pontosFortesRodada:
+      Array.isArray(
+        adequacao?.pontosFortes
+      )
+        ? adequacao.pontosFortes
+        : [],
+
+    alertasRodada:
+      Array.isArray(
+        adequacao?.alertas
+      )
+        ? adequacao.alertas
+        : [],
+
+    justificativaRodada:
+      adequacao?.justificativa ??
+      "",
 
     justificativaViabilidade:
       analise.justificativa ??
@@ -629,9 +765,168 @@ function calcularResumoViabilidadeEscalacao(
 
 
 /* =========================================================
-   PATRIMÔNIO
+   RESUMO DE ADEQUAÇÃO À RODADA
    ========================================================= */
 
+
+function calcularResumoAdequacaoEscalacao(
+  titulares
+) {
+
+  const jogadores =
+    Array.isArray(
+      titulares
+    )
+      ? titulares
+      : [];
+
+
+  const analisados =
+    jogadores.filter(
+      jogador => {
+
+        const adequacao =
+          jogador?.adequacaoRodada ??
+          jogador?.viabilidade
+            ?.adequacaoRodada;
+
+
+        return (
+          adequacao &&
+          typeof adequacao ===
+            "object" &&
+          adequacao.nota !== null &&
+          adequacao.nota !== undefined
+        );
+
+      }
+    );
+
+
+  if (
+    analisados.length === 0
+  ) {
+
+    return {
+      ativa: false,
+      jogadoresAnalisados: 0,
+      notaMedia: 0,
+      coberturaMedia: 0,
+      muitoAltaOuAlta: 0,
+      baixaOuPior: 0
+    };
+
+  }
+
+
+  const notaMedia =
+    calcularMediaEscalacao(
+      analisados,
+      jogador =>
+        jogador?.adequacaoRodada
+          ?.nota ??
+        jogador?.viabilidade
+          ?.adequacaoRodada
+          ?.nota
+    );
+
+
+  const coberturaMedia =
+    calcularMediaEscalacao(
+      analisados,
+      jogador =>
+        jogador?.adequacaoRodada
+          ?.cobertura ??
+        jogador?.viabilidade
+          ?.adequacaoRodada
+          ?.cobertura
+    );
+
+
+  const muitoAltaOuAlta =
+    analisados.filter(
+      jogador => {
+
+        const classificacao =
+          String(
+            jogador?.adequacaoRodada
+              ?.classificacao ??
+            jogador?.viabilidade
+              ?.adequacaoRodada
+              ?.classificacao ??
+            ""
+          ).toUpperCase();
+
+
+        return [
+          "MUITO_ALTA",
+          "ALTA"
+        ].includes(
+          classificacao
+        );
+
+      }
+    ).length;
+
+
+  const baixaOuPior =
+    analisados.filter(
+      jogador => {
+
+        const classificacao =
+          String(
+            jogador?.adequacaoRodada
+              ?.classificacao ??
+            jogador?.viabilidade
+              ?.adequacaoRodada
+              ?.classificacao ??
+            ""
+          ).toUpperCase();
+
+
+        return [
+          "BAIXA",
+          "MUITO_BAIXA",
+          "EVITAR"
+        ].includes(
+          classificacao
+        );
+
+      }
+    ).length;
+
+
+  return {
+
+    ativa: true,
+
+    jogadoresAnalisados:
+      analisados.length,
+
+    notaMedia:
+      arredondarEscalacao(
+        notaMedia,
+        1
+      ),
+
+    coberturaMedia:
+      arredondarEscalacao(
+        coberturaMedia,
+        1
+      ),
+
+    muitoAltaOuAlta,
+
+    baixaOuPior
+
+  };
+
+}
+
+
+/* =========================================================
+   PATRIMÔNIO
+   ========================================================= */
 
 function obterPatrimonioSelecionadoEscalacoes() {
 
@@ -649,12 +944,46 @@ function obterPatrimonioSelecionadoEscalacoes() {
     patrimonio > 0
   ) {
 
-    return patrimonio;
+    return Math.min(
+      patrimonio,
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+    );
 
   }
 
 
   return null;
+
+}
+
+
+function normalizarLimitePatrimonioEscalacao(
+  valor
+) {
+
+  const limite =
+    Number(valor);
+
+
+  if (
+    !Number.isFinite(
+      limite
+    ) ||
+    limite <= 0
+  ) {
+
+    return null;
+
+  }
+
+
+  return arredondarEscalacao(
+    Math.min(
+      limite,
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+    ),
+    2
+  );
 
 }
 
@@ -677,16 +1006,13 @@ function obterLimitePatrimonioEscalacao(
 
 
   const limitePerfil =
-    Number(
+    normalizarLimitePatrimonioEscalacao(
       perfil?.limitePatrimonio
     );
 
 
   if (
-    Number.isFinite(
-      limitePerfil
-    ) &&
-    limitePerfil > 0
+    limitePerfil !== null
   ) {
 
     return limitePerfil;
@@ -702,16 +1028,13 @@ function obterLimitePatrimonioEscalacao(
 
 
   const limiteConfiguracao =
-    Number(
+    normalizarLimitePatrimonioEscalacao(
       configuracao?.limitePatrimonio
     );
 
 
   if (
-    Number.isFinite(
-      limiteConfiguracao
-    ) &&
-    limiteConfiguracao > 0
+    limiteConfiguracao !== null
   ) {
 
     return limiteConfiguracao;
@@ -719,7 +1042,13 @@ function obterLimitePatrimonioEscalacao(
   }
 
 
-  return null;
+  /*
+   * Mesmo sem patrimônio informado,
+   * nenhum time sugerido pode ultrapassar
+   * C$ 120.
+   */
+
+  return LIMITE_PATRIMONIO_MAXIMO_ESCALACAO;
 
 }
 
@@ -749,7 +1078,11 @@ async function definirPatrimonioEscalacoes(
   estadoEscalacoes
     .patrimonioSelecionado =
       arredondarEscalacao(
-        patrimonio
+        Math.min(
+          patrimonio,
+          LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+        ),
+        2
       );
 
 
@@ -775,12 +1108,29 @@ async function restaurarPatrimonioPadraoEscalacoes() {
    ========================================================= */
 
 
-function obterProjecaoFinalEscalacao(
+function obterProjecaoEstatisticaEscalacao(
   jogador
 ) {
 
   if (!jogador) {
     return 0;
+  }
+
+
+  const projecaoEstatistica =
+    Number(
+      jogador.projecaoEstatistica
+    );
+
+
+  if (
+    Number.isFinite(
+      projecaoEstatistica
+    )
+  ) {
+
+    return projecaoEstatistica;
+
   }
 
 
@@ -833,6 +1183,90 @@ function obterProjecaoFinalEscalacao(
 }
 
 
+function obterProjecaoContextualizadaEscalacao(
+  jogador
+) {
+
+  if (!jogador) {
+    return 0;
+  }
+
+
+  const contextualDireta =
+    Number(
+      jogador.projecaoContextualizada
+    );
+
+
+  if (
+    Number.isFinite(
+      contextualDireta
+    )
+  ) {
+
+    return contextualDireta;
+
+  }
+
+
+  const projecaoViabilidade =
+    Number(
+      jogador.projecaoViabilidade
+    );
+
+
+  if (
+    Number.isFinite(
+      projecaoViabilidade
+    )
+  ) {
+
+    return projecaoViabilidade;
+
+  }
+
+
+  const analise =
+    obterAnaliseViabilidadeEscalacao(
+      jogador
+    );
+
+
+  const contextualMotor =
+    Number(
+      analise?.projecaoAjustada
+    );
+
+
+  if (
+    Number.isFinite(
+      contextualMotor
+    )
+  ) {
+
+    return contextualMotor;
+
+  }
+
+
+  return obterProjecaoEstatisticaEscalacao(
+    jogador
+  );
+
+}
+
+
+function obterProjecaoFinalEscalacao(
+  jogador
+) {
+
+  return obterProjecaoContextualizadaEscalacao(
+    jogador
+  );
+
+}
+
+
 function obterProjecaoOriginalEscalacao(
   jogador
 ) {
@@ -859,7 +1293,7 @@ function obterProjecaoOriginalEscalacao(
   }
 
 
-  return obterProjecaoFinalEscalacao(
+  return obterProjecaoEstatisticaEscalacao(
     jogador
   );
 
@@ -892,7 +1326,7 @@ function obterProjecaoCalibradaEscalacao(
   }
 
 
-  return obterProjecaoFinalEscalacao(
+  return obterProjecaoEstatisticaEscalacao(
     jogador
   );
 
@@ -1003,61 +1437,70 @@ function jogadorPossuiCalibracao(
 
 
 function calcularResumoCalibracaoEscalacao(
-  titulares
+  jogadores
 ) {
 
-  const jogadores =
+  const lista =
     Array.isArray(
-      titulares
+      jogadores
     )
-      ? titulares
+      ? jogadores
       : [];
+
+
+  const calibrados =
+    lista.filter(
+      jogadorPossuiCalibracao
+    );
+
+
+  const quantidade =
+    lista.length;
+
+
+  const quantidadeCalibrados =
+    calibrados.length;
+
+
+  const percentual =
+    quantidade > 0
+      ? (
+          quantidadeCalibrados /
+          quantidade
+        ) * 100
+      : 0;
 
 
   const projecaoOriginal =
     somarCampoEscalacao(
-      jogadores,
+      lista,
       obterProjecaoOriginalEscalacao
     );
 
 
   const projecaoCalibrada =
     somarCampoEscalacao(
-      jogadores,
+      lista,
       obterProjecaoCalibradaEscalacao
-    );
-
-
-  const diferenca =
-    projecaoCalibrada -
-    projecaoOriginal;
-
-
-  const percentual =
-    projecaoOriginal !== 0
-      ? (
-          diferenca /
-          projecaoOriginal
-        ) * 100
-      : 0;
-
-
-  const jogadoresCalibrados =
-    jogadores.filter(
-      jogadorPossuiCalibracao
     );
 
 
   return {
 
     ativa:
-      jogadoresCalibrados.length > 0,
+      quantidadeCalibrados > 0,
 
-    jogadoresTitulares:
-      jogadores.length,
+    jogadores:
+      quantidade,
 
     jogadoresCalibrados:
-      jogadoresCalibrados.length,
+      quantidadeCalibrados,
+
+    percentual:
+      arredondarEscalacao(
+        percentual,
+        1
+      ),
 
     projecaoOriginal:
       arredondarEscalacao(
@@ -1069,14 +1512,10 @@ function calcularResumoCalibracaoEscalacao(
         projecaoCalibrada
       ),
 
-    diferenca:
+    impacto:
       arredondarEscalacao(
-        diferenca
-      ),
-
-    percentual:
-      arredondarEscalacao(
-        percentual
+        projecaoCalibrada -
+        projecaoOriginal
       )
 
   };
@@ -1085,27 +1524,46 @@ function calcularResumoCalibracaoEscalacao(
 
 
 /* =========================================================
-   BANCO
+   NOTA DO JOGADOR PARA O PERFIL
    ========================================================= */
 
 
-function obterNotaBancoEscalacao(
+function obterNotaMotorEscalacao(
   jogador
 ) {
 
-  const score =
-    Number(
-      jogador?.score
-    );
+  if (!jogador) {
+    return 0;
+  }
 
 
-  if (
-    Number.isFinite(
-      score
-    )
+  const candidatos = [
+    jogador.notaPerfil,
+    jogador.notaMotor,
+    jogador.notaRanking,
+    jogador.notaFinal,
+    jogador.score
+  ];
+
+
+  for (
+    const valor
+    of candidatos
   ) {
 
-    return score;
+    const numero =
+      Number(valor);
+
+
+    if (
+      Number.isFinite(
+        numero
+      )
+    ) {
+
+      return numero;
+
+    }
 
   }
 
@@ -1115,6 +1573,147 @@ function obterNotaBancoEscalacao(
   );
 
 }
+
+
+function obterNotaTitularEscalacao(
+  jogador
+) {
+
+  const notaMotor =
+    obterNotaMotorEscalacao(
+      jogador
+    );
+
+
+  const projecao =
+    obterProjecaoFinalEscalacao(
+      jogador
+    );
+
+
+  const confianca =
+    numeroEscalacao(
+      jogador?.confianca,
+      50
+    );
+
+
+  const risco =
+    numeroEscalacao(
+      jogador?.risco,
+      50
+    );
+
+
+  /*
+   * O score já foi contextualizado antes.
+   * Projeção e confiança entram apenas como
+   * desempate/estabilidade da montagem.
+   */
+
+  return (
+    notaMotor +
+    (
+      projecao *
+      0.001
+    ) +
+    (
+      confianca *
+      0.00001
+    ) -
+    (
+      risco *
+      0.000001
+    )
+  );
+
+}
+
+
+/* =========================================================
+   NOTA DO BANCO
+   ========================================================= */
+
+
+function obterNotaBancoEscalacao(
+  jogador
+) {
+
+  if (!jogador) {
+    return 0;
+  }
+
+
+  const projecao =
+    obterProjecaoFinalEscalacao(
+      jogador
+    );
+
+
+  const confianca =
+    numeroEscalacao(
+      jogador.confianca,
+      50
+    );
+
+
+  const risco =
+    numeroEscalacao(
+      jogador.risco,
+      50
+    );
+
+
+  const titularidade =
+    numeroEscalacao(
+      jogador.titularidade ??
+      jogador.viabilidade
+        ?.titularidade,
+      50
+    );
+
+
+  const notaAdequacao =
+    numeroEscalacao(
+      jogador.notaAdequacaoRodada ??
+      jogador.adequacaoRodada
+        ?.nota ??
+      jogador.viabilidade
+        ?.adequacaoRodada
+        ?.nota,
+      50
+    );
+
+
+  return (
+    (
+      projecao *
+      0.52
+    ) +
+    (
+      confianca *
+      0.16
+    ) +
+    (
+      titularidade *
+      0.17
+    ) +
+    (
+      notaAdequacao *
+      0.10
+    ) -
+    (
+      risco *
+      0.05
+    )
+  );
+
+}
+
+
+/* =========================================================
+   COMPARAÇÃO DO BANCO
+   ========================================================= */
 
 
 function compararCandidatosBancoEscalacao(
@@ -1138,7 +1737,8 @@ function compararCandidatosBancoEscalacao(
     Math.abs(
       notaB -
       notaA
-    ) > 0.000001
+    ) >
+    0.000001
   ) {
 
     return notaB - notaA;
@@ -1162,7 +1762,8 @@ function compararCandidatosBancoEscalacao(
     Math.abs(
       projecaoB -
       projecaoA
-    ) > 0.000001
+    ) >
+    0.000001
   ) {
 
     return (
@@ -1173,12 +1774,40 @@ function compararCandidatosBancoEscalacao(
   }
 
 
-  return (
-    numeroEscalacao(
-      jogadorB?.confianca
-    ) -
+  const confiancaA =
     numeroEscalacao(
       jogadorA?.confianca
+    );
+
+
+  const confiancaB =
+    numeroEscalacao(
+      jogadorB?.confianca
+    );
+
+
+  if (
+    Math.abs(
+      confiancaB -
+      confiancaA
+    ) >
+    0.000001
+  ) {
+
+    return (
+      confiancaB -
+      confiancaA
+    );
+
+  }
+
+
+  return (
+    numeroEscalacao(
+      jogadorA?.preco
+    ) -
+    numeroEscalacao(
+      jogadorB?.preco
     )
   );
 
@@ -1186,7 +1815,7 @@ function compararCandidatosBancoEscalacao(
 
 
 /* =========================================================
-   MONTAGEM DO BANCO COM ORÇAMENTO
+   BANCO
    ========================================================= */
 
 
@@ -1255,6 +1884,17 @@ function montarBancoEscalacao(
                 id &&
                 idsTitulares.has(
                   id
+                )
+              ) {
+
+                return false;
+
+              }
+
+
+              if (
+                !jogadorElegivelRodadaEscalacao(
+                  jogador
                 )
               ) {
 
@@ -1548,6 +2188,7 @@ function montarBancoEscalacao(
 
 }
 
+
 /* =========================================================
    RESERVA DE LUXO
    ========================================================= */
@@ -1678,6 +2319,140 @@ function escolherReservaLuxoEscalacao(
    ========================================================= */
 
 
+function obterNotaCapitaoContextualEscalacao(
+  jogador
+) {
+
+  if (!jogador) {
+    return 0;
+  }
+
+
+  let notaMotor = null;
+
+
+  if (
+    typeof MotorCapitao !==
+      "undefined" &&
+    MotorCapitao &&
+    typeof MotorCapitao.calcular ===
+      "function"
+  ) {
+
+    try {
+
+      const resultado =
+        MotorCapitao.calcular(
+          jogador
+        );
+
+
+      if (
+        typeof resultado ===
+        "number"
+      ) {
+
+        notaMotor =
+          numeroEscalacao(
+            resultado
+          );
+
+      } else if (
+        resultado &&
+        typeof resultado ===
+          "object"
+      ) {
+
+        notaMotor =
+          numeroEscalacao(
+            resultado.score ??
+            resultado.nota ??
+            resultado.valor,
+            NaN
+          );
+
+      }
+
+    } catch (erro) {
+
+      console.warn(
+        "Falha ao calcular nota de capitão:",
+        jogador?.id,
+        erro
+      );
+
+    }
+
+  }
+
+
+  const projecao =
+    obterProjecaoFinalEscalacao(
+      jogador
+    );
+
+
+  const confianca =
+    numeroEscalacao(
+      jogador?.confianca,
+      50
+    );
+
+
+  const titularidade =
+    numeroEscalacao(
+      jogador?.titularidade ??
+      jogador?.viabilidade
+        ?.titularidade,
+      50
+    );
+
+
+  const riscoEscalacao =
+    numeroEscalacao(
+      jogador?.riscoEscalacao ??
+      jogador?.viabilidade
+        ?.riscoEscalacao,
+      50
+    );
+
+
+  const base =
+    Number.isFinite(
+      notaMotor
+    )
+      ? notaMotor
+      : projecao;
+
+
+  /*
+   * O capitão precisa combinar potencial e
+   * chance real de estar em campo.
+   */
+
+  return (
+    base +
+    (
+      projecao *
+      0.05
+    ) +
+    (
+      confianca *
+      0.002
+    ) +
+    (
+      titularidade *
+      0.003
+    ) -
+    (
+      riscoEscalacao *
+      0.003
+    )
+  );
+
+}
+
+
 function escolherCapitaoEscalacao(
   titulares
 ) {
@@ -1699,41 +2474,6 @@ function escolherCapitaoEscalacao(
   }
 
 
-  if (
-    typeof MotorCapitao !==
-      "undefined" &&
-    MotorCapitao &&
-    typeof MotorCapitao.calcular ===
-      "function"
-  ) {
-
-    return jogadores
-      .slice()
-      .sort(
-        (
-          jogadorA,
-          jogadorB
-        ) => {
-
-          return (
-            numeroEscalacao(
-              MotorCapitao.calcular(
-                jogadorB
-              )
-            ) -
-            numeroEscalacao(
-              MotorCapitao.calcular(
-                jogadorA
-              )
-            )
-          );
-
-        }
-      )[0];
-
-  }
-
-
   return jogadores
     .slice()
     .sort(
@@ -1741,6 +2481,34 @@ function escolherCapitaoEscalacao(
         jogadorA,
         jogadorB
       ) => {
+
+        const notaA =
+          obterNotaCapitaoContextualEscalacao(
+            jogadorA
+          );
+
+
+        const notaB =
+          obterNotaCapitaoContextualEscalacao(
+            jogadorB
+          );
+
+
+        if (
+          Math.abs(
+            notaB -
+            notaA
+          ) >
+          0.000001
+        ) {
+
+          return (
+            notaB -
+            notaA
+          );
+
+        }
+
 
         return (
           obterProjecaoFinalEscalacao(
@@ -1761,11 +2529,422 @@ function escolherCapitaoEscalacao(
    JUSTIFICATIVA DA ESTRATÉGIA
    ========================================================= */
 
-
 function gerarJustificativaEstrategia(
   perfil,
-  escalacao
+  titulares,
+  resumoViabilidade,
+  resumoAdequacao
 ) {
+
+  const jogadores =
+    Array.isArray(
+      titulares
+    )
+      ? titulares
+      : [];
+
+
+  const nomePerfil =
+    String(
+      perfil?.perfil ??
+      perfil?.nome ??
+      "Equilibrado"
+    );
+
+
+  const perfilNormalizado =
+    normalizarTextoEscalacao(
+      nomePerfil
+    );
+
+
+  const projecaoTotal =
+    somarCampoEscalacao(
+      jogadores,
+      obterProjecaoFinalEscalacao
+    );
+
+
+  const pisoTotal =
+    somarCampoEscalacao(
+      jogadores,
+      jogador =>
+        jogador?.piso
+    );
+
+
+  const tetoTotal =
+    somarCampoEscalacao(
+      jogadores,
+      jogador =>
+        jogador?.teto
+    );
+
+
+  const confiancaMedia =
+    calcularMediaEscalacao(
+      jogadores,
+      jogador =>
+        jogador?.confianca
+    );
+
+
+  const riscoMedio =
+    calcularMediaEscalacao(
+      jogadores,
+      jogador =>
+        jogador?.risco
+    );
+
+
+  const partes = [];
+
+
+  if (
+    perfilNormalizado.includes(
+      "conserv"
+    )
+  ) {
+
+    partes.push(
+      "Estratégia prioriza segurança, regularidade, piso e confiança."
+    );
+
+  } else if (
+    perfilNormalizado.includes(
+      "agress"
+    )
+  ) {
+
+    partes.push(
+      "Estratégia prioriza teto e potencial de pontuação, aceitando maior volatilidade."
+    );
+
+  } else {
+
+    partes.push(
+      "Estratégia busca equilíbrio entre projeção, segurança, teto e risco."
+    );
+
+  }
+
+
+  partes.push(
+    `Projeção contextualizada do time: ${arredondarEscalacao(
+      projecaoTotal,
+      1
+    )} pontos.`
+  );
+
+
+  partes.push(
+    `Faixa histórica estimada entre ${arredondarEscalacao(
+      pisoTotal,
+      1
+    )} e ${arredondarEscalacao(
+      tetoTotal,
+      1
+    )} pontos.`
+  );
+
+
+  partes.push(
+    `Confiança média de ${arredondarEscalacao(
+      confiancaMedia,
+      0
+    )}% e risco médio de ${arredondarEscalacao(
+      riscoMedio,
+      0
+    )}%.`
+  );
+
+
+  if (
+    resumoViabilidade?.ativa
+  ) {
+
+    partes.push(
+      `Titularidade média estimada em ${arredondarEscalacao(
+        resumoViabilidade.titularidadeMedia,
+        0
+      )}%.`
+    );
+
+
+    if (
+      resumoViabilidade.altaOuMuitoAlta >
+      0
+    ) {
+
+      partes.push(
+        `${resumoViabilidade.altaOuMuitoAlta} titular(es) apresentam viabilidade alta ou muito alta para a rodada.`
+      );
+
+    }
+
+
+    if (
+      resumoViabilidade.baixa >
+      0
+    ) {
+
+      partes.push(
+        `${resumoViabilidade.baixa} titular(es) ainda apresentam atenção de viabilidade.`
+      );
+
+    }
+
+  }
+
+
+  if (
+    resumoAdequacao?.ativa
+  ) {
+
+    partes.push(
+      `Adequação média ao contexto da rodada: ${arredondarEscalacao(
+        resumoAdequacao.notaMedia,
+        0
+      )}/100.`
+    );
+
+
+    if (
+      resumoAdequacao.muitoAltaOuAlta >
+      0
+    ) {
+
+      partes.push(
+        `${resumoAdequacao.muitoAltaOuAlta} jogador(es) possuem adequação alta ou muito alta ao cenário específico da rodada.`
+      );
+
+    }
+
+
+    if (
+      resumoAdequacao.baixaOuPior >
+      0
+    ) {
+
+      partes.push(
+        `${resumoAdequacao.baixaOuPior} jogador(es) possuem contexto menos favorável e foram mantidos apenas quando a composição geral justificou a escolha.`
+      );
+
+    }
+
+  }
+
+
+  return partes
+    .join(
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+
+}
+
+
+/* =========================================================
+   JUSTIFICATIVA DO JOGADOR
+   ========================================================= */
+
+
+function gerarJustificativaJogadorEscalacao(
+  jogador,
+  perfil = null
+) {
+
+  if (!jogador) {
+    return "";
+  }
+
+
+  const partes = [];
+
+
+  const projecao =
+    obterProjecaoFinalEscalacao(
+      jogador
+    );
+
+
+  const projecaoEstatistica =
+    obterProjecaoEstatisticaEscalacao(
+      jogador
+    );
+
+
+  const impactoContextual =
+    projecao -
+    projecaoEstatistica;
+
+
+  const titularidade =
+    numeroEscalacao(
+      jogador?.titularidade ??
+      jogador?.viabilidade
+        ?.titularidade,
+      0
+    );
+
+
+  const confianca =
+    numeroEscalacao(
+      jogador?.confianca,
+      50
+    );
+
+
+  const risco =
+    numeroEscalacao(
+      jogador?.riscoEscalacao ??
+      jogador?.viabilidade
+        ?.riscoEscalacao ??
+      jogador?.risco,
+      50
+    );
+
+
+  const adequacao =
+    jogador?.adequacaoRodada ??
+    jogador?.viabilidade
+      ?.adequacaoRodada;
+
+
+  const notaAdequacao =
+    adequacao?.nota !== null &&
+    adequacao?.nota !== undefined
+      ? numeroEscalacao(
+          adequacao.nota
+        )
+      : null;
+
+
+  partes.push(
+    `Projeção de ${arredondarEscalacao(
+      projecao,
+      1
+    )} pontos.`
+  );
+
+
+  if (
+    titularidade > 0
+  ) {
+
+    partes.push(
+      `Titularidade estimada em ${arredondarEscalacao(
+        titularidade,
+        0
+      )}%.`
+    );
+
+  }
+
+
+  if (
+    notaAdequacao !== null
+  ) {
+
+    partes.push(
+      `Adequação à rodada: ${arredondarEscalacao(
+        notaAdequacao,
+        0
+      )}/100.`
+    );
+
+  }
+
+
+  if (
+    impactoContextual >= 0.15
+  ) {
+
+    partes.push(
+      `O cenário específico da rodada aumentou sua projeção em ${arredondarEscalacao(
+        impactoContextual,
+        1
+      )} ponto(s).`
+    );
+
+  } else if (
+    impactoContextual <= -0.15
+  ) {
+
+    partes.push(
+      `O cenário específico da rodada reduziu sua projeção em ${arredondarEscalacao(
+        Math.abs(
+          impactoContextual
+        ),
+        1
+      )} ponto(s).`
+    );
+
+  }
+
+
+  if (
+    Array.isArray(
+      adequacao?.pontosFortes
+    ) &&
+    adequacao.pontosFortes.length >
+      0
+  ) {
+
+    partes.push(
+      String(
+        adequacao.pontosFortes[0]
+      )
+    );
+
+  }
+
+
+  if (
+    Array.isArray(
+      jogador?.viabilidade
+        ?.motivos
+    ) &&
+    jogador.viabilidade
+      .motivos.length >
+      0
+  ) {
+
+    partes.push(
+      String(
+        jogador.viabilidade
+          .motivos[0]
+      )
+    );
+
+  }
+
+
+  if (
+    confianca >= 70
+  ) {
+
+    partes.push(
+      "Boa confiança estatística."
+    );
+
+  }
+
+
+  if (
+    risco <= 30
+  ) {
+
+    partes.push(
+      "Risco de utilização relativamente baixo."
+    );
+
+  }
+
 
   const nomePerfil =
     normalizarTextoEscalacao(
@@ -1774,64 +2953,17 @@ function gerarJustificativaEstrategia(
     );
 
 
-  const projecao =
-    arredondarEscalacao(
-      escalacao.projecao,
-      1
-    );
-
-
-  const piso =
-    arredondarEscalacao(
-      escalacao.piso,
-      1
-    );
-
-
-  const teto =
-    arredondarEscalacao(
-      escalacao.teto,
-      1
-    );
-
-
-  const confianca =
-    arredondarEscalacao(
-      escalacao.confianca,
-      1
-    );
-
-
-  const formacao =
-    escalacao.formacao ??
-    perfil?.formacao ??
-    "--";
-
-
-  const textoViabilidade =
-    escalacao.viabilidade?.ativa === true
-      ? ` Titularidade média estimada em ${arredondarEscalacao(
-          escalacao.viabilidade.titularidadeMedia,
-          1
-        )}% e risco médio de escalação de ${arredondarEscalacao(
-          escalacao.viabilidade.riscoEscalacaoMedio,
-          1
-        )}%.`
-      : "";
-
-
   if (
     nomePerfil.includes(
       "conserv"
-    )
+    ) &&
+    numeroEscalacao(
+      jogador?.piso
+    ) >= 4
   ) {
 
-    return (
-      `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
-      `voltada à segurança, priorizando regularidade, confiança ` +
-      `e proteção contra risco. Projeção total de ${projecao} pontos, ` +
-      `piso de ${piso} e confiança média de ${confianca}%.` +
-      textoViabilidade
+    partes.push(
+      "O piso favorece a estratégia conservadora."
     );
 
   }
@@ -1840,507 +2972,162 @@ function gerarJustificativaEstrategia(
   if (
     nomePerfil.includes(
       "agress"
-    )
+    ) &&
+    numeroEscalacao(
+      jogador?.teto
+    ) >= 10
   ) {
 
-    return (
-      `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
-      `orientada ao maior potencial de pontuação, aceitando mais ` +
-      `volatilidade para buscar teto. Projeção total de ${projecao} ` +
-      `pontos e teto histórico agregado de ${teto}.` +
-      textoViabilidade
+    partes.push(
+      "O teto elevado favorece a estratégia agressiva."
     );
 
   }
 
 
-  return (
-    `Escalação ${formacao} escolhida automaticamente pelo motor, ` +
-    `equilibrando projeção, segurança, teto e confiança. ` +
-    `O objetivo é buscar boa pontuação sem elevar excessivamente ` +
-    `o risco. Projeção total de ${projecao} pontos.` +
-    textoViabilidade
-  );
-
-}
-
-
-/* =========================================================
-   JUSTIFICATIVA DO CAPITÃO
-   ========================================================= */
-
-
-function gerarJustificativaCapitao(
-  capitao
-) {
-
-  if (!capitao) {
-
-    return (
-      "Nenhum capitão pôde ser selecionado."
-    );
-
-  }
-
-
-  const projecao =
-    arredondarEscalacao(
-      obterProjecaoFinalEscalacao(
-        capitao
-      ),
-      1
-    );
-
-
-  const teto =
-    arredondarEscalacao(
-      capitao.teto,
-      1
-    );
-
-
-  const confianca =
-    arredondarEscalacao(
-      capitao.confianca,
-      1
-    );
-
-
-  return (
-    `Escolhido pelo motor de capitão considerando ` +
-    `projeção de ${projecao} pontos, ` +
-    `teto de ${teto} e ` +
-    `confiança de ${confianca}%.`
-  );
-
-}
-
-
-/* =========================================================
-   JUSTIFICATIVA DO BANCO
-   ========================================================= */
-
-
-function gerarJustificativaBanco(
-  banco
-) {
-
-  const quantidade =
-    Array.isArray(
-      banco
+  return partes
+    .join(
+      " "
     )
-      ? banco.length
-      : 0;
-
-
-  if (
-    quantidade === 0
-  ) {
-
-    return (
-      "Não foi possível montar o banco."
-    );
-
-  }
-
-
-  return (
-    `Banco formado pelas melhores alternativas disponíveis ` +
-    `fora dos titulares, buscando uma opção para cada posição ` +
-    `de linha necessária. Foram selecionados ${quantidade} reservas.`
-  );
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
 
 }
 
 
 /* =========================================================
-   JUSTIFICATIVA DA RESERVA DE LUXO
+   PREPARAÇÃO DOS JOGADORES DO TIME
    ========================================================= */
 
 
-function gerarJustificativaReservaLuxo(
-  jogador
+function enriquecerJogadorEscalacao(
+  jogador,
+  perfil,
+  tipo = "titular"
 ) {
 
   if (!jogador) {
-
-    return (
-      "Não foi possível selecionar a Reserva de Luxo."
-    );
-
+    return jogador;
   }
 
 
-  const projecao =
-    arredondarEscalacao(
-      obterProjecaoFinalEscalacao(
-        jogador
+  const projecaoEstatistica =
+    obterProjecaoEstatisticaEscalacao(
+      jogador
+    );
+
+
+  const projecaoContextualizada =
+    obterProjecaoFinalEscalacao(
+      jogador
+    );
+
+
+  const adequacao =
+    jogador?.adequacaoRodada ??
+    jogador?.viabilidade
+      ?.adequacaoRodada ??
+    null;
+
+
+  return {
+
+    ...jogador,
+
+    tipoEscalacao:
+      tipo,
+
+    projecaoEstatistica,
+
+    projecaoContextualizada,
+
+    projecaoViabilidade:
+      projecaoContextualizada,
+
+    impactoContextual:
+      arredondarEscalacao(
+        projecaoContextualizada -
+        projecaoEstatistica,
+        2
       ),
-      1
-    );
 
+    notaAdequacaoRodada:
+      adequacao?.nota !== null &&
+      adequacao?.nota !== undefined
+        ? numeroEscalacao(
+            adequacao.nota
+          )
+        : null,
 
-  const confianca =
-    arredondarEscalacao(
-      jogador.confianca,
-      1
-    );
+    classificacaoAdequacaoRodada:
+      adequacao?.classificacao ??
+      jogador
+        ?.classificacaoAdequacaoRodada ??
+      "SEM_DADOS",
 
+    coberturaAdequacaoRodada:
+      numeroEscalacao(
+        adequacao?.cobertura ??
+        jogador
+          ?.coberturaAdequacaoRodada,
+        0
+      ),
 
-  return (
-    `Melhor opção do banco segundo o motor de Reserva de Luxo, ` +
-    `com projeção de ${projecao} pontos e ` +
-    `confiança de ${confianca}%.`
-  );
+    justificativa:
+      gerarJustificativaJogadorEscalacao(
+        jogador,
+        perfil
+      )
 
-}
-
-
-/* =========================================================
-   PONTOS POSITIVOS
-   ========================================================= */
-
-
-function gerarPontosPositivosEscalacao(
-  escalacao
-) {
-
-  const positivos = [];
-
-
-  if (
-    numeroEscalacao(
-      escalacao.confianca
-    ) >= 60
-  ) {
-
-    positivos.push(
-      `Confiança média de ${arredondarEscalacao(
-        escalacao.confianca,
-        1
-      )}%.`
-    );
-
-  }
-
-
-  if (
-    numeroEscalacao(
-      escalacao.projecao
-    ) > 0
-  ) {
-
-    positivos.push(
-      `Projeção conjunta de ${arredondarEscalacao(
-        escalacao.projecao,
-        1
-      )} pontos.`
-    );
-
-  }
-
-
-  if (
-    escalacao.calibracao
-      ?.ativa
-  ) {
-
-    positivos.push(
-      `${escalacao.calibracao.jogadoresCalibrados} ` +
-      `titulares passaram pela calibração oficial por posição.`
-    );
-
-  }
-
-
-  if (
-    escalacao.viabilidade?.ativa === true
-  ) {
-
-    positivos.push(
-      `Viabilidade da rodada aplicada: titularidade média estimada em ${arredondarEscalacao(
-        escalacao.viabilidade.titularidadeMedia,
-        1
-      )}%.`
-    );
-
-  }
-
-
-  if (
-    escalacao.formacaoAutomatica ===
-      true
-  ) {
-
-    positivos.push(
-      `Formação ${escalacao.formacao} escolhida pelo motor ` +
-      `após comparação automática entre as formações disponíveis.`
-    );
-
-  }
-
-
-  if (
-    positivos.length === 0
-  ) {
-
-    positivos.push(
-      "Escalação montada integralmente pelo motor estatístico."
-    );
-
-  }
-
-
-  return positivos;
+  };
 
 }
 
 
 /* =========================================================
-   PONTOS DE ATENÇÃO
+   CUSTOS
    ========================================================= */
 
 
-function gerarPontosAtencaoEscalacao(
-  escalacao
-) {
-
-  const atencao = [];
-
-
-  const custo =
-    numeroEscalacao(
-      escalacao.custo
-    );
-
-
-  const limite =
-    numeroEscalacao(
-      escalacao.limitePatrimonio
-    );
-
-
-  if (
-    limite > 0 &&
-    custo >=
-      limite * 0.95
-  ) {
-
-    atencao.push(
-      "Escalação utiliza quase todo o patrimônio disponível."
-    );
-
-  }
-
-
-  if (
-    escalacao.bancoCompleto ===
-      false
-  ) {
-
-    atencao.push(
-      "Patrimônio insuficiente para completar o banco com uma reserva por posição."
-    );
-
-  }
-
-
-  if (
-    escalacao.viabilidade?.ativa === true &&
-    numeroEscalacao(
-      escalacao.viabilidade.riscoEscalacaoMedio
-    ) >= 40
-  ) {
-
-    atencao.push(
-      `Risco médio de escalação na rodada em ${arredondarEscalacao(
-        escalacao.viabilidade.riscoEscalacaoMedio,
-        1
-      )}%.`
-    );
-
-  }
-
-
-  if (
-    numeroEscalacao(
-      escalacao.risco
-    ) >= 55
-  ) {
-
-    atencao.push(
-      `Risco médio elevado (${arredondarEscalacao(
-        escalacao.risco,
-        1
-      )}).`
-    );
-
-  }
-
-
-  if (
-    numeroEscalacao(
-      escalacao.piso
-    ) <= 0
-  ) {
-
-    atencao.push(
-      "Há exposição histórica a pontuações baixas ou negativas."
-    );
-
-  }
-
-
-  if (
-    atencao.length === 0
-  ) {
-
-    atencao.push(
-      "Nenhum alerta crítico identificado pelo motor nesta montagem."
-    );
-
-  }
-
-
-  return atencao;
-
-}
-
-
-/* =========================================================
-   ESCOLHA AUTOMÁTICA DA FORMAÇÃO
-   ========================================================= */
-
-function obterNotaTitularEscalacao(
-  jogador
-) {
-
-  const score =
-    Number(
-      jogador?.score
-    );
-
-
-  if (
-    Number.isFinite(
-      score
-    )
-  ) {
-
-    return score;
-
-  }
-
-
-  return obterProjecaoFinalEscalacao(
-    jogador
-  );
-
-}
-
-
-function calcularNotaFormacaoEscalacao(
+function calcularCustoJogadoresEscalacao(
   jogadores
 ) {
 
-  return somarCampoEscalacao(
-    jogadores,
-    obterNotaTitularEscalacao
+  return arredondarEscalacao(
+    somarCampoEscalacao(
+      jogadores,
+      jogador =>
+        jogador?.preco
+    ),
+    2
   );
 
 }
 
 
-function compararFormacoesEscalacao(
-  opcaoA,
-  opcaoB
+function calcularCustoTotalEscalacao(
+  titulares,
+  banco
 ) {
 
-  if (
-    opcaoA.completaTotal !==
-    opcaoB.completaTotal
-  ) {
-
-    return opcaoB.completaTotal
-      ? 1
-      : -1;
-
-  }
-
-
-  if (
-    opcaoA.completa !==
-    opcaoB.completa
-  ) {
-
-    return opcaoB.completa
-      ? 1
-      : -1;
-
-  }
-
-
-  if (
-    Math.abs(
-      opcaoB.nota -
-      opcaoA.nota
-    ) > 0.000001
-  ) {
-
-    return (
-      opcaoB.nota -
-      opcaoA.nota
-    );
-
-  }
-
-
-  if (
-    Math.abs(
-      opcaoB.projecao -
-      opcaoA.projecao
-    ) > 0.000001
-  ) {
-
-    return (
-      opcaoB.projecao -
-      opcaoA.projecao
-    );
-
-  }
-
-
-  if (
-    Math.abs(
-      opcaoA.custoTotal -
-      opcaoB.custoTotal
-    ) > 0.000001
-  ) {
-
-    return (
-      opcaoA.custoTotal -
-      opcaoB.custoTotal
-    );
-
-  }
-
-
-  return (
-    FORMACOES_CANDIDATAS_ESCALACAO
-      .indexOf(
-        opcaoA.formacao
-      ) -
-    FORMACOES_CANDIDATAS_ESCALACAO
-      .indexOf(
-        opcaoB.formacao
-      )
+  return arredondarEscalacao(
+    calcularCustoJogadoresEscalacao(
+      titulares
+    ) +
+    calcularCustoJogadoresEscalacao(
+      banco
+    ),
+    2
   );
 
 }
 
 
 /* =========================================================
-   MONTAGEM FINANCEIRA PROTEGIDA
+   CONTAGEM POR CLUBE
    ========================================================= */
 
 
@@ -2348,18 +3135,20 @@ function obterChaveClubeEscalacao(
   jogador
 ) {
 
-  return normalizarTextoEscalacao(
+  return String(
+    jogador?.clubeId ??
+    jogador?.clube_id ??
     jogador?.siglaClube ??
     jogador?.clube ??
-    jogador?.clubeNome ??
-    jogador?.clubeId ??
     ""
-  );
+  )
+    .trim()
+    .toUpperCase();
 
 }
 
 
-function contarClubesEscalacao(
+function contarJogadoresPorClubeEscalacao(
   jogadores
 ) {
 
@@ -2368,7 +3157,9 @@ function contarClubesEscalacao(
 
 
   (
-    Array.isArray(jogadores)
+    Array.isArray(
+      jogadores
+    )
       ? jogadores
       : []
   ).forEach(
@@ -2404,42 +3195,158 @@ function contarClubesEscalacao(
 }
 
 
-function podeAdicionarClubeEscalacao(
-  jogador,
-  titulares
+function respeitaLimiteClubeEscalacao(
+  jogadores
 ) {
 
-  const clube =
-    obterChaveClubeEscalacao(
-      jogador
+  const contagem =
+    contarJogadoresPorClubeEscalacao(
+      jogadores
     );
 
 
-  if (!clube) {
-    return true;
+  for (
+    const quantidade
+    of contagem.values()
+  ) {
+
+    if (
+      quantidade >
+      LIMITE_JOGADORES_CLUBE_ESCALACAO
+    ) {
+
+      return false;
+
+    }
+
   }
 
 
-  const contagem =
-    contarClubesEscalacao(
-      titulares
-    );
-
-
-  return (
-    (
-      contagem.get(
-        clube
-      ) ??
-      0
-    ) <
-    LIMITE_JOGADORES_CLUBE_ESCALACAO
-  );
+  return true;
 
 }
 
 
-function compararCandidatosTitularesEscalacao(
+/* =========================================================
+   VALIDAÇÃO DA FORMAÇÃO
+   ========================================================= */
+
+
+function contarPosicoesEscalacao(
+  jogadores
+) {
+
+  const contagem = {
+    GOL: 0,
+    LAT: 0,
+    ZAG: 0,
+    MEI: 0,
+    ATA: 0,
+    TEC: 0
+  };
+
+
+  (
+    Array.isArray(
+      jogadores
+    )
+      ? jogadores
+      : []
+  ).forEach(
+    jogador => {
+
+      const posicao =
+        normalizarPosicaoEscalacao(
+          jogador
+        );
+
+
+      if (
+        Object.prototype
+          .hasOwnProperty.call(
+            contagem,
+            posicao
+          )
+      ) {
+
+        contagem[
+          posicao
+        ] += 1;
+
+      }
+
+    }
+  );
+
+
+  return contagem;
+
+}
+
+
+function formacaoValidaEscalacao(
+  titulares,
+  formacao
+) {
+
+  const estrutura =
+    FORMACOES_ESTRUTURA_ESCALACAO[
+      formacao
+    ];
+
+
+  if (!estrutura) {
+    return false;
+  }
+
+
+  const jogadores =
+    Array.isArray(
+      titulares
+    )
+      ? titulares
+      : [];
+
+
+  if (
+    jogadores.length !== 12
+  ) {
+
+    return false;
+
+  }
+
+
+  const contagem =
+    contarPosicoesEscalacao(
+      jogadores
+    );
+
+
+  return ORDEM_POSICOES_ESCALACAO
+    .every(
+      posicao =>
+        numeroEscalacao(
+          contagem[
+            posicao
+          ]
+        ) ===
+        numeroEscalacao(
+          estrutura[
+            posicao
+          ]
+        )
+    );
+
+}
+
+
+/* =========================================================
+   ORDENAÇÃO DOS CANDIDATOS
+   ========================================================= */
+
+
+function compararTitularesEscalacao(
   jogadorA,
   jogadorB
 ) {
@@ -2464,10 +3371,7 @@ function compararCandidatosTitularesEscalacao(
     0.000001
   ) {
 
-    return (
-      notaB -
-      notaA
-    );
+    return notaB - notaA;
 
   }
 
@@ -2500,67 +3404,493 @@ function compararCandidatosTitularesEscalacao(
   }
 
 
+  const titularidadeA =
+    numeroEscalacao(
+      jogadorA?.titularidade ??
+      jogadorA?.viabilidade
+        ?.titularidade,
+      0
+    );
+
+
+  const titularidadeB =
+    numeroEscalacao(
+      jogadorB?.titularidade ??
+      jogadorB?.viabilidade
+        ?.titularidade,
+      0
+    );
+
+
+  if (
+    Math.abs(
+      titularidadeB -
+      titularidadeA
+    ) >
+    0.000001
+  ) {
+
+    return (
+      titularidadeB -
+      titularidadeA
+    );
+
+  }
+
+
   return (
     numeroEscalacao(
-      jogadorB?.confianca
+      jogadorA?.preco
     ) -
     numeroEscalacao(
-      jogadorA?.confianca
+      jogadorB?.preco
     )
   );
 
 }
 
 
-function obterCandidatosLivresPorPosicaoEscalacao(
+/* =========================================================
+   CANDIDATOS POR POSIÇÃO
+   ========================================================= */
+
+
+function obterCandidatosPosicaoEscalacao(
   jogadores,
-  posicao,
-  idsUsados
+  posicao
 ) {
 
-  const usados =
-    idsUsados instanceof Set
-      ? idsUsados
-      : new Set();
-
-
   return (
-    Array.isArray(jogadores)
+    Array.isArray(
+      jogadores
+    )
       ? jogadores
       : []
   )
     .filter(
-      jogador => {
-
-        const id =
-          obterIdJogadorEscalacao(
-            jogador
-          );
-
-
-        return (
-          normalizarPosicaoEscalacao(
-            jogador
-          ) ===
-          posicao &&
-          (
-            !id ||
-            !usados.has(
-              id
-            )
-          )
-        );
-
-      }
+      jogador =>
+        normalizarPosicaoEscalacao(
+          jogador
+        ) ===
+        posicao
+    )
+    .filter(
+      jogadorElegivelRodadaEscalacao
+    )
+    .slice()
+    .sort(
+      compararTitularesEscalacao
     );
 
 }
 
 
-function calcularReservaMinimaFuturaEscalacao(
+/* =========================================================
+   ASSINATURA DE UMA ESCALAÇÃO
+   ========================================================= */
+
+
+function obterAssinaturaEscalacao(
+  jogadores
+) {
+
+  return (
+    Array.isArray(
+      jogadores
+    )
+      ? jogadores
+      : []
+  )
+    .map(
+      obterIdJogadorEscalacao
+    )
+    .filter(
+      Boolean
+    )
+    .sort()
+    .join(
+      "|"
+    );
+
+}
+
+
+/* =========================================================
+   MÉTRICAS DE UMA COMBINAÇÃO
+   ========================================================= */
+
+
+function calcularMetricasCombinacaoEscalacao(
+  titulares
+) {
+
+  const jogadores =
+    Array.isArray(
+      titulares
+    )
+      ? titulares
+      : [];
+
+
+  return {
+
+    custo:
+      calcularCustoJogadoresEscalacao(
+        jogadores
+      ),
+
+    nota:
+      somarCampoEscalacao(
+        jogadores,
+        obterNotaTitularEscalacao
+      ),
+
+    projecao:
+      somarCampoEscalacao(
+        jogadores,
+        obterProjecaoFinalEscalacao
+      ),
+
+    projecaoEstatistica:
+      somarCampoEscalacao(
+        jogadores,
+        obterProjecaoEstatisticaEscalacao
+      ),
+
+    piso:
+      somarCampoEscalacao(
+        jogadores,
+        jogador =>
+          jogador?.piso
+      ),
+
+    teto:
+      somarCampoEscalacao(
+        jogadores,
+        jogador =>
+          jogador?.teto
+      ),
+
+    confianca:
+      calcularMediaEscalacao(
+        jogadores,
+        jogador =>
+          jogador?.confianca
+      ),
+
+    risco:
+      calcularMediaEscalacao(
+        jogadores,
+        jogador =>
+          jogador?.risco
+      ),
+
+    titularidade:
+      calcularMediaEscalacao(
+        jogadores,
+        jogador =>
+          jogador?.titularidade ??
+          jogador?.viabilidade
+            ?.titularidade
+      ),
+
+    adequacao:
+      calcularMediaEscalacao(
+        jogadores.filter(
+          jogador =>
+            jogador
+              ?.notaAdequacaoRodada !==
+            null &&
+            jogador
+              ?.notaAdequacaoRodada !==
+            undefined
+        ),
+        jogador =>
+          jogador
+            ?.notaAdequacaoRodada
+      )
+
+  };
+
+}
+
+
+/* =========================================================
+   COMPARAÇÃO ENTRE COMBINAÇÕES
+   ========================================================= */
+
+
+function compararCombinacoesEscalacao(
+  combinacaoA,
+  combinacaoB
+) {
+
+  const metricasA =
+    combinacaoA.metricas ??
+    calcularMetricasCombinacaoEscalacao(
+      combinacaoA.titulares
+    );
+
+
+  const metricasB =
+    combinacaoB.metricas ??
+    calcularMetricasCombinacaoEscalacao(
+      combinacaoB.titulares
+    );
+
+
+  if (
+    Math.abs(
+      metricasB.nota -
+      metricasA.nota
+    ) >
+    0.000001
+  ) {
+
+    return (
+      metricasB.nota -
+      metricasA.nota
+    );
+
+  }
+
+
+  if (
+    Math.abs(
+      metricasB.projecao -
+      metricasA.projecao
+    ) >
+    0.000001
+  ) {
+
+    return (
+      metricasB.projecao -
+      metricasA.projecao
+    );
+
+  }
+
+
+  if (
+    Math.abs(
+      metricasB.titularidade -
+      metricasA.titularidade
+    ) >
+    0.000001
+  ) {
+
+    return (
+      metricasB.titularidade -
+      metricasA.titularidade
+    );
+
+  }
+
+
+  if (
+    Math.abs(
+      metricasB.confianca -
+      metricasA.confianca
+    ) >
+    0.000001
+  ) {
+
+    return (
+      metricasB.confianca -
+      metricasA.confianca
+    );
+
+  }
+
+
+  if (
+    Math.abs(
+      metricasA.risco -
+      metricasB.risco
+    ) >
+    0.000001
+  ) {
+
+    return (
+      metricasA.risco -
+      metricasB.risco
+    );
+
+  }
+
+
+  return (
+    metricasA.custo -
+    metricasB.custo
+  );
+
+}
+
+
+/* =========================================================
+   GERAÇÃO DE COMBINAÇÕES POR POSIÇÃO
+   ========================================================= */
+
+
+function gerarCombinacoesPosicaoEscalacao(
+  candidatos,
+  quantidade,
+  limiteCandidatos = 10
+) {
+
+  const lista =
+    (
+      Array.isArray(
+        candidatos
+      )
+        ? candidatos
+        : []
+    )
+      .slice(
+        0,
+        Math.max(
+          quantidade,
+          limiteCandidatos
+        )
+      );
+
+
+  if (
+    quantidade === 0
+  ) {
+
+    return [
+      []
+    ];
+
+  }
+
+
+  if (
+    lista.length <
+    quantidade
+  ) {
+
+    return [];
+
+  }
+
+
+  const resultado = [];
+
+
+  function percorrer(
+    inicio,
+    escolhidos
+  ) {
+
+    if (
+      escolhidos.length ===
+      quantidade
+    ) {
+
+      resultado.push(
+        escolhidos.slice()
+      );
+
+      return;
+
+    }
+
+
+    const faltam =
+      quantidade -
+      escolhidos.length;
+
+
+    for (
+      let indice = inicio;
+      indice <=
+        lista.length - faltam;
+      indice += 1
+    ) {
+
+      escolhidos.push(
+        lista[
+          indice
+        ]
+      );
+
+
+      percorrer(
+        indice + 1,
+        escolhidos
+      );
+
+
+      escolhidos.pop();
+
+    }
+
+  }
+
+
+  percorrer(
+    0,
+    []
+  );
+
+
+  return resultado;
+
+}
+
+
+/* =========================================================
+   LIMITE DE CANDIDATOS POR POSIÇÃO
+   ========================================================= */
+
+
+function obterLimiteCandidatosPosicaoEscalacao(
+  posicao,
+  quantidade
+) {
+
+  if (
+    posicao === "TEC"
+  ) {
+
+    return Math.max(
+      quantidade,
+      8
+    );
+
+  }
+
+
+  if (
+    posicao === "GOL"
+  ) {
+
+    return Math.max(
+      quantidade,
+      10
+    );
+
+  }
+
+
+  return Math.max(
+    quantidade,
+    12
+  );
+
+}
+
+
+/* =========================================================
+   MONTAGEM DAS OPÇÕES POR POSIÇÃO
+   ========================================================= */
+
+
+function montarOpcoesPosicaoEscalacao(
   jogadores,
-  formacao,
-  titularesSimulados
+  formacao
 ) {
 
   const estrutura =
@@ -2574,235 +3904,7 @@ function calcularReservaMinimaFuturaEscalacao(
   }
 
 
-  const titulares =
-    Array.isArray(
-      titularesSimulados
-    )
-      ? titularesSimulados
-      : [];
-
-
-  const idsUsados =
-    new Set(
-      titulares
-        .map(
-          obterIdJogadorEscalacao
-        )
-        .filter(
-          Boolean
-        )
-    );
-
-
-  const quantidadeAtual =
-    {};
-
-
-  titulares.forEach(
-    jogador => {
-
-      const posicao =
-        normalizarPosicaoEscalacao(
-          jogador
-        );
-
-
-      quantidadeAtual[
-        posicao
-      ] =
-        (
-          quantidadeAtual[
-            posicao
-          ] ??
-          0
-        ) + 1;
-
-    }
-  );
-
-
-  let custoMinimo = 0;
-
-
-  for (
-    const posicao
-    of ORDEM_POSICOES_ESCALACAO
-  ) {
-
-    const titularesNecessarios =
-      numeroEscalacao(
-        estrutura[
-          posicao
-        ],
-        0
-      );
-
-
-    const titularesAtuais =
-      numeroEscalacao(
-        quantidadeAtual[
-          posicao
-        ],
-        0
-      );
-
-
-    const faltamTitulares =
-      Math.max(
-        0,
-        titularesNecessarios -
-        titularesAtuais
-      );
-
-
-    const precisaReserva =
-      POSICOES_BANCO.includes(
-        posicao
-      )
-        ? 1
-        : 0;
-
-
-    const quantidadeNecessaria =
-      faltamTitulares +
-      precisaReserva;
-
-
-    if (
-      quantidadeNecessaria <= 0
-    ) {
-
-      continue;
-
-    }
-
-
-    const disponiveis =
-      obterCandidatosLivresPorPosicaoEscalacao(
-        jogadores,
-        posicao,
-        idsUsados
-      )
-        .sort(
-          (
-            jogadorA,
-            jogadorB
-          ) => {
-
-            const precoA =
-              numeroEscalacao(
-                jogadorA?.preco
-              );
-
-
-            const precoB =
-              numeroEscalacao(
-                jogadorB?.preco
-              );
-
-
-            if (
-              Math.abs(
-                precoA -
-                precoB
-              ) >
-              0.000001
-            ) {
-
-              return (
-                precoA -
-                precoB
-              );
-
-            }
-
-
-            return compararCandidatosTitularesEscalacao(
-              jogadorA,
-              jogadorB
-            );
-
-          }
-        );
-
-
-    if (
-      disponiveis.length <
-      quantidadeNecessaria
-    ) {
-
-      return null;
-
-    }
-
-
-    custoMinimo +=
-      disponiveis
-        .slice(
-          0,
-          quantidadeNecessaria
-        )
-        .reduce(
-          (
-            total,
-            jogador
-          ) => {
-
-            return (
-              total +
-              numeroEscalacao(
-                jogador?.preco
-              )
-            );
-
-          },
-          0
-        );
-
-  }
-
-
-  return arredondarEscalacao(
-    custoMinimo,
-    2
-  );
-
-}
-
-
-function montarTitularesProtegidosEscalacao(
-  jogadores,
-  formacao,
-  limitePatrimonio
-) {
-
-  const estrutura =
-    FORMACOES_ESTRUTURA_ESCALACAO[
-      formacao
-    ];
-
-
-  if (!estrutura) {
-    return [];
-  }
-
-
-  const limite =
-    Number(
-      limitePatrimonio
-    );
-
-
-  const possuiLimite =
-    Number.isFinite(
-      limite
-    ) &&
-    limite > 0;
-
-
-  const titulares = [];
-
-  let custoAtual = 0;
+  const opcoes = {};
 
 
   for (
@@ -2814,771 +3916,540 @@ function montarTitularesProtegidosEscalacao(
       numeroEscalacao(
         estrutura[
           posicao
-        ],
-        0
+        ]
       );
 
 
-    if (
-      quantidade <= 0
-    ) {
-
-      continue;
-
-    }
+    const candidatos =
+      obterCandidatosPosicaoEscalacao(
+        jogadores,
+        posicao
+      );
 
 
-    const ranking =
-      (
-        Array.isArray(jogadores)
-          ? jogadores
-          : []
-      )
-        .filter(
-          jogador =>
-            normalizarPosicaoEscalacao(
-              jogador
-            ) === posicao
-        )
-        .sort(
-          compararCandidatosTitularesEscalacao
-        );
-
-
-    let escolhidosPosicao = 0;
-
-
-    for (
-      const jogador
-      of ranking
-    ) {
-
-      if (
-        escolhidosPosicao >=
+    const limiteCandidatos =
+      obterLimiteCandidatosPosicaoEscalacao(
+        posicao,
         quantidade
-      ) {
-
-        break;
-
-      }
-
-
-      const id =
-        obterIdJogadorEscalacao(
-          jogador
-        );
-
-
-      const jaUsado =
-        titulares.some(
-          titular => {
-
-            const idTitular =
-              obterIdJogadorEscalacao(
-                titular
-              );
-
-
-            return (
-              id &&
-              idTitular &&
-              id ===
-              idTitular
-            );
-
-          }
-        );
-
-
-      if (jaUsado) {
-        continue;
-      }
-
-
-      if (
-        !podeAdicionarClubeEscalacao(
-          jogador,
-          titulares
-        )
-      ) {
-
-        continue;
-
-      }
-
-
-      const preco =
-        Math.max(
-          0,
-          numeroEscalacao(
-            jogador?.preco
-          )
-        );
-
-
-      const novoCusto =
-        custoAtual +
-        preco;
-
-
-      if (
-        possuiLimite &&
-        novoCusto >
-        limite +
-        0.000001
-      ) {
-
-        continue;
-
-      }
-
-
-      if (possuiLimite) {
-
-        const simulados = [
-          ...titulares,
-          jogador
-        ];
-
-
-        const reservaFutura =
-          calcularReservaMinimaFuturaEscalacao(
-            jogadores,
-            formacao,
-            simulados
-          );
-
-
-        if (
-          reservaFutura ===
-          null
-        ) {
-
-          continue;
-
-        }
-
-
-        if (
-          novoCusto +
-          reservaFutura >
-          limite +
-          0.000001
-        ) {
-
-          continue;
-
-        }
-
-      }
-
-
-      titulares.push(
-        jogador
       );
 
 
-      custoAtual =
-        novoCusto;
-
-
-      escolhidosPosicao += 1;
-
-    }
+    const combinacoes =
+      gerarCombinacoesPosicaoEscalacao(
+        candidatos,
+        quantidade,
+        limiteCandidatos
+      );
 
 
     if (
-      escolhidosPosicao <
-      quantidade
+      combinacoes.length === 0
     ) {
 
-      return [];
+      return null;
 
     }
 
-  }
 
-
-  const quantidadeEsperada =
-    Object.values(
-      estrutura
-    )
-      .reduce(
-        (
-          total,
-          quantidade
-        ) =>
-          total +
-          numeroEscalacao(
-            quantidade
-          ),
-        0
-      );
-
-
-  if (
-    titulares.length !==
-    quantidadeEsperada
-  ) {
-
-    return [];
+    opcoes[
+      posicao
+    ] =
+      combinacoes;
 
   }
 
 
-  return titulares;
+  return opcoes;
 
 }
 
 
 /* =========================================================
-   MONTA UMA OPÇÃO DE FORMAÇÃO
+   MONTAGEM DE TITULARES
+   ========================================================= */
+
+function montarTitularesFormacaoEscalacao(
+  jogadores,
+  formacao,
+  limitePatrimonio
+) {
+
+  const opcoes =
+    montarOpcoesPosicaoEscalacao(
+      jogadores,
+      formacao
+    );
+
+
+  if (!opcoes) {
+
+    return null;
+
+  }
+
+
+  const limite =
+    numeroEscalacao(
+      limitePatrimonio,
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+    );
+
+
+  /*
+   * Não podemos consumir todo o patrimônio com titulares,
+   * porque ainda precisamos montar 5 reservas.
+   *
+   * Em vez de reservar um valor fixo artificial,
+   * calculamos primeiro o banco mínimo possível entre os
+   * jogadores elegíveis que não necessariamente serão
+   * titulares.
+   *
+   * A validação definitiva de titulares + banco ocorre
+   * posteriormente.
+   */
+
+  const melhoresCombinacoes = [];
+
+  const maximoCombinacoesMantidas =
+    250;
+
+
+  function registrarCombinacao(
+    titulares
+  ) {
+
+    if (
+      !formacaoValidaEscalacao(
+        titulares,
+        formacao
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    if (
+      !respeitaLimiteClubeEscalacao(
+        titulares
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    const custo =
+      calcularCustoJogadoresEscalacao(
+        titulares
+      );
+
+
+    if (
+      custo >
+      limite + 0.000001
+    ) {
+
+      return;
+
+    }
+
+
+    const metricas =
+      calcularMetricasCombinacaoEscalacao(
+        titulares
+      );
+
+
+    const combinacao = {
+
+      titulares:
+        titulares.slice(),
+
+      metricas,
+
+      assinatura:
+        obterAssinaturaEscalacao(
+          titulares
+        )
+
+    };
+
+
+    melhoresCombinacoes.push(
+      combinacao
+    );
+
+
+    /*
+     * Para evitar explosão combinatória,
+     * mantemos somente as melhores alternativas
+     * durante a busca.
+     */
+
+    if (
+      melhoresCombinacoes.length >
+      maximoCombinacoesMantidas * 2
+    ) {
+
+      melhoresCombinacoes.sort(
+        compararCombinacoesEscalacao
+      );
+
+
+      melhoresCombinacoes.splice(
+        maximoCombinacoesMantidas
+      );
+
+    }
+
+  }
+
+
+  const posicoes =
+    ORDEM_POSICOES_ESCALACAO
+      .filter(
+        posicao =>
+          numeroEscalacao(
+            FORMACOES_ESTRUTURA_ESCALACAO[
+              formacao
+            ][
+              posicao
+            ]
+          ) > 0
+      );
+
+
+  function percorrerPosicoes(
+    indicePosicao,
+    titularesParciais,
+    custoParcial
+  ) {
+
+    if (
+      indicePosicao >=
+      posicoes.length
+    ) {
+
+      registrarCombinacao(
+        titularesParciais
+      );
+
+      return;
+
+    }
+
+
+    const posicao =
+      posicoes[
+        indicePosicao
+      ];
+
+
+    const combinacoes =
+      opcoes[
+        posicao
+      ] ??
+      [];
+
+
+    combinacoes.forEach(
+      combinacao => {
+
+        const custoCombinacao =
+          calcularCustoJogadoresEscalacao(
+            combinacao
+          );
+
+
+        const novoCusto =
+          custoParcial +
+          custoCombinacao;
+
+
+        if (
+          novoCusto >
+          limite + 0.000001
+        ) {
+
+          return;
+
+        }
+
+
+        const novosTitulares = [
+          ...titularesParciais,
+          ...combinacao
+        ];
+
+
+        if (
+          !respeitaLimiteClubeEscalacao(
+            novosTitulares
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        percorrerPosicoes(
+          indicePosicao + 1,
+          novosTitulares,
+          novoCusto
+        );
+
+      }
+    );
+
+  }
+
+
+  percorrerPosicoes(
+    0,
+    [],
+    0
+  );
+
+
+  if (
+    melhoresCombinacoes.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  melhoresCombinacoes.sort(
+    compararCombinacoesEscalacao
+  );
+
+
+  /*
+   * Retornamos várias alternativas.
+   *
+   * Isso é importante porque a melhor combinação
+   * de titulares isoladamente pode não permitir
+   * montar um banco válido dentro do patrimônio.
+   */
+
+  return melhoresCombinacoes.slice(
+    0,
+    maximoCombinacoesMantidas
+  );
+
+}
+
+
+/* =========================================================
+   VALIDAÇÃO DO BANCO
    ========================================================= */
 
 
-function montarOpcaoFormacaoEscalacao(
+function bancoValidoEscalacao(
+  banco
+) {
+
+  const jogadores =
+    Array.isArray(
+      banco
+    )
+      ? banco
+      : [];
+
+
+  if (
+    jogadores.length !==
+    POSICOES_BANCO.length
+  ) {
+
+    return false;
+
+  }
+
+
+  const posicoes =
+    jogadores.map(
+      normalizarPosicaoEscalacao
+    );
+
+
+  return POSICOES_BANCO.every(
+    posicao =>
+      posicoes.includes(
+        posicao
+      )
+  );
+
+}
+
+
+/* =========================================================
+   COMPOSIÇÃO COMPLETA
+   ========================================================= */
+
+
+function montarComposicaoCompletaEscalacao(
   jogadores,
   perfil,
   formacao,
   limitePatrimonio
 ) {
 
-  const titularesMotor =
-    MotorEscalacao.montar(
+  const limite =
+    Math.min(
+      numeroEscalacao(
+        limitePatrimonio,
+        LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+      ),
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+    );
+
+
+  const combinacoesTitulares =
+    montarTitularesFormacaoEscalacao(
       jogadores,
       formacao,
-      limitePatrimonio ??
-        Infinity,
-      perfil?.perfil
+      limite
     );
-
-
-  let listaTitulares =
-    Array.isArray(
-      titularesMotor
-    )
-      ? titularesMotor
-      : [];
-
-
-  let custoTitulares =
-    somarCampoEscalacao(
-      listaTitulares,
-      jogador =>
-        jogador?.preco
-    );
-
-
-  let saldoParaBanco =
-    limitePatrimonio !== null
-      ? Math.max(
-          0,
-          limitePatrimonio -
-          custoTitulares
-        )
-      : null;
-
-
-  let banco =
-    montarBancoEscalacao(
-      jogadores,
-      listaTitulares,
-      saldoParaBanco
-    );
-
-
-  let custoBanco =
-    somarCampoEscalacao(
-      banco,
-      jogador =>
-        jogador?.preco
-    );
-
-
-  let completa =
-    listaTitulares.length ===
-    12;
-
-
-  let bancoCompleto =
-    banco.length ===
-    POSICOES_BANCO.length;
-
-
-  let custoTotal =
-    custoTitulares +
-    custoBanco;
-
-
-  let dentroDoOrcamento =
-    limitePatrimonio ===
-      null ||
-    custoTotal <=
-      limitePatrimonio +
-      0.001;
 
 
   if (
-    !completa ||
-    !bancoCompleto ||
-    !dentroDoOrcamento
+    !Array.isArray(
+      combinacoesTitulares
+    ) ||
+    combinacoesTitulares.length === 0
   ) {
 
-    const titularesProtegidos =
-      montarTitularesProtegidosEscalacao(
-        jogadores,
-        formacao,
-        limitePatrimonio
-      );
-
-
-    if (
-      titularesProtegidos.length ===
-      12
-    ) {
-
-      listaTitulares =
-        titularesProtegidos;
-
-
-      custoTitulares =
-        somarCampoEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.preco
-        );
-
-
-      saldoParaBanco =
-        limitePatrimonio !== null
-          ? Math.max(
-              0,
-              limitePatrimonio -
-              custoTitulares
-            )
-          : null;
-
-
-      banco =
-        montarBancoEscalacao(
-          jogadores,
-          listaTitulares,
-          saldoParaBanco
-        );
-
-
-      custoBanco =
-        somarCampoEscalacao(
-          banco,
-          jogador =>
-            jogador?.preco
-        );
-
-
-      completa =
-        listaTitulares.length ===
-        12;
-
-
-      bancoCompleto =
-        banco.length ===
-        POSICOES_BANCO.length;
-
-
-      custoTotal =
-        custoTitulares +
-        custoBanco;
-
-
-      dentroDoOrcamento =
-        limitePatrimonio ===
-          null ||
-        custoTotal <=
-          limitePatrimonio +
-          0.001;
-
-    }
+    return null;
 
   }
 
 
-  return {
+  const composicoes = [];
 
-    formacao,
 
-    jogadores:
-      listaTitulares,
+  combinacoesTitulares.forEach(
+    combinacao => {
 
-    completa,
+      const titulares =
+        combinacao.titulares;
 
-    bancoCompleto,
 
-    completaTotal:
-      completa &&
-      bancoCompleto &&
-      dentroDoOrcamento,
-
-    banco,
-
-    custoBanco,
-
-    custoTotal,
-
-    nota:
-      calcularNotaFormacaoEscalacao(
-        listaTitulares
-      ),
-
-    projecao:
-      somarCampoEscalacao(
-        listaTitulares,
-        obterProjecaoFinalEscalacao
-      ),
-
-    custo:
-      custoTitulares,
-
-    dentroDoOrcamento
-
-  };
-
-}
-
-
-/* =========================================================
-   ESCOLHE A MELHOR FORMAÇÃO COMPLETA
-   ========================================================= */
-
-
-function escolherMelhorFormacaoEscalacao(
-  jogadores,
-  perfil,
-  limitePatrimonio
-) {
-
-  const opcoes =
-    FORMACOES_CANDIDATAS_ESCALACAO
-      .map(
-        formacao =>
-          montarOpcaoFormacaoEscalacao(
-            jogadores,
-            perfil,
-            formacao,
-            limitePatrimonio
-          )
-      );
-
-
-  const completas =
-    opcoes
-      .filter(
-        opcao =>
-          opcao.completaTotal ===
-          true
-      )
-      .sort(
-        compararFormacoesEscalacao
-      );
-
-
-  if (
-    completas.length > 0
-  ) {
-
-    return completas[0];
-
-  }
-
-
-  return {
-
-    formacao:
-      perfil?.formacao ??
-      null,
-
-    jogadores: [],
-
-    completa: false,
-
-    bancoCompleto: false,
-
-    completaTotal: false,
-
-    banco: [],
-
-    custoBanco: 0,
-
-    custoTotal: 0,
-
-    nota: 0,
-
-    projecao: 0,
-
-    custo: 0,
-
-    dentroDoOrcamento: false,
-
-    patrimonioInsuficiente: true
-
-  };
-
-}
-
-
-/* =========================================================
-   CARREGAMENTO
-   ========================================================= */
-
-
-async function carregarEscalacoes() {
-
-  estadoEscalacoes.carregando =
-    true;
-
-  estadoEscalacoes.carregado =
-    false;
-
-  estadoEscalacoes.erro =
-    null;
-
-
-  exibirCarregamentoEscalacoes();
-
-
-  try {
-
-    const resposta =
-      await fetch(
-        CAMINHO_ESCALACOES,
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    if (
-      !resposta.ok
-    ) {
-
-      throw new Error(
-        `Erro HTTP ${resposta.status}`
-      );
-
-    }
-
-
-    const perfis =
-      await resposta.json();
-
-
-    if (
-      !Array.isArray(
-        perfis
-      )
-    ) {
-
-      throw new Error(
-        "Arquivo de perfis inválido."
-      );
-
-    }
-
-
-    const jogadoresOriginais =
-      obterJogadoresCarregados();
-
-
-    const escalacoes = [];
-
-
-    for (
-      const perfil
-      of perfis
-    ) {
-
-      /*
-       * A viabilidade é aplicada ANTES
-       * da montagem do time.
-       */
-
-      const jogadores =
-        prepararJogadoresViabilidadeEscalacao(
-          jogadoresOriginais,
-          perfil
+      const custoTitulares =
+        calcularCustoJogadoresEscalacao(
+          titulares
         );
 
 
-      const limitePatrimonio =
-        obterLimitePatrimonioEscalacao(
-          perfil
+      const saldoBanco =
+        arredondarEscalacao(
+          limite -
+          custoTitulares,
+          2
         );
 
-
-      const melhorFormacao =
-        escolherMelhorFormacaoEscalacao(
-          jogadores,
-          perfil,
-          limitePatrimonio
-        );
-
-
-      /*
-       * Nunca publicar escalação parcial.
-       */
 
       if (
-        melhorFormacao.completaTotal !==
-        true
+        saldoBanco < 0
       ) {
 
-        const patrimonioTexto =
-          limitePatrimonio !== null
-            ? `C$ ${arredondarEscalacao(
-                limitePatrimonio,
-                2
-              )
-                .toFixed(2)
-                .replace(
-                  ".",
-                  ","
-                )}`
-            : "o patrimônio disponível";
-
-
-        throw new Error(
-          `Não foi possível montar uma escalação completa ` +
-          `e viável com ${patrimonioTexto}. ` +
-          `Aumente o patrimônio ou aguarde novas informações ` +
-          `de titularidade da rodada.`
-        );
+        return;
 
       }
 
 
-      const titulares =
-        melhorFormacao.jogadores;
-
-
-      const listaTitulares =
-        Array.isArray(
-          titulares
-        )
-          ? titulares
-          : [];
-
-
-      const projecao =
-        somarCampoEscalacao(
-          listaTitulares,
-          obterProjecaoFinalEscalacao
-        );
-
-
-      const projecaoOriginal =
-        somarCampoEscalacao(
-          listaTitulares,
-          obterProjecaoOriginalEscalacao
-        );
-
-
-      const projecaoCalibrada =
-        somarCampoEscalacao(
-          listaTitulares,
-          obterProjecaoCalibradaEscalacao
-        );
-
-
-      const resumoCalibracao =
-        calcularResumoCalibracaoEscalacao(
-          listaTitulares
-        );
-
-
-      const resumoViabilidade =
-        calcularResumoViabilidadeEscalacao(
-          listaTitulares
-        );
-
-
-      const custoTitulares =
-        somarCampoEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.preco
-        );
-
-
-      const piso =
-        somarCampoEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.piso
-        );
-
-
-      const teto =
-        somarCampoEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.teto
-        );
-
-
-      const confianca =
-        calcularMediaEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.confianca
-        );
-
-
-      const risco =
-        calcularMediaEscalacao(
-          listaTitulares,
-          jogador =>
-            jogador?.risco
-        );
-
-
       const banco =
-        Array.isArray(
-          melhorFormacao.banco
+        montarBancoEscalacao(
+          jogadores,
+          titulares,
+          saldoBanco
+        );
+
+
+      if (
+        !bancoValidoEscalacao(
+          banco
         )
-          ? melhorFormacao.banco
-          : [];
+      ) {
+
+        return;
+
+      }
+
+
+      const todosJogadores = [
+        ...titulares,
+        ...banco
+      ];
+
+
+      if (
+        !respeitaLimiteClubeEscalacao(
+          todosJogadores
+        )
+      ) {
+
+        return;
+
+      }
 
 
       const custoBanco =
-        somarCampoEscalacao(
-          banco,
-          jogador =>
-            jogador?.preco
+        calcularCustoJogadoresEscalacao(
+          banco
         );
 
 
       const custoTotal =
-        custoTitulares +
-        custoBanco;
+        calcularCustoTotalEscalacao(
+          titulares,
+          banco
+        );
 
 
       if (
-        limitePatrimonio !== null &&
         custoTotal >
-          limitePatrimonio +
-          0.001
+        limite + 0.000001
       ) {
 
-        throw new Error(
-          "Erro interno: escalação ultrapassou o patrimônio."
-        );
+        return;
 
       }
 
 
-      const capitao =
-        escolherCapitaoEscalacao(
-          listaTitulares
+      if (
+        custoTotal >
+        LIMITE_PATRIMONIO_MAXIMO_ESCALACAO +
+        0.000001
+      ) {
+
+        return;
+
+      }
+
+
+      const metricasTitulares =
+        calcularMetricasCombinacaoEscalacao(
+          titulares
+        );
+
+
+      const projecaoBanco =
+        somarCampoEscalacao(
+          banco,
+          obterProjecaoFinalEscalacao
+        );
+
+
+      const notaBanco =
+        somarCampoEscalacao(
+          banco,
+          obterNotaBancoEscalacao
         );
 
 
@@ -3588,311 +4459,1072 @@ async function carregarEscalacoes() {
         );
 
 
-      const escalacao = {
-
-        ...perfil,
-
-
-        formacaoOriginal:
-          perfil.formacao,
+      const capitao =
+        escolherCapitaoEscalacao(
+          titulares
+        );
 
 
-        formacao:
-          melhorFormacao.formacao,
+      composicoes.push({
 
+        perfil,
 
-        formacaoAutomatica:
-          true,
+        formacao,
 
-
-        notaFormacao:
-          arredondarEscalacao(
-            melhorFormacao.nota
-          ),
-
-
-        jogadores:
-          listaTitulares,
-
-
-        limitePatrimonio:
-          limitePatrimonio !== null
-            ? arredondarEscalacao(
-                limitePatrimonio
-              )
-            : null,
-
-
-        patrimonioPersonalizado:
-          obterPatrimonioSelecionadoEscalacoes()
-            !== null,
-
-
-        custo:
-          arredondarEscalacao(
-            custoTotal
-          ),
-
-
-        custoTitulares:
-          arredondarEscalacao(
-            custoTitulares
-          ),
-
-
-        custoBanco:
-          arredondarEscalacao(
-            custoBanco
-          ),
-
-
-        custoTotal:
-          arredondarEscalacao(
-            custoTotal
-          ),
-
-
-        saldo:
-          limitePatrimonio !== null
-            ? arredondarEscalacao(
-                limitePatrimonio -
-                custoTotal
-              )
-            : null,
-
-
-        dentroDoOrcamento:
-          limitePatrimonio === null ||
-          custoTotal <=
-            limitePatrimonio +
-            0.001,
-
-
-        bancoCompleto:
-          banco.length ===
-          POSICOES_BANCO.length,
-
-
-        projecao:
-          arredondarEscalacao(
-            projecao
-          ),
-
-
-        projecaoOriginal:
-          arredondarEscalacao(
-            projecaoOriginal
-          ),
-
-
-        projecaoCalibrada:
-          arredondarEscalacao(
-            projecaoCalibrada
-          ),
-
-
-        impactoCalibracao:
-          arredondarEscalacao(
-            projecaoCalibrada -
-            projecaoOriginal
-          ),
-
-
-        percentualCalibracao:
-          resumoCalibracao
-            .percentual,
-
-
-        calibracao:
-          resumoCalibracao,
-
-
-        viabilidade:
-          resumoViabilidade,
-
-
-        titularidadeMedia:
-          resumoViabilidade
-            .titularidadeMedia,
-
-
-        riscoEscalacaoMedio:
-          resumoViabilidade
-            .riscoEscalacaoMedio,
-
-
-        piso:
-          arredondarEscalacao(
-            piso
-          ),
-
-
-        teto:
-          arredondarEscalacao(
-            teto
-          ),
-
-
-        confianca:
-          arredondarEscalacao(
-            confianca,
-            1
-          ),
-
-
-        risco:
-          arredondarEscalacao(
-            risco,
-            1
-          ),
-
-
-        capitao,
-
+        titulares,
 
         banco,
 
+        capitao,
 
-        reservaLuxo
+        reservaLuxo,
 
-      };
+        custoTitulares,
 
+        custoBanco,
 
-      escalacao.justificativa =
-        gerarJustificativaEstrategia(
-          perfil,
-          escalacao
-        );
+        custoTotal,
 
+        saldo:
+          arredondarEscalacao(
+            limite -
+            custoTotal,
+            2
+          ),
 
-      escalacao.justificativaCapitao =
-        gerarJustificativaCapitao(
-          capitao
-        );
+        limitePatrimonio:
+          limite,
 
+        metricasTitulares,
 
-      escalacao.justificativaBanco =
-        gerarJustificativaBanco(
-          banco
-        );
+        projecaoBanco:
+          arredondarEscalacao(
+            projecaoBanco,
+            2
+          ),
 
+        notaBanco:
+          arredondarEscalacao(
+            notaBanco,
+            4
+          ),
 
-      escalacao.justificativaReservaLuxo =
-        gerarJustificativaReservaLuxo(
-          reservaLuxo
-        );
+        assinatura:
+          obterAssinaturaEscalacao(
+            todosJogadores
+          )
 
-
-      escalacao.pontosPositivos =
-        gerarPontosPositivosEscalacao(
-          escalacao
-        );
-
-
-      escalacao.pontosAtencao =
-        gerarPontosAtencaoEscalacao(
-          escalacao
-        );
-
-
-      escalacoes.push(
-        escalacao
-      );
+      });
 
     }
+  );
 
 
-    estadoEscalacoes.escalacoes =
-      escalacoes;
+  if (
+    composicoes.length === 0
+  ) {
 
-
-    estadoEscalacoes.carregado =
-      true;
-
-
-    estadoEscalacoes.carregando =
-      false;
-
-
-    iniciarEscalacoes();
-
-
-    return escalacoes;
-
-
-  } catch (erro) {
-
-    console.error(
-      "Erro ao carregar escalações:",
-      erro
-    );
-
-
-    estadoEscalacoes.escalacoes =
-      [];
-
-
-    estadoEscalacoes.carregado =
-      false;
-
-
-    estadoEscalacoes.carregando =
-      false;
-
-
-    estadoEscalacoes.erro =
-      erro.message;
-
-
-    exibirErroEscalacoes(
-      erro.message
-    );
-
-
-    return [];
+    return null;
 
   }
+
+
+  composicoes.sort(
+    compararComposicoesCompletasEscalacao
+  );
+
+
+  return composicoes[0];
 
 }
 
+
 /* =========================================================
-   VALIDAÇÃO
+   COMPARAÇÃO DE COMPOSIÇÕES COMPLETAS
    ========================================================= */
 
 
-function validarEscalacao(
-  escalacao
+function compararComposicoesCompletasEscalacao(
+  composicaoA,
+  composicaoB
+) {
+
+  const metricasA =
+    composicaoA
+      ?.metricasTitulares ??
+    {};
+
+
+  const metricasB =
+    composicaoB
+      ?.metricasTitulares ??
+    {};
+
+
+  /*
+   * 1. Qualidade dos titulares segundo o perfil.
+   */
+
+  if (
+    Math.abs(
+      numeroEscalacao(
+        metricasB.nota
+      ) -
+      numeroEscalacao(
+        metricasA.nota
+      )
+    ) >
+    0.000001
+  ) {
+
+    return (
+      numeroEscalacao(
+        metricasB.nota
+      ) -
+      numeroEscalacao(
+        metricasA.nota
+      )
+    );
+
+  }
+
+
+  /*
+   * 2. Projeção contextualizada.
+   */
+
+  if (
+    Math.abs(
+      numeroEscalacao(
+        metricasB.projecao
+      ) -
+      numeroEscalacao(
+        metricasA.projecao
+      )
+    ) >
+    0.000001
+  ) {
+
+    return (
+      numeroEscalacao(
+        metricasB.projecao
+      ) -
+      numeroEscalacao(
+        metricasA.projecao
+      )
+    );
+
+  }
+
+
+  /*
+   * 3. Maior titularidade média.
+   */
+
+  if (
+    Math.abs(
+      numeroEscalacao(
+        metricasB.titularidade
+      ) -
+      numeroEscalacao(
+        metricasA.titularidade
+      )
+    ) >
+    0.000001
+  ) {
+
+    return (
+      numeroEscalacao(
+        metricasB.titularidade
+      ) -
+      numeroEscalacao(
+        metricasA.titularidade
+      )
+    );
+
+  }
+
+
+  /*
+   * 4. Melhor banco.
+   */
+
+  if (
+    Math.abs(
+      numeroEscalacao(
+        composicaoB.notaBanco
+      ) -
+      numeroEscalacao(
+        composicaoA.notaBanco
+      )
+    ) >
+    0.000001
+  ) {
+
+    return (
+      numeroEscalacao(
+        composicaoB.notaBanco
+      ) -
+      numeroEscalacao(
+        composicaoA.notaBanco
+      )
+    );
+
+  }
+
+
+  /*
+   * 5. Menor custo como desempate.
+   */
+
+  return (
+    numeroEscalacao(
+      composicaoA.custoTotal
+    ) -
+    numeroEscalacao(
+      composicaoB.custoTotal
+    )
+  );
+
+}
+
+
+/* =========================================================
+   NOTA DE UMA FORMAÇÃO
+   ========================================================= */
+
+
+function calcularNotaFormacaoEscalacao(
+  composicao
+) {
+
+  if (!composicao) {
+    return -Infinity;
+  }
+
+
+  const metricas =
+    composicao.metricasTitulares ??
+    {};
+
+
+  const titulares =
+    Array.isArray(
+      composicao.titulares
+    )
+      ? composicao.titulares
+      : [];
+
+
+  const resumoViabilidade =
+    calcularResumoViabilidadeEscalacao(
+      titulares
+    );
+
+
+  const resumoAdequacao =
+    calcularResumoAdequacaoEscalacao(
+      titulares
+    );
+
+
+  const notaBase =
+    numeroEscalacao(
+      metricas.nota
+    );
+
+
+  const projecao =
+    numeroEscalacao(
+      metricas.projecao
+    );
+
+
+  const titularidade =
+    numeroEscalacao(
+      resumoViabilidade
+        .titularidadeMedia,
+      50
+    );
+
+
+  const riscoEscalacao =
+    numeroEscalacao(
+      resumoViabilidade
+        .riscoEscalacaoMedio,
+      50
+    );
+
+
+  const adequacao =
+    resumoAdequacao.ativa
+      ? numeroEscalacao(
+          resumoAdequacao.notaMedia,
+          50
+        )
+      : 50;
+
+
+  const cobertura =
+    resumoAdequacao.ativa
+      ? numeroEscalacao(
+          resumoAdequacao
+            .coberturaMedia,
+          0
+        ) / 100
+      : 0;
+
+
+  /*
+   * A nota principal continua vindo do motor do perfil.
+   *
+   * Titularidade e adequação entram somente como
+   * desempates suaves, pois já influenciaram os
+   * jogadores individualmente.
+   */
+
+  const ajusteTitularidade =
+    (
+      titularidade -
+      50
+    ) *
+    0.002;
+
+
+  const ajusteRisco =
+    (
+      50 -
+      riscoEscalacao
+    ) *
+    0.001;
+
+
+  const ajusteAdequacao =
+    (
+      adequacao -
+      50
+    ) *
+    0.0015 *
+    cobertura;
+
+
+  return (
+    notaBase +
+    (
+      projecao *
+      0.0001
+    ) +
+    ajusteTitularidade +
+    ajusteRisco +
+    ajusteAdequacao
+  );
+
+}
+
+
+/* =========================================================
+   ESCOLHA DA MELHOR FORMAÇÃO
+   ========================================================= */
+
+
+function escolherMelhorFormacaoEscalacao(
+  jogadores,
+  perfil,
+  limitePatrimonio
+) {
+
+  const alternativas = [];
+
+
+  FORMACOES_CANDIDATAS_ESCALACAO
+    .forEach(
+      formacao => {
+
+        const composicao =
+          montarComposicaoCompletaEscalacao(
+            jogadores,
+            perfil,
+            formacao,
+            limitePatrimonio
+          );
+
+
+        if (!composicao) {
+          return;
+        }
+
+
+        alternativas.push({
+
+          ...composicao,
+
+          notaFormacao:
+            calcularNotaFormacaoEscalacao(
+              composicao
+            )
+
+        });
+
+      }
+    );
+
+
+  if (
+    alternativas.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  alternativas.sort(
+    (
+      alternativaA,
+      alternativaB
+    ) => {
+
+      const diferenca =
+        numeroEscalacao(
+          alternativaB.notaFormacao
+        ) -
+        numeroEscalacao(
+          alternativaA.notaFormacao
+        );
+
+
+      if (
+        Math.abs(
+          diferenca
+        ) >
+        0.000001
+      ) {
+
+        return diferenca;
+
+      }
+
+
+      return compararComposicoesCompletasEscalacao(
+        alternativaA,
+        alternativaB
+      );
+
+    }
+  );
+
+
+  return {
+
+    melhor:
+      alternativas[0],
+
+    alternativas
+
+  };
+
+}
+
+
+/* =========================================================
+   PREPARAÇÃO DO PERFIL
+   ========================================================= */
+
+
+function prepararPerfilEscalacao(
+  perfil
 ) {
 
   if (
-    !escalacao ||
-    typeof escalacao !==
+    !perfil ||
+    typeof perfil !==
       "object"
   ) {
 
-    return false;
+    return {
+      perfil: "Equilibrado",
+      nome: "Equilibrado"
+    };
 
   }
+
+
+  const nome =
+    String(
+      perfil.perfil ??
+      perfil.nome ??
+      perfil.estrategia ??
+      "Equilibrado"
+    );
+
+
+  return {
+
+    ...perfil,
+
+    perfil:
+      nome,
+
+    nome:
+      nome
+
+  };
+
+}
+
+
+/* =========================================================
+   JOGADORES CARREGADOS PARA ESCALAÇÃO
+   ========================================================= */
+
+
+function obterJogadoresDisponiveisEscalacao() {
+
+  if (
+    typeof obterJogadoresCarregados ===
+      "function"
+  ) {
+
+    const jogadores =
+      obterJogadoresCarregados();
+
+
+    if (
+      Array.isArray(
+        jogadores
+      )
+    ) {
+
+      return jogadores;
+
+    }
+
+  }
+
+
+  if (
+    typeof estadoRecomendacoes !==
+      "undefined" &&
+    Array.isArray(
+      estadoRecomendacoes
+        ?.jogadores
+    )
+  ) {
+
+    return estadoRecomendacoes
+      .jogadores;
+
+  }
+
+
+  if (
+    typeof window !==
+      "undefined" &&
+    Array.isArray(
+      window.jogadores
+    )
+  ) {
+
+    return window.jogadores;
+
+  }
+
+
+  return [];
+
+}
+
+
+/* =========================================================
+   MOTOR DE ESCALAÇÃO
+   ========================================================= */
+
+
+function prepararJogadoresMotorEscalacao(
+  jogadores,
+  perfil
+) {
+
+  const preparados =
+    prepararJogadoresViabilidadeEscalacao(
+      jogadores,
+      perfil
+    );
+
+
+  if (
+    typeof MotorEscalacao ===
+      "undefined" ||
+    !MotorEscalacao ||
+    typeof MotorEscalacao
+      .calcularNotaJogador !==
+      "function"
+  ) {
+
+    return preparados;
+
+  }
+
+
+  return preparados.map(
+    jogador => {
+
+      try {
+
+        const resultado =
+          MotorEscalacao
+            .calcularNotaJogador(
+              jogador,
+              perfil
+            );
+
+
+        if (
+          typeof resultado ===
+            "number"
+        ) {
+
+          return {
+
+            ...jogador,
+
+            notaPerfil:
+              resultado
+
+          };
+
+        }
+
+
+        if (
+          resultado &&
+          typeof resultado ===
+            "object"
+        ) {
+
+          return {
+
+            ...jogador,
+
+            notaPerfil:
+              numeroEscalacao(
+                resultado.nota ??
+                resultado.score ??
+                resultado.valor,
+                obterNotaMotorEscalacao(
+                  jogador
+                )
+              ),
+
+            resultadoMotorEscalacao:
+              resultado
+
+          };
+
+        }
+
+      } catch (erro) {
+
+        console.warn(
+          "Falha no MotorEscalacao para jogador:",
+          jogador?.id,
+          erro
+        );
+
+      }
+
+
+      return jogador;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CONSTRUÇÃO DO TIME SUGERIDO
+   ========================================================= */
+
+
+function construirTimeSugeridoEscalacao(
+  perfilOriginal,
+  jogadoresOriginais
+) {
+
+  const perfil =
+    prepararPerfilEscalacao(
+      perfilOriginal
+    );
+
+
+  const limitePatrimonio =
+    obterLimitePatrimonioEscalacao(
+      perfil
+    );
 
 
   const jogadores =
-    Array.isArray(
-      escalacao.jogadores
-    )
-      ? escalacao.jogadores
-      : [];
+    prepararJogadoresMotorEscalacao(
+      jogadoresOriginais,
+      perfil
+    );
+
+
+  if (
+    jogadores.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  const escolhaFormacao =
+    escolherMelhorFormacaoEscalacao(
+      jogadores,
+      perfil,
+      limitePatrimonio
+    );
+
+
+  if (
+    !escolhaFormacao ||
+    !escolhaFormacao.melhor
+  ) {
+
+    return null;
+
+  }
+
+
+  const melhor =
+    escolhaFormacao.melhor;
+
+
+  const titulares =
+    melhor.titulares.map(
+      jogador =>
+        enriquecerJogadorEscalacao(
+          jogador,
+          perfil,
+          "titular"
+        )
+    );
 
 
   const banco =
-    Array.isArray(
-      escalacao.banco
+    melhor.banco.map(
+      jogador =>
+        enriquecerJogadorEscalacao(
+          jogador,
+          perfil,
+          "reserva"
+        )
+    );
+
+
+  const idCapitao =
+    obterIdJogadorEscalacao(
+      melhor.capitao
+    );
+
+
+  const capitao =
+    titulares.find(
+      jogador =>
+        obterIdJogadorEscalacao(
+          jogador
+        ) ===
+        idCapitao
+    ) ??
+    melhor.capitao ??
+    null;
+
+
+  const idReservaLuxo =
+    obterIdJogadorEscalacao(
+      melhor.reservaLuxo
+    );
+
+
+  const reservaLuxo =
+    banco.find(
+      jogador =>
+        obterIdJogadorEscalacao(
+          jogador
+        ) ===
+        idReservaLuxo
+    ) ??
+    melhor.reservaLuxo ??
+    null;
+
+
+  const resumoViabilidade =
+    calcularResumoViabilidadeEscalacao(
+      titulares
+    );
+
+
+  const resumoAdequacao =
+    calcularResumoAdequacaoEscalacao(
+      titulares
+    );
+
+
+  const resumoCalibracao =
+    calcularResumoCalibracaoEscalacao(
+      titulares
+    );
+
+
+  const custoTitulares =
+    calcularCustoJogadoresEscalacao(
+      titulares
+    );
+
+
+  const custoBanco =
+    calcularCustoJogadoresEscalacao(
+      banco
+    );
+
+
+  const custoTotal =
+    calcularCustoTotalEscalacao(
+      titulares,
+      banco
+    );
+
+
+  const projecaoEstatistica =
+    somarCampoEscalacao(
+      titulares,
+      obterProjecaoEstatisticaEscalacao
+    );
+
+
+  const projecaoContextualizada =
+    somarCampoEscalacao(
+      titulares,
+      obterProjecaoFinalEscalacao
+    );
+
+
+  const piso =
+    somarCampoEscalacao(
+      titulares,
+      jogador =>
+        jogador?.piso
+    );
+
+
+  const teto =
+    somarCampoEscalacao(
+      titulares,
+      jogador =>
+        jogador?.teto
+    );
+
+
+  const confianca =
+    calcularMediaEscalacao(
+      titulares,
+      jogador =>
+        jogador?.confianca
+    );
+
+
+  const risco =
+    calcularMediaEscalacao(
+      titulares,
+      jogador =>
+        jogador?.risco
+    );
+
+
+  const alternativasFormacao =
+    escolhaFormacao.alternativas.map(
+      alternativa => ({
+
+        formacao:
+          alternativa.formacao,
+
+        nota:
+          arredondarEscalacao(
+            alternativa.notaFormacao,
+            4
+          ),
+
+        projecao:
+          arredondarEscalacao(
+            alternativa
+              .metricasTitulares
+              ?.projecao,
+            2
+          ),
+
+        custo:
+          arredondarEscalacao(
+            alternativa.custoTotal,
+            2
+          )
+
+      })
+    );
+
+
+  return {
+
+    ...perfilOriginal,
+
+    perfil:
+      perfil.perfil,
+
+    nome:
+      perfil.nome,
+
+    formacao:
+      melhor.formacao,
+
+    titulares,
+
+    banco,
+
+    capitao,
+
+    reservaLuxo,
+
+    patrimonio:
+      limitePatrimonio,
+
+    limitePatrimonio:
+      limitePatrimonio,
+
+    custoTitulares:
+      arredondarEscalacao(
+        custoTitulares,
+        2
+      ),
+
+    custoBanco:
+      arredondarEscalacao(
+        custoBanco,
+        2
+      ),
+
+    custoTotal:
+      arredondarEscalacao(
+        custoTotal,
+        2
+      ),
+
+    saldo:
+      arredondarEscalacao(
+        limitePatrimonio -
+        custoTotal,
+        2
+      ),
+
+    dentroOrcamento:
+      custoTotal <=
+        limitePatrimonio +
+        0.000001 &&
+      custoTotal <=
+        LIMITE_PATRIMONIO_MAXIMO_ESCALACAO +
+        0.000001,
+
+    projecao:
+      arredondarEscalacao(
+        projecaoContextualizada,
+        2
+      ),
+
+    projecaoContextualizada:
+      arredondarEscalacao(
+        projecaoContextualizada,
+        2
+      ),
+
+    projecaoEstatistica:
+      arredondarEscalacao(
+        projecaoEstatistica,
+        2
+      ),
+
+    impactoContextual:
+      arredondarEscalacao(
+        projecaoContextualizada -
+        projecaoEstatistica,
+        2
+      ),
+
+    piso:
+      arredondarEscalacao(
+        piso,
+        2
+      ),
+
+    teto:
+      arredondarEscalacao(
+        teto,
+        2
+      ),
+
+    confianca:
+      arredondarEscalacao(
+        confianca,
+        1
+      ),
+
+    risco:
+      arredondarEscalacao(
+        risco,
+        1
+      ),
+
+    resumoViabilidade,
+
+    resumoAdequacao,
+
+    resumoCalibracao,
+
+    alternativasFormacao,
+
+    justificativa:
+      gerarJustificativaEstrategia(
+        perfil,
+        titulares,
+        resumoViabilidade,
+        resumoAdequacao
+      )
+
+  };
+
+}
+
+
+/* =========================================================
+   VALIDAÇÃO FINAL DO TIME
+   ========================================================= */
+
+
+function validarTimeSugeridoEscalacao(
+  time
+) {
+
+  if (!time) {
+    return false;
+  }
+
+
+  if (
+    !Array.isArray(
+      time.titulares
+    ) ||
+    !Array.isArray(
+      time.banco
     )
-      ? escalacao.banco
-      : [];
-
-
-  if (
-    jogadores.length !== 12
   ) {
 
     return false;
@@ -3901,8 +5533,10 @@ function validarEscalacao(
 
 
   if (
-    banco.length !==
-    POSICOES_BANCO.length
+    !formacaoValidaEscalacao(
+      time.titulares,
+      time.formacao
+    )
   ) {
 
     return false;
@@ -3911,8 +5545,78 @@ function validarEscalacao(
 
 
   if (
-    escalacao.dentroDoOrcamento ===
-    false
+    !bancoValidoEscalacao(
+      time.banco
+    )
+  ) {
+
+    return false;
+
+  }
+
+
+  const todos = [
+    ...time.titulares,
+    ...time.banco
+  ];
+
+
+  if (
+    !respeitaLimiteClubeEscalacao(
+      todos
+    )
+  ) {
+
+    return false;
+
+  }
+
+
+  if (
+    todos.some(
+      jogador =>
+        !jogadorElegivelRodadaEscalacao(
+          jogador
+        )
+    )
+  ) {
+
+    return false;
+
+  }
+
+
+  const custoTotal =
+    calcularCustoTotalEscalacao(
+      time.titulares,
+      time.banco
+    );
+
+
+  const limite =
+    Math.min(
+      numeroEscalacao(
+        time.limitePatrimonio,
+        LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+      ),
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+    );
+
+
+  if (
+    custoTotal >
+    limite + 0.000001
+  ) {
+
+    return false;
+
+  }
+
+
+  if (
+    custoTotal >
+    LIMITE_PATRIMONIO_MAXIMO_ESCALACAO +
+    0.000001
   ) {
 
     return false;
@@ -3926,343 +5630,298 @@ function validarEscalacao(
 
 
 /* =========================================================
-   INICIALIZAÇÃO
+   GERAÇÃO DOS TRÊS PERFIS
    ========================================================= */
 
-
-function iniciarEscalacoes() {
-
-  if (
-    estadoEscalacoes.carregado &&
-    typeof exibirEscalacoes ===
-      "function"
-  ) {
-
-    exibirEscalacoes();
-
-  }
-
-}
-
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
-
-
-function obterContainerEscalacoes() {
-
-  const secao =
-    document.getElementById(
-      "times"
-    );
-
-
-  if (!secao) {
-    return null;
-  }
-
-
-  let container =
-    document.getElementById(
-      "suggestedLineupsGrid"
-    );
-
-
-  if (container) {
-    return container;
-  }
-
-
-  container =
-    document.createElement(
-      "div"
-    );
-
-
-  container.id =
-    "suggestedLineupsGrid";
-
-
-  container.className =
-    "suggested-lineups-grid";
-
-
-  secao.appendChild(
-    container
-  );
-
-
-  return container;
-
-}
-
-
-/* =========================================================
-   CARREGAMENTO VISUAL
-   ========================================================= */
-
-
-function exibirCarregamentoEscalacoes() {
-
-  const container =
-    obterContainerEscalacoes();
-
-
-  if (!container) {
-    return;
-  }
-
-
-  container.innerHTML = `
-    <div class="empty-state">
-      <strong>
-        Carregando escalações...
-      </strong>
-    </div>
-  `;
-
-}
-
-
-/* =========================================================
-   ERRO VISUAL
-   ========================================================= */
-
-
-function exibirErroEscalacoes(
-  mensagem = ""
+function gerarEscalacoesSugeridas(
+  perfis,
+  jogadores
 ) {
 
-  const container =
-    obterContainerEscalacoes();
+  const listaPerfis =
+    Array.isArray(
+      perfis
+    )
+      ? perfis
+      : [];
 
 
-  if (!container) {
-    return;
+  const listaJogadores =
+    Array.isArray(
+      jogadores
+    )
+      ? jogadores
+      : [];
+
+
+  if (
+    listaPerfis.length === 0 ||
+    listaJogadores.length === 0
+  ) {
+
+    return [];
+
   }
 
 
-  const mensagemSegura =
-    typeof escaparHtml ===
-      "function"
-      ? escaparHtml(
-          mensagem
-        )
-      : String(
-          mensagem ?? ""
+  const escalacoes = [];
+
+
+  listaPerfis.forEach(
+    perfil => {
+
+      const time =
+        construirTimeSugeridoEscalacao(
+          perfil,
+          listaJogadores
         );
 
 
-  container.innerHTML = `
-    <div class="empty-state">
-      <strong>
-        Erro ao carregar escalações
-      </strong>
+      if (
+        time &&
+        validarTimeSugeridoEscalacao(
+          time
+        )
+      ) {
 
-      <p>
-        ${mensagemSegura}
-      </p>
-    </div>
-  `;
+        escalacoes.push(
+          time
+        );
+
+      } else {
+
+        console.warn(
+          "Não foi possível gerar escalação válida:",
+          perfil?.perfil ??
+          perfil?.nome ??
+          perfil
+        );
+
+      }
+
+    }
+  );
+
+
+  return escalacoes;
 
 }
 
 
 /* =========================================================
-   SEM ESCALAÇÕES
+   NORMALIZAÇÃO DOS PERFIS DO JSON
    ========================================================= */
 
 
-function exibirSemEscalacoes() {
+function normalizarPerfisEscalacoes(
+  dados
+) {
 
-  const container =
-    obterContainerEscalacoes();
+  if (
+    Array.isArray(
+      dados
+    )
+  ) {
 
+    return dados;
 
-  if (!container) {
-    return;
   }
 
 
-  container.innerHTML = `
-    <div class="empty-state">
-      Nenhuma escalação disponível.
-    </div>
-  `;
+  if (
+    Array.isArray(
+      dados?.escalacoes
+    )
+  ) {
+
+    return dados.escalacoes;
+
+  }
+
+
+  if (
+    Array.isArray(
+      dados?.perfis
+    )
+  ) {
+
+    return dados.perfis;
+
+  }
+
+
+  if (
+    Array.isArray(
+      dados?.estrategias
+    )
+  ) {
+
+    return dados.estrategias;
+
+  }
+
+
+  const perfis = [];
+
+
+  [
+    "Conservador",
+    "Equilibrado",
+    "Agressivo"
+  ].forEach(
+    nome => {
+
+      const chave =
+        Object.keys(
+          dados ?? {}
+        ).find(
+          item =>
+            normalizarTextoEscalacao(
+              item
+            ) ===
+            normalizarTextoEscalacao(
+              nome
+            )
+        );
+
+
+      if (
+        chave &&
+        dados[
+          chave
+        ] &&
+        typeof dados[
+          chave
+        ] ===
+          "object"
+      ) {
+
+        perfis.push({
+
+          ...dados[
+            chave
+          ],
+
+          perfil:
+            dados[
+              chave
+            ].perfil ??
+            nome,
+
+          nome:
+            dados[
+              chave
+            ].nome ??
+            nome
+
+        });
+
+      }
+
+    }
+  );
+
+
+  return perfis;
 
 }
 
 
 /* =========================================================
-   CONSULTAS
+   PERFIS PADRÃO
    ========================================================= */
 
 
-function obterEscalacoesCarregadas() {
+function criarPerfisPadraoEscalacoes() {
 
   return [
-    ...estadoEscalacoes.escalacoes
+
+    {
+      perfil:
+        "Conservador",
+
+      nome:
+        "Conservador",
+
+      descricao:
+        "Prioriza segurança, regularidade, piso e confiança."
+    },
+
+    {
+      perfil:
+        "Equilibrado",
+
+      nome:
+        "Equilibrado",
+
+      descricao:
+        "Equilibra projeção, segurança, teto e risco."
+    },
+
+    {
+      perfil:
+        "Agressivo",
+
+      nome:
+        "Agressivo",
+
+      descricao:
+        "Prioriza teto e potencial de pontuação."
+    }
+
   ];
 
 }
 
 
-function obterEscalacaoPorId(
-  id
-) {
-
-  return (
-    estadoEscalacoes
-      .escalacoes
-      .find(
-        escalacao =>
-          String(
-            escalacao.id
-          ) ===
-          String(
-            id
-          )
-      ) ||
-    null
-  );
-
-}
-
-
-function escalacoesCarregadas() {
-
-  return estadoEscalacoes
-    .carregado;
-
-}
-
-
-function escalacoesCarregando() {
-
-  return estadoEscalacoes
-    .carregando;
-
-}
-
-
-function obterErroEscalacoes() {
-
-  return estadoEscalacoes
-    .erro;
-
-}
-
-
 /* =========================================================
-   CONSULTAS DE PATRIMÔNIO
+   GARANTIA DOS TRÊS PERFIS
    ========================================================= */
 
 
-function obterPatrimonioAtualEscalacoes() {
-
-  return obterPatrimonioSelecionadoEscalacoes();
-
-}
-
-
-function patrimonioPersonalizadoEscalacoes() {
-
-  return (
-    obterPatrimonioSelecionadoEscalacoes()
-    !== null
-  );
-
-}
-
-
-/* =========================================================
-   CONSULTAS DE VIABILIDADE
-   ========================================================= */
-
-
-function obterResumoViabilidadeTime(
-  idEscalacao
+function garantirPerfisEscalacoes(
+  perfis
 ) {
 
-  const escalacao =
-    obterEscalacaoPorId(
-      idEscalacao
-    );
-
-
-  if (!escalacao) {
-    return null;
-  }
-
-
-  return (
-    escalacao.viabilidade ??
-    null
-  );
-
-}
-
-
-function obterJogadoresComAlertaViabilidade(
-  idEscalacao
-) {
-
-  const escalacao =
-    obterEscalacaoPorId(
-      idEscalacao
-    );
-
-
-  if (!escalacao) {
-    return [];
-  }
-
-
-  const titulares =
+  const lista =
     Array.isArray(
-      escalacao.jogadores
+      perfis
     )
-      ? escalacao.jogadores
+      ? perfis
       : [];
 
 
-  return titulares.filter(
-    jogador => {
-
-      const viabilidade =
-        jogador?.viabilidade;
+  const padrao =
+    criarPerfisPadraoEscalacoes();
 
 
-      if (
-        !viabilidade ||
-        typeof viabilidade !==
-          "object"
-      ) {
+  return padrao.map(
+    perfilPadrao => {
 
-        return false;
+      const encontrado =
+        lista.find(
+          perfil =>
+            normalizarTextoEscalacao(
+              perfil?.perfil ??
+              perfil?.nome
+            ) ===
+            normalizarTextoEscalacao(
+              perfilPadrao.perfil
+            )
+        );
 
-      }
 
-
-      return (
-        numeroEscalacao(
-          viabilidade.riscoEscalacao
-        ) >= 40 ||
-
-        numeroEscalacao(
-          viabilidade.titularidade,
-          100
-        ) < 60 ||
-
-        [
-          "BAIXA",
-          "EVITAR",
-          "BLOQUEADO"
-        ].includes(
-          viabilidade.classificacao
-        )
-      );
+      return encontrado
+        ? {
+            ...perfilPadrao,
+            ...encontrado,
+            perfil:
+              perfilPadrao.perfil,
+            nome:
+              encontrado.nome ??
+              perfilPadrao.nome
+          }
+        : perfilPadrao;
 
     }
   );
@@ -4271,20 +5930,759 @@ function obterJogadoresComAlertaViabilidade(
 
 
 /* =========================================================
-   DIAGNÓSTICO DA ESCALAÇÃO
-
-   Útil para validar no console se o novo motor realmente
-   está participando da montagem dos times.
+   FETCH DO JSON
    ========================================================= */
 
 
-function diagnosticarEscalacao(
-  idEscalacao
+async function carregarPerfisEscalacoesJson() {
+
+  try {
+
+    const resposta =
+      await fetch(
+        CAMINHO_ESCALACOES,
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (
+      !resposta.ok
+    ) {
+
+      throw new Error(
+        `HTTP ${resposta.status}`
+      );
+
+    }
+
+
+    const dados =
+      await resposta.json();
+
+
+    const perfis =
+      normalizarPerfisEscalacoes(
+        dados
+      );
+
+
+    return garantirPerfisEscalacoes(
+      perfis
+    );
+
+  } catch (erro) {
+
+    console.warn(
+      "Falha ao carregar perfis de escalação. Usando perfis padrão.",
+      erro
+    );
+
+
+    return criarPerfisPadraoEscalacoes();
+
+  }
+
+}
+
+
+/* =========================================================
+   CARREGAMENTO PRINCIPAL
+   ========================================================= */
+
+
+async function carregarEscalacoes() {
+
+  if (
+    estadoEscalacoes.carregando
+  ) {
+
+    return estadoEscalacoes
+      .escalacoes;
+
+  }
+
+
+  estadoEscalacoes.carregando =
+    true;
+
+
+  estadoEscalacoes.erro =
+    null;
+
+
+  try {
+
+    const perfis =
+      await carregarPerfisEscalacoesJson();
+
+
+    const jogadores =
+      obterJogadoresDisponiveisEscalacao();
+
+
+    if (
+      !Array.isArray(
+        jogadores
+      ) ||
+      jogadores.length === 0
+    ) {
+
+      throw new Error(
+        "Jogadores ainda não carregados para montar as escalações."
+      );
+
+    }
+
+
+    const escalacoes =
+      gerarEscalacoesSugeridas(
+        perfis,
+        jogadores
+      );
+
+
+    if (
+      escalacoes.length === 0
+    ) {
+
+      throw new Error(
+        "Nenhuma escalação válida pôde ser gerada."
+      );
+
+    }
+
+
+    estadoEscalacoes.escalacoes =
+      escalacoes;
+
+
+    estadoEscalacoes.carregado =
+      true;
+
+
+    /*
+     * Mantém compatibilidade com partes antigas
+     * da interface que eventualmente consultem
+     * uma variável global.
+     */
+
+    if (
+      typeof window !==
+      "undefined"
+    ) {
+
+      window.escalacoes =
+        escalacoes;
+
+    }
+
+
+    return escalacoes;
+
+  } catch (erro) {
+
+    estadoEscalacoes.erro =
+      erro;
+
+
+    estadoEscalacoes.carregado =
+      false;
+
+
+    console.error(
+      "Erro ao carregar escalações:",
+      erro
+    );
+
+
+    return [];
+
+  } finally {
+
+    estadoEscalacoes.carregando =
+      false;
+
+  }
+
+}
+
+
+/* =========================================================
+   RECARREGAMENTO
+   ========================================================= */
+
+
+async function recarregarEscalacoes() {
+
+  estadoEscalacoes.carregado =
+    false;
+
+
+  estadoEscalacoes.erro =
+    null;
+
+
+  return carregarEscalacoes();
+
+}
+
+
+/* =========================================================
+   OBTENÇÃO DAS ESCALAÇÕES
+   ========================================================= */
+
+
+function obterEscalacoes() {
+
+  return Array.isArray(
+    estadoEscalacoes.escalacoes
+  )
+    ? estadoEscalacoes.escalacoes
+    : [];
+
+}
+
+
+/* =========================================================
+   OBTENÇÃO DE UMA ESCALAÇÃO
+   ========================================================= */
+
+
+function obterEscalacaoPorPerfil(
+  perfil
+) {
+
+  const nome =
+    normalizarTextoEscalacao(
+      perfil
+    );
+
+
+  return (
+    obterEscalacoes().find(
+      escalacao =>
+        normalizarTextoEscalacao(
+          escalacao?.perfil ??
+          escalacao?.nome
+        ) ===
+        nome
+    ) ??
+    null
+  );
+
+}
+
+
+/* =========================================================
+   ALIAS DE COMPATIBILIDADE
+   ========================================================= */
+
+
+function obterEscalacoesCarregadas() {
+
+  return obterEscalacoes();
+
+}
+
+
+function obterTimesSugeridos() {
+
+  return obterEscalacoes();
+
+}
+
+
+function obterTimeSugerido(
+  perfil
+) {
+
+  return obterEscalacaoPorPerfil(
+    perfil
+  );
+
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+
+function obterStatusEscalacoes() {
+
+  return {
+
+    carregado:
+      estadoEscalacoes.carregado,
+
+    carregando:
+      estadoEscalacoes.carregando,
+
+    erro:
+      estadoEscalacoes.erro
+        ? String(
+            estadoEscalacoes
+              .erro.message ??
+            estadoEscalacoes
+              .erro
+          )
+        : null,
+
+    quantidade:
+      obterEscalacoes().length,
+
+    patrimonioSelecionado:
+      obterPatrimonioSelecionadoEscalacoes(),
+
+    limiteMaximo:
+      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+
+  };
+
+}
+
+
+/* =========================================================
+   RESUMO DE UMA ESCALAÇÃO
+   ========================================================= */
+
+
+function obterResumoEscalacao(
+  escalacao
+) {
+
+  if (!escalacao) {
+    return null;
+  }
+
+
+  return {
+
+    perfil:
+      escalacao.perfil,
+
+    formacao:
+      escalacao.formacao,
+
+    patrimonio:
+      escalacao.limitePatrimonio,
+
+    custoTitulares:
+      escalacao.custoTitulares,
+
+    custoBanco:
+      escalacao.custoBanco,
+
+    custoTotal:
+      escalacao.custoTotal,
+
+    saldo:
+      escalacao.saldo,
+
+    dentroOrcamento:
+      escalacao.dentroOrcamento,
+
+    projecao:
+      escalacao.projecao,
+
+    projecaoEstatistica:
+      escalacao.projecaoEstatistica,
+
+    projecaoContextualizada:
+      escalacao.projecaoContextualizada,
+
+    impactoContextual:
+      escalacao.impactoContextual,
+
+    piso:
+      escalacao.piso,
+
+    teto:
+      escalacao.teto,
+
+    confianca:
+      escalacao.confianca,
+
+    risco:
+      escalacao.risco,
+
+    titularidadeMedia:
+      escalacao.resumoViabilidade
+        ?.titularidadeMedia ??
+      null,
+
+    adequacaoMedia:
+      escalacao.resumoAdequacao
+        ?.notaMedia ??
+      null,
+
+    coberturaAdequacao:
+      escalacao.resumoAdequacao
+        ?.coberturaMedia ??
+      null,
+
+    capitao:
+      escalacao.capitao ??
+      null,
+
+    reservaLuxo:
+      escalacao.reservaLuxo ??
+      null
+
+  };
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO DE ORÇAMENTO
+   ========================================================= */
+
+
+function diagnosticarOrcamentoEscalacoes() {
+
+  const dados =
+    obterEscalacoes().map(
+      escalacao => ({
+
+        perfil:
+          escalacao.perfil,
+
+        formacao:
+          escalacao.formacao,
+
+        patrimonio:
+          escalacao.limitePatrimonio,
+
+        titulares:
+          escalacao.custoTitulares,
+
+        banco:
+          escalacao.custoBanco,
+
+        total:
+          escalacao.custoTotal,
+
+        saldo:
+          escalacao.saldo,
+
+        valido:
+          escalacao.dentroOrcamento &&
+          escalacao.custoTotal <=
+            LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
+
+      })
+    );
+
+
+  console.table(
+    dados
+  );
+
+
+  return dados;
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO DAS FORMAÇÕES
+   ========================================================= */
+
+
+function diagnosticarFormacoesEscalacoes() {
+
+  const dados = [];
+
+
+  obterEscalacoes().forEach(
+    escalacao => {
+
+      const alternativas =
+        Array.isArray(
+          escalacao
+            .alternativasFormacao
+        )
+          ? escalacao
+              .alternativasFormacao
+          : [];
+
+
+      alternativas.forEach(
+        alternativa => {
+
+          dados.push({
+
+            perfil:
+              escalacao.perfil,
+
+            escolhida:
+              alternativa.formacao ===
+              escalacao.formacao,
+
+            formacao:
+              alternativa.formacao,
+
+            nota:
+              alternativa.nota,
+
+            projecao:
+              alternativa.projecao,
+
+            custo:
+              alternativa.custo
+
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+  console.table(
+    dados
+  );
+
+
+  return dados;
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO DA VIABILIDADE
+   ========================================================= */
+
+
+function diagnosticarViabilidadeEscalacoes() {
+
+  const dados =
+    obterEscalacoes().map(
+      escalacao => ({
+
+        perfil:
+          escalacao.perfil,
+
+        formacao:
+          escalacao.formacao,
+
+        titularidadeMedia:
+          escalacao
+            .resumoViabilidade
+            ?.titularidadeMedia ??
+          null,
+
+        riscoEscalacao:
+          escalacao
+            .resumoViabilidade
+            ?.riscoEscalacaoMedio ??
+          null,
+
+        altaOuMuitoAlta:
+          escalacao
+            .resumoViabilidade
+            ?.altaOuMuitoAlta ??
+          0,
+
+        baixa:
+          escalacao
+            .resumoViabilidade
+            ?.baixa ??
+          0,
+
+        bloqueados:
+          escalacao
+            .resumoViabilidade
+            ?.bloqueados ??
+          0
+
+      })
+    );
+
+
+  console.table(
+    dados
+  );
+
+
+  return dados;
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO DA ADEQUAÇÃO À RODADA
+   ========================================================= */
+
+
+function diagnosticarAdequacaoEscalacoes() {
+
+  const dados =
+    obterEscalacoes().map(
+      escalacao => ({
+
+        perfil:
+          escalacao.perfil,
+
+        formacao:
+          escalacao.formacao,
+
+        notaMedia:
+          escalacao
+            .resumoAdequacao
+            ?.notaMedia ??
+          null,
+
+        coberturaMedia:
+          escalacao
+            .resumoAdequacao
+            ?.coberturaMedia ??
+          null,
+
+        altaOuMuitoAlta:
+          escalacao
+            .resumoAdequacao
+            ?.muitoAltaOuAlta ??
+          0,
+
+        baixaOuPior:
+          escalacao
+            .resumoAdequacao
+            ?.baixaOuPior ??
+          0,
+
+        impactoContextual:
+          escalacao
+            .impactoContextual
+
+      })
+    );
+
+
+  console.table(
+    dados
+  );
+
+
+  return dados;
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO COMPLETO
+   ========================================================= */
+
+
+function diagnosticarEscalacoes() {
+
+  const dados =
+    obterEscalacoes().map(
+      escalacao => {
+
+        const capitao =
+          escalacao.capitao;
+
+
+        const reservaLuxo =
+          escalacao.reservaLuxo;
+
+
+        return {
+
+          perfil:
+            escalacao.perfil,
+
+          formacao:
+            escalacao.formacao,
+
+          patrimonio:
+            escalacao
+              .limitePatrimonio,
+
+          custo:
+            escalacao.custoTotal,
+
+          saldo:
+            escalacao.saldo,
+
+          projecaoEstatistica:
+            escalacao
+              .projecaoEstatistica,
+
+          projecaoContextual:
+            escalacao
+              .projecaoContextualizada,
+
+          impacto:
+            escalacao
+              .impactoContextual,
+
+          titularidade:
+            escalacao
+              .resumoViabilidade
+              ?.titularidadeMedia ??
+            null,
+
+          adequacao:
+            escalacao
+              .resumoAdequacao
+              ?.notaMedia ??
+            null,
+
+          cobertura:
+            escalacao
+              .resumoAdequacao
+              ?.coberturaMedia ??
+            null,
+
+          capitao:
+            capitao?.apelido ??
+            capitao?.nome ??
+            null,
+
+          reservaLuxo:
+            reservaLuxo?.apelido ??
+            reservaLuxo?.nome ??
+            null,
+
+          valido:
+            validarTimeSugeridoEscalacao(
+              escalacao
+            )
+
+        };
+
+      }
+    );
+
+
+  console.table(
+    dados
+  );
+
+
+  return dados;
+
+}
+
+
+/* =========================================================
+   DIAGNÓSTICO DOS JOGADORES DE UMA ESCALAÇÃO
+   ========================================================= */
+
+
+function diagnosticarJogadoresEscalacao(
+  perfil
 ) {
 
   const escalacao =
-    obterEscalacaoPorId(
-      idEscalacao
+    obterEscalacaoPorPerfil(
+      perfil
     );
 
 
@@ -4292,183 +6690,218 @@ function diagnosticarEscalacao(
 
     console.warn(
       "Escalação não encontrada:",
-      idEscalacao
+      perfil
     );
 
 
-    return null;
+    return [];
 
   }
 
 
-  const titulares =
-    Array.isArray(
-      escalacao.jogadores
+  const idCapitao =
+    obterIdJogadorEscalacao(
+      escalacao.capitao
+    );
+
+
+  const idReservaLuxo =
+    obterIdJogadorEscalacao(
+      escalacao.reservaLuxo
+    );
+
+
+  const jogadores = [
+
+    ...escalacao.titulares.map(
+      jogador => ({
+        jogador,
+        tipo: "Titular"
+      })
+    ),
+
+    ...escalacao.banco.map(
+      jogador => ({
+        jogador,
+        tipo: "Reserva"
+      })
     )
-      ? escalacao.jogadores
-      : [];
+
+  ];
 
 
-  const diagnostico = {
+  const dados =
+    jogadores.map(
+      item => {
 
-    id:
-      escalacao.id,
-
-
-    perfil:
-      escalacao.perfil ??
-      escalacao.nome,
+        const jogador =
+          item.jogador;
 
 
-    formacao:
-      escalacao.formacao,
+        const id =
+          obterIdJogadorEscalacao(
+            jogador
+          );
 
 
-    patrimonio:
-      escalacao.limitePatrimonio,
+        return {
 
+          tipo:
+            item.tipo,
 
-    custoTotal:
-      escalacao.custoTotal,
+          jogador:
+            jogador?.apelido ??
+            jogador?.nome ??
+            "",
 
+          posicao:
+            normalizarPosicaoEscalacao(
+              jogador
+            ),
 
-    saldo:
-      escalacao.saldo,
+          clube:
+            jogador?.siglaClube ??
+            jogador?.clube ??
+            "",
 
+          capitao:
+            id &&
+            id ===
+              idCapitao,
 
-    projecao:
-      escalacao.projecao,
+          reservaLuxo:
+            id &&
+            id ===
+              idReservaLuxo,
 
+          preco:
+            numeroEscalacao(
+              jogador?.preco
+            ),
 
-    titularidadeMedia:
-      escalacao.titularidadeMedia,
-
-
-    riscoEscalacaoMedio:
-      escalacao.riscoEscalacaoMedio,
-
-
-    jogadores:
-      titulares.map(
-        jogador => {
-
-          return {
-
-            id:
-              jogador.id,
-
-
-            nome:
-              jogador.apelido ??
-              jogador.nome,
-
-
-            posicao:
-              normalizarPosicaoEscalacao(
+          projecaoOriginal:
+            arredondarEscalacao(
+              obterProjecaoEstatisticaEscalacao(
                 jogador
               ),
+              2
+            ),
 
-
-            clube:
-              jogador.siglaClube ??
-              jogador.clube,
-
-
-            preco:
-              jogador.preco,
-
-
-            projecao:
+          projecaoFinal:
+            arredondarEscalacao(
               obterProjecaoFinalEscalacao(
                 jogador
               ),
+              2
+            ),
 
+          titularidade:
+            arredondarEscalacao(
+              jogador?.titularidade ??
+              jogador?.viabilidade
+                ?.titularidade,
+              1
+            ),
 
-            scoreEstatistico:
-              jogador.scoreEstatistico ??
-              jogador.score,
-
-
-            scoreAjustado:
-              jogador.score,
-
-
-            titularidade:
-              jogador.viabilidade
-                ?.titularidade ??
-              jogador.titularidade,
-
-
-            riscoEscalacao:
-              jogador.viabilidade
+          riscoEscalacao:
+            arredondarEscalacao(
+              jogador
                 ?.riscoEscalacao ??
-              jogador.riscoEscalacao,
+              jogador?.viabilidade
+                ?.riscoEscalacao,
+              1
+            ),
 
+          adequacao:
+            jogador
+              ?.notaAdequacaoRodada !==
+            null &&
+            jogador
+              ?.notaAdequacaoRodada !==
+            undefined
+              ? arredondarEscalacao(
+                  jogador
+                    .notaAdequacaoRodada,
+                  1
+                )
+              : null,
 
-            classificacao:
-              jogador.viabilidade
-                ?.classificacao ??
-              jogador.classificacaoViabilidade,
+          classificacaoAdequacao:
+            jogador
+              ?.classificacaoAdequacaoRodada ??
+            "SEM_DADOS",
 
+          cobertura:
+            arredondarEscalacao(
+              jogador
+                ?.coberturaAdequacaoRodada,
+              1
+            ),
 
-            elegivel:
-              jogador.viabilidade
-                ?.elegivel ??
-              jogador.elegivelRodada,
+          justificativa:
+            jogador?.justificativa ??
+            ""
 
+        };
 
-            justificativa:
-              jogador.viabilidade
-                ?.justificativa ??
-              jogador.justificativaViabilidade
-
-          };
-
-        }
-      )
-
-  };
+      }
+    );
 
 
   console.table(
-    diagnostico.jogadores
+    dados
   );
 
 
-  console.log(
-    "Diagnóstico da escalação:",
-    diagnostico
-  );
-
-
-  return diagnostico;
+  return dados;
 
 }
 
 
 /* =========================================================
-   DIAGNÓSTICO DE TODAS AS ESCALAÇÕES
+   TESTE DE PATRIMÔNIO
    ========================================================= */
 
 
-function diagnosticarTodasEscalacoes() {
+async function testarPatrimonioEscalacoes(
+  patrimonio
+) {
 
-  const escalacoes =
-    obterEscalacoesCarregadas();
+  const anterior =
+    estadoEscalacoes
+      .patrimonioSelecionado;
 
 
-  return escalacoes.map(
-    escalacao =>
-      diagnosticarEscalacao(
-        escalacao.id
-      )
-  );
+  try {
+
+    estadoEscalacoes
+      .patrimonioSelecionado =
+        normalizarLimitePatrimonioEscalacao(
+          patrimonio
+        );
+
+
+    const escalacoes =
+      await carregarEscalacoes();
+
+
+    return escalacoes.map(
+      obterResumoEscalacao
+    );
+
+  } finally {
+
+    estadoEscalacoes
+      .patrimonioSelecionado =
+        anterior;
+
+  }
 
 }
 
 
 /* =========================================================
-   EXPOSIÇÃO OPCIONAL PARA DEPURAÇÃO
+   EXPOSIÇÃO PÚBLICA
    ========================================================= */
 
 
@@ -4482,43 +6915,53 @@ if (
     carregar:
       carregarEscalacoes,
 
+    recarregar:
+      recarregarEscalacoes,
 
-    obterTodas:
-      obterEscalacoesCarregadas,
+    obter:
+      obterEscalacoes,
 
+    obterPorPerfil:
+      obterEscalacaoPorPerfil,
 
-    obterPorId:
-      obterEscalacaoPorId,
+    obterStatus:
+      obterStatusEscalacoes,
 
+    obterResumo:
+      obterResumoEscalacao,
 
     definirPatrimonio:
       definirPatrimonioEscalacoes,
 
-
     restaurarPatrimonio:
       restaurarPatrimonioPadraoEscalacoes,
 
-
-    obterPatrimonio:
-      obterPatrimonioAtualEscalacoes,
-
-
-    obterResumoViabilidade:
-      obterResumoViabilidadeTime,
-
-
-    obterAlertasViabilidade:
-      obterJogadoresComAlertaViabilidade,
-
+    testarPatrimonio:
+      testarPatrimonioEscalacoes,
 
     diagnosticar:
-      diagnosticarEscalacao,
+      diagnosticarEscalacoes,
 
+    diagnosticarOrcamento:
+      diagnosticarOrcamentoEscalacoes,
 
-    diagnosticarTodas:
-      diagnosticarTodasEscalacoes
+    diagnosticarFormacoes:
+      diagnosticarFormacoesEscalacoes,
+
+    diagnosticarViabilidade:
+      diagnosticarViabilidadeEscalacoes,
+
+    diagnosticarAdequacao:
+      diagnosticarAdequacaoEscalacoes,
+
+    diagnosticarJogadores:
+      diagnosticarJogadoresEscalacao
 
   };
 
 }
 
+
+/* =========================================================
+   FIM
+   ========================================================= */
