@@ -1,33 +1,25 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Integração final da interface
+   Integração final da interface — PACOTE FINAL
 
    Responsabilidades:
 
-   - sincronizar patrimônio;
-   - sincronizar filtros de exclusão;
-   - atualizar recomendações após recálculo;
-   - atualizar escalações;
-   - atualizar análise da rodada;
-   - corrigir renderizações após troca de aba;
-   - evitar múltiplos recálculos simultâneos;
-   - expor diagnóstico final do front-end;
-   - manter módulos independentes.
-
-   IMPORTANTE:
-
-   Este arquivo NÃO recalcula:
-   - pesos;
-   - projeções;
-   - histórico;
-   - métricas estatísticas.
-
-   Ele apenas coordena módulos já existentes.
+   - manter Recomendações e Times sincronizados;
+   - garantir filtros de exclusão nas duas abas;
+   - corrigir contraste dos filtros em desktop/mobile;
+   - corrigir a data/hora de última atualização;
+   - complementar a composição da nota;
+   - adicionar gráfico histórico dos 3 perfis;
+   - melhorar a leitura da aba Análise da rodada;
+   - manter patrimônio e renderizações estáveis.
 
    ========================================================= */
 
 
-const CartolaIntegracaoFinal = (() => {
+const CartolaIntegracaoFinal =
+(() => {
+
+  "use strict";
 
 
   /* =======================================================
@@ -36,17 +28,29 @@ const CartolaIntegracaoFinal = (() => {
 
   const estado = {
 
-    inicializado: false,
+    inicializado:
+      false,
 
-    inicializando: false,
+    inicializando:
+      false,
 
-    recalculando: false,
+    recalculando:
+      false,
 
-    ultimoPatrimonio: null,
+    ultimaAtualizacao:
+      null,
 
-    ultimaAtualizacao: null,
+    erros:
+      [],
 
-    erros: []
+    graficoHistoricoCarregado:
+      false,
+
+    timerReconstruirFiltros:
+      null,
+
+    observer:
+      null
 
   };
 
@@ -55,23 +59,15 @@ const CartolaIntegracaoFinal = (() => {
      UTILITÁRIOS
      ======================================================= */
 
-
-  function numero(
-    valor,
-    padrao = null
-  ) {
-
-    const resultado =
-      Number(valor);
-
-
-    return Number.isFinite(
-      resultado
-    )
-      ? resultado
-      : padrao;
-
-  }
+  const esperar =
+    milissegundos =>
+      new Promise(
+        resolver =>
+          setTimeout(
+            resolver,
+            milissegundos
+          )
+      );
 
 
   function texto(
@@ -85,17 +81,53 @@ const CartolaIntegracaoFinal = (() => {
   }
 
 
-  function esperar(
-    milissegundos
+  function numero(
+    valor,
+    padrao = 0
   ) {
 
-    return new Promise(
-      resolver =>
-        setTimeout(
-          resolver,
-          milissegundos
-        )
-    );
+    const n =
+      Number(
+        valor
+      );
+
+
+    return Number.isFinite(
+      n
+    )
+      ? n
+      : padrao;
+
+  }
+
+
+  function escaparHtml(
+    valor
+  ) {
+
+    return texto(
+      valor
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
 
@@ -112,7 +144,9 @@ const CartolaIntegracaoFinal = (() => {
       mensagem:
         erro?.message
         ??
-        String(erro),
+        String(
+          erro
+        ),
 
       data:
         new Date()
@@ -145,87 +179,958 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     RECOMENDAÇÕES
+     ESTILOS FINAIS
      ======================================================= */
 
+  function garantirEstilosFinais() {
 
-  function recomendacoesDisponiveis() {
+    const antigo =
+      document.getElementById(
+        "cartolaFinalStyle"
+      );
+
 
     if (
-      typeof window ===
-      "undefined"
+      antigo
     ) {
 
-      return false;
+      antigo.remove();
 
     }
 
 
-    if (
-      window.CartolaRecomendacoes &&
-      typeof window
-        .CartolaRecomendacoes
-        .obterJogadores ===
-        "function"
-    ) {
-
-      try {
-
-        const jogadores =
-          window
-            .CartolaRecomendacoes
-            .obterJogadores();
+    const style =
+      document.createElement(
+        "style"
+      );
 
 
-        return (
-          Array.isArray(
-            jogadores
-          ) &&
-          jogadores.length > 0
-        );
+    style.id =
+      "cartolaFinalStyle";
 
-      } catch (erro) {
 
-        return false;
+    style.textContent = `
+
+
+      /* ===================================================
+         FILTROS — CONTRASTE E ESTABILIDADE
+         =================================================== */
+
+
+      .ce-filter-wrapper {
+
+        width: 100% !important;
+
+        display: block !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        margin:
+          14px
+          0
+          18px
+          !important;
 
       }
 
-    }
 
+      .ce-filter-panel {
 
-    if (
-      typeof window
-        .obterJogadoresCarregados ===
-      "function"
-    ) {
+        color:
+          #f3fff7
+          !important;
 
-      try {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(
+              16,
+              48,
+              31,
+              .97
+            ),
+            rgba(
+              8,
+              28,
+              18,
+              .98
+            )
+          )
+          !important;
 
-        const jogadores =
-          window
-            .obterJogadoresCarregados();
-
-
-        return (
-          Array.isArray(
-            jogadores
-          ) &&
-          jogadores.length > 0
-        );
-
-      } catch (erro) {
-
-        return false;
+        border-color:
+          rgba(
+            72,
+            214,
+            139,
+            .28
+          )
+          !important;
 
       }
 
-    }
+
+      .ce-filter-dropdown > summary,
+      .ce-filter-search,
+      .ce-filter-dropdown-body {
+
+        color:
+          #f3fff7
+          !important;
+
+        background-color:
+          #0a1c12
+          !important;
+
+      }
 
 
-    return false;
+      .ce-filter-dropdown > summary {
+
+        border-color:
+          rgba(
+            255,
+            255,
+            255,
+            .14
+          )
+          !important;
+
+      }
+
+
+      .ce-filter-dropdown-body {
+
+        border-color:
+          rgba(
+            255,
+            255,
+            255,
+            .15
+          )
+          !important;
+
+      }
+
+
+      .ce-filter-search::placeholder {
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .48
+          )
+          !important;
+
+      }
+
+
+      .ce-filter-option,
+      .ce-filter-player-info strong,
+      .ce-filter-player-info small {
+
+        color:
+          #f3fff7
+          !important;
+
+      }
+
+
+      .ce-filter-position-title {
+
+        background:
+          #0a1c12
+          !important;
+
+        color:
+          #56df98
+          !important;
+
+      }
+
+
+      .ce-filter-option:hover {
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .07
+          )
+          !important;
+
+      }
+
+
+      .ce-filter-option
+      input[type="checkbox"] {
+
+        accent-color:
+          #48d68b;
+
+      }
+
+
+      .ce-filter-clear {
+
+        color:
+          #f3fff7
+          !important;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .045
+          )
+          !important;
+
+      }
+
+
+      .ce-filter-apply {
+
+        color:
+          #062113
+          !important;
+
+        background:
+          #53d891
+          !important;
+
+      }
+
+
+      /*
+       * GARANTE O FILTRO NAS DUAS ABAS.
+       */
+
+      #times
+      #ceFilterTeams,
+
+      #times
+      .ce-filter-wrapper,
+
+      #recomendacoes
+      #ceFilterRecommendations,
+
+      #recomendacoes
+      .ce-filter-wrapper {
+
+        display:
+          block
+          !important;
+
+        visibility:
+          visible
+          !important;
+
+        opacity:
+          1
+          !important;
+
+      }
+
+
+      /* ===================================================
+         COMPOSIÇÃO DA NOTA
+         =================================================== */
+
+
+      .component-row.component-unavailable {
+
+        opacity:
+          .62;
+
+      }
+
+
+      .component-row.component-unavailable
+      .component-fill {
+
+        opacity:
+          .22;
+
+      }
+
+
+      .component-label small {
+
+        display:
+          block;
+
+        margin-top:
+          3px;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .55
+          );
+
+        font-size:
+          9px;
+
+        line-height:
+          1.35;
+
+      }
+
+
+      .components-summary {
+
+        margin-bottom:
+          10px;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .55
+          );
+
+      }
+
+
+      /* ===================================================
+         HISTÓRICO — GRÁFICO
+         =================================================== */
+
+
+      .history-evolution {
+
+        margin:
+          0
+          0
+          22px;
+
+        padding:
+          18px;
+
+        border:
+          1px solid
+          rgba(
+            255,
+            255,
+            255,
+            .08
+          );
+
+        border-radius:
+          16px;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .025
+          );
+
+      }
+
+
+      .history-evolution-header {
+
+        display:
+          flex;
+
+        justify-content:
+          space-between;
+
+        align-items:
+          flex-start;
+
+        gap:
+          16px;
+
+        margin-bottom:
+          14px;
+
+      }
+
+
+      .history-evolution-header h3 {
+
+        margin:
+          3px
+          0
+          0;
+
+        font-size:
+          1rem;
+
+      }
+
+
+      .history-evolution-header p {
+
+        margin:
+          4px
+          0
+          0;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .56
+          );
+
+        font-size:
+          11px;
+
+      }
+
+
+      .history-evolution-legend {
+
+        display:
+          flex;
+
+        flex-wrap:
+          wrap;
+
+        justify-content:
+          flex-end;
+
+        gap:
+          8px;
+
+      }
+
+
+      .history-evolution-legend span {
+
+        display:
+          inline-flex;
+
+        align-items:
+          center;
+
+        gap:
+          6px;
+
+        padding:
+          5px
+          8px;
+
+        border-radius:
+          999px;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .045
+          );
+
+        font-size:
+          10px;
+
+      }
+
+
+      .history-evolution-legend i {
+
+        width:
+          9px;
+
+        height:
+          9px;
+
+        border-radius:
+          50%;
+
+        display:
+          inline-block;
+
+      }
+
+
+      .history-chart-wrap {
+
+        width:
+          100%;
+
+        overflow-x:
+          auto;
+
+        overflow-y:
+          hidden;
+
+      }
+
+
+      .history-chart-svg {
+
+        display:
+          block;
+
+        width:
+          100%;
+
+        min-width:
+          760px;
+
+        height:
+          330px;
+
+      }
+
+
+      .history-chart-grid {
+
+        stroke:
+          rgba(
+            255,
+            255,
+            255,
+            .08
+          );
+
+        stroke-width:
+          1;
+
+      }
+
+
+      .history-chart-axis-text {
+
+        fill:
+          rgba(
+            255,
+            255,
+            255,
+            .48
+          );
+
+        font-size:
+          10px;
+
+      }
+
+
+      .history-chart-line {
+
+        fill:
+          none;
+
+        stroke-width:
+          3;
+
+        stroke-linecap:
+          round;
+
+        stroke-linejoin:
+          round;
+
+      }
+
+
+      .history-chart-dot {
+
+        stroke:
+          #0b1d13;
+
+        stroke-width:
+          2;
+
+      }
+
+
+      .history-evolution-cards {
+
+        display:
+          grid;
+
+        grid-template-columns:
+          repeat(
+            3,
+            minmax(
+              0,
+              1fr
+            )
+          );
+
+        gap:
+          10px;
+
+        margin-top:
+          14px;
+
+      }
+
+
+      .history-evolution-card {
+
+        padding:
+          12px;
+
+        border:
+          1px solid
+          rgba(
+            255,
+            255,
+            255,
+            .07
+          );
+
+        border-radius:
+          12px;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .025
+          );
+
+      }
+
+
+      .history-evolution-card span {
+
+        display:
+          block;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .52
+          );
+
+        font-size:
+          9px;
+
+        text-transform:
+          uppercase;
+
+        letter-spacing:
+          .06em;
+
+      }
+
+
+      .history-evolution-card strong {
+
+        display:
+          block;
+
+        margin-top:
+          4px;
+
+        font-size:
+          18px;
+
+      }
+
+
+      .history-evolution-card small {
+
+        display:
+          block;
+
+        margin-top:
+          3px;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .52
+          );
+
+        font-size:
+          10px;
+
+      }
+
+
+      .history-chart-note {
+
+        margin:
+          10px
+          0
+          0;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .48
+          );
+
+        font-size:
+          10px;
+
+        line-height:
+          1.45;
+
+      }
+
+
+      /* ===================================================
+         ANÁLISE — LEITURA RÁPIDA
+         =================================================== */
+
+
+      .round-strategy-reading {
+
+        margin-top:
+          16px;
+
+        padding:
+          16px;
+
+        border:
+          1px solid
+          rgba(
+            72,
+            214,
+            139,
+            .18
+          );
+
+        border-radius:
+          15px;
+
+        background:
+          rgba(
+            28,
+            79,
+            49,
+            .15
+          );
+
+      }
+
+
+      .round-strategy-reading h3 {
+
+        margin:
+          0
+          0
+          10px;
+
+        font-size:
+          14px;
+
+      }
+
+
+      .round-strategy-reading-grid {
+
+        display:
+          grid;
+
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(
+              0,
+              1fr
+            )
+          );
+
+        gap:
+          9px;
+
+      }
+
+
+      .round-strategy-item {
+
+        padding:
+          10px
+          11px;
+
+        border-radius:
+          10px;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .035
+          );
+
+      }
+
+
+      .round-strategy-item span {
+
+        display:
+          block;
+
+        color:
+          #55dc96;
+
+        font-size:
+          9px;
+
+        font-weight:
+          800;
+
+        text-transform:
+          uppercase;
+
+        letter-spacing:
+          .06em;
+
+      }
+
+
+      .round-strategy-item strong {
+
+        display:
+          block;
+
+        margin-top:
+          3px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .round-strategy-item small {
+
+        display:
+          block;
+
+        margin-top:
+          3px;
+
+        color:
+          rgba(
+            255,
+            255,
+            255,
+            .52
+          );
+
+        font-size:
+          10px;
+
+      }
+
+
+      /* ===================================================
+         MOBILE
+         =================================================== */
+
+
+      @media (
+        max-width:
+        700px
+      ) {
+
+        .ce-filter-panel {
+
+          background:
+            #0b1e14
+            !important;
+
+        }
+
+
+        .ce-filter-heading {
+
+          flex-direction:
+            column;
+
+          align-items:
+            stretch;
+
+        }
+
+
+        .ce-filter-clear {
+
+          width:
+            100%;
+
+        }
+
+
+        .ce-filter-dropdown-body {
+
+          background:
+            #081911
+            !important;
+
+        }
+
+
+        .history-evolution {
+
+          padding:
+            13px;
+
+        }
+
+
+        .history-evolution-header {
+
+          display:
+            block;
+
+        }
+
+
+        .history-evolution-legend {
+
+          justify-content:
+            flex-start;
+
+          margin-top:
+            10px;
+
+        }
+
+
+        .history-evolution-cards,
+        .round-strategy-reading-grid {
+
+          grid-template-columns:
+            1fr;
+
+        }
+
+      }
+
+    `;
+
+
+    document.head.appendChild(
+      style
+    );
 
   }
 
+
+  /* =======================================================
+     RECOMENDAÇÕES
+     ======================================================= */
 
   function atualizarRecomendacoes() {
 
@@ -234,7 +1139,7 @@ const CartolaIntegracaoFinal = (() => {
       if (
         typeof window
           .exibirDestaquesGerais ===
-        "function"
+          "function"
       ) {
 
         window
@@ -243,7 +1148,7 @@ const CartolaIntegracaoFinal = (() => {
       }
       else if (
         typeof exibirDestaquesGerais ===
-        "function"
+          "function"
       ) {
 
         exibirDestaquesGerais();
@@ -254,7 +1159,7 @@ const CartolaIntegracaoFinal = (() => {
       if (
         typeof window
           .exibirJogadoresDaPosicao ===
-        "function"
+          "function"
       ) {
 
         window
@@ -263,7 +1168,7 @@ const CartolaIntegracaoFinal = (() => {
       }
       else if (
         typeof exibirJogadoresDaPosicao ===
-        "function"
+          "function"
       ) {
 
         exibirJogadoresDaPosicao();
@@ -272,7 +1177,6 @@ const CartolaIntegracaoFinal = (() => {
 
 
       return true;
-
 
     } catch (erro) {
 
@@ -293,146 +1197,18 @@ const CartolaIntegracaoFinal = (() => {
      ESCALAÇÕES
      ======================================================= */
 
-
-  function obterEscalacoes() {
-
-    try {
-
-      if (
-        typeof window !==
-          "undefined" &&
-        typeof window
-          .obterEscalacoesCarregadas ===
-          "function"
-      ) {
-
-        const resultado =
-          window
-            .obterEscalacoesCarregadas();
-
-
-        return Array.isArray(
-          resultado
-        )
-          ? resultado
-          : [];
-
-      }
-
-
-      if (
-        typeof window !==
-          "undefined" &&
-        window.CartolaEscalacoes &&
-        typeof window
-          .CartolaEscalacoes
-          .obter ===
-          "function"
-      ) {
-
-        const resultado =
-          window
-            .CartolaEscalacoes
-            .obter();
-
-
-        return Array.isArray(
-          resultado
-        )
-          ? resultado
-          : [];
-
-      }
-
-
-      return [];
-
-
-    } catch (erro) {
-
-      registrarErro(
-        "obterEscalacoes",
-        erro
-      );
-
-
-      return [];
-
-    }
-
-  }
-
-
   function renderizarEscalacoes() {
 
-    const escalacoes =
-      obterEscalacoes();
-
-
     try {
 
-      /*
-       * Prioridade:
-       * API pública dos cards.
-       */
-
       if (
-        typeof window !==
-          "undefined" &&
-        window.EscalacoesCards &&
-        typeof window
-          .EscalacoesCards
-          .render ===
-          "function"
-      ) {
-
-        window
-          .EscalacoesCards
-          .render(
-            escalacoes
-          );
-
-
-        return true;
-
-      }
-
-
-      /*
-       * Compatibilidade.
-       */
-
-      if (
-        typeof window !==
-          "undefined" &&
-        typeof window
-          .renderizarEscalacoesCarregadas ===
-          "function"
-      ) {
-
-        window
-          .renderizarEscalacoesCarregadas(
-            escalacoes
-          );
-
-
-        return true;
-
-      }
-
-
-      if (
-        typeof window !==
-          "undefined" &&
         typeof window
           .renderizarEscalacoes ===
           "function"
       ) {
 
         window
-          .renderizarEscalacoes(
-            escalacoes
-          );
+          .renderizarEscalacoes();
 
 
         return true;
@@ -440,8 +1216,35 @@ const CartolaIntegracaoFinal = (() => {
       }
 
 
-      return false;
+      if (
+        window.CartolaEscalacoesCards &&
+        typeof window
+          .CartolaEscalacoesCards
+          .renderizar ===
+          "function"
+      ) {
 
+        window
+          .CartolaEscalacoesCards
+          .renderizar();
+
+
+        return true;
+
+      }
+
+
+      if (
+        typeof exibirEscalacoes ===
+          "function"
+      ) {
+
+        exibirEscalacoes();
+
+
+        return true;
+
+      }
 
     } catch (erro) {
 
@@ -450,277 +1253,17 @@ const CartolaIntegracaoFinal = (() => {
         erro
       );
 
-
-      return false;
-
     }
+
+
+    return false;
 
   }
 
 
   /* =======================================================
-     PATRIMÔNIO
+     RECÁLCULO
      ======================================================= */
-
-
-  function obterPatrimonioAtual() {
-
-    try {
-
-      if (
-        typeof window !==
-          "undefined" &&
-        typeof window
-          .obterPatrimonioSelecionadoEscalacoes ===
-          "function"
-      ) {
-
-        return numero(
-          window
-            .obterPatrimonioSelecionadoEscalacoes()
-        );
-
-      }
-
-
-      if (
-        typeof window !==
-          "undefined" &&
-        window.CartolaEscalacoes &&
-        typeof window
-          .CartolaEscalacoes
-          .obterPatrimonioSelecionado ===
-          "function"
-      ) {
-
-        return numero(
-          window
-            .CartolaEscalacoes
-            .obterPatrimonioSelecionado()
-        );
-
-      }
-
-
-      return null;
-
-
-    } catch (erro) {
-
-      registrarErro(
-        "obterPatrimonioAtual",
-        erro
-      );
-
-
-      return null;
-
-    }
-
-  }
-
-
-  async function definirPatrimonio(
-    valor
-  ) {
-
-    const patrimonio =
-      numero(
-        valor
-      );
-
-
-    if (
-      patrimonio === null ||
-      patrimonio <= 0
-    ) {
-
-      return false;
-
-    }
-
-
-    try {
-
-      if (
-        typeof window !==
-          "undefined" &&
-        typeof window
-          .definirPatrimonioEscalacoes ===
-          "function"
-      ) {
-
-        window
-          .definirPatrimonioEscalacoes(
-            patrimonio
-          );
-
-      }
-      else if (
-        typeof window !==
-          "undefined" &&
-        window.CartolaEscalacoes &&
-        typeof window
-          .CartolaEscalacoes
-          .definirPatrimonio ===
-          "function"
-      ) {
-
-        window
-          .CartolaEscalacoes
-          .definirPatrimonio(
-            patrimonio
-          );
-
-      }
-      else {
-
-        return false;
-
-      }
-
-
-      estado.ultimoPatrimonio =
-        patrimonio;
-
-
-      return true;
-
-
-    } catch (erro) {
-
-      registrarErro(
-        "definirPatrimonio",
-        erro
-      );
-
-
-      return false;
-
-    }
-
-  }
-
-
-  /* =======================================================
-     PROCURA CAMPOS DE PATRIMÔNIO
-     ======================================================= */
-
-
-  function localizarCamposPatrimonio() {
-
-    const seletores = [
-
-      "#patrimonio",
-
-      "#patrimonioInput",
-
-      "#teamBudget",
-
-      "#budgetInput",
-
-      "#limitePatrimonio",
-
-      "[data-patrimonio]",
-
-      "input[name='patrimonio']"
-
-    ];
-
-
-    const encontrados =
-      [];
-
-
-    seletores.forEach(
-      seletor => {
-
-        document
-          .querySelectorAll(
-            seletor
-          )
-          .forEach(
-            elemento => {
-
-              if (
-                !encontrados.includes(
-                  elemento
-                )
-              ) {
-
-                encontrados.push(
-                  elemento
-                );
-
-              }
-
-            }
-          );
-
-      }
-    );
-
-
-    return encontrados;
-
-  }
-
-
-  /* =======================================================
-     SINCRONIZA CAMPOS DE PATRIMÔNIO
-     ======================================================= */
-
-
-  function sincronizarCamposPatrimonio() {
-
-    const patrimonio =
-      obterPatrimonioAtual();
-
-
-    if (
-      patrimonio === null
-    ) {
-
-      return;
-
-    }
-
-
-    localizarCamposPatrimonio()
-      .forEach(
-        campo => {
-
-          if (
-            document.activeElement ===
-            campo
-          ) {
-
-            return;
-
-          }
-
-
-          if (
-            "value" in campo
-          ) {
-
-            campo.value =
-              String(
-                patrimonio
-              );
-
-          }
-
-        }
-      );
-
-  }
-
-
-  /* =======================================================
-     RECÁLCULO CENTRAL
-     ======================================================= */
-
 
   async function recalcularTudo(
     opcoes = {}
@@ -739,140 +1282,59 @@ const CartolaIntegracaoFinal = (() => {
       true;
 
 
-    const {
-
-      patrimonio = null,
-
-      aplicarFiltros = false,
-
-      atualizarAnalise = true
-
-    } = opcoes;
-
-
     try {
 
-      /*
-       * 1. Patrimônio.
-       */
+      let resultado =
+        null;
+
 
       if (
-        patrimonio !== null &&
-        patrimonio !== undefined
-      ) {
-
-        await definirPatrimonio(
-          patrimonio
-        );
-
-      }
-
-
-      /*
-       * 2. Filtros manuais.
-       *
-       * O módulo de filtros já recalcula
-       * as escalações internamente.
-       */
-
-      if (
-        aplicarFiltros &&
-        typeof window !==
-          "undefined" &&
-        window.CartolaFiltrosExclusao &&
         typeof window
-          .CartolaFiltrosExclusao
-          .aplicar ===
+          .recalcularEscalacoes ===
           "function"
       ) {
 
-        await window
-          .CartolaFiltrosExclusao
-          .aplicar();
+        resultado =
+          await window
+            .recalcularEscalacoes(
+              opcoes
+            );
 
       }
-      else {
+      else if (
+        window.CartolaEscalacoes &&
+        typeof window
+          .CartolaEscalacoes
+          .recalcular ===
+          "function"
+      ) {
 
-        /*
-         * 3. Recálculo normal.
-         */
-
-        if (
-          typeof window !==
-            "undefined" &&
-          typeof window
-            .recalcularEscalacoes ===
-            "function"
-        ) {
-
-          await window
-            .recalcularEscalacoes();
-
-        }
-        else if (
-          typeof window !==
-            "undefined" &&
-          window.CartolaEscalacoes &&
-          typeof window
-            .CartolaEscalacoes
-            .recalcular ===
-            "function"
-        ) {
-
+        resultado =
           await window
             .CartolaEscalacoes
-            .recalcular();
-
-        }
+            .recalcular(
+              opcoes
+            );
 
       }
 
-
-      /*
-       * 4. Renderização.
-       */
 
       atualizarRecomendacoes();
-
 
       renderizarEscalacoes();
 
 
-      sincronizarCamposPatrimonio();
+      await esperar(
+        80
+      );
 
 
-      /*
-       * 5. Análise da rodada.
-       */
-
-      if (
-        atualizarAnalise &&
-        typeof window !==
-          "undefined" &&
-        window.AnaliseRodada &&
-        typeof window
-          .AnaliseRodada
-          .carregar ===
-          "function"
-      ) {
-
-        await window
-          .AnaliseRodada
-          .carregar();
-
-      }
+      reconstruirFiltros(
+        true
+      );
 
 
-      estado.ultimaAtualizacao =
-        new Date()
-          .toISOString();
-
-
-      dispararEventoAtualizacao();
-
-
-      return true;
-
+      return resultado;
 
     } catch (erro) {
 
@@ -883,7 +1345,6 @@ const CartolaIntegracaoFinal = (() => {
 
 
       return false;
-
 
     } finally {
 
@@ -896,351 +1357,195 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     EVENTO DE ATUALIZAÇÃO
+     PATRIMÔNIO
      ======================================================= */
 
+  function obterPatrimonioAtual() {
 
-  function dispararEventoAtualizacao() {
-
-    try {
-
-      window.dispatchEvent(
-        new CustomEvent(
-          "cartola:interface-atualizada",
-          {
-            detail: {
-              patrimonio:
-                obterPatrimonioAtual(),
-
-              escalacoes:
-                obterEscalacoes()
-                  .length,
-
-              data:
-                estado
-                  .ultimaAtualizacao
-            }
-          }
-        )
+    const input =
+      document.getElementById(
+        "lineupBudgetInput"
       );
 
-    } catch (erro) {
 
-      /*
-       * Evento é auxiliar.
-       * Não interrompe o fluxo.
-       */
+    if (!input) {
+
+      return null;
 
     }
 
-  }
+
+    const valor =
+      Number(
+        input.value
+      );
 
 
-  /* =======================================================
-     EVENTOS DOS CAMPOS DE PATRIMÔNIO
-     ======================================================= */
-
-
-  function configurarPatrimonio() {
-
-    const campos =
-      localizarCamposPatrimonio();
-
-
-    campos.forEach(
-      campo => {
-
-        if (
-          campo.dataset
-            .cartolaIntegrado ===
-          "1"
-        ) {
-
-          return;
-
-        }
-
-
-        campo.dataset
-          .cartolaIntegrado =
-          "1";
-
-
-        /*
-         * Não recalculamos a cada tecla.
-         *
-         * Enter ou change confirma o valor.
-         */
-
-        campo.addEventListener(
-          "keydown",
-          async evento => {
-
-            if (
-              evento.key !==
-              "Enter"
-            ) {
-
-              return;
-
-            }
-
-
-            evento.preventDefault();
-
-
-            const valor =
-              numero(
-                campo.value
-              );
-
-
-            if (
-              valor === null ||
-              valor <= 0
-            ) {
-
-              return;
-
-            }
-
-
-            await recalcularTudo({
-              patrimonio:
-                valor
-            });
-
-          }
-        );
-
-
-        campo.addEventListener(
-          "change",
-          async () => {
-
-            const valor =
-              numero(
-                campo.value
-              );
-
-
-            if (
-              valor === null ||
-              valor <= 0
-            ) {
-
-              sincronizarCamposPatrimonio();
-
-              return;
-
-            }
-
-
-            const atual =
-              obterPatrimonioAtual();
-
-
-            if (
-              atual !== null &&
-              Math.abs(
-                atual -
-                valor
-              ) < 0.001
-            ) {
-
-              return;
-
-            }
-
-
-            await recalcularTudo({
-              patrimonio:
-                valor
-            });
-
-          }
-        );
-
-      }
-    );
-
-
-    sincronizarCamposPatrimonio();
+    return Number.isFinite(
+      valor
+    )
+      ? valor
+      : null;
 
   }
 
 
-  /* =======================================================
-     TROCA DE ABAS
-     ======================================================= */
+  function sincronizarCamposPatrimonio() {
+
+    const input =
+      document.getElementById(
+        "lineupBudgetInput"
+      );
 
 
-  function configurarAbas() {
+    if (!input) {
+
+      return false;
+
+    }
+
+
+    const valor =
+      obterPatrimonioAtual();
+
+
+    if (
+      valor === null
+    ) {
+
+      return false;
+
+    }
+
 
     document
       .querySelectorAll(
-        "[data-tab]"
+        `
+          [data-budget-input],
+          input[name="patrimonio"]
+        `
       )
       .forEach(
-        botao => {
+        campo => {
 
           if (
-            botao.dataset
-              .cartolaIntegracaoAba ===
-            "1"
+            campo !== input
           ) {
 
-            return;
+            campo.value =
+              valor;
 
           }
-
-
-          botao.dataset
-            .cartolaIntegracaoAba =
-            "1";
-
-
-          botao.addEventListener(
-            "click",
-            () => {
-
-              const aba =
-                texto(
-                  botao.dataset.tab
-                );
-
-
-              /*
-               * Aguarda o sistema principal
-               * concluir a troca da aba.
-               */
-
-              setTimeout(
-                () => {
-
-                  tratarAbaAtiva(
-                    aba
-                  );
-
-                },
-                20
-              );
-
-            }
-          );
 
         }
       );
 
+
+    return true;
+
   }
 
 
   /* =======================================================
-     TRATA ABA ATIVA
+     FILTROS — GARANTIA NAS DUAS ABAS
      ======================================================= */
 
-
-  function tratarAbaAtiva(
-    aba
+  function reconstruirFiltros(
+    forcar = false
   ) {
 
-    switch (
-      aba
+    if (
+      !window
+        .CartolaFiltrosExclusao ||
+      typeof window
+        .CartolaFiltrosExclusao
+        .reconstruir !==
+        "function"
     ) {
 
-      case "recomendacoes":
-
-        atualizarRecomendacoes();
-
-        break;
-
-
-      case "times":
-
-        renderizarEscalacoes();
-
-        sincronizarCamposPatrimonio();
-
-        break;
-
-
-      case "historico":
-
-        if (
-          typeof window
-            .renderizarHistorico ===
-          "function"
-        ) {
-
-          try {
-
-            window
-              .renderizarHistorico();
-
-          } catch (erro) {
-
-            registrarErro(
-              "renderizarHistorico",
-              erro
-            );
-
-          }
-
-        }
-
-        break;
-
-
-      case "analise":
-
-        if (
-          window.AnaliseRodada &&
-          typeof window
-            .AnaliseRodada
-            .renderizar ===
-          "function"
-        ) {
-
-          try {
-
-            window
-              .AnaliseRodada
-              .renderizar();
-
-          } catch (erro) {
-
-            registrarErro(
-              "renderizarAnalise",
-              erro
-            );
-
-          }
-
-        }
-
-        break;
-
-
-      default:
-
-        break;
+      return false;
 
     }
 
+
+    clearTimeout(
+      estado
+        .timerReconstruirFiltros
+    );
+
+
+    estado.timerReconstruirFiltros =
+      setTimeout(
+        () => {
+
+          try {
+
+            const secaoReco =
+              document
+                .getElementById(
+                  "recomendacoes"
+                );
+
+
+            const secaoTimes =
+              document
+                .getElementById(
+                  "times"
+                );
+
+
+            const faltaReco =
+              !document
+                .getElementById(
+                  "ceFilterRecommendations"
+                );
+
+
+            const faltaTimes =
+              !document
+                .getElementById(
+                  "ceFilterTeams"
+                );
+
+
+            if (
+              forcar ||
+              faltaReco ||
+              faltaTimes ||
+              secaoReco ||
+              secaoTimes
+            ) {
+
+              window
+                .CartolaFiltrosExclusao
+                .reconstruir();
+
+            }
+
+          } catch (erro) {
+
+            registrarErro(
+              "reconstruirFiltros",
+              erro
+            );
+
+          }
+
+        },
+        60
+      );
+
+
+    return true;
+
   }
-
-
-  /* =======================================================
-     FILTROS DE EXCLUSÃO
-     ======================================================= */
 
 
   async function configurarFiltrosExclusao() {
 
     if (
-      typeof window ===
-        "undefined" ||
-      !window.CartolaFiltrosExclusao ||
+      !window
+        .CartolaFiltrosExclusao ||
       typeof window
         .CartolaFiltrosExclusao
         .inicializar !==
@@ -1259,8 +1564,12 @@ const CartolaIntegracaoFinal = (() => {
         .inicializar();
 
 
-      return true;
+      reconstruirFiltros(
+        true
+      );
 
+
+      return true;
 
     } catch (erro) {
 
@@ -1278,34 +1587,2159 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     ESCUTA RECÁLCULOS EXTERNOS
+     DATA/HORA REAL
      ======================================================= */
 
+  function formatarDataHoraBrasil(
+    valor
+  ) {
+
+    if (!valor) {
+
+      return null;
+
+    }
+
+
+    const data =
+      new Date(
+        valor
+      );
+
+
+    if (
+      Number.isNaN(
+        data.getTime()
+      )
+    ) {
+
+      return null;
+
+    }
+
+
+    try {
+
+      return new Intl
+        .DateTimeFormat(
+          "pt-BR",
+          {
+
+            timeZone:
+              "America/Sao_Paulo",
+
+            day:
+              "2-digit",
+
+            month:
+              "2-digit",
+
+            year:
+              "numeric",
+
+            hour:
+              "2-digit",
+
+            minute:
+              "2-digit",
+
+            hour12:
+              false
+
+          }
+        )
+        .format(
+          data
+        )
+        .replace(
+          ",",
+          " às"
+        );
+
+    } catch (_) {
+
+      return data
+        .toLocaleString(
+          "pt-BR"
+        );
+
+    }
+
+  }
+
+
+  async function atualizarUltimaAtualizacao() {
+
+    try {
+
+      const respostaStatus =
+        await fetch(
+          "data/api/status.json",
+          {
+            cache:
+              "no-store"
+          }
+        );
+
+
+      const status =
+        respostaStatus.ok
+          ? await respostaStatus
+              .json()
+          : {};
+
+
+      const rodada =
+        Number(
+          status
+            ?.rodada_atual
+          ||
+          0
+        );
+
+
+      let coletadoEm =
+        null;
+
+
+      if (
+        rodada > 0
+      ) {
+
+        const codigo =
+          String(
+            rodada
+          ).padStart(
+            2,
+            "0"
+          );
+
+
+        const respostaResumo =
+          await fetch(
+
+            `data/api/rodada-${codigo}/resumo.json`,
+
+            {
+              cache:
+                "no-store"
+            }
+
+          );
+
+
+        if (
+          respostaResumo.ok
+        ) {
+
+          const resumo =
+            await respostaResumo
+              .json();
+
+
+          coletadoEm =
+
+            resumo?.coletadoEm
+
+            ||
+
+            resumo?.coletado_em
+
+            ||
+
+            null;
+
+        }
+
+      }
+
+
+      const textoData =
+        formatarDataHoraBrasil(
+          coletadoEm
+        );
+
+
+      const elemento =
+        document.getElementById(
+          "lastUpdate"
+        );
+
+
+      if (
+        elemento
+      ) {
+
+        elemento.textContent =
+          textoData
+            ? (
+                `Última atualização: ` +
+                `${textoData}`
+              )
+            : (
+                `Dados da rodada ` +
+                `${rodada || "--"} ` +
+                `carregados`
+              );
+
+      }
+
+
+      estado.ultimaAtualizacao =
+        coletadoEm
+        ||
+        new Date()
+          .toISOString();
+
+
+      return textoData;
+
+    } catch (erro) {
+
+      registrarErro(
+        "atualizarUltimaAtualizacao",
+        erro
+      );
+
+
+      return null;
+
+    }
+
+  }
+
+
+  /* =======================================================
+     RESULTADOS DE UMA RODADA
+     ======================================================= */
+
+  async function buscarResultadosRodada(
+    rodada
+  ) {
+
+    const codigo =
+      String(
+        rodada
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    const caminhos = [
+
+      `data/api/rodada-${codigo}/jogadores.json`,
+
+      `data/api/rodada-${codigo}/pontuados.json`
+
+    ];
+
+
+    for (
+      const caminho
+      of caminhos
+    ) {
+
+      try {
+
+        const resposta =
+          await fetch(
+            caminho,
+            {
+              cache:
+                "no-store"
+            }
+          );
+
+
+        if (
+          !resposta.ok
+        ) {
+
+          continue;
+
+        }
+
+
+        const dados =
+          await resposta.json();
+
+
+        const lista =
+          Array.isArray(
+            dados
+          )
+            ? dados
+            : Object.values(
+                dados?.atletas
+                ||
+                {}
+              );
+
+
+        if (
+          !Array.isArray(
+            lista
+          ) ||
+          lista.length === 0
+        ) {
+
+          continue;
+
+        }
+
+
+        const mapa =
+          new Map();
+
+
+        lista.forEach(
+          item => {
+
+            const id =
+              texto(
+
+                item?.id
+
+                ??
+
+                item?.atleta_id
+
+                ??
+
+                item?.atletaId
+
+              );
+
+
+            if (!id) {
+
+              return;
+
+            }
+
+
+            const pontuacaoRaw =
+
+              item?.pontuacaoReal
+
+              ??
+
+              item?.pontuacao
+
+              ??
+
+              item?.pontos
+
+              ??
+
+              null;
+
+
+            const pontuacao =
+              (
+                pontuacaoRaw === null ||
+                pontuacaoRaw ===
+                  undefined ||
+                pontuacaoRaw === ""
+              )
+                ? null
+                : Number(
+                    pontuacaoRaw
+                  );
+
+
+            const entrou =
+
+              item?.entrouEmCampo
+
+              ??
+
+              item?.entrou_em_campo
+
+              ??
+
+              (
+                pontuacao !== null &&
+                Number.isFinite(
+                  pontuacao
+                )
+              );
+
+
+            mapa.set(
+              id,
+              {
+
+                id,
+
+                pontuacao:
+                  Number.isFinite(
+                    pontuacao
+                  )
+                    ? pontuacao
+                    : 0,
+
+                entrouEmCampo:
+                  Boolean(
+                    entrou
+                  )
+
+              }
+            );
+
+          }
+        );
+
+
+        if (
+          mapa.size > 0
+        ) {
+
+          return mapa;
+
+        }
+
+      } catch (_) {
+
+        /*
+         * Tenta próxima fonte.
+         */
+
+      }
+
+    }
+
+
+    return new Map();
+
+  }
+
+
+  function obterIdAtleta(
+    item
+  ) {
+
+    return texto(
+
+      item?.id
+
+      ??
+
+      item?.atletaId
+
+      ??
+
+      item?.atleta_id
+
+    );
+
+  }
+
+
+  function obterPosicaoAtleta(
+    item
+  ) {
+
+    return texto(
+
+      item?.posicao
+
+      ??
+
+      item?.posicaoSigla
+
+      ??
+
+      ""
+
+    ).toUpperCase();
+
+  }
+
+
+  /* =======================================================
+     PONTUAÇÃO EFETIVA DO TIME
+     ======================================================= */
+
+  function calcularPontuacaoEfetiva(
+    estrategia,
+    resultados
+  ) {
+
+    const titulares =
+      Array.isArray(
+        estrategia?.titulares
+      )
+        ? estrategia.titulares
+        : [];
+
+
+    const banco =
+      Array.isArray(
+        estrategia?.banco
+      )
+        ? estrategia.banco
+        : [];
+
+
+    const reservasUsados =
+      new Set();
+
+
+    const substituicoes =
+      [];
+
+
+    let total =
+      0;
+
+
+    titulares.forEach(
+      titular => {
+
+        const idTitular =
+          obterIdAtleta(
+            titular
+          );
+
+
+        const posicao =
+          obterPosicaoAtleta(
+            titular
+          );
+
+
+        const realTitular =
+          resultados.get(
+            idTitular
+          );
+
+
+        /*
+         * Titular jogou.
+         */
+
+        if (
+          realTitular
+            ?.entrouEmCampo
+        ) {
+
+          total +=
+            numero(
+              realTitular
+                .pontuacao,
+              0
+            );
+
+
+          return;
+
+        }
+
+
+        /*
+         * Titular não jogou:
+         *
+         * procura reserva elegível
+         * da mesma posição.
+         */
+
+        const reserva =
+          banco.find(
+            item => {
+
+              const idReserva =
+                obterIdAtleta(
+                  item
+                );
+
+
+              if (
+                !idReserva ||
+                reservasUsados.has(
+                  idReserva
+                )
+              ) {
+
+                return false;
+
+              }
+
+
+              if (
+                obterPosicaoAtleta(
+                  item
+                ) !==
+                posicao
+              ) {
+
+                return false;
+
+              }
+
+
+              const realReserva =
+                resultados.get(
+                  idReserva
+                );
+
+
+              return Boolean(
+                realReserva
+                  ?.entrouEmCampo
+              );
+
+            }
+          );
+
+
+        if (
+          reserva
+        ) {
+
+          const idReserva =
+            obterIdAtleta(
+              reserva
+            );
+
+
+          const realReserva =
+            resultados.get(
+              idReserva
+            );
+
+
+          reservasUsados.add(
+            idReserva
+          );
+
+
+          total +=
+            numero(
+              realReserva
+                ?.pontuacao,
+              0
+            );
+
+
+          substituicoes.push({
+
+            saiu:
+              titular?.nome
+              ||
+              titular?.apelido
+              ||
+              idTitular,
+
+            entrou:
+              reserva?.nome
+              ||
+              reserva?.apelido
+              ||
+              idReserva,
+
+            posicao
+
+          });
+
+        }
+
+      }
+    );
+
+
+    /*
+     * CAPITÃO:
+     *
+     * pontuação do capitão é duplicada
+     * somente se ele entrou em campo.
+     */
+
+    const capitaoId =
+      obterIdAtleta(
+        estrategia?.capitao
+      );
+
+
+    const capitaoReal =
+      resultados.get(
+        capitaoId
+      );
+
+
+    if (
+      capitaoId &&
+      capitaoReal
+        ?.entrouEmCampo
+    ) {
+
+      total +=
+        numero(
+          capitaoReal
+            .pontuacao,
+          0
+        );
+
+    }
+
+
+    return {
+
+      pontuacao:
+        Number(
+          total.toFixed(
+            2
+          )
+        ),
+
+      substituicoes
+
+    };
+
+  }
+
+
+  /* =======================================================
+     SÉRIES HISTÓRICAS
+     ======================================================= */
+
+  async function montarSerieHistorica(
+    dados
+  ) {
+
+    const rodadas =
+      Array.isArray(
+        dados?.rodadas
+      )
+        ? dados.rodadas
+        : [];
+
+
+    const series = {
+
+      Conservador:
+        [],
+
+      Equilibrado:
+        [],
+
+      Agressivo:
+        []
+
+    };
+
+
+    for (
+      const registro
+      of rodadas
+    ) {
+
+      const rodada =
+        Number(
+          registro?.rodada
+        );
+
+
+      if (
+        !Number.isFinite(
+          rodada
+        )
+      ) {
+
+        continue;
+
+      }
+
+
+      const resultados =
+        await buscarResultadosRodada(
+          rodada
+        );
+
+
+      const estrategias =
+        Array.isArray(
+          registro?.estrategias
+        )
+          ? registro.estrategias
+          : [];
+
+
+      estrategias.forEach(
+        estrategia => {
+
+          const nome =
+            texto(
+              estrategia?.nome
+              ||
+              estrategia?.perfil
+            );
+
+
+          const chave =
+            Object.keys(
+              series
+            ).find(
+              item =>
+                item
+                  .toLowerCase() ===
+                nome
+                  .toLowerCase()
+            );
+
+
+          if (!chave) {
+
+            return;
+
+          }
+
+
+          let efetiva;
+
+
+          if (
+            resultados.size > 0
+          ) {
+
+            efetiva =
+              calcularPontuacaoEfetiva(
+                estrategia,
+                resultados
+              );
+
+          } else {
+
+            /*
+             * Fallback:
+             * usa a simulação histórica já calculada.
+             */
+
+            efetiva = {
+
+              pontuacao:
+                numero(
+                  estrategia
+                    ?.pontuacaoComCapitao,
+                  0
+                ),
+
+              substituicoes:
+                []
+
+            };
+
+          }
+
+
+          series[
+            chave
+          ].push({
+
+            rodada,
+
+            pontuacao:
+              efetiva.pontuacao,
+
+            substituicoes:
+              efetiva
+                .substituicoes
+
+          });
+
+        }
+      );
+
+    }
+
+
+    Object
+      .values(
+        series
+      )
+      .forEach(
+        lista => {
+
+          lista.sort(
+            (
+              a,
+              b
+            ) =>
+              a.rodada -
+              b.rodada
+          );
+
+        }
+      );
+
+
+    return series;
+
+  }
+
+
+  /* =======================================================
+     SVG DO GRÁFICO
+     ======================================================= */
+
+  function criarSvgHistorico(
+    series
+  ) {
+
+    const todas =
+      Object
+        .values(
+          series
+        )
+        .flat();
+
+
+    if (
+      todas.length === 0
+    ) {
+
+      return `
+
+        <div class="empty-state">
+
+          <strong>
+            Sem dados para o gráfico
+          </strong>
+
+        </div>
+
+      `;
+
+    }
+
+
+    const rodadas =
+      [
+        ...new Set(
+          todas.map(
+            item =>
+              item.rodada
+          )
+        )
+      ]
+        .sort(
+          (
+            a,
+            b
+          ) =>
+            a - b
+        );
+
+
+    const valores =
+      todas.map(
+        item =>
+          item.pontuacao
+      );
+
+
+    const largura =
+      Math.max(
+        860,
+        rodadas.length *
+        42
+      );
+
+
+    const altura =
+      330;
+
+
+    const margem = {
+
+      topo:
+        20,
+
+      direita:
+        22,
+
+      baixo:
+        36,
+
+      esquerda:
+        48
+
+    };
+
+
+    const internoW =
+      largura -
+      margem.esquerda -
+      margem.direita;
+
+
+    const internoH =
+      altura -
+      margem.topo -
+      margem.baixo;
+
+
+    const minimo =
+      Math.min(
+        0,
+        ...valores
+      );
+
+
+    const maximo =
+      Math.max(
+        10,
+        ...valores
+      );
+
+
+    const folga =
+      Math.max(
+        5,
+        (
+          maximo -
+          minimo
+        ) *
+        .08
+      );
+
+
+    const yMin =
+      minimo -
+      folga;
+
+
+    const yMax =
+      maximo +
+      folga;
+
+
+    function x(
+      rodada
+    ) {
+
+      const indice =
+        rodadas.indexOf(
+          rodada
+        );
+
+
+      return (
+        margem.esquerda +
+        (
+          rodadas.length <= 1
+
+            ? internoW /
+              2
+
+            : (
+                indice /
+                (
+                  rodadas.length -
+                  1
+                )
+              ) *
+              internoW
+        )
+      );
+
+    }
+
+
+    function y(
+      valor
+    ) {
+
+      const proporcao =
+        (
+          valor -
+          yMin
+        ) /
+        Math.max(
+          .0001,
+          yMax -
+          yMin
+        );
+
+
+      return (
+        margem.topo +
+        internoH -
+        proporcao *
+        internoH
+      );
+
+    }
+
+
+    const cores = {
+
+      Conservador:
+        "#59c98d",
+
+      Equilibrado:
+        "#5da8ff",
+
+      Agressivo:
+        "#f2a45a"
+
+    };
+
+
+    let grade =
+      "";
+
+
+    const divisaoY =
+      5;
+
+
+    for (
+      let indice = 0;
+      indice <= divisaoY;
+      indice += 1
+    ) {
+
+      const valor =
+        yMin +
+        (
+          yMax -
+          yMin
+        ) *
+        (
+          indice /
+          divisaoY
+        );
+
+
+      const py =
+        y(
+          valor
+        );
+
+
+      grade += `
+
+        <line
+          class="history-chart-grid"
+          x1="${margem.esquerda}"
+          y1="${py}"
+          x2="${
+            largura -
+            margem.direita
+          }"
+          y2="${py}"
+        ></line>
+
+
+        <text
+          class="history-chart-axis-text"
+          x="${
+            margem.esquerda -
+            8
+          }"
+          y="${
+            py +
+            3
+          }"
+          text-anchor="end"
+        >
+          ${valor.toFixed(0)}
+        </text>
+
+      `;
+
+    }
+
+
+    const passoLabel =
+      rodadas.length >
+      18
+        ? 2
+        : 1;
+
+
+    rodadas.forEach(
+      (
+        rodada,
+        indice
+      ) => {
+
+        if (
+          indice %
+            passoLabel !==
+            0 &&
+          indice !==
+            rodadas.length -
+            1
+        ) {
+
+          return;
+
+        }
+
+
+        grade += `
+
+          <text
+            class="history-chart-axis-text"
+            x="${x(rodada)}"
+            y="${
+              altura -
+              12
+            }"
+            text-anchor="middle"
+          >
+            R${rodada}
+          </text>
+
+        `;
+
+      }
+    );
+
+
+    let linhas =
+      "";
+
+
+    Object
+      .entries(
+        series
+      )
+      .forEach(
+        (
+          [
+            nome,
+            lista
+          ]
+        ) => {
+
+          if (
+            !lista.length
+          ) {
+
+            return;
+
+          }
+
+
+          const pontos =
+            lista
+              .map(
+                item =>
+                  `${
+                    x(
+                      item.rodada
+                    )
+                  },${
+                    y(
+                      item.pontuacao
+                    )
+                  }`
+              )
+              .join(
+                " "
+              );
+
+
+          linhas += `
+
+            <polyline
+              class="history-chart-line"
+              stroke="${cores[nome]}"
+              points="${pontos}"
+            ></polyline>
+
+          `;
+
+
+          lista.forEach(
+            item => {
+
+              const substituicoes =
+                item
+                  .substituicoes
+                  ?.length
+
+                  ? item
+                      .substituicoes
+                      .map(
+                        troca =>
+                          `${
+                            troca.saiu
+                          } → ${
+                            troca.entrou
+                          }`
+                      )
+                      .join(
+                        " | "
+                      )
+
+                  : "Sem substituições";
+
+
+              linhas += `
+
+                <circle
+                  class="history-chart-dot"
+                  cx="${
+                    x(
+                      item.rodada
+                    )
+                  }"
+                  cy="${
+                    y(
+                      item.pontuacao
+                    )
+                  }"
+                  r="4"
+                  fill="${cores[nome]}"
+                >
+
+                  <title>
+                    ${nome}
+                    • Rodada ${item.rodada}
+                    • ${item.pontuacao.toFixed(2)} pts
+                    • ${substituicoes}
+                  </title>
+
+                </circle>
+
+              `;
+
+            }
+          );
+
+        }
+      );
+
+
+    return `
+
+      <svg
+        class="history-chart-svg"
+        viewBox="
+          0 0
+          ${largura}
+          ${altura}
+        "
+        role="img"
+        aria-label="
+          Evolução histórica
+          das três estratégias
+        "
+      >
+
+        ${grade}
+
+        ${linhas}
+
+      </svg>
+
+    `;
+
+  }
+
+
+  /* =======================================================
+     RESUMO DE UMA SÉRIE
+     ======================================================= */
+
+  function calcularResumoSerie(
+    lista
+  ) {
+
+    if (
+      !Array.isArray(
+        lista
+      ) ||
+      lista.length === 0
+    ) {
+
+      return {
+
+        media:
+          0,
+
+        total:
+          0,
+
+        melhor:
+          0
+
+      };
+
+    }
+
+
+    const valores =
+      lista.map(
+        item =>
+          numero(
+            item.pontuacao,
+            0
+          )
+      );
+
+
+    const total =
+      valores.reduce(
+        (
+          soma,
+          valor
+        ) =>
+          soma +
+          valor,
+        0
+      );
+
+
+    return {
+
+      media:
+        total /
+        valores.length,
+
+      total,
+
+      melhor:
+        Math.max(
+          ...valores
+        )
+
+    };
+
+  }
+
+
+  /* =======================================================
+     RENDERIZA GRÁFICO HISTÓRICO
+     ======================================================= */
+
+  async function renderizarGraficoHistorico() {
+
+    const secao =
+      document.getElementById(
+        "historico"
+      );
+
+
+    if (!secao) {
+
+      return false;
+
+    }
+
+
+    try {
+
+      const resposta =
+        await fetch(
+          "data/simulacao-times.json",
+          {
+            cache:
+              "no-store"
+          }
+        );
+
+
+      if (
+        !resposta.ok
+      ) {
+
+        return false;
+
+      }
+
+
+      const dados =
+        await resposta.json();
+
+
+      const series =
+        await montarSerieHistorica(
+          dados
+        );
+
+
+      let bloco =
+        document.getElementById(
+          "historyEvolution"
+        );
+
+
+      if (!bloco) {
+
+        bloco =
+          document.createElement(
+            "section"
+          );
+
+
+        bloco.id =
+          "historyEvolution";
+
+
+        bloco.className =
+          "history-evolution";
+
+
+        const toolbar =
+          secao.querySelector(
+            ".history-toolbar"
+          );
+
+
+        if (
+          toolbar &&
+          toolbar.parentNode
+        ) {
+
+          toolbar
+            .parentNode
+            .insertBefore(
+              bloco,
+              toolbar
+            );
+
+        } else {
+
+          secao.prepend(
+            bloco
+          );
+
+        }
+
+      }
+
+
+      const cores = {
+
+        Conservador:
+          "#59c98d",
+
+        Equilibrado:
+          "#5da8ff",
+
+        Agressivo:
+          "#f2a45a"
+
+      };
+
+
+      const cards =
+        Object
+          .entries(
+            series
+          )
+          .map(
+            (
+              [
+                nome,
+                lista
+              ]
+            ) => {
+
+              const resumo =
+                calcularResumoSerie(
+                  lista
+                );
+
+
+              return `
+
+                <article
+                  class="
+                    history-evolution-card
+                  "
+                >
+
+                  <span>
+                    ${escaparHtml(nome)}
+                  </span>
+
+                  <strong>
+                    ${
+                      resumo
+                        .media
+                        .toFixed(
+                          2
+                        )
+                    } pts
+                  </strong>
+
+                  <small>
+
+                    Total
+                    ${
+                      resumo
+                        .total
+                        .toFixed(
+                          2
+                        )
+                    }
+
+                    •
+
+                    melhor rodada
+                    ${
+                      resumo
+                        .melhor
+                        .toFixed(
+                          2
+                        )
+                    }
+
+                  </small>
+
+                </article>
+
+              `;
+
+            }
+          )
+          .join(
+            ""
+          );
+
+
+      bloco.innerHTML = `
+
+        <div
+          class="
+            history-evolution-header
+          "
+        >
+
+          <div>
+
+            <span
+              class="section-label"
+            >
+              LINHA DO TEMPO DAS ESTRATÉGIAS
+            </span>
+
+            <h3>
+              Evolução dos times sugeridos
+            </h3>
+
+            <p>
+              Pontuação real por rodada,
+              considerando capitão e
+              substituição por reserva da
+              mesma posição quando o titular
+              não entrou em campo.
+            </p>
+
+          </div>
+
+
+          <div
+            class="
+              history-evolution-legend
+            "
+          >
+
+            ${
+              Object
+                .keys(
+                  series
+                )
+                .map(
+                  nome => `
+
+                    <span>
+
+                      <i
+                        style="
+                          background:
+                          ${cores[nome]};
+                        "
+                      ></i>
+
+                      ${nome}
+
+                    </span>
+
+                  `
+                )
+                .join(
+                  ""
+                )
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="history-chart-wrap">
+
+          ${
+            criarSvgHistorico(
+              series
+            )
+          }
+
+        </div>
+
+
+        <div
+          class="
+            history-evolution-cards
+          "
+        >
+
+          ${cards}
+
+        </div>
+
+
+        <p class="history-chart-note">
+
+          Quando a base histórica da rodada
+          informa que um titular não entrou
+          em campo, o cálculo procura o
+          reserva elegível da mesma posição.
+
+          O bônus do capitão só é aplicado
+          quando o próprio capitão entrou
+          em campo.
+
+        </p>
+
+      `;
+
+
+      estado
+        .graficoHistoricoCarregado =
+        true;
+
+
+      return true;
+
+    } catch (erro) {
+
+      registrarErro(
+        "renderizarGraficoHistorico",
+        erro
+      );
+
+
+      return false;
+
+    }
+
+  }
+
+
+  /* =======================================================
+     ANÁLISE DA RODADA — LEITURA RÁPIDA
+     ======================================================= */
+
+  function atualizarLeituraAnalise() {
+
+    const secao =
+      document.getElementById(
+        "analise"
+      );
+
+
+    if (!secao) {
+
+      return false;
+
+    }
+
+
+    const cards =
+      [
+        ...secao
+          .querySelectorAll(
+            `
+              .analysis-summary
+              .analysis-card
+            `
+          )
+      ];
+
+
+    if (
+      cards.length <
+      4
+    ) {
+
+      return false;
+
+    }
+
+
+    const valores =
+      cards.map(
+        card => ({
+
+          titulo:
+            texto(
+              card
+                .querySelector(
+                  "span"
+                )
+                ?.textContent
+            ),
+
+          valor:
+            texto(
+              card
+                .querySelector(
+                  "strong"
+                )
+                ?.textContent
+            ),
+
+          detalhe:
+            texto(
+              card
+                .querySelector(
+                  "small"
+                )
+                ?.textContent
+            )
+
+        })
+      );
+
+
+    let bloco =
+      document.getElementById(
+        "roundStrategyReading"
+      );
+
+
+    if (!bloco) {
+
+      bloco =
+        document.createElement(
+          "section"
+        );
+
+
+      bloco.id =
+        "roundStrategyReading";
+
+
+      bloco.className =
+        "round-strategy-reading";
+
+
+      const resumo =
+        secao.querySelector(
+          ".analysis-summary"
+        );
+
+
+      if (
+        resumo
+      ) {
+
+        resumo
+          .insertAdjacentElement(
+            "afterend",
+            bloco
+          );
+
+      }
+
+    }
+
+
+    if (!bloco) {
+
+      return false;
+
+    }
+
+
+    bloco.innerHTML = `
+
+      <h3>
+        Leitura rápida para a rodada
+      </h3>
+
+
+      <div
+        class="
+          round-strategy-reading-grid
+        "
+      >
+
+        ${
+          valores
+            .map(
+              item => `
+
+                <div
+                  class="
+                    round-strategy-item
+                  "
+                >
+
+                  <span>
+                    ${
+                      escaparHtml(
+                        item.titulo
+                        ||
+                        "Indicador"
+                      )
+                    }
+                  </span>
+
+                  <strong>
+                    ${
+                      escaparHtml(
+                        item.valor
+                        ||
+                        "--"
+                      )
+                    }
+                  </strong>
+
+                  <small>
+                    ${
+                      escaparHtml(
+                        item.detalhe
+                        ||
+                        "Aguardando dados"
+                      )
+                    }
+                  </small>
+
+                </div>
+
+              `
+            )
+            .join(
+              ""
+            )
+        }
+
+      </div>
+
+    `;
+
+
+    return true;
+
+  }
+
+
+  /* =======================================================
+     TRATA ABA ATIVA
+     ======================================================= */
+
+  function tratarAbaAtiva(
+    aba
+  ) {
+
+    switch (
+      aba
+    ) {
+
+      case "recomendacoes":
+
+        atualizarRecomendacoes();
+
+        reconstruirFiltros(
+          true
+        );
+
+        break;
+
+
+      case "times":
+
+        renderizarEscalacoes();
+
+        sincronizarCamposPatrimonio();
+
+        reconstruirFiltros(
+          true
+        );
+
+        break;
+
+
+      case "historico":
+
+        if (
+          typeof window
+            .renderizarHistorico ===
+            "function"
+        ) {
+
+          try {
+
+            window
+              .renderizarHistorico();
+
+          } catch (_) {}
+
+        }
+
+
+        renderizarGraficoHistorico();
+
+        break;
+
+
+      case "analise":
+
+        if (
+          window.AnaliseRodada &&
+          typeof window
+            .AnaliseRodada
+            .carregar ===
+            "function"
+        ) {
+
+          Promise
+            .resolve(
+              window
+                .AnaliseRodada
+                .carregar()
+            )
+            .finally(
+              () =>
+                setTimeout(
+                  atualizarLeituraAnalise,
+                  100
+                )
+            );
+
+        } else {
+
+          setTimeout(
+            atualizarLeituraAnalise,
+            100
+          );
+
+        }
+
+        break;
+
+
+      default:
+
+        break;
+
+    }
+
+  }
+
+
+  /* =======================================================
+     ABAS
+     ======================================================= */
+
+  function configurarAbas() {
+
+    document
+      .querySelectorAll(
+        "[data-tab]"
+      )
+      .forEach(
+        botao => {
+
+          if (
+            botao
+              .dataset
+              .cartolaIntegracaoAba ===
+            "1"
+          ) {
+
+            return;
+
+          }
+
+
+          botao
+            .dataset
+            .cartolaIntegracaoAba =
+            "1";
+
+
+          botao.addEventListener(
+            "click",
+            () => {
+
+              const aba =
+                texto(
+                  botao
+                    .dataset
+                    .tab
+                );
+
+
+              setTimeout(
+                () =>
+                  tratarAbaAtiva(
+                    aba
+                  ),
+                40
+              );
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
+     EVENTOS GLOBAIS
+     ======================================================= */
 
   function configurarEventosGlobais() {
 
-    /*
-     * Quando outro módulo atualizar
-     * escalações, apenas sincronizamos
-     * a interface.
-     *
-     * NÃO chamamos recalcularEscalacoes
-     * novamente para evitar loop.
-     */
+    const eventosEscalacao = [
 
-    window.addEventListener(
       "cartola:escalacoes-atualizadas",
-      () => {
 
-        setTimeout(
+      "cartola:times-atualizados",
+
+      "cartola:recalculo-concluido",
+
+      "cartola:filtros-aplicados",
+
+      "cartola:filtros-limpos"
+
+    ];
+
+
+    eventosEscalacao.forEach(
+      nome => {
+
+        window.addEventListener(
+          nome,
           () => {
 
-            renderizarEscalacoes();
+            setTimeout(
+              () => {
 
-            sincronizarCamposPatrimonio();
+                renderizarEscalacoes();
 
-          },
-          20
+                reconstruirFiltros(
+                  true
+                );
+
+              },
+              80
+            );
+
+          }
         );
 
       }
@@ -1313,10 +3747,21 @@ const CartolaIntegracaoFinal = (() => {
 
 
     window.addEventListener(
-      "cartola:interface-atualizada",
+      "cartola:recomendacoes-atualizadas",
       () => {
 
-        sincronizarCamposPatrimonio();
+        setTimeout(
+          () => {
+
+            atualizarRecomendacoes();
+
+            reconstruirFiltros(
+              true
+            );
+
+          },
+          80
+        );
 
       }
     );
@@ -1325,27 +3770,25 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     OBSERVADOR LEVE DO DOM
+     OBSERVADOR DOM
      ======================================================= */
-
 
   function configurarObservadorDom() {
 
-    /*
-     * Alguns elementos são criados
-     * dinamicamente.
-     *
-     * O observer serve somente para
-     * registrar os eventos uma vez.
-     *
-     * NÃO recalcula nada.
-     */
+    if (
+      estado.observer
+    ) {
+
+      return;
+
+    }
+
 
     let agendado =
       false;
 
 
-    const observer =
+    estado.observer =
       new MutationObserver(
         () => {
 
@@ -1369,165 +3812,62 @@ const CartolaIntegracaoFinal = (() => {
                 false;
 
 
-              configurarPatrimonio();
-
               configurarAbas();
 
+
+              const abaTimes =
+                document.getElementById(
+                  "times"
+                );
+
+
+              const abaReco =
+                document.getElementById(
+                  "recomendacoes"
+                );
+
+
+              if (
+                (
+                  abaTimes &&
+                  !document
+                    .getElementById(
+                      "ceFilterTeams"
+                    )
+                )
+                ||
+                (
+                  abaReco &&
+                  !document
+                    .getElementById(
+                      "ceFilterRecommendations"
+                    )
+                )
+              ) {
+
+                reconstruirFiltros(
+                  false
+                );
+
+              }
+
             },
-            150
+            140
           );
 
         }
       );
 
 
-    observer.observe(
+    estado.observer.observe(
       document.body,
       {
-        childList: true,
-        subtree: true
-      }
-    );
 
-  }
+        childList:
+          true,
 
-
-  /* =======================================================
-     ESPERA O SISTEMA PRINCIPAL
-     ======================================================= */
-
-
-  async function esperarSistemaPrincipal() {
-
-    /*
-     * Máximo aproximado:
-     * 8 segundos.
-     */
-
-    for (
-      let tentativa = 0;
-      tentativa < 40;
-      tentativa += 1
-    ) {
-
-      if (
-        recomendacoesDisponiveis()
-      ) {
-
-        return true;
-
-      }
-
-
-      await esperar(
-        200
-      );
-
-    }
-
-
-    return false;
-
-  }
-
-
-  /* =======================================================
-     VERIFICAÇÃO DAS ESCALAÇÕES
-     ======================================================= */
-
-
-  function verificarEscalacoes() {
-
-    const escalacoes =
-      obterEscalacoes();
-
-
-    return escalacoes.map(
-      time => {
-
-        const titulares =
-          Array.isArray(
-            time?.titulares
-          )
-            ? time.titulares
-            : [];
-
-
-        const banco =
-          Array.isArray(
-            time?.banco
-          )
-            ? time.banco
-            : [];
-
-
-        const patrimonio =
-          numero(
-
-            time?.limitePatrimonio
-
-            ??
-
-            obterPatrimonioAtual()
-
-          );
-
-
-        const custo =
-          numero(
-            time?.custoTotal,
-            0
-          );
-
-
-        return {
-
-          perfil:
-            time?.perfil
-            ??
-            time?.nome
-            ??
-            "--",
-
-          formacao:
-            time?.formacao
-            ??
-            "--",
-
-          titulares:
-            titulares.length,
-
-          reservas:
-            banco.length,
-
-          custo,
-
-          patrimonio,
-
-          dentroOrcamento:
-            patrimonio === null
-              ? true
-              : custo <=
-                patrimonio +
-                0.001,
-
-          possuiCapitao:
-            Boolean(
-              time?.capitao
-            ),
-
-          possuiReservaLuxo:
-            Boolean(
-
-              time?.reservaLuxo
-
-              ??
-
-              time?.reservaDeLuxo
-
-            )
-
-        };
+        subtree:
+          true
 
       }
     );
@@ -1536,65 +3876,10 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     DIAGNÓSTICO FINAL
+     DIAGNÓSTICO
      ======================================================= */
-
 
   function obterDiagnostico() {
-
-    let filtros = null;
-
-
-    try {
-
-      if (
-        window.CartolaFiltrosExclusao &&
-        typeof window
-          .CartolaFiltrosExclusao
-          .obterEstado ===
-          "function"
-      ) {
-
-        filtros =
-          window
-            .CartolaFiltrosExclusao
-            .obterEstado();
-
-      }
-
-    } catch (erro) {
-
-      filtros = null;
-
-    }
-
-
-    let analise = null;
-
-
-    try {
-
-      if (
-        window.AnaliseRodada &&
-        typeof window
-          .AnaliseRodada
-          .obterEstado ===
-          "function"
-      ) {
-
-        analise =
-          window
-            .AnaliseRodada
-            .obterEstado();
-
-      }
-
-    } catch (erro) {
-
-      analise = null;
-
-    }
-
 
     return {
 
@@ -1604,71 +3889,37 @@ const CartolaIntegracaoFinal = (() => {
       recalculando:
         estado.recalculando,
 
-      patrimonio:
-        obterPatrimonioAtual(),
+      filtrosRecomendacoes:
+        Boolean(
+          document
+            .getElementById(
+              "ceFilterRecommendations"
+            )
+        ),
 
-      jogadoresCarregados:
-        recomendacoesDisponiveis(),
+      filtrosTimes:
+        Boolean(
+          document
+            .getElementById(
+              "ceFilterTeams"
+            )
+        ),
 
-      quantidadeEscalacoes:
-        obterEscalacoes()
-          .length,
+      graficoHistorico:
+        Boolean(
+          document
+            .getElementById(
+              "historyEvolution"
+            )
+        ),
 
-      escalacoes:
-        verificarEscalacoes(),
-
-      filtros: filtros
-        ? {
-
-            inicializado:
-              filtros.inicializado,
-
-            clubesExcluidos:
-              filtros
-                .clubesExcluidos
-                ?.length
-              ??
-              0,
-
-            jogadoresExcluidos:
-              filtros
-                .jogadoresExcluidos
-                ?.length
-              ??
-              0
-
-          }
-        : null,
-
-      analise: analise
-        ? {
-
-            carregado:
-              analise.carregado,
-
-            rodada:
-              analise.rodada,
-
-            partidas:
-              Array.isArray(
-                analise.partidas
-              )
-                ? analise
-                    .partidas
-                    .length
-                : 0,
-
-            confrontos:
-              Array.isArray(
-                analise.confrontos
-              )
-                ? analise
-                    .confrontos
-                    .length
-                : 0
-
-          }
-        : null,
+      leituraAnalise:
+        Boolean(
+          document
+            .getElementById(
+              "roundStrategyReading"
+            )
+        ),
 
       ultimaAtualizacao:
         estado.ultimaAtualizacao,
@@ -1683,120 +3934,63 @@ const CartolaIntegracaoFinal = (() => {
   }
 
 
-  /* =======================================================
-     TESTE RÁPIDO NO CONSOLE
-     ======================================================= */
-
-
   function auditar() {
 
     const diagnostico =
       obterDiagnostico();
 
 
-    console.group(
-      "CARTOLA ESTATÍSTICO — AUDITORIA FINAL"
-    );
-
-
-    console.log(
-      "Patrimônio:",
-      diagnostico.patrimonio
-    );
-
-
-    console.log(
-      "Escalações:",
-      diagnostico.escalacoes
-    );
-
-
-    console.log(
-      "Filtros:",
-      diagnostico.filtros
-    );
-
-
-    console.log(
-      "Análise:",
-      diagnostico.analise
-    );
-
-
-    console.log(
-      "Erros de integração:",
-      diagnostico.erros
-    );
-
-
-    const problemas = [];
-
-
-    diagnostico
-      .escalacoes
-      .forEach(
-        time => {
-
-          if (
-            !time.dentroOrcamento
-          ) {
-
-            problemas.push(
-              `${time.perfil}: custo acima do patrimônio`
-            );
-
-          }
-
-
-          if (
-            time.titulares !== 12
-          ) {
-
-            problemas.push(
-              `${time.perfil}: ${time.titulares} titulares`
-            );
-
-          }
-
-
-          if (
-            time.reservas < 5
-          ) {
-
-            problemas.push(
-              `${time.perfil}: banco incompleto (${time.reservas})`
-            );
-
-          }
-
-
-          if (
-            !time.possuiCapitao
-          ) {
-
-            problemas.push(
-              `${time.perfil}: capitão não identificado`
-            );
-
-          }
-
-        }
-      );
+    const problemas =
+      [];
 
 
     if (
-      problemas.length === 0
+      !diagnostico
+        .filtrosRecomendacoes
     ) {
 
-      console.log(
-        "✓ Auditoria estrutural sem falhas."
+      problemas.push(
+        "Filtro de Recomendações ausente"
+      );
+
+    }
+
+
+    if (
+      !diagnostico
+        .filtrosTimes
+    ) {
+
+      problemas.push(
+        "Filtro de Times ausente"
+      );
+
+    }
+
+
+    console.group(
+      "Auditoria Cartola Estatístico"
+    );
+
+
+    console.table(
+      diagnostico
+    );
+
+
+    if (
+      problemas.length
+    ) {
+
+      console.warn(
+        "Problemas:",
+        problemas
       );
 
     } else {
 
-      console.warn(
-        "Problemas encontrados:",
-        problemas
+      console.info(
+        "Interface integrada sem falhas críticas visíveis."
       );
 
     }
@@ -1808,7 +4002,8 @@ const CartolaIntegracaoFinal = (() => {
     return {
 
       aprovado:
-        problemas.length === 0,
+        problemas.length ===
+        0,
 
       problemas,
 
@@ -1823,7 +4018,6 @@ const CartolaIntegracaoFinal = (() => {
      INICIALIZAÇÃO
      ======================================================= */
 
-
   async function inicializar() {
 
     if (
@@ -1831,7 +4025,8 @@ const CartolaIntegracaoFinal = (() => {
       estado.inicializando
     ) {
 
-      return estado.inicializado;
+      return estado
+        .inicializado;
 
     }
 
@@ -1842,10 +4037,7 @@ const CartolaIntegracaoFinal = (() => {
 
     try {
 
-      /*
-       * Primeiro registramos eventos que
-       * não dependem dos dados.
-       */
+      garantirEstilosFinais();
 
       configurarAbas();
 
@@ -1855,58 +4047,43 @@ const CartolaIntegracaoFinal = (() => {
 
 
       /*
-       * Espera recomendações.
+       * Dá tempo para app.js e os módulos
+       * principais terminarem a primeira
+       * renderização.
        */
 
-      await esperarSistemaPrincipal();
+      await esperar(
+        350
+      );
 
-
-      /*
-       * Inicializa filtros.
-       */
 
       await configurarFiltrosExclusao();
 
 
-      /*
-       * Sincroniza patrimônio.
-       */
+      atualizarRecomendacoes();
 
-      configurarPatrimonio();
-
-
-      /*
-       * Garante renderização das escalações
-       * já existentes.
-       */
 
       renderizarEscalacoes();
 
 
-      /*
-       * Atualiza recomendações.
-       */
-
-      atualizarRecomendacoes();
+      sincronizarCamposPatrimonio();
 
 
-      /*
-       * Não recalculamos automaticamente.
-       *
-       * Isso é importante para evitar:
-       * - loop;
-       * - stack overflow;
-       * - trabalho duplicado;
-       * - alteração involuntária do patrimônio.
-       */
-
-      estado.ultimoPatrimonio =
-        obterPatrimonioAtual();
+      await atualizarUltimaAtualizacao();
 
 
-      estado.ultimaAtualizacao =
-        new Date()
-          .toISOString();
+      setTimeout(
+        () => {
+
+          reconstruirFiltros(
+            true
+          );
+
+          atualizarLeituraAnalise();
+
+        },
+        500
+      );
 
 
       estado.inicializado =
@@ -1921,7 +4098,6 @@ const CartolaIntegracaoFinal = (() => {
 
       return true;
 
-
     } catch (erro) {
 
       registrarErro(
@@ -1931,7 +4107,6 @@ const CartolaIntegracaoFinal = (() => {
 
 
       return false;
-
 
     } finally {
 
@@ -1944,9 +4119,8 @@ const CartolaIntegracaoFinal = (() => {
 
 
   /* =======================================================
-     API PÚBLICA
+     API
      ======================================================= */
-
 
   return {
 
@@ -1962,12 +4136,19 @@ const CartolaIntegracaoFinal = (() => {
     sincronizarPatrimonio:
       sincronizarCamposPatrimonio,
 
+    reconstruirFiltros,
+
+    renderizarGraficoHistorico,
+
+    atualizarUltimaAtualizacao,
+
+    atualizarLeituraAnalise,
+
     obterDiagnostico,
 
     auditar
 
   };
-
 
 })();
 
@@ -1975,7 +4156,6 @@ const CartolaIntegracaoFinal = (() => {
 /* =========================================================
    EXPOSIÇÃO GLOBAL
    ========================================================= */
-
 
 if (
   typeof window !==
@@ -1985,10 +4165,6 @@ if (
   window.CartolaIntegracaoFinal =
     CartolaIntegracaoFinal;
 
-
-  /*
-   * Atalhos úteis para nosso teste final.
-   */
 
   window.auditarCartola =
     () =>
@@ -2013,7 +4189,7 @@ if (
             .inicializar();
 
         },
-        500
+        450
       );
 
     }
