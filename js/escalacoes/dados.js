@@ -6069,7 +6069,6 @@ function obterJogadoresDisponiveisEscalacao() {
 
 }
 
-
 /* =========================================================
    RENDERIZAÇÃO
    ========================================================= */
@@ -6079,11 +6078,53 @@ function renderizarEscalacoesCarregadas(
   escalacoes
 ) {
 
+  /*
+   * API ATUAL DOS CARDS
+   *
+   * O arquivo js/escalacoes/cards.js atual trabalha
+   * com a função global exibirEscalacoes().
+   *
+   * As escalações já foram gravadas em
+   * estadoEscalacoes.escalacoes antes desta chamada.
+   * Portanto, exibirEscalacoes() consegue obtê-las
+   * através de obterEscalacoesCarregadas().
+   */
+
+  if (
+    typeof exibirEscalacoes ===
+    "function"
+  ) {
+
+    exibirEscalacoes();
+
+    return;
+
+  }
+
+
+  /*
+   * Compatibilidade com versões anteriores.
+   *
+   * Mantemos os fallbacks abaixo para não quebrar
+   * uma eventual versão antiga dos cards que ainda
+   * exponha EscalacoesCards.
+   */
+
   if (
     typeof EscalacoesCards ===
       "undefined" ||
     !EscalacoesCards
   ) {
+
+    console.warn(
+      "Renderizador de escalações não encontrado.",
+      {
+        escalacoes:
+          Array.isArray(escalacoes)
+            ? escalacoes.length
+            : 0
+      }
+    );
 
     return;
 
@@ -6127,7 +6168,20 @@ function renderizarEscalacoesCarregadas(
       escalacoes
     );
 
+    return;
+
   }
+
+
+  console.warn(
+    "Nenhum método de renderização de escalações disponível.",
+    {
+      escalacoes:
+        Array.isArray(escalacoes)
+          ? escalacoes.length
+          : 0
+    }
+  );
 
 }
 
