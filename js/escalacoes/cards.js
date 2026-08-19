@@ -5,6 +5,578 @@
 
 
 /* =========================================================
+   0. FUNÇÕES BASE / COMPATIBILIDADE
+   ========================================================= */
+
+/*
+ * Centraliza a localização do container da aba
+ * "Times sugeridos".
+ *
+ * O ID principal utilizado pelo projeto é
+ * suggestedLineupsGrid.
+ *
+ * Os fallbacks evitam quebra caso exista alguma
+ * versão anterior do HTML em cache.
+ */
+
+function obterContainerEscalacoes() {
+
+  return (
+    document.getElementById(
+      "suggestedLineupsGrid"
+    ) ||
+    document.getElementById(
+      "suggestedLineups"
+    ) ||
+    document.querySelector(
+      "[data-suggested-lineups]"
+    ) ||
+    document.querySelector(
+      ".suggested-lineups-grid"
+    )
+  );
+
+}
+
+
+/*
+ * Obtém as escalações já produzidas pelo motor.
+ *
+ * A prioridade é utilizar a API pública criada em
+ * js/escalacoes/dados.js.
+ *
+ * Os fallbacks mantêm compatibilidade com versões
+ * anteriores do projeto.
+ */
+
+function obterEscalacoesCarregadas() {
+
+  if (
+    typeof CartolaEscalacoes !==
+      "undefined" &&
+    CartolaEscalacoes &&
+    typeof CartolaEscalacoes
+      .obterEscalacoes ===
+      "function"
+  ) {
+
+    const escalacoes =
+      CartolaEscalacoes
+        .obterEscalacoes();
+
+
+    if (
+      Array.isArray(
+        escalacoes
+      )
+    ) {
+
+      return escalacoes;
+
+    }
+
+  }
+
+
+  if (
+    typeof obterEscalacoesAtuais ===
+      "function"
+  ) {
+
+    const escalacoes =
+      obterEscalacoesAtuais();
+
+
+    if (
+      Array.isArray(
+        escalacoes
+      )
+    ) {
+
+      return escalacoes;
+
+    }
+
+  }
+
+
+  if (
+    typeof estadoEscalacoes !==
+      "undefined" &&
+    Array.isArray(
+      estadoEscalacoes
+        ?.escalacoes
+    )
+  ) {
+
+    return estadoEscalacoes
+      .escalacoes;
+
+  }
+
+
+  return [];
+
+}
+
+
+/*
+ * Estado vazio da aba.
+ */
+
+function exibirSemEscalacoes() {
+
+  const container =
+    obterContainerEscalacoes();
+
+
+  if (!container) {
+
+    console.warn(
+      "Container de Times sugeridos não encontrado."
+    );
+
+    return;
+
+  }
+
+
+  container.classList.add(
+    "suggested-lineups-container"
+  );
+
+
+  container.innerHTML = `
+
+    <div class="empty-state">
+
+      <div class="empty-state-icon">
+        CE
+      </div>
+
+      <strong>
+        Escalações em construção
+      </strong>
+
+      <p>
+        Não foi possível montar os times sugeridos
+        com os dados disponíveis neste momento.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/*
+ * Conversão numérica segura.
+ */
+
+function numeroSeguro(
+  valor,
+  padrao = 0
+) {
+
+  const numero =
+    Number(valor);
+
+
+  return Number.isFinite(
+    numero
+  )
+    ? numero
+    : padrao;
+
+}
+
+
+/*
+ * Escape básico para conteúdo inserido via
+ * innerHTML.
+ */
+
+function escaparHtml(
+  valor
+) {
+
+  return String(
+    valor ??
+    ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/*
+ * Normalização textual utilizada pelas classes
+ * visuais.
+ */
+
+function normalizarTexto(
+  valor
+) {
+
+  return String(
+    valor ??
+    ""
+  )
+    .normalize(
+      "NFD"
+    )
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+/*
+ * Formatação de pontos.
+ */
+
+function formatarPontos(
+  valor
+) {
+
+  const numero =
+    Number(valor);
+
+
+  if (
+    !Number.isFinite(
+      numero
+    )
+  ) {
+
+    return "--";
+
+  }
+
+
+  return (
+    `${numero.toFixed(1)} pts`
+  );
+
+}
+
+
+/*
+ * Formatação de cartoletas.
+ */
+
+function formatarCartoletas(
+  valor
+) {
+
+  const numero =
+    Number(valor);
+
+
+  if (
+    !Number.isFinite(
+      numero
+    )
+  ) {
+
+    return "C$ --";
+
+  }
+
+
+  return (
+    `C$ ${numero.toFixed(2)}`
+  );
+
+}
+
+
+/*
+ * Comparação utilizada para ordenar jogadores
+ * por posição.
+ */
+
+function compararJogadoresEscalacao(
+  jogadorA,
+  jogadorB
+) {
+
+  const ordem = {
+    GOL: 1,
+    LAT: 2,
+    ZAG: 3,
+    MEI: 4,
+    ATA: 5,
+    TEC: 6
+  };
+
+
+  const posicaoA =
+    String(
+      jogadorA?.posicao ??
+      ""
+    ).toUpperCase();
+
+
+  const posicaoB =
+    String(
+      jogadorB?.posicao ??
+      ""
+    ).toUpperCase();
+
+
+  const ordemA =
+    ordem[posicaoA] ??
+    99;
+
+
+  const ordemB =
+    ordem[posicaoB] ??
+    99;
+
+
+  if (
+    ordemA !==
+    ordemB
+  ) {
+
+    return (
+      ordemA -
+      ordemB
+    );
+
+  }
+
+
+  return (
+    numeroSeguro(
+      jogadorB?.projecao
+    ) -
+    numeroSeguro(
+      jogadorA?.projecao
+    )
+  );
+
+}
+
+
+/*
+ * Criação segura de listas.
+ */
+
+function criarItensLista(
+  itens,
+  textoVazio
+) {
+
+  if (
+    !Array.isArray(
+      itens
+    ) ||
+    itens.length === 0
+  ) {
+
+    return `
+
+      <li>
+        ${escaparHtml(
+          textoVazio
+        )}
+      </li>
+
+    `;
+
+  }
+
+
+  return itens
+    .filter(Boolean)
+    .map(
+      item => `
+
+        <li>
+          ${escaparHtml(
+            item
+          )}
+        </li>
+
+      `
+    )
+    .join("");
+
+}
+
+
+/*
+ * Classe visual de risco.
+ */
+
+function obterClasseRisco(
+  risco
+) {
+
+  const texto =
+    normalizarTexto(
+      risco
+    );
+
+
+  if (
+    texto.includes(
+      "baixo"
+    )
+  ) {
+
+    return "low";
+
+  }
+
+
+  if (
+    texto.includes(
+      "alto"
+    )
+  ) {
+
+    return "high";
+
+  }
+
+
+  return "medium";
+
+}
+
+
+/*
+ * Classe visual da confiança.
+ */
+
+function obterClasseConfiancaNumerica(
+  valor
+) {
+
+  const numero =
+    numeroSeguro(
+      valor
+    );
+
+
+  if (
+    numero >= 80
+  ) {
+
+    return "high";
+
+  }
+
+
+  if (
+    numero >= 60
+  ) {
+
+    return "medium";
+
+  }
+
+
+  return "low";
+
+}
+
+
+/*
+ * Barra visual.
+ */
+
+function criarBarraIndicador(
+  titulo,
+  valor,
+  classe = ""
+) {
+
+  const numero =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        numeroSeguro(
+          valor
+        )
+      )
+    );
+
+
+  return `
+
+    <div
+      class="
+        lineup-indicator
+        ${escaparHtml(
+          classe
+        )}
+      "
+    >
+
+      <div class="lineup-indicator-label">
+
+        <span>
+          ${escaparHtml(
+            titulo
+          )}
+        </span>
+
+        <strong>
+          ${numero.toFixed(0)}%
+        </strong>
+
+      </div>
+
+
+      <div class="lineup-indicator-track">
+
+        <span
+          style="
+            width:
+            ${numero}%;
+          "
+        ></span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =========================================================
    1. EXIBIÇÃO DAS ESCALAÇÕES
    ========================================================= */
 
@@ -13,8 +585,15 @@ function exibirEscalacoes() {
   const container =
     obterContainerEscalacoes();
 
+
   if (!container) {
+
+    console.warn(
+      "Container de Times sugeridos não encontrado."
+    );
+
     return;
+
   }
 
 
@@ -23,11 +602,14 @@ function exibirEscalacoes() {
 
 
   if (
-    !Array.isArray(escalacoes) ||
+    !Array.isArray(
+      escalacoes
+    ) ||
     escalacoes.length === 0
   ) {
 
     exibirSemEscalacoes();
+
     return;
 
   }
@@ -108,6 +690,7 @@ function exibirEscalacoes() {
   configurarControlePatrimonioEscalacoes();
 
 }
+
 
 
 /* =========================================================
@@ -193,6 +776,7 @@ function criarControlePatrimonioEscalacoes(
           id="lineupBudgetInput"
           type="number"
           min="1"
+          max="120"
           step="0.01"
           inputmode="decimal"
           value="${escaparHtml(
@@ -251,6 +835,7 @@ function criarControlePatrimonioEscalacoes(
   return controle;
 
 }
+
 
 
 /* =========================================================
@@ -511,6 +1096,7 @@ function configurarControlePatrimonioEscalacoes() {
 }
 
 
+
 /* =========================================================
    4. CRIAÇÃO DO CARD PRINCIPAL
    ========================================================= */
@@ -544,11 +1130,25 @@ function criarCardEscalacao(
 
 
   const idDetalhes =
-    `lineup-details-${escalacao.id}`;
+    `lineup-details-${escaparHtml(
+      escalacao.id ||
+      escalacao.nome ||
+      Math.random()
+        .toString(36)
+        .slice(2)
+    )}`;
+
+
+  const listaJogadores =
+    Array.isArray(
+      escalacao.jogadores
+    )
+      ? escalacao.jogadores
+      : [];
 
 
   const jogadoresOrdenados =
-    [...escalacao.jogadores]
+    [...listaJogadores]
       .sort(
         compararJogadoresEscalacao
       );
@@ -1050,6 +1650,7 @@ function criarCardEscalacao(
 }
 
 
+
 /* =========================================================
    5. FUNÇÕES DE APRESENTAÇÃO DO JOGADOR
    ========================================================= */
@@ -1116,6 +1717,7 @@ function obterNomeCurtoJogador(
 }
 
 
+
 /* =========================================================
    6. NORMALIZAÇÃO VISUAL DO SCORE
    ========================================================= */
@@ -1163,6 +1765,7 @@ function normalizarScoreVisual(
     );
 
 }
+
 
 
 /* =========================================================
@@ -1246,6 +1849,7 @@ function criarCapitaoHtml(
   `;
 
 }
+
 
 
 /* =========================================================
@@ -1358,6 +1962,7 @@ function criarJogadorTitularHtml(
 }
 
 
+
 /* =========================================================
    9. BANCO
    ========================================================= */
@@ -1450,6 +2055,7 @@ function criarJogadorBancoHtml(
   `;
 
 }
+
 
 
 /* =========================================================
@@ -1550,6 +2156,7 @@ function criarReservaLuxoHtml(
 }
 
 
+
 /* =========================================================
    11. PERFIL DA ESCALAÇÃO
    ========================================================= */
@@ -1601,6 +2208,7 @@ function obterClassePerfilEscalacao(
   return "conservative";
 
 }
+
 
 
 /* =========================================================
@@ -1714,3 +2322,33 @@ function alternarDetalhesEscalacao(
   );
 
 }
+
+
+
+/* =========================================================
+   13. API PÚBLICA DOS CARDS
+   ========================================================= */
+
+/*
+ * Mantemos também uma pequena API global.
+ * Isso permite que dados.js ou app.js solicitem
+ * nova renderização sem depender diretamente
+ * dos detalhes internos deste arquivo.
+ */
+
+const CartolaEscalacoesCards = {
+
+  renderizar:
+    exibirEscalacoes,
+
+  exibir:
+    exibirEscalacoes,
+
+  atualizar:
+    exibirEscalacoes
+
+};
+
+
+window.CartolaEscalacoesCards =
+  CartolaEscalacoesCards;
