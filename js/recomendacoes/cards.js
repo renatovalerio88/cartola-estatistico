@@ -2219,10 +2219,7 @@ function criarComponentesPorObjeto(
         ) =>
           possuiNumeroRecomendacao(
             valor
-          ) &&
-          Number(
-            valor
-          ) !== 0
+          )
       );
 
 
@@ -2317,26 +2314,20 @@ function criarComponentesMotor(
 
   const componentes =
     Object.values(
-      contribuicoes
+      contribuicoes || {}
     )
-      .filter(
-        componentePossuiDados
-      )
+      .filter(Boolean)
       .sort(
         (
           itemA,
           itemB
         ) =>
-          Math.abs(
-            numeroSeguroRecomendacao(
-              itemB.contribuicao
-            )
+          numeroSeguroRecomendacao(
+            itemB.peso
           )
           -
-          Math.abs(
-            numeroSeguroRecomendacao(
-              itemA.contribuicao
-            )
+          numeroSeguroRecomendacao(
+            itemA.peso
           )
       );
 
@@ -2354,8 +2345,8 @@ function criarComponentesMotor(
         </strong>
 
         <p>
-          O motor não recebeu valores suficientes para
-          decompor a nota deste jogador.
+          O motor ainda não disponibilizou a decomposição
+          completa da nota deste jogador.
         </p>
 
       </div>
@@ -2365,144 +2356,186 @@ function criarComponentesMotor(
   }
 
 
-  const principais =
-    componentes.slice(
-      0,
-      10
-    );
+  return componentes
+    .map(
+      item => {
+
+        const notaOriginal =
+          Number(
+            item?.nota
+          );
 
 
-  const html =
-    principais
-      .map(
-        item => {
-
-          const nota =
-            limitarRecomendacao(
-              item.nota,
-              0,
-              100
-            );
+        const pesoOriginal =
+          Number(
+            item?.peso
+          );
 
 
-          const peso =
-            numeroSeguroRecomendacao(
-              item.peso
-            );
+        const contribuicaoOriginal =
+          Number(
+            item?.contribuicao
+          );
 
 
-          const contribuicao =
-            numeroSeguroRecomendacao(
-              item.contribuicao
-            );
+        const temNota =
+          Number.isFinite(
+            notaOriginal
+          );
 
 
-          return `
-
-            <div class="component-row">
-
-              <div class="component-label">
-
-                <span>
-
-                  ${escaparHtmlRecomendacao(
-
-                    item.nome
-
-                    ||
-
-                    item.criterio
-
-                    ||
-
-                    "Critério"
-
-                  )}
-
-                  <small>
-
-                    Peso:
-
-                    ${formatarDecimalRecomendacao(
-                      peso,
-                      0
-                    )}%
-
-                    •
-
-                    contribuição:
-
-                    ${formatarDecimalRecomendacao(
-                      contribuicao,
-                      2
-                    )}
-
-                  </small>
-
-                </span>
+        const temPeso =
+          Number.isFinite(
+            pesoOriginal
+          );
 
 
-                <strong>
-                  ${Math.round(
-                    nota
-                  )}
-                </strong>
-
-              </div>
+        const temContribuicao =
+          Number.isFinite(
+            contribuicaoOriginal
+          );
 
 
-              <div class="component-track">
+        const disponivel =
+          item?.disponivel !== false &&
+          item?.temDados !== false &&
+          (
+            temNota ||
+            temContribuicao ||
+            item?.valorOriginal !== null &&
+            item?.valorOriginal !== undefined &&
+            item?.valorOriginal !== ""
+          );
 
-                <div
-                  class="component-fill"
-                  style="
-                    width:
-                    ${nota}%;
-                  "
-                ></div>
 
-              </div>
+        const nota =
+          temNota
+            ? limitarRecomendacao(
+                notaOriginal,
+                0,
+                100
+              )
+            : 0;
+
+
+        const peso =
+          temPeso
+            ? pesoOriginal
+            : 0;
+
+
+        const contribuicao =
+          temContribuicao
+            ? contribuicaoOriginal
+            : 0;
+
+
+        const nome =
+          item?.nome
+          ||
+          item?.criterio
+          ||
+          "Critério";
+
+
+        const textoNota =
+          disponivel && temNota
+            ? Math.round(
+                nota
+              )
+            : "--";
+
+
+        const textoPeso =
+          temPeso
+            ? `${formatarDecimalRecomendacao(
+                peso,
+                1
+              )}%`
+            : "--";
+
+
+        const textoContribuicao =
+          disponivel &&
+          temContribuicao
+            ? formatarDecimalRecomendacao(
+                contribuicao,
+                2
+              )
+            : "--";
+
+
+        const textoSituacao =
+          disponivel
+            ? ""
+            : `
+              <small>
+                • dado ainda não disponível
+              </small>
+            `;
+
+
+        return `
+
+          <div
+            class="component-row${
+              disponivel
+                ? ""
+                : " component-unavailable"
+            }"
+          >
+
+            <div class="component-label">
+
+              <span>
+
+                ${escaparHtmlRecomendacao(
+                  nome
+                )}
+
+                <small>
+                  Peso:
+                  ${textoPeso}
+                  •
+                  contribuição:
+                  ${textoContribuicao}
+                </small>
+
+                ${textoSituacao}
+
+              </span>
+
+
+              <strong>
+                ${textoNota}
+              </strong>
 
             </div>
 
-          `;
 
-        }
-      )
-      .join("");
+            <div class="component-track">
 
+              <div
+                class="component-fill"
+                style="
+                  width:
+                  ${
+                    disponivel
+                      ? nota
+                      : 0
+                  }%;
+                "
+              ></div>
 
-  const omitidos =
-    componentes.length -
-    principais.length;
+            </div>
 
+          </div>
 
-  return (
+        `;
 
-    html
-
-    +
-
-    (
-      omitidos > 0
-
-        ? `
-
-          <p class="components-note">
-
-            ${omitidos}
-            critério(s) secundário(s)
-            foram ocultados para facilitar a leitura.
-
-          </p>
-
-        `
-
-        : ""
-
+      }
     )
-
-  );
+    .join("");
 
 }
 
