@@ -1,6 +1,6 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Recomendações — filtros, ranking e destaques
+   Recomendações — filtros, ranking, viabilidade e destaques
    ========================================================= */
 
 
@@ -201,6 +201,14 @@ function obterConfiguracaoPosicao(
 
 /* =========================================================
    6. JOGADORES DE UMA POSIÇÃO
+
+   A viabilidade passa a participar da seleção.
+
+   Jogadores claramente inviáveis são retirados quando
+   o motor de viabilidade fornecer essa informação.
+
+   Caso o motor ainda não esteja disponível, o ranking
+   continua funcionando normalmente.
    ========================================================= */
 
 function obterJogadoresDaPosicao(
@@ -218,19 +226,563 @@ function obterJogadoresDaPosicao(
     configuracao?.quantidade ||
     5;
 
-  return jogadores
-    .filter(
+  const jogadoresPosicao =
+    jogadores.filter(
       (jogador) =>
         jogador.posicao ===
         codigoPosicao
-    )
+    );
+
+  const jogadoresViaveis =
+    jogadoresPosicao.filter(
+      (jogador) =>
+        jogadorEhViavelParaRanking(
+          jogador
+        )
+    );
+
+  /*
+   * Proteção:
+   *
+   * Se a filtragem de viabilidade deixar poucas opções,
+   * o sistema não quebra o ranking.
+   *
+   * Nesse caso utilizamos todos os jogadores da posição,
+   * mas a ordenação continua penalizando os menos viáveis.
+   */
+
+  const baseRanking =
+    jogadoresViaveis.length >=
+    limite
+      ? jogadoresViaveis
+      : jogadoresPosicao;
+
+  return baseRanking
     .sort(compararJogadoresRanking)
     .slice(0, limite);
 }
 
 
 /* =========================================================
-   7. ORDENAÇÃO DO RANKING
+   7. LEITURA DO MOTOR DE VIABILIDADE
+   ========================================================= */
+
+function obterViabilidadeRanking(
+  jogador
+) {
+  if (!jogador) {
+    return {
+      disponivel: true,
+      elegivel: true,
+      viavel: true,
+      titularProvavel: false,
+      nota: 50,
+      penalidade: 0,
+      classificacao: "neutra",
+      motivos: []
+    };
+  }
+
+  /*
+   * Preferência 1:
+   * função pública do novo motor.
+   */
+
+  if (
+    typeof avaliarViabilidadeJogador ===
+    "function"
+  ) {
+    try {
+      const resultado =
+        avaliarViabilidadeJogador(
+          jogador
+        );
+
+      if (
+        resultado &&
+        typeof resultado ===
+          "object"
+      ) {
+        return normalizarViabilidadeRanking(
+          resultado,
+          jogador
+        );
+      }
+    } catch (erro) {
+      console.warn(
+        "Falha ao avaliar viabilidade:",
+        jogador?.id,
+        erro
+      );
+    }
+  }
+
+  /*
+   * Preferência 2:
+   * objeto global MotorViabilidade.
+   */
+
+  if (
+    typeof MotorViabilidade !==
+      "undefined" &&
+    MotorViabilidade
+  ) {
+    const funcoesPossiveis = [
+      "avaliar",
+      "calcular",
+      "analisar",
+      "avaliarJogador"
+    ];
+
+    for (
+      const nomeFuncao of
+      funcoesPossiveis
+    ) {
+      if (
+        typeof MotorViabilidade[
+          nomeFuncao
+        ] === "function"
+      ) {
+        try {
+          const resultado =
+            MotorViabilidade[
+              nomeFuncao
+            ](
+              jogador
+            );
+
+          if (
+            resultado &&
+            typeof resultado ===
+              "object"
+          ) {
+            return normalizarViabilidadeRanking(
+              resultado,
+              jogador
+            );
+          }
+        } catch (erro) {
+          console.warn(
+            "Falha no MotorViabilidade:",
+            jogador?.id,
+            erro
+          );
+        }
+      }
+    }
+  }
+
+  /*
+   * Preferência 3:
+   * dados já anexados ao jogador.
+   */
+
+  const resultadoExistente =
+    jogador.viabilidade ||
+    jogador.analiseViabilidade ||
+    jogador.statusViabilidade;
+
+  if (
+    resultadoExistente &&
+    typeof resultadoExistente ===
+      "object"
+  ) {
+    return normalizarViabilidadeRanking(
+      resultadoExistente,
+      jogador
+    );
+  }
+
+  /*
+   * Fallback defensivo baseado nos dados
+   * já disponíveis no jogador.
+   */
+
+  return calcularViabilidadeFallback(
+    jogador
+  );
+}
+
+
+/* =========================================================
+   8. NORMALIZAÇÃO DA VIABILIDADE
+   ========================================================= */
+
+function normalizarViabilidadeRanking(
+  resultado,
+  jogador
+) {
+  const notaPossivel =
+    primeiroNumeroValido([
+      resultado.nota,
+      resultado.score,
+      resultado.notaViabilidade,
+      resultado.indice,
+      resultado.indiceViabilidade
+    ]);
+
+  const penalidadePossivel =
+    primeiroNumeroValido([
+      resultado.penalidade,
+      resultado.penalidadeRanking,
+      resultado.desconto
+    ]);
+
+  const disponivel =
+    primeiroBooleanoValido([
+      resultado.disponivel,
+      resultado.apto,
+      resultado.ativo
+    ]);
+
+  const elegivel =
+    primeiroBooleanoValido([
+      resultado.elegivel,
+      resultado.podeEscalar,
+      resultado.escalavel
+    ]);
+
+  const viavel =
+    primeiroBooleanoValido([
+      resultado.viavel,
+      resultado.recomendavel,
+      resultado.aprovado
+    ]);
+
+  const titularProvavel =
+    primeiroBooleanoValido([
+      resultado.titularProvavel,
+      resultado.provavelTitular,
+      resultado.titular
+    ]);
+
+  return {
+    disponivel:
+      disponivel !== null
+        ? disponivel
+        : true,
+
+    elegivel:
+      elegivel !== null
+        ? elegivel
+        : true,
+
+    viavel:
+      viavel !== null
+        ? viavel
+        : true,
+
+    titularProvavel:
+      titularProvavel !== null
+        ? titularProvavel
+        : inferirTitularidade(
+            jogador
+          ),
+
+    nota:
+      limitarValor(
+        notaPossivel !== null
+          ? notaPossivel
+          : 50,
+        0,
+        100
+      ),
+
+    penalidade:
+      limitarValor(
+        penalidadePossivel !== null
+          ? penalidadePossivel
+          : 0,
+        0,
+        100
+      ),
+
+    classificacao:
+      String(
+        resultado.classificacao ||
+        resultado.status ||
+        resultado.nivel ||
+        "neutra"
+      ),
+
+    motivos:
+      normalizarListaMotivos(
+        resultado.motivos ||
+        resultado.justificativas ||
+        resultado.alertas
+      )
+  };
+}
+
+
+/* =========================================================
+   9. VIABILIDADE FALLBACK
+
+   Essa camada evita que jogadores com sinais ruins de
+   disponibilidade/titularidade tenham o mesmo tratamento
+   de jogadores claramente utilizáveis na rodada.
+   ========================================================= */
+
+function calcularViabilidadeFallback(
+  jogador
+) {
+  let nota = 50;
+  let penalidade = 0;
+
+  const motivos = [];
+
+  const titularidade =
+    numeroSeguro(
+      jogador?.titularidade
+    );
+
+  const minutosEsperados =
+    numeroSeguro(
+      jogador?.minutosEsperados
+    );
+
+  const statusId =
+    Number(
+      jogador?.statusId
+    );
+
+  const entrouEmCampo =
+    jogador?.entrouEmCampo;
+
+  const titularProvavel =
+    inferirTitularidade(
+      jogador
+    );
+
+  /*
+   * Status 7 na API do Cartola corresponde
+   * tradicionalmente a provável.
+   *
+   * Não excluímos automaticamente outros status aqui,
+   * porque o motor de viabilidade é a fonte principal.
+   */
+
+  if (statusId === 7) {
+    nota += 25;
+
+    motivos.push(
+      "Status provável"
+    );
+  }
+
+  if (titularProvavel) {
+    nota += 20;
+
+    motivos.push(
+      "Boa indicação de titularidade"
+    );
+  }
+
+  if (titularidade >= 80) {
+    nota += 15;
+  } else if (
+    titularidade > 0 &&
+    titularidade < 50
+  ) {
+    penalidade += 20;
+
+    motivos.push(
+      "Titularidade baixa"
+    );
+  }
+
+  if (minutosEsperados >= 70) {
+    nota += 10;
+  } else if (
+    minutosEsperados > 0 &&
+    minutosEsperados < 45
+  ) {
+    penalidade += 20;
+
+    motivos.push(
+      "Poucos minutos esperados"
+    );
+  }
+
+  if (entrouEmCampo === false) {
+    penalidade += 10;
+  }
+
+  nota =
+    limitarValor(
+      nota - penalidade,
+      0,
+      100
+    );
+
+  return {
+    disponivel: true,
+    elegivel: true,
+    viavel: true,
+    titularProvavel,
+    nota,
+    penalidade,
+    classificacao:
+      nota >= 75
+        ? "alta"
+        : nota >= 50
+          ? "media"
+          : "baixa",
+    motivos
+  };
+}
+
+
+/* =========================================================
+   10. TITULARIDADE PROVÁVEL
+   ========================================================= */
+
+function inferirTitularidade(
+  jogador
+) {
+  if (!jogador) {
+    return false;
+  }
+
+  const camposBooleanos = [
+    jogador.titular,
+    jogador.titularProvavel,
+    jogador.provavelTitular,
+    jogador.escaladoComoTitular
+  ];
+
+  const booleano =
+    primeiroBooleanoValido(
+      camposBooleanos
+    );
+
+  if (booleano !== null) {
+    return booleano;
+  }
+
+  const titularidade =
+    numeroSeguro(
+      jogador.titularidade
+    );
+
+  if (titularidade >= 70) {
+    return true;
+  }
+
+  const minutos =
+    numeroSeguro(
+      jogador.minutosEsperados
+    );
+
+  if (minutos >= 70) {
+    return true;
+  }
+
+  const statusId =
+    Number(
+      jogador.statusId
+    );
+
+  if (statusId === 7) {
+    return true;
+  }
+
+  return false;
+}
+
+
+/* =========================================================
+   11. JOGADOR VIÁVEL PARA O RANKING
+   ========================================================= */
+
+function jogadorEhViavelParaRanking(
+  jogador
+) {
+  const viabilidade =
+    obterViabilidadeRanking(
+      jogador
+    );
+
+  if (
+    viabilidade.disponivel ===
+    false
+  ) {
+    return false;
+  }
+
+  if (
+    viabilidade.elegivel ===
+    false
+  ) {
+    return false;
+  }
+
+  if (
+    viabilidade.viavel ===
+    false
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+
+/* =========================================================
+   12. NOTA DE VIABILIDADE PARA ORDENAÇÃO
+   ========================================================= */
+
+function obterNotaViabilidadeRanking(
+  jogador
+) {
+  const viabilidade =
+    obterViabilidadeRanking(
+      jogador
+    );
+
+  let nota =
+    numeroSeguro(
+      viabilidade.nota
+    );
+
+  if (
+    viabilidade.titularProvavel
+  ) {
+    nota += 10;
+  }
+
+  if (
+    viabilidade.disponivel ===
+    false
+  ) {
+    nota -= 100;
+  }
+
+  if (
+    viabilidade.elegivel ===
+    false
+  ) {
+    nota -= 100;
+  }
+
+  if (
+    viabilidade.viavel ===
+    false
+  ) {
+    nota -= 100;
+  }
+
+  nota -=
+    numeroSeguro(
+      viabilidade.penalidade
+    );
+
+  return nota;
+}
+
+
+/* =========================================================
+   13. PROJEÇÃO UTILIZADA NO RANKING
    ========================================================= */
 
 function obterProjecaoRanking(
@@ -279,10 +831,76 @@ function obterProjecaoRanking(
 }
 
 
+/* =========================================================
+   14. ORDENAÇÃO DO RANKING
+
+   Prioridade:
+   1. Disponibilidade/elegibilidade
+   2. Titularidade provável
+   3. Viabilidade
+   4. Projeção
+   5. Nota estatística
+   6. Confiança
+   7. Menor risco
+
+   A projeção continua muito importante, mas um jogador
+   com projeção alta não deve superar automaticamente
+   outro muito mais seguro para a rodada.
+   ========================================================= */
+
 function compararJogadoresRanking(
   jogadorA,
   jogadorB
 ) {
+  const viabilidadeA =
+    obterViabilidadeRanking(
+      jogadorA
+    );
+
+  const viabilidadeB =
+    obterViabilidadeRanking(
+      jogadorB
+    );
+
+  const aptoA =
+    viabilidadeA.disponivel !== false &&
+    viabilidadeA.elegivel !== false &&
+    viabilidadeA.viavel !== false;
+
+  const aptoB =
+    viabilidadeB.disponivel !== false &&
+    viabilidadeB.elegivel !== false &&
+    viabilidadeB.viavel !== false;
+
+  if (aptoA !== aptoB) {
+    return aptoA ? -1 : 1;
+  }
+
+  if (
+    viabilidadeA.titularProvavel !==
+    viabilidadeB.titularProvavel
+  ) {
+    return viabilidadeA.titularProvavel
+      ? -1
+      : 1;
+  }
+
+  const diferencaViabilidade =
+    obterNotaViabilidadeRanking(
+      jogadorB
+    ) -
+    obterNotaViabilidadeRanking(
+      jogadorA
+    );
+
+  if (
+    Math.abs(
+      diferencaViabilidade
+    ) >= 10
+  ) {
+    return diferencaViabilidade;
+  }
+
   const diferencaProjecao =
     obterProjecaoRanking(
       jogadorB
@@ -295,9 +913,25 @@ function compararJogadoresRanking(
     return diferencaProjecao;
   }
 
+  const diferencaNota =
+    obterNotaRanking(
+      jogadorB
+    ) -
+    obterNotaRanking(
+      jogadorA
+    );
+
+  if (diferencaNota !== 0) {
+    return diferencaNota;
+  }
+
   const diferencaScore =
-    numeroSeguro(jogadorB.score) -
-    numeroSeguro(jogadorA.score);
+    numeroSeguro(
+      jogadorB.score
+    ) -
+    numeroSeguro(
+      jogadorA.score
+    );
 
   if (diferencaScore !== 0) {
     return diferencaScore;
@@ -316,18 +950,26 @@ function compararJogadoresRanking(
   }
 
   const diferencaRisco =
-    numeroSeguro(jogadorA.risco) -
-    numeroSeguro(jogadorB.risco);
+    numeroSeguro(
+      jogadorA.risco
+    ) -
+    numeroSeguro(
+      jogadorB.risco
+    );
 
   if (diferencaRisco !== 0) {
     return diferencaRisco;
   }
 
   return String(
-    jogadorA.nome || ""
+    jogadorA.nome ||
+    jogadorA.apelido ||
+    ""
   ).localeCompare(
     String(
-      jogadorB.nome || ""
+      jogadorB.nome ||
+      jogadorB.apelido ||
+      ""
     ),
     "pt-BR"
   );
@@ -335,7 +977,7 @@ function compararJogadoresRanking(
 
 
 /* =========================================================
-   8. NOTA UTILIZADA NO RANKING
+   15. NOTA UTILIZADA NO RANKING
    ========================================================= */
 
 function obterNotaRanking(
@@ -366,7 +1008,7 @@ function obterNotaRanking(
 
 
 /* =========================================================
-   9. INTEGRAÇÃO INICIAL COM O MOTOR
+   16. INTEGRAÇÃO COM O MOTOR ESTATÍSTICO
    ========================================================= */
 
 function calcularNotaJogadorComMotor(
@@ -403,7 +1045,7 @@ function calcularNotaJogadorComMotor(
 
 
 /* =========================================================
-   10. PREPARAÇÃO DAS NOTAS DO MOTOR
+   17. PREPARAÇÃO DAS NOTAS DO MOTOR
    ========================================================= */
 
 function obterNotasMotorDoJogador(
@@ -415,6 +1057,29 @@ function obterNotasMotorDoJogador(
     )
       ? jogador.componentes
       : {};
+
+  const viabilidade =
+    obterViabilidadeRanking(
+      jogador
+    );
+
+  const titularidadeBase =
+    obterNotaComponente(
+      componentes,
+      [
+        "titularidade",
+        "Titularidade"
+      ],
+      jogador?.titularidade
+    );
+
+  const titularidadeAjustada =
+    viabilidade.titularProvavel
+      ? Math.max(
+          titularidadeBase,
+          85
+        )
+      : titularidadeBase;
 
   return {
     formaRecente:
@@ -542,13 +1207,10 @@ function obterNotasMotorDoJogador(
       ),
 
     titularidade:
-      obterNotaComponente(
-        componentes,
-        [
-          "titularidade",
-          "Titularidade"
-        ],
-        jogador?.titularidade
+      limitarValor(
+        titularidadeAjustada,
+        0,
+        100
       ),
 
     minutosEsperados:
@@ -593,7 +1255,7 @@ function obterNotasMotorDoJogador(
 
 
 /* =========================================================
-   11. LEITURA FLEXÍVEL DOS COMPONENTES
+   18. LEITURA FLEXÍVEL DOS COMPONENTES
    ========================================================= */
 
 function obterNotaComponente(
@@ -628,7 +1290,7 @@ function obterNotaComponente(
 
 
 /* =========================================================
-   12. CONVERSÃO DE PONTUAÇÃO PARA NOTA
+   19. CONVERSÃO DE PONTUAÇÃO PARA NOTA
    ========================================================= */
 
 function converterPontuacaoEmNota(
@@ -648,7 +1310,7 @@ function converterPontuacaoEmNota(
 
 
 /* =========================================================
-   13. CONVERSÃO DOS MINUTOS
+   20. CONVERSÃO DOS MINUTOS
    ========================================================= */
 
 function converterMinutosEmNota(
@@ -671,7 +1333,7 @@ function converterMinutosEmNota(
 
 
 /* =========================================================
-   14. NOTAS BOOLEANAS
+   21. NOTAS BOOLEANAS
    ========================================================= */
 
 function obterNotaBooleana(
@@ -684,7 +1346,7 @@ function obterNotaBooleana(
 
 
 /* =========================================================
-   15. CUSTO-BENEFÍCIO NORMALIZADO
+   22. CUSTO-BENEFÍCIO NORMALIZADO
    ========================================================= */
 
 function converterCustoBeneficioEmNota(
@@ -704,7 +1366,7 @@ function converterCustoBeneficioEmNota(
 
 
 /* =========================================================
-   16. TENDÊNCIA RECENTE
+   23. TENDÊNCIA RECENTE
    ========================================================= */
 
 function obterNotaTendenciaJogador(
@@ -748,7 +1410,7 @@ function obterNotaTendenciaJogador(
 
 
 /* =========================================================
-   17. RISCO CONVERTIDO EM NOTA POSITIVA
+   24. RISCO CONVERTIDO EM NOTA POSITIVA
    Quanto menor o risco, maior a nota.
    ========================================================= */
 
@@ -795,7 +1457,106 @@ function converterRiscoEmNotaPositiva(
 
 
 /* =========================================================
-   18. NOME CURTO DO JOGADOR
+   25. UTILITÁRIOS DA VIABILIDADE
+   ========================================================= */
+
+function primeiroNumeroValido(
+  valores
+) {
+  for (const valor of valores) {
+    const numero =
+      Number(valor);
+
+    if (
+      Number.isFinite(numero)
+    ) {
+      return numero;
+    }
+  }
+
+  return null;
+}
+
+
+function primeiroBooleanoValido(
+  valores
+) {
+  for (const valor of valores) {
+    if (
+      typeof valor ===
+      "boolean"
+    ) {
+      return valor;
+    }
+
+    if (valor === 1) {
+      return true;
+    }
+
+    if (valor === 0) {
+      return false;
+    }
+
+    const texto =
+      normalizarTexto(
+        valor
+      );
+
+    if (
+      texto === "sim" ||
+      texto === "true" ||
+      texto === "titular" ||
+      texto === "provavel" ||
+      texto === "provável"
+    ) {
+      return true;
+    }
+
+    if (
+      texto === "nao" ||
+      texto === "não" ||
+      texto === "false" ||
+      texto === "reserva" ||
+      texto === "fora"
+    ) {
+      return false;
+    }
+  }
+
+  return null;
+}
+
+
+function normalizarListaMotivos(
+  valor
+) {
+  if (
+    Array.isArray(valor)
+  ) {
+    return valor
+      .map(
+        (item) =>
+          String(item).trim()
+      )
+      .filter(Boolean);
+  }
+
+  if (
+    typeof valor ===
+      "string" &&
+    valor.trim()
+  ) {
+    return [
+      valor.trim()
+    ];
+  }
+
+  return [];
+}
+
+
+/* =========================================================
+   26. NOME CURTO DO JOGADOR
    ========================================================= */
 
 function obterNomeCurtoRanking(
@@ -804,11 +1565,6 @@ function obterNomeCurtoRanking(
   if (!jogador) {
     return "Jogador";
   }
-
-  /*
-   * Primeira opção:
-   * apelido oficial fornecido pela API.
-   */
 
   const apelido =
     String(
@@ -819,15 +1575,6 @@ function obterNomeCurtoRanking(
   if (apelido) {
     return apelido;
   }
-
-  /*
-   * Segunda opção:
-   * nome do jogador.
-   *
-   * Quando houver mais de dois nomes,
-   * utiliza primeiro + último para
-   * evitar textos excessivamente longos.
-   */
 
   const nome =
     String(
@@ -858,7 +1605,31 @@ function obterNomeCurtoRanking(
 
 
 /* =========================================================
-   19. DESTAQUES DO TOPO
+   27. JOGADORES VIÁVEIS PARA DESTAQUES
+   ========================================================= */
+
+function obterJogadoresViaveisDestaques(
+  jogadores
+) {
+  const viaveis =
+    jogadores.filter(
+      jogadorEhViavelParaRanking
+    );
+
+  if (viaveis.length > 0) {
+    return viaveis;
+  }
+
+  return jogadores;
+}
+
+
+/* =========================================================
+   28. DESTAQUES DO TOPO
+
+   Os destaques também passam a respeitar viabilidade.
+   Assim evitamos mostrar como "maior projeção" um atleta
+   que o próprio sistema considera inadequado para a rodada.
    ========================================================= */
 
 function exibirDestaquesGerais() {
@@ -873,20 +1644,26 @@ function exibirDestaquesGerais() {
     return;
   }
 
+  const jogadoresConsiderados =
+    obterJogadoresViaveisDestaques(
+      jogadores
+    );
+
   const maiorProjecao =
-    [...jogadores].sort(
-      compararJogadoresRanking
-    )[0] || null;
+    [...jogadoresConsiderados]
+      .sort(
+        compararJogadoresRanking
+      )[0] || null;
 
   const maiorConfianca =
     obterMaiorPorCampo(
-      jogadores,
+      jogadoresConsiderados,
       "confiancaNumerica"
     );
 
   const melhorCustoBeneficio =
     obterMaiorPorCampo(
-      jogadores,
+      jogadoresConsiderados,
       "custoBeneficio"
     );
 
@@ -925,7 +1702,7 @@ function exibirDestaquesGerais() {
 
 
 /* =========================================================
-   20. MAIOR VALOR DE UM CAMPO
+   29. MAIOR VALOR DE UM CAMPO
    ========================================================= */
 
 function obterMaiorPorCampo(
@@ -945,7 +1722,7 @@ function obterMaiorPorCampo(
 
 
 /* =========================================================
-   21. EXIBIÇÃO DE UM DESTAQUE
+   30. EXIBIÇÃO DE UM DESTAQUE
    ========================================================= */
 
 function exibirDestaque(
@@ -971,7 +1748,7 @@ function exibirDestaque(
 
 
 /* =========================================================
-   22. LIMPEZA DOS DESTAQUES
+   31. LIMPEZA DOS DESTAQUES
    ========================================================= */
 
 function limparDestaquesGerais() {
@@ -1008,8 +1785,7 @@ function limparDestaquesGerais() {
 
 
 /* =========================================================
-   23. COMPARAÇÃO ENTRE COLOCAÇÕES
-   Preparado para o recurso:
+   32. COMPARAÇÃO ENTRE COLOCAÇÕES
    "Por que ficou em 1º e não em 2º?"
    ========================================================= */
 
@@ -1034,6 +1810,16 @@ function compararJogadoresDoRanking(
       jogadorB
     );
 
+  const viabilidadeA =
+    obterViabilidadeRanking(
+      jogadorA
+    );
+
+  const viabilidadeB =
+    obterViabilidadeRanking(
+      jogadorB
+    );
+
   const comparacao =
     typeof compararResultadosEstatisticos ===
     "function"
@@ -1043,12 +1829,10 @@ function compararJogadoresDoRanking(
         )
       : {
           vencedor:
-            obterNotaRanking(
-              jogadorA
-            ) >=
-            obterNotaRanking(
+            compararJogadoresRanking(
+              jogadorA,
               jogadorB
-            )
+            ) <= 0
               ? "A"
               : "B",
 
@@ -1084,7 +1868,22 @@ function compararJogadoresDoRanking(
         ),
 
       nota:
-        comparacao.notaA
+        comparacao.notaA,
+
+      projecao:
+        obterProjecaoRanking(
+          jogadorA
+        ),
+
+      viabilidade:
+        viabilidadeA.nota,
+
+      titularProvavel:
+        viabilidadeA
+          .titularProvavel,
+
+      motivosViabilidade:
+        viabilidadeA.motivos
     },
 
     jogadorB: {
@@ -1097,7 +1896,22 @@ function compararJogadoresDoRanking(
         ),
 
       nota:
-        comparacao.notaB
+        comparacao.notaB,
+
+      projecao:
+        obterProjecaoRanking(
+          jogadorB
+        ),
+
+      viabilidade:
+        viabilidadeB.nota,
+
+      titularProvavel:
+        viabilidadeB
+          .titularProvavel,
+
+      motivosViabilidade:
+        viabilidadeB.motivos
     },
 
     vencedor:
