@@ -2,7 +2,7 @@
 ======================================================
 CARTOLA ESTATÍSTICO
 
-Coleta de dados públicos da rodada atual.
+Coleta da rodada atual + contexto estatístico.
 
 Gera:
 
@@ -15,14 +15,26 @@ data/api/rodada-XX/
     jogadores.json
     resumo.json
 
+Contexto calculado usando APENAS rodadas anteriores:
+
+- mando;
+- adversário;
+- força do adversário;
+- pontos cedidos por posição;
+- chance histórica de SG;
+- titularidade estimada;
+- minutos esperados.
+
 ======================================================
 """
 
 from __future__ import annotations
 
 import json
+import math
 import sys
 
+from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -38,7 +50,9 @@ from urllib.request import (
 )
 
 
-API_BASE = "https://api.cartolafc.globo.com"
+API_BASE = (
+    "https://api.cartolafc.globo.com"
+)
 
 
 PASTA_RAIZ = (
@@ -49,7 +63,7 @@ PASTA_RAIZ = (
 )
 
 
-PASTA_DADOS = (
+PASTA_API = (
     PASTA_RAIZ
     / "data"
     / "api"
@@ -100,6 +114,103 @@ STATUS_INDISPONIVEIS = {
 }
 
 
+JANELA_CONTEXTO = 8
+
+JANELA_FORMA_CLUBE = 6
+
+JANELA_SG = 8
+
+
+# ======================================================
+# UTILITÁRIOS
+# ======================================================
+
+
+def para_inteiro(
+    valor: Any,
+) -> int | None:
+
+    try:
+
+        if valor is None:
+            return None
+
+        return int(
+            valor
+        )
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+
+        return None
+
+
+def para_float(
+    valor: Any,
+) -> float | None:
+
+    try:
+
+        if (
+            valor is None
+            or valor == ""
+        ):
+            return None
+
+        numero = float(
+            valor
+        )
+
+        if not math.isfinite(
+            numero
+        ):
+            return None
+
+        return numero
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+
+        return None
+
+
+def limitar(
+    valor: float,
+    minimo: float = 0.0,
+    maximo: float = 100.0,
+) -> float:
+
+    return max(
+        minimo,
+        min(
+            maximo,
+            valor,
+        ),
+    )
+
+
+def arredondar(
+    valor: Any,
+    casas: int = 2,
+) -> float | None:
+
+    numero = para_float(
+        valor
+    )
+
+    if numero is None:
+        return None
+
+    return round(
+        numero,
+        casas,
+    )
+
+
 # ======================================================
 # API
 # ======================================================
@@ -111,7 +222,8 @@ def buscar_json(
 ) -> Any:
 
     url = (
-        f"{API_BASE}{endpoint}"
+        API_BASE
+        + endpoint
     )
 
 
@@ -144,7 +256,6 @@ def buscar_json(
                 )
             )
 
-
             return json.loads(
                 conteudo
             )
@@ -153,31 +264,24 @@ def buscar_json(
     except HTTPError as erro:
 
         mensagem = (
-
             f"Erro HTTP {erro.code} "
             f"ao consultar {url}"
-
         )
 
 
     except URLError as erro:
 
         mensagem = (
-
             f"Erro de conexão "
             f"ao consultar {url}: "
             f"{erro.reason}"
-
         )
 
 
     except json.JSONDecodeError:
 
         mensagem = (
-
-            f"A API retornou JSON "
-            f"inválido em {url}"
-
+            f"JSON inválido em {url}"
         )
 
 
@@ -240,8 +344,30 @@ def salvar_json(
     )
 
 
+def carregar_json_seguro(
+    caminho: Path,
+) -> Any:
+
+    if not caminho.exists():
+
+        return None
+
+
+    try:
+
+        return json.loads(
+            caminho.read_text(
+                encoding="utf-8"
+            )
+        )
+
+    except Exception:
+
+        return None
+
+
 # ======================================================
-# RODADA
+# STATUS
 # ======================================================
 
 
@@ -250,38 +376,29 @@ def obter_numero_rodada(
 ) -> int:
 
     rodada = (
-
         status.get(
             "rodada_atual"
         )
-
         or
-
         status.get(
             "rodada"
         )
-
     )
 
 
-    try:
+    numero = para_inteiro(
+        rodada
+    )
 
-        return int(
-            rodada
+
+    if numero is None:
+
+        raise RuntimeError(
+            "Não foi possível identificar a rodada atual."
         )
 
 
-    except (
-        TypeError,
-        ValueError,
-    ) as erro:
-
-        raise RuntimeError(
-
-            "Não foi possível "
-            "identificar a rodada atual."
-
-        ) from erro
+    return numero
 
 
 # ======================================================
@@ -289,27 +406,15 @@ def obter_numero_rodada(
 # ======================================================
 
 
-def para_inteiro(
-    valor: Any,
-) -> int | None:
-
-    try:
-
-        return int(
-            valor
-        )
-
-    except (
-        TypeError,
-        ValueError,
-    ):
-
-        return None
-
-
 def indexar_clubes(
     mercado: dict[str, Any],
 ) -> dict[int, dict[str, Any]]:
+
+    resultado: dict[
+        int,
+        dict[str, Any]
+    ] = {}
+
 
     clubes = (
         mercado.get(
@@ -320,12 +425,6 @@ def indexar_clubes(
     )
 
 
-    resultado: dict[
-        int,
-        dict[str, Any]
-    ] = {}
-
-
     if not isinstance(
         clubes,
         dict,
@@ -334,15 +433,15 @@ def indexar_clubes(
         return resultado
 
 
-    for clube_id, clube in clubes.items():
+    for chave, clube in clubes.items():
 
-        id_numerico = para_inteiro(
-            clube_id
+        clube_id = para_inteiro(
+            chave
         )
 
 
         if (
-            id_numerico is None
+            clube_id is None
             or not isinstance(
                 clube,
                 dict,
@@ -353,61 +452,8 @@ def indexar_clubes(
 
 
         resultado[
-            id_numerico
+            clube_id
         ] = clube
-
-
-    return resultado
-
-
-def indexar_posicoes(
-    mercado: dict[str, Any],
-) -> dict[int, dict[str, Any]]:
-
-    posicoes = (
-        mercado.get(
-            "posicoes",
-            {},
-        )
-        or {}
-    )
-
-
-    resultado: dict[
-        int,
-        dict[str, Any]
-    ] = {}
-
-
-    if not isinstance(
-        posicoes,
-        dict,
-    ):
-
-        return resultado
-
-
-    for posicao_id, posicao in posicoes.items():
-
-        id_numerico = para_inteiro(
-            posicao_id
-        )
-
-
-        if (
-            id_numerico is None
-            or not isinstance(
-                posicao,
-                dict,
-            )
-        ):
-
-            continue
-
-
-        resultado[
-            id_numerico
-        ] = posicao
 
 
     return resultado
@@ -423,15 +469,10 @@ def obter_nome_clube(
 
 
     return str(
-
         clube.get(
             "nome"
         )
-
-        or
-
-        ""
-
+        or ""
     )
 
 
@@ -445,21 +486,14 @@ def obter_sigla_clube(
 
 
     return str(
-
         clube.get(
             "abreviacao"
         )
-
         or
-
         clube.get(
             "nome"
         )
-
-        or
-
-        ""
-
+        or ""
     )
 
 
@@ -478,16 +512,12 @@ def extrair_lista_partidas(
     ):
 
         return [
-
             partida
-
             for partida in partidas
-
             if isinstance(
                 partida,
                 dict,
             )
-
         ]
 
 
@@ -507,16 +537,12 @@ def extrair_lista_partidas(
         ):
 
             return [
-
                 partida
-
                 for partida in lista
-
                 if isinstance(
                     partida,
                     dict,
                 )
-
             ]
 
 
@@ -573,6 +599,82 @@ def obter_id_clube_visitante(
     )
 
 
+def obter_placar_casa(
+    partida: dict[str, Any],
+) -> float | None:
+
+    candidatos = [
+
+        partida.get(
+            "placar_oficial_mandante"
+        ),
+
+        partida.get(
+            "placar_mandante"
+        ),
+
+        partida.get(
+            "gols_mandante"
+        ),
+
+        partida.get(
+            "placarCasa"
+        ),
+
+    ]
+
+
+    for valor in candidatos:
+
+        numero = para_float(
+            valor
+        )
+
+        if numero is not None:
+            return numero
+
+
+    return None
+
+
+def obter_placar_visitante(
+    partida: dict[str, Any],
+) -> float | None:
+
+    candidatos = [
+
+        partida.get(
+            "placar_oficial_visitante"
+        ),
+
+        partida.get(
+            "placar_visitante"
+        ),
+
+        partida.get(
+            "gols_visitante"
+        ),
+
+        partida.get(
+            "placarVisitante"
+        ),
+
+    ]
+
+
+    for valor in candidatos:
+
+        numero = para_float(
+            valor
+        )
+
+        if numero is not None:
+            return numero
+
+
+    return None
+
+
 def obter_data_partida(
     partida: dict[str, Any],
 ) -> Any:
@@ -619,41 +721,35 @@ def criar_contexto_partidas(
         partidas
     ):
 
-        clube_casa_id = (
-            obter_id_clube_casa(
-                partida
-            )
+        casa = obter_id_clube_casa(
+            partida
         )
 
-
-        clube_visitante_id = (
-            obter_id_clube_visitante(
-                partida
-            )
+        visitante = obter_id_clube_visitante(
+            partida
         )
 
 
         if (
-            clube_casa_id is None
-            or clube_visitante_id is None
+            casa is None
+            or visitante is None
         ):
 
             continue
 
 
         clube_casa = clubes.get(
-            clube_casa_id,
+            casa,
             {},
         )
-
 
         clube_visitante = clubes.get(
-            clube_visitante_id,
+            visitante,
             {},
         )
 
 
-        dados_comuns = {
+        comuns = {
 
             "partidaId":
                 (
@@ -688,16 +784,16 @@ def criar_contexto_partidas(
 
 
         resultado[
-            clube_casa_id
+            casa
         ] = {
 
-            **dados_comuns,
+            **comuns,
 
             "mando":
                 "casa",
 
             "adversarioId":
-                clube_visitante_id,
+                visitante,
 
             "adversario":
                 obter_nome_clube(
@@ -713,16 +809,16 @@ def criar_contexto_partidas(
 
 
         resultado[
-            clube_visitante_id
+            visitante
         ] = {
 
-            **dados_comuns,
+            **comuns,
 
             "mando":
                 "fora",
 
             "adversarioId":
-                clube_casa_id,
+                casa,
 
             "adversario":
                 obter_nome_clube(
@@ -735,6 +831,600 @@ def criar_contexto_partidas(
                 ),
 
         }
+
+
+    return resultado
+
+
+# ======================================================
+# HISTÓRICO DISPONÍVEL
+# ======================================================
+
+
+def obter_pastas_historicas(
+    rodada_atual: int,
+) -> list[tuple[int, Path]]:
+
+    resultado = []
+
+
+    for pasta in PASTA_API.glob(
+        "rodada-*"
+    ):
+
+        if not pasta.is_dir():
+            continue
+
+
+        rodada = para_inteiro(
+            pasta.name.replace(
+                "rodada-",
+                "",
+            )
+        )
+
+
+        if (
+            rodada is None
+            or rodada >= rodada_atual
+        ):
+
+            continue
+
+
+        resultado.append(
+            (
+                rodada,
+                pasta,
+            )
+        )
+
+
+    resultado.sort(
+        key=lambda item:
+            item[0]
+    )
+
+
+    return resultado
+
+
+# ======================================================
+# FORMA DOS CLUBES
+# ======================================================
+
+
+def montar_historico_partidas(
+    rodada_atual: int,
+) -> dict[int, list[dict[str, Any]]]:
+
+    por_clube: dict[
+        int,
+        list[dict[str, Any]]
+    ] = defaultdict(list)
+
+
+    for rodada, pasta in obter_pastas_historicas(
+        rodada_atual
+    ):
+
+        dados = carregar_json_seguro(
+            pasta
+            /
+            "partidas.json"
+        )
+
+
+        for partida in extrair_lista_partidas(
+            dados
+        ):
+
+            casa = obter_id_clube_casa(
+                partida
+            )
+
+            visitante = obter_id_clube_visitante(
+                partida
+            )
+
+            gols_casa = obter_placar_casa(
+                partida
+            )
+
+            gols_visitante = obter_placar_visitante(
+                partida
+            )
+
+
+            if (
+                casa is None
+                or visitante is None
+                or gols_casa is None
+                or gols_visitante is None
+            ):
+
+                continue
+
+
+            if gols_casa > gols_visitante:
+
+                pontos_casa = 3
+                pontos_visitante = 0
+
+            elif gols_casa < gols_visitante:
+
+                pontos_casa = 0
+                pontos_visitante = 3
+
+            else:
+
+                pontos_casa = 1
+                pontos_visitante = 1
+
+
+            por_clube[casa].append({
+
+                "rodada":
+                    rodada,
+
+                "mando":
+                    "casa",
+
+                "adversarioId":
+                    visitante,
+
+                "golsPro":
+                    gols_casa,
+
+                "golsContra":
+                    gols_visitante,
+
+                "pontos":
+                    pontos_casa,
+
+                "sg":
+                    gols_visitante == 0,
+
+            })
+
+
+            por_clube[visitante].append({
+
+                "rodada":
+                    rodada,
+
+                "mando":
+                    "fora",
+
+                "adversarioId":
+                    casa,
+
+                "golsPro":
+                    gols_visitante,
+
+                "golsContra":
+                    gols_casa,
+
+                "pontos":
+                    pontos_visitante,
+
+                "sg":
+                    gols_casa == 0,
+
+            })
+
+
+    return dict(
+        por_clube
+    )
+
+
+def calcular_forca_clubes(
+    historico_partidas: dict[
+        int,
+        list[dict[str, Any]]
+    ],
+) -> dict[int, float]:
+
+    resultado: dict[
+        int,
+        float
+    ] = {}
+
+
+    for clube_id, jogos in historico_partidas.items():
+
+        recentes = jogos[
+            -JANELA_FORMA_CLUBE:
+        ]
+
+
+        if not recentes:
+
+            continue
+
+
+        pontos_possiveis = (
+            len(recentes)
+            * 3
+        )
+
+
+        pontos = sum(
+            para_float(
+                jogo.get(
+                    "pontos"
+                )
+            )
+            or 0
+            for jogo in recentes
+        )
+
+
+        saldo_medio = sum(
+            (
+                para_float(
+                    jogo.get(
+                        "golsPro"
+                    )
+                )
+                or 0
+            )
+            -
+            (
+                para_float(
+                    jogo.get(
+                        "golsContra"
+                    )
+                )
+                or 0
+            )
+            for jogo in recentes
+        ) / len(recentes)
+
+
+        aproveitamento = (
+            pontos
+            /
+            pontos_possiveis
+            if pontos_possiveis > 0
+            else 0.5
+        )
+
+
+        nota = (
+            50
+            +
+            (
+                aproveitamento
+                -
+                0.5
+            )
+            *
+            70
+            +
+            saldo_medio
+            *
+            9
+        )
+
+
+        resultado[
+            clube_id
+        ] = limitar(
+            nota
+        )
+
+
+    return resultado
+
+
+# ======================================================
+# PONTOS CEDIDOS POR POSIÇÃO
+# ======================================================
+
+
+def montar_pontos_cedidos(
+    rodada_atual: int,
+) -> dict[
+    tuple[int, str],
+    dict[str, Any]
+]:
+
+    por_chave: dict[
+        tuple[int, str],
+        list[tuple[int, float]]
+    ] = defaultdict(list)
+
+
+    for rodada, pasta in obter_pastas_historicas(
+        rodada_atual
+    ):
+
+        jogadores = carregar_json_seguro(
+            pasta
+            /
+            "jogadores.json"
+        )
+
+
+        if not isinstance(
+            jogadores,
+            list,
+        ):
+
+            continue
+
+
+        totais_rodada: dict[
+            tuple[int, str],
+            float
+        ] = defaultdict(float)
+
+
+        for jogador in jogadores:
+
+            if not isinstance(
+                jogador,
+                dict,
+            ):
+
+                continue
+
+
+            adversario_id = para_inteiro(
+                jogador.get(
+                    "adversarioId"
+                )
+            )
+
+
+            posicao = str(
+                jogador.get(
+                    "posicao"
+                )
+                or ""
+            ).upper()
+
+
+            pontos = para_float(
+                jogador.get(
+                    "pontuacaoReal"
+                )
+            )
+
+
+            entrou = jogador.get(
+                "entrouEmCampo"
+            )
+
+
+            if (
+                adversario_id is None
+                or not posicao
+                or pontos is None
+                or entrou is False
+            ):
+
+                continue
+
+
+            totais_rodada[
+                (
+                    adversario_id,
+                    posicao,
+                )
+            ] += pontos
+
+
+        for chave, total in totais_rodada.items():
+
+            por_chave[
+                chave
+            ].append(
+                (
+                    rodada,
+                    total,
+                )
+            )
+
+
+    resultado: dict[
+        tuple[int, str],
+        dict[str, Any]
+    ] = {}
+
+
+    for chave, registros in por_chave.items():
+
+        recentes = registros[
+            -JANELA_CONTEXTO:
+        ]
+
+
+        valores = [
+            valor
+            for _, valor in recentes
+        ]
+
+
+        if not valores:
+            continue
+
+
+        resultado[
+            chave
+        ] = {
+
+            "media":
+                sum(
+                    valores
+                )
+                /
+                len(
+                    valores
+                ),
+
+            "amostra":
+                len(
+                    valores
+                ),
+
+        }
+
+
+    return resultado
+
+
+def normalizar_pontos_cedidos(
+    dados: dict[
+        tuple[int, str],
+        dict[str, Any]
+    ],
+) -> dict[
+    tuple[int, str],
+    float
+]:
+
+    por_posicao: dict[
+        str,
+        list[
+            tuple[
+                tuple[int, str],
+                float,
+            ]
+        ]
+    ] = defaultdict(list)
+
+
+    for chave, item in dados.items():
+
+        media_valor = para_float(
+            item.get(
+                "media"
+            )
+        )
+
+
+        if media_valor is None:
+            continue
+
+
+        por_posicao[
+            chave[1]
+        ].append(
+            (
+                chave,
+                media_valor,
+            )
+        )
+
+
+    resultado: dict[
+        tuple[int, str],
+        float
+    ] = {}
+
+
+    for posicao, itens in por_posicao.items():
+
+        del posicao
+
+        valores = [
+            valor
+            for _, valor in itens
+        ]
+
+
+        minimo = min(
+            valores
+        )
+
+        maximo = max(
+            valores
+        )
+
+
+        for chave, valor in itens:
+
+            if maximo == minimo:
+
+                nota = 50.0
+
+            else:
+
+                nota = (
+                    (
+                        valor
+                        -
+                        minimo
+                    )
+                    /
+                    (
+                        maximo
+                        -
+                        minimo
+                    )
+                ) * 100
+
+
+            resultado[
+                chave
+            ] = limitar(
+                nota
+            )
+
+
+    return resultado
+
+
+# ======================================================
+# CHANCE DE SG
+# ======================================================
+
+
+def calcular_chance_sg_clubes(
+    historico_partidas: dict[
+        int,
+        list[dict[str, Any]]
+    ],
+) -> dict[int, float]:
+
+    resultado: dict[
+        int,
+        float
+    ] = {}
+
+
+    for clube_id, jogos in historico_partidas.items():
+
+        recentes = jogos[
+            -JANELA_SG:
+        ]
+
+
+        if not recentes:
+            continue
+
+
+        limpos = sum(
+            1
+            for jogo in recentes
+            if jogo.get(
+                "sg"
+            ) is True
+        )
+
+
+        resultado[
+            clube_id
+        ] = (
+            limpos
+            /
+            len(
+                recentes
+            )
+        ) * 100
 
 
     return resultado
@@ -803,7 +1493,7 @@ def obter_pontuacao_atleta(
 
 
 # ======================================================
-# TITULARIDADE
+# TITULARIDADE / MINUTOS
 # ======================================================
 
 
@@ -852,7 +1542,7 @@ def estimar_minutos(
 
 
 # ======================================================
-# NORMALIZAÇÃO
+# NORMALIZAÇÃO DOS JOGADORES
 # ======================================================
 
 
@@ -877,11 +1567,6 @@ def normalizar_atletas(
     )
 
 
-    posicoes_api = indexar_posicoes(
-        mercado
-    )
-
-
     contexto_partidas = (
         criar_contexto_partidas(
             partidas,
@@ -893,6 +1578,41 @@ def normalizar_atletas(
     pontuacoes = (
         indexar_pontuados(
             pontuados
+        )
+    )
+
+
+    historico_partidas = (
+        montar_historico_partidas(
+            rodada
+        )
+    )
+
+
+    forca_clubes = (
+        calcular_forca_clubes(
+            historico_partidas
+        )
+    )
+
+
+    pontos_cedidos = (
+        montar_pontos_cedidos(
+            rodada
+        )
+    )
+
+
+    notas_pontos_cedidos = (
+        normalizar_pontos_cedidos(
+            pontos_cedidos
+        )
+    )
+
+
+    chance_sg_clubes = (
+        calcular_chance_sg_clubes(
+            historico_partidas
         )
     )
 
@@ -923,34 +1643,22 @@ def normalizar_atletas(
 
 
         posicao_id = para_inteiro(
-
             atleta.get(
                 "posicao_id"
             )
-
         )
 
 
         clube_id = para_inteiro(
-
             atleta.get(
                 "clube_id"
             )
-
         )
 
 
         clube = clubes.get(
             clube_id,
             {},
-        )
-
-
-        posicao_api = (
-            posicoes_api.get(
-                posicao_id,
-                {},
-            )
         )
 
 
@@ -970,21 +1678,18 @@ def normalizar_atletas(
         )
 
 
-        codigo_posicao = (
-
-            POSICOES.get(
-                posicao_id
+        adversario_id = para_inteiro(
+            contexto.get(
+                "adversarioId"
             )
+        )
 
-            or
 
-            str(
-                posicao_api.get(
-                    "abreviacao"
-                )
-                or ""
-            ).upper()
-
+        posicao = (
+            POSICOES.get(
+                posicao_id,
+                "",
+            )
         )
 
 
@@ -1012,6 +1717,103 @@ def normalizar_atletas(
         )
 
 
+        forca_adversario_bruta = (
+            forca_clubes.get(
+                adversario_id
+            )
+            if adversario_id is not None
+            else None
+        )
+
+
+        nota_forca_adversario = (
+            (
+                100
+                -
+                forca_adversario_bruta
+            )
+            if forca_adversario_bruta is not None
+            else None
+        )
+
+
+        mando = contexto.get(
+            "mando"
+        )
+
+
+        if (
+            nota_forca_adversario
+            is not None
+        ):
+
+            if mando == "casa":
+
+                nota_forca_adversario += 5
+
+            elif mando == "fora":
+
+                nota_forca_adversario -= 5
+
+
+            nota_forca_adversario = limitar(
+                nota_forca_adversario
+            )
+
+
+        chave_pontos_cedidos = (
+            (
+                adversario_id,
+                posicao,
+            )
+            if adversario_id is not None
+            else None
+        )
+
+
+        pontos_cedidos_item = (
+            pontos_cedidos.get(
+                chave_pontos_cedidos
+            )
+            if chave_pontos_cedidos
+            else None
+        )
+
+
+        nota_pontos_cedidos = (
+            notas_pontos_cedidos.get(
+                chave_pontos_cedidos
+            )
+            if chave_pontos_cedidos
+            else None
+        )
+
+
+        chance_sg = (
+            chance_sg_clubes.get(
+                clube_id
+            )
+            if clube_id is not None
+            else None
+        )
+
+
+        if chance_sg is not None:
+
+            if mando == "casa":
+
+                chance_sg += 5
+
+            elif mando == "fora":
+
+                chance_sg -= 5
+
+
+            chance_sg = limitar(
+                chance_sg
+            )
+
+
         jogador = {
 
             "id":
@@ -1036,7 +1838,7 @@ def normalizar_atletas(
                 ),
 
             "posicao":
-                codigo_posicao,
+                posicao,
 
             "posicaoId":
                 posicao_id,
@@ -1103,15 +1905,15 @@ def normalizar_atletas(
             "scouts":
                 scouts,
 
+            # ==========================================
+            # CONFRONTO
+            # ==========================================
+
             "mando":
-                contexto.get(
-                    "mando"
-                ),
+                mando,
 
             "adversarioId":
-                contexto.get(
-                    "adversarioId"
-                ),
+                adversario_id,
 
             "adversario":
                 contexto.get(
@@ -1143,6 +1945,10 @@ def normalizar_atletas(
                     "dataPartida"
                 ),
 
+            # ==========================================
+            # TITULARIDADE
+            # ==========================================
+
             "titularidade":
                 estimar_titularidade(
                     status_id
@@ -1151,6 +1957,55 @@ def normalizar_atletas(
             "minutosEsperados":
                 estimar_minutos(
                     status_id
+                ),
+
+            # ==========================================
+            # CONTEXTO ESTATÍSTICO
+            # ==========================================
+
+            "forcaAdversarioIndice":
+                arredondar(
+                    forca_adversario_bruta
+                ),
+
+            "notaForcaAdversario":
+                arredondar(
+                    nota_forca_adversario
+                ),
+
+            "pontosCedidosMediaPosicao":
+                arredondar(
+                    (
+                        pontos_cedidos_item
+                        or {}
+                    ).get(
+                        "media"
+                    )
+                ),
+
+            "pontosCedidosAmostra":
+                (
+                    pontos_cedidos_item
+                    or {}
+                ).get(
+                    "amostra",
+                    0,
+                ),
+
+            "pontosCedidosNota":
+                arredondar(
+                    nota_pontos_cedidos
+                ),
+
+            "chanceSG":
+                arredondar(
+                    chance_sg
+                ),
+
+            "contextoCalculadoAteRodada":
+                max(
+                    0,
+                    rodada - 1,
                 ),
 
         }
@@ -1176,19 +2031,6 @@ def criar_resumo(
     jogadores: list[dict[str, Any]],
 ) -> dict[str, Any]:
 
-    pontuados = [
-
-        jogador
-
-        for jogador in jogadores
-
-        if jogador.get(
-            "pontuacaoReal"
-        ) is not None
-
-    ]
-
-
     com_confronto = [
 
         jogador
@@ -1197,6 +2039,45 @@ def criar_resumo(
 
         if jogador.get(
             "adversarioId"
+        ) is not None
+
+    ]
+
+
+    com_forca = [
+
+        jogador
+
+        for jogador in jogadores
+
+        if jogador.get(
+            "notaForcaAdversario"
+        ) is not None
+
+    ]
+
+
+    com_pontos_cedidos = [
+
+        jogador
+
+        for jogador in jogadores
+
+        if jogador.get(
+            "pontosCedidosNota"
+        ) is not None
+
+    ]
+
+
+    com_sg = [
+
+        jogador
+
+        for jogador in jogadores
+
+        if jogador.get(
+            "chanceSG"
         ) is not None
 
     ]
@@ -1227,15 +2108,28 @@ def criar_resumo(
                 or []
             ),
 
-        "quantidadePontuados":
-            len(
-                pontuados
-            ),
-
         "quantidadeComConfronto":
             len(
                 com_confronto
             ),
+
+        "quantidadeComForcaAdversario":
+            len(
+                com_forca
+            ),
+
+        "quantidadeComPontosCedidos":
+            len(
+                com_pontos_cedidos
+            ),
+
+        "quantidadeComChanceSG":
+            len(
+                com_sg
+            ),
+
+        "contextoSomenteRodadasAnteriores":
+            True,
 
         "dadosDemonstrativos":
             False,
@@ -1266,11 +2160,9 @@ def executar() -> None:
 
 
     pasta_rodada = (
-
-        PASTA_DADOS
+        PASTA_API
         /
         f"rodada-{rodada:02d}"
-
     )
 
 
@@ -1336,8 +2228,9 @@ def executar() -> None:
 
     salvar_json(
 
-        PASTA_DADOS
-        / "status.json",
+        PASTA_API
+        /
+        "status.json",
 
         status,
 
@@ -1347,7 +2240,8 @@ def executar() -> None:
     salvar_json(
 
         pasta_rodada
-        / "mercado.json",
+        /
+        "mercado.json",
 
         mercado,
 
@@ -1357,7 +2251,8 @@ def executar() -> None:
     salvar_json(
 
         pasta_rodada
-        / "partidas.json",
+        /
+        "partidas.json",
 
         partidas
         or {},
@@ -1368,7 +2263,8 @@ def executar() -> None:
     salvar_json(
 
         pasta_rodada
-        / "pontuados.json",
+        /
+        "pontuados.json",
 
         pontuados
         or {},
@@ -1379,7 +2275,8 @@ def executar() -> None:
     salvar_json(
 
         pasta_rodada
-        / "jogadores.json",
+        /
+        "jogadores.json",
 
         jogadores,
 
@@ -1389,7 +2286,8 @@ def executar() -> None:
     salvar_json(
 
         pasta_rodada
-        / "resumo.json",
+        /
+        "resumo.json",
 
         resumo,
 
@@ -1397,18 +2295,63 @@ def executar() -> None:
 
 
     print(
-
-        f"Coleta da rodada {rodada} concluída: "
-        f"{len(jogadores)} jogadores."
-
+        ""
     )
 
+    print(
+        "============================================"
+    )
 
     print(
+        f"COLETA DA RODADA {rodada} CONCLUÍDA"
+    )
 
-        "Jogadores com adversário/mando: "
-        f"{resumo['quantidadeComConfronto']}"
+    print(
+        "============================================"
+    )
 
+    print(
+        "Jogadores:",
+        len(
+            jogadores
+        ),
+    )
+
+    print(
+        "Com confronto:",
+        resumo[
+            "quantidadeComConfronto"
+        ],
+    )
+
+    print(
+        "Com força adversário:",
+        resumo[
+            "quantidadeComForcaAdversario"
+        ],
+    )
+
+    print(
+        "Com pontos cedidos:",
+        resumo[
+            "quantidadeComPontosCedidos"
+        ],
+    )
+
+    print(
+        "Com chance SG:",
+        resumo[
+            "quantidadeComChanceSG"
+        ],
+    )
+
+    print(
+        "Contexto calculado somente até R",
+        rodada - 1,
+    )
+
+    print(
+        "============================================"
     )
 
 
