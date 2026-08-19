@@ -949,10 +949,6 @@ function obterPatrimonioSelecionadoEscalacoes() {
       LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
     );
 
-         patrimonio,
-      LIMITE_PATRIMONIO_MAXIMO_ESCALACAO
-    );
-
   }
 
 
