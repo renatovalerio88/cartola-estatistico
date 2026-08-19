@@ -6,22 +6,22 @@
   "historico": [
     {
       "rodada": 1,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 2,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 12.5,
       "scouts": {
         "DS": 5,
@@ -30,36 +30,36 @@
     },
     {
       "rodada": 4,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 8,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -69,64 +69,64 @@
     },
     {
       "rodada": 9,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 11,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 0.1,
       "scouts": {
         "CA": 1,
@@ -137,15 +137,15 @@
     },
     {
       "rodada": 18,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 7.4,
       "scouts": {
         "DS": 3,
@@ -155,8 +155,8 @@
     },
     {
       "rodada": 20,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 1.6,
       "scouts": {
         "DS": 1,
@@ -166,8 +166,8 @@
     },
     {
       "rodada": 21,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 9.5,
       "scouts": {
         "DS": 3,
@@ -176,8 +176,8 @@
     },
     {
       "rodada": 22,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 8.9,
       "scouts": {
         "DS": 2,
@@ -189,14 +189,21 @@
     },
     {
       "rodada": 23,
-      "preco": 9.35,
-      "media": 5.96,
+      "preco": 8.66,
+      "media": 5.75,
       "pontos": 4.3,
       "scouts": {
         "DS": 2,
         "FF": 1,
         "FS": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": 8.66,
+      "media": 5.75,
+      "pontos": 4.3,
+      "scouts": {}
     }
   ]
 }

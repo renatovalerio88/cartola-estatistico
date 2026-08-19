@@ -6,141 +6,141 @@
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 2,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 4,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 8,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 11,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 18,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": 11,
       "scouts": {
         "CA": 1,
@@ -151,15 +151,15 @@
     },
     {
       "rodada": 21,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": 3.9,
       "scouts": {
         "DE": 3,
@@ -169,14 +169,21 @@
     },
     {
       "rodada": 23,
-      "preco": 6.32,
-      "media": 7.45,
+      "preco": 6.12,
+      "media": 5.67,
       "pontos": 2.1,
       "scouts": {
         "DE": 2,
         "FS": 1,
         "GS": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": 6.12,
+      "media": 5.67,
+      "pontos": 2.1,
+      "scouts": {}
     }
   ]
 }
