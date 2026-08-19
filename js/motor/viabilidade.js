@@ -855,13 +855,240 @@ const MotorViabilidade = (() => {
 
 
   /* =======================================================
+     ADEQUAÇÃO À RODADA
+     ======================================================= */
+
+
+  function calcularAdequacaoRodada(
+    jogador,
+    titularidade,
+    riscoEscalacao
+  ) {
+
+    if (
+      typeof MotorAdequacaoRodada === "undefined" ||
+      !MotorAdequacaoRodada ||
+      typeof MotorAdequacaoRodada.calcular !== "function"
+    ) {
+
+      return {
+        disponivel: false,
+        nota: null,
+        classificacao: "SEM_DADOS",
+        cobertura: 0,
+        fatorRanking: 1,
+        elegivel: true,
+        componentes: {},
+        pesos: {},
+        pontosFortes: [],
+        alertas: [],
+        principalMotivo: null,
+        justificativa: "Motor de adequação à rodada não disponível."
+      };
+
+    }
+
+
+    const jogadorContextualizado = {
+      ...jogador,
+      titularidade,
+      riscoEscalacao,
+      viabilidade: {
+        ...(jogador?.viabilidade ?? {}),
+        titularidade,
+        riscoEscalacao
+      }
+    };
+
+
+    try {
+
+      const resultado =
+        MotorAdequacaoRodada.calcular(
+          jogadorContextualizado
+        );
+
+
+      if (
+        !resultado ||
+        typeof resultado !== "object"
+      ) {
+
+        throw new Error(
+          "Resultado inválido do motor de adequação."
+        );
+
+      }
+
+
+      return {
+        disponivel: true,
+        nota: resultado.nota ?? null,
+        classificacao: resultado.classificacao ?? "SEM_DADOS",
+        cobertura: numero(resultado.cobertura, 0),
+        fatorRanking: numero(resultado.fatorRanking, 1),
+        elegivel: resultado.elegivel !== false,
+        componentes: resultado.componentes ?? {},
+        pesos: resultado.pesos ?? {},
+        pontosFortes: Array.isArray(resultado.pontosFortes)
+          ? resultado.pontosFortes
+          : [],
+        alertas: Array.isArray(resultado.alertas)
+          ? resultado.alertas
+          : [],
+        principalMotivo: resultado.principalMotivo ?? null,
+        justificativa: resultado.justificativa ?? ""
+      };
+
+
+    } catch (erro) {
+
+      console.warn(
+        "Erro ao calcular adequação à rodada:",
+        erro
+      );
+
+
+      return {
+        disponivel: false,
+        nota: null,
+        classificacao: "SEM_DADOS",
+        cobertura: 0,
+        fatorRanking: 1,
+        elegivel: true,
+        componentes: {},
+        pesos: {},
+        pontosFortes: [],
+        alertas: [
+          "Adequação à rodada indisponível."
+        ],
+        principalMotivo: null,
+        justificativa: "Não foi possível calcular a adequação à rodada."
+      };
+
+    }
+
+  }
+
+
+  /* =======================================================
+     FATOR DE ADEQUAÇÃO EFETIVO
+     ======================================================= */
+
+
+  function calcularFatorAdequacaoEfetivo(
+    adequacao
+  ) {
+
+    if (
+      !adequacao ||
+      adequacao.disponivel !== true
+    ) {
+
+      return 1;
+
+    }
+
+
+    const fatorOriginal =
+      numero(
+        adequacao.fatorRanking,
+        1
+      );
+
+
+    const cobertura =
+       limitar(
+        numero(
+          adequacao.cobertura,
+          0
+        ),
+        0,
+        100
+      );
+
+
+    /*
+     * PROTEÇÃO CONTRA DADOS PARCIAIS
+     *
+     * Quanto menor a cobertura de dados contextuais,
+     * menor será a influência da adequação sobre
+     * a projeção final.
+     *
+     * < 25%  -> 20% da força
+     * < 50%  -> 40% da força
+     * < 75%  -> 70% da força
+     * >=75%  -> força completa
+     */
+
+    let intensidade = 1;
+
+
+    if (
+      cobertura < 25
+    ) {
+
+      intensidade = 0.20;
+
+    } else if (
+      cobertura < 50
+    ) {
+
+      intensidade = 0.40;
+
+    } else if (
+      cobertura < 75
+    ) {
+
+      intensidade = 0.70;
+
+    }
+
+
+    const fatorEfetivo =
+      1 +
+      (
+        (
+          fatorOriginal -
+          1
+        ) *
+        intensidade
+      );
+
+
+    /*
+     * Proteção inicial.
+     *
+     * A adequação à rodada não poderá alterar
+     * a projeção em mais de +/-15%.
+     *
+     * O backtest decidirá posteriormente se
+     * esse intervalo deve mudar.
+     */
+
+    return arredondar(
+      Math.max(
+        0.85,
+        Math.min(
+          1.15,
+          fatorEfetivo
+        )
+      ),
+      4
+    );
+
+  }
+
+
+  /* =======================================================
      PROJEÇÃO AJUSTADA
      ======================================================= */
 
 
   function calcularProjecaoAjustada(
     jogador,
-    fatorDisponibilidade
+    fatorDisponibilidade,
+    fatorAdequacao = 1
   ) {
 
     const projecao =
@@ -871,14 +1098,15 @@ const MotorViabilidade = (() => {
 
 
     /*
-     * Não multiplicamos simplesmente por toda a chance
-     * de titularidade, pois isso reduziria demais jogadores
-     * sem informação completa.
+     * PRIMEIRA CAMADA:
+     * disponibilidade / titularidade.
      *
-     * Usamos uma penalização progressiva.
+     * Não multiplicamos diretamente pela chance
+     * de titularidade porque isso penalizaria demais
+     * jogadores cuja informação ainda é incompleta.
      */
 
-    const fator =
+    const fatorUtilizacao =
       0.35 +
       (
         numero(
@@ -888,9 +1116,39 @@ const MotorViabilidade = (() => {
       );
 
 
+    /*
+     * SEGUNDA CAMADA:
+     * adequação específica à rodada.
+     *
+     * Um jogador pode ser estatisticamente forte,
+     * mas ter um contexto ruim nesta rodada.
+     *
+     * Também pode ocorrer o contrário:
+     *
+     * jogador mediano historicamente +
+     * titularidade segura +
+     * bom confronto +
+     * boa tendência +
+     * adversário cedendo pontos.
+     */
+
+    const fatorContexto =
+      Math.max(
+        0.85,
+        Math.min(
+          1.15,
+          numero(
+            fatorAdequacao,
+            1
+          )
+        )
+      );
+
+
     return arredondar(
       projecao *
-      fator,
+      fatorUtilizacao *
+      fatorContexto,
       2
     );
 
@@ -1202,9 +1460,26 @@ const MotorViabilidade = (() => {
       resultado.projecaoAjustada;
 
 
+    const adequacao =
+      resultado.adequacaoRodada;
+
+
     if (
       resultado.bloqueado
     ) {
+
+      if (
+        adequacao?.disponivel === true &&
+        adequacao?.elegivel === false
+      ) {
+
+        return (
+          "Jogador retirado das recomendações por risco de utilização " +
+          "ou inadequação ao contexto específico desta rodada."
+        );
+
+      }
+
 
       return (
         "Jogador retirado das recomendações por indisponibilidade " +
@@ -1214,17 +1489,50 @@ const MotorViabilidade = (() => {
     }
 
 
-    return (
-
+    let textoJustificativa =
       `Titularidade estimada em ${titularidade}%, ` +
-
       `risco de escalação ${risco} e ` +
-
       `projeção ajustada de ${ajustada} pontos ` +
+      `(projeção estatística original: ${projecao}).`;
 
-      `(projeção estatística original: ${projecao}).`
 
-    );
+    if (
+      adequacao?.disponivel === true &&
+      adequacao?.nota !== null &&
+      adequacao?.nota !== undefined
+    ) {
+
+      textoJustificativa +=
+        ` Adequação à rodada: ${adequacao.nota}/100 ` +
+        `(${adequacao.classificacao}), ` +
+        `com cobertura contextual de ${adequacao.cobertura}%.`;
+
+    }
+
+
+    if (
+      adequacao?.principalMotivo?.nome
+    ) {
+
+      const principal =
+        adequacao.principalMotivo;
+
+
+      textoJustificativa +=
+        principal.positivo
+          ? (
+              ` Principal fator favorável: ` +
+              `${principal.nome} (${principal.nota}).`
+            )
+          : (
+              ` Principal ponto de atenção: ` +
+              `${principal.nome} (${principal.nota}).`
+            );
+
+    }
+
+
+    return textoJustificativa;
 
   }
 
@@ -1258,10 +1566,56 @@ const MotorViabilidade = (() => {
         fatorDisponibilidade:
           0,
 
+        adequacaoRodada: {
+
+          disponivel:
+            false,
+
+          nota:
+            null,
+
+          classificacao:
+            "SEM_DADOS",
+
+          cobertura:
+            0,
+
+          fatorRanking:
+            1,
+
+          elegivel:
+            false,
+
+          componentes:
+            {},
+
+          pesos:
+            {},
+
+          pontosFortes: [],
+
+          alertas: [
+            "Jogador inválido."
+          ],
+
+          principalMotivo:
+            null,
+
+          justificativa:
+            "Jogador inválido."
+
+        },
+
+        fatorAdequacao:
+          1,
+
         projecaoOriginal:
           0,
 
         projecaoAjustada:
+          0,
+
+        impactoAdequacao:
           0,
 
         classificacao:
@@ -1287,10 +1641,20 @@ const MotorViabilidade = (() => {
     }
 
 
+    /* -------------------------------------------------------
+       1. TITULARIDADE
+       ------------------------------------------------------- */
+
+
     const titularidade =
       calcularTitularidade(
         jogador
       );
+
+
+    /* -------------------------------------------------------
+       2. RISCO DE UTILIZAÇÃO
+       ------------------------------------------------------- */
 
 
     const riscoEscalacao =
@@ -1300,11 +1664,40 @@ const MotorViabilidade = (() => {
       );
 
 
+    /* -------------------------------------------------------
+       3. DISPONIBILIDADE
+       ------------------------------------------------------- */
+
+
     const fatorDisponibilidade =
       calcularFatorDisponibilidade(
         jogador,
         titularidade
       );
+
+
+    /* -------------------------------------------------------
+       4. ADEQUAÇÃO ESPECÍFICA À RODADA
+       ------------------------------------------------------- */
+
+
+    const adequacaoRodada =
+      calcularAdequacaoRodada(
+        jogador,
+        titularidade,
+        riscoEscalacao
+      );
+
+
+    const fatorAdequacao =
+      calcularFatorAdequacaoEfetivo(
+        adequacaoRodada
+      );
+
+
+    /* -------------------------------------------------------
+       5. PROJEÇÃO ESTATÍSTICA ORIGINAL
+       ------------------------------------------------------- */
 
 
     const projecaoOriginal =
@@ -1316,14 +1709,25 @@ const MotorViabilidade = (() => {
       );
 
 
+    /* -------------------------------------------------------
+       6. PROJEÇÃO CONTEXTUALIZADA
+       ------------------------------------------------------- */
+
+
     const projecaoAjustada =
       calcularProjecaoAjustada(
         jogador,
-        fatorDisponibilidade
+        fatorDisponibilidade,
+        fatorAdequacao
       );
 
 
-    const classificacao =
+    /* -------------------------------------------------------
+       7. VIABILIDADE OPERACIONAL
+       ------------------------------------------------------- */
+
+
+    const classificacaoBase =
       classificarViabilidade(
         jogador,
         titularidade,
@@ -1331,12 +1735,52 @@ const MotorViabilidade = (() => {
       );
 
 
-    const bloqueado =
-      classificacao ===
+    const bloqueadoBase =
+      classificacaoBase ===
         "BLOQUEADO" ||
 
-      classificacao ===
+      classificacaoBase ===
         "EVITAR";
+
+
+    /*
+     * Confronto ruim sozinho NÃO bloqueia jogador.
+     *
+     * A adequação somente elimina o atleta quando
+     * o motor contextual detecta combinação de
+     * contexto ruim + risco real de utilização.
+     */
+
+    const bloqueadoAdequacao =
+      adequacaoRodada.disponivel ===
+        true &&
+      adequacaoRodada.elegivel ===
+        false;
+
+
+    const bloqueado =
+      bloqueadoBase ||
+      bloqueadoAdequacao;
+
+
+    let classificacao =
+      classificacaoBase;
+
+
+    if (
+      bloqueadoAdequacao &&
+      !bloqueadoBase
+    ) {
+
+      classificacao =
+        "EVITAR";
+
+    }
+
+
+    /* -------------------------------------------------------
+       8. MOTIVOS E ALERTAS
+       ------------------------------------------------------- */
 
 
     const motivos =
@@ -1355,6 +1799,92 @@ const MotorViabilidade = (() => {
       );
 
 
+    if (
+      Array.isArray(
+        adequacaoRodada.pontosFortes
+      )
+    ) {
+
+      adequacaoRodada
+        .pontosFortes
+        .forEach(
+          motivo => {
+
+            if (
+              !motivos.includes(
+                motivo
+              )
+            ) {
+
+              motivos.push(
+                motivo
+              );
+
+            }
+
+          }
+        );
+
+    }
+
+
+    if (
+      Array.isArray(
+        adequacaoRodada.alertas
+      )
+    ) {
+
+      adequacaoRodada
+        .alertas
+        .forEach(
+          alerta => {
+
+            if (
+              !alertas.includes(
+                alerta
+              )
+            ) {
+
+              alertas.push(
+                alerta
+              );
+
+            }
+
+          }
+        );
+
+    }
+
+
+    if (
+      bloqueadoAdequacao
+    ) {
+
+      const alertaAdequacao =
+        "Jogador considerado inadequado para esta rodada pelo motor contextual.";
+
+
+      if (
+        !alertas.includes(
+          alertaAdequacao
+        )
+      ) {
+
+        alertas.push(
+          alertaAdequacao
+        );
+
+      }
+
+    }
+
+
+    /* -------------------------------------------------------
+       9. RESULTADO
+       ------------------------------------------------------- */
+
+
     const resultado = {
 
       versao:
@@ -1366,9 +1896,29 @@ const MotorViabilidade = (() => {
 
       fatorDisponibilidade,
 
+      adequacaoRodada,
+
+      notaAdequacaoRodada:
+        adequacaoRodada.nota,
+
+      classificacaoAdequacaoRodada:
+        adequacaoRodada.classificacao,
+
+      coberturaAdequacaoRodada:
+        adequacaoRodada.cobertura,
+
+      fatorAdequacao,
+
       projecaoOriginal,
 
       projecaoAjustada,
+
+      impactoAdequacao:
+        arredondar(
+          projecaoAjustada -
+          projecaoOriginal,
+          2
+        ),
 
       classificacao,
 
@@ -1394,8 +1944,7 @@ const MotorViabilidade = (() => {
 
   }
 
-
-  /* =======================================================
+    /* =======================================================
      APLICAÇÃO AO JOGADOR
      ======================================================= */
 
@@ -1414,35 +1963,132 @@ const MotorViabilidade = (() => {
 
       ...jogador,
 
+
+      /*
+       * Resultado completo da camada de viabilidade.
+       */
+
       viabilidade:
         resultado,
+
+
+      /*
+       * Disponibilidade / titularidade.
+       */
 
       titularidade:
         resultado.titularidade,
 
+
       riscoEscalacao:
         resultado.riscoEscalacao,
+
 
       fatorDisponibilidade:
         resultado.fatorDisponibilidade,
 
+
+      /*
+       * Adequação específica à rodada.
+       *
+       * Mantemos tanto o objeto completo quanto
+       * os principais campos diretamente no jogador.
+       *
+       * Isso facilita o consumo posterior por:
+       *
+       * - ranking;
+       * - recomendações;
+       * - escalações;
+       * - cards;
+       * - diagnóstico;
+       * - backtest.
+       */
+
+      adequacaoRodada:
+        resultado.adequacaoRodada,
+
+
+      notaAdequacaoRodada:
+        resultado.notaAdequacaoRodada,
+
+
+      classificacaoAdequacaoRodada:
+        resultado.classificacaoAdequacaoRodada,
+
+
+      coberturaAdequacaoRodada:
+        resultado.coberturaAdequacaoRodada,
+
+
+      fatorAdequacaoRodada:
+        resultado.fatorAdequacao,
+
+
+      /*
+       * Projeção final após:
+       *
+       * projeção estatística
+       *        ↓
+       * disponibilidade
+       *        ↓
+       * titularidade
+       *        ↓
+       * adequação à rodada
+       */
+
       projecaoViabilidade:
         resultado.projecaoAjustada,
+
+
+      impactoAdequacaoRodada:
+        resultado.impactoAdequacao,
+
+
+      /*
+       * Classificação final de utilização.
+       */
 
       classificacaoViabilidade:
         resultado.classificacao,
 
+
       elegivelRodada:
         resultado.elegivel,
+
 
       bloqueadoRodada:
         resultado.bloqueado,
 
+
+      /*
+       * Explicabilidade.
+       */
+
       motivosViabilidade:
         resultado.motivos,
 
+
       alertasViabilidade:
         resultado.alertas,
+
+
+      pontosFortesRodada:
+        resultado.adequacaoRodada
+          ?.pontosFortes ??
+        [],
+
+
+      alertasRodada:
+        resultado.adequacaoRodada
+          ?.alertas ??
+        [],
+
+
+      justificativaRodada:
+        resultado.adequacaoRodada
+          ?.justificativa ??
+        "",
+
 
       justificativaViabilidade:
         resultado.justificativa
@@ -1480,7 +2126,303 @@ const MotorViabilidade = (() => {
 
 
   /* =======================================================
-     API
+     DIAGNÓSTICO INDIVIDUAL
+     ======================================================= */
+
+
+  function diagnosticar(
+    jogador
+  ) {
+
+    const resultado =
+      calcular(
+        jogador
+      );
+
+
+    const nome =
+      jogador?.apelido ??
+      jogador?.nome ??
+      jogador?.id ??
+      "Jogador";
+
+
+    console.log(
+      "===================================="
+    );
+
+
+    console.log(
+      "VIABILIDADE + ADEQUAÇÃO À RODADA"
+    );
+
+
+    console.log(
+      nome
+    );
+
+
+    console.log(
+      "Titularidade:",
+      `${resultado.titularidade}%`
+    );
+
+
+    console.log(
+      "Risco de escalação:",
+      resultado.riscoEscalacao
+    );
+
+
+    console.log(
+      "Fator de disponibilidade:",
+      resultado.fatorDisponibilidade
+    );
+
+
+    console.log(
+      "Projeção original:",
+      resultado.projecaoOriginal
+    );
+
+
+    console.log(
+      "Projeção contextualizada:",
+      resultado.projecaoAjustada
+    );
+
+
+    console.log(
+      "Impacto total:",
+      resultado.impactoAdequacao
+    );
+
+
+    console.log(
+      "Classificação de viabilidade:",
+      resultado.classificacao
+    );
+
+
+    console.log(
+      "Elegível:",
+      resultado.elegivel
+    );
+
+
+    if (
+      resultado.adequacaoRodada
+    ) {
+
+      console.log(
+        "Adequação à rodada:",
+        resultado
+          .adequacaoRodada
+          .nota
+      );
+
+
+      console.log(
+        "Classificação da adequação:",
+        resultado
+          .adequacaoRodada
+          .classificacao
+      );
+
+
+      console.log(
+        "Cobertura contextual:",
+        `${resultado
+          .adequacaoRodada
+          .cobertura}%`
+      );
+
+
+      console.log(
+        "Fator de adequação bruto:",
+        resultado
+          .adequacaoRodada
+          .fatorRanking
+      );
+
+
+      console.log(
+        "Fator de adequação efetivo:",
+        resultado
+          .fatorAdequacao
+      );
+
+
+      if (
+        resultado
+          .adequacaoRodada
+          .componentes &&
+        typeof resultado
+          .adequacaoRodada
+          .componentes ===
+          "object"
+      ) {
+
+        console.table(
+          resultado
+            .adequacaoRodada
+            .componentes
+        );
+
+      }
+
+    }
+
+
+    console.log(
+      "Motivos:",
+      resultado.motivos
+    );
+
+
+    console.log(
+      "Alertas:",
+      resultado.alertas
+    );
+
+
+    console.log(
+      "Justificativa:",
+      resultado.justificativa
+    );
+
+
+    console.log(
+      "===================================="
+    );
+
+
+    return resultado;
+
+  }
+
+
+  /* =======================================================
+     DIAGNÓSTICO EM LOTE
+     ======================================================= */
+
+
+  function diagnosticarLista(
+    jogadores
+  ) {
+
+    if (
+      !Array.isArray(
+        jogadores
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    const resultados =
+      jogadores.map(
+        jogador => {
+
+          const resultado =
+            calcular(
+              jogador
+            );
+
+
+          return {
+
+            id:
+              jogador?.id ??
+              jogador?.atletaId,
+
+
+            nome:
+              jogador?.apelido ??
+              jogador?.nome,
+
+
+            posicao:
+              jogador?.posicao ??
+              jogador?.posicaoAbreviacao,
+
+
+            clube:
+              jogador?.siglaClube ??
+              jogador?.clube,
+
+
+            titularidade:
+              resultado.titularidade,
+
+
+            risco:
+              resultado.riscoEscalacao,
+
+
+            adequacao:
+              resultado
+                .adequacaoRodada
+                ?.nota ??
+              null,
+
+
+            classificacaoAdequacao:
+              resultado
+                .adequacaoRodada
+                ?.classificacao ??
+              "SEM_DADOS",
+
+
+            cobertura:
+              resultado
+                .adequacaoRodada
+                ?.cobertura ??
+              0,
+
+
+            fatorAdequacao:
+              resultado.fatorAdequacao,
+
+
+            projecaoOriginal:
+              resultado.projecaoOriginal,
+
+
+            projecaoFinal:
+              resultado.projecaoAjustada,
+
+
+            impacto:
+              resultado.impactoAdequacao,
+
+
+            classificacao:
+              resultado.classificacao,
+
+
+            elegivel:
+              resultado.elegivel
+
+          };
+
+        }
+      );
+
+
+    console.table(
+      resultados
+    );
+
+
+    return resultados;
+
+  }
+
+    /* =======================================================
+     API PÚBLICA
      ======================================================= */
 
 
@@ -1489,11 +2431,32 @@ const MotorViabilidade = (() => {
     versao:
       VERSAO,
 
+
+    /*
+     * Cálculo principal.
+     */
+
     calcular,
+
+
+    /*
+     * Aplicação do resultado no objeto jogador.
+     */
 
     aplicar,
 
+
+    /*
+     * Aplicação em lista.
+     */
+
     aplicarLista,
+
+
+    /*
+     * Componentes internos expostos para diagnóstico,
+     * testes e futuras integrações.
+     */
 
     calcularTitularidade,
 
@@ -1501,7 +2464,20 @@ const MotorViabilidade = (() => {
 
     calcularFatorDisponibilidade,
 
-    calcularProjecaoAjustada
+    calcularAdequacaoRodada,
+
+    calcularFatorAdequacaoEfetivo,
+
+    calcularProjecaoAjustada,
+
+
+    /*
+     * Diagnóstico.
+     */
+
+    diagnosticar,
+
+    diagnosticarLista
 
   };
 
