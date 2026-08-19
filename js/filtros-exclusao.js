@@ -3,22 +3,44 @@
    Filtros manuais da rodada
    Clubes + jogadores
 
-   VERSÃO CONSOLIDADA V2
+   VERSÃO CONSOLIDADA V3
 
-   Regras:
-   - Recomendações:
-     mostra candidatos da base de recomendações.
-   - Times sugeridos:
-     mostra SOMENTE jogadores presentes nos times sugeridos.
-   - NÃO usa a base completa como fallback na aba Times.
-   - filtros sincronizados;
-   - exclusão efetiva antes do recálculo;
-   - jogadoresOriginais preservados;
-   - patrimônio preservado;
-   - evita duplicação de filtros.
+   OBJETIVOS
+
+   RECOMENDAÇÕES
+   - usar somente jogadores pertencentes ao universo real
+     dos rankings por posição;
+   - NÃO listar o mercado inteiro;
+   - atualizar o universo quando filtros provocarem entrada
+     de novos candidatos no ranking.
+
+   TIMES SUGERIDOS
+   - usar somente jogadores efetivamente presentes nos
+     três times sugeridos;
+   - titulares + banco + capitão + reserva de luxo;
+   - nunca cair para a base completa.
+
+   FILTROS
+   - clubes em ordem alfabética;
+   - jogadores por posição e ordem alfabética;
+   - exclusões sincronizadas;
+   - mostrar nominalmente clubes/jogadores excluídos;
+   - recalcular Recomendações e Times;
+   - preservar jogadoresOriginais;
+   - preservar patrimônio;
+   - evitar painéis duplicados.
+
+   INTERFACE
+   - bloco mais compacto no desktop;
+   - dropdowns suspensos;
+   - responsivo no celular.
    ========================================================= */
 
+
 const CartolaFiltrosExclusao = (() => {
+
+  "use strict";
+
 
   /* =======================================================
      CONFIGURAÇÃO
@@ -33,13 +55,16 @@ const CartolaFiltrosExclusao = (() => {
     "TEC"
   ];
 
+
   const NOMES_POSICOES = {
+
     GOL: "Goleiros",
     LAT: "Laterais",
     ZAG: "Zagueiros",
     MEI: "Meias",
     ATA: "Atacantes",
     TEC: "Treinadores"
+
   };
 
 
@@ -53,14 +78,20 @@ const CartolaFiltrosExclusao = (() => {
     inicializando: false,
     aplicando: false,
 
-    clubesRecomendacoes: [],
     jogadoresRecomendacoes: [],
-
-    clubesTimes: [],
     jogadoresTimes: [],
 
-    clubesExcluidos: new Set(),
-    jogadoresExcluidos: new Set(),
+    clubesRecomendacoes: [],
+    clubesTimes: [],
+
+    clubesExcluidos:
+      new Set(),
+
+    jogadoresExcluidos:
+      new Set(),
+
+    nomesJogadores:
+      new Map(),
 
     quantidadeRemovida: 0,
 
@@ -73,7 +104,9 @@ const CartolaFiltrosExclusao = (() => {
      UTILITÁRIOS
      ======================================================= */
 
-  function texto(valor) {
+  function texto(
+    valor
+  ) {
 
     return String(
       valor ?? ""
@@ -82,9 +115,13 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  function normalizarTexto(valor) {
+  function normalizarTexto(
+    valor
+  ) {
 
-    return texto(valor)
+    return texto(
+      valor
+    )
       .toLowerCase()
       .normalize("NFD")
       .replace(
@@ -95,28 +132,51 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  function escaparHtml(valor) {
+  function escaparHtml(
+    valor
+  ) {
 
-    return texto(valor)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+    return texto(
+      valor
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
 
 
-  function copiarJogador(jogador) {
+  function copiarJogador(
+    jogador
+  ) {
 
     if (
       !jogador ||
-      typeof jogador !== "object"
+      typeof jogador !==
+        "object"
     ) {
 
       return jogador;
 
     }
+
 
     return {
 
@@ -127,13 +187,18 @@ const CartolaFiltrosExclusao = (() => {
       },
 
       historico:
-        Array.isArray(jogador.historico)
+        Array.isArray(
+          jogador.historico
+        )
           ? jogador.historico.map(
               item => ({
+
                 ...item,
+
                 scouts: {
                   ...(item?.scouts || {})
                 }
+
               })
             )
           : jogador.historico
@@ -144,91 +209,164 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     IDENTIFICAÇÃO DO JOGADOR
+     IDENTIFICAÇÃO
      ======================================================= */
 
-  function obterIdJogador(jogador) {
+  function obterIdJogador(
+    jogador
+  ) {
 
     return texto(
+
       jogador?.id
+
       ??
+
       jogador?.atletaId
+
       ??
+
       jogador?.atleta_id
+
       ??
+
       jogador?.atleta?.id
+
       ??
+
       jogador?.atleta?.atletaId
+
       ??
+
       ""
+
     );
 
   }
 
 
-  function obterNomeJogador(jogador) {
+  function obterNomeJogador(
+    jogador
+  ) {
 
     return texto(
+
       jogador?.apelido
+
       ??
+
       jogador?.nome
+
       ??
+
       jogador?.atleta?.apelido
+
       ??
+
       jogador?.atleta?.nome
+
       ??
+
       "Jogador"
+
     );
 
   }
 
 
-  function obterPosicaoJogador(jogador) {
+  function obterPosicaoJogador(
+    jogador
+  ) {
 
     return texto(
+
       jogador?.posicao
+
       ??
+
       jogador?.posicaoSigla
+
       ??
+
       jogador?.posicao_sigla
+
       ??
+
       jogador?.atleta?.posicao
+
       ??
+
       jogador?.atleta?.posicaoSigla
+
       ??
+
       ""
+
     ).toUpperCase();
 
   }
 
 
-  function obterClubeJogador(jogador) {
+  function obterClubeJogador(
+    jogador
+  ) {
 
     return texto(
+
       jogador?.siglaClube
+
       ??
+
       jogador?.clubeSigla
+
       ??
+
+      jogador?.clube?.abreviacao
+
+      ??
+
       jogador?.clube
+
       ??
+
       jogador?.atleta?.siglaClube
+
       ??
+
       jogador?.atleta?.clubeSigla
+
       ??
+
+      jogador?.atleta?.clube?.abreviacao
+
+      ??
+
       jogador?.atleta?.clube
+
       ??
+
       ""
+
     ).toUpperCase();
 
   }
 
 
-  function indicePosicao(posicao) {
+  /* =======================================================
+     ORDENAÇÃO
+     ======================================================= */
+
+  function indicePosicao(
+    posicao
+  ) {
 
     const indice =
       ORDEM_POSICOES.indexOf(
-        posicao
+        obterPosicaoNormalizada(
+          posicao
+        )
       );
+
 
     return indice >= 0
       ? indice
@@ -237,88 +375,173 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  function ordenarJogadores(lista) {
+  function obterPosicaoNormalizada(
+    posicao
+  ) {
 
-    return [...lista].sort(
-      (
-        jogadorA,
-        jogadorB
-      ) => {
+    const codigo =
+      texto(
+        posicao
+      ).toUpperCase();
 
-        const posicaoA =
-          obterPosicaoJogador(
-            jogadorA
-          );
 
-        const posicaoB =
-          obterPosicaoJogador(
-            jogadorB
-          );
+    const mapa = {
 
-        const ordemA =
-          indicePosicao(
-            posicaoA
-          );
+      GOLEIRO: "GOL",
+      GOLEIROS: "GOL",
 
-        const ordemB =
-          indicePosicao(
-            posicaoB
-          );
+      LATERAL: "LAT",
+      LATERAIS: "LAT",
 
-        if (
-          ordemA !== ordemB
-        ) {
+      ZAGUEIRO: "ZAG",
+      ZAGUEIROS: "ZAG",
 
-          return ordemA - ordemB;
+      MEIA: "MEI",
+      MEIAS: "MEI",
 
-        }
+      ATACANTE: "ATA",
+      ATACANTES: "ATA",
 
-        return obterNomeJogador(
-          jogadorA
-        ).localeCompare(
-          obterNomeJogador(
-            jogadorB
-          ),
-          "pt-BR"
-        );
+      TECNICO: "TEC",
+      TÉCNICO: "TEC",
 
-      }
-    );
+      TREINADOR: "TEC",
+      TREINADORES: "TEC"
+
+    };
+
+
+    return mapa[codigo] ||
+      codigo;
 
   }
 
 
-  function removerDuplicados(lista) {
+  function ordenarJogadores(
+    lista
+  ) {
+
+    return [
+      ...(lista || [])
+    ]
+      .sort(
+        (
+          jogadorA,
+          jogadorB
+        ) => {
+
+          const posicaoA =
+            obterPosicaoNormalizada(
+              obterPosicaoJogador(
+                jogadorA
+              )
+            );
+
+
+          const posicaoB =
+            obterPosicaoNormalizada(
+              obterPosicaoJogador(
+                jogadorB
+              )
+            );
+
+
+          const ordemA =
+            indicePosicao(
+              posicaoA
+            );
+
+
+          const ordemB =
+            indicePosicao(
+              posicaoB
+            );
+
+
+          if (
+            ordemA !== ordemB
+          ) {
+
+            return ordemA -
+              ordemB;
+
+          }
+
+
+          return obterNomeJogador(
+            jogadorA
+          )
+            .localeCompare(
+              obterNomeJogador(
+                jogadorB
+              ),
+              "pt-BR"
+            );
+
+        }
+      );
+
+  }
+
+
+  function removerDuplicados(
+    lista
+  ) {
 
     const mapa =
       new Map();
 
-    lista.forEach(
-      jogador => {
 
-        const id =
-          obterIdJogador(
-            jogador
+    (
+      Array.isArray(lista)
+        ? lista
+        : []
+    )
+      .forEach(
+        jogador => {
+
+          const id =
+            obterIdJogador(
+              jogador
+            );
+
+
+          if (!id) {
+
+            return;
+
+          }
+
+
+          if (
+            mapa.has(
+              id
+            )
+          ) {
+
+            return;
+
+          }
+
+
+          mapa.set(
+            id,
+            copiarJogador(
+              jogador
+            )
           );
 
-        if (
-          !id ||
-          mapa.has(id)
-        ) {
 
-          return;
+          estado.nomesJogadores.set(
+            id,
+            obterNomeJogador(
+              jogador
+            )
+          );
 
         }
+      );
 
-        mapa.set(
-          id,
-          copiarJogador(
-            jogador
-          )
-        );
-
-      }
-    );
 
     return [
       ...mapa.values()
@@ -327,61 +550,306 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
+  function mesclarJogadores(
+    ...listas
+  ) {
+
+    return removerDuplicados(
+      listas.flatMap(
+        lista =>
+          Array.isArray(lista)
+            ? lista
+            : []
+      )
+    );
+
+  }
+
+
   /* =======================================================
-     BASE ORIGINAL
+     BASE ORIGINAL COMPLETA
+
+     Usada SOMENTE para aplicar exclusões ao motor.
+     NÃO é usada para preencher o dropdown de Recomendações.
      ======================================================= */
 
   function obterJogadoresOriginais() {
 
-    if (
-      typeof estadoRecomendacoes !==
-        "undefined" &&
-      Array.isArray(
-        estadoRecomendacoes
-          .jogadoresOriginais
-      ) &&
-      estadoRecomendacoes
-        .jogadoresOriginais
-        .length > 0
-    ) {
-
-      return estadoRecomendacoes
-        .jogadoresOriginais
-        .map(
-          copiarJogador
-        );
-
-    }
-
-
-    if (
-      typeof window !==
-        "undefined" &&
-      window.CartolaRecomendacoes &&
-      typeof window
-        .CartolaRecomendacoes
-        .obterJogadoresCarregados ===
-        "function"
-    ) {
-
-      const jogadores =
-        window
-          .CartolaRecomendacoes
-          .obterJogadoresCarregados();
+    try {
 
       if (
-        Array.isArray(jogadores)
+        typeof estadoRecomendacoes !==
+          "undefined" &&
+        Array.isArray(
+          estadoRecomendacoes
+            .jogadoresOriginais
+        ) &&
+        estadoRecomendacoes
+          .jogadoresOriginais
+          .length > 0
       ) {
 
-        return jogadores.map(
-          copiarJogador
-        );
+        return estadoRecomendacoes
+          .jogadoresOriginais
+          .map(
+            copiarJogador
+          );
 
       }
 
+    } catch (_) {
+
+      /*
+       * continua
+       */
+
     }
 
+
+    try {
+
+      if (
+        window.CartolaRecomendacoes &&
+        typeof window
+          .CartolaRecomendacoes
+          .obterJogadoresCarregados ===
+          "function"
+      ) {
+
+        const jogadores =
+          window
+            .CartolaRecomendacoes
+            .obterJogadoresCarregados();
+
+
+        if (
+          Array.isArray(
+            jogadores
+          )
+        ) {
+
+          return jogadores.map(
+            copiarJogador
+          );
+
+        }
+
+      }
+
+    } catch (_) {
+
+      /*
+       * continua
+       */
+
+    }
+
+
     return [];
+
+  }
+
+
+  /* =======================================================
+     BASE ATIVA DAS RECOMENDAÇÕES
+     ======================================================= */
+
+  function obterJogadoresAtivos() {
+
+    try {
+
+      if (
+        typeof estadoRecomendacoes !==
+          "undefined" &&
+        Array.isArray(
+          estadoRecomendacoes
+            .jogadores
+        )
+      ) {
+
+        return estadoRecomendacoes
+          .jogadores
+          .map(
+            copiarJogador
+          );
+
+      }
+
+    } catch (_) {
+
+      /*
+       * continua
+       */
+
+    }
+
+
+    try {
+
+      if (
+        typeof window
+          .obterJogadoresCarregados ===
+          "function"
+      ) {
+
+        const jogadores =
+          window
+            .obterJogadoresCarregados();
+
+
+        if (
+          Array.isArray(
+            jogadores
+          )
+        ) {
+
+          return jogadores.map(
+            copiarJogador
+          );
+
+        }
+
+      }
+
+    } catch (_) {
+
+      /*
+       * continua
+       */
+
+    }
+
+
+    return [];
+
+  }
+
+
+  /* =======================================================
+     UNIVERSO REAL DAS RECOMENDAÇÕES
+
+     Usa a própria função oficial do ranking:
+
+     obterJogadoresDaPosicao()
+
+     Portanto o dropdown passa a refletir:
+     - viabilidade;
+     - ordenação;
+     - quantidade configurada;
+     - ranking por posição.
+     ======================================================= */
+
+  function obterRankingDePosicao(
+    posicao
+  ) {
+
+    try {
+
+      if (
+        typeof obterJogadoresDaPosicao ===
+          "function"
+      ) {
+
+        const ranking =
+          obterJogadoresDaPosicao(
+            posicao
+          );
+
+
+        if (
+          Array.isArray(
+            ranking
+          )
+        ) {
+
+          return ranking.map(
+            copiarJogador
+          );
+
+        }
+
+      }
+
+    } catch (erro) {
+
+      console.warn(
+        `Falha ao obter ranking ${posicao}:`,
+        erro
+      );
+
+    }
+
+
+    return [];
+
+  }
+
+
+  function montarUniversoAtualRecomendacoes() {
+
+    const candidatos = [];
+
+
+    ORDEM_POSICOES.forEach(
+      posicao => {
+
+        const ranking =
+          obterRankingDePosicao(
+            posicao
+          );
+
+
+        candidatos.push(
+          ...ranking
+        );
+
+      }
+    );
+
+
+    return ordenarJogadores(
+      removerDuplicados(
+        candidatos
+      )
+    );
+
+  }
+
+
+  function atualizarBaseRecomendacoes() {
+
+    const atuais =
+      montarUniversoAtualRecomendacoes();
+
+
+    /*
+     * Mantém jogadores anteriormente apresentados.
+     *
+     * Isso é importante porque:
+     * - excluímos A;
+     * - B entra no ranking;
+     * - B também passa a poder ser excluído.
+     *
+     * Mas o universo nunca vira a lista inteira do mercado.
+     */
+
+    estado.jogadoresRecomendacoes =
+      ordenarJogadores(
+        mesclarJogadores(
+          estado.jogadoresRecomendacoes,
+          atuais
+        )
+      );
+
+
+    estado.clubesRecomendacoes =
+      obterClubesDaBase(
+        estado.jogadoresRecomendacoes
+      );
+
+
+    return estado
+      .jogadoresRecomendacoes;
 
   }
 
@@ -390,47 +858,63 @@ const CartolaFiltrosExclusao = (() => {
      ESCALAÇÕES
      ======================================================= */
 
-  function normalizarListaEscalacoes(valor) {
+  function normalizarListaEscalacoes(
+    valor
+  ) {
 
     if (
-      Array.isArray(valor)
+      Array.isArray(
+        valor
+      )
     ) {
 
       return valor;
 
     }
 
+
     if (
       valor &&
-      Array.isArray(valor.escalacoes)
+      Array.isArray(
+        valor.escalacoes
+      )
     ) {
 
       return valor.escalacoes;
 
     }
 
+
     if (
       valor &&
-      Array.isArray(valor.times)
+      Array.isArray(
+        valor.times
+      )
     ) {
 
       return valor.times;
 
     }
 
+
     if (
       valor &&
-      typeof valor === "object"
+      typeof valor ===
+        "object"
     ) {
 
       const possiveis = [
+
         valor.conservador,
         valor.equilibrado,
         valor.agressivo,
+
         valor.Conservador,
         valor.Equilibrado,
         valor.Agressivo
+
       ].filter(Boolean);
+
 
       if (
         possiveis.length > 0
@@ -441,6 +925,7 @@ const CartolaFiltrosExclusao = (() => {
       }
 
     }
+
 
     return [];
 
@@ -455,8 +940,6 @@ const CartolaFiltrosExclusao = (() => {
     try {
 
       if (
-        typeof window !==
-          "undefined" &&
         typeof window
           .obterEscalacoesCarregadas ===
           "function"
@@ -469,21 +952,30 @@ const CartolaFiltrosExclusao = (() => {
 
       }
 
-    } catch (erro) {
-
-      console.warn(
-        "Falha em obterEscalacoesCarregadas:",
-        erro
-      );
-
-    }
+    } catch (_) {}
 
 
     try {
 
       if (
-        typeof window !==
-          "undefined" &&
+        typeof window
+          .obterEscalacoes ===
+          "function"
+      ) {
+
+        tentativas.push(
+          window
+            .obterEscalacoes()
+        );
+
+      }
+
+    } catch (_) {}
+
+
+    try {
+
+      if (
         window.CartolaEscalacoes
       ) {
 
@@ -502,6 +994,7 @@ const CartolaFiltrosExclusao = (() => {
 
         }
 
+
         if (
           typeof window
             .CartolaEscalacoes
@@ -516,6 +1009,7 @@ const CartolaFiltrosExclusao = (() => {
           );
 
         }
+
 
         if (
           Array.isArray(
@@ -535,14 +1029,7 @@ const CartolaFiltrosExclusao = (() => {
 
       }
 
-    } catch (erro) {
-
-      console.warn(
-        "Falha em CartolaEscalacoes:",
-        erro
-      );
-
-    }
+    } catch (_) {}
 
 
     try {
@@ -558,21 +1045,12 @@ const CartolaFiltrosExclusao = (() => {
 
       }
 
-    } catch (erro) {
-
-      console.warn(
-        "Falha em estadoEscalacoes:",
-        erro
-      );
-
-    }
+    } catch (_) {}
 
 
     try {
 
       if (
-        typeof window !==
-          "undefined" &&
         window.estadoEscalacoes
       ) {
 
@@ -582,24 +1060,19 @@ const CartolaFiltrosExclusao = (() => {
 
       }
 
-    } catch (erro) {
-
-      console.warn(
-        "Falha em window.estadoEscalacoes:",
-        erro
-      );
-
-    }
+    } catch (_) {}
 
 
     for (
-      const tentativa of tentativas
+      const tentativa of
+      tentativas
     ) {
 
       const lista =
         normalizarListaEscalacoes(
           tentativa
         );
+
 
       if (
         lista.length > 0
@@ -611,13 +1084,14 @@ const CartolaFiltrosExclusao = (() => {
 
     }
 
+
     return [];
 
   }
 
 
   /* =======================================================
-     EXTRAI JOGADORES DE UMA ESCALAÇÃO
+     EXTRAI JOGADORES DOS TIMES
      ======================================================= */
 
   function adicionarJogadorAoMapa(
@@ -631,34 +1105,56 @@ const CartolaFiltrosExclusao = (() => {
 
     }
 
-    const jogadorReal =
+
+    const real =
       jogador?.atleta &&
       typeof jogador.atleta ===
         "object"
+
         ? {
             ...jogador.atleta,
             ...jogador
           }
+
         : jogador;
+
 
     const id =
       obterIdJogador(
-        jogadorReal
+        real
       );
 
+
+    if (!id) {
+
+      return;
+
+    }
+
+
     if (
-      !id ||
-      mapa.has(id)
+      mapa.has(
+        id
+      )
     ) {
 
       return;
 
     }
 
+
     mapa.set(
       id,
       copiarJogador(
-        jogadorReal
+        real
+      )
+    );
+
+
+    estado.nomesJogadores.set(
+      id,
+      obterNomeJogador(
+        real
       )
     );
 
@@ -671,12 +1167,15 @@ const CartolaFiltrosExclusao = (() => {
   ) {
 
     if (
-      !Array.isArray(lista)
+      !Array.isArray(
+        lista
+      )
     ) {
 
       return;
 
     }
+
 
     lista.forEach(
       jogador =>
@@ -689,134 +1188,101 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
+  function adicionarEscalacaoAoMapa(
+    mapa,
+    escalacao
+  ) {
+
+    if (!escalacao) {
+
+      return;
+
+    }
+
+
+    [
+      escalacao.titulares,
+      escalacao.jogadores,
+      escalacao.atletas,
+      escalacao.time,
+      escalacao.banco,
+      escalacao.reservas
+    ]
+      .forEach(
+        lista =>
+          adicionarListaAoMapa(
+            mapa,
+            lista
+          )
+      );
+
+
+    [
+      escalacao.capitao,
+      escalacao.capitão,
+      escalacao.reservaLuxo,
+      escalacao.reservaDeLuxo,
+      escalacao.tecnico,
+      escalacao.técnico
+    ]
+      .forEach(
+        jogador =>
+          adicionarJogadorAoMapa(
+            mapa,
+            jogador
+          )
+      );
+
+
+    if (
+      escalacao.escalacao &&
+      typeof escalacao.escalacao ===
+        "object"
+    ) {
+
+      adicionarEscalacaoAoMapa(
+        mapa,
+        escalacao.escalacao
+      );
+
+    }
+
+  }
+
+
   function obterJogadoresDasEscalacoes() {
 
     const mapa =
       new Map();
+
 
     const escalacoes =
       obterEscalacoesAtuais();
 
 
     escalacoes.forEach(
-      escalacao => {
-
-        if (!escalacao) {
-
-          return;
-
-        }
-
-
-        const listas = [
-
-          escalacao.titulares,
-
-          escalacao.jogadores,
-
-          escalacao.atletas,
-
-          escalacao.time,
-
-          escalacao.banco,
-
-          escalacao.reservas
-
-        ];
-
-
-        listas.forEach(
-          lista =>
-            adicionarListaAoMapa(
-              mapa,
-              lista
-            )
-        );
-
-
-        const especiais = [
-
-          escalacao.capitao,
-
-          escalacao.capitão,
-
-          escalacao.reservaLuxo,
-
-          escalacao.reservaDeLuxo,
-
-          escalacao.tecnico,
-
-          escalacao.técnico
-
-        ];
-
-
-        especiais.forEach(
-          jogador =>
-            adicionarJogadorAoMapa(
-              mapa,
-              jogador
-            )
-        );
-
-
-        if (
-          escalacao.escalacao &&
-          typeof escalacao.escalacao ===
-            "object"
-        ) {
-
-          const interna =
-            escalacao.escalacao;
-
-          [
-            interna.titulares,
-            interna.jogadores,
-            interna.atletas,
-            interna.banco,
-            interna.reservas
-          ].forEach(
-            lista =>
-              adicionarListaAoMapa(
-                mapa,
-                lista
-              )
-          );
-
-
-          [
-            interna.capitao,
-            interna.capitão,
-            interna.reservaLuxo,
-            interna.reservaDeLuxo,
-            interna.tecnico,
-            interna.técnico
-          ].forEach(
-            jogador =>
-              adicionarJogadorAoMapa(
-                mapa,
-                jogador
-              )
-          );
-
-        }
-
-      }
+      escalacao =>
+        adicionarEscalacaoAoMapa(
+          mapa,
+          escalacao
+        )
     );
 
 
-    return [
-      ...mapa.values()
-    ];
+    return ordenarJogadores(
+      [
+        ...mapa.values()
+      ]
+    );
 
   }
 
 
   /* =======================================================
-     TENTA LER OS JOGADORES DIRETAMENTE DOS CARDS DOS TIMES
+     FALLBACK APENAS VISUAL DOS TIMES
 
-     É apenas uma fonte auxiliar.
-     NÃO existe fallback para todos os jogadores.
+     Caso o estado ainda não esteja exposto,
+     procura os nomes efetivamente renderizados.
      ======================================================= */
 
   function obterJogadoresDosCardsTimes() {
@@ -826,6 +1292,7 @@ const CartolaFiltrosExclusao = (() => {
         "times"
       );
 
+
     if (!secao) {
 
       return [];
@@ -833,51 +1300,17 @@ const CartolaFiltrosExclusao = (() => {
     }
 
 
-    const originais =
+    const universo =
       obterJogadoresOriginais();
 
+
     if (
-      originais.length === 0
+      universo.length === 0
     ) {
 
       return [];
 
     }
-
-
-    const mapaPorNome =
-      new Map();
-
-
-    originais.forEach(
-      jogador => {
-
-        const nome =
-          normalizarTexto(
-            obterNomeJogador(
-              jogador
-            )
-          );
-
-        if (!nome) {
-
-          return;
-
-        }
-
-        if (
-          !mapaPorNome.has(nome)
-        ) {
-
-          mapaPorNome.set(
-            nome,
-            jogador
-          );
-
-        }
-
-      }
-    );
 
 
     const conteudo =
@@ -886,121 +1319,81 @@ const CartolaFiltrosExclusao = (() => {
       );
 
 
-    const encontrados = [];
+    const encontrados =
+      universo.filter(
+        jogador => {
+
+          const nome =
+            normalizarTexto(
+              obterNomeJogador(
+                jogador
+              )
+            );
 
 
-    mapaPorNome.forEach(
-      (
-        jogador,
-        nome
-      ) => {
-
-        if (
-          nome.length >= 3 &&
-          conteudo.includes(nome)
-        ) {
-
-          encontrados.push(
-            copiarJogador(
-              jogador
+          return (
+            nome.length >= 3 &&
+            conteudo.includes(
+              nome
             )
           );
 
         }
+      );
 
-      }
-    );
-
-
-    return removerDuplicados(
-      encontrados
-    );
-
-  }
-
-
-  /* =======================================================
-     BASE DE CADA CONTEXTO
-     ======================================================= */
-
-  function obterBaseRecomendacoes() {
 
     return ordenarJogadores(
       removerDuplicados(
-        obterJogadoresOriginais()
+        encontrados
       )
     );
 
   }
 
 
-  function obterBaseTimes() {
+  function atualizarBaseTimes() {
 
-    /*
-     * REGRA PRINCIPAL:
-     *
-     * Na aba Times sugeridos NÃO fazemos:
-     *
-     * escalados.length > 0
-     *   ? escalados
-     *   : todos
-     *
-     * Esse fallback era justamente o problema.
-     */
-
-    const escalados =
+    let jogadores =
       obterJogadoresDasEscalacoes();
 
 
     if (
-      escalados.length > 0
+      jogadores.length === 0
     ) {
 
-      return ordenarJogadores(
-        removerDuplicados(
-          escalados
-        )
-      );
+      jogadores =
+        obterJogadoresDosCardsTimes();
 
     }
 
 
     /*
-     * Fonte auxiliar:
-     * tenta identificar os atletas que já estão
-     * renderizados nos cards dos times.
+     * Aqui NÃO existe fallback para todos.
      */
 
-    const dosCards =
-      obterJogadoresDosCardsTimes();
-
-
-    if (
-      dosCards.length > 0
-    ) {
-
-      return ordenarJogadores(
+    estado.jogadoresTimes =
+      ordenarJogadores(
         removerDuplicados(
-          dosCards
+          jogadores
         )
       );
 
-    }
+
+    estado.clubesTimes =
+      obterClubesDaBase(
+        estado.jogadoresTimes
+      );
 
 
-    /*
-     * IMPORTANTE:
-     *
-     * Se os times ainda não estiverem disponíveis,
-     * retorna lista vazia.
-     *
-     * NUNCA retorna a base completa.
-     */
-
-    return [];
+    return estado
+      .jogadoresTimes;
 
   }
 
+
+  /* =======================================================
+     CLUBES
+     ======================================================= */
 
   function obterClubesDaBase(
     base
@@ -1008,70 +1401,83 @@ const CartolaFiltrosExclusao = (() => {
 
     return [
       ...new Set(
-        base
+        (
+          Array.isArray(base)
+            ? base
+            : []
+        )
           .map(
             obterClubeJogador
           )
           .filter(Boolean)
       )
-    ].sort(
-      (
-        clubeA,
-        clubeB
-      ) =>
-        clubeA.localeCompare(
-          clubeB,
-          "pt-BR"
-        )
-    );
-
-  }
-
-
-  function atualizarOpcoesDisponiveis() {
-
-    const recomendacoes =
-      obterBaseRecomendacoes();
-
-    const times =
-      obterBaseTimes();
-
-
-    estado.jogadoresRecomendacoes =
-      recomendacoes;
-
-    estado.clubesRecomendacoes =
-      obterClubesDaBase(
-        recomendacoes
-      );
-
-
-    estado.jogadoresTimes =
-      times;
-
-    estado.clubesTimes =
-      obterClubesDaBase(
-        times
+    ]
+      .sort(
+        (
+          clubeA,
+          clubeB
+        ) =>
+          clubeA.localeCompare(
+            clubeB,
+            "pt-BR"
+          )
       );
 
   }
 
+
+  /* =======================================================
+     BASE POR CONTEXTO
+     ======================================================= */
 
   function obterJogadoresContexto(
     contexto
   ) {
 
-    if (
+    const base =
       contexto === "times"
-    ) {
 
-      return estado
-        .jogadoresTimes;
+        ? estado.jogadoresTimes
 
-    }
+        : estado
+            .jogadoresRecomendacoes;
 
-    return estado
-      .jogadoresRecomendacoes;
+
+    /*
+     * Quando um clube é excluído,
+     * jogadores daquele clube desaparecem do dropdown.
+     *
+     * Jogador excluído individualmente continua visível,
+     * marcado, para poder ser desmarcado.
+     */
+
+    return base.filter(
+      jogador => {
+
+        const clube =
+          obterClubeJogador(
+            jogador
+          );
+
+
+        if (
+          clube &&
+          estado
+            .clubesExcluidos
+            .has(
+              clube
+            )
+        ) {
+
+          return false;
+
+        }
+
+
+        return true;
+
+      }
+    );
 
   }
 
@@ -1080,17 +1486,12 @@ const CartolaFiltrosExclusao = (() => {
     contexto
   ) {
 
-    if (
-      contexto === "times"
-    ) {
+    return contexto === "times"
 
-      return estado
-        .clubesTimes;
+      ? estado.clubesTimes
 
-    }
-
-    return estado
-      .clubesRecomendacoes;
+      : estado
+          .clubesRecomendacoes;
 
   }
 
@@ -1108,43 +1509,42 @@ const CartolaFiltrosExclusao = (() => {
         jogador
       );
 
+
     const clube =
       obterClubeJogador(
         jogador
       );
 
 
-    if (
-      clube &&
-      estado.clubesExcluidos.has(
-        clube
+    return Boolean(
+
+      (
+        clube &&
+        estado
+          .clubesExcluidos
+          .has(
+            clube
+          )
       )
-    ) {
 
-      return true;
+      ||
 
-    }
-
-
-    if (
-      id &&
-      estado.jogadoresExcluidos.has(
-        id
+      (
+        id &&
+        estado
+          .jogadoresExcluidos
+          .has(
+            id
+          )
       )
-    ) {
 
-      return true;
-
-    }
-
-
-    return false;
+    );
 
   }
 
 
   /* =======================================================
-     APLICA FILTRO À BASE ATIVA
+     APLICA EXCLUSÕES À BASE DO MOTOR
      ======================================================= */
 
   function aplicarFiltroNaBase() {
@@ -1171,15 +1571,19 @@ const CartolaFiltrosExclusao = (() => {
       filtrados.length;
 
 
-    if (
-      typeof estadoRecomendacoes !==
-        "undefined"
-    ) {
+    try {
 
-      estadoRecomendacoes.jogadores =
-        filtrados;
+      if (
+        typeof estadoRecomendacoes !==
+          "undefined"
+      ) {
 
-    }
+        estadoRecomendacoes.jogadores =
+          filtrados;
+
+      }
+
+    } catch (_) {}
 
 
     return filtrados;
@@ -1187,27 +1591,27 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  /* =======================================================
-     RESTAURA BASE
-     ======================================================= */
-
   function restaurarBaseOriginal() {
 
     const originais =
       obterJogadoresOriginais();
 
 
-    if (
-      typeof estadoRecomendacoes !==
-        "undefined"
-    ) {
+    try {
 
-      estadoRecomendacoes.jogadores =
-        originais.map(
-          copiarJogador
-        );
+      if (
+        typeof estadoRecomendacoes !==
+          "undefined"
+      ) {
 
-    }
+        estadoRecomendacoes.jogadores =
+          originais.map(
+            copiarJogador
+          );
+
+      }
+
+    } catch (_) {}
 
 
     estado.quantidadeRemovida =
@@ -1220,7 +1624,7 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     RECOMENDAÇÕES
+     ATUALIZA RECOMENDAÇÕES
      ======================================================= */
 
   function atualizarRecomendacoes() {
@@ -1249,12 +1653,14 @@ const CartolaFiltrosExclusao = (() => {
 
       return true;
 
+
     } catch (erro) {
 
       console.warn(
-        "Erro ao atualizar recomendações após filtro:",
+        "Erro ao atualizar recomendações:",
         erro
       );
+
 
       return false;
 
@@ -1264,38 +1670,48 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     RECÁLCULO DAS ESCALAÇÕES
+     RECÁLCULO DOS TIMES
      ======================================================= */
 
   async function recalcularEscalacoesFiltradas() {
 
-    if (
-      typeof window !==
-        "undefined" &&
-      typeof window
-        .recalcularEscalacoes ===
-        "function"
-    ) {
+    try {
 
-      return await window
-        .recalcularEscalacoes();
+      if (
+        typeof window
+          .recalcularEscalacoes ===
+          "function"
+      ) {
 
-    }
+        return await window
+          .recalcularEscalacoes();
+
+      }
 
 
-    if (
-      typeof window !==
-        "undefined" &&
-      window.CartolaEscalacoes &&
-      typeof window
-        .CartolaEscalacoes
-        .recalcular ===
-        "function"
-    ) {
+      if (
+        window.CartolaEscalacoes &&
+        typeof window
+          .CartolaEscalacoes
+          .recalcular ===
+          "function"
+      ) {
 
-      return await window
-        .CartolaEscalacoes
-        .recalcular();
+        return await window
+          .CartolaEscalacoes
+          .recalcular();
+
+      }
+
+    } catch (erro) {
+
+      console.error(
+        "Erro no recálculo das escalações:",
+        erro
+      );
+
+
+      throw erro;
 
     }
 
@@ -1311,51 +1727,23 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     RESUMOS
+     NOMES DAS EXCLUSÕES
      ======================================================= */
 
   function obterNomesJogadoresExcluidos() {
 
-    const mapa =
-      new Map();
-
-
-    [
-      ...estado.jogadoresRecomendacoes,
-      ...estado.jogadoresTimes
-    ].forEach(
-      jogador => {
-
-        const id =
-          obterIdJogador(
-            jogador
-          );
-
-        if (
-          id &&
-          !mapa.has(id)
-        ) {
-
-          mapa.set(
-            id,
-            obterNomeJogador(
-              jogador
-            )
-          );
-
-        }
-
-      }
-    );
-
-
     return [
-      ...estado.jogadoresExcluidos
+      ...estado
+        .jogadoresExcluidos
     ]
       .map(
         id =>
-          mapa.get(id)
-          ??
+          estado
+            .nomesJogadores
+            .get(
+              id
+            )
+          ||
           id
       )
       .sort(
@@ -1375,10 +1763,15 @@ const CartolaFiltrosExclusao = (() => {
   function criarResumoCurto() {
 
     const clubes =
-      estado.clubesExcluidos.size;
+      estado
+        .clubesExcluidos
+        .size;
+
 
     const jogadores =
-      estado.jogadoresExcluidos.size;
+      estado
+        .jogadoresExcluidos
+        .size;
 
 
     if (
@@ -1426,8 +1819,10 @@ const CartolaFiltrosExclusao = (() => {
   function criarResumoCompleto() {
 
     const clubes = [
-      ...estado.clubesExcluidos
-    ].sort();
+      ...estado
+        .clubesExcluidos
+    ]
+      .sort();
 
 
     const jogadores =
@@ -1440,8 +1835,7 @@ const CartolaFiltrosExclusao = (() => {
     ) {
 
       return (
-        "Sem exclusões manuais. " +
-        "Todos os candidatos disponíveis podem ser utilizados."
+        "Nenhuma exclusão ativa."
       );
 
     }
@@ -1473,8 +1867,71 @@ const CartolaFiltrosExclusao = (() => {
 
 
     return partes.join(
-      " • "
+      "  •  "
     );
+
+  }
+
+
+  function criarChipsExclusoes() {
+
+    const itens = [];
+
+
+    [
+      ...estado.clubesExcluidos
+    ]
+      .sort()
+      .forEach(
+        clube => {
+
+          itens.push(`
+            <span
+              class="ce-filter-chip ce-filter-chip-club"
+              title="Clube excluído"
+            >
+              Clube: ${escaparHtml(clube)}
+            </span>
+          `);
+
+        }
+      );
+
+
+    const jogadores =
+      obterNomesJogadoresExcluidos();
+
+
+    jogadores.forEach(
+      nome => {
+
+        itens.push(`
+          <span
+            class="ce-filter-chip ce-filter-chip-player"
+            title="Jogador excluído"
+          >
+            ${escaparHtml(nome)}
+          </span>
+        `);
+
+      }
+    );
+
+
+    if (
+      itens.length === 0
+    ) {
+
+      return `
+        <span class="ce-filter-none">
+          Nenhuma exclusão ativa
+        </span>
+      `;
+
+    }
+
+
+    return itens.join("");
 
   }
 
@@ -1497,18 +1954,6 @@ const CartolaFiltrosExclusao = (() => {
       clubes.length === 0
     ) {
 
-      if (
-        contexto === "times"
-      ) {
-
-        return `
-          <div class="ce-filter-empty">
-            Aguardando os times sugeridos.
-          </div>
-        `;
-
-      }
-
       return `
         <div class="ce-filter-empty">
           Nenhum clube disponível.
@@ -1523,9 +1968,11 @@ const CartolaFiltrosExclusao = (() => {
         clube => {
 
           const marcado =
-            estado.clubesExcluidos.has(
-              clube
-            );
+            estado
+              .clubesExcluidos
+              .has(
+                clube
+              );
 
 
           return `
@@ -1565,8 +2012,10 @@ const CartolaFiltrosExclusao = (() => {
   ) {
 
     const base =
-      obterJogadoresContexto(
-        contexto
+      ordenarJogadores(
+        obterJogadoresContexto(
+          contexto
+        )
       );
 
 
@@ -1574,22 +2023,20 @@ const CartolaFiltrosExclusao = (() => {
       base.length === 0
     ) {
 
-      if (
-        contexto === "times"
-      ) {
-
-        return `
-          <div class="ce-filter-empty">
-            Aguardando os jogadores dos times sugeridos.
-          </div>
-        `;
-
-      }
-
       return `
+
         <div class="ce-filter-empty">
-          Nenhum jogador disponível.
+
+          ${
+            contexto === "times"
+
+              ? "Aguardando jogadores dos times sugeridos."
+
+              : "Nenhum jogador do ranking disponível."
+          }
+
         </div>
+
       `;
 
     }
@@ -1604,9 +2051,12 @@ const CartolaFiltrosExclusao = (() => {
         const jogadores =
           base.filter(
             jogador =>
-              obterPosicaoJogador(
-                jogador
-              ) === posicao
+              obterPosicaoNormalizada(
+                obterPosicaoJogador(
+                  jogador
+                )
+              ) ===
+              posicao
           );
 
 
@@ -1629,7 +2079,13 @@ const CartolaFiltrosExclusao = (() => {
             <div
               class="ce-filter-position-title"
             >
+
               ${NOMES_POSICOES[posicao]}
+
+              <span>
+                ${jogadores.length}
+              </span>
+
             </div>
 
         `;
@@ -1659,7 +2115,9 @@ const CartolaFiltrosExclusao = (() => {
             const marcado =
               estado
                 .jogadoresExcluidos
-                .has(id);
+                .has(
+                  id
+                );
 
 
             const busca =
@@ -1672,10 +2130,19 @@ const CartolaFiltrosExclusao = (() => {
               );
 
 
+            estado.nomesJogadores.set(
+              id,
+              nome
+            );
+
+
             html += `
 
               <label
-                class="ce-filter-option ce-filter-player-item"
+                class="
+                  ce-filter-option
+                  ce-filter-player-item
+                "
                 data-search="${escaparHtml(busca)}"
               >
 
@@ -1731,8 +2198,16 @@ const CartolaFiltrosExclusao = (() => {
 
     const textoContexto =
       contexto === "times"
-        ? "Apenas jogadores presentes nos times sugeridos."
-        : "Retire opções que você não quer nas recomendações.";
+
+        ? (
+            "Os filtros abaixo mostram apenas os atletas " +
+            "presentes nos três times sugeridos."
+          )
+
+        : (
+            "Os jogadores abaixo pertencem aos rankings " +
+            "recomendados da rodada."
+          );
 
 
     return `
@@ -1743,12 +2218,10 @@ const CartolaFiltrosExclusao = (() => {
       >
 
         <div
-          class="ce-filter-top"
+          class="ce-filter-heading"
         >
 
-          <div
-            class="ce-filter-title-area"
-          >
+          <div>
 
             <span
               class="ce-filter-kicker"
@@ -1762,39 +2235,27 @@ const CartolaFiltrosExclusao = (() => {
               Excluir clubes ou jogadores
             </strong>
 
-            <small>
+            <small
+              class="ce-filter-subtitle"
+            >
               ${textoContexto}
             </small>
 
           </div>
 
 
-          <div
-            class="ce-filter-top-actions"
+          <button
+            type="button"
+            class="ce-filter-clear"
           >
-
-            <span
-              class="ce-filter-count"
-            >
-              ${escaparHtml(
-                criarResumoCurto()
-              )}
-            </span>
-
-            <button
-              type="button"
-              class="ce-filter-clear"
-            >
-              Limpar
-            </button>
-
-          </div>
+            Limpar filtros
+          </button>
 
         </div>
 
 
         <div
-          class="ce-filter-controls"
+          class="ce-filter-main-row"
         >
 
           <details
@@ -1821,7 +2282,10 @@ const CartolaFiltrosExclusao = (() => {
             >
 
               <div
-                class="ce-filter-options ce-filter-club-list"
+                class="
+                  ce-filter-options
+                  ce-filter-club-list
+                "
               >
 
                 ${criarHtmlClubes(
@@ -1836,7 +2300,10 @@ const CartolaFiltrosExclusao = (() => {
 
 
           <details
-            class="ce-filter-dropdown ce-filter-dropdown-player"
+            class="
+              ce-filter-dropdown
+              ce-filter-dropdown-player
+            "
           >
 
             <summary>
@@ -1867,7 +2334,10 @@ const CartolaFiltrosExclusao = (() => {
 
 
               <div
-                class="ce-filter-options ce-filter-player-list"
+                class="
+                  ce-filter-options
+                  ce-filter-player-list
+                "
               >
 
                 ${criarHtmlJogadores(
@@ -1892,11 +2362,21 @@ const CartolaFiltrosExclusao = (() => {
 
 
         <div
-          class="ce-filter-status"
+          class="ce-filter-active"
         >
-          ${escaparHtml(
-            criarResumoCompleto()
-          )}
+
+          <span
+            class="ce-filter-active-label"
+          >
+            Excluídos:
+          </span>
+
+          <div
+            class="ce-filter-chips"
+          >
+            ${criarChipsExclusoes()}
+          </div>
+
         </div>
 
       </div>
@@ -1907,22 +2387,22 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     ESTILOS
+     CSS
      ======================================================= */
 
   function garantirEstilos() {
 
-    const existente =
+    const antigo =
       document.getElementById(
         "ceFiltrosRodadaStyle"
       );
 
 
     if (
-      existente
+      antigo
     ) {
 
-      existente.remove();
+      antigo.remove();
 
     }
 
@@ -1940,143 +2420,181 @@ const CartolaFiltrosExclusao = (() => {
     style.textContent = `
 
       .ce-filter-wrapper {
-        margin: 14px 0 18px;
+        width: 100%;
+        margin: 14px 0 20px;
       }
+
 
       .ce-filter-panel {
-        padding: 13px 15px;
-        border: 1px solid rgba(78,195,126,.25);
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 16px;
+        border: 1px solid rgba(70, 205, 130, .22);
         border-radius: 16px;
-        background: rgba(27,70,45,.20);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(27, 70, 45, .24),
+            rgba(10, 34, 22, .18)
+          );
       }
 
-      .ce-filter-top {
+
+      .ce-filter-heading {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
-        gap: 14px;
-        margin-bottom: 11px;
+        gap: 20px;
+        margin-bottom: 12px;
       }
 
-      .ce-filter-title-area {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
+
+      .ce-filter-heading > div {
         min-width: 0;
-        flex-wrap: wrap;
       }
+
 
       .ce-filter-kicker {
-        color: #44d887;
+        display: block;
+        margin-bottom: 4px;
+        color: #48d68b;
         font-size: 10px;
         line-height: 1;
         font-weight: 800;
         letter-spacing: .11em;
       }
 
+
       .ce-filter-title {
+        display: block;
+        color: inherit;
         font-size: 14px;
-        line-height: 1.2;
+        line-height: 1.3;
       }
 
-      .ce-filter-title-area small {
-        font-size: 11px;
-        opacity: .64;
-      }
 
-      .ce-filter-top-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex: 0 0 auto;
-      }
-
-      .ce-filter-count {
-        padding: 6px 9px;
-        border-radius: 999px;
-        background: rgba(255,255,255,.055);
+      .ce-filter-subtitle {
+        display: block;
+        margin-top: 3px;
+        opacity: .58;
         font-size: 10px;
-        white-space: nowrap;
+        line-height: 1.35;
       }
 
-      .ce-filter-controls {
+
+      .ce-filter-main-row {
         display: grid;
         grid-template-columns:
-          minmax(180px,.75fr)
-          minmax(240px,1fr)
-          auto;
+          minmax(170px, .72fr)
+          minmax(240px, 1fr)
+          150px;
         gap: 9px;
         align-items: start;
       }
 
+
       .ce-filter-dropdown {
         position: relative;
+        min-width: 0;
       }
+
 
       .ce-filter-dropdown > summary {
         list-style: none;
+        box-sizing: border-box;
+        width: 100%;
         min-height: 42px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 10px;
+        gap: 8px;
         padding: 0 12px;
         border: 1px solid rgba(255,255,255,.10);
-        border-radius: 11px;
-        background: rgba(5,25,16,.36);
+        border-radius: 10px;
+        background: rgba(4, 24, 15, .42);
         cursor: pointer;
         user-select: none;
         font-size: 12px;
         font-weight: 700;
       }
 
-      .ce-filter-dropdown > summary::-webkit-details-marker {
+
+      .ce-filter-dropdown >
+      summary::-webkit-details-marker {
         display: none;
       }
 
-      .ce-filter-dropdown > summary::after {
+
+      .ce-filter-dropdown >
+      summary::after {
         content: "▾";
-        margin-left: auto;
-        opacity: .65;
+        margin-left: 6px;
+        opacity: .55;
       }
 
-      .ce-filter-dropdown[open] > summary::after {
+
+      .ce-filter-dropdown[open] >
+      summary::after {
         content: "▴";
       }
 
-      .ce-filter-dropdown > summary strong {
-        min-width: 21px;
-        height: 21px;
+
+      .ce-filter-dropdown >
+      summary > span {
+        min-width: 0;
+        flex: 1;
+      }
+
+
+      .ce-filter-dropdown >
+      summary strong {
+        min-width: 22px;
+        height: 22px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        box-sizing: border-box;
         padding: 0 6px;
         border-radius: 999px;
-        background: rgba(68,216,135,.15);
-        color: #44d887;
+        background: rgba(67, 215, 135, .14);
+        color: #48d68b;
         font-size: 10px;
       }
 
+
       .ce-filter-dropdown-body {
         position: absolute;
-        z-index: 80;
-        left: 0;
-        right: 0;
+        z-index: 500;
         top: calc(100% + 6px);
+        left: 0;
+        width: max(100%, 270px);
+        max-width: 420px;
+        box-sizing: border-box;
         padding: 9px;
-        border: 1px solid rgba(255,255,255,.12);
+        border: 1px solid rgba(255,255,255,.13);
         border-radius: 12px;
-        background: #0b1a12;
-        box-shadow: 0 18px 45px rgba(0,0,0,.35);
+        background: #0a1c12;
+        box-shadow:
+          0 18px 50px rgba(0,0,0,.45);
       }
+
+
+      .ce-filter-dropdown-player
+      .ce-filter-dropdown-body {
+        width: max(100%, 340px);
+      }
+
 
       .ce-filter-options {
-        max-height: 285px;
+        max-height: 300px;
         overflow-y: auto;
         overscroll-behavior: contain;
+        scrollbar-width: thin;
       }
 
+
       .ce-filter-option {
+        box-sizing: border-box;
+        width: 100%;
         display: flex;
         align-items: center;
         gap: 9px;
@@ -2086,169 +2604,318 @@ const CartolaFiltrosExclusao = (() => {
         font-size: 11px;
       }
 
+
       .ce-filter-option:hover {
         background: rgba(255,255,255,.055);
       }
 
+
       .ce-filter-option input {
-        margin: 0;
         flex: 0 0 auto;
+        margin: 0;
       }
+
 
       .ce-filter-player-info {
-        display: flex;
         min-width: 0;
+        flex: 1;
+        display: flex;
         align-items: baseline;
-        gap: 6px;
+        justify-content: space-between;
+        gap: 8px;
       }
 
+
       .ce-filter-player-info strong {
+        min-width: 0;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
 
+
       .ce-filter-player-info small {
-        opacity: .55;
+        flex: 0 0 auto;
+        opacity: .50;
         font-size: 9px;
       }
 
+
+      .ce-filter-position {
+        padding-bottom: 3px;
+      }
+
+
       .ce-filter-position-title {
         position: sticky;
-        top: 0;
         z-index: 2;
-        padding: 7px 8px 5px;
-        background: #0b1a12;
-        color: #44d887;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 8px 5px;
+        background: #0a1c12;
+        color: #48d68b;
         font-size: 9px;
         font-weight: 800;
         letter-spacing: .09em;
         text-transform: uppercase;
       }
 
+
+      .ce-filter-position-title span {
+        opacity: .55;
+      }
+
+
       .ce-filter-search {
+        box-sizing: border-box;
         width: 100%;
         height: 38px;
         margin-bottom: 7px;
         padding: 0 10px;
         border: 1px solid rgba(255,255,255,.11);
         border-radius: 9px;
-        outline: 0;
+        outline: none;
         background: rgba(255,255,255,.035);
         color: inherit;
         font-size: 11px;
       }
 
+
       .ce-filter-search:focus {
-        border-color: rgba(68,216,135,.55);
+        border-color: rgba(72,214,139,.55);
       }
 
-      .ce-filter-apply,
-      .ce-filter-clear {
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 800;
-      }
 
       .ce-filter-apply {
+        box-sizing: border-box;
+        width: 100%;
         min-height: 42px;
-        padding: 0 15px;
+        padding: 0 14px;
         border: 0;
-        background: #45be7c;
+        border-radius: 10px;
+        background: #48c881;
         color: #071b10;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 800;
         white-space: nowrap;
       }
 
+
       .ce-filter-clear {
-        height: 34px;
+        flex: 0 0 auto;
+        min-height: 32px;
         padding: 0 11px;
         border: 1px solid rgba(255,255,255,.11);
+        border-radius: 9px;
         background: rgba(255,255,255,.025);
         color: inherit;
+        cursor: pointer;
         font-size: 10px;
+        font-weight: 700;
       }
+
 
       .ce-filter-apply:disabled,
       .ce-filter-clear:disabled {
-        opacity: .5;
+        opacity: .50;
         cursor: wait;
       }
 
-      .ce-filter-status {
-        margin-top: 8px;
-        overflow: hidden;
-        color: rgba(255,255,255,.58);
-        font-size: 10px;
-        line-height: 1.4;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+
+      .ce-filter-active {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        min-height: 24px;
+        margin-top: 10px;
+        padding-top: 9px;
+        border-top: 1px solid rgba(255,255,255,.055);
       }
+
+
+      .ce-filter-active-label {
+        flex: 0 0 auto;
+        padding-top: 4px;
+        color: rgba(255,255,255,.50);
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+      }
+
+
+      .ce-filter-chips {
+        min-width: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+
+      .ce-filter-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 23px;
+        box-sizing: border-box;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 9px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+
+      .ce-filter-chip-club {
+        border: 1px solid rgba(255, 196, 80, .25);
+        background: rgba(255, 196, 80, .09);
+        color: #e9bf68;
+      }
+
+
+      .ce-filter-chip-player {
+        border: 1px solid rgba(72, 214, 139, .22);
+        background: rgba(72, 214, 139, .09);
+        color: #70dfa1;
+      }
+
+
+      .ce-filter-none {
+        padding-top: 3px;
+        color: rgba(255,255,255,.42);
+        font-size: 10px;
+      }
+
 
       .ce-filter-empty {
-        padding: 10px;
-        opacity: .6;
-        font-size: 11px;
+        padding: 12px 8px;
+        opacity: .55;
+        font-size: 10px;
       }
 
-      @media (max-width: 900px) {
 
-        .ce-filter-controls {
-          grid-template-columns: 1fr 1fr;
+      /* ================================================
+         AJUSTE DO BLOCO DE POSIÇÕES
+
+         Impede o layout observado no print:
+         título apertado + botões comprimidos.
+         ================================================ */
+
+
+      #recomendacoes #positionFilters,
+      #recomendacoes .position-filters {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 7px;
+        margin-top: 8px;
+      }
+
+
+      #recomendacoes
+      .position-filter-button {
+        flex: 0 0 auto;
+        min-width: 0;
+        white-space: nowrap;
+      }
+
+
+      /* ================================================
+         DESKTOP MÉDIO
+         ================================================ */
+
+
+      @media (max-width: 1050px) {
+
+        .ce-filter-main-row {
+          grid-template-columns:
+            minmax(150px, .8fr)
+            minmax(210px, 1fr)
+            130px;
         }
+
+      }
+
+
+      /* ================================================
+         TABLET
+         ================================================ */
+
+
+      @media (max-width: 800px) {
+
+        .ce-filter-main-row {
+          grid-template-columns:
+            1fr
+            1fr;
+        }
+
 
         .ce-filter-apply {
           grid-column: 1 / -1;
         }
 
+
+        .ce-filter-dropdown-body {
+          width: 100%;
+          max-width: none;
+        }
+
+
+        .ce-filter-dropdown-player
+        .ce-filter-dropdown-body {
+          width: 100%;
+        }
+
       }
 
-      @media (max-width: 650px) {
+
+      /* ================================================
+         CELULAR
+         ================================================ */
+
+
+      @media (max-width: 620px) {
 
         .ce-filter-panel {
           padding: 12px;
         }
 
-        .ce-filter-top {
-          align-items: flex-start;
+
+        .ce-filter-heading {
+          gap: 10px;
         }
 
-        .ce-filter-title-area {
-          display: block;
-        }
 
-        .ce-filter-kicker,
-        .ce-filter-title,
-        .ce-filter-title-area small {
-          display: block;
-        }
-
-        .ce-filter-title {
-          margin-top: 5px;
-        }
-
-        .ce-filter-title-area small {
-          margin-top: 4px;
-        }
-
-        .ce-filter-count {
-          display: none;
-        }
-
-        .ce-filter-controls {
+        .ce-filter-main-row {
           grid-template-columns: 1fr;
         }
+
 
         .ce-filter-apply {
           grid-column: auto;
         }
 
+
         .ce-filter-dropdown-body {
           position: static;
+          width: 100%;
           margin-top: 6px;
+          box-shadow: none;
         }
 
-        .ce-filter-status {
-          white-space: normal;
+
+        .ce-filter-active {
+          display: block;
+        }
+
+
+        .ce-filter-active-label {
+          display: block;
+          margin-bottom: 6px;
         }
 
       }
@@ -2264,35 +2931,35 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     REMOVE PAINÉIS ANTIGOS
+     REMOVE PAINÉIS ANTIGOS / DUPLICADOS
      ======================================================= */
 
   function removerPaineisAntigos() {
 
-    const seletores = [
+    [
+      "#ceFilterRecommendations",
+      "#ceFilterTeams",
 
       "#ceExclusionRecommendations",
       "#ceExclusionTeams",
+
       ".ce-exclusion-wrapper",
       ".ce-exclusion-panel"
+    ]
+      .forEach(
+        seletor => {
 
-    ];
+          document
+            .querySelectorAll(
+              seletor
+            )
+            .forEach(
+              elemento =>
+                elemento.remove()
+            );
 
-
-    seletores.forEach(
-      seletor => {
-
-        document
-          .querySelectorAll(
-            seletor
-          )
-          .forEach(
-            elemento =>
-              elemento.remove()
-          );
-
-      }
-    );
+        }
+      );
 
 
     const estiloAntigo =
@@ -2312,20 +2979,17 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  /* =======================================================
-     REMOVE FILTRO LEGADO
-     ======================================================= */
-
   function removerFiltroLegadoDuplicado() {
 
-    const candidatos = [
-      ...document.querySelectorAll(
-        "div, section, article"
-      )
+    const elementos = [
+      ...document
+        .querySelectorAll(
+          "section, article, div"
+        )
     ];
 
 
-    candidatos.forEach(
+    elementos.forEach(
       elemento => {
 
         if (
@@ -2345,73 +3009,72 @@ const CartolaFiltrosExclusao = (() => {
           );
 
 
-        const temTitulo =
-          conteudo.includes(
-            "retire clubes ou jogadores"
-          );
+        const pareceFiltroAntigo =
 
+          (
+            conteudo.includes(
+              "retire clubes ou jogadores"
+            )
 
-        const temContadores =
+            ||
+
+            conteudo.includes(
+              "ajustes manuais da rodada"
+            )
+          )
+
+          &&
+
           (
             conteudo.includes(
               "clubes excluidos"
             )
+
             ||
+
             conteudo.includes(
               "atletas removidos"
             )
           );
 
 
-        const temBotao =
+        if (
+          !pareceFiltroAntigo
+        ) {
+
+          return;
+
+        }
+
+
+        const botoes =
           [
-            ...elemento.querySelectorAll(
-              "button"
-            )
-          ].some(
+            ...elemento
+              .querySelectorAll(
+                "button"
+              )
+          ];
+
+
+        const temBotaoLimpar =
+          botoes.some(
             botao =>
               normalizarTexto(
                 botao.textContent
-              ).includes(
-                "limpar filtros"
               )
+                .includes(
+                  "limpar"
+                )
           );
 
 
         if (
-          !temTitulo ||
-          !temContadores ||
-          !temBotao
+          temBotaoLimpar
         ) {
 
-          return;
+          elemento.remove();
 
         }
-
-
-        const filhosComMesmoTitulo =
-          [
-            ...elemento.children
-          ].some(
-            filho =>
-              normalizarTexto(
-                filho.textContent
-              ).includes(
-                "retire clubes ou jogadores"
-              )
-          );
-
-
-        if (
-          filhosComMesmoTitulo
-        ) {
-
-          return;
-
-        }
-
-
-        elemento.remove();
 
       }
     );
@@ -2420,8 +3083,61 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     SINCRONIZA CHECKBOXES
+     INTERFACE
      ======================================================= */
+
+  function atualizarInterfaceResumo() {
+
+    document
+      .querySelectorAll(
+        ".ce-filter-club-count"
+      )
+      .forEach(
+        elemento => {
+
+          elemento.textContent =
+            estado
+              .clubesExcluidos
+              .size;
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        ".ce-filter-player-count"
+      )
+      .forEach(
+        elemento => {
+
+          elemento.textContent =
+            estado
+              .jogadoresExcluidos
+              .size;
+
+        }
+      );
+
+
+    document
+      .querySelectorAll(
+        ".ce-filter-chips"
+      )
+      .forEach(
+        elemento => {
+
+          elemento.innerHTML =
+            criarChipsExclusoes();
+
+        }
+      );
+
+
+    sincronizarCheckboxes();
+
+  }
+
 
   function sincronizarCheckboxes() {
 
@@ -2468,73 +3184,6 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     ATUALIZA CONTADORES
-     ======================================================= */
-
-  function atualizarInterfaceResumo() {
-
-    document
-      .querySelectorAll(
-        ".ce-filter-count"
-      )
-      .forEach(
-        elemento => {
-
-          elemento.textContent =
-            criarResumoCurto();
-
-        }
-      );
-
-
-    document
-      .querySelectorAll(
-        ".ce-filter-club-count"
-      )
-      .forEach(
-        elemento => {
-
-          elemento.textContent =
-            estado.clubesExcluidos.size;
-
-        }
-      );
-
-
-    document
-      .querySelectorAll(
-        ".ce-filter-player-count"
-      )
-      .forEach(
-        elemento => {
-
-          elemento.textContent =
-            estado.jogadoresExcluidos.size;
-
-        }
-      );
-
-
-    document
-      .querySelectorAll(
-        ".ce-filter-status"
-      )
-      .forEach(
-        elemento => {
-
-          elemento.textContent =
-            criarResumoCompleto();
-
-        }
-      );
-
-
-    sincronizarCheckboxes();
-
-  }
-
-
-  /* =======================================================
      BUSCA
      ======================================================= */
 
@@ -2563,17 +3212,15 @@ const CartolaFiltrosExclusao = (() => {
       .forEach(
         item => {
 
-          const corresponde =
-            !busca ||
-            texto(
-              item.dataset.search
-            ).includes(
-              busca
-            );
-
-
           item.hidden =
-            !corresponde;
+            Boolean(
+              busca &&
+              !texto(
+                item.dataset.search
+              ).includes(
+                busca
+              )
+            );
 
         }
       );
@@ -2588,13 +3235,15 @@ const CartolaFiltrosExclusao = (() => {
 
           const algumVisivel =
             [
-              ...grupo.querySelectorAll(
-                ".ce-filter-player-item"
-              )
-            ].some(
-              item =>
-                !item.hidden
-            );
+              ...grupo
+                .querySelectorAll(
+                  ".ce-filter-player-item"
+                )
+            ]
+              .some(
+                item =>
+                  !item.hidden
+              );
 
 
           grupo.hidden =
@@ -2607,7 +3256,7 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     EVENTOS
+     EVENTOS DOS PAINÉIS
      ======================================================= */
 
   function configurarEventosPainel(
@@ -2635,7 +3284,8 @@ const CartolaFiltrosExclusao = (() => {
               const clube =
                 texto(
                   checkbox.value
-                ).toUpperCase();
+                )
+                  .toUpperCase();
 
 
               if (
@@ -2683,6 +3333,34 @@ const CartolaFiltrosExclusao = (() => {
                 texto(
                   checkbox.value
                 );
+
+
+              const item =
+                checkbox.closest(
+                  ".ce-filter-player-item"
+                );
+
+
+              const nome =
+                item
+                  ?.querySelector(
+                    "strong"
+                  )
+                  ?.textContent;
+
+
+              if (
+                nome
+              ) {
+
+                estado
+                  .nomesJogadores
+                  .set(
+                    id,
+                    texto(nome)
+                  );
+
+              }
 
 
               if (
@@ -2779,7 +3457,7 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     FECHAMENTO DOS DROPDOWNS
+     FECHA OUTRO DROPDOWN
      ======================================================= */
 
   function configurarFechamentoDropdown() {
@@ -2788,7 +3466,7 @@ const CartolaFiltrosExclusao = (() => {
       document
         .documentElement
         .dataset
-        .ceFilterDropdownReady ===
+        .ceFilterDropdownV3 ===
       "1"
     ) {
 
@@ -2800,7 +3478,7 @@ const CartolaFiltrosExclusao = (() => {
     document
       .documentElement
       .dataset
-      .ceFilterDropdownReady =
+      .ceFilterDropdownV3 =
       "1";
 
 
@@ -2808,7 +3486,7 @@ const CartolaFiltrosExclusao = (() => {
       "click",
       evento => {
 
-        const detailsClicado =
+        const clicado =
           evento.target.closest(
             ".ce-filter-dropdown"
           );
@@ -2823,7 +3501,7 @@ const CartolaFiltrosExclusao = (() => {
 
               if (
                 details !==
-                detailsClicado
+                clicado
               ) {
 
                 details.removeAttribute(
@@ -2842,7 +3520,7 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     ESTADO APLICANDO
+     BOTÕES DURANTE RECÁLCULO
      ======================================================= */
 
   function definirAplicando(
@@ -2850,7 +3528,9 @@ const CartolaFiltrosExclusao = (() => {
   ) {
 
     estado.aplicando =
-      Boolean(valor);
+      Boolean(
+        valor
+      );
 
 
     document
@@ -2867,51 +3547,50 @@ const CartolaFiltrosExclusao = (() => {
       );
 
 
-    if (
-      estado.aplicando
-    ) {
+    document
+      .querySelectorAll(
+        ".ce-filter-apply"
+      )
+      .forEach(
+        botao => {
 
-      document
-        .querySelectorAll(
-          ".ce-filter-apply"
-        )
-        .forEach(
-          botao => {
+          if (
+            estado.aplicando
+          ) {
 
-            botao.dataset.textoOriginal =
-              botao.textContent;
+            if (
+              !botao.dataset
+                .textoOriginal
+            ) {
+
+              botao.dataset
+                .textoOriginal =
+                botao.textContent;
+
+            }
 
 
             botao.textContent =
               "Recalculando...";
 
-          }
-        );
-
-    } else {
-
-      document
-        .querySelectorAll(
-          ".ce-filter-apply"
-        )
-        .forEach(
-          botao => {
+          } else {
 
             botao.textContent =
-              botao.dataset.textoOriginal
+              botao.dataset
+                .textoOriginal
               ||
               "Aplicar filtros";
 
           }
-        );
 
-    }
+        }
+      );
 
   }
 
 
   /* =======================================================
-     APLICA FILTROS
+     APLICA
      ======================================================= */
 
   async function aplicarFiltros() {
@@ -2940,25 +3619,29 @@ const CartolaFiltrosExclusao = (() => {
       atualizarRecomendacoes();
 
 
+      /*
+       * Agora o ranking já mudou.
+       * Captura novos candidatos que entraram no lugar
+       * dos excluídos.
+       */
+
+      atualizarBaseRecomendacoes();
+
+
       const escalacoes =
         await recalcularEscalacoesFiltradas();
 
-
-      /*
-       * Aguarda o DOM e o estado das escalações
-       * terminarem de atualizar.
-       */
 
       await new Promise(
         resolver =>
           setTimeout(
             resolver,
-            80
+            120
           )
       );
 
 
-      atualizarOpcoesDisponiveis();
+      atualizarBaseTimes();
 
 
       estado.ultimoResultado = {
@@ -2972,31 +3655,41 @@ const CartolaFiltrosExclusao = (() => {
           estado.quantidadeRemovida,
 
         clubesExcluidos: [
-          ...estado.clubesExcluidos
+          ...estado
+            .clubesExcluidos
         ],
 
         jogadoresExcluidos: [
-          ...estado.jogadoresExcluidos
+          ...estado
+            .jogadoresExcluidos
         ],
 
         escalacoes:
-          Array.isArray(escalacoes)
+          Array.isArray(
+            escalacoes
+          )
             ? escalacoes.length
-            : obterEscalacoesAtuais().length,
+            : obterEscalacoesAtuais()
+                .length,
 
-        jogadoresNosTimes:
-          estado.jogadoresTimes.length
+        jogadoresRecomendacoes:
+          estado
+            .jogadoresRecomendacoes
+            .length,
+
+        jogadoresTimes:
+          estado
+            .jogadoresTimes
+            .length
 
       };
 
 
       reconstruirPaineis();
 
-      atualizarInterfaceResumo();
-
 
       console.info(
-        "Filtros da rodada aplicados:",
+        "Filtros aplicados:",
         estado.ultimoResultado
       );
 
@@ -3006,7 +3699,8 @@ const CartolaFiltrosExclusao = (() => {
           "cartola:filtros-aplicados",
           {
             detail:
-              estado.ultimoResultado
+              estado
+                .ultimoResultado
           }
         )
       );
@@ -3031,7 +3725,9 @@ const CartolaFiltrosExclusao = (() => {
         erro:
           erro?.message
           ??
-          String(erro)
+          String(
+            erro
+          )
 
       };
 
@@ -3066,20 +3762,6 @@ const CartolaFiltrosExclusao = (() => {
     }
 
 
-    estado
-      .clubesExcluidos
-      .clear();
-
-
-    estado
-      .jogadoresExcluidos
-      .clear();
-
-
-    restaurarBaseOriginal();
-
-    atualizarInterfaceResumo();
-
     definirAplicando(
       true
     );
@@ -3087,7 +3769,23 @@ const CartolaFiltrosExclusao = (() => {
 
     try {
 
+      estado
+        .clubesExcluidos
+        .clear();
+
+
+      estado
+        .jogadoresExcluidos
+        .clear();
+
+
+      restaurarBaseOriginal();
+
+
       atualizarRecomendacoes();
+
+
+      atualizarBaseRecomendacoes();
 
 
       await recalcularEscalacoesFiltradas();
@@ -3097,32 +3795,26 @@ const CartolaFiltrosExclusao = (() => {
         resolver =>
           setTimeout(
             resolver,
-            80
+            120
           )
       );
 
 
-      atualizarOpcoesDisponiveis();
-
-      reconstruirPaineis();
-
-      atualizarInterfaceResumo();
+      atualizarBaseTimes();
 
 
       estado.ultimoResultado = {
 
         sucesso: true,
+
         limpo: true,
-        removidos: 0,
-        jogadoresNosTimes:
-          estado.jogadoresTimes.length
+
+        removidos: 0
 
       };
 
 
-      console.info(
-        "Filtros da rodada removidos."
-      );
+      reconstruirPaineis();
 
 
       window.dispatchEvent(
@@ -3170,19 +3862,11 @@ const CartolaFiltrosExclusao = (() => {
     }
 
 
-    const existente =
-      document.getElementById(
+    document
+      .getElementById(
         "ceFilterRecommendations"
-      );
-
-
-    if (
-      existente
-    ) {
-
-      existente.remove();
-
-    }
+      )
+      ?.remove();
 
 
     const wrapper =
@@ -3205,17 +3889,24 @@ const CartolaFiltrosExclusao = (() => {
       );
 
 
+    const filtrosPosicao =
+      secao.querySelector(
+        "#positionFilters, .position-filters"
+      );
+
+
     const grid =
       secao.querySelector(
         "#playersGrid"
       );
 
 
-    const filtrosPosicao =
-      secao.querySelector(
-        ".position-filters, .filters, .recommendation-filters"
-      );
-
+    /*
+     * Posiciona o bloco ANTES dos botões de posição,
+     * sem entrar no mesmo container.
+     *
+     * Isso corrige o layout comprimido do print.
+     */
 
     if (
       filtrosPosicao &&
@@ -3279,19 +3970,11 @@ const CartolaFiltrosExclusao = (() => {
     }
 
 
-    const existente =
-      document.getElementById(
+    document
+      .getElementById(
         "ceFilterTeams"
-      );
-
-
-    if (
-      existente
-    ) {
-
-      existente.remove();
-
-    }
+      )
+      ?.remove();
 
 
     const wrapper =
@@ -3333,6 +4016,12 @@ const CartolaFiltrosExclusao = (() => {
       );
 
 
+    const strategyGrid =
+      secao.querySelector(
+        ".strategy-grid"
+      );
+
+
     if (
       patrimonio &&
       patrimonio.parentNode
@@ -3345,33 +4034,23 @@ const CartolaFiltrosExclusao = (() => {
           patrimonio
         );
 
+    } else if (
+      strategyGrid &&
+      strategyGrid.parentNode
+    ) {
+
+      strategyGrid
+        .parentNode
+        .insertBefore(
+          wrapper,
+          strategyGrid
+        );
+
     } else {
 
-      const strategyGrid =
-        secao.querySelector(
-          ".strategy-grid"
-        );
-
-
-      if (
-        strategyGrid &&
-        strategyGrid.parentNode
-      ) {
-
-        strategyGrid
-          .parentNode
-          .insertBefore(
-            wrapper,
-            strategyGrid
-          );
-
-      } else {
-
-        secao.appendChild(
-          wrapper
-        );
-
-      }
+      secao.appendChild(
+        wrapper
+      );
 
     }
 
@@ -3408,14 +4087,14 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
-     ESPERA BASE PRINCIPAL
+     ESPERA DADOS
      ======================================================= */
 
   async function esperarDados() {
 
     for (
       let tentativa = 0;
-      tentativa < 40;
+      tentativa < 35;
       tentativa += 1
     ) {
 
@@ -3433,7 +4112,7 @@ const CartolaFiltrosExclusao = (() => {
         resolver =>
           setTimeout(
             resolver,
-            200
+            180
           )
       );
 
@@ -3445,24 +4124,17 @@ const CartolaFiltrosExclusao = (() => {
   }
 
 
-  /* =======================================================
-     ESPERA ESCALAÇÕES
-     ======================================================= */
-
   async function esperarEscalacoes() {
 
     for (
       let tentativa = 0;
-      tentativa < 25;
+      tentativa < 20;
       tentativa += 1
     ) {
 
-      const jogadores =
-        obterJogadoresDasEscalacoes();
-
-
       if (
-        jogadores.length > 0
+        obterJogadoresDasEscalacoes()
+          .length > 0
       ) {
 
         return true;
@@ -3470,12 +4142,9 @@ const CartolaFiltrosExclusao = (() => {
       }
 
 
-      const cards =
-        obterJogadoresDosCardsTimes();
-
-
       if (
-        cards.length > 0
+        obterJogadoresDosCardsTimes()
+          .length > 0
       ) {
 
         return true;
@@ -3487,7 +4156,7 @@ const CartolaFiltrosExclusao = (() => {
         resolver =>
           setTimeout(
             resolver,
-            160
+            150
           )
       );
 
@@ -3500,14 +4169,162 @@ const CartolaFiltrosExclusao = (() => {
 
 
   /* =======================================================
+     EVENTOS EXTERNOS
+     ======================================================= */
+
+  function configurarEventosExternos() {
+
+    if (
+      document
+        .documentElement
+        .dataset
+        .ceFilterExternalV3 ===
+      "1"
+    ) {
+
+      return;
+
+    }
+
+
+    document
+      .documentElement
+      .dataset
+      .ceFilterExternalV3 =
+      "1";
+
+
+    const atualizarTimes =
+      () => {
+
+        if (
+          estado.aplicando
+        ) {
+
+          return;
+
+        }
+
+
+        setTimeout(
+          () => {
+
+            const antes =
+              estado
+                .jogadoresTimes
+                .map(
+                  obterIdJogador
+                )
+                .sort()
+                .join("|");
+
+
+            atualizarBaseTimes();
+
+
+            const depois =
+              estado
+                .jogadoresTimes
+                .map(
+                  obterIdJogador
+                )
+                .sort()
+                .join("|");
+
+
+            if (
+              antes !==
+              depois
+            ) {
+
+              inserirEmTimes();
+
+              atualizarInterfaceResumo();
+
+            }
+
+          },
+          120
+        );
+
+      };
+
+
+    const atualizarRecomendacoesEvento =
+      () => {
+
+        if (
+          estado.aplicando
+        ) {
+
+          return;
+
+        }
+
+
+        setTimeout(
+          () => {
+
+            atualizarBaseRecomendacoes();
+
+            inserirEmRecomendacoes();
+
+            atualizarInterfaceResumo();
+
+          },
+          100
+        );
+
+      };
+
+
+    [
+      "cartola:escalacoes-atualizadas",
+      "cartola:times-atualizados",
+      "cartola:escalacoes-carregadas",
+      "cartola:recalculo-concluido"
+    ]
+      .forEach(
+        nomeEvento => {
+
+          window.addEventListener(
+            nomeEvento,
+            atualizarTimes
+          );
+
+        }
+      );
+
+
+    [
+      "cartola:recomendacoes-atualizadas"
+    ]
+      .forEach(
+        nomeEvento => {
+
+          window.addEventListener(
+            nomeEvento,
+            atualizarRecomendacoesEvento
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =======================================================
      ATUALIZA OPÇÕES
      ======================================================= */
 
   function atualizarOpcoes() {
 
-    atualizarOpcoesDisponiveis();
+    atualizarBaseRecomendacoes();
+
+    atualizarBaseTimes();
 
     reconstruirPaineis();
+
 
     return obterEstado();
 
@@ -3533,8 +4350,14 @@ const CartolaFiltrosExclusao = (() => {
 
       recomendacoes: {
 
+        total:
+          estado
+            .jogadoresRecomendacoes
+            .length,
+
         clubesDisponiveis: [
-          ...estado.clubesRecomendacoes
+          ...estado
+            .clubesRecomendacoes
         ],
 
         jogadoresDisponiveis:
@@ -3554,8 +4377,10 @@ const CartolaFiltrosExclusao = (() => {
                   ),
 
                 posicao:
-                  obterPosicaoJogador(
-                    jogador
+                  obterPosicaoNormalizada(
+                    obterPosicaoJogador(
+                      jogador
+                    )
                   ),
 
                 clube:
@@ -3570,8 +4395,14 @@ const CartolaFiltrosExclusao = (() => {
 
       times: {
 
+        total:
+          estado
+            .jogadoresTimes
+            .length,
+
         clubesDisponiveis: [
-          ...estado.clubesTimes
+          ...estado
+            .clubesTimes
         ],
 
         jogadoresDisponiveis:
@@ -3591,8 +4422,10 @@ const CartolaFiltrosExclusao = (() => {
                   ),
 
                 posicao:
-                  obterPosicaoJogador(
-                    jogador
+                  obterPosicaoNormalizada(
+                    obterPosicaoJogador(
+                      jogador
+                    )
                   ),
 
                 clube:
@@ -3606,133 +4439,27 @@ const CartolaFiltrosExclusao = (() => {
       },
 
       clubesExcluidos: [
-        ...estado.clubesExcluidos
+        ...estado
+          .clubesExcluidos
       ],
 
       jogadoresExcluidos: [
-        ...estado.jogadoresExcluidos
+        ...estado
+          .jogadoresExcluidos
       ],
 
+      nomesJogadoresExcluidos:
+        obterNomesJogadoresExcluidos(),
+
       quantidadeRemovida:
-        estado.quantidadeRemovida,
+        estado
+          .quantidadeRemovida,
 
       ultimoResultado:
-        estado.ultimoResultado
+        estado
+          .ultimoResultado
 
     };
-
-  }
-
-
-  /* =======================================================
-     EVENTOS DE ATUALIZAÇÃO DOS TIMES
-     ======================================================= */
-
-  function configurarEventosExternos() {
-
-    if (
-      document
-        .documentElement
-        .dataset
-        .ceFilterExternalReady ===
-      "1"
-    ) {
-
-      return;
-
-    }
-
-
-    document
-      .documentElement
-      .dataset
-      .ceFilterExternalReady =
-      "1";
-
-
-    const atualizarDepoisDosTimes =
-      () => {
-
-        if (
-          estado.aplicando
-        ) {
-
-          return;
-
-        }
-
-
-        setTimeout(
-          () => {
-
-            const anterior =
-              estado
-                .jogadoresTimes
-                .map(
-                  obterIdJogador
-                )
-                .sort()
-                .join("|");
-
-
-            const novaBase =
-              obterBaseTimes();
-
-
-            const depois =
-              novaBase
-                .map(
-                  obterIdJogador
-                )
-                .sort()
-                .join("|");
-
-
-            if (
-              anterior === depois
-            ) {
-
-              return;
-
-            }
-
-
-            estado.jogadoresTimes =
-              novaBase;
-
-
-            estado.clubesTimes =
-              obterClubesDaBase(
-                novaBase
-              );
-
-
-            inserirEmTimes();
-
-            atualizarInterfaceResumo();
-
-          },
-          120
-        );
-
-      };
-
-
-    [
-      "cartola:escalacoes-atualizadas",
-      "cartola:times-atualizados",
-      "cartola:escalacoes-carregadas",
-      "cartola:recalculo-concluido"
-    ].forEach(
-      nomeEvento => {
-
-        window.addEventListener(
-          nomeEvento,
-          atualizarDepoisDosTimes
-        );
-
-      }
-    );
 
   }
 
@@ -3742,19 +4469,6 @@ const CartolaFiltrosExclusao = (() => {
      ======================================================= */
 
   async function inicializar() {
-
-    if (
-      estado.inicializado
-    ) {
-
-      atualizarOpcoesDisponiveis();
-
-      reconstruirPaineis();
-
-      return true;
-
-    }
-
 
     if (
       estado.inicializando
@@ -3780,8 +4494,9 @@ const CartolaFiltrosExclusao = (() => {
       ) {
 
         console.warn(
-          "Filtros da rodada: jogadores ainda indisponíveis."
+          "Filtros: dados das recomendações indisponíveis."
         );
+
 
         return false;
 
@@ -3789,37 +4504,25 @@ const CartolaFiltrosExclusao = (() => {
 
 
       /*
-       * Primeiro carregamos Recomendações.
+       * Agora o filtro de Recomendações nasce
+       * a partir do ranking real.
        */
 
       estado.jogadoresRecomendacoes =
-        obterBaseRecomendacoes();
+        montarUniversoAtualRecomendacoes();
 
 
       estado.clubesRecomendacoes =
         obterClubesDaBase(
-          estado.jogadoresRecomendacoes
+          estado
+            .jogadoresRecomendacoes
         );
 
-
-      /*
-       * Damos tempo para os times serem montados.
-       *
-       * Mesmo que não estejam prontos,
-       * NÃO usamos todos os jogadores.
-       */
 
       await esperarEscalacoes();
 
 
-      estado.jogadoresTimes =
-        obterBaseTimes();
-
-
-      estado.clubesTimes =
-        obterClubesDaBase(
-          estado.jogadoresTimes
-        );
+      atualizarBaseTimes();
 
 
       garantirEstilos();
@@ -3844,7 +4547,7 @@ const CartolaFiltrosExclusao = (() => {
 
 
       console.info(
-        "Filtros da rodada inicializados:",
+        "Filtros V3 inicializados:",
         obterEstado()
       );
 
@@ -3855,7 +4558,7 @@ const CartolaFiltrosExclusao = (() => {
     } catch (erro) {
 
       console.error(
-        "Erro ao inicializar filtros da rodada:",
+        "Erro ao inicializar filtros V3:",
         erro
       );
 
@@ -3926,7 +4629,7 @@ if (
             .inicializar();
 
         },
-        300
+        250
       );
 
     }
