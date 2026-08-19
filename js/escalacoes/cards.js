@@ -51,18 +51,20 @@ function obterContainerEscalacoes() {
 
 function obterEscalacoesCarregadas() {
 
+  /*
+   * API atual do módulo de dados.
+   */
+
   if (
-    typeof CartolaEscalacoes !==
+    typeof EscalacoesDados !==
       "undefined" &&
-    CartolaEscalacoes &&
-    typeof CartolaEscalacoes
-      .obterEscalacoes ===
+    EscalacoesDados &&
+    typeof EscalacoesDados.obter ===
       "function"
   ) {
 
     const escalacoes =
-      CartolaEscalacoes
-        .obterEscalacoes();
+      EscalacoesDados.obter();
 
 
     if (
@@ -79,12 +81,43 @@ function obterEscalacoesCarregadas() {
 
 
   if (
-    typeof obterEscalacoesAtuais ===
+    typeof obterEscalacoes ===
       "function"
   ) {
 
     const escalacoes =
-      obterEscalacoesAtuais();
+      obterEscalacoes();
+
+
+    if (
+      Array.isArray(
+        escalacoes
+      )
+    ) {
+
+      return escalacoes;
+
+    }
+
+  }
+
+
+  /*
+   * Compatibilidade com versões anteriores.
+   */
+
+  if (
+    typeof CartolaEscalacoes !==
+      "undefined" &&
+    CartolaEscalacoes &&
+    typeof CartolaEscalacoes
+      .obterEscalacoes ===
+      "function"
+  ) {
+
+    const escalacoes =
+      CartolaEscalacoes
+        .obterEscalacoes();
 
 
     if (
@@ -432,6 +465,65 @@ function criarItensLista(
 
 
 /*
+ * Justificativa resumida do banco quando o motor
+ * não envia um texto consolidado.
+ */
+
+function criarJustificativaBancoGeralEscalacao(
+  banco
+) {
+
+  const reservas =
+    Array.isArray(
+      banco
+    )
+      ? banco
+      : [];
+
+
+  if (
+    reservas.length === 0
+  ) {
+
+    return "";
+
+  }
+
+
+  const titularesProvaveis =
+    reservas.filter(
+      jogador =>
+        numeroSeguro(
+          jogador?.titularidade,
+          0
+        ) >= 75
+    ).length;
+
+
+  const custo =
+    reservas.reduce(
+      (
+        soma,
+        jogador
+      ) =>
+        soma +
+        numeroSeguro(
+          jogador?.preco
+        ),
+      0
+    );
+
+
+  return (
+    `Banco com ${reservas.length} opções, ` +
+    `${titularesProvaveis} com titularidade estimada de pelo menos 75% ` +
+    `e custo total de ${formatarCartoletas(custo)}.`
+  );
+
+}
+
+
+/*
  * Classe visual de risco.
  */
 
@@ -573,8 +665,6 @@ function criarBarraIndicador(
   `;
 
 }
-
-
 
 /* =========================================================
    1. EXIBIÇÃO DAS ESCALAÇÕES
@@ -776,7 +866,6 @@ function criarControlePatrimonioEscalacoes(
           id="lineupBudgetInput"
           type="number"
           min="1"
-          max="120"
           step="0.01"
           inputmode="decimal"
           value="${escaparHtml(
@@ -1141,10 +1230,14 @@ function criarCardEscalacao(
 
   const listaJogadores =
     Array.isArray(
-      escalacao.jogadores
+      escalacao.titulares
     )
-      ? escalacao.jogadores
-      : [];
+      ? escalacao.titulares
+      : Array.isArray(
+          escalacao.jogadores
+        )
+        ? escalacao.jogadores
+        : [];
 
 
   const jogadoresOrdenados =
@@ -1451,7 +1544,9 @@ function criarCardEscalacao(
 
     ${criarCapitaoHtml(
       escalacao.capitao,
-      escalacao.justificativaCapitao
+      escalacao.justificativaCapitao ??
+      escalacao.capitao?.justificativaCapitao ??
+      escalacao.capitao?.justificativa
     )}
 
 
@@ -1486,8 +1581,7 @@ function criarCardEscalacao(
 
     </div>
 
-
-    <button
+        <button
       class="lineup-details-button"
       type="button"
       aria-expanded="false"
@@ -1537,6 +1631,9 @@ function criarCardEscalacao(
 
               ${escaparHtml(
                 escalacao.justificativaBanco ||
+                criarJustificativaBancoGeralEscalacao(
+                  escalacao.banco
+                ) ||
                 "Justificativa do banco não informada."
               )}
 
@@ -1580,6 +1677,8 @@ function criarCardEscalacao(
 
               ${escaparHtml(
                 escalacao.justificativaReservaLuxo ||
+                escalacao.reservaLuxo?.justificativaReservaLuxo ||
+                escalacao.reservaLuxo?.justificativa ||
                 "Justificativa da Reserva de Luxo não informada."
               )}
 
@@ -2056,8 +2155,6 @@ function criarJogadorBancoHtml(
 
 }
 
-
-
 /* =========================================================
    10. RESERVA DE LUXO
    ========================================================= */
@@ -2326,7 +2423,28 @@ function alternarDetalhesEscalacao(
 
 
 /* =========================================================
-   13. API PÚBLICA DOS CARDS
+   13. ATUALIZAÇÃO AUTOMÁTICA
+   ========================================================= */
+
+if (
+  typeof window !==
+    "undefined"
+) {
+
+  window.addEventListener(
+    "cartola:escalacoes-atualizadas",
+    () => {
+
+      exibirEscalacoes();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   14. API PÚBLICA DOS CARDS
    ========================================================= */
 
 /*
