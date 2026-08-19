@@ -9,23 +9,239 @@ document.addEventListener(
 );
 
 
+/* =========================================================
+   INICIALIZAÇÃO PRINCIPAL
+   ========================================================= */
+
 async function inicializarAplicacao() {
 
-    configurarInterface();
+    try {
 
-    await carregarConfiguracao();
+        /*
+         * Interface.
+         */
 
-    await carregarPesosDinamicos();
+        if (
+            typeof configurarInterface ===
+            "function"
+        ) {
 
-    await carregarJogadores();
+            configurarInterface();
 
-    await carregarEscalacoes();
+        }
 
-    await inicializarHistorico();
 
-    console.info(
-        "Cartola Estatístico inicializado com sucesso."
+        /*
+         * Configuração geral.
+         */
+
+        if (
+            typeof carregarConfiguracao ===
+            "function"
+        ) {
+
+            await carregarConfiguracao();
+
+        }
+
+
+        /*
+         * Pesos estatísticos.
+         */
+
+        if (
+            typeof carregarPesosDinamicos ===
+            "function"
+        ) {
+
+            await carregarPesosDinamicos();
+
+        }
+
+
+        /*
+         * Jogadores.
+         *
+         * Esta etapa continua sendo aguardada porque
+         * Recomendações e Times sugeridos dependem dela.
+         */
+
+        if (
+            typeof carregarJogadores ===
+            "function"
+        ) {
+
+            await carregarJogadores();
+
+        }
+
+
+        /*
+         * IMPORTANTE:
+         *
+         * Escalações e Histórico são independentes.
+         *
+         * Um erro em Times sugeridos não pode mais impedir
+         * a inicialização do Histórico e vice-versa.
+         *
+         * Também evitamos depender diretamente do
+         * identificador carregarEscalacoes, pois o módulo
+         * de escalações expõe sua API em window.
+         */
+
+        const tarefasIndependentes = [
+
+            inicializarEscalacoesAplicacao(),
+
+            inicializarHistorico()
+
+        ];
+
+
+        const resultados =
+            await Promise.allSettled(
+                tarefasIndependentes
+            );
+
+
+        resultados.forEach(
+            (
+                resultado,
+                indice
+            ) => {
+
+                if (
+                    resultado.status !==
+                    "rejected"
+                ) {
+
+                    return;
+
+                }
+
+
+                const modulo =
+                    indice === 0
+                        ? "Times sugeridos"
+                        : "Histórico";
+
+
+                console.error(
+                    `Falha ao inicializar ${modulo}:`,
+                    resultado.reason
+                );
+
+            }
+        );
+
+
+        console.info(
+            "Cartola Estatístico inicializado com sucesso."
+        );
+
+    } catch (erro) {
+
+        console.error(
+            "Falha na inicialização principal do Cartola Estatístico:",
+            erro
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ESCALAÇÕES
+   ========================================================= */
+
+async function inicializarEscalacoesAplicacao() {
+
+    /*
+     * Caminho preferencial:
+     *
+     * usa a API agrupada criada em
+     * js/escalacoes/dados.js.
+     */
+
+    if (
+        typeof window !==
+            "undefined" &&
+        window.CartolaEscalacoes &&
+        typeof window.CartolaEscalacoes
+            .carregar ===
+            "function"
+    ) {
+
+        console.info(
+            "Inicializando Times sugeridos pela API CartolaEscalacoes."
+        );
+
+
+        return await window
+            .CartolaEscalacoes
+            .carregar();
+
+    }
+
+
+    /*
+     * Segundo caminho:
+     *
+     * função explicitamente exposta no window.
+     */
+
+    if (
+        typeof window !==
+            "undefined" &&
+        typeof window.carregarEscalacoes ===
+            "function"
+    ) {
+
+        console.info(
+            "Inicializando Times sugeridos por window.carregarEscalacoes."
+        );
+
+
+        return await window
+            .carregarEscalacoes();
+
+    }
+
+
+    /*
+     * Compatibilidade com versões anteriores.
+     *
+     * typeof é seguro mesmo quando o identificador
+     * não existe.
+     */
+
+    if (
+        typeof carregarEscalacoes ===
+        "function"
+    ) {
+
+        console.info(
+            "Inicializando Times sugeridos pela função global."
+        );
+
+
+        return await carregarEscalacoes();
+
+    }
+
+
+    /*
+     * Não interrompe o restante do site.
+     */
+
+    console.warn(
+        "Módulo de Times sugeridos não está disponível. Verifique o carregamento de js/escalacoes/dados.js."
     );
+
+
+    return [];
 
 }
 
@@ -38,22 +254,47 @@ async function inicializarAplicacao() {
 async function inicializarHistorico() {
 
     if (
-        typeof Historico === "undefined" ||
-        typeof HistoricoFiltros === "undefined"
+        typeof Historico ===
+            "undefined" ||
+        typeof HistoricoFiltros ===
+            "undefined"
     ) {
+
+        console.warn(
+            "Módulos do Histórico ainda não estão disponíveis."
+        );
 
         return;
 
     }
 
 
-    const indice =
-        await Historico.carregarIndice();
+    let indice = null;
+
+
+    try {
+
+        indice =
+            await Historico
+                .carregarIndice();
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar índice do Histórico:",
+            erro
+        );
+
+        return;
+
+    }
 
 
     if (
         !indice ||
-        !Array.isArray(indice.rodadas) ||
+        !Array.isArray(
+            indice.rodadas
+        ) ||
         indice.rodadas.length === 0
     ) {
 
@@ -67,51 +308,67 @@ async function inicializarHistorico() {
 
 
     /*
-     * Preenche os filtros.
-     *
-     * HistoricoFiltros agora seleciona
-     * automaticamente a rodada histórica
-     * mais recente.
+     * Preenche filtros.
      */
 
-    HistoricoFiltros.preencherRodadas(
-        indice
-    );
+    if (
+        typeof HistoricoFiltros
+            .preencherRodadas ===
+            "function"
+    ) {
+
+        HistoricoFiltros
+            .preencherRodadas(
+                indice
+            );
+
+    }
 
 
-    HistoricoFiltros.preencherPosicoes();
+    if (
+        typeof HistoricoFiltros
+            .preencherPosicoes ===
+            "function"
+    ) {
+
+        HistoricoFiltros
+            .preencherPosicoes();
+
+    }
 
 
     /*
-     * Obtém a rodada que efetivamente ficou
-     * selecionada no filtro.
-     *
-     * Isso evita usar indice.rodadas[0],
-     * que anteriormente fazia o site iniciar
-     * sempre pela primeira rodada histórica.
+     * Descobre a rodada inicialmente selecionada.
      */
 
-    let numeroRodada =
+    let numeroRodada = null;
+
+
+    if (
         typeof HistoricoFiltros
             .obterRodadaSelecionada ===
             "function"
-            ? HistoricoFiltros
-                .obterRodadaSelecionada()
-            : null;
+    ) {
+
+        numeroRodada =
+            Number(
+                HistoricoFiltros
+                    .obterRodadaSelecionada()
+            );
+
+    }
 
 
     /*
-     * Fallback de segurança:
-     *
-     * se o filtro não retornar uma rodada,
-     * procura ultimaRodada no índice.
+     * Primeiro fallback:
+     * ultimaRodada do índice.
      */
 
     if (
         !Number.isInteger(
-            Number(numeroRodada)
+            numeroRodada
         ) ||
-        Number(numeroRodada) <= 0
+        numeroRodada <= 0
     ) {
 
         numeroRodada =
@@ -124,39 +381,54 @@ async function inicializarHistorico() {
 
     /*
      * Segundo fallback:
-     *
-     * encontra a maior rodada disponível.
+     * maior rodada encontrada no índice.
      */
 
     if (
         !Number.isInteger(
-            Number(numeroRodada)
+            numeroRodada
         ) ||
-        Number(numeroRodada) <= 0
+        numeroRodada <= 0
     ) {
 
-        numeroRodada =
-            Math.max(
-                ...indice.rodadas
-                    .map(
-                        rodada =>
-                            Number(
-                                rodada.numero
-                            )
-                    )
-                    .filter(
-                        Number.isFinite
-                    )
-            );
+        const rodadasValidas =
+            indice.rodadas
+                .map(
+                    rodada =>
+                        Number(
+                            rodada?.numero ??
+                            rodada
+                        )
+                )
+                .filter(
+                    numero =>
+                        Number.isInteger(
+                            numero
+                        ) &&
+                        numero > 0
+                );
+
+
+        if (
+            rodadasValidas.length >
+            0
+        ) {
+
+            numeroRodada =
+                Math.max(
+                    ...rodadasValidas
+                );
+
+        }
 
     }
 
 
     if (
         !Number.isInteger(
-            Number(numeroRodada)
+            numeroRodada
         ) ||
-        Number(numeroRodada) <= 0
+        numeroRodada <= 0
     ) {
 
         console.warn(
@@ -168,26 +440,49 @@ async function inicializarHistorico() {
     }
 
 
-    numeroRodada =
-        Number(
+    /*
+     * Carrega a rodada inicial.
+     *
+     * Erro nessa rodada não impede a instalação
+     * dos listeners dos filtros.
+     */
+
+    try {
+
+        await carregarHistoricoRodada(
             numeroRodada
         );
 
+    } catch (erro) {
 
-    /*
-     * Carrega as métricas da rodada
-     * histórica mais recente.
-     */
+        console.error(
+            `Falha ao carregar Histórico da Rodada ${numeroRodada}:`,
+            erro
+        );
 
-    await carregarHistoricoRodada(
+    }
+
+
+    configurarEventosHistorico(
         numeroRodada
     );
 
 
-    /*
-     * Atualiza automaticamente quando
-     * o usuário troca a rodada.
-     */
+    console.info(
+        `Histórico inicializado na Rodada ${numeroRodada}.`
+    );
+
+}
+
+
+
+/* =========================================================
+   EVENTOS DO HISTÓRICO
+   ========================================================= */
+
+function configurarEventosHistorico(
+    rodadaInicial
+) {
 
     const seletorRodada =
         document.getElementById(
@@ -195,32 +490,63 @@ async function inicializarHistorico() {
         );
 
 
-    if (seletorRodada) {
+    if (
+        seletorRodada &&
+        seletorRodada.dataset
+            .listenerCartola !==
+            "1"
+    ) {
+
+        seletorRodada.dataset
+            .listenerCartola =
+            "1";
+
 
         seletorRodada.addEventListener(
             "change",
             async () => {
 
-                const rodadaSelecionada =
+                let rodadaSelecionada =
+                    null;
+
+
+                if (
+                    typeof HistoricoFiltros !==
+                        "undefined" &&
                     typeof HistoricoFiltros
                         .obterRodadaSelecionada ===
                         "function"
-                        ? HistoricoFiltros
-                            .obterRodadaSelecionada()
-                        : Number(
-                            seletorRodada.value
+                ) {
+
+                    rodadaSelecionada =
+                        Number(
+                            HistoricoFiltros
+                                .obterRodadaSelecionada()
                         );
+
+                }
 
 
                 if (
                     !Number.isInteger(
-                        Number(
-                            rodadaSelecionada
-                        )
-                    ) ||
-                    Number(
                         rodadaSelecionada
-                    ) <= 0
+                    ) ||
+                    rodadaSelecionada <= 0
+                ) {
+
+                    rodadaSelecionada =
+                        Number(
+                            seletorRodada.value
+                        );
+
+                }
+
+
+                if (
+                    !Number.isInteger(
+                        rodadaSelecionada
+                    ) ||
+                    rodadaSelecionada <= 0
                 ) {
 
                     return;
@@ -228,26 +554,26 @@ async function inicializarHistorico() {
                 }
 
 
-                await carregarHistoricoRodada(
-                    Number(
+                try {
+
+                    await carregarHistoricoRodada(
                         rodadaSelecionada
-                    )
-                );
+                    );
+
+                } catch (erro) {
+
+                    console.error(
+                        `Erro ao trocar Histórico para Rodada ${rodadaSelecionada}:`,
+                        erro
+                    );
+
+                }
 
             }
         );
 
     }
 
-
-    /*
-     * Quando a posição mudar, a tabela
-     * é renderizada novamente.
-     *
-     * O filtro de posição pode ser
-     * consumido internamente pelo
-     * HistoricoCards.
-     */
 
     const seletorPosicao =
         document.getElementById(
@@ -255,30 +581,63 @@ async function inicializarHistorico() {
         );
 
 
-    if (seletorPosicao) {
+    if (
+        seletorPosicao &&
+        seletorPosicao.dataset
+            .listenerCartola !==
+            "1"
+    ) {
+
+        seletorPosicao.dataset
+            .listenerCartola =
+            "1";
+
 
         seletorPosicao.addEventListener(
             "change",
             async () => {
 
-                const rodadaSelecionada =
+                let rodadaSelecionada =
+                    Number(
+                        rodadaInicial
+                    );
+
+
+                if (
+                    typeof HistoricoFiltros !==
+                        "undefined" &&
                     typeof HistoricoFiltros
                         .obterRodadaSelecionada ===
                         "function"
-                        ? HistoricoFiltros
-                            .obterRodadaSelecionada()
-                        : numeroRodada;
+                ) {
+
+                    const rodadaFiltro =
+                        Number(
+                            HistoricoFiltros
+                                .obterRodadaSelecionada()
+                        );
+
+
+                    if (
+                        Number.isInteger(
+                            rodadaFiltro
+                        ) &&
+                        rodadaFiltro > 0
+                    ) {
+
+                        rodadaSelecionada =
+                            rodadaFiltro;
+
+                    }
+
+                }
 
 
                 if (
                     !Number.isInteger(
-                        Number(
-                            rodadaSelecionada
-                        )
-                    ) ||
-                    Number(
                         rodadaSelecionada
-                    ) <= 0
+                    ) ||
+                    rodadaSelecionada <= 0
                 ) {
 
                     return;
@@ -286,21 +645,25 @@ async function inicializarHistorico() {
                 }
 
 
-                await carregarHistoricoRodada(
-                    Number(
+                try {
+
+                    await carregarHistoricoRodada(
                         rodadaSelecionada
-                    )
-                );
+                    );
+
+                } catch (erro) {
+
+                    console.error(
+                        `Erro ao aplicar filtro de posição na Rodada ${rodadaSelecionada}:`,
+                        erro
+                    );
+
+                }
 
             }
         );
 
     }
-
-
-    console.info(
-        `Histórico inicializado na Rodada ${numeroRodada}.`
-    );
 
 }
 
@@ -315,18 +678,36 @@ async function carregarHistoricoRodada(
 ) {
 
     if (
-        typeof Historico === "undefined"
+        typeof Historico ===
+        "undefined"
     ) {
 
-        return;
+        return null;
 
     }
 
 
-    const metricas =
-        await Historico.carregarRodada(
-            numeroRodada
+    let metricas = null;
+
+
+    try {
+
+        metricas =
+            await Historico
+                .carregarRodada(
+                    numeroRodada
+                );
+
+    } catch (erro) {
+
+        console.error(
+            `Erro ao carregar dados históricos da Rodada ${numeroRodada}:`,
+            erro
         );
+
+        return null;
+
+    }
 
 
     if (!metricas) {
@@ -336,28 +717,34 @@ async function carregarHistoricoRodada(
         );
 
 
-        /*
-         * Mesmo sem métricas, permitimos que
-         * HistoricoCards tente renderizar o
-         * estado correspondente à rodada.
-         */
-
         if (
             typeof HistoricoCards !==
-            "undefined" &&
+                "undefined" &&
             typeof HistoricoCards
                 .renderTabela ===
                 "function"
         ) {
 
-            HistoricoCards.renderTabela(
-                numeroRodada
-            );
+            try {
+
+                HistoricoCards
+                    .renderTabela(
+                        numeroRodada
+                    );
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao renderizar tabela vazia do Histórico:",
+                    erro
+                );
+
+            }
 
         }
 
 
-        return;
+        return null;
 
     }
 
@@ -368,47 +755,75 @@ async function carregarHistoricoRodada(
 
     if (
         typeof HistoricoCards !==
-        "undefined" &&
+            "undefined" &&
         typeof HistoricoCards
             .renderResumo ===
             "function"
     ) {
 
-        const resumo =
-            typeof HistoricoMetricas !==
-                "undefined" &&
-            typeof HistoricoMetricas
-                .calcular ===
-                "function"
-                ? HistoricoMetricas.calcular(
-                    metricas
-                )
-                : metricas;
+        try {
+
+            const resumo =
+                typeof HistoricoMetricas !==
+                    "undefined" &&
+                typeof HistoricoMetricas
+                    .calcular ===
+                    "function"
+                    ? HistoricoMetricas
+                        .calcular(
+                            metricas
+                        )
+                    : metricas;
 
 
-        HistoricoCards.renderResumo(
-            resumo
-        );
+            HistoricoCards
+                .renderResumo(
+                    resumo
+                );
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao renderizar resumo do Histórico:",
+                erro
+            );
+
+        }
 
     }
 
 
     /*
-     * Tabela da rodada.
+     * Tabela.
      */
 
     if (
         typeof HistoricoCards !==
-        "undefined" &&
+            "undefined" &&
         typeof HistoricoCards
             .renderTabela ===
             "function"
     ) {
 
-        HistoricoCards.renderTabela(
-            numeroRodada
-        );
+        try {
+
+            HistoricoCards
+                .renderTabela(
+                    numeroRodada
+                );
+
+        } catch (erro) {
+
+            console.error(
+                "Erro ao renderizar tabela do Histórico:",
+                erro
+            );
+
+        }
 
     }
+
+
+    return metricas;
 
 }
