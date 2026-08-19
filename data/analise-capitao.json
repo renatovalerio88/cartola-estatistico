@@ -31,115 +31,115 @@
     "backtestABUsadoParaEscolherCapitao": false
   },
   "resumo": {
-    "avaliacoes": 63,
+    "avaliacoes": 66,
     "vitoriasA": 0,
     "vitoriasB": 0,
-    "empates": 63,
+    "empates": 66,
     "taxaVitoriasA": 0.0,
     "taxaVitoriasB": 0.0,
-    "mediaPontosA": 5.156,
-    "mediaPontosB": 5.156,
+    "mediaPontosA": 5.28,
+    "mediaPontosB": 5.28,
     "ganhoMedioBvsA": 0.0,
     "acertoMelhorRealA": {
-      "quantidade": 10,
-      "taxa": 15.87
+      "quantidade": 12,
+      "taxa": 18.18
     },
     "acertoMelhorRealB": {
-      "quantidade": 10,
-      "taxa": 15.87
+      "quantidade": 12,
+      "taxa": 18.18
     }
   },
   "porEstrategia": {
     "Conservador": {
-      "avaliacoes": 21,
+      "avaliacoes": 22,
       "vitoriasA": 0,
       "vitoriasB": 0,
-      "empates": 21,
+      "empates": 22,
       "taxaVitoriasB": 0.0,
       "ganhoMedioBvsA": 0.0,
-      "taxaAcertoMelhorRealA": 4.76,
-      "taxaAcertoMelhorRealB": 4.76
+      "taxaAcertoMelhorRealA": 9.09,
+      "taxaAcertoMelhorRealB": 9.09
     },
     "Equilibrado": {
-      "avaliacoes": 21,
+      "avaliacoes": 22,
       "vitoriasA": 0,
       "vitoriasB": 0,
-      "empates": 21,
+      "empates": 22,
       "taxaVitoriasB": 0.0,
       "ganhoMedioBvsA": 0.0,
-      "taxaAcertoMelhorRealA": 23.81,
-      "taxaAcertoMelhorRealB": 23.81
+      "taxaAcertoMelhorRealA": 22.73,
+      "taxaAcertoMelhorRealB": 22.73
     },
     "Agressivo": {
-      "avaliacoes": 21,
+      "avaliacoes": 22,
       "vitoriasA": 0,
       "vitoriasB": 0,
-      "empates": 21,
+      "empates": 22,
       "taxaVitoriasB": 0.0,
       "ganhoMedioBvsA": 0.0,
-      "taxaAcertoMelhorRealA": 19.05,
-      "taxaAcertoMelhorRealB": 19.05
+      "taxaAcertoMelhorRealA": 22.73,
+      "taxaAcertoMelhorRealB": 22.73
     }
   },
   "coberturaComponentes": {
     "projecao": {
       "peso": 0.32,
-      "disponivel": 66,
-      "total": 66,
+      "disponivel": 69,
+      "total": 69,
       "cobertura": 100.0
     },
     "teto": {
       "peso": 0.18,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "confianca": {
       "peso": 0.12,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "explosao": {
       "peso": 0.12,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "forma": {
       "peso": 0.08,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "mediaRecente": {
       "peso": 0.06,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "regularidade": {
       "peso": 0.05,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "potencialOfensivo": {
       "peso": 0.04,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "risco": {
       "peso": -0.02,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     },
     "volatilidade": {
       "peso": -0.01,
       "disponivel": 0,
-      "total": 66,
+      "total": 69,
       "cobertura": 0.0
     }
   },
@@ -151,7 +151,7 @@
       {
         "criterio": "amostra",
         "aprovado": true,
-        "valor": 63,
+        "valor": 66,
         "minimo": 20
       },
       {
@@ -169,8 +169,8 @@
       {
         "criterio": "acerto_melhor_capitao_real",
         "aprovado": true,
-        "modeloA": 15.87,
-        "modeloB": 15.87
+        "modeloA": 18.18,
+        "modeloB": 18.18
       }
     ],
     "decisao": "MANTER_CAPITAO_ATUAL",
@@ -632,14 +632,14 @@
             "posicao": "MEI",
             "projecao": 5.76,
             "real": 17.0,
-            "scoreCapitao": 31.185,
+            "scoreCapitao": 23.037,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 5.76,
-                "normalizado": 0.3119,
+                "normalizado": 0.2304,
                 "peso": 0.32,
-                "contribuicao": 0.09979
+                "contribuicao": 0.07372
               }
             }
           },
@@ -698,14 +698,14 @@
             "posicao": "ZAG",
             "projecao": 4.25,
             "real": 15.7,
-            "scoreCapitao": 2.162,
+            "scoreCapitao": 0.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 4.25,
-                "normalizado": 0.0216,
+                "normalizado": 0.0,
                 "peso": 0.32,
-                "contribuicao": 0.00692
+                "contribuicao": 0.0
               }
             }
           },
@@ -764,14 +764,14 @@
             "posicao": "MEI",
             "projecao": 6.88,
             "real": 11.1,
-            "scoreCapitao": 41.583,
+            "scoreCapitao": 34.421,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.88,
-                "normalizado": 0.4158,
+                "normalizado": 0.3442,
                 "peso": 0.32,
-                "contribuicao": 0.13307
+                "contribuicao": 0.11015
               }
             }
           },
@@ -831,19 +831,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "89837",
-            "nome": "Luciano Federico Acosta",
-            "posicao": "MEI",
-            "projecao": 7.37,
-            "real": 6.4,
-            "scoreCapitao": 47.381,
+            "id": "126977",
+            "nome": "Fernando Seabra",
+            "posicao": "TEC",
+            "projecao": 4.87,
+            "real": 8.79,
+            "scoreCapitao": 19.876,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.37,
-                "normalizado": 0.4738,
+                "valor": 4.87,
+                "normalizado": 0.1988,
                 "peso": 0.32,
-                "contribuicao": 0.15162
+                "contribuicao": 0.0636
               }
             }
           },
@@ -851,10 +851,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 5.4,
             "pontosCapitaoB": 5.4,
-            "melhorPontuacaoReal": 6.4,
+            "melhorPontuacaoReal": 8.79,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 1.0,
-            "perdaBParaOtimo": 1.0,
+            "perdaAParaOtimo": 3.39,
+            "perdaBParaOtimo": 3.39,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -897,19 +897,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "89837",
-            "nome": "Luciano Federico Acosta",
-            "posicao": "MEI",
-            "projecao": 8.26,
-            "real": 6.4,
-            "scoreCapitao": 53.664,
+            "id": "123648",
+            "nome": "Lucas Ronier Vieira Pires",
+            "posicao": "ATA",
+            "projecao": 10.47,
+            "real": 17.5,
+            "scoreCapitao": 78.579,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 8.26,
-                "normalizado": 0.5366,
+                "valor": 10.47,
+                "normalizado": 0.7858,
                 "peso": 0.32,
-                "contribuicao": 0.17172
+                "contribuicao": 0.25145
               }
             }
           },
@@ -917,10 +917,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 5.5,
             "pontosCapitaoB": 5.5,
-            "melhorPontuacaoReal": 6.4,
+            "melhorPontuacaoReal": 17.5,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.9,
-            "perdaBParaOtimo": 0.9,
+            "perdaAParaOtimo": 12.0,
+            "perdaBParaOtimo": 12.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -963,19 +963,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "69208",
-            "nome": "Gabriel Armando de Abreu",
-            "posicao": "ZAG",
-            "projecao": 12.11,
-            "real": 5.5,
-            "scoreCapitao": 100.0,
+            "id": "126977",
+            "nome": "Fernando Seabra",
+            "posicao": "TEC",
+            "projecao": 4.57,
+            "real": 8.79,
+            "scoreCapitao": 8.717,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 12.11,
-                "normalizado": 1.0,
+                "valor": 4.57,
+                "normalizado": 0.0872,
                 "peso": 0.32,
-                "contribuicao": 0.32
+                "contribuicao": 0.02789
               }
             }
           },
@@ -983,12 +983,12 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 5.5,
             "pontosCapitaoB": 5.5,
-            "melhorPontuacaoReal": 5.5,
+            "melhorPontuacaoReal": 8.79,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.0,
-            "perdaBParaOtimo": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "perdaAParaOtimo": 3.29,
+            "perdaBParaOtimo": 3.29,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         }
       ]
@@ -1035,19 +1035,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "122485",
-            "nome": "Cauan Lucas Barros da Luz",
-            "posicao": "MEI",
-            "projecao": 6.01,
-            "real": 13.4,
-            "scoreCapitao": 42.147,
+            "id": "104118",
+            "nome": "Lucas Willians Assis Arcanjo",
+            "posicao": "GOL",
+            "projecao": 7.97,
+            "real": 8.9,
+            "scoreCapitao": 56.268,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.01,
-                "normalizado": 0.4215,
+                "valor": 7.97,
+                "normalizado": 0.5627,
                 "peso": 0.32,
-                "contribuicao": 0.13487
+                "contribuicao": 0.18006
               }
             }
           },
@@ -1055,10 +1055,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 3.7,
             "pontosCapitaoB": 3.7,
-            "melhorPontuacaoReal": 13.4,
+            "melhorPontuacaoReal": 8.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 9.7,
-            "perdaBParaOtimo": 9.7,
+            "perdaAParaOtimo": 5.2,
+            "perdaBParaOtimo": 5.2,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -1106,14 +1106,14 @@
             "posicao": "MEI",
             "projecao": 8.04,
             "real": 13.4,
-            "scoreCapitao": 81.869,
+            "scoreCapitao": 55.675,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 8.04,
-                "normalizado": 0.8187,
+                "normalizado": 0.5567,
                 "peso": 0.32,
-                "contribuicao": 0.26198
+                "contribuicao": 0.17816
               }
             }
           },
@@ -1172,14 +1172,14 @@
             "posicao": "MEI",
             "projecao": 9.36,
             "real": 13.4,
-            "scoreCapitao": 68.453,
+            "scoreCapitao": 66.643,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 9.36,
-                "normalizado": 0.6845,
+                "normalizado": 0.6664,
                 "peso": 0.32,
-                "contribuicao": 0.21905
+                "contribuicao": 0.21326
               }
             }
           },
@@ -1310,14 +1310,14 @@
             "posicao": "MEI",
             "projecao": 7.28,
             "real": 11.5,
-            "scoreCapitao": 74.074,
+            "scoreCapitao": 68.673,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 7.28,
-                "normalizado": 0.7407,
+                "normalizado": 0.6867,
                 "peso": 0.32,
-                "contribuicao": 0.23704
+                "contribuicao": 0.21975
               }
             }
           },
@@ -1376,14 +1376,14 @@
             "posicao": "MEI",
             "projecao": 8.02,
             "real": 11.6,
-            "scoreCapitao": 71.31,
+            "scoreCapitao": 71.846,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 8.02,
-                "normalizado": 0.7131,
+                "normalizado": 0.7185,
                 "peso": 0.32,
-                "contribuicao": 0.22819
+                "contribuicao": 0.22991
               }
             }
           },
@@ -1448,14 +1448,14 @@
             "posicao": "LAT",
             "projecao": 7.97,
             "real": 12.0,
-            "scoreCapitao": 84.305,
+            "scoreCapitao": 81.481,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 7.97,
-                "normalizado": 0.843,
+                "normalizado": 0.8148,
                 "peso": 0.32,
-                "contribuicao": 0.26978
+                "contribuicao": 0.26074
               }
             }
           },
@@ -1713,19 +1713,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "112886",
-            "nome": "Lucas Henrique Barbosa",
-            "posicao": "ATA",
-            "projecao": 5.68,
-            "real": 11.0,
-            "scoreCapitao": 57.247,
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 9.78,
+            "real": 7.8,
+            "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 5.68,
-                "normalizado": 0.5725,
+                "valor": 9.78,
+                "normalizado": 1.0,
                 "peso": 0.32,
-                "contribuicao": 0.18319
+                "contribuicao": 0.32
               }
             }
           },
@@ -1733,12 +1733,12 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 7.8,
             "pontosCapitaoB": 7.8,
-            "melhorPontuacaoReal": 11.0,
+            "melhorPontuacaoReal": 7.8,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 3.2,
-            "perdaBParaOtimo": 3.2,
-            "AEscolheuMelhorReal": false,
-            "BEscolheuMelhorReal": false
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
           }
         },
         {
@@ -1917,19 +1917,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "90309",
-            "nome": "David Corrêa da Fonseca",
-            "posicao": "ATA",
-            "projecao": 3.07,
-            "real": 8.2,
-            "scoreCapitao": 30.096,
+            "id": "99815",
+            "nome": "Jhon Adolfo Arias Andrade",
+            "posicao": "MEI",
+            "projecao": 8.9,
+            "real": 7.2,
+            "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 3.07,
-                "normalizado": 0.301,
+                "valor": 8.9,
+                "normalizado": 1.0,
                 "peso": 0.32,
-                "contribuicao": 0.09631
+                "contribuicao": 0.32
               }
             }
           },
@@ -1937,12 +1937,12 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 7.2,
             "pontosCapitaoB": 7.2,
-            "melhorPontuacaoReal": 8.2,
+            "melhorPontuacaoReal": 7.2,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 1.0,
-            "perdaBParaOtimo": 1.0,
-            "AEscolheuMelhorReal": false,
-            "BEscolheuMelhorReal": false
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
           }
         },
         {
@@ -1988,14 +1988,14 @@
             "posicao": "ZAG",
             "projecao": 6.66,
             "real": 9.4,
-            "scoreCapitao": 49.051,
+            "scoreCapitao": 28.041,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.66,
-                "normalizado": 0.4905,
+                "normalizado": 0.2804,
                 "peso": 0.32,
-                "contribuicao": 0.15696
+                "contribuicao": 0.08973
               }
             }
           },
@@ -2087,16 +2087,16 @@
           "estrategia": "Equilibrado",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "63007",
-            "nome": "Neymar da Silva Santos Júnior",
-            "posicao": "MEI",
-            "projecao": 8.55,
-            "real": 5.3,
+            "id": "102928",
+            "nome": "Agustín Canobbio Graviz",
+            "posicao": "ATA",
+            "projecao": 8.57,
+            "real": 3.9,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 8.55,
+                "valor": 8.57,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2104,16 +2104,16 @@
             }
           },
           "modeloB": {
-            "id": "63007",
-            "nome": "Neymar da Silva Santos Júnior",
-            "posicao": "MEI",
-            "projecao": 8.55,
-            "real": 5.3,
+            "id": "102928",
+            "nome": "Agustín Canobbio Graviz",
+            "posicao": "ATA",
+            "projecao": 8.57,
+            "real": 3.9,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 8.55,
+                "valor": 8.57,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2126,25 +2126,25 @@
             "posicao": "ZAG",
             "projecao": 6.28,
             "real": 5.5,
-            "scoreCapitao": 92.049,
+            "scoreCapitao": 72.005,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.28,
-                "normalizado": 0.9205,
+                "normalizado": 0.72,
                 "peso": 0.32,
-                "contribuicao": 0.29456
+                "contribuicao": 0.23042
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 5.3,
-            "pontosCapitaoB": 5.3,
+            "pontosCapitaoA": 3.9,
+            "pontosCapitaoB": 3.9,
             "melhorPontuacaoReal": 5.5,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.2,
-            "perdaBParaOtimo": 0.2,
+            "perdaAParaOtimo": 1.6,
+            "perdaBParaOtimo": 1.6,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -2192,14 +2192,14 @@
             "posicao": "GOL",
             "projecao": 6.82,
             "real": 9.4,
-            "scoreCapitao": 63.904,
+            "scoreCapitao": 47.874,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.82,
-                "normalizado": 0.639,
+                "normalizado": 0.4787,
                 "peso": 0.32,
-                "contribuicao": 0.20449
+                "contribuicao": 0.1532
               }
             }
           },
@@ -2259,19 +2259,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "116447",
-            "nome": "Hércules Pereira do Nascimento",
+            "id": "68685",
+            "nome": "Alan Patrick Lourenço",
             "posicao": "MEI",
-            "projecao": 4.62,
-            "real": 10.1,
-            "scoreCapitao": 63.666,
+            "projecao": 3.56,
+            "real": 11.3,
+            "scoreCapitao": 46.624,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 4.62,
-                "normalizado": 0.6367,
+                "valor": 3.56,
+                "normalizado": 0.4662,
                 "peso": 0.32,
-                "contribuicao": 0.20373
+                "contribuicao": 0.1492
               }
             }
           },
@@ -2279,10 +2279,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 5.9,
             "pontosCapitaoB": 5.9,
-            "melhorPontuacaoReal": 10.1,
+            "melhorPontuacaoReal": 11.3,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 4.2,
-            "perdaBParaOtimo": 4.2,
+            "perdaAParaOtimo": 5.4,
+            "perdaBParaOtimo": 5.4,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -2391,19 +2391,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "108133",
-            "nome": "Isidro Miguel Pitta Saldívar",
-            "posicao": "ATA",
-            "projecao": 6.36,
-            "real": 18.0,
-            "scoreCapitao": 67.23,
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 9.46,
+            "real": 7.5,
+            "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.36,
-                "normalizado": 0.6723,
+                "valor": 9.46,
+                "normalizado": 1.0,
                 "peso": 0.32,
-                "contribuicao": 0.21514
+                "contribuicao": 0.32
               }
             }
           },
@@ -2411,12 +2411,12 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 7.5,
             "pontosCapitaoB": 7.5,
-            "melhorPontuacaoReal": 18.0,
+            "melhorPontuacaoReal": 7.5,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 10.5,
-            "perdaBParaOtimo": 10.5,
-            "AEscolheuMelhorReal": false,
-            "BEscolheuMelhorReal": false
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
           }
         }
       ]
@@ -2429,16 +2429,16 @@
           "estrategia": "Conservador",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "102975",
-            "nome": "Gonzalo Daniel Escobar",
-            "posicao": "LAT",
-            "projecao": 6.57,
-            "real": 4.0,
+            "id": "116706",
+            "nome": "Carlos Andrés Gómez Hinestroza",
+            "posicao": "ATA",
+            "projecao": 6.71,
+            "real": 4.3,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.57,
+                "valor": 6.71,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2446,16 +2446,16 @@
             }
           },
           "modeloB": {
-            "id": "102975",
-            "nome": "Gonzalo Daniel Escobar",
-            "posicao": "LAT",
-            "projecao": 6.57,
-            "real": 4.0,
+            "id": "116706",
+            "nome": "Carlos Andrés Gómez Hinestroza",
+            "posicao": "ATA",
+            "projecao": 6.71,
+            "real": 4.3,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.57,
+                "valor": 6.71,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2468,25 +2468,25 @@
             "posicao": "MEI",
             "projecao": 5.86,
             "real": 19.9,
-            "scoreCapitao": 78.994,
+            "scoreCapitao": 81.111,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 5.86,
-                "normalizado": 0.7899,
+                "normalizado": 0.8111,
                 "peso": 0.32,
-                "contribuicao": 0.25278
+                "contribuicao": 0.25956
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 4.0,
-            "pontosCapitaoB": 4.0,
+            "pontosCapitaoA": 4.3,
+            "pontosCapitaoB": 4.3,
             "melhorPontuacaoReal": 19.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 15.9,
-            "perdaBParaOtimo": 15.9,
+            "perdaAParaOtimo": 15.6,
+            "perdaBParaOtimo": 15.6,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -2495,16 +2495,16 @@
           "estrategia": "Equilibrado",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "107231",
-            "nome": "Danilo dos Santos de Oliveira",
-            "posicao": "MEI",
-            "projecao": 7.05,
-            "real": 19.9,
+            "id": "108133",
+            "nome": "Isidro Miguel Pitta Saldívar",
+            "posicao": "ATA",
+            "projecao": 7.29,
+            "real": 2.0,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.05,
+                "valor": 7.29,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2512,16 +2512,16 @@
             }
           },
           "modeloB": {
-            "id": "107231",
-            "nome": "Danilo dos Santos de Oliveira",
-            "posicao": "MEI",
-            "projecao": 7.05,
-            "real": 19.9,
+            "id": "108133",
+            "nome": "Isidro Miguel Pitta Saldívar",
+            "posicao": "ATA",
+            "projecao": 7.29,
+            "real": 2.0,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.05,
+                "valor": 7.29,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -2534,27 +2534,27 @@
             "posicao": "MEI",
             "projecao": 7.05,
             "real": 19.9,
-            "scoreCapitao": 100.0,
+            "scoreCapitao": 96.25,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 7.05,
-                "normalizado": 1.0,
+                "normalizado": 0.9625,
                 "peso": 0.32,
-                "contribuicao": 0.32
+                "contribuicao": 0.308
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 19.9,
-            "pontosCapitaoB": 19.9,
+            "pontosCapitaoA": 2.0,
+            "pontosCapitaoB": 2.0,
             "melhorPontuacaoReal": 19.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.0,
-            "perdaBParaOtimo": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "perdaAParaOtimo": 17.9,
+            "perdaBParaOtimo": 17.9,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         },
         {
@@ -2600,14 +2600,14 @@
             "posicao": "MEI",
             "projecao": 7.37,
             "real": 19.9,
-            "scoreCapitao": 62.178,
+            "scoreCapitao": 53.576,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 7.37,
-                "normalizado": 0.6218,
+                "normalizado": 0.5358,
                 "peso": 0.32,
-                "contribuicao": 0.19897
+                "contribuicao": 0.17144
               }
             }
           },
@@ -2672,14 +2672,14 @@
             "posicao": "LAT",
             "projecao": 6.21,
             "real": 15.8,
-            "scoreCapitao": 63.982,
+            "scoreCapitao": 54.444,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.21,
-                "normalizado": 0.6398,
+                "normalizado": 0.5444,
                 "peso": 0.32,
-                "contribuicao": 0.20474
+                "contribuicao": 0.17422
               }
             }
           },
@@ -2876,14 +2876,14 @@
             "posicao": "MEI",
             "projecao": 6.27,
             "real": 10.5,
-            "scoreCapitao": 86.268,
+            "scoreCapitao": 86.465,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.27,
-                "normalizado": 0.8627,
+                "normalizado": 0.8646,
                 "peso": 0.32,
-                "contribuicao": 0.27606
+                "contribuicao": 0.27669
               }
             }
           },
@@ -2942,14 +2942,14 @@
             "posicao": "MEI",
             "projecao": 6.78,
             "real": 10.5,
-            "scoreCapitao": 66.349,
+            "scoreCapitao": 63.783,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.78,
-                "normalizado": 0.6635,
+                "normalizado": 0.6378,
                 "peso": 0.32,
-                "contribuicao": 0.21232
+                "contribuicao": 0.20411
               }
             }
           },
@@ -3080,14 +3080,14 @@
             "posicao": "ATA",
             "projecao": 6.3,
             "real": 8.8,
-            "scoreCapitao": 73.318,
+            "scoreCapitao": 77.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.3,
-                "normalizado": 0.7332,
+                "normalizado": 0.77,
                 "peso": 0.32,
-                "contribuicao": 0.23462
+                "contribuicao": 0.2464
               }
             }
           },
@@ -3141,19 +3141,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "94583",
-            "nome": "Pedro Guilherme Abreu dos Santos",
-            "posicao": "ATA",
-            "projecao": 8.94,
-            "real": 8.8,
-            "scoreCapitao": 100.0,
+            "id": "115479",
+            "nome": "Paulo César Pezzolano Suárez",
+            "posicao": "TEC",
+            "projecao": 5.4,
+            "real": 8.95,
+            "scoreCapitao": 54.962,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 8.94,
-                "normalizado": 1.0,
+                "valor": 5.4,
+                "normalizado": 0.5496,
                 "peso": 0.32,
-                "contribuicao": 0.32
+                "contribuicao": 0.17588
               }
             }
           },
@@ -3161,12 +3161,12 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 8.8,
             "pontosCapitaoB": 8.8,
-            "melhorPontuacaoReal": 8.8,
+            "melhorPontuacaoReal": 8.95,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.0,
-            "perdaBParaOtimo": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "perdaAParaOtimo": 0.15,
+            "perdaBParaOtimo": 0.15,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         },
         {
@@ -3483,19 +3483,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "143193",
-            "nome": "Kevin Stiven Viveros Rodallega",
+            "id": "130209",
+            "nome": "Carlos Renê de Sousa Ferreira - Souza",
             "posicao": "ATA",
             "projecao": 6.15,
-            "real": 10.9,
-            "scoreCapitao": 86.312,
+            "real": 18.1,
+            "scoreCapitao": 85.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.15,
-                "normalizado": 0.8631,
+                "normalizado": 0.85,
                 "peso": 0.32,
-                "contribuicao": 0.2762
+                "contribuicao": 0.272
               }
             }
           },
@@ -3503,10 +3503,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 2.2,
             "pontosCapitaoB": 2.2,
-            "melhorPontuacaoReal": 10.9,
+            "melhorPontuacaoReal": 18.1,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 8.7,
-            "perdaBParaOtimo": 8.7,
+            "perdaAParaOtimo": 15.9,
+            "perdaBParaOtimo": 15.9,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -3653,16 +3653,16 @@
           "estrategia": "Conservador",
           "quantidadeJogadores": 12,
           "modeloA": {
-            "id": "147192",
-            "nome": "Claudio Henrique de Jesus Passos",
-            "posicao": "LAT",
-            "projecao": 6.35,
-            "real": 3.7,
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.35,
+            "real": 1.2,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.35,
+                "valor": 7.35,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -3670,16 +3670,16 @@
             }
           },
           "modeloB": {
-            "id": "147192",
-            "nome": "Claudio Henrique de Jesus Passos",
-            "posicao": "LAT",
-            "projecao": 6.35,
-            "real": 3.7,
+            "id": "143193",
+            "nome": "Kevin Stiven Viveros Rodallega",
+            "posicao": "ATA",
+            "projecao": 7.35,
+            "real": 1.2,
             "scoreCapitao": 100.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 6.35,
+                "valor": 7.35,
                 "normalizado": 1.0,
                 "peso": 0.32,
                 "contribuicao": 0.32
@@ -3692,25 +3692,25 @@
             "posicao": "MEI",
             "projecao": 4.7,
             "real": 13.9,
-            "scoreCapitao": 33.198,
+            "scoreCapitao": 23.631,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 4.7,
-                "normalizado": 0.332,
+                "normalizado": 0.2363,
                 "peso": 0.32,
-                "contribuicao": 0.10623
+                "contribuicao": 0.07562
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 3.7,
-            "pontosCapitaoB": 3.7,
+            "pontosCapitaoA": 1.2,
+            "pontosCapitaoB": 1.2,
             "melhorPontuacaoReal": 13.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 10.2,
-            "perdaBParaOtimo": 10.2,
+            "perdaAParaOtimo": 12.7,
+            "perdaBParaOtimo": 12.7,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -3758,14 +3758,14 @@
             "posicao": "MEI",
             "projecao": 6.69,
             "real": 13.9,
-            "scoreCapitao": 38.681,
+            "scoreCapitao": 35.821,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.69,
-                "normalizado": 0.3868,
+                "normalizado": 0.3582,
                 "peso": 0.32,
-                "contribuicao": 0.12378
+                "contribuicao": 0.11463
               }
             }
           },
@@ -3896,14 +3896,14 @@
             "posicao": "MEI",
             "projecao": 6.3,
             "real": 22.8,
-            "scoreCapitao": 49.442,
+            "scoreCapitao": 36.107,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 6.3,
-                "normalizado": 0.4944,
+                "normalizado": 0.3611,
                 "peso": 0.32,
-                "contribuicao": 0.15821
+                "contribuicao": 0.11554
               }
             }
           },
@@ -4023,19 +4023,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "91772",
-            "nome": "David de Duarte Macedo",
-            "posicao": "ZAG",
-            "projecao": 5.72,
-            "real": 9.0,
-            "scoreCapitao": 0.0,
+            "id": "123101",
+            "nome": "Leonardo Caetano Silva",
+            "posicao": "ATA",
+            "projecao": 11.06,
+            "real": 15.1,
+            "scoreCapitao": 69.349,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 5.72,
-                "normalizado": 0.0,
+                "valor": 11.06,
+                "normalizado": 0.6935,
                 "peso": 0.32,
-                "contribuicao": 0.0
+                "contribuicao": 0.22192
               }
             }
           },
@@ -4043,10 +4043,10 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 8.9,
             "pontosCapitaoB": 8.9,
-            "melhorPontuacaoReal": 9.0,
+            "melhorPontuacaoReal": 15.1,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 0.1,
-            "perdaBParaOtimo": 0.1,
+            "perdaAParaOtimo": 6.2,
+            "perdaBParaOtimo": 6.2,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
           }
@@ -4100,14 +4100,14 @@
             "posicao": "MEI",
             "projecao": 4.9,
             "real": 17.7,
-            "scoreCapitao": 26.871,
+            "scoreCapitao": 51.247,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 4.9,
-                "normalizado": 0.2687,
+                "normalizado": 0.5125,
                 "peso": 0.32,
-                "contribuicao": 0.08599
+                "contribuicao": 0.16399
               }
             }
           },
@@ -4166,14 +4166,14 @@
             "posicao": "MEI",
             "projecao": 7.63,
             "real": 17.7,
-            "scoreCapitao": 55.024,
+            "scoreCapitao": 60.057,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 7.63,
-                "normalizado": 0.5502,
+                "normalizado": 0.6006,
                 "peso": 0.32,
-                "contribuicao": 0.17608
+                "contribuicao": 0.19218
               }
             }
           },
@@ -4304,14 +4304,14 @@
             "posicao": "ZAG",
             "projecao": 4.21,
             "real": 8.0,
-            "scoreCapitao": 15.083,
+            "scoreCapitao": 0.0,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
                 "valor": 4.21,
-                "normalizado": 0.1508,
+                "normalizado": 0.0,
                 "peso": 0.32,
-                "contribuicao": 0.04826
+                "contribuicao": 0.0
               }
             }
           },
@@ -4635,19 +4635,19 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "105647",
-            "nome": "Maurício Magalhães Prado",
-            "posicao": "MEI",
-            "projecao": 7.84,
-            "real": 8.5,
-            "scoreCapitao": 58.574,
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 12.22,
+            "real": 11.9,
+            "scoreCapitao": 97.64,
             "coberturaScore": 32.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.84,
-                "normalizado": 0.5857,
+                "valor": 12.22,
+                "normalizado": 0.9764,
                 "peso": 0.32,
-                "contribuicao": 0.18744
+                "contribuicao": 0.31245
               }
             }
           },
@@ -4655,12 +4655,216 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 0.9,
             "pontosCapitaoB": 0.9,
-            "melhorPontuacaoReal": 8.5,
+            "melhorPontuacaoReal": 11.9,
             "ganhoBvsA": 0.0,
-            "perdaAParaOtimo": 7.6,
-            "perdaBParaOtimo": 7.6,
+            "perdaAParaOtimo": 11.0,
+            "perdaBParaOtimo": 11.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 24,
+      "coldStart": false,
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 7.92,
+            "real": 11.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.92,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 7.92,
+            "real": 11.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.92,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "98873",
+            "nome": "Samuel Dias Lino",
+            "posicao": "ATA",
+            "projecao": 7.92,
+            "real": 11.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.92,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 11.9,
+            "pontosCapitaoB": 11.9,
+            "melhorPontuacaoReal": 11.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 10.06,
+            "real": 8.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.06,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar da Silva Santos Júnior",
+            "posicao": "MEI",
+            "projecao": 10.06,
+            "real": 8.4,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.06,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "105436",
+            "nome": "Jorge Andrés Carrascal Guardo",
+            "posicao": "MEI",
+            "projecao": 8.67,
+            "real": 24.9,
+            "scoreCapitao": 82.516,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.67,
+                "normalizado": 0.8252,
+                "peso": 0.32,
+                "contribuicao": 0.26405
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 8.4,
+            "pontosCapitaoB": 8.4,
+            "melhorPontuacaoReal": 24.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 16.5,
+            "perdaBParaOtimo": 16.5,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 12,
+          "modeloA": {
+            "id": "105436",
+            "nome": "Jorge Andrés Carrascal Guardo",
+            "posicao": "MEI",
+            "projecao": 12.33,
+            "real": 24.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.33,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "modeloB": {
+            "id": "105436",
+            "nome": "Jorge Andrés Carrascal Guardo",
+            "posicao": "MEI",
+            "projecao": 12.33,
+            "real": 24.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.33,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "105436",
+            "nome": "Jorge Andrés Carrascal Guardo",
+            "posicao": "MEI",
+            "projecao": 12.33,
+            "real": 24.9,
+            "scoreCapitao": 100.0,
+            "coberturaScore": 32.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 12.33,
+                "normalizado": 1.0,
+                "peso": 0.32,
+                "contribuicao": 0.32
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 24.9,
+            "pontosCapitaoB": 24.9,
+            "melhorPontuacaoReal": 24.9,
+            "ganhoBvsA": 0.0,
+            "perdaAParaOtimo": 0.0,
+            "perdaBParaOtimo": 0.0,
+            "AEscolheuMelhorReal": true,
+            "BEscolheuMelhorReal": true
           }
         }
       ]
