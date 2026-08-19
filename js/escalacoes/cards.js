@@ -422,6 +422,115 @@ function compararJogadoresEscalacao(
 
 
 /* =========================================================
+   CONTAGEM DA ESCALAÇÃO
+   ========================================================= */
+
+
+function contarJogadoresLinha(
+  jogadores
+) {
+
+  if (
+    !Array.isArray(
+      jogadores
+    )
+  ) {
+
+    return 0;
+
+  }
+
+
+  return jogadores.filter(
+    jogador =>
+      String(
+        jogador?.posicao || ""
+      )
+        .toUpperCase() !==
+      "TEC"
+  ).length;
+
+}
+
+
+function contarTreinadores(
+  jogadores
+) {
+
+  if (
+    !Array.isArray(
+      jogadores
+    )
+  ) {
+
+    return 0;
+
+  }
+
+
+  return jogadores.filter(
+    jogador =>
+      String(
+        jogador?.posicao || ""
+      )
+        .toUpperCase() ===
+      "TEC"
+  ).length;
+
+}
+
+
+function obterTextoQuantidadeEscalacao(
+  jogadores
+) {
+
+  const quantidadeJogadores =
+    contarJogadoresLinha(
+      jogadores
+    );
+
+
+  const quantidadeTreinadores =
+    contarTreinadores(
+      jogadores
+    );
+
+
+  if (
+    quantidadeJogadores === 11 &&
+    quantidadeTreinadores === 1
+  ) {
+
+    return "11 jogadores + técnico";
+
+  }
+
+
+  if (
+    quantidadeTreinadores > 0
+  ) {
+
+    return (
+      `${quantidadeJogadores} jogadores + ` +
+      `${quantidadeTreinadores} técnico` +
+      (
+        quantidadeTreinadores > 1
+          ? "s"
+          : ""
+      )
+    );
+
+  }
+
+
+  return (
+    `${quantidadeJogadores} jogadores`
+  );
+
+}
+
+
+/* =========================================================
    RISCO
    ========================================================= */
 
@@ -932,7 +1041,7 @@ function criarControlePatrimonioEscalacoes(
 
       <p>
         Os três times serão recalculados respeitando
-        o valor disponível para os 11 titulares
+        o valor disponível para os 11 jogadores
         e o treinador. O banco não consome patrimônio.
       </p>
 
@@ -1813,17 +1922,7 @@ function criarCardEscalacao(
     );
 
 
-  /*
-   * CORREÇÃO CRÍTICA:
-   *
-   * Patrimônio considera SOMENTE
-   * os titulares + treinador.
-   *
-   * Não utilizamos custoTotal,
-   * pois ele contém o banco.
-   */
-
-  const custoTitulares =
+  const custoEscalacao =
     numeroSeguro(
 
       escalacao
@@ -1861,7 +1960,7 @@ function criarCardEscalacao(
         )
       : (
           limite -
-          custoTitulares
+          custoEscalacao
         );
 
 
@@ -1904,6 +2003,12 @@ function criarCardEscalacao(
     "Escalação construída pelo modelo estatístico de acordo com o perfil selecionado."
 
   );
+
+
+  const textoQuantidade =
+    obterTextoQuantidadeEscalacao(
+      jogadoresOrdenados
+    );
 
 
   card.className =
@@ -1985,12 +2090,12 @@ function criarCardEscalacao(
       <div>
 
         <span>
-          Custo dos titulares
+          Custo da escalação
         </span>
 
         <strong>
           ${formatarCartoletas(
-            custoTitulares
+            custoEscalacao
           )}
         </strong>
 
@@ -2140,8 +2245,9 @@ function criarCardEscalacao(
           players-count
         "
       >
-        ${jogadoresOrdenados.length}
-        titulares
+        ${escaparHtml(
+          textoQuantidade
+        )}
       </span>
 
     </div>
@@ -2165,7 +2271,7 @@ function criarCardEscalacao(
     <div
       class="lineup-players-title"
     >
-      TITULARES
+      ESCALAÇÃO
     </div>
 
 
