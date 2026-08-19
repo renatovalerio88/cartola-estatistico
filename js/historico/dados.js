@@ -1,37 +1,43 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Histórico — carregamento e preparação dos dados
+   Histórico — dados
+
+   VERSÃO CONSOLIDADA
+
+   Compatível com:
+
+   1) data/historico/rodada-XX.json
+
+   2) data/historico/rodada-XX/
+        jogadores.json
+        metricas.json
 
    Responsabilidades:
-
-   - carregar índice do histórico;
    - descobrir rodadas disponíveis;
-   - carregar jogadores e métricas de cada rodada;
-   - manter cache;
-   - montar histórico individual por atleta;
-   - oferecer API compatível com os módulos antigos;
-   - tolerar ausência de arquivos sem quebrar o site.
-
+   - carregar rodada;
+   - normalizar jogadores;
+   - normalizar métricas;
+   - controlar rodada selecionada;
+   - controlar posição selecionada;
+   - fornecer API para cards e filtros.
    ========================================================= */
 
 
 const HistoricoDados = (() => {
+
+  "use strict";
 
 
   /* =======================================================
      CONFIGURAÇÃO
      ======================================================= */
 
-  const CAMINHO_BASE =
-    "data/historico";
-
-
-  const CAMINHO_INDICE =
-    `${CAMINHO_BASE}/indice.json`;
-
-
   const CAMINHO_STATUS =
     "data/api/status.json";
+
+
+  const CAMINHO_HISTORICO =
+    "data/historico";
 
 
   const POSICOES_VALIDAS = [
@@ -45,23 +51,34 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     CACHE
+     ESTADO
      ======================================================= */
 
-  const cacheRodadas =
-    new Map();
+  const estado = {
 
+    carregado: false,
 
-  let cacheIndice =
-    null;
+    carregando: false,
 
+    erro: null,
 
-  let promessaIndice =
-    null;
+    rodadaAtual: null,
 
+    rodadaSelecionada: null,
 
-  let rodadaAtualCache =
-    null;
+    posicaoSelecionada: "TODOS",
+
+    rodadasDisponiveis: [],
+
+    rodadas: new Map(),
+
+    jogadores: [],
+
+    jogadoresFiltrados: [],
+
+    ultimaAtualizacao: null
+
+  };
 
 
   /* =======================================================
@@ -104,13 +121,40 @@ const HistoricoDados = (() => {
 
     const resultado =
       String(
-        valor ??
-        ""
+        valor ?? ""
       ).trim();
 
 
     return resultado ||
       padrao;
+
+  }
+
+
+  function inteiro(
+    valor,
+    padrao = null
+  ) {
+
+    const convertido =
+      numero(
+        valor,
+        padrao
+      );
+
+
+    if (
+      convertido === null
+    ) {
+
+      return padrao;
+
+    }
+
+
+    return Math.trunc(
+      convertido
+    );
 
   }
 
@@ -123,8 +167,17 @@ const HistoricoDados = (() => {
     const convertido =
       numero(
         valor,
-        0
+        null
       );
+
+
+    if (
+      convertido === null
+    ) {
+
+      return null;
+
+    }
 
 
     return Number(
@@ -136,108 +189,50 @@ const HistoricoDados = (() => {
   }
 
 
-  function normalizarRodada(
-    rodada
-  ) {
-
-    const valor =
-      Math.trunc(
-        numero(
-          rodada,
-          0
-        )
-      );
-
-
-    return valor > 0
-      ? valor
-      : null;
-
-  }
-
-
-  function formatarRodada(
-    rodada
-  ) {
-
-    const numeroRodada =
-      normalizarRodada(
-        rodada
-      );
-
-
-    if (!numeroRodada) {
-
-      return "";
-
-    }
-
-
-    return String(
-      numeroRodada
-    ).padStart(
-      2,
-      "0"
-    );
-
-  }
-
-
   function copiarObjeto(
-    valor
+    objeto
   ) {
 
     if (
-      Array.isArray(valor)
+      !objeto ||
+      typeof objeto !== "object"
     ) {
 
-      return valor.map(
-        copiarObjeto
-      );
+      return objeto;
 
     }
 
 
-    if (
-      valor &&
-      typeof valor ===
-        "object"
-    ) {
-
-      const resultado = {};
-
-
-      Object.entries(
-        valor
-      )
-        .forEach(
-          ([
-            chave,
-            conteudo
-          ]) => {
-
-            resultado[chave] =
-              copiarObjeto(
-                conteudo
-              );
-
-          }
-        );
-
-
-      return resultado;
-
-    }
-
-
-    return valor;
+    return {
+      ...objeto
+    };
 
   }
 
+
+  function copiarJogador(
+    jogador
+  ) {
+
+    return {
+
+      ...jogador,
+
+      scouts: {
+        ...(jogador?.scouts || {})
+      }
+
+    };
+
+  }
+
+
+  /* =======================================================
+     FETCH
+     ======================================================= */
 
   async function buscarJson(
-    caminho,
-    obrigatorio = false
+    caminho
   ) {
 
     try {
@@ -255,17 +250,6 @@ const HistoricoDados = (() => {
         !resposta.ok
       ) {
 
-        if (
-          obrigatorio
-        ) {
-
-          throw new Error(
-            `HTTP ${resposta.status} em ${caminho}`
-          );
-
-        }
-
-
         return null;
 
       }
@@ -274,16 +258,7 @@ const HistoricoDados = (() => {
       return await resposta.json();
 
 
-    } catch (erro) {
-
-      if (
-        obrigatorio
-      ) {
-
-        throw erro;
-
-      }
-
+    } catch (_) {
 
       return null;
 
@@ -293,589 +268,289 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     RODADA ATUAL
+     STATUS
      ======================================================= */
 
-  async function obterRodadaAtual() {
+  async function carregarStatus() {
 
-    if (
-      rodadaAtualCache
-    ) {
+    const dados =
+      await buscarJson(
+        CAMINHO_STATUS
+      );
 
-      return rodadaAtualCache;
+
+    if (!dados) {
+
+      return null;
 
     }
-
-
-    const status =
-      await buscarJson(
-        CAMINHO_STATUS,
-        false
-      );
 
 
     const rodada =
-      normalizarRodada(
-        status?.rodada_atual ??
-        status?.rodadaAtual ??
-        status?.rodada
+      inteiro(
+        dados.rodada_atual
+        ??
+        dados.rodadaAtual
+        ??
+        dados.rodada,
+        null
       );
 
 
-    rodadaAtualCache =
-      rodada ||
-      1;
+    if (
+      rodada !== null
+    ) {
+
+      estado.rodadaAtual =
+        rodada;
+
+    }
 
 
-    return rodadaAtualCache;
+    estado.ultimaAtualizacao =
+      dados.ultima_atualizacao
+      ??
+      dados.ultimaAtualizacao
+      ??
+      dados.atualizado_em
+      ??
+      null;
+
+
+    return dados;
 
   }
 
 
   /* =======================================================
-     NORMALIZAÇÃO DO ÍNDICE
+     NORMALIZA POSIÇÃO
      ======================================================= */
 
-  function extrairRodadasIndice(
-    dados
-  ) {
-
-    const rodadas =
-      new Set();
-
-
-    function adicionar(
-      valor
-    ) {
-
-      if (
-        typeof valor ===
-          "object" &&
-        valor !== null
-      ) {
-
-        valor =
-          valor.rodada ??
-          valor.numero ??
-          valor.id ??
-          valor.round;
-
-      }
-
-
-      const rodada =
-        normalizarRodada(
-          valor
-        );
-
-
-      if (
-        rodada
-      ) {
-
-        rodadas.add(
-          rodada
-        );
-
-      }
-
-    }
-
-
-    if (
-      Array.isArray(
-        dados
-      )
-    ) {
-
-      dados.forEach(
-        adicionar
-      );
-
-    }
-
-
-    if (
-      Array.isArray(
-        dados?.rodadas
-      )
-    ) {
-
-      dados.rodadas.forEach(
-        adicionar
-      );
-
-    }
-
-
-    if (
-      Array.isArray(
-        dados?.disponiveis
-      )
-    ) {
-
-      dados.disponiveis.forEach(
-        adicionar
-      );
-
-    }
-
-
-    if (
-      Array.isArray(
-        dados?.itens
-      )
-    ) {
-
-      dados.itens.forEach(
-        adicionar
-      );
-
-    }
-
-
-    if (
-      dados?.rodadas &&
-      typeof dados.rodadas ===
-        "object" &&
-      !Array.isArray(
-        dados.rodadas
-      )
-    ) {
-
-      Object.keys(
-        dados.rodadas
-      )
-        .forEach(
-          adicionar
-        );
-
-    }
-
-
-    return [
-      ...rodadas
-    ]
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          a - b
-      );
-
-  }
-
-
-  /* =======================================================
-     DESCOBERTA POR FALLBACK
-     ======================================================= */
-
-  async function descobrirRodadasPorArquivos() {
-
-    const rodadaAtual =
-      await obterRodadaAtual();
-
-
-    const testes =
-      [];
-
-
-    for (
-      let rodada = 1;
-      rodada <= rodadaAtual;
-      rodada += 1
-    ) {
-
-      testes.push(
-        descobrirRodadaExistente(
-          rodada
-        )
-      );
-
-    }
-
-
-    const resultados =
-      await Promise.all(
-        testes
-      );
-
-
-    return resultados
-      .filter(Boolean)
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          a - b
-      );
-
-  }
-
-
-  async function descobrirRodadaExistente(
-    rodada
+  function normalizarPosicao(
+    valor
   ) {
 
     const codigo =
-      formatarRodada(
-        rodada
-      );
+      texto(
+        valor
+      ).toUpperCase();
 
 
-    if (!codigo) {
+    const mapa = {
 
-      return null;
+      GOLEIRO:
+        "GOL",
 
-    }
+      GOLEIROS:
+        "GOL",
 
+      LATERAL:
+        "LAT",
 
-    const caminhos = [
+      LATERAIS:
+        "LAT",
 
-      `${CAMINHO_BASE}/rodada-${codigo}/jogadores.json`,
+      ZAGUEIRO:
+        "ZAG",
 
-      `${CAMINHO_BASE}/rodada-${codigo}/metricas.json`
+      ZAGUEIROS:
+        "ZAG",
 
-    ];
+      MEIA:
+        "MEI",
 
+      MEIAS:
+        "MEI",
 
-    for (
-      const caminho of
-      caminhos
-    ) {
+      ATACANTE:
+        "ATA",
 
-      try {
+      ATACANTES:
+        "ATA",
 
-        const resposta =
-          await fetch(
-            caminho,
-            {
-              method: "HEAD",
-              cache: "no-store"
-            }
-          );
+      TECNICO:
+        "TEC",
 
+      TÉCNICO:
+        "TEC",
 
-        if (
-          resposta.ok
-        ) {
+      TREINADOR:
+        "TEC",
 
-          return rodada;
+      TREINADORES:
+        "TEC"
 
-        }
-
-      } catch (_) {
-
-        /*
-         * Alguns servidores não respondem
-         * corretamente ao HEAD.
-         */
-
-      }
-
-    }
-
-
-    /*
-     * Fallback final:
-     * tenta GET do arquivo de métricas.
-     */
-
-    const metricas =
-      await buscarJson(
-        `${CAMINHO_BASE}/rodada-${codigo}/metricas.json`,
-        false
-      );
+    };
 
 
     if (
-      metricas !== null
+      POSICOES_VALIDAS.includes(
+        codigo
+      )
     ) {
 
-      return rodada;
+      return codigo;
 
     }
 
 
-    const jogadores =
-      await buscarJson(
-        `${CAMINHO_BASE}/rodada-${codigo}/jogadores.json`,
-        false
-      );
-
-
-    return jogadores !== null
-      ? rodada
-      : null;
+    return mapa[codigo] || codigo;
 
   }
 
 
   /* =======================================================
-     CARREGAMENTO DO ÍNDICE
+     NORMALIZA JOGADOR
      ======================================================= */
 
-  async function carregarIndice(
-    forcar = false
-  ) {
-
-    if (
-      cacheIndice &&
-      !forcar
-    ) {
-
-      return copiarObjeto(
-        cacheIndice
-      );
-
-    }
-
-
-    if (
-      promessaIndice &&
-      !forcar
-    ) {
-
-      const resultado =
-        await promessaIndice;
-
-
-      return copiarObjeto(
-        resultado
-      );
-
-    }
-
-
-    promessaIndice =
-      (async () => {
-
-        const arquivo =
-          await buscarJson(
-            CAMINHO_INDICE,
-            false
-          );
-
-
-        let rodadas =
-          extrairRodadasIndice(
-            arquivo
-          );
-
-
-        let origem =
-          "indice.json";
-
-
-        if (
-          rodadas.length === 0
-        ) {
-
-          rodadas =
-            await descobrirRodadasPorArquivos();
-
-
-          origem =
-            "descoberta-automatica";
-
-        }
-
-
-        const rodadaAtual =
-          await obterRodadaAtual();
-
-
-        cacheIndice = {
-
-          rodadas,
-
-          total:
-            rodadas.length,
-
-          primeiraRodada:
-            rodadas.length
-              ? rodadas[0]
-              : null,
-
-          ultimaRodada:
-            rodadas.length
-              ? rodadas[
-                  rodadas.length - 1
-                ]
-              : null,
-
-          rodadaAtual,
-
-          origem,
-
-          bruto:
-            arquivo
-
-        };
-
-
-        console.info(
-          "Histórico: índice carregado",
-          {
-            rodadas:
-              cacheIndice.rodadas,
-
-            total:
-              cacheIndice.total,
-
-            origem:
-              cacheIndice.origem
-          }
-        );
-
-
-        return cacheIndice;
-
-      })();
-
-
-    try {
-
-      const resultado =
-        await promessaIndice;
-
-
-      return copiarObjeto(
-        resultado
-      );
-
-
-    } finally {
-
-      promessaIndice =
-        null;
-
-    }
-
-  }
-
-
-  /* =======================================================
-     NORMALIZAÇÃO DE JOGADOR HISTÓRICO
-     ======================================================= */
-
-  function normalizarJogadorHistorico(
+  function normalizarJogador(
     jogador,
     rodada
   ) {
 
     if (
       !jogador ||
-      typeof jogador !==
-        "object"
+      typeof jogador !== "object"
     ) {
 
       return null;
 
     }
-
-
-    const id =
-      jogador.id ??
-      jogador.atletaId ??
-      jogador.atleta_id;
-
-
-    if (
-      id === null ||
-      id === undefined
-    ) {
-
-      return null;
-
-    }
-
-
-    const posicao =
-      texto(
-        jogador.posicao ??
-        jogador.posicaoSigla
-      ).toUpperCase();
 
 
     const projecao =
       numero(
-        jogador.projecao ??
-        jogador.projecaoFinal ??
-        jogador.projecaoCalibrada ??
-        jogador.projecaoOriginal,
+        jogador.projecao
+        ??
+        jogador.projecaoOriginal
+        ??
+        jogador.projecao_calculada
+        ??
+        jogador.score,
         null
       );
 
 
     const real =
       numero(
-        jogador.real ??
-        jogador.pontos ??
-        jogador.pontuacao ??
-        jogador.pontuacaoReal,
+        jogador.real
+        ??
+        jogador.pontuacaoReal
+        ??
+        jogador.pontuacao
+        ??
+        jogador.pontos,
         null
       );
 
 
-    const erro =
-      (
-        projecao !== null &&
-        real !== null
-      )
-        ? Math.abs(
-            projecao -
-            real
-          )
-        : null;
+    let erro =
+      numero(
+        jogador.erro,
+        null
+      );
+
+
+    if (
+      erro === null &&
+      projecao !== null &&
+      real !== null
+    ) {
+
+      erro =
+        Math.abs(
+          real -
+          projecao
+        );
+
+    }
 
 
     return {
 
-      ...copiarObjeto(
-        jogador
-      ),
+      ...jogador,
 
-      id,
-
-      atletaId:
-        id,
+      id:
+        jogador.id
+        ??
+        jogador.atletaId
+        ??
+        jogador.atleta_id
+        ??
+        null,
 
       rodada:
-        normalizarRodada(
-          jogador.rodada ??
+        inteiro(
+          jogador.rodada,
           rodada
-        ) ??
-        rodada,
+        ),
 
       nome:
         texto(
-          jogador.nome ??
-          jogador.apelido,
+          jogador.apelido
+          ??
+          jogador.nome
+          ??
+          jogador.nomeCompleto,
           "Jogador"
         ),
 
       apelido:
         texto(
-          jogador.apelido ??
+          jogador.apelido
+          ??
           jogador.nome,
           "Jogador"
         ),
 
-      posicao,
+      posicao:
+        normalizarPosicao(
+          jogador.posicao
+          ??
+          jogador.posicaoSigla
+          ??
+          jogador.posicao_sigla
+        ),
 
       clube:
         texto(
+          jogador.siglaClube
+          ??
           jogador.clube
-        ),
+          ??
+          jogador.clubeSigla
+        ).toUpperCase(),
 
       siglaClube:
         texto(
-          jogador.siglaClube ??
+          jogador.siglaClube
+          ??
+          jogador.clube
+          ??
           jogador.clubeSigla
         ).toUpperCase(),
+
+      preco:
+        numero(
+          jogador.preco
+          ??
+          jogador.precoNum,
+          null
+        ),
+
+      media:
+        numero(
+          jogador.media
+          ??
+          jogador.mediaGeral,
+          null
+        ),
+
+      jogos:
+        numero(
+          jogador.jogos,
+          null
+        ),
 
       projecao,
 
@@ -887,29 +562,247 @@ const HistoricoDados = (() => {
       erro:
         erro !== null
           ? arredondar(
-              erro,
+              Math.abs(erro),
               2
             )
           : null,
 
       top5:
-        Boolean(
-          jogador.top5 ??
-          jogador.noTop5 ??
-          false
+        jogador.top5 === true,
+
+      capitao:
+        jogador.capitao === true,
+
+      scouts: {
+        ...(jogador.scouts || {})
+      }
+
+    };
+
+  }
+
+
+  /* =======================================================
+     NORMALIZA LISTA
+     ======================================================= */
+
+  function normalizarJogadores(
+    lista,
+    rodada
+  ) {
+
+    if (
+      !Array.isArray(
+        lista
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    return lista
+      .map(
+        jogador =>
+          normalizarJogador(
+            jogador,
+            rodada
+          )
+      )
+      .filter(Boolean);
+
+  }
+
+
+  /* =======================================================
+     NORMALIZA MÉTRICAS
+     ======================================================= */
+
+  function normalizarTop5(
+    valor
+  ) {
+
+    if (
+      valor &&
+      typeof valor === "object"
+    ) {
+
+      return {
+
+        acertos:
+          numero(
+            valor.acertos,
+            0
+          ),
+
+        total:
+          numero(
+            valor.total,
+            5
+          )
+
+      };
+
+    }
+
+
+    if (
+      typeof valor === "string"
+    ) {
+
+      const partes =
+        valor
+          .split("/")
+          .map(
+            item =>
+              numero(
+                item.trim(),
+                null
+              )
+          );
+
+
+      return {
+
+        acertos:
+          partes[0] ?? 0,
+
+        total:
+          partes[1] ?? 5
+
+      };
+
+    }
+
+
+    return {
+
+      acertos: 0,
+
+      total: 5
+
+    };
+
+  }
+
+
+  function normalizarCapitao(
+    valor
+  ) {
+
+    if (
+      valor &&
+      typeof valor === "object"
+    ) {
+
+      return {
+
+        acertou:
+          valor.acertou === true,
+
+        jogador:
+          valor.jogador
+          ??
+          null
+
+      };
+
+    }
+
+
+    return {
+
+      acertou:
+        texto(
+          valor
+        ).toLowerCase() ===
+        "acertou",
+
+      jogador:
+        null
+
+    };
+
+  }
+
+
+  function normalizarMetricas(
+    dados,
+    rodada
+  ) {
+
+    const origem =
+      dados &&
+      typeof dados === "object"
+        ? dados
+        : {};
+
+
+    return {
+
+      rodada,
+
+      erroMedio:
+        numero(
+          origem.erroMedio
+          ??
+          origem.mae,
+          null
+        ),
+
+      mae:
+        numero(
+          origem.mae
+          ??
+          origem.erroMedio,
+          null
+        ),
+
+      maiorErro:
+        numero(
+          origem.maiorErro,
+          null
+        ),
+
+      menorErro:
+        numero(
+          origem.menorErro,
+          null
+        ),
+
+      taxaAcerto:
+        numero(
+          origem.taxaAcerto,
+          null
+        ),
+
+      quantidade:
+        numero(
+          origem.quantidade,
+          null
+        ),
+
+      correlacao:
+        numero(
+          origem.correlacao,
+          null
+        ),
+
+      top5:
+        normalizarTop5(
+          origem.top5
         ),
 
       capitao:
-        Boolean(
-          jogador.capitao ??
-          jogador.foiCapitao ??
-          false
+        normalizarCapitao(
+          origem.capitao
         ),
 
-      acertouCapitao:
-        Boolean(
-          jogador.acertouCapitao ??
-          false
+      vies:
+        numero(
+          origem.vies,
+          null
         )
 
     };
@@ -918,76 +811,85 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     NORMALIZAÇÃO DE MÉTRICAS
+     CARREGA FORMATO ARQUIVO ÚNICO
      ======================================================= */
 
-  function normalizarMetricas(
-    metricas,
+  async function carregarFormatoArquivo(
     rodada
   ) {
 
+    const codigo =
+      String(
+        rodada
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    const caminho =
+      `${CAMINHO_HISTORICO}/rodada-${codigo}.json`;
+
+
     const dados =
-      (
-        metricas &&
-        typeof metricas ===
-          "object"
+      await buscarJson(
+        caminho
+      );
+
+
+    if (
+      !dados ||
+      typeof dados !== "object"
+    ) {
+
+      return null;
+
+    }
+
+
+    const jogadores =
+      normalizarJogadores(
+        dados.jogadores,
+        rodada
+      );
+
+
+    if (
+      jogadores.length === 0 &&
+      !numero(
+        dados.quantidade,
+        0
       )
-        ? metricas
-        : {};
+    ) {
 
+      return null;
 
-    const erroMedio =
-      numero(
-        dados.erroMedio ??
-        dados.mae ??
-        dados.erro_medio,
-        null
-      );
-
-
-    const correlacao =
-      numero(
-        dados.correlacao ??
-        dados.correlacaoPearson ??
-        dados.pearson,
-        null
-      );
-
-
-    const top5 =
-      dados.top5 ??
-      dados.acertoTop5 ??
-      dados.top_5 ??
-      null;
-
-
-    const capitao =
-      dados.capitao ??
-      dados.resultadoCapitao ??
-      dados.capitaoAcertou ??
-      null;
+    }
 
 
     return {
 
-      ...copiarObjeto(
-        dados
-      ),
-
-      rodada:
-        normalizarRodada(
-          dados.rodada ??
-          rodada
-        ) ??
+      numero:
         rodada,
 
-      erroMedio,
+      rodada,
 
-      correlacao,
+      arquivo:
+        caminho,
 
-      top5,
+      formato:
+        "arquivo",
 
-      capitao
+      jogadores,
+
+      metricas:
+        normalizarMetricas(
+          dados,
+          rodada
+        ),
+
+      bruto:
+        dados
 
     };
 
@@ -995,22 +897,120 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     CARREGAMENTO DE UMA RODADA
+     CARREGA FORMATO PASTA
      ======================================================= */
 
-  async function carregarRodada(
-    rodada,
-    forcar = false
+  async function carregarFormatoPasta(
+    rodada
   ) {
 
-    const numeroRodada =
-      normalizarRodada(
+    const codigo =
+      String(
+        rodada
+      ).padStart(
+        2,
+        "0"
+      );
+
+
+    const base =
+      `${CAMINHO_HISTORICO}/rodada-${codigo}`;
+
+
+    const [
+      jogadoresDados,
+      metricasDados
+    ] =
+      await Promise.all([
+
+        buscarJson(
+          `${base}/jogadores.json`
+        ),
+
+        buscarJson(
+          `${base}/metricas.json`
+        )
+
+      ]);
+
+
+    if (
+      !Array.isArray(
+        jogadoresDados
+      ) &&
+      !metricasDados
+    ) {
+
+      return null;
+
+    }
+
+
+    const jogadores =
+      normalizarJogadores(
+        Array.isArray(
+          jogadoresDados
+        )
+          ? jogadoresDados
+          : metricasDados?.jogadores,
         rodada
       );
 
 
+    return {
+
+      numero:
+        rodada,
+
+      rodada,
+
+      arquivo:
+        base,
+
+      formato:
+        "pasta",
+
+      jogadores,
+
+      metricas:
+        normalizarMetricas(
+          metricasDados,
+          rodada
+        ),
+
+      bruto: {
+
+        jogadores:
+          jogadoresDados,
+
+        metricas:
+          metricasDados
+
+      }
+
+    };
+
+  }
+
+
+  /* =======================================================
+     CARREGA UMA RODADA
+     ======================================================= */
+
+  async function carregarRodada(
+    rodada
+  ) {
+
+    const numeroRodada =
+      inteiro(
+        rodada,
+        null
+      );
+
+
     if (
-      !numeroRodada
+      numeroRodada === null ||
+      numeroRodada <= 0
     ) {
 
       return null;
@@ -1019,194 +1019,497 @@ const HistoricoDados = (() => {
 
 
     if (
-      cacheRodadas.has(
+      estado.rodadas.has(
         numeroRodada
-      ) &&
-      !forcar
+      )
     ) {
 
-      return copiarObjeto(
-        cacheRodadas.get(
+      return estado
+        .rodadas
+        .get(
           numeroRodada
-        )
-      );
+        );
 
     }
 
 
-    const codigo =
-      formatarRodada(
+    /*
+     * Primeiro tenta o formato atual:
+     *
+     * data/historico/rodada-XX.json
+     */
+
+    let resultado =
+      await carregarFormatoArquivo(
         numeroRodada
       );
 
 
-    const pasta =
-      `${CAMINHO_BASE}/rodada-${codigo}`;
+    /*
+     * Se não existir, tenta o formato antigo:
+     *
+     * data/historico/rodada-XX/
+     */
+
+    if (!resultado) {
+
+      resultado =
+        await carregarFormatoPasta(
+          numeroRodada
+        );
+
+    }
 
 
-    const [
-      jogadoresBrutos,
-      metricasBrutas
-    ] =
-      await Promise.all([
+    if (!resultado) {
 
-        buscarJson(
-          `${pasta}/jogadores.json`,
-          false
-        ),
+      return null;
 
-        buscarJson(
-          `${pasta}/metricas.json`,
-          false
-        )
-
-      ]);
+    }
 
 
-    const jogadores =
-      Array.isArray(
-        jogadoresBrutos
-      )
-        ? jogadoresBrutos
-            .map(
-              jogador =>
-                normalizarJogadorHistorico(
-                  jogador,
-                  numeroRodada
-                )
-            )
-            .filter(Boolean)
-        : [];
-
-
-    const metricas =
-      normalizarMetricas(
-        metricasBrutas,
-        numeroRodada
-      );
-
-
-    const disponivel =
-      (
-        jogadores.length > 0
-        ||
-        metricasBrutas !== null
-      );
-
-
-    const resultado = {
-
-      rodada:
-        numeroRodada,
-
-      codigoRodada:
-        codigo,
-
-      disponivel,
-
-      jogadores,
-
-      metricas,
-
-      quantidadeJogadores:
-        jogadores.length,
-
-      caminhos: {
-
-        jogadores:
-          `${pasta}/jogadores.json`,
-
-        metricas:
-          `${pasta}/metricas.json`
-
-      }
-
-    };
-
-
-    cacheRodadas.set(
+    estado.rodadas.set(
       numeroRodada,
       resultado
     );
 
 
-    return copiarObjeto(
-      resultado
-    );
+    return resultado;
 
   }
 
 
   /* =======================================================
-     CARREGAMENTO DE VÁRIAS RODADAS
+     DESCOBRE RODADAS
      ======================================================= */
 
-  async function carregarRodadas(
-    rodadas = null
-  ) {
+  async function descobrirRodadas() {
 
-    let lista =
-      Array.isArray(
-        rodadas
-      )
-        ? rodadas
-            .map(
-              normalizarRodada
-            )
-            .filter(Boolean)
-        : null;
+    await carregarStatus();
 
+
+    let limite =
+      estado.rodadaAtual;
+
+
+    /*
+     * Fallback caso status.json não carregue.
+     */
 
     if (
-      !lista
+      !limite ||
+      limite <= 0
     ) {
 
-      const indice =
-        await carregarIndice();
+      limite = 50;
+
+    }
 
 
-      lista =
-        indice.rodadas;
+    const tentativas = [];
+
+
+    for (
+      let rodada = 1;
+      rodada <= limite;
+      rodada += 1
+    ) {
+
+      tentativas.push(
+        carregarRodada(
+          rodada
+        )
+      );
 
     }
 
 
     const resultados =
       await Promise.all(
-        lista.map(
-          rodada =>
-            carregarRodada(
-              rodada
+        tentativas
+      );
+
+
+    const disponiveis =
+      resultados
+        .filter(Boolean)
+        .map(
+          item =>
+            Number(
+              item.rodada
             )
         )
-      );
+        .filter(
+          Number.isFinite
+        )
+        .sort(
+          (
+            a,
+            b
+          ) =>
+            a - b
+        );
 
 
-    return resultados
-      .filter(
-        rodada =>
-          rodada &&
-          rodada.disponivel
-      )
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          a.rodada -
-          b.rodada
-      );
+    estado.rodadasDisponiveis =
+      [
+        ...new Set(
+          disponiveis
+        )
+      ];
+
+
+    return [
+      ...estado.rodadasDisponiveis
+    ];
 
   }
 
 
   /* =======================================================
-     HISTÓRICO DE UM ATLETA
+     CARREGA ÍNDICE
+     ======================================================= */
+
+  async function carregarIndice() {
+
+    const rodadas =
+      await descobrirRodadas();
+
+
+    return {
+
+      total:
+        rodadas.length,
+
+      ultimaRodada:
+        rodadas.length
+          ? Math.max(
+              ...rodadas
+            )
+          : null,
+
+      rodadas:
+        rodadas.map(
+          numeroRodada => ({
+
+            numero:
+              numeroRodada,
+
+            status:
+              "finalizada",
+
+            arquivo:
+              `rodada-${String(
+                numeroRodada
+              ).padStart(
+                2,
+                "0"
+              )}`
+
+          })
+        )
+
+    };
+
+  }
+
+
+  /* =======================================================
+     APLICA POSIÇÃO
+     ======================================================= */
+
+  function aplicarFiltroPosicao() {
+
+    if (
+      estado.posicaoSelecionada ===
+      "TODOS"
+    ) {
+
+      estado.jogadoresFiltrados =
+        estado.jogadores.map(
+          copiarJogador
+        );
+
+
+      return estado
+        .jogadoresFiltrados;
+
+    }
+
+
+    estado.jogadoresFiltrados =
+      estado.jogadores
+        .filter(
+          jogador =>
+            normalizarPosicao(
+              jogador.posicao
+            ) ===
+            estado.posicaoSelecionada
+        )
+        .map(
+          copiarJogador
+        );
+
+
+    return estado
+      .jogadoresFiltrados;
+
+  }
+
+
+  /* =======================================================
+     SELECIONA RODADA
+     ======================================================= */
+
+  async function selecionarRodada(
+    rodada
+  ) {
+
+    const numeroRodada =
+      inteiro(
+        rodada,
+        null
+      );
+
+
+    if (
+      numeroRodada === null
+    ) {
+
+      return null;
+
+    }
+
+
+    const dados =
+      await carregarRodada(
+        numeroRodada
+      );
+
+
+    if (!dados) {
+
+      return null;
+
+    }
+
+
+    estado.rodadaSelecionada =
+      numeroRodada;
+
+
+    estado.jogadores =
+      dados.jogadores.map(
+        copiarJogador
+      );
+
+
+    aplicarFiltroPosicao();
+
+
+    return dados;
+
+  }
+
+
+  /* =======================================================
+     SELECIONA POSIÇÃO
+     ======================================================= */
+
+  function selecionarPosicao(
+    posicao
+  ) {
+
+    const codigo =
+      texto(
+        posicao,
+        "TODOS"
+      ).toUpperCase();
+
+
+    estado.posicaoSelecionada =
+      codigo === "TODOS"
+        ? "TODOS"
+        : normalizarPosicao(
+            codigo
+          );
+
+
+    aplicarFiltroPosicao();
+
+
+    return estado
+      .posicaoSelecionada;
+
+  }
+
+
+  /* =======================================================
+     CARREGAMENTO PRINCIPAL
+     ======================================================= */
+
+  async function carregar() {
+
+    if (
+      estado.carregado
+    ) {
+
+      return obterEstado();
+
+    }
+
+
+    if (
+      estado.carregando
+    ) {
+
+      return obterEstado();
+
+    }
+
+
+    estado.carregando =
+      true;
+
+
+    estado.erro =
+      null;
+
+
+    try {
+
+      const rodadas =
+        await descobrirRodadas();
+
+
+      if (
+        rodadas.length === 0
+      ) {
+
+        throw new Error(
+          "Nenhuma rodada histórica encontrada."
+        );
+
+      }
+
+
+      /*
+       * Seleciona a rodada mais recente disponível.
+       */
+
+      const rodadaInicial =
+        Math.max(
+          ...rodadas
+        );
+
+
+      await selecionarRodada(
+        rodadaInicial
+      );
+
+
+      estado.carregado =
+        true;
+
+
+      console.info(
+        "Histórico carregado:",
+        {
+          rodadas:
+            estado.rodadasDisponiveis,
+
+          rodadaSelecionada:
+            estado.rodadaSelecionada,
+
+          jogadores:
+            estado.jogadores.length,
+
+          posicao:
+            estado.posicaoSelecionada
+        }
+      );
+
+
+      return obterEstado();
+
+
+    } catch (erro) {
+
+      estado.erro =
+        erro?.message
+        ??
+        String(
+          erro
+        );
+
+
+      console.error(
+        "Erro ao carregar Histórico:",
+        erro
+      );
+
+
+      return obterEstado();
+
+
+    } finally {
+
+      estado.carregando =
+        false;
+
+    }
+
+  }
+
+
+  /* =======================================================
+     CARREGA VÁRIAS RODADAS
+     ======================================================= */
+
+  async function carregarRodadas(
+    rodadas = null
+  ) {
+
+    const lista =
+      Array.isArray(
+        rodadas
+      )
+        ? rodadas
+        : (
+            estado
+              .rodadasDisponiveis
+              .length > 0
+              ? estado
+                  .rodadasDisponiveis
+              : await descobrirRodadas()
+          );
+
+
+    const resultados =
+      await Promise.all(
+        lista.map(
+          carregarRodada
+        )
+      );
+
+
+    return resultados
+      .filter(Boolean);
+
+  }
+
+
+  /* =======================================================
+     HISTÓRICO INDIVIDUAL
      ======================================================= */
 
   async function carregarHistoricoAtleta(
     atletaId
   ) {
+
+    const rodadas =
+      await carregarRodadas();
+
 
     const id =
       texto(
@@ -1214,65 +1517,23 @@ const HistoricoDados = (() => {
       );
 
 
-    if (!id) {
-
-      return [];
-
-    }
-
-
-    const rodadas =
-      await carregarRodadas();
-
-
-    const historico = [];
-
-
-    rodadas.forEach(
-      dadosRodada => {
-
-        const jogador =
-          dadosRodada
-            .jogadores
-            .find(
-              atleta =>
-                String(
-                  atleta.id
-                ) === id
-            );
-
-
-        if (
-          jogador
-        ) {
-
-          historico.push(
-            copiarObjeto(
-              jogador
-            )
-          );
-
-        }
-
-      }
-    );
-
-
-    return historico
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          a.rodada -
-          b.rodada
-      );
+    return rodadas
+      .map(
+        rodada =>
+          rodada.jogadores.find(
+            jogador =>
+              texto(
+                jogador.id
+              ) === id
+          )
+      )
+      .filter(Boolean);
 
   }
 
 
   /* =======================================================
-     MONTA HISTÓRICO DOS JOGADORES
+     MONTA HISTÓRICO NOS JOGADORES
      ======================================================= */
 
   async function montarHistoricoJogadores(
@@ -1294,108 +1555,62 @@ const HistoricoDados = (() => {
       await carregarRodadas();
 
 
-    const mapaHistorico =
-      new Map();
-
-
-    rodadas.forEach(
-      dadosRodada => {
-
-        dadosRodada
-          .jogadores
-          .forEach(
-            atleta => {
-
-              const id =
-                String(
-                  atleta.id
-                );
-
-
-              if (
-                !mapaHistorico.has(
-                  id
-                )
-              ) {
-
-                mapaHistorico.set(
-                  id,
-                  []
-                );
-
-              }
-
-
-              mapaHistorico
-                .get(id)
-                .push(
-                  copiarObjeto(
-                    atleta
-                  )
-                );
-
-            }
-          );
-
-      }
-    );
-
-
     return jogadores.map(
       jogador => {
 
         const id =
-          String(
-            jogador?.id ??
-            jogador?.atletaId ??
-            jogador?.atleta_id ??
-            ""
+          texto(
+            jogador.id
           );
 
 
         const historico =
-          (
-            mapaHistorico.get(
-              id
-            ) ??
-            []
-          )
-            .slice()
+          rodadas
+            .map(
+              rodada =>
+                rodada.jogadores.find(
+                  item =>
+                    texto(
+                      item.id
+                    ) === id
+                )
+            )
+            .filter(Boolean)
             .sort(
               (
                 a,
                 b
               ) =>
-                a.rodada -
-                b.rodada
-            );
-
-
-        const historicoPontuacoes =
-          historico
-            .map(
-              registro =>
                 numero(
-                  registro.real ??
-                  registro.pontuacaoReal,
-                  null
+                  a.rodada,
+                  0
+                ) -
+                numero(
+                  b.rodada,
+                  0
                 )
-            )
-            .filter(
-              valor =>
-                valor !== null
             );
 
 
         return {
 
-          ...copiarObjeto(
-            jogador
-          ),
+          ...jogador,
 
           historico,
 
-          historicoPontuacoes
+          historicoPontuacoes:
+            historico
+              .map(
+                item =>
+                  numero(
+                    item.real,
+                    null
+                  )
+              )
+              .filter(
+                valor =>
+                  valor !== null
+              )
 
         };
 
@@ -1406,73 +1621,24 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     FILTRO POR POSIÇÃO
+     OBTENÇÕES
      ======================================================= */
 
-  function filtrarJogadoresPorPosicao(
-    jogadores,
-    posicao
-  ) {
+  function obterRodadasDisponiveis() {
 
-    const lista =
-      Array.isArray(
-        jogadores
-      )
-        ? jogadores
-        : [];
-
-
-    const codigo =
-      texto(
-        posicao
-      ).toUpperCase();
-
-
-    if (
-      !codigo ||
-      codigo === "TODAS" ||
-      codigo === "TODOS" ||
-      codigo === "ALL"
-    ) {
-
-      return lista.slice();
-
-    }
-
-
-    if (
-      !POSICOES_VALIDAS.includes(
-        codigo
-      )
-    ) {
-
-      return lista.slice();
-
-    }
-
-
-    return lista.filter(
-      jogador =>
-        texto(
-          jogador?.posicao
-        ).toUpperCase() ===
-        codigo
-    );
+    return [
+      ...estado
+        .rodadasDisponiveis
+    ];
 
   }
 
 
-  /* =======================================================
-     MÉTRICAS DERIVADAS
-     ======================================================= */
-
-  function calcularResumoRodada(
-    dadosRodada,
-    posicao = null
-  ) {
+  function obterRodada() {
 
     if (
-      !dadosRodada
+      estado.rodadaSelecionada ===
+      null
     ) {
 
       return null;
@@ -1480,20 +1646,158 @@ const HistoricoDados = (() => {
     }
 
 
-    const jogadores =
-      filtrarJogadoresPorPosicao(
-        dadosRodada.jogadores,
-        posicao
+    const rodada =
+      estado
+        .rodadas
+        .get(
+          estado.rodadaSelecionada
+        );
+
+
+    if (!rodada) {
+
+      return null;
+
+    }
+
+
+    return {
+
+      ...rodada,
+
+      jogadores:
+        rodada.jogadores.map(
+          copiarJogador
+        ),
+
+      metricas:
+        copiarObjeto(
+          rodada.metricas
+        )
+
+    };
+
+  }
+
+
+  function obterJogadores() {
+
+    return estado
+      .jogadoresFiltrados
+      .map(
+        copiarJogador
       );
 
+  }
 
-    const comparaveis =
+
+  function obterTodosJogadoresDaRodada() {
+
+    return estado
+      .jogadores
+      .map(
+        copiarJogador
+      );
+
+  }
+
+
+  function possuiHistorico() {
+
+    return (
+      estado
+        .rodadasDisponiveis
+        .length > 0
+    );
+
+  }
+
+
+  function filtrarJogadoresPorPosicao(
+    jogadores,
+    posicao
+  ) {
+
+    if (
+      !Array.isArray(
+        jogadores
+      )
+    ) {
+
+      return [];
+
+    }
+
+
+    const codigo =
+      texto(
+        posicao,
+        "TODOS"
+      ).toUpperCase();
+
+
+    if (
+      codigo ===
+      "TODOS"
+    ) {
+
+      return jogadores.map(
+        copiarJogador
+      );
+
+    }
+
+
+    return jogadores
+      .filter(
+        jogador =>
+          normalizarPosicao(
+            jogador.posicao
+          ) ===
+          normalizarPosicao(
+            codigo
+          )
+      )
+      .map(
+        copiarJogador
+      );
+
+  }
+
+
+  /* =======================================================
+     RESUMO DA RODADA
+     ======================================================= */
+
+  function calcularResumoRodada(
+    rodada = null
+  ) {
+
+    const dados =
+      rodada
+      ??
+      obterRodada();
+
+
+    if (!dados) {
+
+      return null;
+
+    }
+
+
+    const jogadores =
+      dados.jogadores || [];
+
+
+    const validos =
       jogadores.filter(
         jogador =>
           numero(
             jogador.projecao,
             null
-          ) !== null &&
+          ) !== null
+          &&
           numero(
             jogador.real,
             null
@@ -1501,71 +1805,68 @@ const HistoricoDados = (() => {
       );
 
 
-    const erros =
-      comparaveis.map(
-        jogador =>
+    if (
+      validos.length === 0
+    ) {
+
+      return {
+
+        rodada:
+          dados.rodada,
+
+        quantidade:
+          0,
+
+        erroMedio:
+          dados
+            .metricas
+            ?.erroMedio
+            ??
+            null
+
+      };
+
+    }
+
+
+    const erroMedio =
+      validos.reduce(
+        (
+          soma,
+          jogador
+        ) =>
+          soma +
           Math.abs(
-            jogador.projecao -
-            jogador.real
-          )
-      );
-
-
-    const erroMedioCalculado =
-      erros.length
-        ? erros.reduce(
-            (
-              soma,
-              valor
-            ) =>
-              soma + valor,
-            0
-          ) /
-          erros.length
-        : null;
+            numero(
+              jogador.real,
+              0
+            ) -
+            numero(
+              jogador.projecao,
+              0
+            )
+          ),
+        0
+      ) /
+      validos.length;
 
 
     return {
 
       rodada:
-        dadosRodada.rodada,
+        dados.rodada,
 
-      jogadores:
-        jogadores.length,
-
-      comparaveis:
-        comparaveis.length,
+      quantidade:
+        validos.length,
 
       erroMedio:
-        dadosRodada
-          ?.metricas
-          ?.erroMedio ??
-        (
-          erroMedioCalculado !== null
-            ? arredondar(
-                erroMedioCalculado,
-                2
-              )
-            : null
+        arredondar(
+          erroMedio,
+          2
         ),
 
-      top5:
-        dadosRodada
-          ?.metricas
-          ?.top5 ??
-        null,
-
-      correlacao:
-        dadosRodada
-          ?.metricas
-          ?.correlacao ??
-        null,
-
-      capitao:
-        dadosRodada
-          ?.metricas
-          ?.capitao ??
-        null
+      metricas:
+        dados.metricas
 
     };
 
@@ -1573,61 +1874,30 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     RODADAS DISPONÍVEIS
-     ======================================================= */
-
-  async function obterRodadasDisponiveis() {
-
-    const indice =
-      await carregarIndice();
-
-
-    return [
-      ...indice.rodadas
-    ];
-
-  }
-
-
-  /* =======================================================
-     VERIFICA DISPONIBILIDADE
-     ======================================================= */
-
-  async function possuiHistorico() {
-
-    const rodadas =
-      await obterRodadasDisponiveis();
-
-
-    return rodadas.length > 0;
-
-  }
-
-
-  /* =======================================================
-     LIMPEZA DO CACHE
+     LIMPA CACHE
      ======================================================= */
 
   function limparCache() {
 
-    cacheRodadas.clear();
+    estado.rodadas.clear();
 
+    estado.rodadasDisponiveis =
+      [];
 
-    cacheIndice =
+    estado.jogadores =
+      [];
+
+    estado.jogadoresFiltrados =
+      [];
+
+    estado.rodadaSelecionada =
       null;
 
+    estado.carregado =
+      false;
 
-    promessaIndice =
+    estado.erro =
       null;
-
-
-    rodadaAtualCache =
-      null;
-
-
-    console.info(
-      "Histórico: cache limpo."
-    );
 
   }
 
@@ -1640,35 +1910,44 @@ const HistoricoDados = (() => {
 
     return {
 
-      indiceCarregado:
-        Boolean(
-          cacheIndice
-        ),
+      carregado:
+        estado.carregado,
 
-      rodadasEmCache:
-        [
-          ...cacheRodadas.keys()
-        ]
-          .sort(
-            (
-              a,
-              b
-            ) =>
-              a - b
-          ),
+      carregando:
+        estado.carregando,
 
-      quantidadeRodadasCache:
-        cacheRodadas.size,
+      erro:
+        estado.erro,
 
       rodadaAtual:
-        rodadaAtualCache,
+        estado.rodadaAtual,
 
-      indice:
-        cacheIndice
-          ? copiarObjeto(
-              cacheIndice
-            )
-          : null
+      rodadaSelecionada:
+        estado.rodadaSelecionada,
+
+      posicaoSelecionada:
+        estado.posicaoSelecionada,
+
+      rodadasDisponiveis: [
+        ...estado
+          .rodadasDisponiveis
+      ],
+
+      quantidadeRodadas:
+        estado
+          .rodadasDisponiveis
+          .length,
+
+      quantidadeJogadores:
+        estado.jogadores.length,
+
+      quantidadeJogadoresFiltrados:
+        estado
+          .jogadoresFiltrados
+          .length,
+
+      ultimaAtualizacao:
+        estado.ultimaAtualizacao
 
     };
 
@@ -1676,10 +1955,12 @@ const HistoricoDados = (() => {
 
 
   /* =======================================================
-     API PÚBLICA
+     API
      ======================================================= */
 
   return {
+
+    carregar,
 
     carregarIndice,
 
@@ -1691,7 +1972,19 @@ const HistoricoDados = (() => {
 
     montarHistoricoJogadores,
 
+    descobrirRodadas,
+
+    selecionarRodada,
+
+    selecionarPosicao,
+
     obterRodadasDisponiveis,
+
+    obterRodada,
+
+    obterJogadores,
+
+    obterTodosJogadoresDaRodada,
 
     possuiHistorico,
 
@@ -1710,15 +2003,8 @@ const HistoricoDados = (() => {
 
 
 /* =========================================================
-   COMPATIBILIDADE COM CÓDIGO ANTIGO
+   COMPATIBILIDADE COM MÓDULOS ANTIGOS
    ========================================================= */
-
-
-/*
- * Mantemos funções globais porque os módulos antigos
- * do Histórico podem chamá-las diretamente.
- */
-
 
 async function carregarIndice() {
 
@@ -1812,7 +2098,7 @@ if (
 
 
 /* =========================================================
-   PRÉ-CARREGAMENTO LEVE
+   PRÉ-CARREGAMENTO
    ========================================================= */
 
 if (
@@ -1829,17 +2115,8 @@ if (
 
           try {
 
-            const indice =
-              await HistoricoDados
-                .carregarIndice();
-
-
-            console.info(
-              "Histórico disponível:",
-              indice.total,
-              "rodada(s)."
-            );
-
+            await HistoricoDados
+              .carregar();
 
           } catch (erro) {
 
@@ -1851,7 +2128,7 @@ if (
           }
 
         },
-        250
+        150
       );
 
     }
