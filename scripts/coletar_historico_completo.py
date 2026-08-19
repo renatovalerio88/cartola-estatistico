@@ -2,18 +2,20 @@
 ======================================================
 CARTOLA ESTATÍSTICO
 
-Coleta de dados públicos da rodada atual.
+Coleta histórica completa + contexto progressivo.
 
-Gera:
+REGRA CIENTÍFICA:
 
-data/api/status.json
+Ao gerar a Rodada N, todo contexto estatístico usa
+APENAS rodadas anteriores a N.
 
-data/api/rodada-XX/
-    mercado.json
-    partidas.json
-    pontuados.json
-    jogadores.json
-    resumo.json
+Exemplo:
+
+R02 -> usa até R01
+R03 -> usa até R02
+R10 -> usa até R09
+
+Evita vazamento de dados futuros.
 
 ======================================================
 """
@@ -21,9 +23,10 @@ data/api/rodada-XX/
 from __future__ import annotations
 
 import json
+import math
 import sys
 
-from datetime import datetime
+from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -38,7 +41,9 @@ from urllib.request import (
 )
 
 
-API_BASE = "https://api.cartolafc.globo.com"
+API_BASE = (
+    "https://api.cartolafc.globo.com"
+)
 
 
 PASTA_RAIZ = (
@@ -49,22 +54,19 @@ PASTA_RAIZ = (
 )
 
 
-PASTA_DADOS = (
+PASTA_API = (
     PASTA_RAIZ
-    / "data"
-    / "api"
+    /
+    "data"
+    /
+    "api"
 )
 
 
 CABECALHOS = {
 
     "User-Agent":
-        (
-            "Mozilla/5.0 "
-            "(Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 "
-            "Chrome/150 Safari/537.36"
-        ),
+        "Mozilla/5.0",
 
     "Accept":
         "application/json",
@@ -89,15 +91,108 @@ POSICOES = {
 }
 
 
-STATUS_PROVAVEL = 7
+JANELA_FORMA = 6
+
+JANELA_PONTOS_CEDIDOS = 8
+
+JANELA_SG = 8
 
 
-STATUS_INDISPONIVEIS = {
-    2,
-    3,
-    5,
-    6,
-}
+# ======================================================
+# UTILITÁRIOS
+# ======================================================
+
+
+def inteiro(
+    valor: Any,
+) -> int | None:
+
+    try:
+
+        if valor is None:
+            return None
+
+        return int(
+            valor
+        )
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+
+        return None
+
+
+def numero(
+    valor: Any,
+) -> float | None:
+
+    try:
+
+        if (
+            valor is None
+            or valor == ""
+        ):
+
+            return None
+
+
+        convertido = float(
+            valor
+        )
+
+
+        if not math.isfinite(
+            convertido
+        ):
+
+            return None
+
+
+        return convertido
+
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+
+        return None
+
+
+def limitar(
+    valor: float,
+) -> float:
+
+    return max(
+        0.0,
+        min(
+            100.0,
+            valor,
+        ),
+    )
+
+
+def round_seguro(
+    valor: Any,
+    casas: int = 2,
+) -> float | None:
+
+    convertido = numero(
+        valor
+    )
+
+
+    if convertido is None:
+
+        return None
+
+
+    return round(
+        convertido,
+        casas,
+    )
 
 
 # ======================================================
@@ -111,7 +206,9 @@ def buscar_json(
 ) -> Any:
 
     url = (
-        f"{API_BASE}{endpoint}"
+        API_BASE
+        +
+        endpoint
     )
 
 
@@ -121,12 +218,7 @@ def buscar_json(
 
         headers=CABECALHOS,
 
-        method="GET",
-
     )
-
-
-    mensagem = ""
 
 
     try:
@@ -136,48 +228,39 @@ def buscar_json(
             timeout=30,
         ) as resposta:
 
-            conteudo = (
+            return json.loads(
+
                 resposta
                 .read()
                 .decode(
                     "utf-8"
                 )
-            )
 
-
-            return json.loads(
-                conteudo
             )
 
 
     except HTTPError as erro:
 
         mensagem = (
-
-            f"Erro HTTP {erro.code} "
-            f"ao consultar {url}"
-
+            f"Erro HTTP "
+            f"{erro.code}: "
+            f"{url}"
         )
 
 
     except URLError as erro:
 
         mensagem = (
-
-            f"Erro de conexão "
-            f"ao consultar {url}: "
+            f"Erro conexão: "
             f"{erro.reason}"
-
         )
 
 
     except json.JSONDecodeError:
 
         mensagem = (
-
-            f"A API retornou JSON "
-            f"inválido em {url}"
-
+            f"JSON inválido: "
+            f"{url}"
         )
 
 
@@ -232,56 +315,84 @@ def salvar_json(
     )
 
 
+# ======================================================
+# MERCADO HISTÓRICO
+# ======================================================
+
+
+def buscar_mercado_historico(
+    rodada: int,
+) -> dict[str, Any]:
+
+    mercado = buscar_json(
+
+        f"/atletas/mercado/{rodada}",
+
+        obrigatorio=False,
+
+    )
+
+
+    if (
+
+        isinstance(
+            mercado,
+            dict,
+        )
+
+        and
+
+        isinstance(
+            mercado.get(
+                "atletas"
+            ),
+            list,
+        )
+
+        and
+
+        mercado.get(
+            "atletas"
+        )
+
+    ):
+
+        return mercado
+
+
     print(
 
-        "Arquivo salvo: "
-        f"{caminho.relative_to(PASTA_RAIZ)}"
+        f"Rodada {rodada}: "
+        "mercado histórico indisponível. "
+        "Não será usado mercado atual como fallback."
 
     )
 
 
-# ======================================================
-# RODADA
-# ======================================================
+    return {}
 
 
-def obter_numero_rodada(
-    status: dict[str, Any],
-) -> int:
+def buscar_pontuados_historico(
+    rodada: int,
+) -> dict[str, Any]:
 
-    rodada = (
+    dados = buscar_json(
 
-        status.get(
-            "rodada_atual"
-        )
+        f"/atletas/pontuados/{rodada}",
 
-        or
-
-        status.get(
-            "rodada"
-        )
+        obrigatorio=False,
 
     )
 
 
-    try:
-
-        return int(
-            rodada
+    return (
+        dados
+        if isinstance(
+            dados,
+            dict,
         )
-
-
-    except (
-        TypeError,
-        ValueError,
-    ) as erro:
-
-        raise RuntimeError(
-
-            "Não foi possível "
-            "identificar a rodada atual."
-
-        ) from erro
+        else {}
+    )
 
 
 # ======================================================
@@ -289,27 +400,12 @@ def obter_numero_rodada(
 # ======================================================
 
 
-def para_inteiro(
-    valor: Any,
-) -> int | None:
-
-    try:
-
-        return int(
-            valor
-        )
-
-    except (
-        TypeError,
-        ValueError,
-    ):
-
-        return None
-
-
 def indexar_clubes(
     mercado: dict[str, Any],
 ) -> dict[int, dict[str, Any]]:
+
+    resultado = {}
+
 
     clubes = (
         mercado.get(
@@ -320,12 +416,6 @@ def indexar_clubes(
     )
 
 
-    resultado: dict[
-        int,
-        dict[str, Any]
-    ] = {}
-
-
     if not isinstance(
         clubes,
         dict,
@@ -334,15 +424,15 @@ def indexar_clubes(
         return resultado
 
 
-    for clube_id, clube in clubes.items():
+    for chave, clube in clubes.items():
 
-        id_numerico = para_inteiro(
-            clube_id
+        clube_id = inteiro(
+            chave
         )
 
 
         if (
-            id_numerico is None
+            clube_id is None
             or not isinstance(
                 clube,
                 dict,
@@ -353,113 +443,46 @@ def indexar_clubes(
 
 
         resultado[
-            id_numerico
+            clube_id
         ] = clube
 
 
     return resultado
 
 
-def indexar_posicoes(
-    mercado: dict[str, Any],
-) -> dict[int, dict[str, Any]]:
-
-    posicoes = (
-        mercado.get(
-            "posicoes",
-            {},
-        )
-        or {}
-    )
-
-
-    resultado: dict[
-        int,
-        dict[str, Any]
-    ] = {}
-
-
-    if not isinstance(
-        posicoes,
-        dict,
-    ):
-
-        return resultado
-
-
-    for posicao_id, posicao in posicoes.items():
-
-        id_numerico = para_inteiro(
-            posicao_id
-        )
-
-
-        if (
-            id_numerico is None
-            or not isinstance(
-                posicao,
-                dict,
-            )
-        ):
-
-            continue
-
-
-        resultado[
-            id_numerico
-        ] = posicao
-
-
-    return resultado
-
-
-def obter_nome_clube(
+def nome_clube(
     clube: dict[str, Any] | None,
 ) -> str:
 
     if not clube:
-
         return ""
 
 
     return str(
-
         clube.get(
             "nome"
         )
-
-        or
-
-        ""
-
+        or ""
     )
 
 
-def obter_sigla_clube(
+def sigla_clube(
     clube: dict[str, Any] | None,
 ) -> str:
 
     if not clube:
-
         return ""
 
 
     return str(
-
         clube.get(
             "abreviacao"
         )
-
         or
-
         clube.get(
             "nome"
         )
-
-        or
-
-        ""
-
+        or ""
     )
 
 
@@ -468,66 +491,58 @@ def obter_sigla_clube(
 # ======================================================
 
 
-def extrair_lista_partidas(
-    partidas: Any,
+def extrair_partidas(
+    dados: Any,
 ) -> list[dict[str, Any]]:
 
     if isinstance(
-        partidas,
+        dados,
         list,
     ):
 
         return [
-
-            partida
-
-            for partida in partidas
-
+            item
+            for item in dados
             if isinstance(
-                partida,
+                item,
                 dict,
             )
-
         ]
 
 
     if isinstance(
-        partidas,
+        dados,
         dict,
     ):
 
-        lista = partidas.get(
+        partidas = dados.get(
             "partidas"
         )
 
 
         if isinstance(
-            lista,
+            partidas,
             list,
         ):
 
             return [
-
-                partida
-
-                for partida in lista
-
+                item
+                for item in partidas
                 if isinstance(
-                    partida,
+                    item,
                     dict,
                 )
-
             ]
 
 
     return []
 
 
-def obter_id_clube_casa(
+def clube_casa(
     partida: dict[str, Any],
 ) -> int | None:
 
-    return para_inteiro(
+    return inteiro(
 
         partida.get(
             "clube_casa_id"
@@ -539,20 +554,14 @@ def obter_id_clube_casa(
             "clubeCasaId"
         )
 
-        or
-
-        partida.get(
-            "mandante_id"
-        )
-
     )
 
 
-def obter_id_clube_visitante(
+def clube_visitante(
     partida: dict[str, Any],
 ) -> int | None:
 
-    return para_inteiro(
+    return inteiro(
 
         partida.get(
             "clube_visitante_id"
@@ -564,44 +573,67 @@ def obter_id_clube_visitante(
             "clubeVisitanteId"
         )
 
-        or
-
-        partida.get(
-            "visitante_id"
-        )
-
     )
 
 
-def obter_data_partida(
+def placar_casa(
     partida: dict[str, Any],
-) -> Any:
+) -> float | None:
 
-    return (
+    for chave in [
 
-        partida.get(
-            "partida_data"
+        "placar_oficial_mandante",
+
+        "placar_mandante",
+
+        "gols_mandante",
+
+        "placarCasa",
+
+    ]:
+
+        valor = numero(
+            partida.get(
+                chave
+            )
         )
 
-        or
 
-        partida.get(
-            "data"
+        if valor is not None:
+            return valor
+
+
+    return None
+
+
+def placar_visitante(
+    partida: dict[str, Any],
+) -> float | None:
+
+    for chave in [
+
+        "placar_oficial_visitante",
+
+        "placar_visitante",
+
+        "gols_visitante",
+
+        "placarVisitante",
+
+    ]:
+
+        valor = numero(
+            partida.get(
+                chave
+            )
         )
 
-        or
 
-        partida.get(
-            "data_hora"
-        )
+        if valor is not None:
+            return valor
 
-        or
 
-        partida.get(
-            "inicio"
-        )
-
-    )
+    return None
 
 
 def criar_contexto_partidas(
@@ -609,129 +641,75 @@ def criar_contexto_partidas(
     clubes: dict[int, dict[str, Any]],
 ) -> dict[int, dict[str, Any]]:
 
-    resultado: dict[
-        int,
-        dict[str, Any]
-    ] = {}
+    resultado = {}
 
 
-    for partida in extrair_lista_partidas(
+    for partida in extrair_partidas(
         partidas
     ):
 
-        clube_casa_id = (
-            obter_id_clube_casa(
-                partida
-            )
+        casa = clube_casa(
+            partida
         )
 
-
-        clube_visitante_id = (
-            obter_id_clube_visitante(
-                partida
-            )
+        visitante = clube_visitante(
+            partida
         )
 
 
         if (
-            clube_casa_id is None
-            or clube_visitante_id is None
+            casa is None
+            or visitante is None
         ):
 
             continue
 
 
-        clube_casa = clubes.get(
-            clube_casa_id,
-            {},
-        )
-
-
-        clube_visitante = clubes.get(
-            clube_visitante_id,
-            {},
-        )
-
-
-        dados_comuns = {
-
-            "partidaId":
-                (
-                    partida.get(
-                        "partida_id"
-                    )
-                    or
-                    partida.get(
-                        "id"
-                    )
-                ),
-
-            "local":
-                (
-                    partida.get(
-                        "local"
-                    )
-                    or ""
-                ),
-
-            "dataPartida":
-                obter_data_partida(
-                    partida
-                ),
-
-            "partidaValida":
-                partida.get(
-                    "valida"
-                ),
-
-        }
-
-
-        resultado[
-            clube_casa_id
-        ] = {
-
-            **dados_comuns,
+        resultado[casa] = {
 
             "mando":
                 "casa",
 
             "adversarioId":
-                clube_visitante_id,
+                visitante,
 
             "adversario":
-                obter_nome_clube(
-                    clube_visitante
+                nome_clube(
+                    clubes.get(
+                        visitante
+                    )
                 ),
 
             "siglaAdversario":
-                obter_sigla_clube(
-                    clube_visitante
+                sigla_clube(
+                    clubes.get(
+                        visitante
+                    )
                 ),
 
         }
 
 
-        resultado[
-            clube_visitante_id
-        ] = {
-
-            **dados_comuns,
+        resultado[visitante] = {
 
             "mando":
                 "fora",
 
             "adversarioId":
-                clube_casa_id,
+                casa,
 
             "adversario":
-                obter_nome_clube(
-                    clube_casa
+                nome_clube(
+                    clubes.get(
+                        casa
+                    )
                 ),
 
             "siglaAdversario":
-                obter_sigla_clube(
-                    clube_casa
+                sigla_clube(
+                    clubes.get(
+                        casa
+                    )
                 ),
 
         }
@@ -741,127 +719,16 @@ def criar_contexto_partidas(
 
 
 # ======================================================
-# PONTUADOS
+# ATLETAS
 # ======================================================
 
 
-def indexar_pontuados(
-    pontuados: Any,
-) -> dict[Any, dict[str, Any]]:
-
-    if not isinstance(
-        pontuados,
-        dict,
-    ):
-
-        return {}
-
-
-    atletas = (
-        pontuados.get(
-            "atletas",
-            {},
-        )
-        or {}
-    )
-
-
-    return (
-        atletas
-        if isinstance(
-            atletas,
-            dict,
-        )
-        else {}
-    )
-
-
-def obter_pontuacao_atleta(
-    pontuacoes: dict[Any, dict[str, Any]],
-    atleta_id: Any,
-) -> dict[str, Any]:
-
-    return (
-
-        pontuacoes.get(
-            str(
-                atleta_id
-            )
-        )
-
-        or
-
-        pontuacoes.get(
-            atleta_id
-        )
-
-        or
-
-        {}
-
-    )
-
-
-# ======================================================
-# TITULARIDADE
-# ======================================================
-
-
-def estimar_titularidade(
-    status_id: Any,
-) -> float | None:
-
-    status = para_inteiro(
-        status_id
-    )
-
-
-    if status == STATUS_PROVAVEL:
-
-        return 95.0
-
-
-    if status in STATUS_INDISPONIVEIS:
-
-        return 10.0
-
-
-    return None
-
-
-def estimar_minutos(
-    status_id: Any,
-) -> float | None:
-
-    status = para_inteiro(
-        status_id
-    )
-
-
-    if status == STATUS_PROVAVEL:
-
-        return 85.0
-
-
-    if status in STATUS_INDISPONIVEIS:
-
-        return 10.0
-
-
-    return None
-
-
-# ======================================================
-# NORMALIZAÇÃO
-# ======================================================
-
-
-def normalizar_atletas(
+def indexar_atletas_mercado(
     mercado: dict[str, Any],
-    pontuados: dict[str, Any] | None,
-    partidas: Any,
-    rodada: int,
-) -> list[dict[str, Any]]:
+) -> dict[str, dict[str, Any]]:
+
+    resultado = {}
+
 
     atletas = (
         mercado.get(
@@ -872,34 +739,12 @@ def normalizar_atletas(
     )
 
 
-    clubes = indexar_clubes(
-        mercado
-    )
+    if not isinstance(
+        atletas,
+        list,
+    ):
 
-
-    posicoes_api = indexar_posicoes(
-        mercado
-    )
-
-
-    contexto_partidas = (
-        criar_contexto_partidas(
-            partidas,
-            clubes,
-        )
-    )
-
-
-    pontuacoes = (
-        indexar_pontuados(
-            pontuados
-        )
-    )
-
-
-    jogadores: list[
-        dict[str, Any]
-    ] = []
+        return resultado
 
 
     for atleta in atletas:
@@ -918,25 +763,198 @@ def normalizar_atletas(
 
 
         if atleta_id is None:
+            continue
+
+
+        resultado[
+            str(
+                atleta_id
+            )
+        ] = atleta
+
+
+    return resultado
+
+
+def indexar_pontuados(
+    pontuados: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+
+    resultado = {}
+
+
+    atletas = (
+        pontuados.get(
+            "atletas",
+            {},
+        )
+        or {}
+    )
+
+
+    if not isinstance(
+        atletas,
+        dict,
+    ):
+
+        return resultado
+
+
+    for chave, valor in atletas.items():
+
+        if not isinstance(
+            valor,
+            dict,
+        ):
 
             continue
 
 
-        posicao_id = para_inteiro(
+        atleta_id = (
+            valor.get(
+                "atleta_id"
+            )
+            or
+            chave
+        )
+
+
+        resultado[
+            str(
+                atleta_id
+            )
+        ] = {
+
+            **valor,
+
+            "atleta_id":
+                inteiro(
+                    atleta_id
+                )
+                or
+                atleta_id,
+
+        }
+
+
+    return resultado
+
+
+# ======================================================
+# NORMALIZAÇÃO BRUTA
+# ======================================================
+
+
+def normalizar_jogadores_brutos(
+    mercado: dict[str, Any],
+    pontuados: dict[str, Any],
+    partidas: Any,
+    rodada: int,
+) -> list[dict[str, Any]]:
+
+    clubes = indexar_clubes(
+        mercado
+    )
+
+
+    mercado_atletas = (
+        indexar_atletas_mercado(
+            mercado
+        )
+    )
+
+
+    pontuados_atletas = (
+        indexar_pontuados(
+            pontuados
+        )
+    )
+
+
+    contexto = (
+        criar_contexto_partidas(
+            partidas,
+            clubes,
+        )
+    )
+
+
+    ids = set(
+        mercado_atletas.keys()
+    )
+
+    ids.update(
+        pontuados_atletas.keys()
+    )
+
+
+    jogadores = []
+
+
+    for chave in ids:
+
+        atleta = (
+            mercado_atletas.get(
+                chave,
+                {}
+            )
+        )
+
+
+        pontuado = (
+            pontuados_atletas.get(
+                chave,
+                {}
+            )
+        )
+
+
+        atleta_id = (
+            atleta.get(
+                "atleta_id"
+            )
+            or
+            pontuado.get(
+                "atleta_id"
+            )
+        )
+
+
+        posicao_id = inteiro(
 
             atleta.get(
+                "posicao_id"
+            )
+
+            or
+
+            pontuado.get(
                 "posicao_id"
             )
 
         )
 
 
-        clube_id = para_inteiro(
+        clube_id = inteiro(
 
             atleta.get(
                 "clube_id"
             )
 
+            or
+
+            pontuado.get(
+                "clube_id"
+            )
+
+        )
+
+
+        contexto_clube = (
+            contexto.get(
+                clube_id,
+                {},
+            )
         )
 
 
@@ -946,73 +964,7 @@ def normalizar_atletas(
         )
 
 
-        posicao_api = (
-            posicoes_api.get(
-                posicao_id,
-                {},
-            )
-        )
-
-
-        pontuacao = (
-            obter_pontuacao_atleta(
-                pontuacoes,
-                atleta_id,
-            )
-        )
-
-
-        contexto = (
-            contexto_partidas.get(
-                clube_id,
-                {},
-            )
-        )
-
-
-        codigo_posicao = (
-
-            POSICOES.get(
-                posicao_id
-            )
-
-            or
-
-            str(
-                posicao_api.get(
-                    "abreviacao"
-                )
-                or ""
-            ).upper()
-
-        )
-
-
-        status_id = atleta.get(
-            "status_id"
-        )
-
-
-        scouts = (
-
-            pontuacao.get(
-                "scout"
-            )
-
-            or
-
-            atleta.get(
-                "scout"
-            )
-
-            or
-
-            {}
-
-        )
-
-
-        jogador = {
+        jogadores.append({
 
             "id":
                 atleta_id,
@@ -1023,20 +975,35 @@ def normalizar_atletas(
             "nome":
                 atleta.get(
                     "nome"
+                )
+                or
+                pontuado.get(
+                    "nome"
                 ),
 
             "apelido":
                 atleta.get(
+                    "apelido"
+                )
+                or
+                pontuado.get(
                     "apelido"
                 ),
 
             "foto":
                 atleta.get(
                     "foto"
+                )
+                or
+                pontuado.get(
+                    "foto"
                 ),
 
             "posicao":
-                codigo_posicao,
+                POSICOES.get(
+                    posicao_id,
+                    "",
+                ),
 
             "posicaoId":
                 posicao_id,
@@ -1045,17 +1012,19 @@ def normalizar_atletas(
                 clube_id,
 
             "clube":
-                obter_nome_clube(
+                nome_clube(
                     clube
                 ),
 
             "siglaClube":
-                obter_sigla_clube(
+                sigla_clube(
                     clube
                 ),
 
             "statusId":
-                status_id,
+                atleta.get(
+                    "status_id"
+                ),
 
             "preco":
                 atleta.get(
@@ -1077,168 +1046,676 @@ def normalizar_atletas(
                     "jogos_num"
                 ),
 
-            "pontosUltimaRodada":
-                atleta.get(
-                    "pontos_num"
-                ),
-
             "pontuacaoReal":
-                (
-                    pontuacao.get(
-                        "pontuacao"
-                    )
-                    if pontuacao
-                    else None
+                pontuado.get(
+                    "pontuacao"
                 ),
 
             "entrouEmCampo":
-                (
-                    pontuacao.get(
-                        "entrou_em_campo"
-                    )
-                    if pontuacao
-                    else None
+                pontuado.get(
+                    "entrou_em_campo"
                 ),
 
             "scouts":
-                scouts,
+                (
+                    pontuado.get(
+                        "scout"
+                    )
+                    or {}
+                ),
 
             "mando":
-                contexto.get(
+                contexto_clube.get(
                     "mando"
                 ),
 
             "adversarioId":
-                contexto.get(
+                contexto_clube.get(
                     "adversarioId"
                 ),
 
             "adversario":
-                contexto.get(
+                contexto_clube.get(
                     "adversario"
                 ),
 
             "siglaAdversario":
-                contexto.get(
+                contexto_clube.get(
                     "siglaAdversario"
                 ),
 
-            "partidaId":
-                contexto.get(
-                    "partidaId"
-                ),
-
-            "partidaValida":
-                contexto.get(
-                    "partidaValida"
-                ),
-
-            "local":
-                contexto.get(
-                    "local"
-                ),
-
-            "dataPartida":
-                contexto.get(
-                    "dataPartida"
-                ),
-
-            "titularidade":
-                estimar_titularidade(
-                    status_id
-                ),
-
-            "minutosEsperados":
-                estimar_minutos(
-                    status_id
-                ),
-
-        }
-
-
-        jogadores.append(
-            jogador
-        )
+        })
 
 
     return jogadores
 
 
 # ======================================================
-# RESUMO
+# CONTEXTO PROGRESSIVO
 # ======================================================
 
 
-def criar_resumo(
-    rodada: int,
-    status: dict[str, Any],
-    mercado: dict[str, Any],
-    jogadores: list[dict[str, Any]],
+def construir_contexto_progressivo(
+    rodadas: dict[
+        int,
+        dict[str, Any]
+    ],
+    rodada_alvo: int,
 ) -> dict[str, Any]:
 
-    pontuados = [
-
-        jogador
-
-        for jogador in jogadores
-
-        if jogador.get(
-            "pontuacaoReal"
-        ) is not None
-
-    ]
+    historico_clubes: dict[
+        int,
+        list[dict[str, Any]]
+    ] = defaultdict(list)
 
 
-    com_confronto = [
+    cedidos: dict[
+        tuple[int, str],
+        list[float]
+    ] = defaultdict(list)
 
-        jogador
 
-        for jogador in jogadores
+    for rodada in sorted(
+        rodadas
+    ):
 
-        if jogador.get(
-            "adversarioId"
-        ) is not None
+        if rodada >= rodada_alvo:
+            break
 
-    ]
+
+        dados_rodada = rodadas[
+            rodada
+        ]
+
+
+        for partida in extrair_partidas(
+            dados_rodada.get(
+                "partidas"
+            )
+        ):
+
+            casa = clube_casa(
+                partida
+            )
+
+            visitante = clube_visitante(
+                partida
+            )
+
+            gc = placar_casa(
+                partida
+            )
+
+            gv = placar_visitante(
+                partida
+            )
+
+
+            if (
+                casa is None
+                or visitante is None
+                or gc is None
+                or gv is None
+            ):
+
+                continue
+
+
+            if gc > gv:
+
+                pc = 3
+                pv = 0
+
+            elif gc < gv:
+
+                pc = 0
+                pv = 3
+
+            else:
+
+                pc = 1
+                pv = 1
+
+
+            historico_clubes[
+                casa
+            ].append({
+
+                "pontos":
+                    pc,
+
+                "golsPro":
+                    gc,
+
+                "golsContra":
+                    gv,
+
+                "sg":
+                    gv == 0,
+
+            })
+
+
+            historico_clubes[
+                visitante
+            ].append({
+
+                "pontos":
+                    pv,
+
+                "golsPro":
+                    gv,
+
+                "golsContra":
+                    gc,
+
+                "sg":
+                    gc == 0,
+
+            })
+
+
+        totais = defaultdict(
+            float
+        )
+
+
+        for jogador in dados_rodada.get(
+            "jogadores",
+            []
+        ):
+
+            adversario_id = inteiro(
+                jogador.get(
+                    "adversarioId"
+                )
+            )
+
+            posicao = str(
+                jogador.get(
+                    "posicao"
+                )
+                or ""
+            ).upper()
+
+            pontos = numero(
+                jogador.get(
+                    "pontuacaoReal"
+                )
+            )
+
+
+            if (
+                adversario_id is None
+                or not posicao
+                or pontos is None
+                or jogador.get(
+                    "entrouEmCampo"
+                ) is False
+            ):
+
+                continue
+
+
+            totais[
+                (
+                    adversario_id,
+                    posicao,
+                )
+            ] += pontos
+
+
+        for chave, valor in totais.items():
+
+            cedidos[
+                chave
+            ].append(
+                valor
+            )
+
+
+    forca = {}
+
+
+    sg = {}
+
+
+    for clube_id, jogos in historico_clubes.items():
+
+        recentes = jogos[
+            -JANELA_FORMA:
+        ]
+
+
+        if recentes:
+
+            aproveitamento = (
+                sum(
+                    jogo[
+                        "pontos"
+                    ]
+                    for jogo in recentes
+                )
+                /
+                (
+                    len(
+                        recentes
+                    )
+                    *
+                    3
+                )
+            )
+
+
+            saldo = (
+                sum(
+                    jogo[
+                        "golsPro"
+                    ]
+                    -
+                    jogo[
+                        "golsContra"
+                    ]
+                    for jogo in recentes
+                )
+                /
+                len(
+                    recentes
+                )
+            )
+
+
+            forca[
+                clube_id
+            ] = limitar(
+
+                50
+                +
+                (
+                    aproveitamento
+                    -
+                    0.5
+                )
+                *
+                70
+                +
+                saldo
+                *
+                9
+
+            )
+
+
+        recentes_sg = jogos[
+            -JANELA_SG:
+        ]
+
+
+        if recentes_sg:
+
+            sg[
+                clube_id
+            ] = (
+
+                sum(
+                    1
+                    for jogo in recentes_sg
+                    if jogo[
+                        "sg"
+                    ]
+                )
+                /
+                len(
+                    recentes_sg
+                )
+
+            ) * 100
+
+
+    medias_cedidos = {}
+
+
+    for chave, valores in cedidos.items():
+
+        recentes = valores[
+            -JANELA_PONTOS_CEDIDOS:
+        ]
+
+
+        if recentes:
+
+            medias_cedidos[
+                chave
+            ] = sum(
+                recentes
+            ) / len(
+                recentes
+            )
+
+
+    por_posicao = defaultdict(
+        list
+    )
+
+
+    for chave, valor in medias_cedidos.items():
+
+        por_posicao[
+            chave[1]
+        ].append(
+            (
+                chave,
+                valor,
+            )
+        )
+
+
+    notas_cedidos = {}
+
+
+    for itens in por_posicao.values():
+
+        valores = [
+            valor
+            for _, valor in itens
+        ]
+
+
+        minimo = min(
+            valores
+        )
+
+        maximo = max(
+            valores
+        )
+
+
+        for chave, valor in itens:
+
+            if maximo == minimo:
+
+                nota = 50
+
+            else:
+
+                nota = (
+                    (
+                        valor
+                        -
+                        minimo
+                    )
+                    /
+                    (
+                        maximo
+                        -
+                        minimo
+                    )
+                ) * 100
+
+
+            notas_cedidos[
+                chave
+            ] = limitar(
+                nota
+            )
 
 
     return {
 
-        "rodada":
+        "forca":
+            forca,
+
+        "chanceSG":
+            sg,
+
+        "mediaCedidos":
+            medias_cedidos,
+
+        "notaCedidos":
+            notas_cedidos,
+
+    }
+
+
+def enriquecer_rodada(
+    rodadas: dict[
+        int,
+        dict[str, Any]
+    ],
+    rodada: int,
+) -> None:
+
+    contexto = (
+        construir_contexto_progressivo(
+            rodadas,
+            rodada,
+        )
+    )
+
+
+    for jogador in rodadas[
+        rodada
+    ][
+        "jogadores"
+    ]:
+
+        clube_id = inteiro(
+            jogador.get(
+                "clubeId"
+            )
+        )
+
+
+        adversario_id = inteiro(
+            jogador.get(
+                "adversarioId"
+            )
+        )
+
+
+        posicao = str(
+            jogador.get(
+                "posicao"
+            )
+            or ""
+        ).upper()
+
+
+        mando = jogador.get(
+            "mando"
+        )
+
+
+        forca_adversario = (
+            contexto[
+                "forca"
+            ].get(
+                adversario_id
+            )
+            if adversario_id is not None
+            else None
+        )
+
+
+        nota_forca = (
+            (
+                100
+                -
+                forca_adversario
+            )
+            if forca_adversario is not None
+            else None
+        )
+
+
+        if nota_forca is not None:
+
+            if mando == "casa":
+
+                nota_forca += 5
+
+            elif mando == "fora":
+
+                nota_forca -= 5
+
+
+            nota_forca = limitar(
+                nota_forca
+            )
+
+
+        chave = (
+            adversario_id,
+            posicao,
+        )
+
+
+        chance_sg = (
+            contexto[
+                "chanceSG"
+            ].get(
+                clube_id
+            )
+            if clube_id is not None
+            else None
+        )
+
+
+        if chance_sg is not None:
+
+            if mando == "casa":
+
+                chance_sg += 5
+
+            elif mando == "fora":
+
+                chance_sg -= 5
+
+
+            chance_sg = limitar(
+                chance_sg
+            )
+
+
+        jogador[
+            "forcaAdversarioIndice"
+        ] = round_seguro(
+            forca_adversario
+        )
+
+
+        jogador[
+            "notaForcaAdversario"
+        ] = round_seguro(
+            nota_forca
+        )
+
+
+        jogador[
+            "pontosCedidosMediaPosicao"
+        ] = round_seguro(
+            contexto[
+                "mediaCedidos"
+            ].get(
+                chave
+            )
+        )
+
+
+        jogador[
+            "pontosCedidosNota"
+        ] = round_seguro(
+            contexto[
+                "notaCedidos"
+            ].get(
+                chave
+            )
+        )
+
+
+        jogador[
+            "chanceSG"
+        ] = round_seguro(
+            chance_sg
+        )
+
+
+        jogador[
+            "contextoCalculadoAteRodada"
+        ] = max(
+            0,
+            rodada - 1,
+        )
+
+
+# ======================================================
+# COLETA BRUTA
+# ======================================================
+
+
+def coletar_rodada_bruta(
+    rodada: int,
+) -> dict[str, Any]:
+
+    print(
+        f"Coletando rodada {rodada}"
+    )
+
+
+    mercado = (
+        buscar_mercado_historico(
+            rodada
+        )
+    )
+
+
+    partidas = (
+        buscar_json(
+
+            f"/partidas/{rodada}",
+
+            obrigatorio=False,
+
+        )
+        or {}
+    )
+
+
+    pontuados = (
+        buscar_pontuados_historico(
+            rodada
+        )
+    )
+
+
+    jogadores = (
+        normalizar_jogadores_brutos(
+
+            mercado,
+
+            pontuados,
+
+            partidas,
+
             rodada,
 
-        "coletadoEm":
-            datetime.now()
-            .isoformat(
-                timespec="seconds"
-            ),
+        )
+    )
 
-        "statusMercado":
-            status.get(
-                "status_mercado"
-            ),
 
-        "quantidadeJogadores":
-            len(
-                mercado.get(
-                    "atletas",
-                    [],
-                )
-                or []
-            ),
+    return {
 
-        "quantidadePontuados":
-            len(
-                pontuados
-            ),
+        "mercado":
+            mercado,
 
-        "quantidadeComConfronto":
-            len(
-                com_confronto
-            ),
+        "partidas":
+            partidas,
 
-        "dadosDemonstrativos":
-            False,
+        "pontuados":
+            pontuados,
+
+        "jogadores":
+            jogadores,
 
     }
 
@@ -1250,165 +1727,183 @@ def criar_resumo(
 
 def executar() -> None:
 
-    print(
-        "Iniciando coleta do Cartola..."
-    )
-
-
     status = buscar_json(
         "/mercado/status"
     )
 
 
-    rodada = obter_numero_rodada(
-        status
+    rodada_atual = int(
+        status.get(
+            "rodada_atual",
+            1,
+        )
     )
 
 
-    pasta_rodada = (
-
-        PASTA_DADOS
-        /
-        f"rodada-{rodada:02d}"
-
+    print(
+        "Rodada atual:",
+        rodada_atual,
     )
 
 
-    mercado = buscar_json(
-        "/atletas/mercado"
-    )
+    rodadas: dict[
+        int,
+        dict[str, Any]
+    ] = {}
 
 
-    partidas = buscar_json(
+    # ==========================================
+    # 1. COLETA BRUTA
+    # ==========================================
 
-        f"/partidas/{rodada}",
+    for rodada in range(
+        1,
+        rodada_atual + 1,
+    ):
 
-        obrigatorio=False,
+        try:
 
-    )
+            rodadas[
+                rodada
+            ] = (
+                coletar_rodada_bruta(
+                    rodada
+                )
+            )
+
+        except Exception as erro:
+
+            print(
+                f"Falha rodada "
+                f"{rodada}: "
+                f"{erro}"
+            )
 
 
-    if partidas is None:
+    # ==========================================
+    # 2. CONTEXTO PROGRESSIVO
+    # ==========================================
 
-        partidas = buscar_json(
+    for rodada in sorted(
+        rodadas
+    ):
 
-            "/partidas",
+        enriquecer_rodada(
+            rodadas,
+            rodada,
+        )
 
-            obrigatorio=False,
+
+    # ==========================================
+    # 3. SALVAR
+    # ==========================================
+
+    for rodada, dados in sorted(
+        rodadas.items()
+    ):
+
+        pasta = (
+            PASTA_API
+            /
+            f"rodada-{rodada:02d}"
+        )
+
+
+        salvar_json(
+            pasta
+            /
+            "mercado.json",
+            dados[
+                "mercado"
+            ],
+        )
+
+
+        salvar_json(
+            pasta
+            /
+            "partidas.json",
+            dados[
+                "partidas"
+            ],
+        )
+
+
+        salvar_json(
+            pasta
+            /
+            "pontuados.json",
+            dados[
+                "pontuados"
+            ],
+        )
+
+
+        salvar_json(
+            pasta
+            /
+            "jogadores.json",
+            dados[
+                "jogadores"
+            ],
+        )
+
+
+        contexto_ok = len([
+
+            jogador
+
+            for jogador in dados[
+                "jogadores"
+            ]
+
+            if jogador.get(
+                "notaForcaAdversario"
+            ) is not None
+
+        ])
+
+
+        print(
+
+            f"[OK] Rodada {rodada:02d} | "
+            f"Jogadores: "
+            f"{len(dados['jogadores'])} | "
+            f"Contexto: {contexto_ok} | "
+            f"dados até R{max(0, rodada - 1):02d}"
 
         )
 
 
-    pontuados = buscar_json(
-
-        "/atletas/pontuados",
-
-        obrigatorio=False,
-
+    print(
+        ""
     )
-
-
-    jogadores = normalizar_atletas(
-
-        mercado,
-
-        pontuados,
-
-        partidas,
-
-        rodada,
-
-    )
-
-
-    resumo = criar_resumo(
-
-        rodada,
-
-        status,
-
-        mercado,
-
-        jogadores,
-
-    )
-
-
-    salvar_json(
-
-        PASTA_DADOS
-        / "status.json",
-
-        status,
-
-    )
-
-
-    salvar_json(
-
-        pasta_rodada
-        / "mercado.json",
-
-        mercado,
-
-    )
-
-
-    salvar_json(
-
-        pasta_rodada
-        / "partidas.json",
-
-        partidas
-        or {},
-
-    )
-
-
-    salvar_json(
-
-        pasta_rodada
-        / "pontuados.json",
-
-        pontuados
-        or {},
-
-    )
-
-
-    salvar_json(
-
-        pasta_rodada
-        / "jogadores.json",
-
-        jogadores,
-
-    )
-
-
-    salvar_json(
-
-        pasta_rodada
-        / "resumo.json",
-
-        resumo,
-
-    )
-
 
     print(
-
-        f"Coleta da rodada {rodada} concluída: "
-        f"{len(jogadores)} jogadores."
-
+        "============================================"
     )
 
+    print(
+        "HISTÓRICO COMPLETO FINALIZADO"
+    )
 
     print(
+        "============================================"
+    )
 
-        "Jogadores com adversário/mando: "
-        f"{resumo['quantidadeComConfronto']}"
+    print(
+        "Rodadas:",
+        len(
+            rodadas
+        ),
+    )
 
+    print(
+        "Proteção contra vazamento futuro: ATIVA"
+    )
+
+    print(
+        "============================================"
     )
 
 
@@ -1423,7 +1918,8 @@ if __name__ == "__main__":
 
         print(
 
-            f"ERRO: {erro}",
+            "ERRO:",
+            erro,
 
             file=sys.stderr,
 
