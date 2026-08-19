@@ -2,19 +2,19 @@
   "modelo": "auditoria_estrategia_adaptativa_v1",
   "descricao": "Auditoria científica do backtest progressivo da estratégia adaptativa.",
   "resumo": {
-    "rodadasAuditadas": 22,
+    "rodadasAuditadas": 23,
     "testes": 24,
     "testesAprovados": 24,
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "melhorEstrategiaFixa": "Equilibrado",
-    "mediaAdaptativo": 49.24,
-    "mediaMelhorFixa": 52.38,
-    "ganhoAdaptativoVsMelhorFixa": -3.14,
-    "ganhoPercentualAdaptativoVsMelhorFixa": -6.0,
-    "mediaOraculo": 57.01,
-    "eficienciaVsOraculoPercentual": 86.37
+    "melhorEstrategiaFixa": "Agressivo",
+    "mediaAdaptativo": 52.64,
+    "mediaMelhorFixa": 55.14,
+    "ganhoAdaptativoVsMelhorFixa": -2.5,
+    "ganhoPercentualAdaptativoVsMelhorFixa": -4.53,
+    "mediaOraculo": 61.83,
+    "eficienciaVsOraculoPercentual": 85.14
   },
   "testes": [
     {
@@ -43,7 +43,7 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "rodadas": 22,
+        "rodadas": 23,
         "minimo": 10
       }
     },
@@ -91,7 +91,8 @@
         20,
         21,
         22,
-        23
+        23,
+        24
       ]
     },
     {
@@ -145,10 +146,10 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1083.25,
-        "mediaCalculada": 49.24,
-        "medianaCalculada": 44.72,
-        "acertosCalculados": 5
+        "totalCalculado": 1210.8,
+        "mediaCalculada": 52.64,
+        "medianaCalculada": 48.14,
+        "acertosCalculados": 6
       }
     },
     {
@@ -156,8 +157,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": 22.73,
-        "informada": 22.73
+        "calculada": 26.09,
+        "informada": 26.09
       }
     },
     {
@@ -166,14 +167,14 @@
       "nivel": "CRITICO",
       "detalhes": {
         "calculadas": {
-          "Conservador": 5,
-          "Equilibrado": 14,
-          "Agressivo": 3
+          "Conservador": 1,
+          "Equilibrado": 17,
+          "Agressivo": 5
         },
         "informadas": {
-          "Conservador": 5,
-          "Equilibrado": 14,
-          "Agressivo": 3
+          "Conservador": 1,
+          "Equilibrado": 17,
+          "Agressivo": 5
         }
       }
     },
@@ -188,8 +189,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": "Equilibrado",
-        "informada": "Equilibrado"
+        "calculada": "Agressivo",
+        "informada": "Agressivo"
       }
     },
     {
@@ -197,9 +198,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "ganhoMediaCalculado": -3.14,
-        "ganhoTotalCalculado": -69.03,
-        "ganhoPercentualCalculado": -6.0
+        "ganhoMediaCalculado": -2.5,
+        "ganhoTotalCalculado": -57.38,
+        "ganhoPercentualCalculado": -4.53
       }
     },
     {
@@ -207,9 +208,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1254.21,
-        "mediaCalculada": 57.01,
-        "eficienciaCalculada": 86.37
+        "totalCalculado": 1422.15,
+        "mediaCalculada": 61.83,
+        "eficienciaCalculada": 85.14
       }
     },
     {

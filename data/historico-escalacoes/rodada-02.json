@@ -21,11 +21,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 14.37,
-      "custoTitulares": 105.23,
-      "custoBanco": 14.37,
-      "custoTotal": 119.6,
-      "saldo": 0.4,
+      "reservaMinimaBanco": 13.86,
+      "custoTitulares": 105.9,
+      "custoBanco": 13.86,
+      "custoTotal": 119.76,
+      "saldo": 0.24,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -33,7 +33,7 @@
           "nome": "Pedro Luccas Morisco da Silva",
           "posicao": "GOL",
           "clube": "CFC",
-          "preco": 7.6,
+          "preco": 7.79,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -53,7 +53,7 @@
           "nome": "Luis Antônio da Rocha Júnior",
           "posicao": "LAT",
           "clube": "RBB",
-          "preco": 13.21,
+          "preco": 13.27,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -73,7 +73,7 @@
           "nome": "Renan Augusto Lodi dos Santos",
           "posicao": "LAT",
           "clube": "CAM",
-          "preco": 9.52,
+          "preco": 11.31,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -93,7 +93,7 @@
           "nome": "Gustavo Marques Alves dos Santos",
           "posicao": "ZAG",
           "clube": "RBB",
-          "preco": 7.36,
+          "preco": 7.16,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -113,7 +113,7 @@
           "nome": "Robert Abel Arboleda Escobar",
           "posicao": "ZAG",
           "clube": "SAO",
-          "preco": 8.55,
+          "preco": 8.37,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -133,7 +133,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -173,7 +173,7 @@
           "nome": "Luciano Federico Acosta",
           "posicao": "MEI",
           "clube": "FLU",
-          "preco": 10.37,
+          "preco": 9.66,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -193,7 +193,7 @@
           "nome": "Álvaro Martín Barreal",
           "posicao": "MEI",
           "clube": "SAN",
-          "preco": 10.8,
+          "preco": 10.18,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -209,11 +209,11 @@
           }
         },
         {
-          "id": "70360",
-          "nome": "Eduardo Colcenti Antunes",
+          "id": "118775",
+          "nome": "Lautaro Ariel Díaz",
           "posicao": "ATA",
-          "clube": "RBB",
-          "preco": 4.09,
+          "clube": "SAN",
+          "preco": 5.26,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -253,7 +253,7 @@
           "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
           "clube": "MIR",
-          "preco": 6.99,
+          "preco": 6.97,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -274,7 +274,7 @@
         "nome": "Pedro Luccas Morisco da Silva",
         "posicao": "GOL",
         "clube": "CFC",
-        "preco": 7.6,
+        "preco": 7.79,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -291,11 +291,11 @@
       },
       "banco": [
         {
-          "id": "70449",
-          "nome": "Gabriel Vasconcelos Ferreira",
+          "id": "51413",
+          "nome": "Walter Leandro Capeloza Artune",
           "posicao": "GOL",
-          "clube": "VIT",
-          "preco": 5.02,
+          "clube": "MIR",
+          "preco": 4.51,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -392,11 +392,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "70449",
-        "nome": "Gabriel Vasconcelos Ferreira",
+        "id": "51413",
+        "nome": "Walter Leandro Capeloza Artune",
         "posicao": "GOL",
-        "clube": "VIT",
-        "preco": 5.02,
+        "clube": "MIR",
+        "preco": 4.51,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -428,11 +428,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 14.37,
-      "custoTitulares": 105.16,
-      "custoBanco": 14.37,
-      "custoTotal": 119.53,
-      "saldo": 0.47,
+      "reservaMinimaBanco": 13.86,
+      "custoTitulares": 105.57,
+      "custoBanco": 13.86,
+      "custoTotal": 119.43,
+      "saldo": 0.57,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -440,7 +440,7 @@
           "nome": "Pedro Luccas Morisco da Silva",
           "posicao": "GOL",
           "clube": "CFC",
-          "preco": 7.6,
+          "preco": 7.79,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -460,7 +460,7 @@
           "nome": "Gustavo Marques Alves dos Santos",
           "posicao": "ZAG",
           "clube": "RBB",
-          "preco": 7.36,
+          "preco": 7.16,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -480,7 +480,7 @@
           "nome": "Robert Abel Arboleda Escobar",
           "posicao": "ZAG",
           "clube": "SAO",
-          "preco": 8.55,
+          "preco": 8.37,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -500,7 +500,7 @@
           "nome": "Jemmes Bruno Ribeiro da Silva",
           "posicao": "ZAG",
           "clube": "FLU",
-          "preco": 6.82,
+          "preco": 6.64,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -520,7 +520,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -560,7 +560,7 @@
           "nome": "Luciano Federico Acosta",
           "posicao": "MEI",
           "clube": "FLU",
-          "preco": 10.37,
+          "preco": 9.66,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -580,7 +580,7 @@
           "nome": "Álvaro Martín Barreal",
           "posicao": "MEI",
           "clube": "SAN",
-          "preco": 10.8,
+          "preco": 10.18,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -600,7 +600,7 @@
           "nome": "José Manuel Alberto López",
           "posicao": "ATA",
           "clube": "PAL",
-          "preco": 12.92,
+          "preco": 13.77,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -616,11 +616,11 @@
           }
         },
         {
-          "id": "111831",
-          "nome": "Matheus Martins Silva dos Santos",
+          "id": "97810",
+          "nome": "Erick de Arruda Serafim",
           "posicao": "ATA",
-          "clube": "BOT",
-          "preco": 7.01,
+          "clube": "VIT",
+          "preco": 8.28,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -656,11 +656,11 @@
           }
         },
         {
-          "id": "104027",
-          "nome": "Rafael Silva Guanaes",
+          "id": "126977",
+          "nome": "Fernando Seabra",
           "posicao": "TEC",
-          "clube": "MIR",
-          "preco": 6.99,
+          "clube": "CFC",
+          "preco": 7.79,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -681,7 +681,7 @@
         "nome": "Pedro Luccas Morisco da Silva",
         "posicao": "GOL",
         "clube": "CFC",
-        "preco": 7.6,
+        "preco": 7.79,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -698,11 +698,11 @@
       },
       "banco": [
         {
-          "id": "70449",
-          "nome": "Gabriel Vasconcelos Ferreira",
+          "id": "51413",
+          "nome": "Walter Leandro Capeloza Artune",
           "posicao": "GOL",
-          "clube": "VIT",
-          "preco": 5.02,
+          "clube": "MIR",
+          "preco": 4.51,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -799,11 +799,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "70449",
-        "nome": "Gabriel Vasconcelos Ferreira",
+        "id": "51413",
+        "nome": "Walter Leandro Capeloza Artune",
         "posicao": "GOL",
-        "clube": "VIT",
-        "preco": 5.02,
+        "clube": "MIR",
+        "preco": 4.51,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -835,11 +835,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 14.37,
-      "custoTitulares": 105.16,
-      "custoBanco": 14.37,
-      "custoTotal": 119.53,
-      "saldo": 0.47,
+      "reservaMinimaBanco": 13.86,
+      "custoTitulares": 105.57,
+      "custoBanco": 13.86,
+      "custoTotal": 119.43,
+      "saldo": 0.57,
       "projecaoTitulares": -240.0,
       "titulares": [
         {
@@ -847,7 +847,7 @@
           "nome": "Pedro Luccas Morisco da Silva",
           "posicao": "GOL",
           "clube": "CFC",
-          "preco": 7.6,
+          "preco": 7.79,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -867,7 +867,7 @@
           "nome": "Gustavo Marques Alves dos Santos",
           "posicao": "ZAG",
           "clube": "RBB",
-          "preco": 7.36,
+          "preco": 7.16,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -887,7 +887,7 @@
           "nome": "Robert Abel Arboleda Escobar",
           "posicao": "ZAG",
           "clube": "SAO",
-          "preco": 8.55,
+          "preco": 8.37,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -907,7 +907,7 @@
           "nome": "Jemmes Bruno Ribeiro da Silva",
           "posicao": "ZAG",
           "clube": "FLU",
-          "preco": 6.82,
+          "preco": 6.64,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -927,7 +927,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -967,7 +967,7 @@
           "nome": "Luciano Federico Acosta",
           "posicao": "MEI",
           "clube": "FLU",
-          "preco": 10.37,
+          "preco": 9.66,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -987,7 +987,7 @@
           "nome": "Álvaro Martín Barreal",
           "posicao": "MEI",
           "clube": "SAN",
-          "preco": 10.8,
+          "preco": 10.18,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1007,7 +1007,7 @@
           "nome": "José Manuel Alberto López",
           "posicao": "ATA",
           "clube": "PAL",
-          "preco": 12.92,
+          "preco": 13.77,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1023,11 +1023,11 @@
           }
         },
         {
-          "id": "111831",
-          "nome": "Matheus Martins Silva dos Santos",
+          "id": "97810",
+          "nome": "Erick de Arruda Serafim",
           "posicao": "ATA",
-          "clube": "BOT",
-          "preco": 7.01,
+          "clube": "VIT",
+          "preco": 8.28,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1063,11 +1063,11 @@
           }
         },
         {
-          "id": "104027",
-          "nome": "Rafael Silva Guanaes",
+          "id": "126977",
+          "nome": "Fernando Seabra",
           "posicao": "TEC",
-          "clube": "MIR",
-          "preco": 6.99,
+          "clube": "CFC",
+          "preco": 7.79,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1088,7 +1088,7 @@
         "nome": "Pedro Luccas Morisco da Silva",
         "posicao": "GOL",
         "clube": "CFC",
-        "preco": 7.6,
+        "preco": 7.79,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -1105,11 +1105,11 @@
       },
       "banco": [
         {
-          "id": "70449",
-          "nome": "Gabriel Vasconcelos Ferreira",
+          "id": "51413",
+          "nome": "Walter Leandro Capeloza Artune",
           "posicao": "GOL",
-          "clube": "VIT",
-          "preco": 5.02,
+          "clube": "MIR",
+          "preco": 4.51,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1206,11 +1206,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "70449",
-        "nome": "Gabriel Vasconcelos Ferreira",
+        "id": "51413",
+        "nome": "Walter Leandro Capeloza Artune",
         "posicao": "GOL",
-        "clube": "VIT",
-        "preco": 5.02,
+        "clube": "MIR",
+        "preco": 4.51,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,

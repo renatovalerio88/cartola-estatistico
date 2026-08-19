@@ -1,49 +1,49 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 6508,
-  "erroMedio": 2.9,
+  "totalJogadores": 7278,
+  "erroMedio": 2.75,
   "porPosicao": {
     "MEI": {
-      "quantidade": 2099,
-      "erroMedio": 2.58
+      "quantidade": 2330,
+      "erroMedio": 2.47
     },
     "LAT": {
-      "quantidade": 991,
-      "erroMedio": 3.34
+      "quantidade": 1113,
+      "erroMedio": 3.14
     },
     "ATA": {
-      "quantidade": 1711,
-      "erroMedio": 3.05
+      "quantidade": 1905,
+      "erroMedio": 2.91
     },
     "GOL": {
-      "quantidade": 405,
-      "erroMedio": 3.47
+      "quantidade": 490,
+      "erroMedio": 3.0
     },
     "ZAG": {
-      "quantidade": 932,
-      "erroMedio": 2.88
+      "quantidade": 1050,
+      "erroMedio": 2.73
     },
     "TEC": {
-      "quantidade": 370,
-      "erroMedio": 2.35
+      "quantidade": 390,
+      "erroMedio": 2.34
     }
   },
   "porPreco": {
-    "15+": {
-      "quantidade": 72,
-      "erroMedio": 5.66
+    "10-15": {
+      "quantidade": 877,
+      "erroMedio": 4.1
     },
     "5-10": {
-      "quantidade": 3766,
-      "erroMedio": 3.1
-    },
-    "10-15": {
-      "quantidade": 776,
-      "erroMedio": 4.11
+      "quantidade": 4108,
+      "erroMedio": 3.04
     },
     "0-5": {
-      "quantidade": 1894,
-      "erroMedio": 1.91
+      "quantidade": 2261,
+      "erroMedio": 1.65
+    },
+    "15+": {
+      "quantidade": 32,
+      "erroMedio": 7.11
     }
   },
   "maioresErros": [
@@ -102,6 +102,22 @@
       "projecao": 5.5,
       "real": 26,
       "erro": 20.5
+    },
+    {
+      "nome": "Giovanni Augusto Oliveira Cardoso",
+      "posicao": "MEI",
+      "rodada": 24,
+      "projecao": 3.25,
+      "real": 23.2,
+      "erro": 19.95
+    },
+    {
+      "nome": "Jorge Andrés Carrascal Guardo",
+      "posicao": "MEI",
+      "rodada": 24,
+      "projecao": 5.07,
+      "real": 24.9,
+      "erro": 19.83
     },
     {
       "nome": "Maurício Magalhães Prado",
@@ -190,26 +206,10 @@
       "projecao": 1.43,
       "real": 19.1,
       "erro": 17.67
-    },
-    {
-      "nome": "Matheus Lima Beltrão Oliveira Valin",
-      "posicao": "LAT",
-      "rodada": 3,
-      "projecao": 1.7,
-      "real": 19,
-      "erro": 17.3
-    },
-    {
-      "nome": "Murilo Cerqueira Paim",
-      "posicao": "ZAG",
-      "rodada": 2,
-      "projecao": -0.9,
-      "real": 16,
-      "erro": 16.9
     }
   ],
   "tendenciaErro": {
-    "superestimou": 2937,
-    "subestimou": 3498
+    "superestimou": 3311,
+    "subestimou": 3727
   }
 }

@@ -1,26 +1,26 @@
 {
   "MEI": {
-    "quantidade": 2099,
-    "erroMedio": 2.58
+    "quantidade": 2330,
+    "erroMedio": 2.47
   },
   "LAT": {
-    "quantidade": 991,
-    "erroMedio": 3.34
+    "quantidade": 1113,
+    "erroMedio": 3.14
   },
   "ATA": {
-    "quantidade": 1711,
-    "erroMedio": 3.05
+    "quantidade": 1905,
+    "erroMedio": 2.91
   },
   "GOL": {
-    "quantidade": 405,
-    "erroMedio": 3.47
+    "quantidade": 490,
+    "erroMedio": 3.0
   },
   "ZAG": {
-    "quantidade": 932,
-    "erroMedio": 2.88
+    "quantidade": 1050,
+    "erroMedio": 2.73
   },
   "TEC": {
-    "quantidade": 370,
-    "erroMedio": 2.35
+    "quantidade": 390,
+    "erroMedio": 2.34
   }
 }

@@ -15,9 +15,9 @@
   },
   "backtestAtualReferencia": {
     "disponivel": true,
-    "rodadas": 22,
-    "erroMedio": 2.916,
-    "taxaAcertoMedia": 64.59
+    "rodadas": 23,
+    "erroMedio": 2.853,
+    "taxaAcertoMedia": 65.45
   },
   "resumo": {
     "posicoesAnalisadas": 6,

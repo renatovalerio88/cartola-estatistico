@@ -2,20 +2,20 @@
   "modelo": "auditoria_comparacao_adaptativas_v1",
   "descricao": "Auditoria científica da comparação pareada entre Adaptativo V1 e V2.",
   "resumo": {
-    "rodadasAuditadas": 22,
+    "rodadasAuditadas": 23,
     "testes": 23,
     "testesAprovados": 23,
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "mediaV1": 49.24,
-    "mediaV2": 49.03,
-    "melhorEstrategiaFixa": "Equilibrado",
-    "mediaMelhorFixa": 52.38,
-    "ganhoV2VsV1": -0.21,
-    "ganhoV2VsMelhorFixa": -3.35,
-    "eficienciaV1Oraculo": 86.37,
-    "eficienciaV2Oraculo": 86.0
+    "mediaV1": 52.64,
+    "mediaV2": 52.76,
+    "melhorEstrategiaFixa": "Agressivo",
+    "mediaMelhorFixa": 55.14,
+    "ganhoV2VsV1": 0.12,
+    "ganhoV2VsMelhorFixa": -2.38,
+    "eficienciaV1Oraculo": 85.14,
+    "eficienciaV2Oraculo": 85.33
   },
   "testes": [
     {
@@ -87,7 +87,8 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
         "publicadas": [
           2,
@@ -111,7 +112,8 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ]
       }
     },
@@ -120,8 +122,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperado": 22,
-        "encontrado": 22
+        "esperado": 23,
+        "encontrado": 23
       }
     },
     {
@@ -171,8 +173,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperada": "Equilibrado",
-        "publicada": "Equilibrado"
+        "esperada": "Agressivo",
+        "publicada": "Agressivo"
       }
     },
     {
@@ -204,8 +206,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperada": "V1_SUPERIOR_A_V2",
-        "publicada": "V1_SUPERIOR_A_V2"
+        "esperada": "MANTER_TESTES",
+        "publicada": "MANTER_TESTES"
       }
     },
     {
@@ -218,8 +220,8 @@
   "falhasCriticas": [],
   "alertas": [],
   "decisaoComparacao": {
-    "publicada": "V1_SUPERIOR_A_V2",
-    "recalculada": "V1_SUPERIOR_A_V2"
+    "publicada": "MANTER_TESTES",
+    "recalculada": "MANTER_TESTES"
   },
   "decisao": {
     "decisao": "COMPARACAO_VALIDADA",

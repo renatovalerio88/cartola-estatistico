@@ -108,13 +108,18 @@
     {
       "rodada": 23,
       "erro": 2.89,
-      "taxaAcerto": 65.79
+      "taxaAcerto": 65.5
+    },
+    {
+      "rodada": 24,
+      "erro": 1.48,
+      "taxaAcerto": 84.55
     }
   ],
-  "erroMedioGeral": 2.92,
+  "erroMedioGeral": 2.85,
   "melhorRodada": {
-    "erro": 2.57,
-    "rodada": 16
+    "erro": 1.48,
+    "rodada": 24
   },
   "piorRodada": {
     "erro": 3.51,

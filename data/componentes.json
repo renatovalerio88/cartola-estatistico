@@ -1,8 +1,8 @@
 {
   "modelo": "laboratorio_v3",
-  "amostras": 6508,
-  "erroMedio": 2.9,
-  "rmse": 4.11,
+  "amostras": 7278,
+  "erroMedio": 2.75,
+  "rmse": 3.99,
   "componentes": {
     "media3": {
       "media": 0,
@@ -35,34 +35,34 @@
   },
   "posicoes": {
     "MEI": {
-      "quantidade": 2099,
-      "erroMedio": 2.58,
-      "rmse": 3.79
+      "quantidade": 2330,
+      "erroMedio": 2.47,
+      "rmse": 3.71
     },
     "LAT": {
-      "quantidade": 991,
-      "erroMedio": 3.34,
-      "rmse": 4.44
+      "quantidade": 1113,
+      "erroMedio": 3.14,
+      "rmse": 4.27
     },
     "ATA": {
-      "quantidade": 1711,
-      "erroMedio": 3.05,
-      "rmse": 4.51
+      "quantidade": 1905,
+      "erroMedio": 2.91,
+      "rmse": 4.38
     },
     "GOL": {
-      "quantidade": 405,
-      "erroMedio": 3.47,
-      "rmse": 4.42
+      "quantidade": 490,
+      "erroMedio": 3.0,
+      "rmse": 4.08
     },
     "ZAG": {
-      "quantidade": 932,
-      "erroMedio": 2.88,
-      "rmse": 3.93
+      "quantidade": 1050,
+      "erroMedio": 2.73,
+      "rmse": 3.8
     },
     "TEC": {
-      "quantidade": 370,
-      "erroMedio": 2.35,
-      "rmse": 3.02
+      "quantidade": 390,
+      "erroMedio": 2.34,
+      "rmse": 3.01
     }
   },
   "rankingComponentes": [

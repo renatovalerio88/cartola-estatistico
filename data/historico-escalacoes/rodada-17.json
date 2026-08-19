@@ -21,19 +21,19 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.28,
-      "custoTitulares": 113.16,
-      "custoBanco": 6.72,
-      "custoTotal": 119.88,
-      "saldo": 0.12,
-      "projecaoTitulares": 63.73,
+      "reservaMinimaBanco": 6.96,
+      "custoTitulares": 112.37,
+      "custoBanco": 7.4,
+      "custoTotal": 119.77,
+      "saldo": 0.23,
+      "projecaoTitulares": 63.69,
       "titulares": [
         {
           "id": "71631",
           "nome": "Weverton Pereira da Silva",
           "posicao": "GOL",
           "clube": "GRE",
-          "preco": 8.19,
+          "preco": 7.21,
           "projecao": 4.7,
           "historico": {
             "jogos": 15,
@@ -53,7 +53,7 @@
           "nome": "Alexandro Ezequiel Bernabei",
           "posicao": "LAT",
           "clube": "INT",
-          "preco": 10.84,
+          "preco": 9.63,
           "projecao": 6.37,
           "historico": {
             "jogos": 13,
@@ -73,7 +73,7 @@
           "nome": "Igor Vinícius de Souza",
           "posicao": "LAT",
           "clube": "SAN",
-          "preco": 9.33,
+          "preco": 10.68,
           "projecao": 6.01,
           "historico": {
             "jogos": 9,
@@ -93,7 +93,7 @@
           "nome": "Jonathan de Jesus Alves",
           "posicao": "ZAG",
           "clube": "CRU",
-          "preco": 6.2,
+          "preco": 6.66,
           "projecao": 4.49,
           "historico": {
             "jogos": 7,
@@ -113,7 +113,7 @@
           "nome": "Gabriel Iván Mercado",
           "posicao": "ZAG",
           "clube": "INT",
-          "preco": 6.38,
+          "preco": 6.09,
           "projecao": 4.3,
           "historico": {
             "jogos": 9,
@@ -133,7 +133,7 @@
           "nome": "Nicolás Brian Acevedo Tabárez",
           "posicao": "MEI",
           "clube": "BAH",
-          "preco": 7.02,
+          "preco": 8.76,
           "projecao": 5.84,
           "historico": {
             "jogos": 13,
@@ -153,7 +153,7 @@
           "nome": "Allan Andrade Elias",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 12.39,
+          "preco": 12.25,
           "projecao": 5.18,
           "historico": {
             "jogos": 14,
@@ -173,7 +173,7 @@
           "nome": "Rodrigo Garro",
           "posicao": "MEI",
           "clube": "COR",
-          "preco": 11.13,
+          "preco": 11.23,
           "projecao": 4.68,
           "historico": {
             "jogos": 14,
@@ -193,7 +193,7 @@
           "nome": "Jhon Adolfo Arias Andrade",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 15.17,
+          "preco": 13.91,
           "projecao": 4.67,
           "historico": {
             "jogos": 12,
@@ -213,7 +213,7 @@
           "nome": "Gonzalo Jordy Plata Jiménez",
           "posicao": "ATA",
           "clube": "FLA",
-          "preco": 9.94,
+          "preco": 12.16,
           "projecao": 6.61,
           "historico": {
             "jogos": 7,
@@ -229,23 +229,23 @@
           }
         },
         {
-          "id": "98909",
-          "nome": "Tomás Esteban Cuello",
+          "id": "105048",
+          "nome": "Jandir Breno Souza Silva",
           "posicao": "ATA",
-          "clube": "CAM",
-          "preco": 8.78,
-          "projecao": 5.7,
+          "clube": "REM",
+          "preco": 6.23,
+          "projecao": 5.66,
           "historico": {
-            "jogos": 14,
-            "media": 6.793,
-            "media3": 7.467,
-            "media5": 6.42,
-            "mediana": 5.85,
-            "piso": 3.6,
-            "teto": 8.7,
-            "regularidade": 82.64,
-            "volatilidade": 1.736,
-            "tendencia": 0.674
+            "jogos": 13,
+            "media": 5.323,
+            "media3": 8.633,
+            "media5": 7.6,
+            "mediana": 4.7,
+            "piso": 4.7,
+            "teto": 12.8,
+            "regularidade": 70.33,
+            "volatilidade": 2.967,
+            "tendencia": 3.31
           }
         },
         {
@@ -253,7 +253,7 @@
           "nome": "Paulo César Pezzolano Suárez",
           "posicao": "TEC",
           "clube": "INT",
-          "preco": 7.79,
+          "preco": 7.56,
           "projecao": 5.17,
           "historico": {
             "jogos": 15,
@@ -274,7 +274,7 @@
         "nome": "Nicolás Brian Acevedo Tabárez",
         "posicao": "MEI",
         "clube": "BAH",
-        "preco": 7.02,
+        "preco": 8.76,
         "projecao": 5.84,
         "historico": {
           "jogos": 13,
@@ -295,7 +295,7 @@
           "nome": "Otávio Eleodoro Rezende Costa",
           "posicao": "GOL",
           "clube": "CRU",
-          "preco": 2.43,
+          "preco": 3.11,
           "projecao": 0.01,
           "historico": {
             "jogos": 3,
@@ -428,11 +428,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.28,
-      "custoTitulares": 111.39,
-      "custoBanco": 8.49,
-      "custoTotal": 119.88,
-      "saldo": 0.12,
+      "reservaMinimaBanco": 6.96,
+      "custoTitulares": 109.96,
+      "custoBanco": 9.97,
+      "custoTotal": 119.93,
+      "saldo": 0.07,
       "projecaoTitulares": 78.87,
       "titulares": [
         {
@@ -440,7 +440,7 @@
           "nome": "Agustín Daniel Rossi",
           "posicao": "GOL",
           "clube": "FLA",
-          "preco": 8.96,
+          "preco": 8.57,
           "projecao": 5.77,
           "historico": {
             "jogos": 13,
@@ -460,7 +460,7 @@
           "nome": "Gabriel Iván Mercado",
           "posicao": "ZAG",
           "clube": "INT",
-          "preco": 6.38,
+          "preco": 6.09,
           "projecao": 5.69,
           "historico": {
             "jogos": 9,
@@ -480,7 +480,7 @@
           "nome": "Jonathan de Jesus Alves",
           "posicao": "ZAG",
           "clube": "CRU",
-          "preco": 6.2,
+          "preco": 6.66,
           "projecao": 5.29,
           "historico": {
             "jogos": 7,
@@ -520,7 +520,7 @@
           "nome": "Rodrigo Garro",
           "posicao": "MEI",
           "clube": "COR",
-          "preco": 11.13,
+          "preco": 11.23,
           "projecao": 7.07,
           "historico": {
             "jogos": 14,
@@ -540,7 +540,7 @@
           "nome": "Nicolás Brian Acevedo Tabárez",
           "posicao": "MEI",
           "clube": "BAH",
-          "preco": 7.02,
+          "preco": 8.76,
           "projecao": 6.2,
           "historico": {
             "jogos": 13,
@@ -560,7 +560,7 @@
           "nome": "Jhon Adolfo Arias Andrade",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 15.17,
+          "preco": 13.91,
           "projecao": 5.86,
           "historico": {
             "jogos": 12,
@@ -580,7 +580,7 @@
           "nome": "Vitor Frezarin Bueno",
           "posicao": "MEI",
           "clube": "REM",
-          "preco": 7.61,
+          "preco": 7.85,
           "projecao": 5.78,
           "historico": {
             "jogos": 9,
@@ -600,7 +600,7 @@
           "nome": "Arthur Mendonça Cabral",
           "posicao": "ATA",
           "clube": "BOT",
-          "preco": 10.23,
+          "preco": 9.89,
           "projecao": 9.08,
           "historico": {
             "jogos": 11,
@@ -620,7 +620,7 @@
           "nome": "Kevin Stiven Viveros Rodallega",
           "posicao": "ATA",
           "clube": "CAP",
-          "preco": 14.34,
+          "preco": 12.88,
           "projecao": 8.6,
           "historico": {
             "jogos": 12,
@@ -660,7 +660,7 @@
           "nome": "Paulo César Pezzolano Suárez",
           "posicao": "TEC",
           "clube": "INT",
-          "preco": 7.79,
+          "preco": 7.56,
           "projecao": 5.98,
           "historico": {
             "jogos": 15,
@@ -681,7 +681,7 @@
         "nome": "Arthur Mendonça Cabral",
         "posicao": "ATA",
         "clube": "BOT",
-        "preco": 10.23,
+        "preco": 9.89,
         "projecao": 9.08,
         "historico": {
           "jogos": 11,
@@ -698,23 +698,23 @@
       },
       "banco": [
         {
-          "id": "117404",
-          "nome": "Otávio Eleodoro Rezende Costa",
+          "id": "111683",
+          "nome": "Anthoni Spier Souza",
           "posicao": "GOL",
-          "clube": "CRU",
-          "preco": 2.43,
-          "projecao": 0.07,
+          "clube": "INT",
+          "preco": 3.91,
+          "projecao": 4.32,
           "historico": {
-            "jogos": 3,
-            "media": -0.433,
-            "media3": -0.433,
-            "media5": -0.433,
-            "mediana": -0.7,
-            "piso": -1.7,
-            "teto": 1.1,
-            "regularidade": 88.41,
-            "volatilidade": 1.159,
-            "tendencia": 0.0
+            "jogos": 5,
+            "media": 3.8,
+            "media3": 6.033,
+            "media5": 3.8,
+            "mediana": 1.6,
+            "piso": -0.7,
+            "teto": 11.5,
+            "regularidade": 57.42,
+            "volatilidade": 4.258,
+            "tendencia": 2.233
           }
         },
         {
@@ -799,23 +799,23 @@
         }
       ],
       "reservaLuxo": {
-        "id": "141337",
-        "nome": "Lucas Taverna",
-        "posicao": "LAT",
-        "clube": "CFC",
-        "preco": 2.58,
-        "projecao": 4.07,
+        "id": "111683",
+        "nome": "Anthoni Spier Souza",
+        "posicao": "GOL",
+        "clube": "INT",
+        "preco": 3.91,
+        "projecao": 4.32,
         "historico": {
-          "jogos": 1,
-          "media": 5.1,
-          "media3": 5.1,
-          "media5": 5.1,
-          "mediana": 5.1,
-          "piso": 5.1,
-          "teto": 5.1,
-          "regularidade": 100,
-          "volatilidade": 0,
-          "tendencia": 0.0
+          "jogos": 5,
+          "media": 3.8,
+          "media3": 6.033,
+          "media5": 3.8,
+          "mediana": 1.6,
+          "piso": -0.7,
+          "teto": 11.5,
+          "regularidade": 57.42,
+          "volatilidade": 4.258,
+          "tendencia": 2.233
         }
       },
       "auditoria": {
@@ -835,11 +835,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.28,
-      "custoTitulares": 111.1,
-      "custoBanco": 8.49,
-      "custoTotal": 119.59,
-      "saldo": 0.41,
+      "reservaMinimaBanco": 6.96,
+      "custoTitulares": 109.01,
+      "custoBanco": 10.69,
+      "custoTotal": 119.7,
+      "saldo": 0.3,
       "projecaoTitulares": 96.8,
       "titulares": [
         {
@@ -847,7 +847,7 @@
           "nome": "Agustín Daniel Rossi",
           "posicao": "GOL",
           "clube": "FLA",
-          "preco": 8.96,
+          "preco": 8.57,
           "projecao": 6.55,
           "historico": {
             "jogos": 13,
@@ -887,7 +887,7 @@
           "nome": "Gabriel Iván Mercado",
           "posicao": "ZAG",
           "clube": "INT",
-          "preco": 6.38,
+          "preco": 6.09,
           "projecao": 6.65,
           "historico": {
             "jogos": 9,
@@ -907,7 +907,7 @@
           "nome": "Jonathan de Jesus Alves",
           "posicao": "ZAG",
           "clube": "CRU",
-          "preco": 6.2,
+          "preco": 6.66,
           "projecao": 5.76,
           "historico": {
             "jogos": 7,
@@ -927,7 +927,7 @@
           "nome": "Rodrigo Garro",
           "posicao": "MEI",
           "clube": "COR",
-          "preco": 11.13,
+          "preco": 11.23,
           "projecao": 9.02,
           "historico": {
             "jogos": 14,
@@ -947,7 +947,7 @@
           "nome": "Vitor Frezarin Bueno",
           "posicao": "MEI",
           "clube": "REM",
-          "preco": 7.61,
+          "preco": 7.85,
           "projecao": 7.86,
           "historico": {
             "jogos": 9,
@@ -967,7 +967,7 @@
           "nome": "Breno de Souza Bidon",
           "posicao": "MEI",
           "clube": "COR",
-          "preco": 8.58,
+          "preco": 8.39,
           "projecao": 6.88,
           "historico": {
             "jogos": 13,
@@ -987,7 +987,7 @@
           "nome": "Jorge Luiz Frello Filho",
           "posicao": "MEI",
           "clube": "FLA",
-          "preco": 9.3,
+          "preco": 8.54,
           "projecao": 6.85,
           "historico": {
             "jogos": 9,
@@ -1007,7 +1007,7 @@
           "nome": "Arthur Mendonça Cabral",
           "posicao": "ATA",
           "clube": "BOT",
-          "preco": 10.23,
+          "preco": 9.89,
           "projecao": 12.42,
           "historico": {
             "jogos": 11,
@@ -1027,7 +1027,7 @@
           "nome": "Kevin Stiven Viveros Rodallega",
           "posicao": "ATA",
           "clube": "CAP",
-          "preco": 14.34,
+          "preco": 12.88,
           "projecao": 10.78,
           "historico": {
             "jogos": 12,
@@ -1047,7 +1047,7 @@
           "nome": "Breno Henrique Vasconcelos Lopes",
           "posicao": "ATA",
           "clube": "CFC",
-          "preco": 9.19,
+          "preco": 9.43,
           "projecao": 10.56,
           "historico": {
             "jogos": 12,
@@ -1067,7 +1067,7 @@
           "nome": "José Leonardo Nunes Alves Sousa Jardim",
           "posicao": "TEC",
           "clube": "FLA",
-          "preco": 13.54,
+          "preco": 13.84,
           "projecao": 6.57,
           "historico": {
             "jogos": 13,
@@ -1088,7 +1088,7 @@
         "nome": "Arthur Mendonça Cabral",
         "posicao": "ATA",
         "clube": "BOT",
-        "preco": 10.23,
+        "preco": 9.89,
         "projecao": 12.42,
         "historico": {
           "jogos": 11,
@@ -1105,23 +1105,23 @@
       },
       "banco": [
         {
-          "id": "117404",
-          "nome": "Otávio Eleodoro Rezende Costa",
+          "id": "111683",
+          "nome": "Anthoni Spier Souza",
           "posicao": "GOL",
-          "clube": "CRU",
-          "preco": 2.43,
-          "projecao": -0.11,
+          "clube": "INT",
+          "preco": 3.91,
+          "projecao": 5.55,
           "historico": {
-            "jogos": 3,
-            "media": -0.433,
-            "media3": -0.433,
-            "media5": -0.433,
-            "mediana": -0.7,
-            "piso": -1.7,
-            "teto": 1.1,
-            "regularidade": 88.41,
-            "volatilidade": 1.159,
-            "tendencia": 0.0
+            "jogos": 5,
+            "media": 3.8,
+            "media3": 6.033,
+            "media5": 3.8,
+            "mediana": 1.6,
+            "piso": -0.7,
+            "teto": 11.5,
+            "regularidade": 57.42,
+            "volatilidade": 4.258,
+            "tendencia": 2.233
           }
         },
         {
@@ -1165,20 +1165,20 @@
           }
         },
         {
-          "id": "148215",
-          "nome": "Djhordney Ferreira",
+          "id": "141615",
+          "nome": "Pedro Henrique Ferreira da Silva",
           "posicao": "MEI",
           "clube": "SAO",
-          "preco": 0.79,
-          "projecao": -1.17,
+          "preco": 1.51,
+          "projecao": 0.36,
           "historico": {
             "jogos": 1,
-            "media": -1.6,
-            "media3": -1.6,
-            "media5": -1.6,
-            "mediana": -1.6,
-            "piso": -1.6,
-            "teto": -1.6,
+            "media": 0.5,
+            "media3": 0.5,
+            "media5": 0.5,
+            "mediana": 0.5,
+            "piso": 0.5,
+            "teto": 0.5,
             "regularidade": 100,
             "volatilidade": 0,
             "tendencia": 0.0
@@ -1206,23 +1206,23 @@
         }
       ],
       "reservaLuxo": {
-        "id": "141337",
-        "nome": "Lucas Taverna",
-        "posicao": "LAT",
-        "clube": "CFC",
-        "preco": 2.58,
-        "projecao": 3.72,
+        "id": "111683",
+        "nome": "Anthoni Spier Souza",
+        "posicao": "GOL",
+        "clube": "INT",
+        "preco": 3.91,
+        "projecao": 5.55,
         "historico": {
-          "jogos": 1,
-          "media": 5.1,
-          "media3": 5.1,
-          "media5": 5.1,
-          "mediana": 5.1,
-          "piso": 5.1,
-          "teto": 5.1,
-          "regularidade": 100,
-          "volatilidade": 0,
-          "tendencia": 0.0
+          "jogos": 5,
+          "media": 3.8,
+          "media3": 6.033,
+          "media5": 3.8,
+          "mediana": 1.6,
+          "piso": -0.7,
+          "teto": 11.5,
+          "regularidade": 57.42,
+          "volatilidade": 4.258,
+          "tendencia": 2.233
         }
       },
       "auditoria": {

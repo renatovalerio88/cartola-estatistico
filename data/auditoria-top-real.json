@@ -37,8 +37,8 @@
     "topNPercentual": 6.62,
     "top5Percentual": 9.86,
     "top10Percentual": 23.38,
-    "rankingRealMedio": 41.64,
-    "percentilMedio": 72.02,
+    "rankingRealMedio": 41.65,
+    "percentilMedio": 72.05,
     "pontosEscalados": 2773.6,
     "pontosTimePerfeito": 10241.03,
     "eficienciaCapturaPercentual": 27.08
@@ -64,8 +64,8 @@
       "topNPercentual": 4.76,
       "top5Percentual": 9.52,
       "top10Percentual": 16.67,
-      "rankingRealMedio": 22.95,
-      "percentilMedio": 81.86,
+      "rankingRealMedio": 22.93,
+      "percentilMedio": 81.88,
       "pontosEscalados": 194.7,
       "pontosTimePerfeito": 600.8,
       "eficienciaCapturaPercentual": 32.41
@@ -90,7 +90,7 @@
       "topNPercentual": 11.11,
       "top5Percentual": 11.51,
       "top10Percentual": 19.84,
-      "rankingRealMedio": 49.7,
+      "rankingRealMedio": 49.69,
       "percentilMedio": 78.83,
       "pontosEscalados": 1198.0,
       "pontosTimePerfeito": 3556.2,
@@ -103,8 +103,8 @@
       "topNPercentual": 5.56,
       "top5Percentual": 5.56,
       "top10Percentual": 12.35,
-      "rankingRealMedio": 59.33,
-      "percentilMedio": 69.62,
+      "rankingRealMedio": 59.43,
+      "percentilMedio": 69.73,
       "pontosEscalados": 518.7,
       "pontosTimePerfeito": 2819.3,
       "eficienciaCapturaPercentual": 18.4
@@ -126,7 +126,7 @@
   "detalhesRodadas": [
     {
       "rodada": 2,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -154,7 +154,7 @@
     },
     {
       "rodada": 3,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -182,7 +182,7 @@
     },
     {
       "rodada": 4,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -210,7 +210,7 @@
     },
     {
       "rodada": 5,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -238,7 +238,7 @@
     },
     {
       "rodada": 6,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -266,7 +266,7 @@
     },
     {
       "rodada": 7,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -294,7 +294,7 @@
     },
     {
       "rodada": 8,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -322,7 +322,7 @@
     },
     {
       "rodada": 9,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -350,7 +350,7 @@
     },
     {
       "rodada": 10,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -378,7 +378,7 @@
     },
     {
       "rodada": 11,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -406,7 +406,7 @@
     },
     {
       "rodada": 12,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -434,7 +434,7 @@
     },
     {
       "rodada": 13,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -462,7 +462,7 @@
     },
     {
       "rodada": 14,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -490,7 +490,7 @@
     },
     {
       "rodada": 15,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -518,7 +518,7 @@
     },
     {
       "rodada": 16,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -546,7 +546,7 @@
     },
     {
       "rodada": 17,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -574,7 +574,7 @@
     },
     {
       "rodada": 18,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -602,7 +602,7 @@
     },
     {
       "rodada": 19,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -630,7 +630,7 @@
     },
     {
       "rodada": 20,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -658,7 +658,7 @@
     },
     {
       "rodada": 21,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -686,7 +686,7 @@
     },
     {
       "rodada": 22,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -714,7 +714,7 @@
     },
     {
       "rodada": 23,
-      "quantidadeJogadoresReais": 769,
+      "quantidadeJogadoresReais": 770,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -752,7 +752,7 @@
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 72.02 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 72.05 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",

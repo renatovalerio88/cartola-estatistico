@@ -5,12 +5,12 @@
     "descricao": "Modelo treinado apenas com dados anteriores à rodada prevista"
   },
   "resumo": {
-    "rodadasAnalisadas": 22,
-    "mae": 2.92,
+    "rodadasAnalisadas": 23,
+    "mae": 2.85,
     "melhorRodada": {
-      "rodada": 16,
-      "erro": 2.57,
-      "taxaAcerto": 73.16
+      "rodada": 24,
+      "erro": 1.48,
+      "taxaAcerto": 84.55
     },
     "piorRodada": {
       "rodada": 3,
@@ -127,7 +127,12 @@
     {
       "rodada": 23,
       "mae": 2.89,
-      "taxaAcerto": 65.79
+      "taxaAcerto": 65.5
+    },
+    {
+      "rodada": 24,
+      "mae": 1.48,
+      "taxaAcerto": 84.55
     }
   ],
   "evolucao": [
@@ -218,32 +223,36 @@
     {
       "rodada": 23,
       "mae": 2.89
+    },
+    {
+      "rodada": 24,
+      "mae": 1.48
     }
   ],
   "posicoes": {
     "MEI": {
-      "quantidade": 2099,
-      "erroMedio": 2.58
+      "quantidade": 2330,
+      "erroMedio": 2.47
     },
     "LAT": {
-      "quantidade": 991,
-      "erroMedio": 3.34
+      "quantidade": 1113,
+      "erroMedio": 3.14
     },
     "ATA": {
-      "quantidade": 1711,
-      "erroMedio": 3.05
+      "quantidade": 1905,
+      "erroMedio": 2.91
     },
     "GOL": {
-      "quantidade": 405,
-      "erroMedio": 3.47
+      "quantidade": 490,
+      "erroMedio": 3.0
     },
     "ZAG": {
-      "quantidade": 932,
-      "erroMedio": 2.88
+      "quantidade": 1050,
+      "erroMedio": 2.73
     },
     "TEC": {
-      "quantidade": 370,
-      "erroMedio": 2.35
+      "quantidade": 390,
+      "erroMedio": 2.34
     }
   },
   "versoes": [
@@ -271,9 +280,9 @@
       "nome": "Índice Explosão",
       "tipo": "camada estratégica",
       "resultado": "não incorporado na projeção",
-      "erroOriginal": 2.903,
-      "erroComExplosao": 2.897,
-      "impacto": 0.006,
+      "erroOriginal": 2.753,
+      "erroComExplosao": 2.76,
+      "impacto": -0.007,
       "decisao": "usar futuramente em capitão e diferenciais"
     }
   ],

@@ -21,19 +21,19 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.95,
-      "custoTitulares": 112.56,
-      "custoBanco": 7.0,
-      "custoTotal": 119.56,
-      "saldo": 0.44,
-      "projecaoTitulares": 73.01,
+      "reservaMinimaBanco": 6.85,
+      "custoTitulares": 112.69,
+      "custoBanco": 6.97,
+      "custoTotal": 119.66,
+      "saldo": 0.34,
+      "projecaoTitulares": 74.67,
       "titulares": [
         {
           "id": "91204",
           "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
           "posicao": "GOL",
           "clube": "BOT",
-          "preco": 6.32,
+          "preco": 6.12,
           "projecao": 8.32,
           "historico": {
             "jogos": 1,
@@ -53,7 +53,7 @@
           "nome": "Diego Caito Barcellos Oliveira dos Santos",
           "posicao": "LAT",
           "clube": "GRE",
-          "preco": 5.82,
+          "preco": 5.88,
           "projecao": 6.79,
           "historico": {
             "jogos": 1,
@@ -73,7 +73,7 @@
           "nome": "Matheus Lima Beltrão Oliveira Valin",
           "posicao": "LAT",
           "clube": "COR",
-          "preco": 12.92,
+          "preco": 12.32,
           "projecao": 6.16,
           "historico": {
             "jogos": 14,
@@ -113,7 +113,7 @@
           "nome": "David de Duarte Macedo",
           "posicao": "ZAG",
           "clube": "BAH",
-          "preco": 7.03,
+          "preco": 6.23,
           "projecao": 4.21,
           "historico": {
             "jogos": 12,
@@ -133,7 +133,7 @@
           "nome": "Matheus Fellipe Costa Pereira",
           "posicao": "MEI",
           "clube": "CRU",
-          "preco": 13.8,
+          "preco": 13.56,
           "projecao": 7.04,
           "historico": {
             "jogos": 17,
@@ -153,7 +153,7 @@
           "nome": "Jhon Adolfo Arias Andrade",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 15.17,
+          "preco": 13.91,
           "projecao": 6.62,
           "historico": {
             "jogos": 16,
@@ -193,7 +193,7 @@
           "nome": "Lucas Tolentino Coelho de Lima",
           "posicao": "MEI",
           "clube": "FLA",
-          "preco": 13.54,
+          "preco": 14.34,
           "projecao": 5.51,
           "historico": {
             "jogos": 11,
@@ -213,7 +213,7 @@
           "nome": "Samuel Dias Lino",
           "posicao": "ATA",
           "clube": "FLA",
-          "preco": 11.7,
+          "preco": 12.27,
           "projecao": 7.83,
           "historico": {
             "jogos": 18,
@@ -229,23 +229,23 @@
           }
         },
         {
-          "id": "143153",
-          "nome": "Diego Tarzia",
+          "id": "123101",
+          "nome": "Leonardo Caetano Silva",
           "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 3.69,
-          "projecao": 3.48,
+          "clube": "CAP",
+          "preco": 5.74,
+          "projecao": 5.13,
           "historico": {
-            "jogos": 14,
-            "media": 3.064,
-            "media3": 6.233,
-            "media5": 5.7,
-            "mediana": 2.25,
-            "piso": 1.3,
-            "teto": 11.0,
-            "regularidade": 64.51,
-            "volatilidade": 3.549,
-            "tendencia": 3.169
+            "jogos": 8,
+            "media": 6.05,
+            "media3": 14.967,
+            "media5": 9.58,
+            "mediana": 1.5,
+            "piso": 1.5,
+            "teto": 27.6,
+            "regularidade": 0,
+            "volatilidade": 10.394,
+            "tendencia": 8.917
           }
         },
         {
@@ -253,7 +253,7 @@
           "nome": "Fernando Seabra",
           "posicao": "TEC",
           "clube": "CFC",
-          "preco": 8.04,
+          "preco": 7.79,
           "projecao": 4.21,
           "historico": {
             "jogos": 20,
@@ -274,7 +274,7 @@
         "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
         "posicao": "GOL",
         "clube": "BOT",
-        "preco": 6.32,
+        "preco": 6.12,
         "projecao": 8.32,
         "historico": {
           "jogos": 1,
@@ -335,7 +335,7 @@
           "nome": "Kauan Faria Gomes",
           "posicao": "ZAG",
           "clube": "CHA",
-          "preco": 0.67,
+          "preco": 0.64,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -428,19 +428,19 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.95,
-      "custoTitulares": 110.7,
-      "custoBanco": 9.14,
-      "custoTotal": 119.84,
-      "saldo": 0.16,
-      "projecaoTitulares": 94.44,
+      "reservaMinimaBanco": 6.85,
+      "custoTitulares": 110.31,
+      "custoBanco": 9.38,
+      "custoTotal": 119.69,
+      "saldo": 0.31,
+      "projecaoTitulares": 94.94,
       "titulares": [
         {
           "id": "91204",
           "nome": "Warleson Steillon Lisboa Oliveira - Stellion",
           "posicao": "GOL",
           "clube": "BOT",
-          "preco": 6.32,
+          "preco": 6.12,
           "projecao": 8.33,
           "historico": {
             "jogos": 1,
@@ -480,7 +480,7 @@
           "nome": "David de Duarte Macedo",
           "posicao": "ZAG",
           "clube": "BAH",
-          "preco": 7.03,
+          "preco": 6.23,
           "projecao": 5.79,
           "historico": {
             "jogos": 12,
@@ -520,7 +520,7 @@
           "nome": "Jhon Adolfo Arias Andrade",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 15.17,
+          "preco": 13.91,
           "projecao": 9.76,
           "historico": {
             "jogos": 16,
@@ -540,7 +540,7 @@
           "nome": "Matheus Fellipe Costa Pereira",
           "posicao": "MEI",
           "clube": "CRU",
-          "preco": 13.8,
+          "preco": 13.56,
           "projecao": 9.48,
           "historico": {
             "jogos": 17,
@@ -580,7 +580,7 @@
           "nome": "Maurício Magalhães Prado",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 6.93,
+          "preco": 7.74,
           "projecao": 7.17,
           "historico": {
             "jogos": 17,
@@ -600,7 +600,7 @@
           "nome": "Samuel Dias Lino",
           "posicao": "ATA",
           "clube": "FLA",
-          "preco": 11.7,
+          "preco": 12.27,
           "projecao": 10.47,
           "historico": {
             "jogos": 18,
@@ -620,7 +620,7 @@
           "nome": "Leonardo Caetano Silva",
           "posicao": "ATA",
           "clube": "CAP",
-          "preco": 5.8,
+          "preco": 5.74,
           "projecao": 9.46,
           "historico": {
             "jogos": 8,
@@ -640,7 +640,7 @@
           "nome": "Kevin Stiven Viveros Rodallega",
           "posicao": "ATA",
           "clube": "CAP",
-          "preco": 14.34,
+          "preco": 12.88,
           "projecao": 8.2,
           "historico": {
             "jogos": 17,
@@ -656,23 +656,23 @@
           }
         },
         {
-          "id": "92273",
-          "nome": "Odair Hellmann",
+          "id": "110506",
+          "nome": "Abel Fernando Moreira Ferreira",
           "posicao": "TEC",
-          "clube": "CAP",
-          "preco": 9.44,
-          "projecao": 6.48,
+          "clube": "PAL",
+          "preco": 11.69,
+          "projecao": 6.98,
           "historico": {
             "jogos": 20,
-            "media": 5.072,
-            "media3": 7.333,
-            "media5": 7.75,
-            "mediana": 4.87,
-            "piso": 6.1,
-            "teto": 9.85,
-            "regularidade": 84.23,
-            "volatilidade": 1.577,
-            "tendencia": 2.262
+            "media": 7.005,
+            "media3": 7.38,
+            "media5": 7.9,
+            "mediana": 7.335,
+            "piso": 5.02,
+            "teto": 9.71,
+            "regularidade": 83.36,
+            "volatilidade": 1.664,
+            "tendencia": 0.375
           }
         }
       ],
@@ -681,7 +681,7 @@
         "nome": "Samuel Dias Lino",
         "posicao": "ATA",
         "clube": "FLA",
-        "preco": 11.7,
+        "preco": 12.27,
         "projecao": 10.47,
         "historico": {
           "jogos": 18,
@@ -758,23 +758,23 @@
           }
         },
         {
-          "id": "125746",
-          "nome": "Eduardo Kogitzki Anastacio",
+          "id": "147088",
+          "nome": "Mamady Cissé",
           "posicao": "MEI",
-          "clube": "CAP",
-          "preco": 2.1,
-          "projecao": 1.37,
+          "clube": "CAM",
+          "preco": 2.34,
+          "projecao": 2.15,
           "historico": {
-            "jogos": 11,
-            "media": 1.973,
-            "media3": 0.8,
-            "media5": 0.86,
-            "mediana": 1.0,
-            "piso": -0.6,
-            "teto": 2.2,
-            "regularidade": 88.96,
-            "volatilidade": 1.104,
-            "tendencia": -1.173
+            "jogos": 10,
+            "media": 1.75,
+            "media3": 0.667,
+            "media5": 2.28,
+            "mediana": 0.5,
+            "piso": -0.2,
+            "teto": 9.2,
+            "regularidade": 64.34,
+            "volatilidade": 3.566,
+            "tendencia": -1.083
           }
         },
         {
@@ -835,11 +835,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 6.95,
-      "custoTitulares": 110.5,
-      "custoBanco": 9.33,
-      "custoTotal": 119.83,
-      "saldo": 0.17,
+      "reservaMinimaBanco": 6.85,
+      "custoTitulares": 111.42,
+      "custoBanco": 8.57,
+      "custoTotal": 119.99,
+      "saldo": 0.01,
       "projecaoTitulares": 114.1,
       "titulares": [
         {
@@ -847,7 +847,7 @@
           "nome": "Tiago Luis Volpi",
           "posicao": "GOL",
           "clube": "RBB",
-          "preco": 9.14,
+          "preco": 10.21,
           "projecao": 8.95,
           "historico": {
             "jogos": 12,
@@ -867,7 +867,7 @@
           "nome": "David de Duarte Macedo",
           "posicao": "ZAG",
           "clube": "BAH",
-          "preco": 7.03,
+          "preco": 6.23,
           "projecao": 7.03,
           "historico": {
             "jogos": 12,
@@ -927,7 +927,7 @@
           "nome": "Jhon Adolfo Arias Andrade",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 15.17,
+          "preco": 13.91,
           "projecao": 12.29,
           "historico": {
             "jogos": 16,
@@ -947,7 +947,7 @@
           "nome": "Matheus Fellipe Costa Pereira",
           "posicao": "MEI",
           "clube": "CRU",
-          "preco": 13.8,
+          "preco": 13.56,
           "projecao": 11.45,
           "historico": {
             "jogos": 17,
@@ -967,7 +967,7 @@
           "nome": "Maurício Magalhães Prado",
           "posicao": "MEI",
           "clube": "PAL",
-          "preco": 6.93,
+          "preco": 7.74,
           "projecao": 10.06,
           "historico": {
             "jogos": 17,
@@ -1007,7 +1007,7 @@
           "nome": "Leonardo Caetano Silva",
           "posicao": "ATA",
           "clube": "CAP",
-          "preco": 5.8,
+          "preco": 5.74,
           "projecao": 13.46,
           "historico": {
             "jogos": 8,
@@ -1027,7 +1027,7 @@
           "nome": "Samuel Dias Lino",
           "posicao": "ATA",
           "clube": "FLA",
-          "preco": 11.7,
+          "preco": 12.27,
           "projecao": 12.8,
           "historico": {
             "jogos": 18,
@@ -1047,7 +1047,7 @@
           "nome": "Johan Stiven Carbonero Balanta",
           "posicao": "ATA",
           "clube": "INT",
-          "preco": 8.68,
+          "preco": 9.9,
           "projecao": 9.69,
           "historico": {
             "jogos": 19,
@@ -1067,7 +1067,7 @@
           "nome": "Abel Fernando Moreira Ferreira",
           "posicao": "TEC",
           "clube": "PAL",
-          "preco": 12.08,
+          "preco": 11.69,
           "projecao": 7.07,
           "historico": {
             "jogos": 20,
@@ -1088,7 +1088,7 @@
         "nome": "Leonardo Caetano Silva",
         "posicao": "ATA",
         "clube": "CAP",
-        "preco": 5.8,
+        "preco": 5.74,
         "projecao": 13.46,
         "historico": {
           "jogos": 8,
@@ -1165,23 +1165,23 @@
           }
         },
         {
-          "id": "147088",
-          "nome": "Mamady Cissé",
+          "id": "130906",
+          "nome": "Diogo Riquelme Rivas do Nascimento",
           "posicao": "MEI",
-          "clube": "CAM",
-          "preco": 2.29,
-          "projecao": 2.77,
+          "clube": "CAP",
+          "preco": 1.53,
+          "projecao": 1.12,
           "historico": {
-            "jogos": 10,
-            "media": 1.75,
-            "media3": 0.667,
-            "media5": 2.28,
-            "mediana": 0.5,
-            "piso": -0.2,
-            "teto": 9.2,
-            "regularidade": 64.34,
-            "volatilidade": 3.566,
-            "tendencia": -1.083
+            "jogos": 3,
+            "media": 0.867,
+            "media3": 0.867,
+            "media5": 0.867,
+            "mediana": 0.0,
+            "piso": -0.3,
+            "teto": 2.9,
+            "regularidade": 85.57,
+            "volatilidade": 1.443,
+            "tendencia": 0.0
           }
         },
         {

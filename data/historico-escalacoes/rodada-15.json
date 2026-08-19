@@ -21,19 +21,19 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 11.73,
-      "custoTitulares": 108.27,
-      "custoBanco": 11.73,
-      "custoTotal": 120.0,
-      "saldo": -0.0,
-      "projecaoTitulares": 59.13,
+      "reservaMinimaBanco": 12.27,
+      "custoTitulares": 107.58,
+      "custoBanco": 12.27,
+      "custoTotal": 119.85,
+      "saldo": 0.15,
+      "projecaoTitulares": 59.52,
       "titulares": [
         {
           "id": "71631",
           "nome": "Weverton Pereira da Silva",
           "posicao": "GOL",
           "clube": "GRE",
-          "preco": 8.19,
+          "preco": 7.21,
           "projecao": 5.59,
           "historico": {
             "jogos": 13,
@@ -53,7 +53,7 @@
           "nome": "Ariel Agustín Sant'Anna Quintero",
           "posicao": "LAT",
           "clube": "RBB",
-          "preco": 8.88,
+          "preco": 9.7,
           "projecao": 7.12,
           "historico": {
             "jogos": 2,
@@ -133,7 +133,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": 6.62,
           "historico": {
             "jogos": 10,
@@ -153,7 +153,7 @@
           "nome": "Neymar da Silva Santos Júnior",
           "posicao": "MEI",
           "clube": "SAN",
-          "preco": 21.85,
+          "preco": 19.51,
           "projecao": 6.27,
           "historico": {
             "jogos": 6,
@@ -193,7 +193,7 @@
           "nome": "Nicolás Brian Acevedo Tabárez",
           "posicao": "MEI",
           "clube": "BAH",
-          "preco": 7.02,
+          "preco": 8.76,
           "projecao": 5.18,
           "historico": {
             "jogos": 11,
@@ -209,43 +209,43 @@
           }
         },
         {
-          "id": "107516",
-          "nome": "Sebastião Ênio Santos de Almeida",
+          "id": "105048",
+          "nome": "Jandir Breno Souza Silva",
           "posicao": "ATA",
-          "clube": "CHA",
-          "preco": 5.04,
-          "projecao": 3.82,
+          "clube": "REM",
+          "preco": 6.23,
+          "projecao": 4.3,
           "historico": {
-            "jogos": 5,
-            "media": 4.38,
-            "media3": 5.1,
-            "media5": 4.38,
-            "mediana": 5.6,
-            "piso": 1.0,
-            "teto": 8.4,
-            "regularidade": 71.7,
-            "volatilidade": 2.83,
-            "tendencia": 0.72
+            "jogos": 11,
+            "media": 5.1,
+            "media3": 8.3,
+            "media5": 5.6,
+            "mediana": 4.7,
+            "piso": 0.5,
+            "teto": 12.8,
+            "regularidade": 57.48,
+            "volatilidade": 4.252,
+            "tendencia": 3.2
           }
         },
         {
-          "id": "102877",
-          "nome": "Gabriel Buscariol Poveda",
+          "id": "137542",
+          "nome": "Kaique Kenji Takamura Correa",
           "posicao": "ATA",
-          "clube": "REM",
-          "preco": 2.68,
-          "projecao": 0.93,
+          "clube": "CRU",
+          "preco": 2.39,
+          "projecao": 0.84,
           "historico": {
-            "jogos": 6,
-            "media": 0.55,
-            "media3": 0.433,
-            "media5": 0.66,
-            "mediana": 0.45,
-            "piso": -0.6,
-            "teto": 2.0,
-            "regularidade": 91.06,
-            "volatilidade": 0.894,
-            "tendencia": -0.117
+            "jogos": 2,
+            "media": 0.25,
+            "media3": 0.25,
+            "media5": 0.25,
+            "mediana": 0.25,
+            "piso": 0.0,
+            "teto": 0.5,
+            "regularidade": 97.5,
+            "volatilidade": 0.25,
+            "tendencia": 0.0
           }
         },
         {
@@ -253,7 +253,7 @@
           "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
           "clube": "MIR",
-          "preco": 6.99,
+          "preco": 6.97,
           "projecao": 3.58,
           "historico": {
             "jogos": 13,
@@ -295,7 +295,7 @@
           "nome": "Otávio Eleodoro Rezende Costa",
           "posicao": "GOL",
           "clube": "CRU",
-          "preco": 2.43,
+          "preco": 3.11,
           "projecao": -0.53,
           "historico": {
             "jogos": 1,
@@ -315,7 +315,7 @@
           "nome": "Everton Souza da Cruz",
           "posicao": "LAT",
           "clube": "CHA",
-          "preco": 3.52,
+          "preco": 3.41,
           "projecao": 1.26,
           "historico": {
             "jogos": 10,
@@ -335,7 +335,7 @@
           "nome": "Victor Henrique Carvalho Caetano",
           "posicao": "ZAG",
           "clube": "CHA",
-          "preco": 3.19,
+          "preco": 3.16,
           "projecao": 1.6,
           "historico": {
             "jogos": 6,
@@ -396,7 +396,7 @@
         "nome": "Victor Henrique Carvalho Caetano",
         "posicao": "ZAG",
         "clube": "CHA",
-        "preco": 3.19,
+        "preco": 3.16,
         "projecao": 1.6,
         "historico": {
           "jogos": 6,
@@ -428,19 +428,19 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 11.73,
-      "custoTitulares": 108.1,
-      "custoBanco": 11.73,
-      "custoTotal": 119.83,
-      "saldo": 0.17,
-      "projecaoTitulares": 67.49,
+      "reservaMinimaBanco": 12.27,
+      "custoTitulares": 107.5,
+      "custoBanco": 12.27,
+      "custoTotal": 119.77,
+      "saldo": 0.23,
+      "projecaoTitulares": 72.89,
       "titulares": [
         {
           "id": "71631",
           "nome": "Weverton Pereira da Silva",
           "posicao": "GOL",
           "clube": "GRE",
-          "preco": 8.19,
+          "preco": 7.21,
           "projecao": 7.38,
           "historico": {
             "jogos": 13,
@@ -480,7 +480,7 @@
           "nome": "Gustavo Raúl Gómez Portillo",
           "posicao": "ZAG",
           "clube": "PAL",
-          "preco": 10.56,
+          "preco": 10.99,
           "projecao": 5.72,
           "historico": {
             "jogos": 12,
@@ -520,7 +520,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": 9.25,
           "historico": {
             "jogos": 10,
@@ -560,7 +560,7 @@
           "nome": "Neymar da Silva Santos Júnior",
           "posicao": "MEI",
           "clube": "SAN",
-          "preco": 21.85,
+          "preco": 19.51,
           "projecao": 6.78,
           "historico": {
             "jogos": 6,
@@ -580,7 +580,7 @@
           "nome": "Jean Lucas de Souza Oliveira",
           "posicao": "MEI",
           "clube": "BAH",
-          "preco": 9.37,
+          "preco": 10.1,
           "projecao": 6.3,
           "historico": {
             "jogos": 12,
@@ -596,23 +596,43 @@
           }
         },
         {
-          "id": "108133",
-          "nome": "Isidro Miguel Pitta Saldívar",
+          "id": "111831",
+          "nome": "Matheus Martins Silva dos Santos",
           "posicao": "ATA",
-          "clube": "RBB",
-          "preco": 5.4,
-          "projecao": 5.93,
+          "clube": "BOT",
+          "preco": 6.76,
+          "projecao": 7.98,
           "historico": {
-            "jogos": 13,
-            "media": 3.669,
-            "media3": 7.1,
-            "media5": 7.04,
-            "mediana": 1.6,
-            "piso": 1.3,
-            "teto": 18.0,
-            "regularidade": 39.88,
-            "volatilidade": 6.012,
-            "tendencia": 3.431
+            "jogos": 11,
+            "media": 5.091,
+            "media3": 11.7,
+            "media5": 9.02,
+            "mediana": 2.0,
+            "piso": 0.9,
+            "teto": 21.6,
+            "regularidade": 31.5,
+            "volatilidade": 6.85,
+            "tendencia": 6.609
+          }
+        },
+        {
+          "id": "141595",
+          "nome": "Gabriel Ferreira de Carvalho",
+          "posicao": "ATA",
+          "clube": "GRE",
+          "preco": 3.17,
+          "projecao": 3.62,
+          "historico": {
+            "jogos": 11,
+            "media": 1.955,
+            "media3": 5.067,
+            "media5": 3.28,
+            "mediana": 0.7,
+            "piso": 0.0,
+            "teto": 11.0,
+            "regularidade": 58.55,
+            "volatilidade": 4.145,
+            "tendencia": 3.112
           }
         },
         {
@@ -636,43 +656,23 @@
           }
         },
         {
-          "id": "105518",
-          "nome": "Renan Peixoto Nepomuceno",
-          "posicao": "ATA",
-          "clube": "CAP",
-          "preco": 2.73,
-          "projecao": 1.91,
-          "historico": {
-            "jogos": 4,
-            "media": 1.5,
-            "media3": 2.0,
-            "media5": 1.5,
-            "mediana": 1.25,
-            "piso": 0.0,
-            "teto": 3.5,
-            "regularidade": 87.25,
-            "volatilidade": 1.275,
-            "tendencia": 0.5
-          }
-        },
-        {
-          "id": "104027",
-          "nome": "Rafael Silva Guanaes",
+          "id": "115479",
+          "nome": "Paulo César Pezzolano Suárez",
           "posicao": "TEC",
-          "clube": "MIR",
-          "preco": 6.99,
-          "projecao": 4.07,
+          "clube": "INT",
+          "preco": 7.56,
+          "projecao": 5.7,
           "historico": {
             "jogos": 13,
-            "media": 3.29,
-            "media3": 4.733,
-            "media5": 4.066,
-            "mediana": 3.61,
-            "piso": 2.18,
-            "teto": 6.54,
-            "regularidade": 82.72,
-            "volatilidade": 1.728,
-            "tendencia": 1.443
+            "media": 5.235,
+            "media3": 6.35,
+            "media5": 6.13,
+            "mediana": 4.45,
+            "piso": 4.35,
+            "teto": 9.45,
+            "regularidade": 80.59,
+            "volatilidade": 1.941,
+            "tendencia": 1.115
           }
         }
       ],
@@ -681,7 +681,7 @@
         "nome": "Danilo dos Santos de Oliveira",
         "posicao": "MEI",
         "clube": "BOT",
-        "preco": 15.0,
+        "preco": 14.19,
         "projecao": 9.25,
         "historico": {
           "jogos": 10,
@@ -702,7 +702,7 @@
           "nome": "Otávio Eleodoro Rezende Costa",
           "posicao": "GOL",
           "clube": "CRU",
-          "preco": 2.43,
+          "preco": 3.11,
           "projecao": -0.83,
           "historico": {
             "jogos": 1,
@@ -722,7 +722,7 @@
           "nome": "Everton Souza da Cruz",
           "posicao": "LAT",
           "clube": "CHA",
-          "preco": 3.52,
+          "preco": 3.41,
           "projecao": 1.36,
           "historico": {
             "jogos": 10,
@@ -742,7 +742,7 @@
           "nome": "Victor Henrique Carvalho Caetano",
           "posicao": "ZAG",
           "clube": "CHA",
-          "preco": 3.19,
+          "preco": 3.16,
           "projecao": 1.65,
           "historico": {
             "jogos": 6,
@@ -803,7 +803,7 @@
         "nome": "Victor Henrique Carvalho Caetano",
         "posicao": "ZAG",
         "clube": "CHA",
-        "preco": 3.19,
+        "preco": 3.16,
         "projecao": 1.65,
         "historico": {
           "jogos": 6,
@@ -835,11 +835,11 @@
       "quantidadeEsperada": 12,
       "quantidadeBanco": 5,
       "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 11.73,
-      "custoTitulares": 108.08,
-      "custoBanco": 11.73,
-      "custoTotal": 119.81,
-      "saldo": 0.19,
+      "reservaMinimaBanco": 12.27,
+      "custoTitulares": 107.7,
+      "custoBanco": 12.27,
+      "custoTotal": 119.97,
+      "saldo": 0.03,
       "projecaoTitulares": 95.77,
       "titulares": [
         {
@@ -847,7 +847,7 @@
           "nome": "Weverton Pereira da Silva",
           "posicao": "GOL",
           "clube": "GRE",
-          "preco": 8.19,
+          "preco": 7.21,
           "projecao": 8.81,
           "historico": {
             "jogos": 13,
@@ -867,7 +867,7 @@
           "nome": "Gustavo Raúl Gómez Portillo",
           "posicao": "ZAG",
           "clube": "PAL",
-          "preco": 10.56,
+          "preco": 10.99,
           "projecao": 7.19,
           "historico": {
             "jogos": 12,
@@ -927,7 +927,7 @@
           "nome": "Danilo dos Santos de Oliveira",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 15.0,
+          "preco": 14.19,
           "projecao": 11.11,
           "historico": {
             "jogos": 10,
@@ -967,7 +967,7 @@
           "nome": "Cristian Nicolás Medina",
           "posicao": "MEI",
           "clube": "BOT",
-          "preco": 7.05,
+          "preco": 7.08,
           "projecao": 7.93,
           "historico": {
             "jogos": 7,
@@ -987,7 +987,7 @@
           "nome": "Jorge Luiz Frello Filho",
           "posicao": "MEI",
           "clube": "FLA",
-          "preco": 9.3,
+          "preco": 8.54,
           "projecao": 7.86,
           "historico": {
             "jogos": 8,
@@ -1007,7 +1007,7 @@
           "nome": "Pedro Guilherme Abreu dos Santos",
           "posicao": "ATA",
           "clube": "FLA",
-          "preco": 15.42,
+          "preco": 18.08,
           "projecao": 12.25,
           "historico": {
             "jogos": 11,
@@ -1027,7 +1027,7 @@
           "nome": "Aldemir dos Santos Ferreira",
           "posicao": "ATA",
           "clube": "SAO",
-          "preco": 7.56,
+          "preco": 6.63,
           "projecao": 11.72,
           "historico": {
             "jogos": 9,
@@ -1067,7 +1067,7 @@
           "nome": "Rafael Silva Guanaes",
           "posicao": "TEC",
           "clube": "MIR",
-          "preco": 6.99,
+          "preco": 6.97,
           "projecao": 4.27,
           "historico": {
             "jogos": 13,
@@ -1088,7 +1088,7 @@
         "nome": "Aldemir dos Santos Ferreira",
         "posicao": "ATA",
         "clube": "SAO",
-        "preco": 7.56,
+        "preco": 6.63,
         "projecao": 11.72,
         "historico": {
           "jogos": 9,
@@ -1109,7 +1109,7 @@
           "nome": "Otávio Eleodoro Rezende Costa",
           "posicao": "GOL",
           "clube": "CRU",
-          "preco": 2.43,
+          "preco": 3.11,
           "projecao": -1.24,
           "historico": {
             "jogos": 1,
@@ -1129,7 +1129,7 @@
           "nome": "Everton Souza da Cruz",
           "posicao": "LAT",
           "clube": "CHA",
-          "preco": 3.52,
+          "preco": 3.41,
           "projecao": 1.08,
           "historico": {
             "jogos": 10,
@@ -1149,7 +1149,7 @@
           "nome": "Victor Henrique Carvalho Caetano",
           "posicao": "ZAG",
           "clube": "CHA",
-          "preco": 3.19,
+          "preco": 3.16,
           "projecao": 1.34,
           "historico": {
             "jogos": 6,
@@ -1210,7 +1210,7 @@
         "nome": "Victor Henrique Carvalho Caetano",
         "posicao": "ZAG",
         "clube": "CHA",
-        "preco": 3.19,
+        "preco": 3.16,
         "projecao": 1.34,
         "historico": {
           "jogos": 6,

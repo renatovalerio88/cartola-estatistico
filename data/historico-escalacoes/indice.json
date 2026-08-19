@@ -23,15 +23,16 @@
     20,
     21,
     22,
-    23
+    23,
+    24
   ],
-  "quantidadeRodadas": 22,
+  "quantidadeRodadas": 23,
   "primeiraRodada": 2,
-  "ultimaRodada": 23,
-  "totalEscalacoes": 66,
-  "totalEscalacoesCompletas": 66,
-  "totalEstrategiasAuditadas": 66,
-  "totalEstrategiasAprovadas": 66,
+  "ultimaRodada": 24,
+  "totalEscalacoes": 69,
+  "totalEscalacoesCompletas": 69,
+  "totalEstrategiasAuditadas": 69,
+  "totalEstrategiasAprovadas": 69,
   "rodadasAprovadas": [
     2,
     3,
@@ -54,7 +55,8 @@
     20,
     21,
     22,
-    23
+    23,
+    24
   ],
   "rodadasReprovadas": [],
   "auditoriaGlobalAprovada": true,

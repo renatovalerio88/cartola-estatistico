@@ -3,7 +3,7 @@
   "descricao": "Decisão científica consolidada sobre a estratégia adaptativa V1 e V2.",
   "status": "experimental",
   "amostra": {
-    "rodadas": 22,
+    "rodadas": 23,
     "minimoExigido": 10,
     "suficiente": true
   },
@@ -16,41 +16,41 @@
   },
   "desempenho": {
     "v1": {
-      "media": 49.24,
-      "desvioPadrao": 15.07,
-      "eficienciaOraculo": 86.37,
-      "perdaMediaOraculo": 7.77
+      "media": 52.64,
+      "desvioPadrao": 15.72,
+      "eficienciaOraculo": 85.14,
+      "perdaMediaOraculo": 9.19
     },
     "v2": {
-      "media": 49.03,
-      "desvioPadrao": 15.04,
-      "eficienciaOraculo": 86.0,
-      "perdaMediaOraculo": 7.98
+      "media": 52.76,
+      "desvioPadrao": 15.73,
+      "eficienciaOraculo": 85.33,
+      "perdaMediaOraculo": 9.07
     },
     "melhorFixa": {
-      "nome": "Equilibrado",
-      "media": 52.38
+      "nome": "Agressivo",
+      "media": 55.14
     },
     "oraculo": {
-      "media": 57.01
+      "media": 61.83
     }
   },
   "ganhosV2": {
     "vsV1": {
-      "pontosPorRodada": -0.21,
-      "percentual": -0.43
+      "pontosPorRodada": 0.12,
+      "percentual": 0.23
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": -3.35,
-      "percentual": -6.4
+      "pontosPorRodada": -2.38,
+      "percentual": -4.32
     }
   },
   "comparacaoPareada": {
-    "rodadas": 22,
-    "vitoriasV1": 1,
-    "vitoriasV2": 0,
-    "empates": 21,
-    "taxaVitoriasV2": 0.0
+    "rodadas": 23,
+    "vitoriasV1": 0,
+    "vitoriasV2": 1,
+    "empates": 22,
+    "taxaVitoriasV2": 4.35
   },
   "criterios": [
     {
@@ -84,7 +84,7 @@
     {
       "nome": "amostra_minima",
       "passou": true,
-      "valor": 22,
+      "valor": 23,
       "limite": 10,
       "nivel": "CRITICO"
     },
@@ -111,54 +111,54 @@
     },
     {
       "nome": "v2_supera_v1_media",
-      "passou": false,
-      "valor": -0.21,
+      "passou": true,
+      "valor": 0.12,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_ganho_minimo_v1",
       "passou": false,
-      "valor": -0.21,
+      "valor": 0.12,
       "limite": 0.5,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": -3.35,
+      "valor": -2.38,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_vence_maioria_pareada",
       "passou": false,
-      "valor": 0.0,
+      "valor": 4.35,
       "limite": 55.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_proximo_oraculo",
-      "passou": false,
-      "valor": 7.98,
-      "limite": "< 7.77",
+      "passou": true,
+      "valor": 9.07,
+      "limite": "< 9.19",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
-      "passou": true,
-      "valor": 15.04,
-      "limite": "< 15.07",
+      "passou": false,
+      "valor": 15.73,
+      "limite": "< 15.72",
       "nivel": "DESEJAVEL"
     }
   ],
   "resumoCriterios": {
     "criticos": 13,
-    "criticosAprovados": 8,
-    "criticosReprovados": 5,
+    "criticosAprovados": 10,
+    "criticosReprovados": 3,
     "desejaveis": 1,
-    "desejaveisAprovados": 1,
-    "scoreCriticosPercentual": 61.54
+    "desejaveisAprovados": 0,
+    "scoreCriticosPercentual": 76.92
   },
   "evidencia": {
     "forte": false,
@@ -166,7 +166,7 @@
     "comparacaoFavoravelV2": false,
     "coerenciaDecisao": true
   },
-  "decisaoComparacao": "V1_SUPERIOR_A_V2",
+  "decisaoComparacao": "MANTER_TESTES",
   "recomendacao": {
     "decisao": "MANTER_V1",
     "motivo": "V2 não apresentou evidência suficiente de superioridade sobre V1.",

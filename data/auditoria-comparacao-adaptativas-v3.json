@@ -1,7 +1,7 @@
 {
   "modelo": "auditoria_comparacao_adaptativas_v3",
   "descricao": "Auditoria independente da comparação científica V1 x V2 x V3.",
-  "rodadasAuditadas": 22,
+  "rodadasAuditadas": 23,
   "testes": [
     {
       "nome": "arquivo_v1_existe",
@@ -228,70 +228,70 @@
   },
   "resultados": {
     "v1": {
-      "quantidade": 22,
-      "media": 49.24,
-      "desvioPadrao": 15.07,
-      "total": 1083.25
+      "quantidade": 23,
+      "media": 52.64,
+      "desvioPadrao": 15.72,
+      "total": 1210.8
     },
     "v2": {
-      "quantidade": 22,
-      "media": 49.03,
-      "desvioPadrao": 15.04,
-      "total": 1078.75
+      "quantidade": 23,
+      "media": 52.76,
+      "desvioPadrao": 15.73,
+      "total": 1213.45
     },
     "v3": {
-      "quantidade": 22,
-      "media": 50.53,
-      "desvioPadrao": 13.2,
-      "total": 1111.57
+      "quantidade": 23,
+      "media": 53.08,
+      "desvioPadrao": 15.78,
+      "total": 1220.89
     },
     "estrategiasFixas": {
       "Conservador": {
-        "quantidade": 22,
-        "media": 48.12,
-        "desvioPadrao": 12.67,
-        "total": 1058.53
+        "quantidade": 23,
+        "media": 49.63,
+        "desvioPadrao": 12.45,
+        "total": 1141.41
       },
       "Equilibrado": {
-        "quantidade": 22,
-        "media": 52.38,
-        "desvioPadrao": 15.64,
-        "total": 1152.28
+        "quantidade": 23,
+        "media": 54.12,
+        "desvioPadrao": 15.33,
+        "total": 1244.82
       },
       "Agressivo": {
-        "quantidade": 22,
-        "media": 48.61,
-        "desvioPadrao": 16.39,
-        "total": 1069.34
+        "quantidade": 23,
+        "media": 55.14,
+        "desvioPadrao": 22.91,
+        "total": 1268.18
       }
     },
-    "melhorEstrategiaFixa": "Equilibrado",
+    "melhorEstrategiaFixa": "Agressivo",
     "oraculo": {
-      "quantidade": 22,
-      "media": 57.01,
-      "desvioPadrao": 13.99,
-      "total": 1254.21
+      "quantidade": 23,
+      "media": 61.83,
+      "desvioPadrao": 19.5,
+      "total": 1422.15
     },
     "ganhos": {
-      "v3VsV1": 1.29,
-      "v3VsV2": 1.5,
-      "v3VsMelhorFixa": -1.85
+      "v3VsV1": 0.44,
+      "v3VsV2": 0.32,
+      "v3VsMelhorFixa": -2.06
     },
     "eficiencia": {
-      "v1": 86.37,
-      "v2": 86.0,
-      "v3": 88.63
+      "v1": 85.14,
+      "v2": 85.33,
+      "v3": 85.85
     },
     "pareadoV2V3": {
-      "vitoriasV2": 6,
-      "vitoriasV3": 5,
-      "empates": 11,
-      "taxaV3": 22.73
+      "vitoriasV2": 1,
+      "vitoriasV3": 1,
+      "empates": 21,
+      "taxaV3": 4.35
     },
     "escolhasV3": {
-      "Conservador": 8,
-      "Equilibrado": 9,
-      "Agressivo": 5
+      "Conservador": 1,
+      "Equilibrado": 16,
+      "Agressivo": 6
     }
   },
   "decisao": "COMPARACAO_V3_VALIDADA",
