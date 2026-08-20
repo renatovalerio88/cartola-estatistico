@@ -1,76 +1,13 @@
 {
   "id": 149990,
-  "nome": "Franclim Pereira da Silva Maia Carvalho",
+  "nome": null,
   "posicao": "TEC",
-  "clube": "BOT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 6.71,
       "scouts": {
         "V": 1
@@ -78,15 +15,15 @@
     },
     {
       "rodada": 11,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4.89,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 8.17,
       "scouts": {
         "V": 1
@@ -94,29 +31,29 @@
     },
     {
       "rodada": 13,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 5.88,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4.58,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.39,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 5.15,
       "scouts": {
         "V": 1
@@ -124,29 +61,29 @@
     },
     {
       "rodada": 17,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4,
       "scouts": {}
     },
     {
       "rodada": 18,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 3.59,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 7.33,
       "scouts": {
         "V": 1
@@ -154,29 +91,22 @@
     },
     {
       "rodada": 21,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4.35,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 10.72,
-      "media": 5.01,
-      "pontos": 2.87,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 10.72,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.87,
       "scouts": {}
     }

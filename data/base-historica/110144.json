@@ -1,27 +1,13 @@
 {
   "id": 110144,
-  "nome": "Claudio Paul Spinelli",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "VAS",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -31,8 +17,8 @@
     },
     {
       "rodada": 4,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -41,8 +27,8 @@
     },
     {
       "rodada": 5,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -50,16 +36,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "FD": 1,
@@ -68,23 +47,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FC": 1,
@@ -94,15 +59,15 @@
     },
     {
       "rodada": 11,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 1,
@@ -112,8 +77,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FC": 1,
@@ -122,8 +87,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "FD": 1,
@@ -132,8 +97,8 @@
     },
     {
       "rodada": 15,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 8.4,
       "scouts": {
         "DS": 3,
@@ -144,16 +109,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "DS": 1,
@@ -164,8 +122,8 @@
     },
     {
       "rodada": 18,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "FC": 5,
@@ -175,16 +133,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 1,
@@ -195,36 +146,22 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 5.75,
-      "media": 3.05,
+      "preco": null,
+      "media": null,
       "pontos": 2.1,
       "scouts": {
         "DS": 1,
         "FC": 2,
         "FD": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.75,
-      "media": 3.05,
-      "pontos": 2.1,
-      "scouts": {}
     }
   ]
 }

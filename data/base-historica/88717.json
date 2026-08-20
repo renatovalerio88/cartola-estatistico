@@ -1,0 +1,36 @@
+{
+  "id": 88717,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 3.15,
+      "scouts": {}
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 2.11,
+      "scouts": {}
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 3.48,
+      "scouts": {}
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": 3.67,
+      "scouts": {}
+    }
+  ]
+}

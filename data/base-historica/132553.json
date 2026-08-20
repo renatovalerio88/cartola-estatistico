@@ -1,13 +1,13 @@
 {
   "id": 132553,
-  "nome": "Jemmes Bruno Ribeiro da Silva",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "FLU",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DS": 3,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -28,8 +28,8 @@
     },
     {
       "rodada": 3,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "DS": 2,
@@ -37,16 +37,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 9.2,
       "scouts": {
         "DS": 3,
@@ -56,15 +49,15 @@
     },
     {
       "rodada": 6,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -72,8 +65,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "CA": 1,
@@ -83,8 +76,8 @@
     },
     {
       "rodada": 9,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -92,16 +85,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 3.8,
       "scouts": {
         "DS": 2,
@@ -110,8 +96,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 1.1,
       "scouts": {
         "DS": 1,
@@ -121,8 +107,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -131,8 +117,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "CA": 1,
@@ -142,23 +128,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "DS": 3,
@@ -169,8 +141,8 @@
     },
     {
       "rodada": 18,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 7.7,
       "scouts": {
         "A": 1,
@@ -179,30 +151,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -212,21 +163,14 @@
     },
     {
       "rodada": 23,
-      "preco": 6.64,
-      "media": 3.57,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DS": 2,
         "FC": 2,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.64,
-      "media": 3.57,
-      "pontos": 2.9,
-      "scouts": {}
     }
   ]
 }

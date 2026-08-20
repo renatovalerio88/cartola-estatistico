@@ -1,0 +1,153 @@
+{
+  "id": 125467,
+  "nome": null,
+  "posicao": "ZAG",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 4,
+      "preco": null,
+      "media": null,
+      "pontos": 2.1,
+      "scouts": {
+        "DS": 2,
+        "FC": 3
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": null,
+      "media": null,
+      "pontos": 1.7,
+      "scouts": {
+        "DS": 1,
+        "FC": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": -1.6,
+      "scouts": {
+        "CA": 1,
+        "FC": 2,
+        "FS": 2,
+        "PC": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 5.3,
+      "scouts": {
+        "FC": 2,
+        "FS": 2,
+        "I": 1,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": 2,
+      "scouts": {
+        "CA": 1,
+        "DS": 2
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 1.7,
+      "scouts": {
+        "DS": 1,
+        "FC": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 10,
+      "preco": null,
+      "media": null,
+      "pontos": 7.3,
+      "scouts": {
+        "DS": 1,
+        "FF": 1,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 1.4,
+      "scouts": {
+        "CV": 1,
+        "FC": 2,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 9.7,
+      "scouts": {
+        "CA": 1,
+        "DS": 4,
+        "FC": 1,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 15,
+      "preco": null,
+      "media": null,
+      "pontos": 3,
+      "scouts": {
+        "DS": 2
+      }
+    },
+    {
+      "rodada": 16,
+      "preco": null,
+      "media": null,
+      "pontos": 12.8,
+      "scouts": {
+        "DS": 4,
+        "FC": 4,
+        "G": 1
+      }
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": 6.7,
+      "scouts": {
+        "DS": 3,
+        "FC": 1,
+        "FD": 1,
+        "FF": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": null,
+      "media": null,
+      "pontos": 6.4,
+      "scouts": {
+        "CA": 1,
+        "DS": 5,
+        "FC": 2,
+        "FS": 1
+      }
+    }
+  ]
+}

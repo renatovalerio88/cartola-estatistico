@@ -1,41 +1,13 @@
 {
   "id": 111682,
-  "nome": "Adson Ferreira Soares",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "VAS",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 3.1,
       "scouts": {
         "DS": 1,
@@ -43,16 +15,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -62,37 +27,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -100,8 +37,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 3.8,
       "scouts": {
         "DS": 2,
@@ -110,8 +47,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -119,8 +56,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 8.1,
       "scouts": {
         "DS": 3,
@@ -128,16 +65,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 4.6,
       "scouts": {
         "DS": 2,
@@ -148,8 +78,8 @@
     },
     {
       "rodada": 18,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "DS": 1,
@@ -160,16 +90,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -177,35 +100,14 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.63,
-      "media": 3.69,
+      "preco": null,
+      "media": null,
       "pontos": 5.3,
       "scouts": {
         "DS": 3,
         "FF": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.63,
-      "media": 3.69,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

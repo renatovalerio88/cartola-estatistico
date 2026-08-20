@@ -1,125 +1,13 @@
 {
   "id": 150197,
-  "nome": "Luís Osório Messias de Oliveira",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "SAO",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 2.24,
-      "media": 2.32,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -128,8 +16,8 @@
     },
     {
       "rodada": 18,
-      "preco": 2.24,
-      "media": 2.32,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -138,8 +26,8 @@
     },
     {
       "rodada": 19,
-      "preco": 2.24,
-      "media": 2.32,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "DS": 4,
@@ -149,8 +37,8 @@
     },
     {
       "rodada": 20,
-      "preco": 2.24,
-      "media": 2.32,
+      "preco": null,
+      "media": null,
       "pontos": 6.4,
       "scouts": {
         "A": 1,
@@ -160,34 +48,13 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 2.24,
-      "media": 2.32,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.24,
-      "media": 2.32,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

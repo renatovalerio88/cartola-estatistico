@@ -1,13 +1,13 @@
 {
   "id": 78248,
-  "nome": "Gustavo Henrique Vernes",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 9.2,
       "scouts": {
         "DS": 5,
@@ -17,16 +17,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "CA": 1,
@@ -38,16 +31,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 3.6,
       "scouts": {
         "DS": 1,
@@ -57,8 +43,8 @@
     },
     {
       "rodada": 6,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "CA": 1,
@@ -68,16 +54,9 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -85,8 +64,8 @@
     },
     {
       "rodada": 9,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -94,8 +73,8 @@
     },
     {
       "rodada": 10,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 2,
@@ -106,8 +85,8 @@
     },
     {
       "rodada": 11,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 6.4,
       "scouts": {
         "DS": 1,
@@ -118,8 +97,8 @@
     },
     {
       "rodada": 12,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 4.9,
       "scouts": {
         "FC": 2,
@@ -129,8 +108,8 @@
     },
     {
       "rodada": 13,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 6.1,
       "scouts": {
         "CA": 1,
@@ -140,16 +119,9 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -157,8 +129,8 @@
     },
     {
       "rodada": 16,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "FF": 2
@@ -166,8 +138,8 @@
     },
     {
       "rodada": 17,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 8.8,
       "scouts": {
         "DS": 2,
@@ -177,8 +149,8 @@
     },
     {
       "rodada": 18,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 2,
@@ -187,8 +159,8 @@
     },
     {
       "rodada": 19,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "DS": 1,
@@ -198,24 +170,17 @@
     },
     {
       "rodada": 20,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
       }
     },
     {
-      "rodada": 21,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -223,8 +188,8 @@
     },
     {
       "rodada": 23,
-      "preco": 9.27,
-      "media": 4.12,
+      "preco": null,
+      "media": null,
       "pontos": 10,
       "scouts": {
         "DS": 1,
@@ -232,13 +197,6 @@
         "FF": 1,
         "G": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 9.27,
-      "media": 4.12,
-      "pontos": 10,
-      "scouts": {}
     }
   ]
 }

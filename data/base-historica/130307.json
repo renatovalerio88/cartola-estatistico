@@ -1,160 +1,13 @@
 {
   "id": 130307,
-  "nome": "Wallace Gomes da Silva Santos",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.12,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 8.7,
       "scouts": {
         "FC": 2,
@@ -165,20 +18,13 @@
     },
     {
       "rodada": 23,
-      "preco": 5.12,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "FC": 2,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.12,
-      "media": 4.3,
-      "pontos": -0.1,
-      "scouts": {}
     }
   ]
 }

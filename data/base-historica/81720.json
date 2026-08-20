@@ -1,69 +1,13 @@
 {
   "id": 81720,
-  "nome": "Jesse Ellis Lingard",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "FD": 1,
@@ -72,8 +16,8 @@
     },
     {
       "rodada": 10,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": -2.2,
       "scouts": {
         "CA": 1,
@@ -82,15 +26,15 @@
     },
     {
       "rodada": 11,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -99,8 +43,8 @@
     },
     {
       "rodada": 13,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -108,8 +52,8 @@
     },
     {
       "rodada": 14,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -118,8 +62,8 @@
     },
     {
       "rodada": 15,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "DS": 2,
@@ -131,8 +75,8 @@
     },
     {
       "rodada": 16,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "A": 1,
@@ -142,8 +86,8 @@
     },
     {
       "rodada": 17,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DS": 2,
@@ -153,16 +97,9 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 2,
@@ -170,16 +107,9 @@
       }
     },
     {
-      "rodada": 20,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 21,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 3.3,
       "scouts": {
         "DS": 1,
@@ -190,8 +120,8 @@
     },
     {
       "rodada": 22,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -199,20 +129,13 @@
     },
     {
       "rodada": 23,
-      "preco": 3.96,
-      "media": 1.78,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DS": 1,
         "FC": 3
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 3.96,
-      "media": 1.78,
-      "pontos": 0.6,
-      "scouts": {}
     }
   ]
 }

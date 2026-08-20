@@ -1,0 +1,80 @@
+{
+  "id": 130612,
+  "nome": null,
+  "posicao": "ATA",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 1.7,
+      "scouts": {
+        "DS": 1,
+        "FC": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": null,
+      "media": null,
+      "pontos": 0.7,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 2,
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 10,
+      "preco": null,
+      "media": null,
+      "pontos": 0.9,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 2,
+        "FS": 2
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 2.5,
+      "scouts": {
+        "DS": 1,
+        "FS": 2
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": null,
+      "media": null,
+      "pontos": 3.4,
+      "scouts": {
+        "DS": 1,
+        "FC": 2,
+        "FD": 1,
+        "FF": 1,
+        "FS": 1
+      }
+    }
+  ]
+}

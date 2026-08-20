@@ -1,41 +1,13 @@
 {
   "id": 126189,
-  "nome": "Tomás Pérez",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -43,8 +15,8 @@
     },
     {
       "rodada": 6,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "CA": 1,
@@ -55,8 +27,8 @@
     },
     {
       "rodada": 7,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 5.9,
       "scouts": {
         "DS": 3,
@@ -66,16 +38,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -84,8 +49,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -93,24 +58,17 @@
     },
     {
       "rodada": 11,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": -1.2,
       "scouts": {
         "FC": 4
       }
     },
     {
-      "rodada": 12,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.8,
       "scouts": {
         "CA": 1,
@@ -120,38 +78,24 @@
     },
     {
       "rodada": 14,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
     },
     {
-      "rodada": 16,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {
         "DS": 2,
@@ -161,8 +105,8 @@
     },
     {
       "rodada": 19,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -170,40 +114,12 @@
     },
     {
       "rodada": 20,
-      "preco": 4.13,
-      "media": 1.54,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DS": 3
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.13,
-      "media": 1.54,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

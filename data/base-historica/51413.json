@@ -1,13 +1,13 @@
 {
   "id": 51413,
-  "nome": "Walter Leandro Capeloza Artune",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "MIR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DE": 5,
@@ -26,8 +26,8 @@
     },
     {
       "rodada": 3,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DE": 2,
@@ -35,23 +35,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -60,8 +46,8 @@
     },
     {
       "rodada": 7,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -70,8 +56,8 @@
     },
     {
       "rodada": 8,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DE": 5,
@@ -80,8 +66,8 @@
     },
     {
       "rodada": 9,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "DE": 3,
@@ -91,8 +77,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -101,8 +87,8 @@
     },
     {
       "rodada": 11,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DE": 6,
@@ -111,8 +97,8 @@
     },
     {
       "rodada": 12,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "CA": 1,
@@ -122,8 +108,8 @@
     },
     {
       "rodada": 13,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "GS": 1
@@ -131,8 +117,8 @@
     },
     {
       "rodada": 14,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "CA": 1,
@@ -142,8 +128,8 @@
     },
     {
       "rodada": 15,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -152,8 +138,8 @@
     },
     {
       "rodada": 16,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DE": 3,
@@ -162,8 +148,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 6.3,
       "scouts": {
         "DE": 1,
@@ -172,8 +158,8 @@
     },
     {
       "rodada": 18,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DE": 1,
@@ -181,16 +167,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "CA": 1,
@@ -199,35 +178,14 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 4.51,
-      "media": 2.47,
+      "preco": null,
+      "media": null,
       "pontos": -2.4,
       "scouts": {
         "DE": 2,
         "GS": 5
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.51,
-      "media": 2.47,
-      "pontos": -2.4,
-      "scouts": {}
     }
   ]
 }

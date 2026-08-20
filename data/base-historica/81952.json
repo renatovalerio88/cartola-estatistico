@@ -1,14 +1,102 @@
 {
   "id": 81952,
-  "nome": "Willian Osmar de Oliveira Silva",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
-      "rodada": 22,
-      "preco": 4.62,
-      "media": 1.84,
-      "pontos": null,
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 7.9,
+      "scouts": {
+        "DS": 5,
+        "FC": 2,
+        "FS": 2
+      }
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 1.4,
+      "scouts": {
+        "DS": 1,
+        "FC": 3,
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
+      "rodada": 4,
+      "preco": null,
+      "media": null,
+      "pontos": 0.8,
+      "scouts": {
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": 2.7,
+      "scouts": {
+        "DS": 2,
+        "FC": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 1.2,
+      "scouts": {
+        "DS": 1,
+        "FC": 1
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": -0.6,
+      "scouts": {
+        "FC": 2
+      }
+    },
+    {
+      "rodada": 16,
+      "preco": null,
+      "media": null,
+      "pontos": 2,
+      "scouts": {
+        "DS": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
       "scouts": {}
     }
   ]

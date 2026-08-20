@@ -1,34 +1,13 @@
 {
   "id": 63007,
-  "nome": "Neymar da Silva Santos Júnior",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "SAN",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 19.2,
       "scouts": {
         "CA": 1,
@@ -41,16 +20,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "FC": 2,
@@ -61,8 +33,8 @@
     },
     {
       "rodada": 7,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 9.4,
       "scouts": {
         "CA": 1,
@@ -73,16 +45,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 7.8,
       "scouts": {
         "A": 1,
@@ -94,16 +59,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 5.3,
       "scouts": {
         "FC": 1,
@@ -114,8 +72,8 @@
     },
     {
       "rodada": 12,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 7.5,
       "scouts": {
         "DS": 2,
@@ -126,23 +84,9 @@
       }
     },
     {
-      "rodada": 13,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 10.5,
       "scouts": {
         "CA": 1,
@@ -154,8 +98,8 @@
     },
     {
       "rodada": 16,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {
         "CA": 1,
@@ -167,30 +111,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 22.8,
       "scouts": {
         "CA": 1,
@@ -203,23 +126,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 19.51,
-      "media": 9.86,
+      "preco": null,
+      "media": null,
       "pontos": 8.4,
       "scouts": {
         "DS": 2,
@@ -228,13 +137,6 @@
         "FF": 3,
         "FS": 3
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 19.51,
-      "media": 9.86,
-      "pontos": 8.4,
-      "scouts": {}
     }
   ]
 }

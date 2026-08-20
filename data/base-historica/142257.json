@@ -1,118 +1,13 @@
 {
   "id": 142257,
-  "nome": "Luis Eduardo Guedes de Souza",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 1.45,
-      "media": -0.3,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -120,61 +15,12 @@
     },
     {
       "rodada": 17,
-      "preco": 1.45,
-      "media": -0.3,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
-    },
-    {
-      "rodada": 18,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 1.45,
-      "media": -0.3,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

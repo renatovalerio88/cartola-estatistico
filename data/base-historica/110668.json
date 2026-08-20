@@ -1,27 +1,13 @@
 {
   "id": 110668,
-  "nome": "Lucas Ángel Esquivel",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 5.7,
       "scouts": {
         "A": 1,
@@ -31,8 +17,8 @@
     },
     {
       "rodada": 4,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 1,
@@ -42,16 +28,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 8.5,
       "scouts": {
         "A": 1,
@@ -61,8 +40,8 @@
     },
     {
       "rodada": 7,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": -0.5,
       "scouts": {
         "FC": 6,
@@ -72,8 +51,8 @@
     },
     {
       "rodada": 8,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "DS": 1,
@@ -82,16 +61,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 3,
@@ -101,8 +73,8 @@
     },
     {
       "rodada": 11,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 10.8,
       "scouts": {
         "DS": 2,
@@ -114,8 +86,8 @@
     },
     {
       "rodada": 12,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 7.6,
       "scouts": {
         "CA": 1,
@@ -126,8 +98,8 @@
     },
     {
       "rodada": 13,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -138,8 +110,8 @@
     },
     {
       "rodada": 14,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "CV": 1,
@@ -148,32 +120,18 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 17,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "DS": 1,
@@ -182,8 +140,8 @@
     },
     {
       "rodada": 19,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "A": 1,
@@ -192,8 +150,8 @@
     },
     {
       "rodada": 20,
-      "preco": 7.9,
-      "media": 4.88,
+      "preco": null,
+      "media": null,
       "pontos": 7.6,
       "scouts": {
         "DS": 2,
@@ -201,34 +159,6 @@
         "FS": 1,
         "SG": 1
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.9,
-      "media": 4.88,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

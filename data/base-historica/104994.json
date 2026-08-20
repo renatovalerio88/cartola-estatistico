@@ -1,13 +1,13 @@
 {
   "id": 104994,
-  "nome": "Wagner Leonardo Calvelo de Souza",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {
         "DS": 3,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 3,
@@ -27,8 +27,8 @@
     },
     {
       "rodada": 3,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "CV": 1,
@@ -38,65 +38,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -105,8 +49,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "FC": 1,
@@ -117,8 +61,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "DS": 2,
@@ -126,23 +70,16 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -150,56 +87,14 @@
     },
     {
       "rodada": 18,
-      "preco": 5.36,
-      "media": 2.78,
+      "preco": null,
+      "media": null,
       "pontos": -1.4,
       "scouts": {
         "CA": 1,
         "FC": 3,
         "FS": 1
       }
-    },
-    {
-      "rodada": 19,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.36,
-      "media": 2.78,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

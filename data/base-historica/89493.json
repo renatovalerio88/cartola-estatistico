@@ -1,153 +1,13 @@
 {
   "id": 89493,
-  "nome": "Igor Rabello da Costa",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "FLU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 21,
-      "preco": 8.06,
-      "media": 6.65,
+      "preco": null,
+      "media": null,
       "pontos": 8.8,
       "scouts": {
         "DS": 2,
@@ -156,27 +16,13 @@
       }
     },
     {
-      "rodada": 22,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 8.06,
-      "media": 6.65,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DS": 3
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.06,
-      "media": 6.65,
-      "pontos": 4.5,
-      "scouts": {}
     }
   ]
 }

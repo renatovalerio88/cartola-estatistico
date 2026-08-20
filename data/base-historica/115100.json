@@ -1,0 +1,34 @@
+{
+  "id": 115100,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 0.8,
+      "scouts": {
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": 0.9,
+      "scouts": {
+        "DS": 1,
+        "FC": 2
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

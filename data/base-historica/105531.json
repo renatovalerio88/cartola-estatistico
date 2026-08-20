@@ -1,13 +1,13 @@
 {
   "id": 105531,
-  "nome": "Matheus Lima Beltrão Oliveira Valin",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 5.1,
       "scouts": {
         "DS": 2,
@@ -17,16 +17,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 19,
       "scouts": {
         "CA": 1,
@@ -39,16 +32,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "DS": 3,
@@ -58,8 +44,8 @@
     },
     {
       "rodada": 6,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 2,
@@ -67,16 +53,9 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 12.1,
       "scouts": {
         "A": 1,
@@ -89,8 +68,8 @@
     },
     {
       "rodada": 9,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": -0.8,
       "scouts": {
         "CA": 1,
@@ -99,16 +78,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 12.1,
       "scouts": {
         "DS": 4,
@@ -119,8 +91,8 @@
     },
     {
       "rodada": 12,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 11.7,
       "scouts": {
         "CA": 1,
@@ -132,8 +104,8 @@
     },
     {
       "rodada": 13,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 17.8,
       "scouts": {
         "DS": 2,
@@ -145,8 +117,8 @@
     },
     {
       "rodada": 14,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 4,
@@ -155,8 +127,8 @@
     },
     {
       "rodada": 15,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "CA": 1,
@@ -166,8 +138,8 @@
     },
     {
       "rodada": 16,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 2,
@@ -177,8 +149,8 @@
     },
     {
       "rodada": 17,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 8.5,
       "scouts": {
         "DS": 2,
@@ -190,8 +162,8 @@
     },
     {
       "rodada": 18,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "DS": 3,
@@ -202,8 +174,8 @@
     },
     {
       "rodada": 19,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "DS": 3,
@@ -213,23 +185,9 @@
       }
     },
     {
-      "rodada": 20,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "DS": 1,
@@ -240,8 +198,8 @@
     },
     {
       "rodada": 23,
-      "preco": 12.32,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 2,
@@ -249,13 +207,6 @@
         "FF": 1,
         "FS": 2
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 12.32,
-      "media": 7.6,
-      "pontos": 4.2,
-      "scouts": {}
     }
   ]
 }

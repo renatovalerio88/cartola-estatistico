@@ -1,34 +1,13 @@
 {
   "id": 95362,
-  "nome": "Zander Mateo Casierra Cabezas",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -36,8 +15,8 @@
     },
     {
       "rodada": 5,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -45,8 +24,8 @@
     },
     {
       "rodada": 6,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -54,8 +33,8 @@
     },
     {
       "rodada": 7,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -64,8 +43,8 @@
     },
     {
       "rodada": 8,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
@@ -73,15 +52,15 @@
     },
     {
       "rodada": 9,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -89,8 +68,8 @@
     },
     {
       "rodada": 11,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -98,15 +77,15 @@
     },
     {
       "rodada": 12,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -116,8 +95,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 12.1,
       "scouts": {
         "A": 1,
@@ -129,8 +108,8 @@
     },
     {
       "rodada": 15,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 10.7,
       "scouts": {
         "DS": 1,
@@ -143,8 +122,8 @@
     },
     {
       "rodada": 16,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "FF": 1,
@@ -154,24 +133,17 @@
     },
     {
       "rodada": 17,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 18,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "FD": 1,
@@ -181,44 +153,30 @@
     },
     {
       "rodada": 20,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "FD": 2
       }
     },
     {
-      "rodada": 21,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 5.64,
-      "media": 2.25,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "FC": 1,
         "FS": 1,
         "FT": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.64,
-      "media": 2.25,
-      "pontos": 3.2,
-      "scouts": {}
     }
   ]
 }

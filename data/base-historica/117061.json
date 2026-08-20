@@ -1,146 +1,13 @@
 {
   "id": 117061,
-  "nome": "Gabriel Knesowitsch",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "MIR",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 2.25,
-      "media": -0.03,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -148,8 +15,8 @@
     },
     {
       "rodada": 21,
-      "preco": 2.25,
-      "media": -0.03,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -158,22 +25,8 @@
     },
     {
       "rodada": 22,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 2.25,
-      "media": -0.03,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.25,
-      "media": -0.03,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

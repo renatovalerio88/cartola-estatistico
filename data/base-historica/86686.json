@@ -1,41 +1,20 @@
 {
   "id": 86686,
-  "nome": "Danilo das Neves Pinheiro",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "VAS",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {
         "CA": 1,
@@ -46,8 +25,8 @@
     },
     {
       "rodada": 6,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
@@ -55,8 +34,8 @@
     },
     {
       "rodada": 7,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FS": 1,
@@ -65,8 +44,8 @@
     },
     {
       "rodada": 8,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -75,8 +54,8 @@
     },
     {
       "rodada": 9,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "DS": 1,
@@ -87,8 +66,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -97,15 +76,15 @@
     },
     {
       "rodada": 11,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 2,
@@ -115,8 +94,8 @@
     },
     {
       "rodada": 13,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "CA": 1,
@@ -126,23 +105,16 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -151,46 +123,18 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 21,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 7.9,
       "scouts": {
         "DS": 4,
@@ -201,20 +145,13 @@
     },
     {
       "rodada": 23,
-      "preco": 4.24,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.24,
-      "media": 2.13,
-      "pontos": 2.3,
-      "scouts": {}
     }
   ]
 }

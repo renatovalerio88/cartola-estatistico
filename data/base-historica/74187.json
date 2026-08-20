@@ -1,0 +1,28 @@
+{
+  "id": 74187,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": -1.6,
+      "scouts": {
+        "CA": 1,
+        "FC": 2
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 0.2,
+      "scouts": {
+        "FC": 1,
+        "FS": 1
+      }
+    }
+  ]
+}

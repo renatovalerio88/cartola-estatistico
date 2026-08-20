@@ -1,20 +1,13 @@
 {
   "id": 113157,
-  "nome": "Nathan Gabriel de Souza Mendes",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "CA": 1,
@@ -24,23 +17,9 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -50,8 +29,8 @@
     },
     {
       "rodada": 6,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 8.9,
       "scouts": {
         "DS": 3,
@@ -61,8 +40,8 @@
     },
     {
       "rodada": 7,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "CA": 1,
@@ -72,8 +51,8 @@
     },
     {
       "rodada": 8,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "DS": 3,
@@ -84,8 +63,8 @@
     },
     {
       "rodada": 9,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -94,8 +73,8 @@
     },
     {
       "rodada": 10,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -103,8 +82,8 @@
     },
     {
       "rodada": 11,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 12.7,
       "scouts": {
         "A": 1,
@@ -115,8 +94,8 @@
     },
     {
       "rodada": 12,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 6.7,
       "scouts": {
         "CA": 1,
@@ -126,16 +105,9 @@
       }
     },
     {
-      "rodada": 13,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DS": 2,
@@ -145,8 +117,8 @@
     },
     {
       "rodada": 15,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -154,71 +126,15 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 7.52,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 8.5,
       "scouts": {
         "DS": 2,
         "FS": 1,
         "SG": 1
       }
-    },
-    {
-      "rodada": 18,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.52,
-      "media": 5.02,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,41 +1,20 @@
 {
   "id": 88963,
-  "nome": "José Leonardo Nunes Alves Sousa Jardim",
+  "nome": null,
   "posicao": "TEC",
-  "clube": "FLA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 13.84,
-      "media": 7.33,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 13.84,
-      "media": 7.33,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 13.84,
-      "media": 7.33,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 9.46,
       "scouts": {
         "V": 1
@@ -43,8 +22,8 @@
     },
     {
       "rodada": 6,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 11.41,
       "scouts": {
         "V": 1
@@ -52,8 +31,8 @@
     },
     {
       "rodada": 7,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 9.36,
       "scouts": {
         "V": 1
@@ -61,22 +40,22 @@
     },
     {
       "rodada": 8,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 3.97,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 1.57,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 6.89,
       "scouts": {
         "V": 1
@@ -84,8 +63,8 @@
     },
     {
       "rodada": 11,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 7.31,
       "scouts": {
         "V": 1
@@ -93,8 +72,8 @@
     },
     {
       "rodada": 12,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 8.309999999999999,
       "scouts": {
         "V": 1
@@ -102,8 +81,8 @@
     },
     {
       "rodada": 13,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 11.48,
       "scouts": {
         "V": 1
@@ -111,15 +90,15 @@
     },
     {
       "rodada": 14,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 3.75,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 8.440000000000001,
       "scouts": {
         "V": 1
@@ -127,22 +106,22 @@
     },
     {
       "rodada": 16,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 4.01,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 3.26,
       "scouts": {}
     },
     {
       "rodada": 18,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 10.2,
       "scouts": {
         "V": 1
@@ -150,8 +129,8 @@
     },
     {
       "rodada": 19,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 10.98,
       "scouts": {
         "V": 1
@@ -159,22 +138,22 @@
     },
     {
       "rodada": 20,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 4.93,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 8.96,
       "scouts": {
         "V": 1
@@ -182,19 +161,12 @@
     },
     {
       "rodada": 23,
-      "preco": 13.84,
-      "media": 7.33,
+      "preco": null,
+      "media": null,
       "pontos": 11.64,
       "scouts": {
         "V": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 13.84,
-      "media": 7.33,
-      "pontos": 11.64,
-      "scouts": {}
     }
   ]
 }

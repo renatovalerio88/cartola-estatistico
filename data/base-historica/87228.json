@@ -1,20 +1,13 @@
 {
   "id": 87228,
-  "nome": "Guilherme Antonio Arana Lopes",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "FLU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -22,8 +15,8 @@
     },
     {
       "rodada": 3,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "DS": 1,
@@ -32,8 +25,8 @@
     },
     {
       "rodada": 4,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -41,16 +34,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 9.1,
       "scouts": {
         "CA": 1,
@@ -61,16 +47,9 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 6.4,
       "scouts": {
         "CA": 1,
@@ -80,16 +59,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 2,
@@ -98,8 +70,8 @@
     },
     {
       "rodada": 11,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -107,8 +79,8 @@
     },
     {
       "rodada": 12,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "DS": 1,
@@ -118,8 +90,8 @@
     },
     {
       "rodada": 13,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.6,
       "scouts": {
         "FD": 1,
@@ -129,8 +101,8 @@
     },
     {
       "rodada": 14,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 7.2,
       "scouts": {
         "DS": 4,
@@ -139,16 +111,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.3,
       "scouts": {
         "DS": 1,
@@ -158,59 +123,24 @@
     },
     {
       "rodada": 17,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 18,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 19,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.42,
-      "media": 3.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.42,
-      "media": 3.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

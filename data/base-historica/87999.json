@@ -1,13 +1,13 @@
 {
   "id": 87999,
-  "nome": "Gustavo Henrique Furtado Scarpa",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -15,15 +15,15 @@
     },
     {
       "rodada": 2,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 9,
       "scouts": {
         "A": 1,
@@ -35,8 +35,8 @@
     },
     {
       "rodada": 4,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -44,8 +44,8 @@
     },
     {
       "rodada": 5,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
@@ -54,24 +54,17 @@
     },
     {
       "rodada": 6,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
       }
     },
     {
-      "rodada": 7,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 1,
@@ -81,8 +74,8 @@
     },
     {
       "rodada": 9,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 4.3,
       "scouts": {
         "FF": 1,
@@ -92,31 +85,17 @@
     },
     {
       "rodada": 10,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "G": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 7.06,
-      "media": 3.09,
+      "preco": null,
+      "media": null,
       "pontos": 4.1,
       "scouts": {
         "DS": 1,
@@ -124,83 +103,6 @@
         "FF": 3,
         "FS": 1
       }
-    },
-    {
-      "rodada": 14,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.06,
-      "media": 3.09,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

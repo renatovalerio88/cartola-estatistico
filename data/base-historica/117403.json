@@ -1,13 +1,13 @@
 {
   "id": 117403,
-  "nome": "Renato Marques de Oliveira Júnior",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 2.1,
       "scouts": {
         "FC": 3,
@@ -17,72 +17,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -90,24 +27,17 @@
     },
     {
       "rodada": 12,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": -3,
       "scouts": {
         "CV": 1
       }
     },
     {
-      "rodada": 13,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
@@ -115,8 +45,8 @@
     },
     {
       "rodada": 15,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "FT": 1
@@ -124,69 +54,20 @@
     },
     {
       "rodada": 16,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 17,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 2.73,
-      "media": 0.74,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 20,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.73,
-      "media": 0.74,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

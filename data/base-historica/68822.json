@@ -1,69 +1,13 @@
 {
   "id": 68822,
-  "nome": "Rafael de Carvalho Santos",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "CHA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 4.94,
-      "media": 3.75,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DE": 4,
@@ -72,8 +16,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.94,
-      "media": 3.75,
+      "preco": null,
+      "media": null,
       "pontos": 8.1,
       "scouts": {
         "DE": 7,
@@ -82,8 +26,8 @@
     },
     {
       "rodada": 11,
-      "preco": 4.94,
-      "media": 3.75,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DE": 5,
@@ -92,97 +36,13 @@
     },
     {
       "rodada": 12,
-      "preco": 4.94,
-      "media": 3.75,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DE": 4,
         "GS": 4
       }
-    },
-    {
-      "rodada": 13,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.94,
-      "media": 3.75,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

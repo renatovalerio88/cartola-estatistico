@@ -1,13 +1,13 @@
 {
   "id": 89883,
-  "nome": "Douglas Moreira Fagundes",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": -1.1,
       "scouts": {
         "CA": 1,
@@ -17,8 +17,8 @@
     },
     {
       "rodada": 2,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -26,51 +26,23 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 6,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -79,8 +51,8 @@
     },
     {
       "rodada": 10,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -88,86 +60,9 @@
       }
     },
     {
-      "rodada": 11,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -175,19 +70,12 @@
     },
     {
       "rodada": 23,
-      "preco": 2.3,
-      "media": -0.01,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 2.3,
-      "media": -0.01,
-      "pontos": -0.6,
-      "scouts": {}
     }
   ]
 }

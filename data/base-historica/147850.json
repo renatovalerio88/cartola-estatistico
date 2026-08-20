@@ -1,0 +1,26 @@
+{
+  "id": 147850,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": 6.03,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 6.24,
+      "scouts": {
+        "V": 1
+      }
+    }
+  ]
+}

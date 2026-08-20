@@ -1,69 +1,13 @@
 {
   "id": 141594,
-  "nome": "Pedro Gabriel Crisostomo Pinheiro",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -74,8 +18,8 @@
     },
     {
       "rodada": 10,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "FC": 1,
@@ -84,8 +28,8 @@
     },
     {
       "rodada": 11,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 3.3,
       "scouts": {
         "CA": 1,
@@ -96,8 +40,8 @@
     },
     {
       "rodada": 12,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 5.7,
       "scouts": {
         "DS": 3,
@@ -106,8 +50,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "FC": 2,
@@ -117,8 +61,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "FC": 1,
@@ -128,8 +72,8 @@
     },
     {
       "rodada": 15,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -137,8 +81,8 @@
     },
     {
       "rodada": 16,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "A": 1,
@@ -148,16 +92,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 2,
@@ -165,37 +102,16 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 21,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 5.09,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "CA": 1,
@@ -203,13 +119,6 @@
         "FC": 2,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.09,
-      "media": 3.54,
-      "pontos": 3.7,
-      "scouts": {}
     }
   ]
 }

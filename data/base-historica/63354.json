@@ -1,111 +1,13 @@
 {
   "id": 63354,
-  "nome": "Rodrigo Modesto da Silva Moledo",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 6.53,
-      "media": 5.57,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "G": 1
@@ -113,8 +15,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.53,
-      "media": 5.57,
+      "preco": null,
+      "media": null,
       "pontos": 7.5,
       "scouts": {
         "DS": 1,
@@ -123,63 +25,14 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.53,
-      "media": 5.57,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
         "FC": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.53,
-      "media": 5.57,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

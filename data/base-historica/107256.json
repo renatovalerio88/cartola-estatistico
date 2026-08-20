@@ -1,69 +1,13 @@
 {
   "id": 107256,
-  "nome": "Jose Vitor Silva Neves",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 3,
@@ -73,8 +17,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DS": 1,
@@ -83,8 +27,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -94,8 +38,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 1,
@@ -104,8 +48,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
@@ -116,8 +60,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 13.4,
       "scouts": {
         "CA": 1,
@@ -129,8 +73,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DS": 2,
@@ -141,8 +85,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": -1.2,
       "scouts": {
         "CA": 1,
@@ -153,16 +97,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 10.2,
       "scouts": {
         "DS": 4,
@@ -171,16 +108,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 8.7,
       "scouts": {
         "DS": 5,
@@ -190,8 +120,8 @@
     },
     {
       "rodada": 21,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -199,8 +129,8 @@
     },
     {
       "rodada": 22,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "CA": 1,
@@ -211,21 +141,14 @@
     },
     {
       "rodada": 23,
-      "preco": 6.21,
-      "media": 4.16,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 5,
         "FC": 3,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.21,
-      "media": 4.16,
-      "pontos": 7.4,
-      "scouts": {}
     }
   ]
 }

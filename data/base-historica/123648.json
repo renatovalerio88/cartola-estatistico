@@ -1,13 +1,13 @@
 {
   "id": 123648,
-  "nome": "Lucas Ronier Vieira Pires",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 3,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 7.8,
       "scouts": {
         "A": 1,
@@ -28,8 +28,8 @@
     },
     {
       "rodada": 3,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 15.1,
       "scouts": {
         "A": 2,
@@ -40,8 +40,8 @@
     },
     {
       "rodada": 4,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 11.4,
       "scouts": {
         "DS": 1,
@@ -53,8 +53,8 @@
     },
     {
       "rodada": 5,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 17.5,
       "scouts": {
         "CA": 1,
@@ -67,8 +67,8 @@
     },
     {
       "rodada": 6,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "CA": 1,
@@ -79,8 +79,8 @@
     },
     {
       "rodada": 7,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -89,8 +89,8 @@
     },
     {
       "rodada": 8,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DS": 2,
@@ -99,8 +99,8 @@
     },
     {
       "rodada": 9,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 12.3,
       "scouts": {
         "DS": 3,
@@ -112,8 +112,8 @@
     },
     {
       "rodada": 10,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 1,
@@ -124,8 +124,8 @@
     },
     {
       "rodada": 11,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "FC": 2,
@@ -135,8 +135,8 @@
     },
     {
       "rodada": 12,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 4.9,
       "scouts": {
         "DS": 3,
@@ -147,8 +147,8 @@
     },
     {
       "rodada": 13,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 2,
@@ -160,8 +160,8 @@
     },
     {
       "rodada": 14,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "DS": 1,
@@ -171,8 +171,8 @@
     },
     {
       "rodada": 15,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 4.6,
       "scouts": {
         "CA": 1,
@@ -182,30 +182,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 1,
@@ -216,8 +195,8 @@
     },
     {
       "rodada": 20,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -226,8 +205,8 @@
     },
     {
       "rodada": 21,
-      "preco": 10.77,
-      "media": 6.7,
+      "preco": null,
+      "media": null,
       "pontos": 7.5,
       "scouts": {
         "DS": 1,
@@ -235,27 +214,6 @@
         "FF": 1,
         "FS": 8
       }
-    },
-    {
-      "rodada": 22,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 10.77,
-      "media": 6.7,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

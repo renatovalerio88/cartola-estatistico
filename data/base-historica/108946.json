@@ -1,139 +1,13 @@
 {
   "id": 108946,
-  "nome": "João Victor Santos Sá",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "SAO",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 6.08,
-      "media": 2.7,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -141,31 +15,24 @@
     },
     {
       "rodada": 20,
-      "preco": 6.08,
-      "media": 2.7,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.08,
-      "media": 2.7,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 6.08,
-      "media": 2.7,
+      "preco": null,
+      "media": null,
       "pontos": 9.9,
       "scouts": {
         "A": 1,
@@ -174,13 +41,6 @@
         "FD": 1,
         "FS": 2
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.08,
-      "media": 2.7,
-      "pontos": 9.9,
-      "scouts": {}
     }
   ]
 }

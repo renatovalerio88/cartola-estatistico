@@ -1,55 +1,13 @@
 {
   "id": 140906,
-  "nome": "Davi Gomes de Alvarenga",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 5.19,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "FD": 2,
@@ -59,125 +17,13 @@
     },
     {
       "rodada": 8,
-      "preco": 5.19,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
         "FF": 1
       }
-    },
-    {
-      "rodada": 9,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.19,
-      "media": 4.25,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

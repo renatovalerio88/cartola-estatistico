@@ -1,0 +1,56 @@
+{
+  "id": 98280,
+  "nome": null,
+  "posicao": "ZAG",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": -0.1,
+      "scouts": {
+        "FC": 2,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 1.7,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 1
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 2.4,
+      "scouts": {
+        "DS": 2,
+        "FC": 2
+      }
+    },
+    {
+      "rodada": 14,
+      "preco": null,
+      "media": null,
+      "pontos": -0.1,
+      "scouts": {
+        "FC": 2,
+        "FS": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": 105664,
+  "nome": null,
+  "posicao": "LAT",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 9.5,
+      "scouts": {
+        "DS": 1,
+        "G": 1
+      }
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 15,
+      "scouts": {
+        "A": 1,
+        "DS": 1,
+        "FC": 1,
+        "FF": 1,
+        "G": 1
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": null,
+      "media": null,
+      "pontos": -0.3,
+      "scouts": {
+        "FC": 1
+      }
+    },
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": 8.2,
+      "scouts": {
+        "FC": 1,
+        "FS": 1,
+        "G": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 7.7,
+      "scouts": {
+        "DS": 1,
+        "FD": 1,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": 1.5,
+      "scouts": {
+        "DS": 1
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 2.4,
+      "scouts": {
+        "DS": 1,
+        "FC": 1,
+        "FD": 1
+      }
+    },
+    {
+      "rodada": 10,
+      "preco": null,
+      "media": null,
+      "pontos": 2.8,
+      "scouts": {
+        "FD": 1,
+        "FF": 2
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

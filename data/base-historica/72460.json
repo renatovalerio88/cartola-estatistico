@@ -1,13 +1,13 @@
 {
   "id": 72460,
-  "nome": "Bernard Anício Caldeira Duarte",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -15,8 +15,8 @@
     },
     {
       "rodada": 2,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -24,43 +24,22 @@
     },
     {
       "rodada": 3,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 4,
-      "preco": 4.62,
-      "media": 3.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.62,
-      "media": 3.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.62,
-      "media": 3.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 8,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FS": 3
@@ -68,8 +47,8 @@
     },
     {
       "rodada": 9,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 9.2,
       "scouts": {
         "FD": 1,
@@ -78,8 +57,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
@@ -87,22 +66,22 @@
     },
     {
       "rodada": 11,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -112,8 +91,8 @@
     },
     {
       "rodada": 14,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 2,
@@ -123,8 +102,8 @@
     },
     {
       "rodada": 15,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "DS": 1,
@@ -134,8 +113,8 @@
     },
     {
       "rodada": 16,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "A": 1,
@@ -146,8 +125,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 4.1,
       "scouts": {
         "DS": 2,
@@ -159,8 +138,8 @@
     },
     {
       "rodada": 18,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "A": 1,
@@ -169,8 +148,8 @@
     },
     {
       "rodada": 19,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "A": 1,
@@ -181,8 +160,8 @@
     },
     {
       "rodada": 20,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -190,16 +169,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 4.62,
-      "media": 3.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "FC": 2,
@@ -208,20 +180,13 @@
     },
     {
       "rodada": 23,
-      "preco": 4.62,
-      "media": 3.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.62,
-      "media": 3.13,
-      "pontos": 0.5,
-      "scouts": {}
     }
   ]
 }

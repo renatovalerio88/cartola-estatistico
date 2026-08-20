@@ -1,34 +1,13 @@
 {
   "id": 107554,
-  "nome": "Natanael Moreira Milouski",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": -2.8,
       "scouts": {
         "CV": 1,
@@ -37,37 +16,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 17.7,
       "scouts": {
         "A": 1,
@@ -80,8 +31,8 @@
     },
     {
       "rodada": 10,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 12.4,
       "scouts": {
         "A": 1,
@@ -91,8 +42,8 @@
     },
     {
       "rodada": 11,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -100,8 +51,8 @@
     },
     {
       "rodada": 12,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 3.6,
       "scouts": {
         "DS": 1,
@@ -114,8 +65,8 @@
     },
     {
       "rodada": 13,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "FC": 2,
@@ -125,8 +76,8 @@
     },
     {
       "rodada": 14,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -136,8 +87,8 @@
     },
     {
       "rodada": 15,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 1.1,
       "scouts": {
         "DS": 1,
@@ -147,8 +98,8 @@
     },
     {
       "rodada": 16,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 8.3,
       "scouts": {
         "DS": 5,
@@ -157,8 +108,8 @@
     },
     {
       "rodada": 17,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 2,
@@ -168,8 +119,8 @@
     },
     {
       "rodada": 18,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 8.4,
       "scouts": {
         "DS": 1,
@@ -180,8 +131,8 @@
     },
     {
       "rodada": 19,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 1,
@@ -192,42 +143,14 @@
     },
     {
       "rodada": 20,
-      "preco": 8.48,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
         "FC": 1,
         "FS": 2
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.48,
-      "media": 4.85,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

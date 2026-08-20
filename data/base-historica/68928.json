@@ -1,13 +1,13 @@
 {
   "id": 68928,
-  "nome": "Rafael Pires Monteiro",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "SAO",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -26,8 +26,8 @@
     },
     {
       "rodada": 3,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 6.3,
       "scouts": {
         "DE": 1,
@@ -36,8 +36,8 @@
     },
     {
       "rodada": 4,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 7.6,
       "scouts": {
         "DE": 2,
@@ -46,8 +46,8 @@
     },
     {
       "rodada": 5,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 6.3,
       "scouts": {
         "DE": 1,
@@ -56,8 +56,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -66,8 +66,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -76,8 +76,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DE": 1,
@@ -86,8 +86,8 @@
     },
     {
       "rodada": 9,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DE": 3,
@@ -97,8 +97,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "DE": 6,
@@ -107,8 +107,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "DE": 4,
@@ -117,8 +117,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "DE": 3,
@@ -127,8 +127,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 6.3,
       "scouts": {
         "DE": 1,
@@ -137,8 +137,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DE": 5,
@@ -148,8 +148,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DE": 3,
@@ -158,8 +158,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": -0.7,
       "scouts": {
         "DE": 1,
@@ -168,8 +168,8 @@
     },
     {
       "rodada": 17,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "CA": 1,
@@ -179,8 +179,8 @@
     },
     {
       "rodada": 18,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DE": 1,
@@ -189,8 +189,8 @@
     },
     {
       "rodada": 19,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DE": 2,
@@ -199,8 +199,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "DE": 4,
@@ -209,16 +209,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.81,
-      "media": 3.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "DE": 3,
@@ -227,19 +220,12 @@
     },
     {
       "rodada": 23,
-      "preco": 6.81,
-      "media": 3.19,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "GS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.81,
-      "media": 3.19,
-      "pontos": -1,
-      "scouts": {}
     }
   ]
 }

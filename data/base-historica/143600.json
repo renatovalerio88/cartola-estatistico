@@ -1,48 +1,13 @@
 {
   "id": 143600,
-  "nome": "Kauã Moraes da Silva",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "A": 1,
@@ -51,22 +16,15 @@
     },
     {
       "rodada": 7,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 8,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 14,
       "scouts": {
         "DS": 1,
@@ -78,8 +36,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "DS": 1,
@@ -89,8 +47,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -98,16 +56,9 @@
       }
     },
     {
-      "rodada": 12,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 4.4,
       "scouts": {
         "CA": 1,
@@ -118,8 +69,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -128,8 +79,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 8.9,
       "scouts": {
         "CA": 1,
@@ -140,16 +91,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 6.1,
       "scouts": {
         "DS": 4,
@@ -158,56 +102,14 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 6.81,
-      "media": 4.83,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 1,
         "FD": 1
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.81,
-      "media": 4.83,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

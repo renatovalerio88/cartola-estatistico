@@ -1,41 +1,13 @@
 {
   "id": 131617,
-  "nome": "André Oliveira e Silva",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "SAO",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
@@ -43,15 +15,15 @@
     },
     {
       "rodada": 6,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FC": 2,
@@ -60,8 +32,8 @@
     },
     {
       "rodada": 8,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -1.3,
       "scouts": {
         "CA": 1,
@@ -70,8 +42,8 @@
     },
     {
       "rodada": 9,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -80,8 +52,8 @@
     },
     {
       "rodada": 10,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -89,8 +61,8 @@
     },
     {
       "rodada": 11,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "FC": 2,
@@ -98,23 +70,9 @@
       }
     },
     {
-      "rodada": 12,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
@@ -122,8 +80,8 @@
     },
     {
       "rodada": 15,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
@@ -131,8 +89,8 @@
     },
     {
       "rodada": 16,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -143,16 +101,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -160,49 +111,28 @@
     },
     {
       "rodada": 19,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 21,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 3.22,
-      "media": 0.22,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.22,
-      "media": 0.22,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

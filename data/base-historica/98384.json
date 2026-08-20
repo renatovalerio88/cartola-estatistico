@@ -1,13 +1,13 @@
 {
   "id": 98384,
-  "nome": "Luiz Henrique Soares Firmino",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "MIR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 4.8,
       "scouts": {
         "DS": 2,
@@ -17,8 +17,8 @@
     },
     {
       "rodada": 2,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "CA": 1,
@@ -30,8 +30,8 @@
     },
     {
       "rodada": 3,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 13.5,
       "scouts": {
         "DS": 3,
@@ -42,23 +42,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 4.8,
       "scouts": {
         "CA": 1,
@@ -69,8 +55,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "FC": 1,
@@ -80,8 +66,8 @@
     },
     {
       "rodada": 8,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 2,
@@ -90,8 +76,8 @@
     },
     {
       "rodada": 9,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -101,16 +87,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 8.57,
-      "media": 5.23,
+      "preco": null,
+      "media": null,
       "pontos": 4.4,
       "scouts": {
         "CA": 1,
@@ -120,97 +99,6 @@
         "FF": 1,
         "FS": 5
       }
-    },
-    {
-      "rodada": 12,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.57,
-      "media": 5.23,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

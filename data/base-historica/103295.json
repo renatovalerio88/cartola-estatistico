@@ -1,27 +1,20 @@
 {
   "id": 103295,
-  "nome": "Eric dos Santos Rodrigues",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -30,54 +23,26 @@
     },
     {
       "rodada": 4,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 5,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 8,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -85,31 +50,17 @@
     },
     {
       "rodada": 11,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 12,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
@@ -117,8 +68,8 @@
     },
     {
       "rodada": 15,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -126,8 +77,8 @@
     },
     {
       "rodada": 16,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -136,8 +87,8 @@
     },
     {
       "rodada": 17,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 1,
@@ -148,8 +99,8 @@
     },
     {
       "rodada": 18,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -157,32 +108,18 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 21,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "CA": 1,
@@ -193,15 +130,8 @@
     },
     {
       "rodada": 23,
-      "preco": 2.18,
-      "media": 0.54,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.18,
-      "media": 0.54,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

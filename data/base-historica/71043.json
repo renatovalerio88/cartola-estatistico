@@ -1,13 +1,13 @@
 {
   "id": 71043,
-  "nome": "Leonardo da Silva Vieira",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -17,8 +17,8 @@
     },
     {
       "rodada": 2,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 13,
       "scouts": {
         "DE": 10,
@@ -28,8 +28,8 @@
     },
     {
       "rodada": 3,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": -0.4,
       "scouts": {
         "DE": 2,
@@ -37,16 +37,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DE": 5,
@@ -55,8 +48,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DE": 3,
@@ -66,8 +59,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "DE": 5
@@ -75,8 +68,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DE": 5,
@@ -85,8 +78,8 @@
     },
     {
       "rodada": 9,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 10.2,
       "scouts": {
         "DE": 4,
@@ -95,8 +88,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "DE": 4,
@@ -105,8 +98,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DE": 5,
@@ -115,8 +108,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DE": 6,
@@ -125,8 +118,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "DE": 4,
@@ -135,8 +128,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 7.1,
       "scouts": {
         "DE": 7,
@@ -145,8 +138,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DE": 6,
@@ -155,8 +148,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "GS": 1
@@ -164,62 +157,13 @@
     },
     {
       "rodada": 17,
-      "preco": 6.82,
-      "media": 5.02,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "DE": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 18,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.82,
-      "media": 5.02,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

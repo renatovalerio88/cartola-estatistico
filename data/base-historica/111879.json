@@ -1,13 +1,13 @@
 {
   "id": 111879,
-  "nome": "Mateus da Silva Duarte",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 4.95,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "DS": 2,
@@ -19,162 +19,8 @@
     },
     {
       "rodada": 2,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 4.95,
-      "media": 4.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.95,
-      "media": 4.85,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

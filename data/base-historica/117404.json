@@ -1,104 +1,13 @@
 {
   "id": 117404,
-  "nome": "Otávio Eleodoro Rezende Costa",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": -1.7,
       "scouts": {
         "DE": 1,
@@ -107,8 +16,8 @@
     },
     {
       "rodada": 15,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 1.1,
       "scouts": {
         "CA": 1,
@@ -119,8 +28,8 @@
     },
     {
       "rodada": 16,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": -0.7,
       "scouts": {
         "CA": 1,
@@ -130,8 +39,8 @@
     },
     {
       "rodada": 17,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -140,8 +49,8 @@
     },
     {
       "rodada": 18,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -150,8 +59,8 @@
     },
     {
       "rodada": 19,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -160,8 +69,8 @@
     },
     {
       "rodada": 20,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -170,8 +79,8 @@
     },
     {
       "rodada": 21,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 8.1,
       "scouts": {
         "DE": 2,
@@ -181,8 +90,8 @@
     },
     {
       "rodada": 22,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -191,20 +100,13 @@
     },
     {
       "rodada": 23,
-      "preco": 3.11,
-      "media": 2.41,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DE": 5,
         "GS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 3.11,
-      "media": 2.41,
-      "pontos": 5.5,
-      "scouts": {}
     }
   ]
 }

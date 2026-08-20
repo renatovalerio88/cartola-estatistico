@@ -1,20 +1,13 @@
 {
   "id": 113125,
-  "nome": "Leonel Marcelo Picco",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "REM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.24,
-      "media": 3.52,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 3.6,
       "scouts": {
         "DS": 2,
@@ -24,8 +17,8 @@
     },
     {
       "rodada": 3,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 6,
       "scouts": {
         "DS": 4
@@ -33,8 +26,8 @@
     },
     {
       "rodada": 4,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 11.2,
       "scouts": {
         "CA": 1,
@@ -45,8 +38,8 @@
     },
     {
       "rodada": 5,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -55,8 +48,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "DS": 1,
@@ -66,8 +59,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -76,15 +69,15 @@
     },
     {
       "rodada": 8,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 10.6,
       "scouts": {
         "DS": 7,
@@ -95,8 +88,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 3.3,
       "scouts": {
         "DS": 3,
@@ -104,23 +97,9 @@
       }
     },
     {
-      "rodada": 11,
-      "preco": 6.24,
-      "media": 3.52,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.24,
-      "media": 3.52,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -129,8 +108,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": -0.2,
       "scouts": {
         "CA": 1,
@@ -139,8 +118,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -148,8 +127,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -158,8 +137,8 @@
     },
     {
       "rodada": 17,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -167,22 +146,22 @@
     },
     {
       "rodada": 18,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DS": 2,
@@ -192,8 +171,8 @@
     },
     {
       "rodada": 21,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 15.7,
       "scouts": {
         "DS": 5,
@@ -204,8 +183,8 @@
     },
     {
       "rodada": 22,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -214,19 +193,12 @@
     },
     {
       "rodada": 23,
-      "preco": 6.24,
-      "media": 3.52,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.24,
-      "media": 3.52,
-      "pontos": 1.5,
-      "scouts": {}
     }
   ]
 }

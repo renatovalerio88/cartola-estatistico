@@ -1,69 +1,13 @@
 {
   "id": 111683,
-  "nome": "Anthoni Spier Souza",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "INT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -71,23 +15,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": -0.7,
       "scouts": {
         "DE": 1,
@@ -96,8 +26,8 @@
     },
     {
       "rodada": 13,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DE": 5,
@@ -107,8 +37,8 @@
     },
     {
       "rodada": 14,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 11.5,
       "scouts": {
         "DE": 5,
@@ -116,16 +46,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DE": 2,
@@ -134,8 +57,8 @@
     },
     {
       "rodada": 17,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DE": 2,
@@ -144,8 +67,8 @@
     },
     {
       "rodada": 18,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DE": 5,
@@ -154,8 +77,8 @@
     },
     {
       "rodada": 19,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "DE": 2,
@@ -164,41 +87,13 @@
     },
     {
       "rodada": 20,
-      "preco": 3.91,
-      "media": 2.55,
+      "preco": null,
+      "media": null,
       "pontos": -0.7,
       "scouts": {
         "DE": 1,
         "GS": 2
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.91,
-      "media": 2.55,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

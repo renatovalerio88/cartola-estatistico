@@ -1,0 +1,29 @@
+{
+  "id": 139076,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 3.95,
+      "scouts": {}
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 3.26,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

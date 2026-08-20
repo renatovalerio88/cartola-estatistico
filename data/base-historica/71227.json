@@ -1,13 +1,13 @@
 {
   "id": 71227,
-  "nome": "Maicon Pereira Roque",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -17,15 +17,15 @@
     },
     {
       "rodada": 2,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 3,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -33,8 +33,8 @@
     },
     {
       "rodada": 4,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -42,8 +42,8 @@
     },
     {
       "rodada": 5,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "DS": 1,
@@ -53,8 +53,8 @@
     },
     {
       "rodada": 6,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -62,8 +62,8 @@
     },
     {
       "rodada": 7,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -71,8 +71,8 @@
     },
     {
       "rodada": 8,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "CV": 1,
@@ -81,16 +81,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -98,8 +91,8 @@
     },
     {
       "rodada": 11,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -107,8 +100,8 @@
     },
     {
       "rodada": 12,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -116,8 +109,8 @@
     },
     {
       "rodada": 13,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -125,8 +118,8 @@
     },
     {
       "rodada": 14,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "DS": 1,
@@ -136,72 +129,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 3.86,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.86,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

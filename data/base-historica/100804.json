@@ -1,41 +1,13 @@
 {
   "id": 100804,
-  "nome": "Duplexe Tchamba Bangou",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "REM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -44,8 +16,8 @@
     },
     {
       "rodada": 6,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -54,8 +26,8 @@
     },
     {
       "rodada": 7,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "DS": 4,
@@ -64,8 +36,8 @@
     },
     {
       "rodada": 8,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 3,
@@ -74,15 +46,15 @@
     },
     {
       "rodada": 9,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "DS": 1,
@@ -92,8 +64,8 @@
     },
     {
       "rodada": 11,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -102,8 +74,8 @@
     },
     {
       "rodada": 12,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": -4.9,
       "scouts": {
         "DS": 1,
@@ -114,8 +86,8 @@
     },
     {
       "rodada": 13,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
@@ -124,8 +96,8 @@
     },
     {
       "rodada": 14,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
@@ -135,8 +107,8 @@
     },
     {
       "rodada": 15,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -145,8 +117,8 @@
     },
     {
       "rodada": 16,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "FD": 1,
@@ -155,8 +127,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
@@ -164,8 +136,8 @@
     },
     {
       "rodada": 18,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "DS": 2,
@@ -173,49 +145,14 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 4.58,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 3.8,
       "scouts": {
         "DS": 2,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.58,
-      "media": 2.19,
-      "pontos": 3.8,
-      "scouts": {}
     }
   ]
 }

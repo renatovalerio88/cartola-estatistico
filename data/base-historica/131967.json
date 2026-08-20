@@ -1,41 +1,13 @@
 {
   "id": 131967,
-  "nome": "Neyser Villarreal - Neiser",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 1,
@@ -45,8 +17,8 @@
     },
     {
       "rodada": 6,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 8.5,
       "scouts": {
         "FC": 1,
@@ -56,8 +28,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 10.1,
       "scouts": {
         "FF": 2,
@@ -67,8 +39,8 @@
     },
     {
       "rodada": 8,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 4.1,
       "scouts": {
         "DS": 2,
@@ -78,23 +50,16 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 11,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 15.6,
       "scouts": {
         "DS": 1,
@@ -107,8 +72,8 @@
     },
     {
       "rodada": 12,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "DS": 1,
@@ -118,16 +83,9 @@
       }
     },
     {
-      "rodada": 13,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -135,8 +93,8 @@
     },
     {
       "rodada": 15,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 12.3,
       "scouts": {
         "A": 1,
@@ -147,23 +105,16 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 18,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 6.4,
       "scouts": {
         "DS": 2,
@@ -173,49 +124,14 @@
     },
     {
       "rodada": 19,
-      "preco": 8.62,
-      "media": 5.65,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 1,
         "FS": 2,
         "I": 1
       }
-    },
-    {
-      "rodada": 20,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.62,
-      "media": 5.65,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,20 +1,13 @@
 {
   "id": 86485,
-  "nome": "Marcos da Silva França",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CFC",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -22,43 +15,15 @@
     },
     {
       "rodada": 3,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 4,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -66,8 +31,8 @@
     },
     {
       "rodada": 9,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "FD": 1,
@@ -76,79 +41,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -156,36 +51,22 @@
     },
     {
       "rodada": 21,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 22,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 3.09,
-      "media": 0.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FS": 1,
         "I": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 3.09,
-      "media": 0.61,
-      "pontos": 0.4,
-      "scouts": {}
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "id": 104783,
-  "nome": "Nicolás Brian Acevedo Tabárez",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "CA": 1,
@@ -18,8 +18,8 @@
     },
     {
       "rodada": 2,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 9.2,
       "scouts": {
         "DS": 4,
@@ -30,8 +30,8 @@
     },
     {
       "rodada": 3,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "CA": 1,
@@ -40,16 +40,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 8.76,
-      "media": 4.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "DS": 1,
@@ -59,8 +52,8 @@
     },
     {
       "rodada": 6,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 4.9,
       "scouts": {
         "DS": 3,
@@ -70,8 +63,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "CA": 1,
@@ -81,16 +74,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 8.76,
-      "media": 4.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 7.1,
       "scouts": {
         "DS": 5,
@@ -100,8 +86,8 @@
     },
     {
       "rodada": 10,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 3.1,
       "scouts": {
         "DS": 1,
@@ -112,8 +98,8 @@
     },
     {
       "rodada": 11,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 5.6,
       "scouts": {
         "DS": 4,
@@ -123,8 +109,8 @@
     },
     {
       "rodada": 12,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 3,
@@ -135,8 +121,8 @@
     },
     {
       "rodada": 13,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 3,
@@ -146,8 +132,8 @@
     },
     {
       "rodada": 14,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 8.6,
       "scouts": {
         "CA": 1,
@@ -159,8 +145,8 @@
     },
     {
       "rodada": 15,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 6,
       "scouts": {
         "DS": 4
@@ -168,8 +154,8 @@
     },
     {
       "rodada": 16,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 6,
       "scouts": {
         "CA": 1,
@@ -182,8 +168,8 @@
     },
     {
       "rodada": 17,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": -1.9,
       "scouts": {
         "CA": 1,
@@ -191,16 +177,9 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 8.76,
-      "media": 4.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 1,
@@ -212,8 +191,8 @@
     },
     {
       "rodada": 20,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 2,
@@ -222,8 +201,8 @@
     },
     {
       "rodada": 21,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -232,8 +211,8 @@
     },
     {
       "rodada": 22,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DS": 2,
@@ -243,8 +222,8 @@
     },
     {
       "rodada": 23,
-      "preco": 8.76,
-      "media": 4.94,
+      "preco": null,
+      "media": null,
       "pontos": 15.4,
       "scouts": {
         "DS": 5,
@@ -252,13 +231,6 @@
         "FS": 1,
         "G": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.76,
-      "media": 4.94,
-      "pontos": 15.4,
-      "scouts": {}
     }
   ]
 }

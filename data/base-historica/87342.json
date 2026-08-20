@@ -1,146 +1,13 @@
 {
   "id": 87342,
-  "nome": "Walter Kannemann",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 3.37,
-      "media": -0.2,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "DS": 1,
@@ -149,16 +16,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 3.37,
-      "media": -0.2,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
@@ -166,21 +26,14 @@
     },
     {
       "rodada": 23,
-      "preco": 3.37,
-      "media": -0.2,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
         "DS": 1,
         "FC": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 3.37,
-      "media": -0.2,
-      "pontos": 0.2,
-      "scouts": {}
     }
   ]
 }

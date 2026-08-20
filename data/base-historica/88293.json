@@ -1,41 +1,13 @@
 {
   "id": 88293,
-  "nome": "Altemir Cordeiro Pessôa Neto",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CHA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 1,
@@ -44,23 +16,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -68,8 +26,8 @@
     },
     {
       "rodada": 9,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -77,8 +35,8 @@
     },
     {
       "rodada": 10,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "G": 1
@@ -86,8 +44,8 @@
     },
     {
       "rodada": 11,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "CA": 1,
@@ -97,37 +55,16 @@
       }
     },
     {
-      "rodada": 12,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 14,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 14.1,
       "scouts": {
         "A": 1,
@@ -138,16 +75,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -156,47 +86,12 @@
     },
     {
       "rodada": 19,
-      "preco": 4.74,
-      "media": 3.49,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "FF": 2
       }
-    },
-    {
-      "rodada": 20,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.74,
-      "media": 3.49,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

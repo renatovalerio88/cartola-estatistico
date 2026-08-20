@@ -1,36 +1,22 @@
 {
   "id": 98672,
-  "nome": "Jefferson David Savarino Quintero",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "FLU",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 2,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 9.3,
       "scouts": {
         "FD": 2,
@@ -41,8 +27,8 @@
     },
     {
       "rodada": 5,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -52,8 +38,8 @@
     },
     {
       "rodada": 6,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 10.6,
       "scouts": {
         "A": 2,
@@ -65,8 +51,8 @@
     },
     {
       "rodada": 7,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FS": 1,
@@ -75,8 +61,8 @@
     },
     {
       "rodada": 8,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 7.2,
       "scouts": {
         "DS": 2,
@@ -88,8 +74,8 @@
     },
     {
       "rodada": 9,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 4,
       "scouts": {
         "DS": 1,
@@ -100,8 +86,8 @@
     },
     {
       "rodada": 10,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -109,8 +95,8 @@
     },
     {
       "rodada": 11,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 9.1,
       "scouts": {
         "FD": 1,
@@ -120,8 +106,8 @@
     },
     {
       "rodada": 12,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 9,
       "scouts": {
         "FS": 2,
@@ -130,8 +116,8 @@
     },
     {
       "rodada": 13,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 13.1,
       "scouts": {
         "FD": 1,
@@ -142,8 +128,8 @@
     },
     {
       "rodada": 14,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "FD": 2,
@@ -152,8 +138,8 @@
     },
     {
       "rodada": 15,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "FF": 2,
@@ -163,8 +149,8 @@
     },
     {
       "rodada": 16,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": -0.2,
       "scouts": {
         "CA": 1,
@@ -172,16 +158,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 1,
@@ -189,23 +168,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 21,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
@@ -214,26 +179,12 @@
     },
     {
       "rodada": 22,
-      "preco": 9.02,
-      "media": 4.67,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 9.02,
-      "media": 4.67,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,48 +1,13 @@
 {
   "id": 97900,
-  "nome": "Vitor Eduardo da Silva Matos",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "FLA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "DS": 1,
@@ -50,16 +15,9 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -68,75 +26,33 @@
     },
     {
       "rodada": 9,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 10,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
       }
     },
     {
-      "rodada": 14,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 17,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "FS": 1,
@@ -145,8 +61,8 @@
     },
     {
       "rodada": 19,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -154,8 +70,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 2,
@@ -164,35 +80,14 @@
     },
     {
       "rodada": 21,
-      "preco": 6.62,
-      "media": 2.37,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "CA": 1,
         "DS": 1,
         "FC": 2
       }
-    },
-    {
-      "rodada": 22,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.62,
-      "media": 2.37,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

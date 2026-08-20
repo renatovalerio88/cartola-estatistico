@@ -1,71 +1,22 @@
 {
   "id": 92087,
-  "nome": "Lyanco Evangelista Silveira Neves Vojnovic",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "CAM",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
       }
     },
     {
-      "rodada": 8,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 10.5,
       "scouts": {
         "DS": 3,
@@ -76,16 +27,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
@@ -93,8 +37,8 @@
     },
     {
       "rodada": 12,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 0.6,
       "scouts": {
         "CA": 1,
@@ -105,16 +49,9 @@
       }
     },
     {
-      "rodada": 13,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 1.1,
       "scouts": {
         "CV": 1,
@@ -124,30 +61,16 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 17,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 10.4,
       "scouts": {
         "DS": 3,
@@ -158,47 +81,19 @@
     },
     {
       "rodada": 19,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 7.8,
-      "media": 3.04,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.8,
-      "media": 3.04,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

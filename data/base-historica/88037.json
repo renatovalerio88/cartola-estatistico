@@ -1,20 +1,20 @@
 {
   "id": 88037,
-  "nome": "Luís Manuel Ribeiro de Castro",
+  "nome": null,
   "posicao": "TEC",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 4.32,
       "scouts": {}
     },
     {
       "rodada": 2,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 7.92,
       "scouts": {
         "V": 1
@@ -22,15 +22,15 @@
     },
     {
       "rodada": 3,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 2.95,
       "scouts": {}
     },
     {
       "rodada": 4,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 6.06,
       "scouts": {
         "V": 1
@@ -38,22 +38,22 @@
     },
     {
       "rodada": 5,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 4.41,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 2.15,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 7.61,
       "scouts": {
         "V": 1
@@ -61,43 +61,43 @@
     },
     {
       "rodada": 8,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.45,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.34,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 6.07,
       "scouts": {}
     },
     {
       "rodada": 11,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 4.11,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.37,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 7.05,
       "scouts": {
         "V": 1
@@ -105,29 +105,29 @@
     },
     {
       "rodada": 14,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 4.95,
       "scouts": {}
     },
     {
       "rodada": 15,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 2.63,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.71,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 7.2,
       "scouts": {
         "V": 1
@@ -135,36 +135,36 @@
     },
     {
       "rodada": 18,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 3.15,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 5.85,
       "scouts": {
         "V": 1
@@ -172,15 +172,8 @@
     },
     {
       "rodada": 23,
-      "preco": 8.9,
-      "media": 4.64,
-      "pontos": 2.6,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.9,
-      "media": 4.64,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {}
     }

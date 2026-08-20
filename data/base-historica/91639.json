@@ -1,0 +1,19 @@
+{
+  "id": 91639,
+  "nome": null,
+  "posicao": "LAT",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 1,
+      "scouts": {
+        "DS": 1,
+        "FS": 1,
+        "PC": 1
+      }
+    }
+  ]
+}

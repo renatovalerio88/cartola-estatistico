@@ -1,13 +1,13 @@
 {
   "id": 70449,
-  "nome": "Gabriel Vasconcelos Ferreira",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 5.02,
-      "media": 0.9,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "DE": 1,
@@ -17,8 +17,8 @@
     },
     {
       "rodada": 2,
-      "preco": 5.02,
-      "media": 0.9,
+      "preco": null,
+      "media": null,
       "pontos": -2.4,
       "scouts": {
         "DE": 2,
@@ -26,161 +26,14 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 5.02,
-      "media": 0.9,
+      "preco": null,
+      "media": null,
       "pontos": -1.7,
       "scouts": {
         "DE": 1,
         "GS": 3
       }
-    },
-    {
-      "rodada": 19,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.02,
-      "media": 0.9,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

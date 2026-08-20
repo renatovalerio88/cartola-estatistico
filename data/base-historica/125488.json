@@ -1,34 +1,13 @@
 {
   "id": 125488,
-  "nome": "João Pedro de Sousa Rodrigues - Tchoca",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 8.56,
-      "media": 6.53,
+      "preco": null,
+      "media": null,
       "pontos": 8.9,
       "scouts": {
         "DS": 1,
@@ -37,23 +16,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 8.56,
-      "media": 6.53,
+      "preco": null,
+      "media": null,
       "pontos": 6.5,
       "scouts": {
         "CA": 1,
@@ -65,126 +30,14 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 8.56,
-      "media": 6.53,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 2,
         "FD": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.56,
-      "media": 6.53,
-      "pontos": 4.2,
-      "scouts": {}
     }
   ]
 }

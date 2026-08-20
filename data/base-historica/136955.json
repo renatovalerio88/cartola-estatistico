@@ -1,20 +1,13 @@
 {
   "id": 136955,
-  "nome": "Mateo Naín Sanabria Doracio",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "A": 1,
@@ -26,23 +19,9 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "FD": 1,
@@ -52,8 +31,8 @@
     },
     {
       "rodada": 6,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -61,38 +40,17 @@
     },
     {
       "rodada": 7,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 8,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 8.5,
       "scouts": {
         "FS": 1,
@@ -101,24 +59,17 @@
     },
     {
       "rodada": 12,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 13,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": -1.1,
       "scouts": {
         "CA": 1,
@@ -128,8 +79,8 @@
     },
     {
       "rodada": 15,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 1,
@@ -139,8 +90,8 @@
     },
     {
       "rodada": 16,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "G": 1
@@ -148,8 +99,8 @@
     },
     {
       "rodada": 17,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 1,
@@ -160,8 +111,8 @@
     },
     {
       "rodada": 18,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -170,16 +121,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -187,16 +131,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -206,21 +143,14 @@
     },
     {
       "rodada": 23,
-      "preco": 5.44,
-      "media": 2.69,
+      "preco": null,
+      "media": null,
       "pontos": -0.5,
       "scouts": {
         "CA": 1,
         "FC": 1,
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.44,
-      "media": 2.69,
-      "pontos": -0.5,
-      "scouts": {}
     }
   ]
 }

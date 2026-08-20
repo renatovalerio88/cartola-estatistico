@@ -1,180 +1,19 @@
 {
   "id": 123795,
-  "nome": "Luciano Rodríguez Rosales",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 8.92,
-      "media": 7,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "A": 1,
         "CA": 1,
         "FT": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.92,
-      "media": 7,
-      "pontos": 7,
-      "scouts": {}
     }
   ]
 }

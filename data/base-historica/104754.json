@@ -1,0 +1,52 @@
+{
+  "id": 104754,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 5.18,
+      "scouts": {}
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 2.88,
+      "scouts": {}
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 3.98,
+      "scouts": {}
+    },
+    {
+      "rodada": 4,
+      "preco": null,
+      "media": null,
+      "pontos": 6.43,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": 3.98,
+      "scouts": {}
+    }
+  ]
+}

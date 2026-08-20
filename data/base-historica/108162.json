@@ -1,34 +1,13 @@
 {
   "id": 108162,
-  "nome": "Juan Ignacio Martín Nardoni",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "CA": 1,
@@ -39,8 +18,8 @@
     },
     {
       "rodada": 5,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -49,8 +28,8 @@
     },
     {
       "rodada": 6,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 11,
       "scouts": {
         "DS": 1,
@@ -60,8 +39,8 @@
     },
     {
       "rodada": 7,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -69,8 +48,8 @@
     },
     {
       "rodada": 8,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -79,8 +58,8 @@
     },
     {
       "rodada": 9,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DS": 2,
@@ -90,8 +69,8 @@
     },
     {
       "rodada": 10,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -101,8 +80,8 @@
     },
     {
       "rodada": 11,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 3,
@@ -112,8 +91,8 @@
     },
     {
       "rodada": 12,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -122,8 +101,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -131,8 +110,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "FC": 2,
@@ -140,44 +119,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "CA": 1,
@@ -188,16 +132,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "FF": 1,
@@ -206,20 +143,13 @@
     },
     {
       "rodada": 23,
-      "preco": 5.95,
-      "media": 1.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 5.95,
-      "media": 1.93,
-      "pontos": 0.2,
-      "scouts": {}
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "id": 107173,
-  "nome": "Michel Daryl Araújo Villar",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": -3.1,
       "scouts": {
         "CV": 1,
@@ -16,37 +16,16 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -55,8 +34,8 @@
     },
     {
       "rodada": 7,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FS": 1,
@@ -65,8 +44,8 @@
     },
     {
       "rodada": 8,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -75,31 +54,24 @@
     },
     {
       "rodada": 9,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 10,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -109,8 +81,8 @@
     },
     {
       "rodada": 13,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "DS": 2,
@@ -120,8 +92,8 @@
     },
     {
       "rodada": 14,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.1,
       "scouts": {
         "DS": 1,
@@ -131,8 +103,8 @@
     },
     {
       "rodada": 15,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -140,16 +112,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -157,30 +122,9 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 21,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -189,8 +133,8 @@
     },
     {
       "rodada": 22,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -200,19 +144,12 @@
     },
     {
       "rodada": 23,
-      "preco": 2.57,
-      "media": 0.93,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 2.57,
-      "media": 0.93,
-      "pontos": 0.5,
-      "scouts": {}
     }
   ]
 }

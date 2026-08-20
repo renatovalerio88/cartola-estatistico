@@ -1,139 +1,13 @@
 {
   "id": 98617,
-  "nome": "Guillermo Alfonso Maripán Loaysa",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "INT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 4.12,
-      "media": 1.88,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 2,
@@ -143,8 +17,8 @@
     },
     {
       "rodada": 20,
-      "preco": 4.12,
-      "media": 1.88,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "FC": 2,
@@ -153,8 +27,8 @@
     },
     {
       "rodada": 21,
-      "preco": 4.12,
-      "media": 1.88,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 1,
@@ -164,8 +38,8 @@
     },
     {
       "rodada": 22,
-      "preco": 4.12,
-      "media": 1.88,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "FC": 1,
@@ -174,21 +48,14 @@
     },
     {
       "rodada": 23,
-      "preco": 4.12,
-      "media": 1.88,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
         "FC": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.12,
-      "media": 1.88,
-      "pontos": 1.7,
-      "scouts": {}
     }
   ]
 }

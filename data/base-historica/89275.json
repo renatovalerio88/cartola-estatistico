@@ -1,20 +1,13 @@
 {
   "id": 89275,
-  "nome": "Willian de Asevedo Furtado",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "DS": 1,
@@ -24,8 +17,8 @@
     },
     {
       "rodada": 3,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -33,8 +26,8 @@
     },
     {
       "rodada": 4,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {
         "CV": 1,
@@ -43,16 +36,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 5.7,
       "scouts": {
         "DS": 3,
@@ -61,8 +47,8 @@
     },
     {
       "rodada": 7,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FC": 3,
@@ -72,8 +58,8 @@
     },
     {
       "rodada": 8,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 5.1,
       "scouts": {
         "CA": 1,
@@ -85,8 +71,8 @@
     },
     {
       "rodada": 9,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 9.5,
       "scouts": {
         "DS": 3,
@@ -95,73 +81,17 @@
     },
     {
       "rodada": 10,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "FD": 2
       }
     },
     {
-      "rodada": 11,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -169,15 +99,15 @@
     },
     {
       "rodada": 20,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 9.17,
-      "media": 3.66,
+      "preco": null,
+      "media": null,
       "pontos": 10.2,
       "scouts": {
         "DS": 2,
@@ -187,27 +117,6 @@
         "FS": 1,
         "SG": 1
       }
-    },
-    {
-      "rodada": 22,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 9.17,
-      "media": 3.66,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

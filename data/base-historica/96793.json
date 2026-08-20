@@ -1,13 +1,13 @@
 {
   "id": 96793,
-  "nome": "Cleidson Andrade de Souza Silva",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 9.5,
       "scouts": {
         "DS": 1,
@@ -18,30 +18,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -49,8 +28,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -58,8 +37,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": -1.5,
       "scouts": {
         "DS": 1,
@@ -68,8 +47,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 10.4,
       "scouts": {
         "DS": 4,
@@ -79,8 +58,8 @@
     },
     {
       "rodada": 9,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -88,110 +67,12 @@
     },
     {
       "rodada": 10,
-      "preco": 6.71,
-      "media": 3.95,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
-    },
-    {
-      "rodada": 11,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.71,
-      "media": 3.95,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

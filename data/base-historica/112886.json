@@ -1,13 +1,13 @@
 {
   "id": 112886,
-  "nome": "Lucas Henrique Barbosa",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 4,
       "scouts": {
         "DS": 1,
@@ -20,8 +20,8 @@
     },
     {
       "rodada": 2,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 3.3,
       "scouts": {
         "DS": 2,
@@ -31,8 +31,8 @@
     },
     {
       "rodada": 3,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "CA": 1,
@@ -45,8 +45,8 @@
     },
     {
       "rodada": 4,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 4,
@@ -56,8 +56,8 @@
     },
     {
       "rodada": 5,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": -0.2,
       "scouts": {
         "CA": 1,
@@ -70,8 +70,8 @@
     },
     {
       "rodada": 6,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "CA": 1,
@@ -81,16 +81,9 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 9.95,
-      "media": 6.31,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 15.2,
       "scouts": {
         "DS": 1,
@@ -102,8 +95,8 @@
     },
     {
       "rodada": 9,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 11,
       "scouts": {
         "DS": 1,
@@ -115,8 +108,8 @@
     },
     {
       "rodada": 10,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 13.1,
       "scouts": {
         "A": 1,
@@ -127,8 +120,8 @@
     },
     {
       "rodada": 11,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "FC": 2,
@@ -140,8 +133,8 @@
     },
     {
       "rodada": 12,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 1.8,
       "scouts": {
         "FC": 1,
@@ -152,8 +145,8 @@
     },
     {
       "rodada": 13,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "DS": 1,
@@ -165,8 +158,8 @@
     },
     {
       "rodada": 14,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 13,
       "scouts": {
         "DS": 2,
@@ -178,8 +171,8 @@
     },
     {
       "rodada": 15,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "CA": 1,
@@ -190,8 +183,8 @@
     },
     {
       "rodada": 16,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 11.6,
       "scouts": {
         "FC": 1,
@@ -201,16 +194,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 9.95,
-      "media": 6.31,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 8.3,
       "scouts": {
         "A": 1,
@@ -222,16 +208,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 9.95,
-      "media": 6.31,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "CA": 1,
@@ -241,16 +220,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 9.95,
-      "media": 6.31,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 1,
@@ -262,21 +234,14 @@
     },
     {
       "rodada": 23,
-      "preco": 9.95,
-      "media": 6.31,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "DS": 3,
         "FF": 1,
         "FS": 3
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 9.95,
-      "media": 6.31,
-      "pontos": 6.8,
-      "scouts": {}
     }
   ]
 }

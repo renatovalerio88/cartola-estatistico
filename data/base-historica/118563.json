@@ -1,41 +1,13 @@
 {
   "id": 118563,
-  "nome": "Rodrigo Huendra Almeida Mendonça",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 7.6,
       "scouts": {
         "CA": 1,
@@ -47,8 +19,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "FC": 2,
@@ -57,8 +29,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "CA": 1,
@@ -68,8 +40,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -77,23 +49,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -101,16 +59,9 @@
       }
     },
     {
-      "rodada": 12,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -118,16 +69,9 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -135,8 +79,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -146,8 +90,8 @@
     },
     {
       "rodada": 17,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 9.9,
       "scouts": {
         "CA": 1,
@@ -158,23 +102,9 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DS": 3,
@@ -183,36 +113,15 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.07,
-      "media": 3.54,
+      "preco": null,
+      "media": null,
       "pontos": 4.8,
       "scouts": {
         "DS": 2,
         "FC": 2,
         "FF": 3
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.07,
-      "media": 3.54,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,27 +1,13 @@
 {
   "id": 127970,
-  "nome": "Felipe Chiqueti Bandeira",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "CA": 1,
@@ -33,8 +19,8 @@
     },
     {
       "rodada": 4,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FC": 1,
@@ -43,23 +29,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FC": 1,
@@ -69,36 +41,15 @@
     },
     {
       "rodada": 8,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 9,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DS": 1,
@@ -107,8 +58,8 @@
     },
     {
       "rodada": 13,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -116,84 +67,14 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 2.07,
-      "media": 1.35,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
         "FC": 1
       }
-    },
-    {
-      "rodada": 16,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.07,
-      "media": 1.35,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,20 +1,13 @@
 {
   "id": 96870,
-  "nome": "Emerson Aparecido Leite de Souza Júnior",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "FLA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -22,23 +15,9 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "FC": 2,
@@ -47,16 +26,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 6.1,
       "scouts": {
         "DS": 1,
@@ -66,16 +38,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 2,
@@ -83,44 +48,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 10,
       "scouts": {
         "A": 1,
@@ -129,22 +59,15 @@
     },
     {
       "rodada": 16,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 17,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 8.6,
       "scouts": {
         "DS": 2,
@@ -155,8 +78,8 @@
     },
     {
       "rodada": 19,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 11.5,
       "scouts": {
         "DS": 4,
@@ -166,8 +89,8 @@
     },
     {
       "rodada": 20,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 5,
@@ -177,33 +100,12 @@
     },
     {
       "rodada": 21,
-      "preco": 7.39,
-      "media": 5.48,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
-    },
-    {
-      "rodada": 22,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.39,
-      "media": 5.48,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

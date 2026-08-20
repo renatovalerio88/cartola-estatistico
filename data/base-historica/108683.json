@@ -1,62 +1,20 @@
 {
   "id": 108683,
-  "nome": "Emiliano Martínez Toranza",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "PAL",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 7,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.9,
       "scouts": {
         "CA": 1,
@@ -67,30 +25,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -99,15 +36,15 @@
     },
     {
       "rodada": 13,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -115,39 +52,18 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DS": 3
       }
     },
     {
-      "rodada": 18,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -155,8 +71,8 @@
     },
     {
       "rodada": 20,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 3.6,
       "scouts": {
         "DS": 2,
@@ -166,8 +82,8 @@
     },
     {
       "rodada": 21,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -176,8 +92,8 @@
     },
     {
       "rodada": 22,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 5.9,
       "scouts": {
         "DS": 4,
@@ -187,15 +103,8 @@
     },
     {
       "rodada": 23,
-      "preco": 3.99,
-      "media": 2.19,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.99,
-      "media": 2.19,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

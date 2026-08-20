@@ -1,139 +1,13 @@
 {
   "id": 97905,
-  "nome": "Matheus Aurélio Palhares Guimarães",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "CHA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 2.61,
-      "media": 1.7,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "DE": 3,
@@ -142,42 +16,14 @@
     },
     {
       "rodada": 20,
-      "preco": 2.61,
-      "media": 1.7,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "CA": 1,
         "DE": 5,
         "GS": 2
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.61,
-      "media": 1.7,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

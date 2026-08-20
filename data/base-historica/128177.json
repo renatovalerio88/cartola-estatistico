@@ -1,174 +1,41 @@
 {
   "id": 128177,
-  "nome": "Pedro Emanuel dos Santos Martins Silva",
+  "nome": null,
   "posicao": "TEC",
-  "clube": "VAS",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 10.27,
-      "media": 4.77,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 10.27,
-      "media": 4.77,
+      "preco": null,
+      "media": null,
       "pontos": 4.31,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 10.27,
-      "media": 4.77,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 10.27,
-      "media": 4.77,
+      "preco": null,
+      "media": null,
       "pontos": 7.3,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 10.27,
-      "media": 4.77,
-      "pontos": 2.7,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 10.27,
-      "media": 4.77,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {}
     }

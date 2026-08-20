@@ -1,48 +1,13 @@
 {
   "id": 148125,
-  "nome": "Ryan Augusto Tavares da Silva",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 3.78,
-      "media": 3.7,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 1,
@@ -52,31 +17,17 @@
     },
     {
       "rodada": 7,
-      "preco": 3.78,
-      "media": 3.7,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FS": 3
       }
     },
     {
-      "rodada": 8,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 3.78,
-      "media": 3.7,
+      "preco": null,
+      "media": null,
       "pontos": 11.2,
       "scouts": {
         "DS": 4,
@@ -87,8 +38,8 @@
     },
     {
       "rodada": 11,
-      "preco": 3.78,
-      "media": 3.7,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -98,96 +49,12 @@
     },
     {
       "rodada": 12,
-      "preco": 3.78,
-      "media": 3.7,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "I": 1
       }
-    },
-    {
-      "rodada": 13,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.78,
-      "media": 3.7,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

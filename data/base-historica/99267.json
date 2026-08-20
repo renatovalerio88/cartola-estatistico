@@ -1,146 +1,13 @@
 {
   "id": 99267,
-  "nome": "Tomás Pochettino",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 4.69,
-      "media": 1.12,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "FD": 1,
@@ -149,8 +16,8 @@
     },
     {
       "rodada": 21,
-      "preco": 4.69,
-      "media": 1.12,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
@@ -158,8 +25,8 @@
     },
     {
       "rodada": 22,
-      "preco": 4.69,
-      "media": 1.12,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -167,19 +34,12 @@
     },
     {
       "rodada": 23,
-      "preco": 4.69,
-      "media": 1.12,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.69,
-      "media": 1.12,
-      "pontos": 0.8,
-      "scouts": {}
     }
   ]
 }

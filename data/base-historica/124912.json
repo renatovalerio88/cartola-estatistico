@@ -1,76 +1,20 @@
 {
   "id": 124912,
-  "nome": "Jonathan de Jesus Alves",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 2,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -78,8 +22,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -88,8 +32,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "SG": 1
@@ -97,8 +41,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 5.9,
       "scouts": {
         "DS": 1,
@@ -108,8 +52,8 @@
     },
     {
       "rodada": 14,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 3,
@@ -119,8 +63,8 @@
     },
     {
       "rodada": 15,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "DS": 2,
@@ -131,8 +75,8 @@
     },
     {
       "rodada": 16,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 9.6,
       "scouts": {
         "DS": 5,
@@ -142,8 +86,8 @@
     },
     {
       "rodada": 17,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 3,
@@ -153,8 +97,8 @@
     },
     {
       "rodada": 18,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 6.8,
       "scouts": {
         "DS": 4,
@@ -163,8 +107,8 @@
     },
     {
       "rodada": 19,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "CA": 1,
@@ -174,8 +118,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "CA": 1,
@@ -187,8 +131,8 @@
     },
     {
       "rodada": 21,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "DS": 1,
@@ -199,8 +143,8 @@
     },
     {
       "rodada": 22,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 2.3,
       "scouts": {
         "DS": 1,
@@ -209,21 +153,14 @@
     },
     {
       "rodada": 23,
-      "preco": 6.66,
-      "media": 4.27,
+      "preco": null,
+      "media": null,
       "pontos": 5.9,
       "scouts": {
         "CA": 1,
         "DS": 5,
         "FC": 2
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.66,
-      "media": 4.27,
-      "pontos": 5.9,
-      "scouts": {}
     }
   ]
 }

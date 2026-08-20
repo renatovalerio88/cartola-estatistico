@@ -1,0 +1,22 @@
+{
+  "id": 91971,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": 6.7,
+      "scouts": {}
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 2.75,
+      "scouts": {}
+    }
+  ]
+}

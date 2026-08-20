@@ -1,160 +1,13 @@
 {
   "id": 117909,
-  "nome": "Wesley Gassova Ribeiro Teixeira",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 10.9,
-      "media": 9.5,
+      "preco": null,
+      "media": null,
       "pontos": 9.5,
       "scouts": {
         "CA": 1,
@@ -164,20 +17,6 @@
         "FS": 1,
         "G": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 10.9,
-      "media": 9.5,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

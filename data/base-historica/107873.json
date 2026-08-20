@@ -1,13 +1,13 @@
 {
   "id": 107873,
-  "nome": "Damián Josué Bobadilla Benítez",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "SAO",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "DS": 4,
@@ -18,8 +18,8 @@
     },
     {
       "rodada": 2,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 5.1,
       "scouts": {
         "DS": 3,
@@ -29,22 +29,22 @@
     },
     {
       "rodada": 3,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 4,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 13,
       "scouts": {
         "A": 1,
@@ -56,8 +56,8 @@
     },
     {
       "rodada": 6,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "CA": 1,
@@ -68,8 +68,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 1,
@@ -81,8 +81,8 @@
     },
     {
       "rodada": 8,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 5.7,
       "scouts": {
         "DS": 4,
@@ -90,32 +90,18 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": -0.9,
       "scouts": {
         "FC": 3
       }
     },
     {
-      "rodada": 11,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "DS": 3,
@@ -125,8 +111,8 @@
     },
     {
       "rodada": 13,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
@@ -134,8 +120,8 @@
     },
     {
       "rodada": 14,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "CA": 1,
@@ -145,8 +131,8 @@
     },
     {
       "rodada": 15,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 10.9,
       "scouts": {
         "A": 1,
@@ -157,8 +143,8 @@
     },
     {
       "rodada": 16,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 6.1,
       "scouts": {
         "CA": 1,
@@ -169,23 +155,9 @@
       }
     },
     {
-      "rodada": 17,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -193,41 +165,13 @@
       }
     },
     {
-      "rodada": 20,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 8.06,
-      "media": 3.94,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.06,
-      "media": 3.94,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

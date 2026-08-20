@@ -1,139 +1,13 @@
 {
   "id": 97101,
-  "nome": "Gabriel Hernán Rojas",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 6.83,
-      "media": 3.85,
+      "preco": null,
+      "media": null,
       "pontos": 4.4,
       "scouts": {
         "DS": 3,
@@ -143,8 +17,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.83,
-      "media": 3.85,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "DS": 1,
@@ -154,8 +28,8 @@
     },
     {
       "rodada": 21,
-      "preco": 6.83,
-      "media": 3.85,
+      "preco": null,
+      "media": null,
       "pontos": 8.3,
       "scouts": {
         "DS": 3,
@@ -165,26 +39,12 @@
     },
     {
       "rodada": 22,
-      "preco": 6.83,
-      "media": 3.85,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 6.83,
-      "media": 3.85,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

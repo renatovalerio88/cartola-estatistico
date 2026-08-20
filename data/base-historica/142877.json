@@ -1,55 +1,20 @@
 {
   "id": 142877,
-  "nome": "Lucas Martín Villalba Jaume",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "BOT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 4,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -58,24 +23,17 @@
     },
     {
       "rodada": 8,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "DS": 3
       }
     },
     {
-      "rodada": 9,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 11,
       "scouts": {
         "DS": 2,
@@ -84,43 +42,15 @@
     },
     {
       "rodada": 11,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 12,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": -1.6,
       "scouts": {
         "CA": 1,
@@ -129,8 +59,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -139,38 +69,24 @@
     },
     {
       "rodada": 18,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 19,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 21,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 4.33,
-      "media": 1.61,
+      "preco": null,
+      "media": null,
       "pontos": 2.2,
       "scouts": {
         "FC": 1,
@@ -178,20 +94,6 @@
         "FF": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.33,
-      "media": 1.61,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

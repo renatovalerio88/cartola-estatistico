@@ -1,0 +1,25 @@
+{
+  "id": 91251,
+  "nome": null,
+  "posicao": "ZAG",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 2,
+      "scouts": {
+        "DS": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 14,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

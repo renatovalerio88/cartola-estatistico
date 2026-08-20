@@ -1,0 +1,90 @@
+{
+  "id": 111945,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 0.8,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 3,
+        "FD": 1
+      }
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 2.7,
+      "scouts": {
+        "DS": 1,
+        "FD": 1
+      }
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 0.9,
+      "scouts": {
+        "DS": 1,
+        "FC": 2
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 5,
+      "scouts": {
+        "A": 1
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 0.2,
+      "scouts": {
+        "FC": 1,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 15,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 16,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": 0.9,
+      "scouts": {
+        "FC": 1,
+        "FD": 1
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

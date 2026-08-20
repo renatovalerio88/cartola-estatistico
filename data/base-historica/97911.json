@@ -1,180 +1,33 @@
 {
   "id": 97911,
-  "nome": "Lucas Rodrigues da Silva",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 2.8,
-      "media": -0.17,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 10,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 2.8,
-      "media": -0.17,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
     },
     {
-      "rodada": 14,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 2.8,
-      "media": -0.17,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
-    },
-    {
-      "rodada": 17,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 2.8,
-      "media": -0.17,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

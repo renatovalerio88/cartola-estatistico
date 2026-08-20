@@ -1,13 +1,13 @@
 {
   "id": 91772,
-  "nome": "David de Duarte Macedo",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.3,
       "scouts": {
         "DS": 3,
@@ -25,51 +25,9 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.9,
       "scouts": {
         "CA": 1,
@@ -80,8 +38,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 10.2,
       "scouts": {
         "FC": 1,
@@ -93,8 +51,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": -1.5,
       "scouts": {
         "DS": 1,
@@ -103,24 +61,17 @@
     },
     {
       "rodada": 12,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
       }
     },
     {
-      "rodada": 13,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -130,15 +81,15 @@
     },
     {
       "rodada": 15,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "FC": 1,
@@ -148,8 +99,8 @@
     },
     {
       "rodada": 17,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -157,8 +108,8 @@
     },
     {
       "rodada": 18,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 11.9,
       "scouts": {
         "CA": 1,
@@ -171,8 +122,8 @@
     },
     {
       "rodada": 19,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 1,
@@ -182,8 +133,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 9,
       "scouts": {
         "CA": 1,
@@ -193,16 +144,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 8,
       "scouts": {
         "DS": 2,
@@ -211,8 +155,8 @@
     },
     {
       "rodada": 23,
-      "preco": 6.23,
-      "media": 4.25,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -220,13 +164,6 @@
         "FF": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.23,
-      "media": 4.25,
-      "pontos": 2.5,
-      "scouts": {}
     }
   ]
 }

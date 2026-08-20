@@ -1,29 +1,22 @@
 {
   "id": 90370,
-  "nome": "Matheus Pereira da Silva",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 2,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -32,30 +25,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FC": 1,
@@ -65,8 +37,8 @@
     },
     {
       "rodada": 8,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -75,8 +47,8 @@
     },
     {
       "rodada": 9,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "CA": 1,
@@ -87,24 +59,17 @@
     },
     {
       "rodada": 10,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -112,8 +77,8 @@
     },
     {
       "rodada": 13,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
@@ -121,8 +86,8 @@
     },
     {
       "rodada": 14,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 4.3,
       "scouts": {
         "DS": 2,
@@ -131,44 +96,23 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -176,8 +120,8 @@
     },
     {
       "rodada": 21,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "DS": 2,
@@ -186,27 +130,13 @@
       }
     },
     {
-      "rodada": 22,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 3.39,
-      "media": 1.07,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 3.39,
-      "media": 1.07,
-      "pontos": 1.5,
-      "scouts": {}
     }
   ]
 }

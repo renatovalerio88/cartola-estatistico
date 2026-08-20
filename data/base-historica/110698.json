@@ -1,181 +1,27 @@
 {
   "id": 110698,
-  "nome": "Mycael Pontes Moreira",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 7.46,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
     },
     {
-      "rodada": 14,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 7.46,
-      "media": 7.6,
+      "preco": null,
+      "media": null,
       "pontos": 7.6,
       "scouts": {
         "DE": 2,
         "SG": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 7.46,
-      "media": 7.6,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

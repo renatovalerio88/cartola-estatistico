@@ -1,20 +1,13 @@
 {
   "id": 108469,
-  "nome": "Adonis Uriel Frías",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "SAN",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 2,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": -0.1,
       "scouts": {
         "CA": 1,
@@ -23,30 +16,16 @@
       }
     },
     {
-      "rodada": 3,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 5,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 3,
@@ -55,8 +34,8 @@
     },
     {
       "rodada": 7,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -64,58 +43,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 15.2,
       "scouts": {
         "DS": 1,
@@ -127,8 +57,8 @@
     },
     {
       "rodada": 16,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -136,45 +66,17 @@
     },
     {
       "rodada": 17,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 18,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 5.64,
-      "media": 3.4,
+      "preco": null,
+      "media": null,
       "pontos": 2.1,
       "scouts": {
         "CA": 1,
@@ -182,20 +84,6 @@
         "FC": 3,
         "FS": 2
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.64,
-      "media": 3.4,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

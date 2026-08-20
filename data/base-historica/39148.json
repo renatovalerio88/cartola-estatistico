@@ -1,13 +1,13 @@
 {
   "id": 39148,
-  "nome": "Givanildo Vieira de Souza",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "FLU",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 5.3,
       "scouts": {
         "FC": 1,
@@ -18,8 +18,8 @@
     },
     {
       "rodada": 2,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 1,
@@ -29,8 +29,8 @@
     },
     {
       "rodada": 3,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 14.7,
       "scouts": {
         "A": 1,
@@ -42,8 +42,8 @@
     },
     {
       "rodada": 4,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 5.3,
       "scouts": {
         "DS": 2,
@@ -53,8 +53,8 @@
     },
     {
       "rodada": 5,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 8.2,
       "scouts": {
         "A": 1,
@@ -66,8 +66,8 @@
     },
     {
       "rodada": 6,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -75,8 +75,8 @@
     },
     {
       "rodada": 7,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {
         "FD": 2,
@@ -85,8 +85,8 @@
     },
     {
       "rodada": 8,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "CA": 1,
@@ -97,8 +97,8 @@
     },
     {
       "rodada": 9,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "A": 1,
@@ -108,8 +108,8 @@
     },
     {
       "rodada": 10,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FC": 1,
@@ -118,8 +118,8 @@
     },
     {
       "rodada": 11,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FC": 1,
@@ -129,8 +129,8 @@
     },
     {
       "rodada": 12,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "FD": 1,
@@ -139,58 +139,9 @@
       }
     },
     {
-      "rodada": 13,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 10.3,
       "scouts": {
         "DS": 1,
@@ -201,8 +152,8 @@
     },
     {
       "rodada": 21,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "FD": 2,
@@ -211,8 +162,8 @@
     },
     {
       "rodada": 22,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "DS": 1,
@@ -223,21 +174,14 @@
     },
     {
       "rodada": 23,
-      "preco": 12.39,
-      "media": 5.06,
+      "preco": null,
+      "media": null,
       "pontos": 11.3,
       "scouts": {
         "FF": 1,
         "FS": 5,
         "G": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 12.39,
-      "media": 5.06,
-      "pontos": 11.3,
-      "scouts": {}
     }
   ]
 }

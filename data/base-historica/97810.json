@@ -1,13 +1,13 @@
 {
   "id": 97810,
-  "nome": "Erick de Arruda Serafim",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 12.5,
       "scouts": {
         "A": 2,
@@ -18,38 +18,24 @@
     },
     {
       "rodada": 2,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 3,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 11.9,
       "scouts": {
         "CA": 1,
@@ -63,8 +49,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -73,8 +59,8 @@
     },
     {
       "rodada": 8,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "FD": 2,
@@ -83,8 +69,8 @@
     },
     {
       "rodada": 9,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "FC": 1,
@@ -93,8 +79,8 @@
     },
     {
       "rodada": 10,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 3.7,
       "scouts": {
         "DS": 1,
@@ -104,8 +90,8 @@
     },
     {
       "rodada": 11,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 5.6,
       "scouts": {
         "FF": 2,
@@ -115,8 +101,8 @@
     },
     {
       "rodada": 12,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -124,8 +110,8 @@
     },
     {
       "rodada": 13,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -134,8 +120,8 @@
     },
     {
       "rodada": 14,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 14,
       "scouts": {
         "A": 1,
@@ -146,16 +132,9 @@
       }
     },
     {
-      "rodada": 15,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FS": 3
@@ -163,8 +142,8 @@
     },
     {
       "rodada": 17,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 7,
       "scouts": {
         "A": 1,
@@ -175,8 +154,8 @@
     },
     {
       "rodada": 18,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "DS": 1,
@@ -185,32 +164,18 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "FS": 3
       }
     },
     {
-      "rodada": 21,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
@@ -219,8 +184,8 @@
     },
     {
       "rodada": 23,
-      "preco": 8.28,
-      "media": 4.3,
+      "preco": null,
+      "media": null,
       "pontos": 4.5,
       "scouts": {
         "FD": 1,
@@ -228,13 +193,6 @@
         "FS": 3,
         "PS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.28,
-      "media": 4.3,
-      "pontos": 4.5,
-      "scouts": {}
     }
   ]
 }

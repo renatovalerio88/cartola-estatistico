@@ -1,118 +1,13 @@
 {
   "id": 141400,
-  "nome": "Victor Hugo Custódio de Melo Moura",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "BOT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 4.48,
-      "media": 3.74,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "DS": 1,
@@ -122,8 +17,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.48,
-      "media": 3.74,
+      "preco": null,
+      "media": null,
       "pontos": 3.4,
       "scouts": {
         "DS": 2,
@@ -133,8 +28,8 @@
     },
     {
       "rodada": 18,
-      "preco": 4.48,
-      "media": 3.74,
+      "preco": null,
+      "media": null,
       "pontos": 10.6,
       "scouts": {
         "CA": 1,
@@ -145,16 +40,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 4.48,
-      "media": 3.74,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "CA": 1,
@@ -164,23 +52,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 4.48,
-      "media": 3.74,
+      "preco": null,
+      "media": null,
       "pontos": -2.1,
       "scouts": {
         "CA": 1,
@@ -188,13 +62,6 @@
         "FS": 1,
         "PC": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.48,
-      "media": 3.74,
-      "pontos": -2.1,
-      "scouts": {}
     }
   ]
 }

@@ -1,34 +1,13 @@
 {
   "id": 99815,
-  "nome": "Jhon Adolfo Arias Andrade",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "PAL",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 4,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "CA": 1,
@@ -41,8 +20,8 @@
     },
     {
       "rodada": 5,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 10.7,
       "scouts": {
         "DS": 7,
@@ -52,8 +31,8 @@
     },
     {
       "rodada": 6,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 6.4,
       "scouts": {
         "DS": 3,
@@ -64,8 +43,8 @@
     },
     {
       "rodada": 7,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 17.3,
       "scouts": {
         "DS": 4,
@@ -77,8 +56,8 @@
     },
     {
       "rodada": 8,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 9,
       "scouts": {
         "CA": 1,
@@ -90,8 +69,8 @@
     },
     {
       "rodada": 9,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "DS": 2,
@@ -101,8 +80,8 @@
     },
     {
       "rodada": 10,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 7.2,
       "scouts": {
         "CA": 1,
@@ -112,16 +91,9 @@
       }
     },
     {
-      "rodada": 11,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "FD": 1
@@ -129,8 +101,8 @@
     },
     {
       "rodada": 13,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "DS": 3,
@@ -139,8 +111,8 @@
     },
     {
       "rodada": 14,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 2,
@@ -152,8 +124,8 @@
     },
     {
       "rodada": 15,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -164,8 +136,8 @@
     },
     {
       "rodada": 16,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 11.5,
       "scouts": {
         "DS": 6,
@@ -176,8 +148,8 @@
     },
     {
       "rodada": 17,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 0.4,
       "scouts": {
         "CA": 1,
@@ -187,16 +159,9 @@
       }
     },
     {
-      "rodada": 18,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "DS": 1,
@@ -207,8 +172,8 @@
     },
     {
       "rodada": 20,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 20.4,
       "scouts": {
         "A": 1,
@@ -220,8 +185,8 @@
     },
     {
       "rodada": 21,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 17.7,
       "scouts": {
         "A": 1,
@@ -235,8 +200,8 @@
     },
     {
       "rodada": 22,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 7.7,
       "scouts": {
         "DS": 4,
@@ -246,21 +211,14 @@
     },
     {
       "rodada": 23,
-      "preco": 13.91,
-      "media": 7.58,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 4,
         "FF": 2,
         "FS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 13.91,
-      "media": 7.58,
-      "pontos": 0.9,
-      "scouts": {}
     }
   ]
 }

@@ -1,27 +1,13 @@
 {
   "id": 71536,
-  "nome": "Luiz Gustavo Dias",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -29,24 +15,17 @@
     },
     {
       "rodada": 4,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "FS": 2
       }
     },
     {
-      "rodada": 5,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 11.9,
       "scouts": {
         "CA": 1,
@@ -58,8 +37,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "DS": 1,
@@ -69,8 +48,8 @@
     },
     {
       "rodada": 8,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -79,8 +58,8 @@
     },
     {
       "rodada": 9,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -89,8 +68,8 @@
     },
     {
       "rodada": 10,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 2.8,
       "scouts": {
         "FF": 1,
@@ -99,8 +78,8 @@
     },
     {
       "rodada": 11,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -109,8 +88,8 @@
     },
     {
       "rodada": 12,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -119,8 +98,8 @@
     },
     {
       "rodada": 13,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 11.2,
       "scouts": {
         "CA": 1,
@@ -132,16 +111,9 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 5.2,
       "scouts": {
         "FD": 1,
@@ -150,30 +122,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 19,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 1,
@@ -182,8 +133,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 4,
       "scouts": {
         "DS": 2,
@@ -193,16 +144,9 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 5.9,
       "scouts": {
         "DS": 4,
@@ -212,20 +156,13 @@
     },
     {
       "rodada": 23,
-      "preco": 6.2,
-      "media": 3.65,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
         "FC": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.2,
-      "media": 3.65,
-      "pontos": 2.7,
-      "scouts": {}
     }
   ]
 }

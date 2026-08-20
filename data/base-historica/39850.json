@@ -1,13 +1,13 @@
 {
   "id": 39850,
-  "nome": "Vagner Carmo Mancini",
+  "nome": null,
   "posicao": "TEC",
-  "clube": "RBB",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 8.07,
       "scouts": {
         "V": 1
@@ -15,8 +15,8 @@
     },
     {
       "rodada": 2,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 6.95,
       "scouts": {
         "V": 1
@@ -24,50 +24,50 @@
     },
     {
       "rodada": 3,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 1.74,
       "scouts": {}
     },
     {
       "rodada": 4,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 3.15,
       "scouts": {}
     },
     {
       "rodada": 5,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.79,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 3.25,
       "scouts": {}
     },
     {
       "rodada": 7,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 3.9,
       "scouts": {}
     },
     {
       "rodada": 8,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.32,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 11.12,
       "scouts": {
         "V": 1
@@ -75,8 +75,8 @@
     },
     {
       "rodada": 10,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 9.22,
       "scouts": {
         "V": 1
@@ -84,15 +84,15 @@
     },
     {
       "rodada": 11,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.29,
       "scouts": {}
     },
     {
       "rodada": 12,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.25,
       "scouts": {
         "V": 1
@@ -100,15 +100,15 @@
     },
     {
       "rodada": 13,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 3.41,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 4.75,
       "scouts": {
         "V": 1
@@ -116,15 +116,15 @@
     },
     {
       "rodada": 15,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 2.38,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 7.34,
       "scouts": {
         "V": 1
@@ -132,8 +132,8 @@
     },
     {
       "rodada": 17,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 10.21,
       "scouts": {
         "V": 1
@@ -141,8 +141,8 @@
     },
     {
       "rodada": 18,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 6.18,
       "scouts": {
         "V": 1
@@ -150,43 +150,36 @@
     },
     {
       "rodada": 19,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 20,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.31,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": null
+      "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 3.09,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 8.63,
-      "media": 5.47,
-      "pontos": 5.91,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.63,
-      "media": 5.47,
+      "preco": null,
+      "media": null,
       "pontos": 5.91,
       "scouts": {}
     }

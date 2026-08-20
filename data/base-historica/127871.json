@@ -1,180 +1,26 @@
 {
   "id": 127871,
-  "nome": "Kerwin Andrés Calderón Vargas",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 8.98,
-      "media": 4.65,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 23,
-      "preco": 8.98,
-      "media": 4.65,
+      "preco": null,
+      "media": null,
       "pontos": 9.3,
       "scouts": {
         "FF": 1,
         "FS": 1,
         "G": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.98,
-      "media": 4.65,
-      "pontos": 9.3,
-      "scouts": {}
     }
   ]
 }

@@ -1,55 +1,13 @@
 {
   "id": 96353,
-  "nome": "Carlos Joaquín Correa",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "BOT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": -0.5,
       "scouts": {
         "CA": 1,
@@ -58,8 +16,8 @@
     },
     {
       "rodada": 8,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": 3.6,
       "scouts": {
         "FF": 2,
@@ -68,30 +26,9 @@
       }
     },
     {
-      "rodada": 9,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "A": 1
@@ -99,8 +36,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
@@ -110,70 +47,21 @@
     },
     {
       "rodada": 14,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 15,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 5.11,
-      "media": 1.17,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
-    },
-    {
-      "rodada": 18,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.11,
-      "media": 1.17,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,55 +1,13 @@
 {
   "id": 146430,
-  "nome": "Gabriel Pereira Justino",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "BOT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -58,15 +16,15 @@
     },
     {
       "rodada": 8,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -74,52 +32,17 @@
     },
     {
       "rodada": 10,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 16,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -127,8 +50,8 @@
     },
     {
       "rodada": 17,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "CA": 1,
@@ -138,24 +61,17 @@
     },
     {
       "rodada": 18,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 19,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 14.2,
       "scouts": {
         "DS": 1,
@@ -165,36 +81,15 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 3.24,
-      "media": 2.74,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
         "FC": 1,
         "FS": 3
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.24,
-      "media": 2.74,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

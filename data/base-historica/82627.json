@@ -1,48 +1,20 @@
 {
   "id": 82627,
-  "nome": "Luiz de Araújo Guimarães Neto",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "FLA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 6,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -50,8 +22,8 @@
     },
     {
       "rodada": 7,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 17.6,
       "scouts": {
         "A": 1,
@@ -63,16 +35,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -82,8 +47,8 @@
     },
     {
       "rodada": 10,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -91,8 +56,8 @@
     },
     {
       "rodada": 11,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "CA": 1,
@@ -101,22 +66,22 @@
     },
     {
       "rodada": 12,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FC": 1,
@@ -125,8 +90,8 @@
     },
     {
       "rodada": 15,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 3.8,
       "scouts": {
         "DS": 2,
@@ -134,23 +99,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 5.7,
       "scouts": {
         "CA": 1,
@@ -161,37 +112,9 @@
       }
     },
     {
-      "rodada": 19,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 8.63,
-      "media": 3.61,
+      "preco": null,
+      "media": null,
       "pontos": 10.4,
       "scouts": {
         "DS": 1,
@@ -199,13 +122,6 @@
         "FS": 3,
         "G": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 8.63,
-      "media": 3.61,
-      "pontos": 10.4,
-      "scouts": {}
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "id": 118775,
-  "nome": "Lautaro Ariel Díaz",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "SAN",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 5.8,
       "scouts": {
         "DS": 1,
@@ -18,8 +18,8 @@
     },
     {
       "rodada": 2,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -27,57 +27,15 @@
     },
     {
       "rodada": 3,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 4,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 9.6,
       "scouts": {
         "FF": 2,
@@ -86,8 +44,8 @@
     },
     {
       "rodada": 11,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
@@ -95,15 +53,15 @@
     },
     {
       "rodada": 12,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 13,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "FC": 1,
@@ -111,79 +69,9 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.26,
-      "media": 2.28,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.26,
-      "media": 2.28,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     }

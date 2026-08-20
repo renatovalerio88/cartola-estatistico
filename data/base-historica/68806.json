@@ -1,0 +1,109 @@
+{
+  "id": 68806,
+  "nome": null,
+  "posicao": "GOL",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 10.2,
+      "scouts": {
+        "DE": 4,
+        "SG": 1
+      }
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": -1.1,
+      "scouts": {
+        "DE": 3,
+        "GS": 5
+      }
+    },
+    {
+      "rodada": 3,
+      "preco": null,
+      "media": null,
+      "pontos": 4.2,
+      "scouts": {
+        "DE": 4,
+        "GS": 1
+      }
+    },
+    {
+      "rodada": 12,
+      "preco": null,
+      "media": null,
+      "pontos": 1.6,
+      "scouts": {
+        "DE": 2,
+        "GS": 1
+      }
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 0.6,
+      "scouts": {
+        "DE": 2,
+        "GS": 2
+      }
+    },
+    {
+      "rodada": 14,
+      "preco": null,
+      "media": null,
+      "pontos": 7.6,
+      "scouts": {
+        "DE": 7,
+        "FS": 1,
+        "GS": 2
+      }
+    },
+    {
+      "rodada": 15,
+      "preco": null,
+      "media": null,
+      "pontos": 5.5,
+      "scouts": {
+        "DE": 5,
+        "GS": 1
+      }
+    },
+    {
+      "rodada": 16,
+      "preco": null,
+      "media": null,
+      "pontos": 0.3,
+      "scouts": {
+        "DE": 1,
+        "GS": 1
+      }
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": 1.6,
+      "scouts": {
+        "DE": 2,
+        "GS": 1
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": null,
+      "media": null,
+      "pontos": -1.7,
+      "scouts": {
+        "CV": 1,
+        "DE": 1
+      }
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "id": 78435,
-  "nome": "Victor Vinícius Coelho dos Santos",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -16,16 +16,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.4,
       "scouts": {
         "FC": 2,
@@ -35,8 +28,8 @@
     },
     {
       "rodada": 4,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "FD": 1,
@@ -45,8 +38,8 @@
     },
     {
       "rodada": 5,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -55,16 +48,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 3.3,
       "scouts": {
         "DS": 1,
@@ -73,129 +59,24 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 10,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 5.06,
-      "media": 2.13,
+      "preco": null,
+      "media": null,
       "pontos": 4.3,
       "scouts": {
         "DS": 2,
         "FC": 1,
         "FF": 2
       }
-    },
-    {
-      "rodada": 14,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.06,
-      "media": 2.13,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

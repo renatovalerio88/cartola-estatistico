@@ -1,13 +1,13 @@
 {
   "id": 125926,
-  "nome": "Bruno Zapelli",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 2.5,
       "scouts": {
         "DS": 1,
@@ -15,16 +15,9 @@
       }
     },
     {
-      "rodada": 2,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 6.7,
       "scouts": {
         "DS": 4,
@@ -35,8 +28,8 @@
     },
     {
       "rodada": 4,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "CA": 1,
@@ -46,16 +39,9 @@
       }
     },
     {
-      "rodada": 5,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 6,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 4,
       "scouts": {
         "A": 1,
@@ -66,23 +52,16 @@
       }
     },
     {
-      "rodada": 7,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 8,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 9,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 2.1,
       "scouts": {
         "FF": 2,
@@ -90,16 +69,9 @@
       }
     },
     {
-      "rodada": 10,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 11,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "CA": 1,
@@ -109,8 +81,8 @@
     },
     {
       "rodada": 12,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
@@ -118,31 +90,24 @@
     },
     {
       "rodada": 13,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": -1,
       "scouts": {
         "CA": 1
       }
     },
     {
-      "rodada": 14,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 16,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -151,8 +116,8 @@
     },
     {
       "rodada": 17,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": -0.4,
       "scouts": {
         "CA": 1,
@@ -162,54 +127,19 @@
     },
     {
       "rodada": 18,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 19,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 23,
-      "preco": 4.31,
-      "media": 1.38,
+      "preco": null,
+      "media": null,
       "pontos": 1.5,
       "scouts": {
         "DS": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 4.31,
-      "media": 1.38,
-      "pontos": 1.5,
-      "scouts": {}
     }
   ]
 }

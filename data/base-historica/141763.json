@@ -1,146 +1,13 @@
 {
   "id": 141763,
-  "nome": "Fabiano Josué de Souza Silva",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "VIT",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 3.85,
-      "media": 0.23,
+      "preco": null,
+      "media": null,
       "pontos": 1.2,
       "scouts": {
         "DS": 1,
@@ -149,8 +16,8 @@
     },
     {
       "rodada": 21,
-      "preco": 3.85,
-      "media": 0.23,
+      "preco": null,
+      "media": null,
       "pontos": -1.8,
       "scouts": {
         "CA": 1,
@@ -162,27 +29,13 @@
     },
     {
       "rodada": 22,
-      "preco": 3.85,
-      "media": 0.23,
+      "preco": null,
+      "media": null,
       "pontos": 1.3,
       "scouts": {
         "FF": 1,
         "FS": 1
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 3.85,
-      "media": 0.23,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

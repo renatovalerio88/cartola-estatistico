@@ -1,129 +1,31 @@
 {
   "id": 130906,
-  "nome": "Diogo Riquelme Rivas do Nascimento",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "CAP",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 1.53,
-      "media": 1.06,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
-    },
-    {
-      "rodada": 2,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
     },
     {
       "rodada": 14,
-      "preco": 1.53,
-      "media": 1.06,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
       }
     },
     {
-      "rodada": 15,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 1.53,
-      "media": 1.06,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "CA": 1,
@@ -134,54 +36,19 @@
     },
     {
       "rodada": 18,
-      "preco": 1.53,
-      "media": 1.06,
+      "preco": null,
+      "media": null,
       "pontos": 0,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
       "scouts": {}
     },
     {
       "rodada": 22,
-      "preco": 1.53,
-      "media": 1.06,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 1.53,
-      "media": 1.06,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

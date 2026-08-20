@@ -1,13 +1,13 @@
 {
   "id": 91101,
-  "nome": "Ronaldo de Oliveira Strada",
+  "nome": null,
   "posicao": "GOL",
-  "clube": "BAH",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -26,8 +26,8 @@
     },
     {
       "rodada": 3,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 9.2,
       "scouts": {
         "CA": 1,
@@ -36,16 +36,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DE": 1,
@@ -54,8 +47,8 @@
     },
     {
       "rodada": 6,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 7.1,
       "scouts": {
         "CA": 1,
@@ -66,8 +59,8 @@
     },
     {
       "rodada": 7,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 8.9,
       "scouts": {
         "DE": 3,
@@ -76,80 +69,17 @@
     },
     {
       "rodada": 8,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.6,
       "scouts": {
         "DE": 2
       }
     },
     {
-      "rodada": 9,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 18,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DE": 4,
@@ -158,8 +88,8 @@
     },
     {
       "rodada": 19,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 2.9,
       "scouts": {
         "DE": 3,
@@ -168,8 +98,8 @@
     },
     {
       "rodada": 20,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 0.3,
       "scouts": {
         "DE": 1,
@@ -178,8 +108,8 @@
     },
     {
       "rodada": 21,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 16.7,
       "scouts": {
         "DE": 9,
@@ -188,8 +118,8 @@
     },
     {
       "rodada": 22,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": 8.9,
       "scouts": {
         "DE": 3,
@@ -198,19 +128,12 @@
     },
     {
       "rodada": 23,
-      "preco": 6.92,
-      "media": 5.01,
+      "preco": null,
+      "media": null,
       "pontos": -3,
       "scouts": {
         "GS": 3
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 6.92,
-      "media": 5.01,
-      "pontos": -3,
-      "scouts": {}
     }
   ]
 }

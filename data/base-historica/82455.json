@@ -1,14 +1,58 @@
 {
   "id": 82455,
-  "nome": "José Rafael Vivian",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "SAN",
+  "clube": "",
   "historico": [
     {
-      "rodada": 22,
-      "preco": 8.07,
-      "media": 4.28,
-      "pontos": null,
+      "rodada": 1,
+      "preco": null,
+      "media": null,
+      "pontos": 7.9,
+      "scouts": {
+        "A": 1,
+        "FF": 3,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 2,
+      "preco": null,
+      "media": null,
+      "pontos": 10.1,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 3,
+        "FS": 2,
+        "G": 1
+      }
+    },
+    {
+      "rodada": 4,
+      "preco": null,
+      "media": null,
+      "pontos": 2.9,
+      "scouts": {
+        "DS": 2,
+        "FC": 2,
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 10,
+      "preco": null,
+      "media": null,
+      "pontos": 0.5,
+      "scouts": {
+        "FS": 1
+      }
+    },
+    {
+      "rodada": 14,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
       "scouts": {}
     }
   ]

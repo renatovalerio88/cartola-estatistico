@@ -1,71 +1,22 @@
 {
   "id": 104036,
-  "nome": "Zakaria Labyad",
+  "nome": null,
   "posicao": "MEI",
-  "clube": "COR",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 5,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "FS": 1
       }
     },
     {
-      "rodada": 6,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 9,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -73,38 +24,24 @@
     },
     {
       "rodada": 10,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 0.8,
       "scouts": {
         "FF": 1
       }
     },
     {
-      "rodada": 11,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 12,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
-      "rodada": 13,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 14,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 4.7,
       "scouts": {
         "A": 1,
@@ -113,8 +50,8 @@
     },
     {
       "rodada": 15,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": -0.5,
       "scouts": {
         "CA": 1,
@@ -122,16 +59,9 @@
       }
     },
     {
-      "rodada": 16,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 17,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 7.4,
       "scouts": {
         "FC": 2,
@@ -140,15 +70,15 @@
     },
     {
       "rodada": 18,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 19,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 5.5,
       "scouts": {
         "A": 1,
@@ -157,42 +87,21 @@
     },
     {
       "rodada": 20,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 21,
-      "preco": 4.52,
-      "media": 2.05,
+      "preco": null,
+      "media": null,
       "pontos": 1.1,
       "scouts": {
         "DS": 1,
         "FC": 3,
         "FS": 1
       }
-    },
-    {
-      "rodada": 22,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 4.52,
-      "media": 2.05,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

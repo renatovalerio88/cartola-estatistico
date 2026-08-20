@@ -1,0 +1,35 @@
+{
+  "id": 103179,
+  "nome": null,
+  "posicao": "ATA",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 1.6,
+      "scouts": {
+        "FF": 2
+      }
+    },
+    {
+      "rodada": 17,
+      "preco": null,
+      "media": null,
+      "pontos": -0.5,
+      "scouts": {
+        "CA": 1,
+        "FC": 1,
+        "FF": 1
+      }
+    },
+    {
+      "rodada": 18,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
+    }
+  ]
+}

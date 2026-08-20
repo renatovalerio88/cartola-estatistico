@@ -1,13 +1,13 @@
 {
   "id": 91706,
-  "nome": "Marlon Rodrigues Xavier",
+  "nome": null,
   "posicao": "LAT",
-  "clube": "GRE",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 4.6,
       "scouts": {
         "DS": 3,
@@ -18,8 +18,8 @@
     },
     {
       "rodada": 2,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 4.4,
       "scouts": {
         "DS": 3,
@@ -29,8 +29,8 @@
     },
     {
       "rodada": 3,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 0.9,
       "scouts": {
         "DS": 1,
@@ -39,8 +39,8 @@
     },
     {
       "rodada": 4,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 17.9,
       "scouts": {
         "A": 1,
@@ -54,8 +54,8 @@
     },
     {
       "rodada": 5,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "CA": 1,
@@ -65,16 +65,9 @@
       }
     },
     {
-      "rodada": 6,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 7,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 9.5,
       "scouts": {
         "DS": 1,
@@ -85,93 +78,9 @@
       }
     },
     {
-      "rodada": 8,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 20,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 0.7,
       "scouts": {
         "FC": 1,
@@ -179,35 +88,14 @@
       }
     },
     {
-      "rodada": 21,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 8.97,
-      "media": 5.49,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "CA": 1,
         "DS": 3
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 8.97,
-      "media": 5.49,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

@@ -1,27 +1,13 @@
 {
   "id": 114405,
-  "nome": "Luis Fernando Sinisterra Lucumí",
+  "nome": null,
   "posicao": "ATA",
-  "clube": "CRU",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 3,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 1.7,
       "scouts": {
         "DS": 1,
@@ -30,72 +16,9 @@
       }
     },
     {
-      "rodada": 4,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 13,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "FC": 1,
@@ -103,16 +26,9 @@
       }
     },
     {
-      "rodada": 14,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 15,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 5.4,
       "scouts": {
         "DS": 2,
@@ -121,15 +37,15 @@
     },
     {
       "rodada": 16,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 9.7,
       "scouts": {
         "FC": 1,
@@ -140,8 +56,8 @@
     },
     {
       "rodada": 18,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 1.6,
       "scouts": {
         "FF": 2
@@ -149,8 +65,8 @@
     },
     {
       "rodada": 19,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 5.1,
       "scouts": {
         "DS": 3,
@@ -160,41 +76,13 @@
     },
     {
       "rodada": 20,
-      "preco": 5.85,
-      "media": 3.27,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 2,
         "FC": 2
       }
-    },
-    {
-      "rodada": 21,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 22,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 23,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.85,
-      "media": 3.27,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }

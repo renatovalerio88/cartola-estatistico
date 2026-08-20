@@ -1,160 +1,13 @@
 {
   "id": 130806,
-  "nome": "Kauan Faria Gomes",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "CHA",
+  "clube": "",
   "historico": [
     {
-      "rodada": 1,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 2,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 3,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 4,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 5,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 6,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 7,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 8,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 9,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 10,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 11,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 12,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 13,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 14,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 15,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 16,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 17,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 18,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 19,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 20,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 21,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 22,
-      "preco": 0.64,
-      "media": -1.05,
+      "preco": null,
+      "media": null,
       "pontos": -0.6,
       "scouts": {
         "FC": 2
@@ -162,20 +15,13 @@
     },
     {
       "rodada": 23,
-      "preco": 0.64,
-      "media": -1.05,
+      "preco": null,
+      "media": null,
       "pontos": -1.5,
       "scouts": {
         "DS": 1,
         "GC": 1
       }
-    },
-    {
-      "rodada": 24,
-      "preco": 0.64,
-      "media": -1.05,
-      "pontos": -1.5,
-      "scouts": {}
     }
   ]
 }

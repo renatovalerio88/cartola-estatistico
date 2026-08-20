@@ -1,0 +1,95 @@
+{
+  "id": 79437,
+  "nome": null,
+  "posicao": "TEC",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 4,
+      "preco": null,
+      "media": null,
+      "pontos": 6.9,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 5,
+      "preco": null,
+      "media": null,
+      "pontos": 9.87,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 6,
+      "preco": null,
+      "media": null,
+      "pontos": 4.96,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 7,
+      "preco": null,
+      "media": null,
+      "pontos": 2.46,
+      "scouts": {}
+    },
+    {
+      "rodada": 8,
+      "preco": null,
+      "media": null,
+      "pontos": 4.45,
+      "scouts": {}
+    },
+    {
+      "rodada": 9,
+      "preco": null,
+      "media": null,
+      "pontos": 4.33,
+      "scouts": {}
+    },
+    {
+      "rodada": 10,
+      "preco": null,
+      "media": null,
+      "pontos": 6.73,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 11,
+      "preco": null,
+      "media": null,
+      "pontos": 1.87,
+      "scouts": {}
+    },
+    {
+      "rodada": 12,
+      "preco": null,
+      "media": null,
+      "pontos": 2.75,
+      "scouts": {}
+    },
+    {
+      "rodada": 13,
+      "preco": null,
+      "media": null,
+      "pontos": 7.84,
+      "scouts": {
+        "V": 1
+      }
+    },
+    {
+      "rodada": 14,
+      "preco": null,
+      "media": null,
+      "pontos": 5.95,
+      "scouts": {}
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "id": 70666,
-  "nome": "Marllon Gonçalves Jerônimo Borges",
+  "nome": null,
   "posicao": "ZAG",
-  "clube": "REM",
+  "clube": "",
   "historico": [
     {
       "rodada": 1,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 3.5,
       "scouts": {
         "DS": 2,
@@ -16,8 +16,8 @@
     },
     {
       "rodada": 2,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 2.4,
       "scouts": {
         "DS": 2,
@@ -26,8 +26,8 @@
     },
     {
       "rodada": 3,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 6,
       "scouts": {
         "DS": 4
@@ -35,8 +35,8 @@
     },
     {
       "rodada": 4,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 4.2,
       "scouts": {
         "DS": 2,
@@ -46,8 +46,8 @@
     },
     {
       "rodada": 5,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 3.2,
       "scouts": {
         "DS": 2,
@@ -57,8 +57,8 @@
     },
     {
       "rodada": 6,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 0.5,
       "scouts": {
         "CA": 1,
@@ -69,8 +69,8 @@
     },
     {
       "rodada": 7,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 3,
       "scouts": {
         "DS": 2
@@ -78,8 +78,8 @@
     },
     {
       "rodada": 8,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 0.2,
       "scouts": {
         "CA": 1,
@@ -89,8 +89,8 @@
     },
     {
       "rodada": 9,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -98,8 +98,8 @@
     },
     {
       "rodada": 10,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 6.2,
       "scouts": {
         "DS": 1,
@@ -109,8 +109,8 @@
     },
     {
       "rodada": 11,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 7.7,
       "scouts": {
         "FC": 1,
@@ -119,8 +119,8 @@
     },
     {
       "rodada": 12,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -129,8 +129,8 @@
     },
     {
       "rodada": 13,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 5,
       "scouts": {
         "DS": 3,
@@ -139,8 +139,8 @@
     },
     {
       "rodada": 14,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 2,
       "scouts": {
         "DS": 1,
@@ -149,8 +149,8 @@
     },
     {
       "rodada": 15,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": -0.3,
       "scouts": {
         "FC": 1
@@ -158,15 +158,15 @@
     },
     {
       "rodada": 16,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 0,
       "scouts": {}
     },
     {
       "rodada": 17,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 2.7,
       "scouts": {
         "DS": 2,
@@ -175,8 +175,8 @@
     },
     {
       "rodada": 18,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 7.3,
       "scouts": {
         "DS": 1,
@@ -186,8 +186,8 @@
     },
     {
       "rodada": 19,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 1,
       "scouts": {
         "CA": 1,
@@ -196,16 +196,9 @@
       }
     },
     {
-      "rodada": 20,
-      "preco": 5.82,
-      "media": 2.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
       "rodada": 21,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": -3,
       "scouts": {
         "GC": 1
@@ -213,27 +206,13 @@
     },
     {
       "rodada": 22,
-      "preco": 5.82,
-      "media": 2.83,
+      "preco": null,
+      "media": null,
       "pontos": 6,
       "scouts": {
         "A": 1,
         "FS": 2
       }
-    },
-    {
-      "rodada": 23,
-      "preco": 5.82,
-      "media": 2.83,
-      "pontos": null,
-      "scouts": {}
-    },
-    {
-      "rodada": 24,
-      "preco": 5.82,
-      "media": 2.83,
-      "pontos": 0,
-      "scouts": {}
     }
   ]
 }
