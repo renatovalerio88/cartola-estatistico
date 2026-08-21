@@ -1,11 +1,8 @@
 """
 =========================================================
 CARTOLA ESTATÍSTICO
-Otimizador Global de Escalações
+Otimizador Global de Escalações V2
 =========================================================
-
-Versão:
-otimizador_global_v1
 
 OBJETIVO
 ---------------------------------------------------------
@@ -15,62 +12,50 @@ a pontuação projetada respeitando simultaneamente:
 - formação;
 - patrimônio;
 - limite de jogadores por clube;
-- posições;
-- quantidade exata de atletas;
-- treinador.
-
-DIFERENÇA PARA O MÉTODO GREEDY
----------------------------------------------------------
-O método greedy escolhe o melhor jogador disponível
-posição por posição.
-
-Isso não garante a melhor combinação total.
-
-Exemplo:
-
-Atacante A:
-projeção 9.0
-preço 20
-
-Atacante B:
-projeção 8.0
-preço 10
-
-Escolher B pode liberar 10 cartoletas para melhorar
-dois outros setores e gerar um time total melhor.
-
-Este módulo procura a solução GLOBAL.
+- quantidade exata por posição;
+- quantidade total correta de atletas.
 
 MÉTODO
 ---------------------------------------------------------
-Usa programação linear inteira mista (MILP) através do
-scipy.optimize.milp.
+Programação Linear Inteira Mista (MILP)
 
-scikit-learn já depende de scipy, portanto essa biblioteca
-fará parte do ambiente científico do projeto.
+Solver utilizado:
 
-FALLBACK
+PuLP + CBC
+
+VANTAGEM
 ---------------------------------------------------------
-Se scipy/milp não estiver disponível, o módulo NÃO inventa
-resultado.
+Diferente do método greedy, o otimizador avalia o time
+inteiro ao mesmo tempo.
 
-Retorna status informando que o otimizador exato não está
-disponível.
+Exemplo:
+
+Jogador A:
+projeção 10
+preço 20
+
+Jogador B:
+projeção 9
+preço 10
+
+Pode ser melhor escolher B se isso liberar orçamento para
+ganhar muitos pontos em outras posições.
 
 IMPORTANTE
 ---------------------------------------------------------
-Este módulo não conhece pontuação real futura.
+O módulo NÃO usa pontuação real futura.
 
-Ele recebe candidatos e uma nota/projeção já calculada.
+Ele recebe candidatos já calculados e maximiza apenas
+o campo de score informado.
 
-Portanto pode ser usado:
+Pode ser usado em:
 
-- no histórico walk-forward;
-- na rodada atual;
-- com baseline;
-- com Ridge;
-- com XGBoost;
-- com ensemble futuro.
+- histórico walk-forward;
+- rodada atual;
+- baseline;
+- modelos estatísticos;
+- machine learning;
+- ensemble futuro.
 
 =========================================================
 """
@@ -84,34 +69,28 @@ from typing import Any
 
 
 # =========================================================
-# SCIPY / MILP
+# PULP
 # =========================================================
 
-SCIPY_MILP_OK = False
-SCIPY_ERRO = None
+PULP_OK = False
+PULP_ERRO = None
 
 
 try:
 
-    import numpy as np
+    import pulp
 
-    from scipy.optimize import (
-        milp,
-        LinearConstraint,
-        Bounds,
-    )
-
-    SCIPY_MILP_OK = True
+    PULP_OK = True
 
 except Exception as erro:
 
-    SCIPY_ERRO = str(
+    PULP_ERRO = str(
         erro
     )
 
 
 # =========================================================
-# REGRAS
+# FORMAÇÕES
 # =========================================================
 
 FORMACOES = {
@@ -303,18 +282,16 @@ def obter_preco(
         "preco_num",
     ):
 
-        if jogador.get(
+        valor = jogador.get(
             campo
-        ) is not None:
+        )
+
+        if valor is not None:
 
             return max(
-
                 0.0,
-
                 numero(
-                    jogador.get(
-                        campo
-                    )
+                    valor
                 )
             )
 
@@ -335,7 +312,7 @@ def obter_score(
 
 
 # =========================================================
-# SANITIZAÇÃO
+# PREPARAÇÃO
 # =========================================================
 
 def preparar_candidatos(
@@ -436,7 +413,7 @@ def preparar_candidatos(
 
 
 # =========================================================
-# DIAGNÓSTICO DA BASE
+# DIAGNÓSTICO
 # =========================================================
 
 def diagnosticar_base(
@@ -480,7 +457,6 @@ def diagnosticar_base(
 
 
     posicoes = {}
-
 
     viavel_quantidade = True
 
@@ -616,192 +592,6 @@ def calcular_custo_minimo_teorico(
 
 
 # =========================================================
-# MATRIZ DE RESTRIÇÕES
-# =========================================================
-
-def criar_restricoes(
-    candidatos,
-    formacao,
-    patrimonio,
-    limite_clube,
-):
-
-    estrutura = FORMACOES[
-        formacao
-    ]
-
-
-    n = len(
-        candidatos
-    )
-
-
-    linhas = []
-
-    limites_inferiores = []
-
-    limites_superiores = []
-
-
-    # =====================================================
-    # 1. QUANTIDADE EXATA POR POSIÇÃO
-    # =====================================================
-
-    for posicao in POSICOES:
-
-        quantidade = estrutura.get(
-            posicao,
-            0
-        )
-
-
-        linha = [
-
-            1.0
-
-            if jogador[
-                "_otimizadorPosicao"
-            ] == posicao
-
-            else 0.0
-
-            for jogador
-            in candidatos
-
-        ]
-
-
-        linhas.append(
-            linha
-        )
-
-        limites_inferiores.append(
-            float(
-                quantidade
-            )
-        )
-
-        limites_superiores.append(
-            float(
-                quantidade
-            )
-        )
-
-
-    # =====================================================
-    # 2. PATRIMÔNIO
-    # =====================================================
-
-    if patrimonio is not None:
-
-        linha_preco = [
-
-            jogador[
-                "_otimizadorPreco"
-            ]
-
-            for jogador
-            in candidatos
-
-        ]
-
-
-        linhas.append(
-            linha_preco
-        )
-
-        limites_inferiores.append(
-            -np.inf
-        )
-
-        limites_superiores.append(
-            float(
-                patrimonio
-            )
-        )
-
-
-    # =====================================================
-    # 3. LIMITE POR CLUBE
-    # =====================================================
-
-    if limite_clube is not None:
-
-        clubes = sorted({
-
-            jogador[
-                "_otimizadorClube"
-            ]
-
-            for jogador
-            in candidatos
-
-            if jogador[
-                "_otimizadorClube"
-            ]
-
-        })
-
-
-        for clube in clubes:
-
-            linha_clube = [
-
-                1.0
-
-                if jogador[
-                    "_otimizadorClube"
-                ] == clube
-
-                else 0.0
-
-                for jogador
-                in candidatos
-
-            ]
-
-
-            linhas.append(
-                linha_clube
-            )
-
-            limites_inferiores.append(
-                -np.inf
-            )
-
-            limites_superiores.append(
-                float(
-                    limite_clube
-                )
-            )
-
-
-    matriz = np.asarray(
-        linhas,
-        dtype=float,
-    )
-
-
-    inferior = np.asarray(
-        limites_inferiores,
-        dtype=float,
-    )
-
-
-    superior = np.asarray(
-        limites_superiores,
-        dtype=float,
-    )
-
-
-    return LinearConstraint(
-        matriz,
-        inferior,
-        superior,
-    )
-
-
-# =========================================================
 # OTIMIZAÇÃO DE UMA FORMAÇÃO
 # =========================================================
 
@@ -905,7 +695,7 @@ def otimizar_formacao(
         }
 
 
-    if not SCIPY_MILP_OK:
+    if not PULP_OK:
 
         return {
 
@@ -913,10 +703,10 @@ def otimizar_formacao(
                 False,
 
             "status":
-                "SCIPY_MILP_INDISPONIVEL",
+                "PULP_INDISPONIVEL",
 
             "erro":
-                SCIPY_ERRO,
+                PULP_ERRO,
 
             "formacao":
                 formacao,
@@ -926,97 +716,216 @@ def otimizar_formacao(
         }
 
 
-    if not preparados:
+    # =====================================================
+    # MODELO
+    # =====================================================
 
-        return {
+    problema = pulp.LpProblem(
 
-            "sucesso":
-                False,
+        name=(
+            f"cartola_"
+            f"{formacao}"
+        ),
 
-            "status":
-                "SEM_CANDIDATOS",
+        sense=pulp.LpMaximize,
+    )
 
-            "formacao":
-                formacao,
-        }
+
+    # =====================================================
+    # VARIÁVEIS BINÁRIAS
+    # =====================================================
+
+    variaveis = {}
+
+
+    for indice, jogador in enumerate(
+        preparados
+    ):
+
+        variaveis[
+            indice
+        ] = pulp.LpVariable(
+
+            name=(
+                f"x_{indice}"
+            ),
+
+            lowBound=0,
+
+            upBound=1,
+
+            cat=pulp.LpBinary,
+        )
 
 
     # =====================================================
     # OBJETIVO
-    #
-    # scipy.optimize.milp MINIMIZA.
-    #
-    # Para maximizar score:
-    #
-    # minimizamos -score.
     # =====================================================
 
-    objetivo = np.asarray(
+    problema += pulp.lpSum(
 
-        [
+        jogador[
+            "_otimizadorScore"
+        ]
+        *
+        variaveis[
+            indice
+        ]
 
-            -jogador[
-                "_otimizadorScore"
+        for indice, jogador
+        in enumerate(
+            preparados
+        )
+    )
+
+
+    # =====================================================
+    # RESTRIÇÕES POR POSIÇÃO
+    # =====================================================
+
+    estrutura = FORMACOES[
+        formacao
+    ]
+
+
+    for posicao in POSICOES:
+
+        quantidade = estrutura.get(
+            posicao,
+            0
+        )
+
+
+        problema += (
+
+            pulp.lpSum(
+
+                variaveis[
+                    indice
+                ]
+
+                for indice, jogador
+                in enumerate(
+                    preparados
+                )
+
+                if jogador[
+                    "_otimizadorPosicao"
+                ] == posicao
+
+            )
+
+            ==
+
+            quantidade
+
+        )
+
+
+    # =====================================================
+    # PATRIMÔNIO
+    # =====================================================
+
+    if patrimonio is not None:
+
+        problema += (
+
+            pulp.lpSum(
+
+                jogador[
+                    "_otimizadorPreco"
+                ]
+                *
+                variaveis[
+                    indice
+                ]
+
+                for indice, jogador
+                in enumerate(
+                    preparados
+                )
+
+            )
+
+            <=
+
+            float(
+                patrimonio
+            )
+
+        )
+
+
+    # =====================================================
+    # LIMITE DE JOGADORES POR CLUBE
+    # =====================================================
+
+    if limite_clube is not None:
+
+        clubes = sorted({
+
+            jogador[
+                "_otimizadorClube"
             ]
 
             for jogador
             in preparados
 
-        ],
+            if jogador[
+                "_otimizadorClube"
+            ]
 
-        dtype=float,
-    )
-
-
-    integrality = np.ones(
-        len(
-            preparados
-        ),
-        dtype=int,
-    )
+        })
 
 
-    bounds = Bounds(
+        for clube in clubes:
 
-        np.zeros(
-            len(
-                preparados
+            problema += (
+
+                pulp.lpSum(
+
+                    variaveis[
+                        indice
+                    ]
+
+                    for indice, jogador
+                    in enumerate(
+                        preparados
+                    )
+
+                    if jogador[
+                        "_otimizadorClube"
+                    ] == clube
+
+                )
+
+                <=
+
+                int(
+                    limite_clube
+                )
+
             )
-        ),
-
-        np.ones(
-            len(
-                preparados
-            )
-        ),
-    )
 
 
-    restricoes = criar_restricoes(
-
-        preparados,
-        formacao,
-        patrimonio,
-        limite_clube,
-    )
-
+    # =====================================================
+    # SOLVER
+    # =====================================================
 
     try:
 
-        resultado = milp(
+        solver = pulp.PULP_CBC_CMD(
 
-            c=objetivo,
+            msg=False,
 
-            integrality=integrality,
-
-            bounds=bounds,
-
-            constraints=restricoes,
-
-            options={
-                "disp": False,
-            },
+            timeLimit=30,
         )
+
+
+        problema.solve(
+            solver
+        )
+
 
     except Exception as erro:
 
@@ -1026,7 +935,7 @@ def otimizar_formacao(
                 False,
 
             "status":
-                "ERRO_MILP",
+                "ERRO_SOLVER",
 
             "erro":
                 str(
@@ -1041,11 +950,17 @@ def otimizar_formacao(
         }
 
 
-    if (
-        resultado.x is None
-        or
-        not resultado.success
-    ):
+    status_solver = pulp.LpStatus.get(
+
+        problema.status,
+
+        str(
+            problema.status
+        ),
+    )
+
+
+    if status_solver != "Optimal":
 
         return {
 
@@ -1055,10 +970,8 @@ def otimizar_formacao(
             "status":
                 "SEM_SOLUCAO_OTIMA",
 
-            "mensagem":
-                str(
-                    resultado.message
-                ),
+            "statusSolver":
+                status_solver,
 
             "formacao":
                 formacao,
@@ -1074,26 +987,39 @@ def otimizar_formacao(
         }
 
 
-    escolhidos = [
+    # =====================================================
+    # RECUPERAR ESCOLHIDOS
+    # =====================================================
 
-        jogador
+    escolhidos = []
 
-        for indice, jogador
-        in enumerate(
-            preparados
+
+    for indice, jogador in enumerate(
+        preparados
+    ):
+
+        valor = pulp.value(
+
+            variaveis[
+                indice
+            ]
         )
 
-        if resultado.x[
-            indice
-        ] >= 0.5
 
-    ]
+        if (
+            valor is not None
+            and
+            valor >= 0.5
+        ):
+
+            escolhidos.append(
+                jogador
+            )
 
 
-    estrutura = FORMACOES[
-        formacao
-    ]
-
+    # =====================================================
+    # RESULTADOS
+    # =====================================================
 
     quantidade_esperada = sum(
         estrutura.values()
@@ -1124,6 +1050,10 @@ def otimizar_formacao(
     )
 
 
+    # =====================================================
+    # POSIÇÕES
+    # =====================================================
+
     por_posicao = {}
 
 
@@ -1143,9 +1073,7 @@ def otimizar_formacao(
         ]
 
 
-        lista = sorted(
-
-            lista,
+        lista.sort(
 
             key=lambda jogador:
                 jogador[
@@ -1161,6 +1089,10 @@ def otimizar_formacao(
         ] = lista
 
 
+    # =====================================================
+    # CLUBES
+    # =====================================================
+
     clubes = defaultdict(
         int
     )
@@ -1172,11 +1104,88 @@ def otimizar_formacao(
             "_otimizadorClube"
         ]
 
+
         if clube:
 
             clubes[
                 clube
             ] += 1
+
+
+    # =====================================================
+    # AUDITORIA
+    # =====================================================
+
+    quantidade_correta = (
+
+        len(
+            escolhidos
+        )
+
+        ==
+
+        quantidade_esperada
+
+    )
+
+
+    patrimonio_respeitado = (
+
+        True
+
+        if patrimonio is None
+
+        else
+
+        custo_total
+        <=
+        patrimonio + 0.000001
+
+    )
+
+
+    limite_clube_respeitado = (
+
+        True
+
+        if limite_clube is None
+
+        else
+
+        all(
+
+            quantidade
+            <=
+            limite_clube
+
+            for quantidade
+            in clubes.values()
+        )
+
+    )
+
+
+    posicoes_corretas = True
+
+
+    for posicao, quantidade in (
+        estrutura.items()
+    ):
+
+        encontrados = len(
+
+            por_posicao.get(
+                posicao,
+                []
+            )
+        )
+
+
+        if encontrados != quantidade:
+
+            posicoes_corretas = False
+
+            break
 
 
     auditoria = {
@@ -1190,57 +1199,40 @@ def otimizar_formacao(
             ),
 
         "quantidadeCorreta":
-            (
-                len(
-                    escolhidos
-                )
-                ==
-                quantidade_esperada
-            ),
+            quantidade_correta,
+
+        "posicoesCorretas":
+            posicoes_corretas,
 
         "patrimonioRespeitado":
-            (
-                True
-
-                if patrimonio is None
-
-                else
-                custo_total <=
-                patrimonio +
-                0.000001
-            ),
+            patrimonio_respeitado,
 
         "limiteClubeRespeitado":
-            (
-                True
-
-                if limite_clube is None
-
-                else all(
-
-                    quantidade <=
-                    limite_clube
-
-                    for quantidade
-                    in clubes.values()
-
-                )
-            ),
+            limite_clube_respeitado,
     }
 
 
     auditoria[
         "aprovada"
-    ] = all(
-        auditoria[
-            chave
-        ]
+    ] = all([
 
-        for chave in (
-            "quantidadeCorreta",
-            "patrimonioRespeitado",
-            "limiteClubeRespeitado",
-        )
+        quantidade_correta,
+
+        posicoes_corretas,
+
+        patrimonio_respeitado,
+
+        limite_clube_respeitado,
+    ])
+
+
+    # =====================================================
+    # OBJETIVO DO SOLVER
+    # =====================================================
+
+    valor_objetivo = pulp.value(
+
+        problema.objective
     )
 
 
@@ -1253,7 +1245,10 @@ def otimizar_formacao(
             "OTIMO_ENCONTRADO",
 
         "motor":
-            "scipy.optimize.milp",
+            "PuLP_CBC_MILP",
+
+        "statusSolver":
+            status_solver,
 
         "formacao":
             formacao,
@@ -1278,8 +1273,10 @@ def otimizar_formacao(
 
         "saldo":
             (
+
                 round(
-                    patrimonio -
+                    patrimonio
+                    -
                     custo_total,
                     2
                 )
@@ -1287,12 +1284,30 @@ def otimizar_formacao(
                 if patrimonio is not None
 
                 else None
+
             ),
 
         "scoreTotal":
             round(
                 score_total,
                 4
+            ),
+
+        "valorObjetivoSolver":
+            (
+
+                round(
+                    numero(
+                        valor_objetivo
+                    ),
+                    4
+                )
+
+                if valor_objetivo
+                is not None
+
+                else None
+
             ),
 
         "quantidade":
@@ -1316,44 +1331,11 @@ def otimizar_formacao(
 
         "diagnostico":
             diagnostico,
-
-        "resultadoSolver": {
-
-            "success":
-                bool(
-                    resultado.success
-                ),
-
-            "status":
-                int(
-                    resultado.status
-                ),
-
-            "message":
-                str(
-                    resultado.message
-                ),
-
-            "fun":
-                (
-                    round(
-                        float(
-                            resultado.fun
-                        ),
-                        6
-                    )
-
-                    if resultado.fun
-                    is not None
-
-                    else None
-                ),
-        },
     }
 
 
 # =========================================================
-# COMPARAÇÃO ENTRE FORMAÇÕES
+# MÚLTIPLAS FORMAÇÕES
 # =========================================================
 
 def otimizar_multiplas_formacoes(
@@ -1406,7 +1388,9 @@ def otimizar_multiplas_formacoes(
             resultado.get(
                 "sucesso"
             )
+
             and
+
             resultado.get(
                 "auditoria",
                 {}
@@ -1439,19 +1423,6 @@ def otimizar_multiplas_formacoes(
         }
 
 
-    melhor = max(
-
-        validos,
-
-        key=lambda resultado:
-            numero(
-                resultado.get(
-                    "scoreTotal"
-                )
-            )
-    )
-
-
     ranking = sorted(
 
         validos,
@@ -1465,6 +1436,11 @@ def otimizar_multiplas_formacoes(
 
         reverse=True,
     )
+
+
+    melhor = ranking[
+        0
+    ]
 
 
     return {
@@ -1530,21 +1506,47 @@ def otimizar_multiplas_formacoes(
 
 
 # =========================================================
-# TESTE RÁPIDO DO MÓDULO
+# STATUS
 # =========================================================
 
 def status_otimizador():
 
+    solver_disponivel = False
+
+
+    if PULP_OK:
+
+        try:
+
+            solver = pulp.PULP_CBC_CMD(
+                msg=False
+            )
+
+            solver_disponivel = (
+                solver.available()
+                is not False
+            )
+
+        except Exception:
+
+            solver_disponivel = False
+
+
     return {
 
         "modelo":
-            "otimizador_global_v1",
+            "otimizador_global_v2_pulp",
 
-        "scipyMilpDisponivel":
-            SCIPY_MILP_OK,
+        "pulpDisponivel":
+            PULP_OK,
+
+        "cbcDisponivel":
+            bool(
+                solver_disponivel
+            ),
 
         "erroImportacao":
-            SCIPY_ERRO,
+            PULP_ERRO,
 
         "formacoesDisponiveis":
             list(
@@ -1571,6 +1573,10 @@ def status_otimizador():
     }
 
 
+# =========================================================
+# EXECUÇÃO DIRETA
+# =========================================================
+
 if __name__ == "__main__":
 
     print(
@@ -1582,7 +1588,7 @@ if __name__ == "__main__":
     )
 
     print(
-        "OTIMIZADOR GLOBAL V1"
+        "OTIMIZADOR GLOBAL V2 - PULP"
     )
 
     print(
