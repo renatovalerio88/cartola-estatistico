@@ -101,6 +101,9 @@ jobs:
       - name: Torneio de Capitães V2
         run: python scripts/processamento/torneio_capitao_v2.py
 
+      - name: Torneio de Seleção dos 11
+        run: python scripts/processamento/torneio_selecao_jogadores.py
+
       - name: Gerar Escalações Históricas
         run: python scripts/processamento/gerar_historico_escalacoes.py
 
@@ -167,6 +170,7 @@ jobs:
               Path("data/auditoria-simulacao-times.json"),
               Path("data/torneio-capitao.json"),
               Path("data/torneio-capitao-v2.json"),
+              Path("data/torneio-selecao-jogadores.json"),
               Path("data/comparacao-estrategias-adaptativas-v3.json"),
           ]
 
@@ -197,13 +201,7 @@ jobs:
                   print("melhor estratégia:", dados.get("melhorEstrategia"))
                   for item in dados.get("ranking", []):
                       temporal = item.get("desempenhoTemporal", {})
-                      print(
-                          item.get("nome"),
-                          "| camp:", temporal.get("campeonato", {}).get("media"),
-                          "| 10:", temporal.get("ultimas10", {}).get("media"),
-                          "| 5:", temporal.get("ultimas5", {}).get("media"),
-                          "| 3:", temporal.get("ultimas3", {}).get("media"),
-                      )
+                      print(item.get("nome"), "| camp:", temporal.get("campeonato", {}).get("media"), "| 10:", temporal.get("ultimas10", {}).get("media"), "| 5:", temporal.get("ultimas5", {}).get("media"), "| 3:", temporal.get("ultimas3", {}).get("media"))
 
               elif caminho.name == "analise-estrategias-escalacao.json":
                   resumo = dados.get("resumo", {})
@@ -220,9 +218,9 @@ jobs:
 
               elif caminho.name == "torneio-capitao.json":
                   melhor = dados.get("melhorExperimental") or {}
+                  temporal = melhor.get("desempenhoTemporal", {})
                   print("melhor capitão experimental:", melhor.get("modelo"))
                   print("ganho campeonato:", melhor.get("ganhoMedioTimeVsAtual"))
-                  temporal = melhor.get("desempenhoTemporal", {})
                   print("ganho 10:", temporal.get("ultimas10", {}).get("ganhoTimeVsAtual"))
                   print("ganho 5:", temporal.get("ultimas5", {}).get("ganhoTimeVsAtual"))
                   print("ganho 3:", temporal.get("ultimas3", {}).get("ganhoTimeVsAtual"))
@@ -237,6 +235,17 @@ jobs:
                   print("ganho 5:", temporal.get("ultimas5", {}).get("ganhoTimeVsAtual"))
                   print("ganho 3:", temporal.get("ultimas3", {}).get("ganhoTimeVsAtual"))
                   print("decisão:", dados.get("decisao"))
+
+              elif caminho.name == "torneio-selecao-jogadores.json":
+                  melhor = dados.get("melhorExperimental") or {}
+                  temporal = melhor.get("desempenhoTemporal", {})
+                  print("melhor seleção experimental:", melhor.get("modelo"))
+                  print("ganho campeonato:", melhor.get("ganhoMedioVsAtual"))
+                  print("camp:", temporal.get("campeonato", {}).get("media"))
+                  print("10:", temporal.get("ultimas10", {}).get("media"))
+                  print("5:", temporal.get("ultimas5", {}).get("media"))
+                  print("3:", temporal.get("ultimas3", {}).get("media"))
+                  print("captura perfeito:", temporal.get("campeonato", {}).get("capturaPerfeitoPct"))
 
               elif caminho.name == "comparacao-estrategias-adaptativas-v3.json":
                   print("amostra:", dados.get("amostra", {}).get("rodadasComuns"))
