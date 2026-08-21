@@ -1,15 +1,1 @@
-[
-  {
-    "id": 88963,
-    "nome": null,
-    "apelido": null,
-    "posicao": "TEC",
-    "posicaoId": 6,
-    "clube": "",
-    "statusId": 7,
-    "preco": 0.0,
-    "fonteReconstrucao": "base-historica",
-    "criterioReconstrucao": "tecnico_com_registro_na_rodada_anterior",
-    "dadosUtilizadosAteRodada": 23
-  }
-]
+[]
