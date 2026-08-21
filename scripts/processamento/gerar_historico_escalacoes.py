@@ -1,7 +1,7 @@
 """
 =========================================================
 CARTOLA ESTATÍSTICO
-Gerador de Histórico de Escalações V3
+Gerador de Histórico de Escalações V4
 =========================================================
 
 OBJETIVO
@@ -16,32 +16,21 @@ Estratégias:
 - Equilibrado
 - Agressivo
 
-NOVO NA V3
+NOVO NA V4
 ---------------------------------------------------------
-Integração com:
+1. Otimização global MILP.
+2. Fallback greedy.
+3. Patrimônio experimental de C$ 200.
+4. Separação entre:
 
-scripts/processamento/otimizador_global.py
+   - fonte de RESULTADO histórico;
+   - fonte de CANDIDATOS da rodada.
 
-O método principal passa a ser:
+5. Mercado da rodada passa a ser consultado para completar
+   corretamente atletas disponíveis, inclusive técnicos.
 
-PROGRAMACAO LINEAR INTEIRA MISTA (MILP)
-
-O otimizador procura a combinação GLOBAL que maximiza
-a nota total respeitando:
-
-- formação;
-- patrimônio;
-- limite de jogadores por clube;
-- quantidade exata por posição.
-
-Se o MILP não estiver disponível ou não encontrar solução,
-o sistema utiliza o método greedy anterior como FALLBACK.
-
-Isso permite comparar posteriormente:
-
-GREEDY
-versus
-MILP
+6. Não existe tratamento especial para "rodada 24".
+   A correção é estrutural.
 
 REGRA CIENTÍFICA
 ---------------------------------------------------------
@@ -142,12 +131,6 @@ PASTA_SAIDA = (
     "historico-escalacoes"
 )
 
-ARQUIVO_CONFIGURACAO = (
-    PASTA_DATA
-    /
-    "configuracao.json"
-)
-
 
 # =========================================================
 # CONFIGURAÇÃO
@@ -157,7 +140,15 @@ RODADA_INICIAL = 2
 
 LIMITE_JOGADORES_CLUBE = 3
 
-PATRIMONIO_PADRAO = 120.0
+# Laboratório:
+#
+# Não queremos que patrimônio baixo impeça o experimento
+# estatístico de descobrir a melhor combinação.
+#
+# O site continua recalculando conforme o patrimônio
+# informado pelo usuário.
+
+PATRIMONIO_LABORATORIO = 200.0
 
 
 ESTRATEGIAS = {
@@ -441,11 +432,30 @@ def obter_id(
         jogador.get(
             "clubeId"
         )
+
+        or
+
+        jogador.get(
+            "clube_id"
+        )
     )
 
     posicao = normalizar_texto(
+
         jogador.get(
             "posicao"
+        )
+
+        or
+
+        jogador.get(
+            "posicaoId"
+        )
+
+        or
+
+        jogador.get(
+            "posicao_id"
         )
     )
 
@@ -474,6 +484,12 @@ def obter_nome(
 
         or
 
+        jogador.get(
+            "nomeCompleto"
+        )
+
+        or
+
         ""
     )
 
@@ -482,7 +498,7 @@ def obter_clube(
     jogador,
 ):
 
-    return (
+    valor = (
 
         jogador.get(
             "siglaClube"
@@ -508,8 +524,44 @@ def obter_clube(
 
         or
 
+        jogador.get(
+            "clube_id"
+        )
+
+        or
+
         ""
     )
+
+    if isinstance(
+        valor,
+        dict,
+    ):
+
+        return (
+
+            valor.get(
+                "abreviacao"
+            )
+
+            or
+
+            valor.get(
+                "nome"
+            )
+
+            or
+
+            valor.get(
+                "id"
+            )
+
+            or
+
+            ""
+        )
+
+    return valor
 
 
 # =========================================================
@@ -539,18 +591,55 @@ def obter_posicao(
             posicao_id
         ]
 
-    texto = normalizar_texto(
-
-        jogador.get(
-            "posicao"
-        )
-
-        or
-
-        jogador.get(
-            "posicaoNome"
-        )
+    posicao_objeto = jogador.get(
+        "posicao"
     )
+
+    if isinstance(
+        posicao_objeto,
+        dict,
+    ):
+
+        posicao_id = inteiro(
+
+            posicao_objeto.get(
+                "id"
+            )
+        )
+
+        if posicao_id in MAPA_POSICOES_ID:
+
+            return MAPA_POSICOES_ID[
+                posicao_id
+            ]
+
+        texto = normalizar_texto(
+
+            posicao_objeto.get(
+                "abreviacao"
+            )
+
+            or
+
+            posicao_objeto.get(
+                "nome"
+            )
+        )
+
+    else:
+
+        texto = normalizar_texto(
+
+            jogador.get(
+                "posicao"
+            )
+
+            or
+
+            jogador.get(
+                "posicaoNome"
+            )
+        )
 
     if texto in MAPA_POSICOES_TEXTO:
 
@@ -572,6 +661,106 @@ def obter_posicao(
         return texto
 
     return ""
+
+
+# =========================================================
+# STATUS
+# =========================================================
+
+def obter_status_id(
+    jogador,
+):
+
+    for campo in (
+        "statusId",
+        "status_id",
+    ):
+
+        valor = inteiro(
+            jogador.get(
+                campo
+            ),
+            None,
+        )
+
+        if valor is not None:
+
+            return valor
+
+    status = jogador.get(
+        "status"
+    )
+
+    if isinstance(
+        status,
+        dict,
+    ):
+
+        return inteiro(
+            status.get(
+                "id"
+            ),
+            None,
+        )
+
+    return None
+
+
+def jogador_disponivel(
+    jogador,
+):
+
+    status = obter_status_id(
+        jogador
+    )
+
+    # Bases históricas mais antigas podem não ter status.
+    # Nesse caso, preservamos o comportamento anterior.
+
+    if status is None:
+
+        return True
+
+    # Cartola:
+    # status 7 = provável.
+
+    return status == 7
+
+
+# =========================================================
+# PREÇO
+# =========================================================
+
+def obter_preco(
+    jogador,
+):
+
+    for campo in (
+
+        "preco",
+        "preco_num",
+        "precoNum",
+        "precoCartoleta",
+
+    ):
+
+        if jogador.get(
+            campo
+        ) is not None:
+
+            return max(
+
+                0.0,
+
+                numero(
+                    jogador.get(
+                        campo
+                    ),
+                    0,
+                )
+            )
+
+    return 0.0
 
 
 # =========================================================
@@ -600,17 +789,43 @@ def obter_pontuacao_real(
         ) is not None:
 
             return numero(
+
                 jogador.get(
                     campo
                 ),
+
                 0,
             )
 
     return 0
 
 
+def possui_pontuacao_real(
+    jogador,
+):
+
+    campos = (
+
+        "pontuacaoReal",
+        "pontos",
+        "pontuacao",
+        "real",
+        "pontosUltimaRodada",
+    )
+
+    return any(
+
+        jogador.get(
+            campo
+        ) is not None
+
+        for campo
+        in campos
+    )
+
+
 # =========================================================
-# EXTRAÇÃO
+# EXTRAÇÃO DE LISTAS
 # =========================================================
 
 def extrair_lista_jogadores(
@@ -694,10 +909,14 @@ def extrair_lista_jogadores(
 
 
 # =========================================================
-# FONTES HISTÓRICAS
+# FONTES DE RESULTADO
+#
+# Usadas SOMENTE para formar histórico passado.
+#
+# Mercado não entra aqui.
 # =========================================================
 
-def caminhos_possiveis_rodada(
+def caminhos_resultado_rodada(
     rodada,
 ):
 
@@ -735,11 +954,11 @@ def caminhos_possiveis_rodada(
     ]
 
 
-def carregar_jogadores_rodada(
+def carregar_resultados_rodada(
     rodada,
 ):
 
-    for caminho in caminhos_possiveis_rodada(
+    for caminho in caminhos_resultado_rodada(
         rodada
     ):
 
@@ -751,11 +970,345 @@ def carregar_jogadores_rodada(
             dados
         )
 
-        if jogadores:
+        jogadores_com_resultado = [
 
-            return jogadores
+            jogador
+
+            for jogador
+            in jogadores
+
+            if isinstance(
+                jogador,
+                dict,
+            )
+
+            and
+
+            possui_pontuacao_real(
+                jogador
+            )
+        ]
+
+        if jogadores_com_resultado:
+
+            return jogadores_com_resultado
 
     return []
+
+
+# =========================================================
+# FONTES DE CANDIDATOS
+#
+# Usadas para montar a escalação da própria rodada.
+#
+# IMPORTANTE:
+#
+# Mercado entra aqui porque contém todos os atletas
+# disponíveis, inclusive técnicos.
+# =========================================================
+
+def caminhos_candidatos_rodada(
+    rodada,
+):
+
+    return [
+
+        # Base normalizada da API.
+
+        (
+            PASTA_API
+            /
+            f"rodada-{rodada:02d}"
+            /
+            "jogadores.json"
+        ),
+
+        # Snapshot bruto/normalizado do mercado.
+        #
+        # Fundamental para recuperar atletas que eventualmente
+        # não apareçam no arquivo histórico, como técnicos.
+
+        (
+            PASTA_API
+            /
+            f"rodada-{rodada:02d}"
+            /
+            "mercado.json"
+        ),
+
+        # Bases históricas já produzidas pelo projeto.
+
+        (
+            PASTA_HISTORICO
+            /
+            f"rodada-{rodada:02d}"
+            /
+            "jogadores.json"
+        ),
+
+        (
+            PASTA_HISTORICO
+            /
+            f"rodada-{rodada:02d}.json"
+        ),
+    ]
+
+
+def qualidade_registro_candidato(
+    jogador,
+):
+
+    pontos = 0
+
+    if obter_id(
+        jogador
+    ):
+
+        pontos += 5
+
+    if obter_nome(
+        jogador
+    ):
+
+        pontos += 3
+
+    if obter_posicao(
+        jogador
+    ):
+
+        pontos += 5
+
+    if obter_clube(
+        jogador
+    ):
+
+        pontos += 3
+
+    if obter_status_id(
+        jogador
+    ) is not None:
+
+        pontos += 4
+
+    if obter_preco(
+        jogador
+    ) > 0:
+
+        pontos += 3
+
+    return pontos
+
+
+def combinar_registros(
+    atual,
+    novo,
+):
+
+    if atual is None:
+
+        return dict(
+            novo
+        )
+
+    resultado = dict(
+        atual
+    )
+
+    # Primeiro preenche campos ausentes.
+
+    for chave, valor in novo.items():
+
+        if (
+            chave not in resultado
+
+            or
+
+            resultado.get(
+                chave
+            ) in (
+                None,
+                "",
+                {},
+                [],
+            )
+        ):
+
+            resultado[
+                chave
+            ] = valor
+
+    # Se o novo registro for estruturalmente mais completo,
+    # damos preferência a alguns campos fundamentais.
+
+    qualidade_atual = qualidade_registro_candidato(
+        atual
+    )
+
+    qualidade_novo = qualidade_registro_candidato(
+        novo
+    )
+
+    if qualidade_novo > qualidade_atual:
+
+        for chave in (
+
+            "apelido",
+            "nome",
+            "posicao",
+            "posicaoId",
+            "posicao_id",
+            "clube",
+            "clubeId",
+            "clube_id",
+            "siglaClube",
+            "status",
+            "statusId",
+            "status_id",
+            "preco",
+            "precoNum",
+            "preco_num",
+
+        ):
+
+            if novo.get(
+                chave
+            ) is not None:
+
+                resultado[
+                    chave
+                ] = novo[
+                    chave
+                ]
+
+    return resultado
+
+
+def carregar_candidatos_rodada(
+    rodada,
+):
+
+    por_id = {}
+
+    fontes_usadas = []
+
+    for caminho in caminhos_candidatos_rodada(
+        rodada
+    ):
+
+        dados = carregar_json(
+            caminho
+        )
+
+        jogadores = extrair_lista_jogadores(
+            dados
+        )
+
+        if not jogadores:
+
+            continue
+
+        fontes_usadas.append(
+            str(
+                caminho.relative_to(
+                    BASE_DIR
+                )
+            )
+        )
+
+        for jogador in jogadores:
+
+            if not isinstance(
+                jogador,
+                dict,
+            ):
+
+                continue
+
+            jogador_id = obter_id(
+                jogador
+            )
+
+            if not jogador_id:
+
+                continue
+
+            atual = por_id.get(
+                jogador_id
+            )
+
+            por_id[
+                jogador_id
+            ] = combinar_registros(
+                atual,
+                jogador,
+            )
+
+    candidatos = list(
+        por_id.values()
+    )
+
+    candidatos = [
+
+        jogador
+
+        for jogador
+        in candidatos
+
+        if obter_posicao(
+            jogador
+        )
+    ]
+
+    candidatos.sort(
+
+        key=lambda jogador: (
+
+            obter_posicao(
+                jogador
+            ),
+
+            normalizar_texto(
+                obter_nome(
+                    jogador
+                )
+            ),
+        )
+    )
+
+    return candidatos, fontes_usadas
+
+
+# =========================================================
+# DIAGNÓSTICO DAS FONTES
+# =========================================================
+
+def contar_posicoes(
+    jogadores,
+):
+
+    contagem = {
+
+        "GOL": 0,
+        "LAT": 0,
+        "ZAG": 0,
+        "MEI": 0,
+        "ATA": 0,
+        "TEC": 0,
+    }
+
+    for jogador in jogadores:
+
+        posicao = obter_posicao(
+            jogador
+        )
+
+        if posicao in contagem:
+
+            contagem[
+                posicao
+            ] += 1
+
+    return contagem
 
 
 # =========================================================
@@ -834,7 +1387,7 @@ def construir_historico_ate(
         rodada_limite + 1,
     ):
 
-        jogadores = carregar_jogadores_rodada(
+        jogadores = carregar_resultados_rodada(
             rodada
         )
 
@@ -843,6 +1396,10 @@ def construir_historico_ate(
             jogador_id = obter_id(
                 jogador
             )
+
+            if not jogador_id:
+
+                continue
 
             historico.setdefault(
                 jogador_id,
@@ -1039,124 +1596,6 @@ def calcular_metricas(
 
 
 # =========================================================
-# DISPONIBILIDADE
-# =========================================================
-
-def jogador_disponivel(
-    jogador,
-):
-
-    status = inteiro(
-
-        jogador.get(
-            "statusId"
-        )
-
-        or
-
-        jogador.get(
-            "status_id"
-        )
-    )
-
-    if status is None:
-
-        return True
-
-    return status == 7
-
-
-# =========================================================
-# PREÇO
-# =========================================================
-
-def obter_preco(
-    jogador,
-):
-
-    for campo in (
-
-        "preco",
-        "preco_num",
-        "precoNum",
-        "precoCartoleta",
-
-    ):
-
-        if jogador.get(
-            campo
-        ) is not None:
-
-            return max(
-
-                0.0,
-
-                numero(
-                    jogador.get(
-                        campo
-                    ),
-                    0,
-                )
-            )
-
-    return 0
-
-
-# =========================================================
-# PATRIMÔNIO
-# =========================================================
-
-def obter_patrimonio():
-
-    configuracao = carregar_json(
-        ARQUIVO_CONFIGURACAO
-    )
-
-    if not isinstance(
-        configuracao,
-        dict,
-    ):
-
-        return PATRIMONIO_PADRAO
-
-    caminhos = [
-
-        configuracao.get(
-            "patrimonio"
-        ),
-
-        configuracao.get(
-            "cartoletas"
-        ),
-
-        configuracao.get(
-            "orcamento"
-        ),
-
-        configuracao.get(
-            "patrimonioPadrao"
-        ),
-    ]
-
-    for valor in caminhos:
-
-        convertido = numero(
-            valor,
-            None,
-        )
-
-        if (
-            convertido is not None
-            and
-            convertido > 0
-        ):
-
-            return convertido
-
-    return PATRIMONIO_PADRAO
-
-
-# =========================================================
 # NOTA POR ESTRATÉGIA
 # =========================================================
 
@@ -1349,7 +1788,7 @@ def calcular_nota(
 
 
 # =========================================================
-# CANDIDATOS
+# PREPARAÇÃO DOS CANDIDATOS
 # =========================================================
 
 def preparar_candidatos(
@@ -1358,8 +1797,10 @@ def preparar_candidatos(
     estrategia,
 ):
 
-    jogadores_rodada = carregar_jogadores_rodada(
-        rodada
+    jogadores_rodada, fontes = (
+        carregar_candidatos_rodada(
+            rodada
+        )
     )
 
     candidatos = []
@@ -1431,7 +1872,7 @@ def preparar_candidatos(
                 metricas,
         })
 
-    return candidatos
+    return candidatos, fontes
 
 
 # =========================================================
@@ -2398,16 +2839,20 @@ def auditar_estrategia(
     # =====================================================
 
     patrimonio = numero(
+
         estrategia.get(
             "patrimonio"
         ),
+
         None,
     )
 
     custo = numero(
+
         estrategia.get(
             "custoTitulares"
         ),
+
         0,
     )
 
@@ -2427,7 +2872,7 @@ def auditar_estrategia(
     # DATA LEAKAGE
     # =====================================================
 
-    def possui_resultado_real(
+    def possui_resultado_real_serializado(
         jogador,
     ):
 
@@ -2460,6 +2905,7 @@ def auditar_estrategia(
     )
 
     jogadores_auditados.extend(
+
         estrategia.get(
             "banco",
             []
@@ -2488,7 +2934,7 @@ def auditar_estrategia(
 
     if any(
 
-        possui_resultado_real(
+        possui_resultado_real_serializado(
             jogador
         )
 
@@ -2531,10 +2977,20 @@ def gerar_rodada(
         rodada_limite
     )
 
+    candidatos_base, fontes = (
+        carregar_candidatos_rodada(
+            rodada
+        )
+    )
+
+    disponibilidade = contar_posicoes(
+        candidatos_base
+    )
+
     resultado = {
 
         "modelo":
-            "historico_escalacoes_v3_milp",
+            "historico_escalacoes_v4_milp",
 
         "rodada":
             rodada,
@@ -2560,6 +3016,12 @@ def gerar_rodada(
         "otimizacaoGlobalAtiva":
             OTIMIZADOR_IMPORTADO,
 
+        "fontesCandidatos":
+            fontes,
+
+        "candidatosDisponiveisPorPosicao":
+            disponibilidade,
+
         "estrategias":
             [],
     }
@@ -2568,19 +3030,25 @@ def gerar_rodada(
         ESTRATEGIAS.items()
     ):
 
-        candidatos = preparar_candidatos(
+        candidatos, _ = preparar_candidatos(
 
             rodada,
             historico,
             estrategia_id,
         )
 
+        candidatos_disponiveis = contar_posicoes(
+            candidatos
+        )
+
         time = montar_time_otimizado(
 
             candidatos,
+
             configuracao[
                 "formacao"
             ],
+
             patrimonio,
         )
 
@@ -2662,6 +3130,9 @@ def gerar_rodada(
                 time[
                     "quantidadeEsperada"
                 ],
+
+            "candidatosDisponiveisPorPosicao":
+                candidatos_disponiveis,
 
             "custoTitulares":
                 round(
@@ -2795,7 +3266,7 @@ def processar():
 
     rodada_maxima = descobrir_rodada_maxima()
 
-    patrimonio = obter_patrimonio()
+    patrimonio = PATRIMONIO_LABORATORIO
 
     print(
         "============================================"
@@ -2806,7 +3277,7 @@ def processar():
     )
 
     print(
-        "HISTÓRICO PROGRESSIVO DE ESCALAÇÕES V3"
+        "HISTÓRICO PROGRESSIVO DE ESCALAÇÕES V4"
     )
 
     print(
@@ -2823,7 +3294,7 @@ def processar():
     )
 
     print(
-        "Patrimônio:",
+        "Patrimônio experimental:",
         patrimonio,
     )
 
@@ -2897,8 +3368,8 @@ def processar():
         rodada_maxima + 1,
     ):
 
-        candidatos_rodada = (
-            carregar_jogadores_rodada(
+        candidatos_rodada, fontes = (
+            carregar_candidatos_rodada(
                 rodada
             )
         )
@@ -2909,10 +3380,21 @@ def processar():
 
                 f"[IGNORADA] "
                 f"Rodada {rodada:02d}: "
-                f"sem jogadores."
+                f"sem candidatos."
             )
 
             continue
+
+        disponibilidade = contar_posicoes(
+            candidatos_rodada
+        )
+
+        print(
+            f"[FONTES] R{rodada:02d} | "
+            f"{len(fontes)} arquivo(s) | "
+            f"TEC encontrados: "
+            f"{disponibilidade.get('TEC', 0)}"
+        )
 
         resultado = gerar_rodada(
             rodada,
@@ -3043,13 +3525,15 @@ def processar():
     indice = {
 
         "modelo":
-            "historico_escalacoes_indice_v3_milp",
+            "historico_escalacoes_indice_v4_milp",
 
         "descricao":
             (
                 "Histórico progressivo de escalações "
-                "com otimização global MILP e proteção "
-                "contra vazamento futuro."
+                "com otimização global MILP, patrimônio "
+                "experimental C$ 200, fontes de candidatos "
+                "separadas das fontes de resultado e "
+                "proteção contra vazamento futuro."
             ),
 
         "rodadasProcessadas":
@@ -3126,11 +3610,20 @@ def processar():
             "pontuacaoRealNaoSerializada":
                 True,
 
+            "fontesResultadoSeparadasDosCandidatos":
+                True,
+
+            "mercadoUsadoParaCandidatos":
+                True,
+
             "otimizacaoGlobal":
                 True,
 
             "fallbackGreedy":
                 True,
+
+            "patrimonioLaboratorio":
+                PATRIMONIO_LABORATORIO,
 
             "patrimonioRespeitado":
                 True,
