@@ -6,179 +6,179 @@
   },
   "resumo": {
     "rodadasAnalisadas": 23,
-    "mae": 2.85,
+    "mae": 2.93,
     "melhorRodada": {
       "rodada": 24,
-      "erro": 1.48,
-      "taxaAcerto": 84.55
+      "erro": 0.0,
+      "taxaAcerto": 100.0
     },
     "piorRodada": {
       "rodada": 3,
-      "erro": 3.51,
-      "taxaAcerto": 54.55
+      "erro": 3.77,
+      "taxaAcerto": 53.38
     }
   },
   "rodadas": [
     {
       "rodada": 2,
-      "mae": 3.31,
-      "taxaAcerto": 62.12
+      "mae": 3.7,
+      "taxaAcerto": 56.97
     },
     {
       "rodada": 3,
-      "mae": 3.51,
-      "taxaAcerto": 54.55
+      "mae": 3.77,
+      "taxaAcerto": 53.38
     },
     {
       "rodada": 4,
-      "mae": 2.92,
-      "taxaAcerto": 65.92
+      "mae": 3.15,
+      "taxaAcerto": 59.39
     },
     {
       "rodada": 5,
-      "mae": 3.25,
-      "taxaAcerto": 56.75
+      "mae": 3.44,
+      "taxaAcerto": 53.04
     },
     {
       "rodada": 6,
-      "mae": 2.94,
-      "taxaAcerto": 63.31
+      "mae": 3.1,
+      "taxaAcerto": 59.22
     },
     {
       "rodada": 7,
-      "mae": 2.78,
-      "taxaAcerto": 65.02
+      "mae": 2.84,
+      "taxaAcerto": 61.92
     },
     {
       "rodada": 8,
-      "mae": 2.95,
-      "taxaAcerto": 61.11
+      "mae": 2.98,
+      "taxaAcerto": 59.13
     },
     {
       "rodada": 9,
-      "mae": 3.19,
-      "taxaAcerto": 61.64
+      "mae": 3.32,
+      "taxaAcerto": 59.01
     },
     {
       "rodada": 10,
-      "mae": 2.79,
-      "taxaAcerto": 62.97
+      "mae": 2.92,
+      "taxaAcerto": 60.06
     },
     {
       "rodada": 11,
-      "mae": 2.68,
-      "taxaAcerto": 66.99
+      "mae": 2.8,
+      "taxaAcerto": 61.89
     },
     {
       "rodada": 12,
-      "mae": 2.81,
-      "taxaAcerto": 67.81
+      "mae": 2.95,
+      "taxaAcerto": 63.77
     },
     {
       "rodada": 13,
       "mae": 2.78,
-      "taxaAcerto": 66.56
+      "taxaAcerto": 65.96
     },
     {
       "rodada": 14,
-      "mae": 2.86,
-      "taxaAcerto": 67.09
+      "mae": 3.09,
+      "taxaAcerto": 61.16
     },
     {
       "rodada": 15,
-      "mae": 2.84,
-      "taxaAcerto": 63.78
+      "mae": 2.95,
+      "taxaAcerto": 61.16
     },
     {
       "rodada": 16,
-      "mae": 2.57,
-      "taxaAcerto": 73.16
+      "mae": 2.82,
+      "taxaAcerto": 63.98
     },
     {
       "rodada": 17,
-      "mae": 3.07,
-      "taxaAcerto": 63.06
+      "mae": 3.08,
+      "taxaAcerto": 62.2
     },
     {
       "rodada": 18,
-      "mae": 2.96,
-      "taxaAcerto": 65.09
+      "mae": 2.9,
+      "taxaAcerto": 65.75
     },
     {
       "rodada": 19,
-      "mae": 2.95,
-      "taxaAcerto": 65.55
+      "mae": 3.12,
+      "taxaAcerto": 62.89
     },
     {
       "rodada": 20,
-      "mae": 2.6,
-      "taxaAcerto": 70.12
+      "mae": 2.91,
+      "taxaAcerto": 61.22
     },
     {
       "rodada": 21,
-      "mae": 2.9,
-      "taxaAcerto": 64.15
+      "mae": 3.05,
+      "taxaAcerto": 58.82
     },
     {
       "rodada": 22,
-      "mae": 2.6,
-      "taxaAcerto": 68.51
+      "mae": 2.81,
+      "taxaAcerto": 63.12
     },
     {
       "rodada": 23,
-      "mae": 2.89,
-      "taxaAcerto": 65.5
+      "mae": 2.9,
+      "taxaAcerto": 63.38
     },
     {
       "rodada": 24,
-      "mae": 1.48,
-      "taxaAcerto": 84.55
+      "mae": 0.0,
+      "taxaAcerto": 100.0
     }
   ],
   "evolucao": [
     {
       "rodada": 2,
-      "mae": 3.31
+      "mae": 3.7
     },
     {
       "rodada": 3,
-      "mae": 3.51
+      "mae": 3.77
     },
     {
       "rodada": 4,
-      "mae": 2.92
+      "mae": 3.15
     },
     {
       "rodada": 5,
-      "mae": 3.25
+      "mae": 3.44
     },
     {
       "rodada": 6,
-      "mae": 2.94
+      "mae": 3.1
     },
     {
       "rodada": 7,
-      "mae": 2.78
+      "mae": 2.84
     },
     {
       "rodada": 8,
-      "mae": 2.95
+      "mae": 2.98
     },
     {
       "rodada": 9,
-      "mae": 3.19
+      "mae": 3.32
     },
     {
       "rodada": 10,
-      "mae": 2.79
+      "mae": 2.92
     },
     {
       "rodada": 11,
-      "mae": 2.68
+      "mae": 2.8
     },
     {
       "rodada": 12,
-      "mae": 2.81
+      "mae": 2.95
     },
     {
       "rodada": 13,
@@ -186,73 +186,73 @@
     },
     {
       "rodada": 14,
-      "mae": 2.86
+      "mae": 3.09
     },
     {
       "rodada": 15,
-      "mae": 2.84
-    },
-    {
-      "rodada": 16,
-      "mae": 2.57
-    },
-    {
-      "rodada": 17,
-      "mae": 3.07
-    },
-    {
-      "rodada": 18,
-      "mae": 2.96
-    },
-    {
-      "rodada": 19,
       "mae": 2.95
     },
     {
-      "rodada": 20,
-      "mae": 2.6
+      "rodada": 16,
+      "mae": 2.82
     },
     {
-      "rodada": 21,
+      "rodada": 17,
+      "mae": 3.08
+    },
+    {
+      "rodada": 18,
       "mae": 2.9
     },
     {
+      "rodada": 19,
+      "mae": 3.12
+    },
+    {
+      "rodada": 20,
+      "mae": 2.91
+    },
+    {
+      "rodada": 21,
+      "mae": 3.05
+    },
+    {
       "rodada": 22,
-      "mae": 2.6
+      "mae": 2.81
     },
     {
       "rodada": 23,
-      "mae": 2.89
+      "mae": 2.9
     },
     {
       "rodada": 24,
-      "mae": 1.48
+      "mae": 0.0
     }
   ],
   "posicoes": {
     "MEI": {
-      "quantidade": 2330,
-      "erroMedio": 2.47
+      "quantidade": 2189,
+      "erroMedio": 2.67
     },
     "LAT": {
-      "quantidade": 1113,
-      "erroMedio": 3.14
+      "quantidade": 972,
+      "erroMedio": 3.42
     },
     "ATA": {
-      "quantidade": 1905,
-      "erroMedio": 2.91
+      "quantidade": 1716,
+      "erroMedio": 3.26
     },
     "GOL": {
-      "quantidade": 490,
-      "erroMedio": 3.0
-    },
-    "ZAG": {
-      "quantidade": 1050,
-      "erroMedio": 2.73
+      "quantidade": 444,
+      "erroMedio": 3.19
     },
     "TEC": {
-      "quantidade": 390,
-      "erroMedio": 2.34
+      "quantidade": 424,
+      "erroMedio": 2.2
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.94
     }
   },
   "versoes": [
@@ -280,9 +280,9 @@
       "nome": "Índice Explosão",
       "tipo": "camada estratégica",
       "resultado": "não incorporado na projeção",
-      "erroOriginal": 2.753,
-      "erroComExplosao": 2.76,
-      "impacto": -0.007,
+      "erroOriginal": 2.975,
+      "erroComExplosao": 3.045,
+      "impacto": -0.07,
       "decisao": "usar futuramente em capitão e diferenciais"
     }
   ],

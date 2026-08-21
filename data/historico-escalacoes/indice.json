@@ -1,6 +1,6 @@
 {
-  "modelo": "historico_escalacoes_indice_v4",
-  "descricao": "Índice do histórico progressivo de escalações sem vazamento futuro e com proteção financeira completa.",
+  "modelo": "historico_escalacoes_indice_v4_milp",
+  "descricao": "Histórico progressivo de escalações com otimização global MILP, patrimônio experimental C$ 200, fontes de candidatos separadas das fontes de resultado e proteção contra vazamento futuro.",
   "rodadasProcessadas": [
     2,
     3,
@@ -29,10 +29,13 @@
   "quantidadeRodadas": 23,
   "primeiraRodada": 2,
   "ultimaRodada": 24,
+  "patrimonio": 200.0,
   "totalEscalacoes": 69,
   "totalEscalacoesCompletas": 69,
   "totalEstrategiasAuditadas": 69,
   "totalEstrategiasAprovadas": 69,
+  "totalSelecoesMILP": 69,
+  "totalFallbackGreedy": 0,
   "rodadasAprovadas": [
     2,
     3,
@@ -63,10 +66,13 @@
   "regras": {
     "rodadaPrevistaNaoEntraNoHistorico": true,
     "pontuacaoRealNaoSerializada": true,
+    "fontesResultadoSeparadasDosCandidatos": true,
+    "mercadoUsadoParaCandidatos": true,
+    "otimizacaoGlobal": true,
+    "fallbackGreedy": true,
+    "patrimonioLaboratorio": 200.0,
+    "patrimonioRespeitado": true,
     "limiteJogadoresClube": 3,
-    "formacoesSincronizadasComMotor": true,
-    "orcamentoIncluiBanco": true,
-    "reservaTitularesFuturos": true,
-    "reservaMinimaBanco": true
+    "formacoesSincronizadasComMotor": true
   }
 }

@@ -1,301 +1,71 @@
 {
-  "modelo": "historico_escalacoes_v4",
+  "modelo": "historico_escalacoes_v4_milp",
   "rodada": 2,
   "dadosUtilizadosAteRodada": 1,
   "regraTemporal": "rodadas_1_a_1",
   "semVazamentoFuturo": true,
+  "patrimonio": 200.0,
   "limiteJogadoresClube": 3,
-  "limitePatrimonio": 120.0,
-  "orcamentoIncluiBanco": true,
-  "reservaTitularesFuturos": true,
+  "otimizacaoGlobalAtiva": true,
+  "fontesCandidatos": [
+    "data/api/rodada-02/jogadores.json",
+    "data/historico/rodada-02.json"
+  ],
+  "candidatosDisponiveisPorPosicao": {
+    "GOL": 18,
+    "LAT": 42,
+    "ZAG": 45,
+    "MEI": 106,
+    "ATA": 71,
+    "TEC": 20
+  },
   "estrategias": [
     {
       "id": "conservador",
       "nome": "Conservador",
       "perfil": "conservador",
       "formacao": "4-4-2",
+      "metodoSelecao": "milp",
+      "patrimonio": 200.0,
       "escalacaoCompleta": true,
-      "bancoCompleto": true,
-      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "quantidadeBanco": 5,
-      "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 13.86,
-      "custoTitulares": 105.9,
-      "custoBanco": 13.86,
-      "custoTotal": 119.76,
-      "saldo": 0.24,
+      "candidatosDisponiveisPorPosicao": {
+        "GOL": 18,
+        "LAT": 42,
+        "ZAG": 45,
+        "MEI": 106,
+        "ATA": 71,
+        "TEC": 20
+      },
+      "custoTitulares": 0.0,
+      "saldoPatrimonio": 200.0,
       "projecaoTitulares": -240.0,
-      "titulares": [
-        {
-          "id": "125803",
-          "nome": "Pedro Luccas Morisco da Silva",
-          "posicao": "GOL",
-          "clube": "CFC",
-          "preco": 7.79,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "94968",
-          "nome": "Luis Antônio da Rocha Júnior",
-          "posicao": "LAT",
-          "clube": "RBB",
-          "preco": 13.27,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "96591",
-          "nome": "Renan Augusto Lodi dos Santos",
-          "posicao": "LAT",
-          "clube": "CAM",
-          "preco": 11.31,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "110750",
-          "nome": "Gustavo Marques Alves dos Santos",
-          "posicao": "ZAG",
-          "clube": "RBB",
-          "preco": 7.16,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "91573",
-          "nome": "Robert Abel Arboleda Escobar",
-          "posicao": "ZAG",
-          "clube": "SAO",
-          "preco": 8.37,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "107231",
-          "nome": "Danilo dos Santos de Oliveira",
-          "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 14.19,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "103767",
-          "nome": "Gabriel Vinícius Menino",
-          "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 9.92,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "89837",
-          "nome": "Luciano Federico Acosta",
-          "posicao": "MEI",
-          "clube": "FLU",
-          "preco": 9.66,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "126471",
-          "nome": "Álvaro Martín Barreal",
-          "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 10.18,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "118775",
-          "nome": "Lautaro Ariel Díaz",
-          "posicao": "ATA",
-          "clube": "SAN",
-          "preco": 5.26,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "142265",
-          "nome": "Wendeson Wanderley Santos de Melo",
-          "posicao": "ATA",
-          "clube": "BAH",
-          "preco": 1.82,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "104027",
-          "nome": "Rafael Silva Guanaes",
-          "posicao": "TEC",
-          "clube": "MIR",
-          "preco": 6.97,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        }
-      ],
-      "capitao": {
-        "id": "125803",
-        "nome": "Pedro Luccas Morisco da Silva",
-        "posicao": "GOL",
-        "clube": "CFC",
-        "preco": 7.79,
-        "projecao": -20.0,
-        "historico": {
-          "jogos": 0,
-          "media": 0,
-          "media3": 0,
-          "media5": 0,
-          "mediana": 0,
-          "piso": 0,
-          "teto": 0,
-          "regularidade": 0,
-          "volatilidade": 0,
-          "tendencia": 0
+      "otimizador": {
+        "sucesso": true,
+        "status": "OTIMO_ENCONTRADO",
+        "motor": "PuLP_CBC_MILP",
+        "scoreTotal": -240.0,
+        "custoTotal": 0.0,
+        "saldo": 200.0,
+        "custoMinimoTeorico": 0.0,
+        "auditoria": {
+          "quantidadeEsperada": 12,
+          "quantidadeObtida": 12,
+          "quantidadeCorreta": true,
+          "posicoesCorretas": true,
+          "patrimonioRespeitado": true,
+          "limiteClubeRespeitado": true,
+          "aprovada": true
         }
       },
-      "banco": [
+      "titulares": [
         {
-          "id": "51413",
-          "nome": "Walter Leandro Capeloza Artune",
-          "posicao": "GOL",
-          "clube": "MIR",
-          "preco": 4.51,
+          "id": "111831",
+          "nome": "Matheus Martins",
+          "posicao": "ATA",
+          "clube": 263,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -311,11 +81,171 @@
           }
         },
         {
-          "id": "89273",
-          "nome": "João Pedro Maturano dos Santos",
+          "id": "124757",
+          "nome": "Nathan Fernandes",
+          "posicao": "ATA",
+          "clube": 263,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "125803",
+          "nome": "Pedro Morisco",
+          "posicao": "GOL",
+          "clube": 294,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "80313",
+          "nome": "Gilberto",
           "posicao": "LAT",
-          "clube": "GRE",
-          "preco": 3.11,
+          "clube": 265,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "107093",
+          "nome": "Luciano Juba",
+          "posicao": "LAT",
+          "clube": 265,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "104502",
+          "nome": "Christian",
+          "posicao": "MEI",
+          "clube": 283,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "86859",
+          "nome": "José Welison",
+          "posicao": "MEI",
+          "clube": 364,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "80196",
+          "nome": "Yago Pikachu",
+          "posicao": "MEI",
+          "clube": 364,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "102911",
+          "nome": "Zé Ricardo",
+          "posicao": "MEI",
+          "clube": 364,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "40990",
+          "nome": "Dorival Júnior",
+          "posicao": "TEC",
+          "clube": 264,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -332,10 +262,10 @@
         },
         {
           "id": "95620",
-          "nome": "Bruno Leonardo dos Santos Covas",
+          "nome": "Bruno Leonardo",
           "posicao": "ZAG",
-          "clube": "CHA",
-          "preco": 2.91,
+          "clube": 315,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -351,11 +281,113 @@
           }
         },
         {
-          "id": "146410",
-          "nome": "Marcos Felipe Vinagre Souza",
+          "id": "101393",
+          "nome": "Eduardo Doma",
+          "posicao": "ZAG",
+          "clube": 315,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        }
+      ],
+      "capitao": {
+        "id": "111831",
+        "nome": "Matheus Martins",
+        "posicao": "ATA",
+        "clube": 263,
+        "preco": 0.0,
+        "projecao": -20.0,
+        "historico": {
+          "jogos": 0,
+          "media": 0,
+          "media3": 0,
+          "media5": 0,
+          "mediana": 0,
+          "piso": 0,
+          "teto": 0,
+          "regularidade": 0,
+          "volatilidade": 0,
+          "tendencia": 0
+        }
+      },
+      "banco": [
+        {
+          "id": "104084",
+          "nome": "Carlos Miguel",
+          "posicao": "GOL",
+          "clube": 275,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "110510",
+          "nome": "Aguirre",
+          "posicao": "LAT",
+          "clube": 285,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "108469",
+          "nome": "Adonis Frías",
+          "posicao": "ZAG",
+          "clube": 277,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "104783",
+          "nome": "Acevedo",
           "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 0.85,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -371,11 +403,11 @@
           }
         },
         {
-          "id": "116066",
-          "nome": "Rubens Tadeu Hartmann Ricoldi",
+          "id": "101314",
+          "nome": "Ademir",
           "posicao": "ATA",
-          "clube": "CHA",
-          "preco": 2.48,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -392,11 +424,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "51413",
-        "nome": "Walter Leandro Capeloza Artune",
+        "id": "104084",
+        "nome": "Carlos Miguel",
         "posicao": "GOL",
-        "clube": "MIR",
-        "preco": 4.51,
+        "clube": 275,
+        "preco": 0.0,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -421,26 +453,107 @@
       "nome": "Equilibrado",
       "perfil": "equilibrado",
       "formacao": "3-4-3",
+      "metodoSelecao": "milp",
+      "patrimonio": 200.0,
       "escalacaoCompleta": true,
-      "bancoCompleto": true,
-      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "quantidadeBanco": 5,
-      "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 13.86,
-      "custoTitulares": 105.57,
-      "custoBanco": 13.86,
-      "custoTotal": 119.43,
-      "saldo": 0.57,
+      "candidatosDisponiveisPorPosicao": {
+        "GOL": 18,
+        "LAT": 42,
+        "ZAG": 45,
+        "MEI": 106,
+        "ATA": 71,
+        "TEC": 20
+      },
+      "custoTitulares": 0.0,
+      "saldoPatrimonio": 200.0,
       "projecaoTitulares": -240.0,
+      "otimizador": {
+        "sucesso": true,
+        "status": "OTIMO_ENCONTRADO",
+        "motor": "PuLP_CBC_MILP",
+        "scoreTotal": -240.0,
+        "custoTotal": 0.0,
+        "saldo": 200.0,
+        "custoMinimoTeorico": 0.0,
+        "auditoria": {
+          "quantidadeEsperada": 12,
+          "quantidadeObtida": 12,
+          "quantidadeCorreta": true,
+          "posicoesCorretas": true,
+          "patrimonioRespeitado": true,
+          "limiteClubeRespeitado": true,
+          "aprovada": true
+        }
+      },
       "titulares": [
         {
-          "id": "125803",
-          "nome": "Pedro Luccas Morisco da Silva",
+          "id": "86757",
+          "nome": "Everton",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "94583",
+          "nome": "Pedro",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "98873",
+          "nome": "Samuel Lino",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "105949",
+          "nome": "Rochet",
           "posicao": "GOL",
-          "clube": "CFC",
-          "preco": 7.79,
+          "clube": 285,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -456,71 +569,11 @@
           }
         },
         {
-          "id": "110750",
-          "nome": "Gustavo Marques Alves dos Santos",
-          "posicao": "ZAG",
-          "clube": "RBB",
-          "preco": 7.16,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "91573",
-          "nome": "Robert Abel Arboleda Escobar",
-          "posicao": "ZAG",
-          "clube": "SAO",
-          "preco": 8.37,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "132553",
-          "nome": "Jemmes Bruno Ribeiro da Silva",
-          "posicao": "ZAG",
-          "clube": "FLU",
-          "preco": 6.64,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "107231",
-          "nome": "Danilo dos Santos de Oliveira",
+          "id": "122485",
+          "nome": "Barros",
           "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 14.19,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -536,11 +589,11 @@
           }
         },
         {
-          "id": "103767",
-          "nome": "Gabriel Vinícius Menino",
+          "id": "85403",
+          "nome": "Danielzinho",
           "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 9.92,
+          "clube": 276,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -556,11 +609,11 @@
           }
         },
         {
-          "id": "89837",
-          "nome": "Luciano Federico Acosta",
+          "id": "128433",
+          "nome": "Johan Rojas",
           "posicao": "MEI",
-          "clube": "FLU",
-          "preco": 9.66,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -576,11 +629,11 @@
           }
         },
         {
-          "id": "126471",
-          "nome": "Álvaro Martín Barreal",
+          "id": "71123",
+          "nome": "Thiago Mendes",
           "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 10.18,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -596,71 +649,71 @@
           }
         },
         {
-          "id": "113103",
-          "nome": "José Manuel Alberto López",
-          "posicao": "ATA",
-          "clube": "PAL",
-          "preco": 13.77,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "97810",
-          "nome": "Erick de Arruda Serafim",
-          "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 8.28,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "142265",
-          "nome": "Wendeson Wanderley Santos de Melo",
-          "posicao": "ATA",
-          "clube": "BAH",
-          "preco": 1.82,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "126977",
-          "nome": "Fernando Seabra",
+          "id": "92273",
+          "nome": "Odair Hellmann",
           "posicao": "TEC",
-          "clube": "CFC",
-          "preco": 7.79,
+          "clube": 293,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "87887",
+          "nome": "Balbuena",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "130048",
+          "nome": "Noriega",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "104994",
+          "nome": "Wagner Leonardo",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -677,11 +730,11 @@
         }
       ],
       "capitao": {
-        "id": "125803",
-        "nome": "Pedro Luccas Morisco da Silva",
-        "posicao": "GOL",
-        "clube": "CFC",
-        "preco": 7.79,
+        "id": "86757",
+        "nome": "Everton",
+        "posicao": "ATA",
+        "clube": 262,
+        "preco": 0.0,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -698,11 +751,11 @@
       },
       "banco": [
         {
-          "id": "51413",
-          "nome": "Walter Leandro Capeloza Artune",
+          "id": "104084",
+          "nome": "Carlos Miguel",
           "posicao": "GOL",
-          "clube": "MIR",
-          "preco": 4.51,
+          "clube": 275,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -718,11 +771,11 @@
           }
         },
         {
-          "id": "89273",
-          "nome": "João Pedro Maturano dos Santos",
+          "id": "110510",
+          "nome": "Aguirre",
           "posicao": "LAT",
-          "clube": "GRE",
-          "preco": 3.11,
+          "clube": 285,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -738,11 +791,11 @@
           }
         },
         {
-          "id": "95620",
-          "nome": "Bruno Leonardo dos Santos Covas",
+          "id": "108469",
+          "nome": "Adonis Frías",
           "posicao": "ZAG",
-          "clube": "CHA",
-          "preco": 2.91,
+          "clube": 277,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -758,11 +811,11 @@
           }
         },
         {
-          "id": "146410",
-          "nome": "Marcos Felipe Vinagre Souza",
+          "id": "104783",
+          "nome": "Acevedo",
           "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 0.85,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -778,11 +831,11 @@
           }
         },
         {
-          "id": "116066",
-          "nome": "Rubens Tadeu Hartmann Ricoldi",
+          "id": "101314",
+          "nome": "Ademir",
           "posicao": "ATA",
-          "clube": "CHA",
-          "preco": 2.48,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -799,11 +852,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "51413",
-        "nome": "Walter Leandro Capeloza Artune",
+        "id": "104084",
+        "nome": "Carlos Miguel",
         "posicao": "GOL",
-        "clube": "MIR",
-        "preco": 4.51,
+        "clube": 275,
+        "preco": 0.0,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -828,26 +881,107 @@
       "nome": "Agressivo",
       "perfil": "agressivo",
       "formacao": "3-4-3",
+      "metodoSelecao": "milp",
+      "patrimonio": 200.0,
       "escalacaoCompleta": true,
-      "bancoCompleto": true,
-      "timeCompletoComBanco": true,
       "quantidadeTitulares": 12,
       "quantidadeEsperada": 12,
-      "quantidadeBanco": 5,
-      "limitePatrimonio": 120.0,
-      "reservaMinimaBanco": 13.86,
-      "custoTitulares": 105.57,
-      "custoBanco": 13.86,
-      "custoTotal": 119.43,
-      "saldo": 0.57,
+      "candidatosDisponiveisPorPosicao": {
+        "GOL": 18,
+        "LAT": 42,
+        "ZAG": 45,
+        "MEI": 106,
+        "ATA": 71,
+        "TEC": 20
+      },
+      "custoTitulares": 0.0,
+      "saldoPatrimonio": 200.0,
       "projecaoTitulares": -240.0,
+      "otimizador": {
+        "sucesso": true,
+        "status": "OTIMO_ENCONTRADO",
+        "motor": "PuLP_CBC_MILP",
+        "scoreTotal": -240.0,
+        "custoTotal": 0.0,
+        "saldo": 200.0,
+        "custoMinimoTeorico": 0.0,
+        "auditoria": {
+          "quantidadeEsperada": 12,
+          "quantidadeObtida": 12,
+          "quantidadeCorreta": true,
+          "posicoesCorretas": true,
+          "patrimonioRespeitado": true,
+          "limiteClubeRespeitado": true,
+          "aprovada": true
+        }
+      },
       "titulares": [
         {
-          "id": "125803",
-          "nome": "Pedro Luccas Morisco da Silva",
+          "id": "86757",
+          "nome": "Everton",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "94583",
+          "nome": "Pedro",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "98873",
+          "nome": "Samuel Lino",
+          "posicao": "ATA",
+          "clube": 262,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "105949",
+          "nome": "Rochet",
           "posicao": "GOL",
-          "clube": "CFC",
-          "preco": 7.79,
+          "clube": 285,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -863,71 +997,11 @@
           }
         },
         {
-          "id": "110750",
-          "nome": "Gustavo Marques Alves dos Santos",
-          "posicao": "ZAG",
-          "clube": "RBB",
-          "preco": 7.16,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "91573",
-          "nome": "Robert Abel Arboleda Escobar",
-          "posicao": "ZAG",
-          "clube": "SAO",
-          "preco": 8.37,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "132553",
-          "nome": "Jemmes Bruno Ribeiro da Silva",
-          "posicao": "ZAG",
-          "clube": "FLU",
-          "preco": 6.64,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "107231",
-          "nome": "Danilo dos Santos de Oliveira",
+          "id": "122485",
+          "nome": "Barros",
           "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 14.19,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -943,11 +1017,11 @@
           }
         },
         {
-          "id": "103767",
-          "nome": "Gabriel Vinícius Menino",
+          "id": "85403",
+          "nome": "Danielzinho",
           "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 9.92,
+          "clube": 276,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -963,11 +1037,11 @@
           }
         },
         {
-          "id": "89837",
-          "nome": "Luciano Federico Acosta",
+          "id": "128433",
+          "nome": "Johan Rojas",
           "posicao": "MEI",
-          "clube": "FLU",
-          "preco": 9.66,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -983,11 +1057,11 @@
           }
         },
         {
-          "id": "126471",
-          "nome": "Álvaro Martín Barreal",
+          "id": "71123",
+          "nome": "Thiago Mendes",
           "posicao": "MEI",
-          "clube": "SAN",
-          "preco": 10.18,
+          "clube": 267,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1003,71 +1077,71 @@
           }
         },
         {
-          "id": "113103",
-          "nome": "José Manuel Alberto López",
-          "posicao": "ATA",
-          "clube": "PAL",
-          "preco": 13.77,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "97810",
-          "nome": "Erick de Arruda Serafim",
-          "posicao": "ATA",
-          "clube": "VIT",
-          "preco": 8.28,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "142265",
-          "nome": "Wendeson Wanderley Santos de Melo",
-          "posicao": "ATA",
-          "clube": "BAH",
-          "preco": 1.82,
-          "projecao": -20.0,
-          "historico": {
-            "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
-          }
-        },
-        {
-          "id": "126977",
-          "nome": "Fernando Seabra",
+          "id": "92273",
+          "nome": "Odair Hellmann",
           "posicao": "TEC",
-          "clube": "CFC",
-          "preco": 7.79,
+          "clube": 293,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "87887",
+          "nome": "Balbuena",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "130048",
+          "nome": "Noriega",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
+          "projecao": -20.0,
+          "historico": {
+            "jogos": 0,
+            "media": 0,
+            "media3": 0,
+            "media5": 0,
+            "mediana": 0,
+            "piso": 0,
+            "teto": 0,
+            "regularidade": 0,
+            "volatilidade": 0,
+            "tendencia": 0
+          }
+        },
+        {
+          "id": "104994",
+          "nome": "Wagner Leonardo",
+          "posicao": "ZAG",
+          "clube": 284,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1084,11 +1158,11 @@
         }
       ],
       "capitao": {
-        "id": "125803",
-        "nome": "Pedro Luccas Morisco da Silva",
-        "posicao": "GOL",
-        "clube": "CFC",
-        "preco": 7.79,
+        "id": "86757",
+        "nome": "Everton",
+        "posicao": "ATA",
+        "clube": 262,
+        "preco": 0.0,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -1105,11 +1179,11 @@
       },
       "banco": [
         {
-          "id": "51413",
-          "nome": "Walter Leandro Capeloza Artune",
+          "id": "104084",
+          "nome": "Carlos Miguel",
           "posicao": "GOL",
-          "clube": "MIR",
-          "preco": 4.51,
+          "clube": 275,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1125,11 +1199,11 @@
           }
         },
         {
-          "id": "89273",
-          "nome": "João Pedro Maturano dos Santos",
+          "id": "110510",
+          "nome": "Aguirre",
           "posicao": "LAT",
-          "clube": "GRE",
-          "preco": 3.11,
+          "clube": 285,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1145,11 +1219,11 @@
           }
         },
         {
-          "id": "95620",
-          "nome": "Bruno Leonardo dos Santos Covas",
+          "id": "108469",
+          "nome": "Adonis Frías",
           "posicao": "ZAG",
-          "clube": "CHA",
-          "preco": 2.91,
+          "clube": 277,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1165,11 +1239,11 @@
           }
         },
         {
-          "id": "146410",
-          "nome": "Marcos Felipe Vinagre Souza",
+          "id": "104783",
+          "nome": "Acevedo",
           "posicao": "MEI",
-          "clube": "BOT",
-          "preco": 0.85,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1185,11 +1259,11 @@
           }
         },
         {
-          "id": "116066",
-          "nome": "Rubens Tadeu Hartmann Ricoldi",
+          "id": "101314",
+          "nome": "Ademir",
           "posicao": "ATA",
-          "clube": "CHA",
-          "preco": 2.48,
+          "clube": 265,
+          "preco": 0.0,
           "projecao": -20.0,
           "historico": {
             "jogos": 0,
@@ -1206,11 +1280,11 @@
         }
       ],
       "reservaLuxo": {
-        "id": "51413",
-        "nome": "Walter Leandro Capeloza Artune",
+        "id": "104084",
+        "nome": "Carlos Miguel",
         "posicao": "GOL",
-        "clube": "MIR",
-        "preco": 4.51,
+        "clube": 275,
+        "preco": 0.0,
         "projecao": -20.0,
         "historico": {
           "jogos": 0,
@@ -1236,8 +1310,6 @@
     "estrategiasAprovadas": 3,
     "estrategiasTotal": 3,
     "usaPontuacaoRealDaRodadaNaPrevisao": false,
-    "dadosHistoricosEncerramNaRodada": 1,
-    "orcamentoIncluiBanco": true,
-    "reservaTitularesFuturos": true
+    "dadosHistoricosEncerramNaRodada": 1
   }
 }

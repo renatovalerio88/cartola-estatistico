@@ -19,7 +19,7 @@
   "resumo": {
     "rodadas": 23,
     "timesAvaliados": 69,
-    "coberturaMediaPercentual": 100.0,
+    "coberturaMediaPercentual": 98.91,
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
@@ -36,12 +36,31 @@
       "Conservador",
       "Equilibrado"
     ],
-    "coberturaMediaPercentual": 100.0,
+    "coberturaMediaPercentual": 98.91,
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
     "taxaAuditoriaOrigemPercentual": 100.0,
-    "problemas": []
+    "problemas": [
+      {
+        "rodada": 2,
+        "estrategia": "Conservador",
+        "tipo": "cobertura_baixa",
+        "cobertura": 83.33
+      },
+      {
+        "rodada": 2,
+        "estrategia": "Equilibrado",
+        "tipo": "cobertura_baixa",
+        "cobertura": 83.33
+      },
+      {
+        "rodada": 2,
+        "estrategia": "Agressivo",
+        "tipo": "cobertura_baixa",
+        "cobertura": 83.33
+      }
+    ]
   },
   "arquivosHistoricos": {
     "esperados": 23,
@@ -86,8 +105,8 @@
       "Equilibrado"
     ],
     "mesmasEstrategias": true,
-    "melhorEstrategia": "Equilibrado",
-    "primeiroRanking": "Equilibrado",
+    "melhorEstrategia": "Conservador",
+    "primeiroRanking": "Conservador",
     "melhorEstrategiaConsistente": true,
     "posicoesRankingValidas": true
   },
@@ -200,7 +219,7 @@
       "aprovado": true,
       "critico": true,
       "detalhes": {
-        "cobertura": 100.0,
+        "cobertura": 98.91,
         "minimo": 90.0
       }
     },
@@ -209,7 +228,7 @@
       "aprovado": true,
       "critico": false,
       "detalhes": {
-        "cobertura": 100.0,
+        "cobertura": 98.91,
         "ideal": 98.0
       }
     },
@@ -237,8 +256,8 @@
           "Equilibrado"
         ],
         "mesmasEstrategias": true,
-        "melhorEstrategia": "Equilibrado",
-        "primeiroRanking": "Equilibrado",
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
         "melhorEstrategiaConsistente": true,
         "posicoesRankingValidas": true
       }
@@ -259,8 +278,8 @@
           "Equilibrado"
         ],
         "mesmasEstrategias": true,
-        "melhorEstrategia": "Equilibrado",
-        "primeiroRanking": "Equilibrado",
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
         "melhorEstrategiaConsistente": true,
         "posicoesRankingValidas": true
       }
@@ -281,8 +300,8 @@
           "Equilibrado"
         ],
         "mesmasEstrategias": true,
-        "melhorEstrategia": "Equilibrado",
-        "primeiroRanking": "Equilibrado",
+        "melhorEstrategia": "Conservador",
+        "primeiroRanking": "Conservador",
         "melhorEstrategiaConsistente": true,
         "posicoesRankingValidas": true
       }
@@ -294,7 +313,7 @@
       "detalhes": {
         "rodadasComSimulacao": 23,
         "rodadasIgnoradas": 0,
-        "coberturaMediaPercentual": 100.0,
+        "coberturaMediaPercentual": 98.91,
         "separacaoPrevisaoResultado": true,
         "aprovada": true
       }
@@ -307,7 +326,7 @@
         "rankingGerado": true,
         "estrategiasEncontradas": 3,
         "rodadasAvaliadas": 23,
-        "coberturaMediaPercentual": 100.0,
+        "coberturaMediaPercentual": 98.91,
         "simulacaoOrigemAprovada": true,
         "aprovada": true
       }

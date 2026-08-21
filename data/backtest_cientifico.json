@@ -1,92 +1,3651 @@
 {
-  "experimentos": [
+  "modelo": "backtest_cientifico_v2_pb_walk_forward",
+  "descricao": "Backtest walk-forward da hipótese de Pontuação Básica Sustentável. As features de cada rodada utilizam somente rodadas anteriores.",
+  "regrasPontuacaoBasica": {
+    "scoutsConsiderados": {
+      "FT": 3.0,
+      "DE": 1.3,
+      "DD": 1.3,
+      "FD": 1.2,
+      "PS": 1.0,
+      "FF": 0.8,
+      "DS": 1.5,
+      "FS": 0.5,
+      "GC": -3.0,
+      "CV": -3.0,
+      "PP": -4.0,
+      "CA": -1.0,
+      "GS": -1.0,
+      "PC": -1.0,
+      "FC": -0.3,
+      "I": -0.1
+    },
+    "eventosExcluidos": [
+      "A",
+      "DP",
+      "G",
+      "SG"
+    ]
+  },
+  "amostra": {
+    "rodadas": 23,
+    "jogadores": 6698,
+    "jogadoresComHistoricoAnterior": 6698,
+    "coberturaPercentual": 100.0
+  },
+  "correlacoes": {
+    "pb3": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.1168
+    },
+    "pb5": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.1322
+    },
+    "pb10": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.1385
+    },
+    "media3": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.1977
+    },
+    "media5": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.2228
+    },
+    "media10": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.2349
+    },
+    "projecao": {
+      "amostras": 6698,
+      "correlacaoComProximaPontuacao": 0.2288
+    }
+  },
+  "resumoGlobal": {
+    "modeloAtual": {
+      "selecionados": 685.0,
+      "taxaTop5": 22.77,
+      "taxaTop10": 37.52,
+      "taxa10Mais": 10.36,
+      "taxa15Mais": 3.21,
+      "mediaRealSelecionados": 4.49
+    },
+    "pontuacaoBasica": {
+      "selecionados": 685.0,
+      "taxaTop5": 21.02,
+      "taxaTop10": 37.37,
+      "taxa10Mais": 8.18,
+      "taxa15Mais": 2.48,
+      "mediaRealSelecionados": 4.36
+    },
+    "ganhoMediaRealPB": -0.13,
+    "ganhoTaxaTop5PB": -1.75
+  },
+  "ultimas5Rodadas": {
+    "modeloAtual": {
+      "selecionados": 145.0,
+      "taxaTop5": 33.79,
+      "taxaTop10": 46.9,
+      "taxa10Mais": 5.52,
+      "taxa15Mais": 4.14,
+      "mediaRealSelecionados": 3.77
+    },
+    "pontuacaoBasica": {
+      "selecionados": 145.0,
+      "taxaTop5": 33.1,
+      "taxaTop10": 49.66,
+      "taxa10Mais": 5.52,
+      "taxa15Mais": 1.38,
+      "mediaRealSelecionados": 3.7
+    }
+  },
+  "ultimas10Rodadas": {
+    "modeloAtual": {
+      "selecionados": 295.0,
+      "taxaTop5": 25.76,
+      "taxaTop10": 42.03,
+      "taxa10Mais": 8.47,
+      "taxa15Mais": 4.07,
+      "mediaRealSelecionados": 4.32
+    },
+    "pontuacaoBasica": {
+      "selecionados": 295.0,
+      "taxaTop5": 25.08,
+      "taxaTop10": 41.36,
+      "taxa10Mais": 5.76,
+      "taxa15Mais": 1.69,
+      "mediaRealSelecionados": 4.11
+    }
+  },
+  "decisaoExperimental": {
+    "decisao": "HIPOTESE_PB_NAO_CONFIRMADA",
+    "promoverParaMotor": false,
+    "motivo": "Este primeiro teste é diagnóstico. Nenhum peso oficial deve ser alterado antes da análise dos resultados."
+  },
+  "rodadas": [
     {
-      "treino": 1,
-      "teste": "rodada-03.json"
+      "rodada": 2,
+      "quantidadeJogadores": 251,
+      "jogadoresComHistoricoAnterior": 251,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 10,
+          "taxaTop5": 23.33,
+          "taxaTop10": 33.33,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.39
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.54
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.04
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 7.1
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.04
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.0
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.64
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 6,
+          "acertosTop10": 12,
+          "taxaTop5": 20.0,
+          "taxaTop10": 40.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.07
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.3
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.84
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.6
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 4,
+            "taxaTop5": 20.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.42
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.0
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.24
+          }
+        }
+      }
     },
     {
-      "treino": 2,
-      "teste": "rodada-04.json"
+      "rodada": 3,
+      "quantidadeJogadores": 266,
+      "jogadoresComHistoricoAnterior": 266,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 6,
+          "taxaTop5": 10.0,
+          "taxaTop10": 20.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.73
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.46
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.06
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.76
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.46
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.82
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.83
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 9,
+          "taxaTop5": 16.67,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.21
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.66
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.56
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.76
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 2,
+            "mediaRealSelecionados": 10.18
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.26
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.83
+          }
+        }
+      }
     },
     {
-      "treino": 3,
-      "teste": "rodada-05.json"
+      "rodada": 4,
+      "quantidadeJogadores": 197,
+      "jogadoresComHistoricoAnterior": 197,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 10,
+          "acertosTop10": 15,
+          "taxaTop5": 33.33,
+          "taxaTop10": 50.0,
+          "taxa10Mais": 20.0,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.45
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.8
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.8
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 5,
+            "taxaTop5": 40.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.3
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 4.76
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.88
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.14
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 9,
+          "acertosTop10": 17,
+          "taxaTop5": 30.0,
+          "taxaTop10": 56.67,
+          "taxa10Mais": 13.33,
+          "taxa15Mais": 10.0,
+          "mediaRealSelecionados": 4.5
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.16
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.56
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 5,
+            "taxaTop5": 20.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.36
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.72
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.88
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 7.3
+          }
+        }
+      }
     },
     {
-      "treino": 4,
-      "teste": "rodada-06.json"
+      "rodada": 5,
+      "quantidadeJogadores": 247,
+      "jogadoresComHistoricoAnterior": 247,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 6,
+          "acertosTop10": 10,
+          "taxaTop5": 20.0,
+          "taxaTop10": 33.33,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.51
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.18
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.16
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.3
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.78
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.7
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.94
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 14,
+          "taxaTop5": 23.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 20.0,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 5.82
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.82
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.08
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 3,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 8.46
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.28
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.7
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.56
+          }
+        }
+      }
     },
     {
-      "treino": 5,
-      "teste": "rodada-07.json"
+      "rodada": 6,
+      "quantidadeJogadores": 309,
+      "jogadoresComHistoricoAnterior": 309,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 8,
+          "acertosTop10": 9,
+          "taxaTop5": 26.67,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 13.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.29
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.66
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.6
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.28
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.94
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.69
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": -0.44
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 8,
+          "taxaTop5": 16.67,
+          "taxaTop10": 26.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.11
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.76
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.82
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.5
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.94
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.69
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.96
+          }
+        }
+      }
     },
     {
-      "treino": 6,
-      "teste": "rodada-08.json"
+      "rodada": 7,
+      "quantidadeJogadores": 323,
+      "jogadoresComHistoricoAnterior": 323,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 10,
+          "acertosTop10": 16,
+          "taxaTop5": 33.33,
+          "taxaTop10": 53.33,
+          "taxa10Mais": 20.0,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 5.98
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 4.78
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.86
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.86
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.74
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 8.04
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.58
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 9,
+          "taxaTop5": 16.67,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.12
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.1
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.66
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.1
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.26
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.0
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.58
+          }
+        }
+      }
     },
     {
-      "treino": 7,
-      "teste": "rodada-09.json"
+      "rodada": 8,
+      "quantidadeJogadores": 323,
+      "jogadoresComHistoricoAnterior": 323,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 8,
+          "taxaTop5": 13.33,
+          "taxaTop10": 26.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.1
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.8
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.04
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.28
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.16
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.25
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.06
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 12,
+          "taxaTop5": 16.67,
+          "taxaTop10": 40.0,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 5.34
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.38
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 8.12
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.62
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.98
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.25
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.68
+          }
+        }
+      }
     },
     {
-      "treino": 8,
-      "teste": "rodada-10.json"
+      "rodada": 9,
+      "quantidadeJogadores": 322,
+      "jogadoresComHistoricoAnterior": 322,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 9,
+          "taxaTop5": 13.33,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.12
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.28
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.92
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.0
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.8
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 3,
+            "taxaTop5": 0.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.22
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.48
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 10,
+          "taxaTop5": 16.67,
+          "taxaTop10": 33.33,
+          "taxa10Mais": 16.67,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.62
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 3,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 8.48
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.36
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.28
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.9
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 3,
+            "taxaTop5": 0.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.22
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 3,
+            "taxaTop5": 60.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.48
+          }
+        }
+      }
     },
     {
-      "treino": 9,
-      "teste": "rodada-11.json"
+      "rodada": 10,
+      "quantidadeJogadores": 333,
+      "jogadoresComHistoricoAnterior": 333,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 7,
+          "taxaTop5": 10.0,
+          "taxaTop10": 23.33,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.88
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.48
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.72
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.2
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.54
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.35
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.96
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 2,
+          "acertosTop10": 9,
+          "taxaTop5": 6.67,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.87
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.58
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.72
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.12
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.34
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.35
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.08
+          }
+        }
+      }
     },
     {
-      "treino": 10,
-      "teste": "rodada-12.json"
+      "rodada": 11,
+      "quantidadeJogadores": 328,
+      "jogadoresComHistoricoAnterior": 328,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 9,
+          "taxaTop5": 13.33,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.25
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.4
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.96
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.52
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.74
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.84
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.06
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 0,
+          "acertosTop10": 5,
+          "taxaTop5": 0.0,
+          "taxaTop10": 16.67,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.43
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.38
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.9
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.38
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.52
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.34
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.06
+          }
+        }
+      }
     },
     {
-      "treino": 11,
-      "teste": "rodada-13.json"
+      "rodada": 12,
+      "quantidadeJogadores": 334,
+      "jogadoresComHistoricoAnterior": 334,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 6,
+          "acertosTop10": 11,
+          "taxaTop5": 20.0,
+          "taxaTop10": 36.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 5.09
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.1
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.18
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.96
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 4,
+            "taxaTop5": 20.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.7
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.44
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.18
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 9,
+          "acertosTop10": 13,
+          "taxaTop5": 30.0,
+          "taxaTop10": 43.33,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 5.63
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.06
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.2
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 8.54
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.56
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.44
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.98
+          }
+        }
+      }
     },
     {
-      "treino": 12,
-      "teste": "rodada-14.json"
+      "rodada": 13,
+      "quantidadeJogadores": 329,
+      "jogadoresComHistoricoAnterior": 329,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 11,
+          "acertosTop10": 17,
+          "taxaTop5": 36.67,
+          "taxaTop10": 56.67,
+          "taxa10Mais": 26.67,
+          "taxa15Mais": 10.0,
+          "mediaRealSelecionados": 7.16
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 3,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 9.48
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 8.48
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.84
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.92
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 4,
+            "taxaTop5": 60.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.24
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.02
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 9,
+          "acertosTop10": 11,
+          "taxaTop5": 30.0,
+          "taxaTop10": 36.67,
+          "taxa10Mais": 13.33,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 6.0
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 8.18
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.36
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.62
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.92
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 3,
+            "taxaTop5": 60.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.42
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.52
+          }
+        }
+      }
     },
     {
-      "treino": 13,
-      "teste": "rodada-15.json"
+      "rodada": 14,
+      "quantidadeJogadores": 327,
+      "jogadoresComHistoricoAnterior": 327,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 6,
+          "taxaTop5": 13.33,
+          "taxaTop10": 20.0,
+          "taxa10Mais": 16.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.15
+        },
+        "posicoes": {
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.36
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.32
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 3,
+            "taxaTop5": 60.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 3,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 9.0
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.08
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.93
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.24
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 5,
+          "taxaTop5": 10.0,
+          "taxaTop10": 16.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 3.41
+        },
+        "posicoes": {
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.64
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.18
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.16
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 4.92
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.93
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.62
+          }
+        }
+      }
     },
     {
-      "treino": 14,
-      "teste": "rodada-16.json"
+      "rodada": 15,
+      "quantidadeJogadores": 327,
+      "jogadoresComHistoricoAnterior": 327,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 9,
+          "taxaTop5": 13.33,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.09
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.3
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.26
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.08
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.08
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.84
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.0
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 9,
+          "taxaTop5": 16.67,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 0.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.69
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.64
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.52
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.68
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.08
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.74
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.46
+          }
+        }
+      }
     },
     {
-      "treino": 15,
-      "teste": "rodada-17.json"
+      "rodada": 16,
+      "quantidadeJogadores": 322,
+      "jogadoresComHistoricoAnterior": 322,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 11,
+          "taxaTop5": 10.0,
+          "taxaTop10": 36.67,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.94
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 9.58
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.38
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.06
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.86
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.4
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 4,
+            "taxaTop5": 0.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.38
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 11,
+          "taxaTop5": 10.0,
+          "taxaTop10": 36.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.44
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 9.78
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.26
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.04
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.68
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.4
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.46
+          }
+        }
+      }
     },
     {
-      "treino": 16,
-      "teste": "rodada-18.json"
+      "rodada": 17,
+      "quantidadeJogadores": 328,
+      "jogadoresComHistoricoAnterior": 328,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 3,
+          "acertosTop10": 8,
+          "taxaTop5": 10.0,
+          "taxaTop10": 26.67,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.69
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.4
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.62
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.94
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.2
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.0
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.98
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 6,
+          "taxaTop5": 13.33,
+          "taxaTop10": 20.0,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 3.65
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.02
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.88
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 4.06
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.2
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.58
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.18
+          }
+        }
+      }
     },
     {
-      "treino": 17,
-      "teste": "rodada-19.json"
+      "rodada": 18,
+      "quantidadeJogadores": 327,
+      "jogadoresComHistoricoAnterior": 327,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 14,
+          "taxaTop5": 23.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 20.0,
+          "taxa15Mais": 10.0,
+          "mediaRealSelecionados": 6.45
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 3,
+            "taxaTop5": 40.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 3,
+            "quantidade15Mais": 2,
+            "mediaRealSelecionados": 11.52
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 7.18
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.84
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.41
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.6
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.16
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 10,
+          "taxaTop5": 13.33,
+          "taxaTop10": 33.33,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.96
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.54
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.36
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.12
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.41
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.68
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.68
+          }
+        }
+      }
     },
     {
-      "treino": 18,
-      "teste": "rodada-20.json"
+      "rodada": 19,
+      "quantidadeJogadores": 194,
+      "jogadoresComHistoricoAnterior": 194,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 10,
+          "acertosTop10": 14,
+          "taxaTop5": 33.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 16.67,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 5.04
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.88
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 7.12
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.56
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 4,
+            "acertosTop10": 4,
+            "taxaTop5": 80.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.37
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.18
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.12
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 10,
+          "acertosTop10": 14,
+          "taxaTop5": 33.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.78
+        },
+        "posicoes": {
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.18
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.96
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.26
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 4,
+            "acertosTop10": 4,
+            "taxaTop5": 80.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.37
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 4,
+            "acertosTop10": 5,
+            "taxaTop5": 80.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.58
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.34
+          }
+        }
+      }
     },
     {
-      "treino": 19,
-      "teste": "rodada-21.json"
+      "rodada": 20,
+      "quantidadeJogadores": 312,
+      "jogadoresComHistoricoAnterior": 312,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 7,
+          "taxaTop5": 16.67,
+          "taxaTop10": 23.33,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.09
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 6.9
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.66
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 4.44
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.02
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.29
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.2
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 2,
+          "acertosTop10": 10,
+          "taxaTop5": 6.67,
+          "taxaTop10": 33.33,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.37
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.68
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.38
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.4
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.04
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.29
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.44
+          }
+        }
+      }
     },
     {
-      "treino": 20,
-      "teste": "rodada-22.json"
+      "rodada": 21,
+      "quantidadeJogadores": 204,
+      "jogadoresComHistoricoAnterior": 204,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 14,
+          "taxaTop5": 23.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 6.67,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 4.63
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.98
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.0
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 2,
+            "mediaRealSelecionados": 8.14
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.35
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 4,
+            "taxaTop5": 20.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.98
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.32
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 10,
+          "acertosTop10": 17,
+          "taxaTop5": 33.33,
+          "taxaTop10": 56.67,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 6.67,
+          "mediaRealSelecionados": 5.54
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.7
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.78
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 3,
+            "taxaTop5": 60.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 2,
+            "mediaRealSelecionados": 9.68
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 3,
+            "acertosTop10": 5,
+            "taxaTop5": 60.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.35
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 4,
+            "taxaTop5": 20.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.98
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.72
+          }
+        }
+      }
     },
     {
-      "treino": 21,
-      "teste": "rodada-23.json"
+      "rodada": 22,
+      "quantidadeJogadores": 320,
+      "jogadoresComHistoricoAnterior": 320,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 14,
+          "taxaTop5": 23.33,
+          "taxaTop10": 46.67,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.97
+        },
+        "posicoes": {
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.14
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 5.66
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.46
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 2,
+            "taxaTop5": 0.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.56
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.28
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 4,
+            "acertosTop10": 5,
+            "taxaTop5": 80.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.72
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 7,
+          "acertosTop10": 11,
+          "taxaTop5": 23.33,
+          "taxaTop10": 36.67,
+          "taxa10Mais": 3.33,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 4.19
+        },
+        "posicoes": {
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.8
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.38
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 5.54
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.26
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 2,
+            "taxaTop5": 20.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.46
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 4,
+            "acertosTop10": 5,
+            "taxaTop5": 80.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 7.72
+          }
+        }
+      }
     },
     {
-      "treino": 22,
-      "teste": "rodada-24.json"
+      "rodada": 23,
+      "quantidadeJogadores": 325,
+      "jogadoresComHistoricoAnterior": 325,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 5,
+          "acertosTop10": 8,
+          "taxaTop5": 16.67,
+          "taxaTop10": 26.67,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 3.33,
+          "mediaRealSelecionados": 4.55
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.7
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 2,
+            "taxaTop5": 40.0,
+            "taxaTop10": 40.0,
+            "quantidade10Mais": 2,
+            "quantidade15Mais": 1,
+            "mediaRealSelecionados": 9.88
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 2.52
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.7
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.96
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.54
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 30,
+          "acertosTop5": 4,
+          "acertosTop10": 9,
+          "taxaTop5": 13.33,
+          "taxaTop10": 30.0,
+          "taxa10Mais": 10.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 3.78
+        },
+        "posicoes": {
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 1.4
+          },
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 1,
+            "taxaTop5": 20.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 4.04
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 0,
+            "taxaTop5": 0.0,
+            "taxaTop10": 0.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 3.3
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 1,
+            "acertosTop10": 3,
+            "taxaTop5": 20.0,
+            "taxaTop10": 60.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.28
+          },
+          "TEC": {
+            "quantidade": 5,
+            "acertosTop5": 2,
+            "acertosTop10": 4,
+            "taxaTop5": 40.0,
+            "taxaTop10": 80.0,
+            "quantidade10Mais": 1,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 6.96
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 0,
+            "acertosTop10": 1,
+            "taxaTop5": 0.0,
+            "taxaTop10": 20.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.7
+          }
+        }
+      }
+    },
+    {
+      "rodada": 24,
+      "quantidadeJogadores": 150,
+      "jogadoresComHistoricoAnterior": 150,
+      "coberturaHistoricaPercentual": 100.0,
+      "modeloAtual": {
+        "resumo": {
+          "selecionados": 25,
+          "acertosTop5": 25,
+          "acertosTop10": 25,
+          "taxaTop5": 100.0,
+          "taxaTop10": 100.0,
+          "taxa10Mais": 0.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 0.0
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          }
+        }
+      },
+      "pontuacaoBasica": {
+        "resumo": {
+          "selecionados": 25,
+          "acertosTop5": 25,
+          "acertosTop10": 25,
+          "taxaTop5": 100.0,
+          "taxaTop10": 100.0,
+          "taxa10Mais": 0.0,
+          "taxa15Mais": 0.0,
+          "mediaRealSelecionados": 0.0
+        },
+        "posicoes": {
+          "ATA": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "GOL": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "MEI": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "LAT": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          },
+          "ZAG": {
+            "quantidade": 5,
+            "acertosTop5": 5,
+            "acertosTop10": 5,
+            "taxaTop5": 100.0,
+            "taxaTop10": 100.0,
+            "quantidade10Mais": 0,
+            "quantidade15Mais": 0,
+            "mediaRealSelecionados": 0.0
+          }
+        }
+      }
     }
   ]
 }

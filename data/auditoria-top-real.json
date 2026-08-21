@@ -33,101 +33,101 @@
   },
   "resultadoGlobalSemColdStart": {
     "escalados": 791,
-    "identificados": 779,
-    "taxaIdentificacaoPercentual": 98.48,
-    "topNPercentual": 7.32,
-    "top5Percentual": 12.07,
-    "top10Percentual": 25.16,
-    "rankingRealMedio": 40.73,
-    "percentilMedio": 73.31,
-    "pontosEscalados": 3133.18,
-    "pontosTimePerfeito": 10832.25,
-    "eficienciaCapturaPercentual": 28.92
+    "identificados": 755,
+    "taxaIdentificacaoPercentual": 95.45,
+    "topNPercentual": 6.75,
+    "top5Percentual": 10.2,
+    "top10Percentual": 22.91,
+    "rankingRealMedio": 31.0,
+    "percentilMedio": 52.76,
+    "pontosEscalados": 2912.21,
+    "pontosTimePerfeito": 10348.5,
+    "eficienciaCapturaPercentual": 28.14
   },
   "resultadoPorPosicao": {
     "GOL": {
       "escalados": 66,
-      "identificados": 66,
-      "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 3.03,
-      "top5Percentual": 18.18,
-      "top10Percentual": 54.55,
-      "rankingRealMedio": 28.32,
-      "percentilMedio": 67.48,
-      "pontosEscalados": 191.9,
-      "pontosTimePerfeito": 810.0,
-      "eficienciaCapturaPercentual": 23.69
+      "identificados": 63,
+      "taxaIdentificacaoPercentual": 95.45,
+      "topNPercentual": 3.17,
+      "top5Percentual": 19.05,
+      "top10Percentual": 53.97,
+      "rankingRealMedio": 11.13,
+      "percentilMedio": 43.04,
+      "pontosEscalados": 194.9,
+      "pontosTimePerfeito": 781.8,
+      "eficienciaCapturaPercentual": 24.93
     },
     "LAT": {
       "escalados": 44,
-      "identificados": 44,
-      "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 4.55,
-      "top5Percentual": 9.09,
-      "top10Percentual": 18.18,
-      "rankingRealMedio": 22.39,
-      "percentilMedio": 82.33,
-      "pontosEscalados": 209.0,
-      "pontosTimePerfeito": 626.7,
-      "eficienciaCapturaPercentual": 33.35
+      "identificados": 42,
+      "taxaIdentificacaoPercentual": 95.45,
+      "topNPercentual": 4.76,
+      "top5Percentual": 9.52,
+      "top10Percentual": 14.29,
+      "rankingRealMedio": 21.93,
+      "percentilMedio": 54.58,
+      "pontosEscalados": 194.7,
+      "pontosTimePerfeito": 601.2,
+      "eficienciaCapturaPercentual": 32.39
     },
     "ZAG": {
       "escalados": 176,
-      "identificados": 166,
-      "taxaIdentificacaoPercentual": 94.32,
-      "topNPercentual": 3.61,
-      "top5Percentual": 7.23,
-      "top10Percentual": 18.07,
-      "rankingRealMedio": 32.73,
-      "percentilMedio": 72.88,
-      "pontosEscalados": 460.1,
-      "pontosTimePerfeito": 1968.5,
-      "eficienciaCapturaPercentual": 23.37
+      "identificados": 168,
+      "taxaIdentificacaoPercentual": 95.45,
+      "topNPercentual": 2.98,
+      "top5Percentual": 4.17,
+      "top10Percentual": 15.48,
+      "rankingRealMedio": 24.03,
+      "percentilMedio": 47.94,
+      "pontosEscalados": 452.3,
+      "pontosTimePerfeito": 1904.4,
+      "eficienciaCapturaPercentual": 23.75
     },
     "MEI": {
       "escalados": 264,
-      "identificados": 264,
-      "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 12.12,
-      "top5Percentual": 12.5,
-      "top10Percentual": 21.59,
-      "rankingRealMedio": 50.3,
-      "percentilMedio": 78.57,
-      "pontosEscalados": 1326.0,
-      "pontosTimePerfeito": 3781.2,
-      "eficienciaCapturaPercentual": 35.07
+      "identificados": 252,
+      "taxaIdentificacaoPercentual": 95.45,
+      "topNPercentual": 11.11,
+      "top5Percentual": 11.51,
+      "top10Percentual": 20.63,
+      "rankingRealMedio": 39.32,
+      "percentilMedio": 62.06,
+      "pontosEscalados": 1192.8,
+      "pontosTimePerfeito": 3596.7,
+      "eficienciaCapturaPercentual": 33.16
     },
     "ATA": {
       "escalados": 175,
-      "identificados": 174,
-      "taxaIdentificacaoPercentual": 99.43,
-      "topNPercentual": 6.9,
-      "top5Percentual": 9.2,
-      "top10Percentual": 15.52,
-      "rankingRealMedio": 54.94,
-      "percentilMedio": 72.05,
-      "pontosEscalados": 647.2,
-      "pontosTimePerfeito": 2996.5,
-      "eficienciaCapturaPercentual": 21.6
+      "identificados": 167,
+      "taxaIdentificacaoPercentual": 95.43,
+      "topNPercentual": 6.59,
+      "top5Percentual": 7.78,
+      "top10Percentual": 13.17,
+      "rankingRealMedio": 42.73,
+      "percentilMedio": 48.96,
+      "pontosEscalados": 584.7,
+      "pontosTimePerfeito": 2845.2,
+      "eficienciaCapturaPercentual": 20.55
     },
     "TEC": {
       "escalados": 66,
-      "identificados": 65,
-      "taxaIdentificacaoPercentual": 98.48,
-      "topNPercentual": 4.62,
-      "top5Percentual": 26.15,
-      "top10Percentual": 58.46,
-      "rankingRealMedio": 9.32,
-      "percentilMedio": 56.19,
-      "pontosEscalados": 298.98,
-      "pontosTimePerfeito": 649.35,
-      "eficienciaCapturaPercentual": 46.04
+      "identificados": 63,
+      "taxaIdentificacaoPercentual": 95.45,
+      "topNPercentual": 4.76,
+      "top5Percentual": 19.05,
+      "top10Percentual": 52.38,
+      "rankingRealMedio": 11.16,
+      "percentilMedio": 46.98,
+      "pontosEscalados": 292.81,
+      "pontosTimePerfeito": 619.2,
+      "eficienciaCapturaPercentual": 47.29
     }
   },
   "detalhesRodadas": [
     {
       "rodada": 2,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 302,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -155,35 +155,35 @@
     },
     {
       "rodada": 3,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 301,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 33.41,
-          "pontosPerfeitos": 175.15,
+          "pontosPerfeitos": 179.08,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 49.65,
-          "pontosPerfeitos": 164.55,
+          "pontosPerfeitos": 168.48,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 49.65,
-          "pontosPerfeitos": 164.55,
+          "pontosPerfeitos": 168.48,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 4,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 242,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -211,111 +211,111 @@
     },
     {
       "rodada": 5,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 274,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 37.79,
-          "pontosPerfeitos": 159.46,
+          "pontosPerfeitos": 159.9,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 44.81,
-          "pontosPerfeitos": 154.76,
+          "pontosPerfeitos": 156.1,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 31.29,
-          "pontosPerfeitos": 154.76,
+          "pontosPerfeitos": 156.1,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 6,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 336,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 34.53,
-          "pontosPerfeitos": 149.51,
+          "identificados": 12,
+          "pontosEscalados": 34.73,
+          "pontosPerfeitos": 150.61,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 40.73,
-          "pontosPerfeitos": 146.11,
+          "identificados": 12,
+          "pontosEscalados": 40.93,
+          "pontosPerfeitos": 146.81,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 21.43,
-          "pontosPerfeitos": 146.11,
+          "pontosPerfeitos": 146.81,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 7,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 335,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 11,
+          "identificados": 12,
           "pontosEscalados": 50.87,
-          "pontosPerfeitos": 159.46,
+          "pontosPerfeitos": 163.06,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 50.95,
-          "pontosPerfeitos": 153.56,
+          "pontosPerfeitos": 160.86,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 67.07,
-          "pontosPerfeitos": 153.56,
+          "pontosPerfeitos": 160.86,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 8,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 335,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 53.51,
+          "identificados": 12,
+          "pontosEscalados": 54.51,
           "pontosPerfeitos": 164.1,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 40.11,
+          "identificados": 12,
+          "pontosEscalados": 41.11,
           "pontosPerfeitos": 161.7,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 39.5,
+          "identificados": 12,
+          "pontosEscalados": 40.5,
           "pontosPerfeitos": 161.7,
           "nome": "Agressivo"
         }
@@ -323,91 +323,91 @@
     },
     {
       "rodada": 9,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 342,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 29.23,
-          "pontosPerfeitos": 176.43,
+          "pontosPerfeitos": 180.33,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 26.43,
-          "pontosPerfeitos": 161.53,
+          "pontosPerfeitos": 165.43,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 26.43,
-          "pontosPerfeitos": 161.53,
+          "pontosPerfeitos": 165.43,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 10,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 338,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 35.45,
-          "pontosPerfeitos": 155.72,
+          "pontosPerfeitos": 159.22,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 31.85,
-          "pontosPerfeitos": 147.42,
+          "pontosPerfeitos": 150.92,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 47.15,
-          "pontosPerfeitos": 147.42,
+          "pontosPerfeitos": 150.92,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 11,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 333,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 11,
           "identificados": 11,
           "pontosEscalados": 24.08,
-          "pontosPerfeitos": 129.66,
+          "pontosPerfeitos": 131.66,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 30.68,
-          "pontosPerfeitos": 140.76,
+          "pontosPerfeitos": 142.76,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 44.68,
-          "pontosPerfeitos": 140.76,
+          "pontosPerfeitos": 142.76,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 12,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 340,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -435,35 +435,35 @@
     },
     {
       "rodada": 13,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 336,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 72.23,
-          "pontosPerfeitos": 175.18,
+          "pontosPerfeitos": 176.88,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 67.93,
-          "pontosPerfeitos": 165.98,
+          "pontosPerfeitos": 167.78,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 69.23,
-          "pontosPerfeitos": 165.98,
+          "pontosPerfeitos": 167.78,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 14,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 335,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -491,63 +491,63 @@
     },
     {
       "rodada": 15,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 333,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 48.35,
-          "pontosPerfeitos": 160.33,
+          "identificados": 12,
+          "pontosEscalados": 51.85,
+          "pontosPerfeitos": 160.95,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 33.38,
-          "pontosPerfeitos": 153.53,
+          "identificados": 12,
+          "pontosEscalados": 36.88,
+          "pontosPerfeitos": 154.15,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 22.45,
-          "pontosPerfeitos": 153.53,
+          "identificados": 12,
+          "pontosEscalados": 25.95,
+          "pontosPerfeitos": 154.15,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 16,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 333,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 48.16,
-          "pontosPerfeitos": 173.09,
+          "pontosPerfeitos": 176.49,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 54.55,
-          "pontosPerfeitos": 174.39,
+          "pontosPerfeitos": 177.99,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
           "pontosEscalados": 59.34,
-          "pontosPerfeitos": 174.39,
+          "pontosPerfeitos": 177.99,
           "nome": "Agressivo"
         }
       ]
     },
     {
       "rodada": 17,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 335,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -575,27 +575,27 @@
     },
     {
       "rodada": 18,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 339,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 57.2,
+          "identificados": 12,
+          "pontosEscalados": 61.8,
           "pontosPerfeitos": 193.7,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 46.25,
+          "identificados": 12,
+          "pontosEscalados": 52.65,
           "pontosPerfeitos": 188.6,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
-          "identificados": 11,
-          "pontosEscalados": 39.8,
+          "identificados": 12,
+          "pontosEscalados": 46.2,
           "pontosPerfeitos": 188.6,
           "nome": "Agressivo"
         }
@@ -603,7 +603,7 @@
     },
     {
       "rodada": 19,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 209,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -631,7 +631,7 @@
     },
     {
       "rodada": 20,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 338,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -659,7 +659,7 @@
     },
     {
       "rodada": 21,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 212,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -687,7 +687,7 @@
     },
     {
       "rodada": 22,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 336,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -715,7 +715,7 @@
     },
     {
       "rodada": 23,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 338,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -743,28 +743,28 @@
     },
     {
       "rodada": 24,
-      "quantidadeJogadoresReais": 770,
+      "quantidadeJogadoresReais": 1,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
           "escalados": 12,
-          "identificados": 12,
-          "pontosEscalados": 63.5,
-          "pontosPerfeitos": 188.84,
+          "identificados": 0,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
-          "identificados": 12,
-          "pontosEscalados": 83.7,
-          "pontosPerfeitos": 188.24,
+          "identificados": 0,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
-          "identificados": 12,
-          "pontosEscalados": 105.07,
-          "pontosPerfeitos": 188.24,
+          "identificados": 0,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
           "nome": "Agressivo"
         }
       ]
@@ -773,19 +773,19 @@
   "diagnosticos": [
     {
       "nivel": "OK",
-      "mensagem": "A identificação entre as escalações históricas e a base real está em nível adequado: 98.48%."
+      "mensagem": "A identificação entre as escalações históricas e a base real está em nível adequado: 95.45%."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "Top N exato: 7.32%. Top 5: 12.07%. Top 10: 25.16%."
+      "mensagem": "Top N exato: 6.75%. Top 5: 10.2%. Top 10: 22.91%."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 73.31 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 52.76 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 28.92%."
+      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 28.14%."
     }
   ],
   "auditoria": {

@@ -8,14 +8,14 @@
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "mediaV1": 52.64,
-    "mediaV2": 52.76,
-    "melhorEstrategiaFixa": "Agressivo",
-    "mediaMelhorFixa": 55.14,
-    "ganhoV2VsV1": 0.12,
-    "ganhoV2VsMelhorFixa": -2.38,
-    "eficienciaV1Oraculo": 85.14,
-    "eficienciaV2Oraculo": 85.33
+    "mediaV1": 57.73,
+    "mediaV2": 57.73,
+    "melhorEstrategiaFixa": "Conservador",
+    "mediaMelhorFixa": 58.18,
+    "ganhoV2VsV1": 0.0,
+    "ganhoV2VsMelhorFixa": -0.45,
+    "eficienciaV1Oraculo": 91.71,
+    "eficienciaV2Oraculo": 91.71
   },
   "testes": [
     {
@@ -173,8 +173,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperada": "Agressivo",
-        "publicada": "Agressivo"
+        "esperada": "Conservador",
+        "publicada": "Conservador"
       }
     },
     {
@@ -206,8 +206,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperada": "MANTER_TESTES",
-        "publicada": "MANTER_TESTES"
+        "esperada": "V1_V2_EQUIVALENTES",
+        "publicada": "V1_V2_EQUIVALENTES"
       }
     },
     {
@@ -220,8 +220,8 @@
   "falhasCriticas": [],
   "alertas": [],
   "decisaoComparacao": {
-    "publicada": "MANTER_TESTES",
-    "recalculada": "MANTER_TESTES"
+    "publicada": "V1_V2_EQUIVALENTES",
+    "recalculada": "V1_V2_EQUIVALENTES"
   },
   "decisao": {
     "decisao": "COMPARACAO_VALIDADA",

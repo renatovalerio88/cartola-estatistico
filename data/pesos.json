@@ -1,6 +1,6 @@
 {
   "modelo": "v3_otimizado",
-  "erro": 3.48,
+  "erro": 3.637,
   "pesos": {
     "media3": 0.05,
     "media5": 0.05,
@@ -18,7 +18,7 @@
         "piso": 0.4,
         "teto": 0.4
       },
-      "erro": 3.48
+      "erro": 3.637
     },
     {
       "pesos": {
@@ -28,7 +28,7 @@
         "piso": 0.35,
         "teto": 0.4
       },
-      "erro": 3.48
+      "erro": 3.637
     },
     {
       "pesos": {
@@ -38,7 +38,7 @@
         "piso": 0.4,
         "teto": 0.35
       },
-      "erro": 3.48
+      "erro": 3.637
     }
   ]
 }

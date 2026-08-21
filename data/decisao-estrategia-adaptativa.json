@@ -16,41 +16,41 @@
   },
   "desempenho": {
     "v1": {
-      "media": 52.64,
-      "desvioPadrao": 15.72,
-      "eficienciaOraculo": 85.14,
-      "perdaMediaOraculo": 9.19
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "eficienciaOraculo": 91.71,
+      "perdaMediaOraculo": 5.22
     },
     "v2": {
-      "media": 52.76,
-      "desvioPadrao": 15.73,
-      "eficienciaOraculo": 85.33,
-      "perdaMediaOraculo": 9.07
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "eficienciaOraculo": 91.71,
+      "perdaMediaOraculo": 5.22
     },
     "melhorFixa": {
-      "nome": "Agressivo",
-      "media": 55.14
+      "nome": "Conservador",
+      "media": 58.18
     },
     "oraculo": {
-      "media": 61.83
+      "media": 62.95
     }
   },
   "ganhosV2": {
     "vsV1": {
-      "pontosPorRodada": 0.12,
-      "percentual": 0.23
+      "pontosPorRodada": 0.0,
+      "percentual": 0.0
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": -2.38,
-      "percentual": -4.32
+      "pontosPorRodada": -0.45,
+      "percentual": -0.77
     }
   },
   "comparacaoPareada": {
     "rodadas": 23,
     "vitoriasV1": 0,
-    "vitoriasV2": 1,
-    "empates": 22,
-    "taxaVitoriasV2": 4.35
+    "vitoriasV2": 0,
+    "empates": 23,
+    "taxaVitoriasV2": 0.0
   },
   "criterios": [
     {
@@ -111,54 +111,54 @@
     },
     {
       "nome": "v2_supera_v1_media",
-      "passou": true,
-      "valor": 0.12,
+      "passou": false,
+      "valor": 0.0,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_ganho_minimo_v1",
       "passou": false,
-      "valor": 0.12,
+      "valor": 0.0,
       "limite": 0.5,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": -2.38,
+      "valor": -0.45,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_vence_maioria_pareada",
       "passou": false,
-      "valor": 4.35,
+      "valor": 0.0,
       "limite": 55.0,
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_proximo_oraculo",
-      "passou": true,
-      "valor": 9.07,
-      "limite": "< 9.19",
+      "passou": false,
+      "valor": 5.22,
+      "limite": "< 5.22",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
       "passou": false,
-      "valor": 15.73,
-      "limite": "< 15.72",
+      "valor": 21.36,
+      "limite": "< 21.36",
       "nivel": "DESEJAVEL"
     }
   ],
   "resumoCriterios": {
     "criticos": 13,
-    "criticosAprovados": 10,
-    "criticosReprovados": 3,
+    "criticosAprovados": 8,
+    "criticosReprovados": 5,
     "desejaveis": 1,
     "desejaveisAprovados": 0,
-    "scoreCriticosPercentual": 76.92
+    "scoreCriticosPercentual": 61.54
   },
   "evidencia": {
     "forte": false,
@@ -166,10 +166,10 @@
     "comparacaoFavoravelV2": false,
     "coerenciaDecisao": true
   },
-  "decisaoComparacao": "MANTER_TESTES",
+  "decisaoComparacao": "V1_V2_EQUIVALENTES",
   "recomendacao": {
     "decisao": "MANTER_V1",
-    "motivo": "V2 não apresentou evidência suficiente de superioridade sobre V1.",
+    "motivo": "V1 e V2 apresentaram desempenho equivalente; não há evidência para aumentar a complexidade.",
     "promoverAutomaticamente": false,
     "necessitaAprovacaoManual": true
   },

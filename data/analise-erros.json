@@ -1,94 +1,66 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 7278,
-  "erroMedio": 2.75,
+  "totalJogadores": 6698,
+  "erroMedio": 2.97,
   "porPosicao": {
     "MEI": {
-      "quantidade": 2330,
-      "erroMedio": 2.47
+      "quantidade": 2189,
+      "erroMedio": 2.67
     },
     "LAT": {
-      "quantidade": 1113,
-      "erroMedio": 3.14
+      "quantidade": 972,
+      "erroMedio": 3.42
     },
     "ATA": {
-      "quantidade": 1905,
-      "erroMedio": 2.91
+      "quantidade": 1716,
+      "erroMedio": 3.26
     },
     "GOL": {
-      "quantidade": 490,
-      "erroMedio": 3.0
-    },
-    "ZAG": {
-      "quantidade": 1050,
-      "erroMedio": 2.73
+      "quantidade": 444,
+      "erroMedio": 3.19
     },
     "TEC": {
-      "quantidade": 390,
-      "erroMedio": 2.34
+      "quantidade": 424,
+      "erroMedio": 2.2
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.94
     }
   },
   "porPreco": {
-    "10-15": {
-      "quantidade": 877,
-      "erroMedio": 4.1
-    },
-    "5-10": {
-      "quantidade": 4108,
+    "sem_preco": {
+      "quantidade": 6547,
       "erroMedio": 3.04
     },
     "0-5": {
-      "quantidade": 2261,
-      "erroMedio": 1.65
+      "quantidade": 143,
+      "erroMedio": 0.0
     },
-    "15+": {
-      "quantidade": 32,
-      "erroMedio": 7.11
+    "5-10": {
+      "quantidade": 8,
+      "erroMedio": 0.0
     }
   },
   "maioresErros": [
     {
-      "nome": "Leonardo Caetano Silva",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 19,
-      "projecao": 0.36,
+      "projecao": 1.04,
       "real": 27.6,
-      "erro": 27.24
+      "erro": 26.56
     },
     {
-      "nome": "Aldemir dos Santos Ferreira",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 10,
-      "projecao": 0.54,
+      "projecao": 0.63,
       "real": 26,
-      "erro": 25.46
+      "erro": 25.37
     },
     {
-      "nome": "Giovanni Augusto Oliveira Cardoso",
-      "posicao": "MEI",
-      "rodada": 23,
-      "projecao": 1.44,
-      "real": 23.2,
-      "erro": 21.76
-    },
-    {
-      "nome": "Arthur Mendonça Cabral",
-      "posicao": "ATA",
-      "rodada": 16,
-      "projecao": 4.37,
-      "real": 26,
-      "erro": 21.63
-    },
-    {
-      "nome": "Jorge Andrés Carrascal Guardo",
-      "posicao": "MEI",
-      "rodada": 23,
-      "projecao": 3.27,
-      "real": 24.9,
-      "erro": 21.63
-    },
-    {
-      "nome": "Johan Stiven Carbonero Balanta",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 16,
       "projecao": 3.76,
@@ -96,47 +68,47 @@
       "erro": 21.14
     },
     {
-      "nome": "Samuel Dias Lino",
+      "nome": null,
+      "posicao": "MEI",
+      "rodada": 23,
+      "projecao": 2.38,
+      "real": 23.2,
+      "erro": 20.82
+    },
+    {
+      "nome": null,
       "posicao": "ATA",
-      "rodada": 18,
-      "projecao": 5.5,
+      "rodada": 16,
+      "projecao": 5.4,
       "real": 26,
+      "erro": 20.6
+    },
+    {
+      "nome": null,
+      "posicao": "LAT",
+      "rodada": 9,
+      "projecao": -2.8,
+      "real": 17.7,
       "erro": 20.5
     },
     {
-      "nome": "Giovanni Augusto Oliveira Cardoso",
-      "posicao": "MEI",
-      "rodada": 24,
-      "projecao": 3.25,
-      "real": 23.2,
-      "erro": 19.95
+      "nome": null,
+      "posicao": "ATA",
+      "rodada": 18,
+      "projecao": 5.66,
+      "real": 26,
+      "erro": 20.34
     },
     {
-      "nome": "Jorge Andrés Carrascal Guardo",
+      "nome": null,
       "posicao": "MEI",
-      "rodada": 24,
-      "projecao": 5.07,
+      "rodada": 23,
+      "projecao": 5.26,
       "real": 24.9,
-      "erro": 19.83
+      "erro": 19.64
     },
     {
-      "nome": "Maurício Magalhães Prado",
-      "posicao": "MEI",
-      "rodada": 19,
-      "projecao": 1.66,
-      "real": 21.4,
-      "erro": 19.74
-    },
-    {
-      "nome": "Neymar da Silva Santos Júnior",
-      "posicao": "MEI",
-      "rodada": 20,
-      "projecao": 3.17,
-      "real": 22.8,
-      "erro": 19.63
-    },
-    {
-      "nome": "Carlos Vinícius Alves Morais",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 3,
       "projecao": 20.07,
@@ -144,72 +116,96 @@
       "erro": -19.37
     },
     {
-      "nome": "Neymar da Silva Santos Júnior",
+      "nome": null,
       "posicao": "MEI",
-      "rodada": 4,
-      "projecao": 0.0,
-      "real": 19.2,
-      "erro": 19.2
+      "rodada": 19,
+      "projecao": 2.09,
+      "real": 21.4,
+      "erro": 19.31
     },
     {
-      "nome": "Gabriel Pereira Taliari",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 8,
-      "projecao": 0.23,
+      "projecao": 0.9,
       "real": 19.3,
-      "erro": 19.07
+      "erro": 18.4
     },
     {
-      "nome": "Matheus Martins Silva dos Santos",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 12,
-      "projecao": 2.86,
+      "projecao": 3.32,
       "real": 21.6,
-      "erro": 18.74
+      "erro": 18.28
     },
     {
-      "nome": "Pedro Guilherme Abreu dos Santos",
-      "posicao": "ATA",
-      "rodada": 5,
-      "projecao": 0.68,
-      "real": 19.4,
-      "erro": 18.72
-    },
-    {
-      "nome": "Natanael Moreira Milouski",
-      "posicao": "LAT",
-      "rodada": 9,
-      "projecao": -0.31,
-      "real": 17.7,
-      "erro": 18.01
-    },
-    {
-      "nome": "Breno Henrique Vasconcelos Lopes",
-      "posicao": "ATA",
-      "rodada": 16,
-      "projecao": 3.13,
-      "real": 21,
-      "erro": 17.87
-    },
-    {
-      "nome": "Luiz de Araújo Guimarães Neto",
+      "nome": null,
       "posicao": "ATA",
       "rodada": 7,
-      "projecao": -0.09,
+      "projecao": -0.2,
       "real": 17.6,
-      "erro": 17.69
+      "erro": 17.8
     },
     {
-      "nome": "Marlon Rodrigues Freitas",
+      "nome": null,
       "posicao": "MEI",
       "rodada": 9,
       "projecao": 1.43,
       "real": 19.1,
       "erro": 17.67
+    },
+    {
+      "nome": null,
+      "posicao": "ATA",
+      "rodada": 5,
+      "projecao": 2.27,
+      "real": 19.4,
+      "erro": 17.13
+    },
+    {
+      "nome": null,
+      "posicao": "ZAG",
+      "rodada": 2,
+      "projecao": -0.9,
+      "real": 16,
+      "erro": 16.9
+    },
+    {
+      "nome": null,
+      "posicao": "ZAG",
+      "rodada": 3,
+      "projecao": -0.3,
+      "real": 16.6,
+      "erro": 16.9
+    },
+    {
+      "nome": null,
+      "posicao": "ATA",
+      "rodada": 16,
+      "projecao": 4.52,
+      "real": 21,
+      "erro": 16.48
+    },
+    {
+      "nome": null,
+      "posicao": "MEI",
+      "rodada": 18,
+      "projecao": 2.25,
+      "real": 18.4,
+      "erro": 16.15
+    },
+    {
+      "nome": null,
+      "posicao": "ATA",
+      "rodada": 19,
+      "projecao": 3.97,
+      "real": 19.9,
+      "erro": 15.93
     }
   ],
   "tendenciaErro": {
-    "superestimou": 3311,
-    "subestimou": 3727
+    "superestimou": 3671,
+    "subestimou": 2841
   }
 }

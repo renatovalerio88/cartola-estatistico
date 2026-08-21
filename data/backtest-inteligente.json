@@ -2,127 +2,127 @@
   "rodadas": [
     {
       "rodada": 2,
-      "erro": 3.31,
-      "taxaAcerto": 62.12
+      "erro": 3.7,
+      "taxaAcerto": 56.97
     },
     {
       "rodada": 3,
-      "erro": 3.51,
-      "taxaAcerto": 54.55
+      "erro": 3.77,
+      "taxaAcerto": 53.38
     },
     {
       "rodada": 4,
-      "erro": 2.92,
-      "taxaAcerto": 65.92
+      "erro": 3.15,
+      "taxaAcerto": 59.39
     },
     {
       "rodada": 5,
-      "erro": 3.25,
-      "taxaAcerto": 56.75
+      "erro": 3.44,
+      "taxaAcerto": 53.04
     },
     {
       "rodada": 6,
-      "erro": 2.94,
-      "taxaAcerto": 63.31
+      "erro": 3.1,
+      "taxaAcerto": 59.22
     },
     {
       "rodada": 7,
-      "erro": 2.78,
-      "taxaAcerto": 65.02
+      "erro": 2.84,
+      "taxaAcerto": 61.92
     },
     {
       "rodada": 8,
-      "erro": 2.95,
-      "taxaAcerto": 61.11
+      "erro": 2.98,
+      "taxaAcerto": 59.13
     },
     {
       "rodada": 9,
-      "erro": 3.19,
-      "taxaAcerto": 61.64
+      "erro": 3.32,
+      "taxaAcerto": 59.01
     },
     {
       "rodada": 10,
-      "erro": 2.79,
-      "taxaAcerto": 62.97
+      "erro": 2.92,
+      "taxaAcerto": 60.06
     },
     {
       "rodada": 11,
-      "erro": 2.68,
-      "taxaAcerto": 66.99
+      "erro": 2.8,
+      "taxaAcerto": 61.89
     },
     {
       "rodada": 12,
-      "erro": 2.81,
-      "taxaAcerto": 67.81
+      "erro": 2.95,
+      "taxaAcerto": 63.77
     },
     {
       "rodada": 13,
       "erro": 2.78,
-      "taxaAcerto": 66.56
+      "taxaAcerto": 65.96
     },
     {
       "rodada": 14,
-      "erro": 2.86,
-      "taxaAcerto": 67.09
+      "erro": 3.09,
+      "taxaAcerto": 61.16
     },
     {
       "rodada": 15,
-      "erro": 2.84,
-      "taxaAcerto": 63.78
+      "erro": 2.95,
+      "taxaAcerto": 61.16
     },
     {
       "rodada": 16,
-      "erro": 2.57,
-      "taxaAcerto": 73.16
+      "erro": 2.82,
+      "taxaAcerto": 63.98
     },
     {
       "rodada": 17,
-      "erro": 3.07,
-      "taxaAcerto": 63.06
+      "erro": 3.08,
+      "taxaAcerto": 62.2
     },
     {
       "rodada": 18,
-      "erro": 2.96,
-      "taxaAcerto": 65.09
+      "erro": 2.9,
+      "taxaAcerto": 65.75
     },
     {
       "rodada": 19,
-      "erro": 2.95,
-      "taxaAcerto": 65.55
+      "erro": 3.12,
+      "taxaAcerto": 62.89
     },
     {
       "rodada": 20,
-      "erro": 2.6,
-      "taxaAcerto": 70.12
+      "erro": 2.91,
+      "taxaAcerto": 61.22
     },
     {
       "rodada": 21,
-      "erro": 2.9,
-      "taxaAcerto": 64.15
+      "erro": 3.05,
+      "taxaAcerto": 58.82
     },
     {
       "rodada": 22,
-      "erro": 2.6,
-      "taxaAcerto": 68.51
+      "erro": 2.81,
+      "taxaAcerto": 63.12
     },
     {
       "rodada": 23,
-      "erro": 2.89,
-      "taxaAcerto": 65.5
+      "erro": 2.9,
+      "taxaAcerto": 63.38
     },
     {
       "rodada": 24,
-      "erro": 1.48,
-      "taxaAcerto": 84.55
+      "erro": 0.0,
+      "taxaAcerto": 100.0
     }
   ],
-  "erroMedioGeral": 2.85,
+  "erroMedioGeral": 2.93,
   "melhorRodada": {
-    "erro": 1.48,
+    "erro": 0.0,
     "rodada": 24
   },
   "piorRodada": {
-    "erro": 3.51,
+    "erro": 3.77,
     "rodada": 3
   }
 }

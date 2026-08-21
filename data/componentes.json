@@ -1,105 +1,503 @@
 {
-  "modelo": "laboratorio_v3",
-  "amostras": 7278,
-  "erroMedio": 2.75,
-  "rmse": 3.99,
+  "modelo": "laboratorio_componentes_v4",
+  "descricao": "Análise científica dos componentes do modelo e integração com o diagnóstico walk-forward de Pontuação Básica Sustentável.",
+  "amostras": 6698,
+  "rodadas": 23,
+  "erroMedio": 2.97,
+  "rmse": 4.05,
   "componentes": {
     "media3": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "media5": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "mediaGeral": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "piso": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "teto": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "regularidade": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     },
     "tendencia": {
-      "media": 0,
-      "quantidade": 0
+      "media": 0.0,
+      "quantidade": 0,
+      "correlacaoComReal": 0.0,
+      "correlacaoComErro": 0.0
     }
   },
   "posicoes": {
     "MEI": {
-      "quantidade": 2330,
-      "erroMedio": 2.47,
-      "rmse": 3.71
+      "quantidade": 2189,
+      "erroMedio": 2.67,
+      "rmse": 3.75,
+      "mediaReal": 2.9,
+      "mediaProjetada": 2.92,
+      "correlacao": 0.2453,
+      "taxa10Mais": 5.44,
+      "taxa15Mais": 1.37
     },
     "LAT": {
-      "quantidade": 1113,
-      "erroMedio": 3.14,
-      "rmse": 4.27
+      "quantidade": 972,
+      "erroMedio": 3.42,
+      "rmse": 4.34,
+      "mediaReal": 4.25,
+      "mediaProjetada": 4.27,
+      "correlacao": 0.1645,
+      "taxa10Mais": 9.88,
+      "taxa15Mais": 1.65
     },
     "ATA": {
-      "quantidade": 1905,
-      "erroMedio": 2.91,
-      "rmse": 4.38
+      "quantidade": 1716,
+      "erroMedio": 3.26,
+      "rmse": 4.54,
+      "mediaReal": 3.63,
+      "mediaProjetada": 3.55,
+      "correlacao": 0.2469,
+      "taxa10Mais": 10.2,
+      "taxa15Mais": 2.74
     },
     "GOL": {
-      "quantidade": 490,
-      "erroMedio": 3.0,
-      "rmse": 4.08
-    },
-    "ZAG": {
-      "quantidade": 1050,
-      "erroMedio": 2.73,
-      "rmse": 3.8
+      "quantidade": 444,
+      "erroMedio": 3.19,
+      "rmse": 4.21,
+      "mediaReal": 3.55,
+      "mediaProjetada": 3.57,
+      "correlacao": 0.1476,
+      "taxa10Mais": 6.98,
+      "taxa15Mais": 1.13
     },
     "TEC": {
-      "quantidade": 390,
-      "erroMedio": 2.34,
-      "rmse": 3.01
+      "quantidade": 424,
+      "erroMedio": 2.2,
+      "rmse": 2.77,
+      "mediaReal": 4.88,
+      "mediaProjetada": 4.98,
+      "correlacao": 0.1441,
+      "taxa10Mais": 2.59,
+      "taxa15Mais": 0.0
+    },
+    "ZAG": {
+      "quantidade": 953,
+      "erroMedio": 2.94,
+      "rmse": 3.9,
+      "mediaReal": 3.13,
+      "mediaProjetada": 3.05,
+      "correlacao": 0.013,
+      "taxa10Mais": 4.72,
+      "taxa15Mais": 0.73
     }
   },
   "rankingComponentes": [
     {
       "componente": "media3",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "media5",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "mediaGeral",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "piso",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "teto",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "regularidade",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     },
     {
       "componente": "tendencia",
-      "media": 0,
-      "quantidade": 0
+      "quantidade": 0,
+      "media": 0.0,
+      "correlacaoComReal": 0.0,
+      "forcaPreditivaAbsoluta": 0.0
     }
-  ]
+  ],
+  "desempenhoRecente": {
+    "ultimas5": {
+      "rodadas": 5,
+      "inicio": 20,
+      "fim": 24,
+      "erroMedio": 2.33,
+      "rmseMedio": 3.08,
+      "correlacaoMedia": 0.181
+    },
+    "ultimas10": {
+      "rodadas": 10,
+      "inicio": 15,
+      "fim": 24,
+      "erroMedio": 2.65,
+      "rmseMedio": 3.58,
+      "correlacaoMedia": 0.2107
+    }
+  },
+  "pontuacaoBasica": {
+    "modeloFonte": "backtest_cientifico_v2_pb_walk_forward",
+    "amostra": {
+      "rodadas": 23,
+      "jogadores": 6698,
+      "jogadoresComHistoricoAnterior": 6698,
+      "coberturaPercentual": 100.0
+    },
+    "correlacoes": {
+      "pb3": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.1168
+      },
+      "pb5": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.1322
+      },
+      "pb10": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.1385
+      },
+      "media3": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.1977
+      },
+      "media5": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.2228
+      },
+      "media10": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.2349
+      },
+      "projecao": {
+        "amostras": 6698,
+        "correlacaoComProximaPontuacao": 0.2288
+      }
+    },
+    "resumoGlobal": {
+      "modeloAtual": {
+        "selecionados": 685.0,
+        "taxaTop5": 22.77,
+        "taxaTop10": 37.52,
+        "taxa10Mais": 10.36,
+        "taxa15Mais": 3.21,
+        "mediaRealSelecionados": 4.49
+      },
+      "pontuacaoBasica": {
+        "selecionados": 685.0,
+        "taxaTop5": 21.02,
+        "taxaTop10": 37.37,
+        "taxa10Mais": 8.18,
+        "taxa15Mais": 2.48,
+        "mediaRealSelecionados": 4.36
+      },
+      "ganhoMediaRealPB": -0.13,
+      "ganhoTaxaTop5PB": -1.75
+    },
+    "ultimas5Rodadas": {
+      "modeloAtual": {
+        "selecionados": 145.0,
+        "taxaTop5": 33.79,
+        "taxaTop10": 46.9,
+        "taxa10Mais": 5.52,
+        "taxa15Mais": 4.14,
+        "mediaRealSelecionados": 3.77
+      },
+      "pontuacaoBasica": {
+        "selecionados": 145.0,
+        "taxaTop5": 33.1,
+        "taxaTop10": 49.66,
+        "taxa10Mais": 5.52,
+        "taxa15Mais": 1.38,
+        "mediaRealSelecionados": 3.7
+      }
+    },
+    "ultimas10Rodadas": {
+      "modeloAtual": {
+        "selecionados": 295.0,
+        "taxaTop5": 25.76,
+        "taxaTop10": 42.03,
+        "taxa10Mais": 8.47,
+        "taxa15Mais": 4.07,
+        "mediaRealSelecionados": 4.32
+      },
+      "pontuacaoBasica": {
+        "selecionados": 295.0,
+        "taxaTop5": 25.08,
+        "taxaTop10": 41.36,
+        "taxa10Mais": 5.76,
+        "taxa15Mais": 1.69,
+        "mediaRealSelecionados": 4.11
+      }
+    },
+    "decisaoExperimental": {
+      "decisao": "HIPOTESE_PB_NAO_CONFIRMADA",
+      "promoverParaMotor": false,
+      "motivo": "Este primeiro teste é diagnóstico. Nenhum peso oficial deve ser alterado antes da análise dos resultados."
+    }
+  },
+  "rodadasDetalhadas": [
+    {
+      "rodada": 2,
+      "quantidade": 251,
+      "erroMedio": 3.7,
+      "rmse": 5.07,
+      "mediaReal": 3.86,
+      "mediaProjetada": 3.73,
+      "correlacao": 0.1386
+    },
+    {
+      "rodada": 3,
+      "quantidade": 266,
+      "erroMedio": 3.77,
+      "rmse": 5.06,
+      "mediaReal": 4.03,
+      "mediaProjetada": 3.81,
+      "correlacao": 0.1171
+    },
+    {
+      "rodada": 4,
+      "quantidade": 197,
+      "erroMedio": 3.15,
+      "rmse": 4.26,
+      "mediaReal": 3.13,
+      "mediaProjetada": 3.84,
+      "correlacao": 0.2713
+    },
+    {
+      "rodada": 5,
+      "quantidade": 247,
+      "erroMedio": 3.44,
+      "rmse": 4.55,
+      "mediaReal": 3.71,
+      "mediaProjetada": 3.6,
+      "correlacao": 0.1397
+    },
+    {
+      "rodada": 6,
+      "quantidade": 309,
+      "erroMedio": 3.1,
+      "rmse": 4.09,
+      "mediaReal": 3.34,
+      "mediaProjetada": 3.67,
+      "correlacao": 0.1703
+    },
+    {
+      "rodada": 7,
+      "quantidade": 323,
+      "erroMedio": 2.84,
+      "rmse": 3.78,
+      "mediaReal": 3.37,
+      "mediaProjetada": 3.57,
+      "correlacao": 0.3038
+    },
+    {
+      "rodada": 8,
+      "quantidade": 323,
+      "erroMedio": 2.98,
+      "rmse": 4.02,
+      "mediaReal": 3.47,
+      "mediaProjetada": 3.42,
+      "correlacao": 0.1604
+    },
+    {
+      "rodada": 9,
+      "quantidade": 322,
+      "erroMedio": 3.32,
+      "rmse": 4.55,
+      "mediaReal": 3.77,
+      "mediaProjetada": 3.32,
+      "correlacao": 0.1537
+    },
+    {
+      "rodada": 10,
+      "quantidade": 333,
+      "erroMedio": 2.92,
+      "rmse": 3.89,
+      "mediaReal": 3.33,
+      "mediaProjetada": 3.53,
+      "correlacao": 0.1692
+    },
+    {
+      "rodada": 11,
+      "quantidade": 328,
+      "erroMedio": 2.8,
+      "rmse": 3.62,
+      "mediaReal": 3.45,
+      "mediaProjetada": 3.64,
+      "correlacao": 0.2711
+    },
+    {
+      "rodada": 12,
+      "quantidade": 334,
+      "erroMedio": 2.95,
+      "rmse": 3.96,
+      "mediaReal": 3.53,
+      "mediaProjetada": 3.47,
+      "correlacao": 0.2708
+    },
+    {
+      "rodada": 13,
+      "quantidade": 329,
+      "erroMedio": 2.78,
+      "rmse": 3.7,
+      "mediaReal": 3.62,
+      "mediaProjetada": 3.45,
+      "correlacao": 0.3496
+    },
+    {
+      "rodada": 14,
+      "quantidade": 327,
+      "erroMedio": 3.09,
+      "rmse": 4.12,
+      "mediaReal": 3.39,
+      "mediaProjetada": 3.44,
+      "correlacao": 0.1441
+    },
+    {
+      "rodada": 15,
+      "quantidade": 327,
+      "erroMedio": 2.95,
+      "rmse": 3.83,
+      "mediaReal": 3.36,
+      "mediaProjetada": 3.45,
+      "correlacao": 0.1772
+    },
+    {
+      "rodada": 16,
+      "quantidade": 322,
+      "erroMedio": 2.82,
+      "rmse": 3.96,
+      "mediaReal": 3.38,
+      "mediaProjetada": 3.48,
+      "correlacao": 0.3083
+    },
+    {
+      "rodada": 17,
+      "quantidade": 328,
+      "erroMedio": 3.08,
+      "rmse": 4.07,
+      "mediaReal": 3.69,
+      "mediaProjetada": 3.37,
+      "correlacao": 0.1753
+    },
+    {
+      "rodada": 18,
+      "quantidade": 327,
+      "erroMedio": 2.9,
+      "rmse": 4.03,
+      "mediaReal": 3.76,
+      "mediaProjetada": 3.25,
+      "correlacao": 0.3739
+    },
+    {
+      "rodada": 19,
+      "quantidade": 194,
+      "erroMedio": 3.12,
+      "rmse": 4.54,
+      "mediaReal": 3.82,
+      "mediaProjetada": 3.74,
+      "correlacao": 0.167
+    },
+    {
+      "rodada": 20,
+      "quantidade": 312,
+      "erroMedio": 2.91,
+      "rmse": 3.83,
+      "mediaReal": 3.42,
+      "mediaProjetada": 3.83,
+      "correlacao": 0.1995
+    },
+    {
+      "rodada": 21,
+      "quantidade": 204,
+      "erroMedio": 3.05,
+      "rmse": 3.92,
+      "mediaReal": 3.58,
+      "mediaProjetada": 3.7,
+      "correlacao": 0.2384
+    },
+    {
+      "rodada": 22,
+      "quantidade": 320,
+      "erroMedio": 2.81,
+      "rmse": 3.6,
+      "mediaReal": 3.61,
+      "mediaProjetada": 3.57,
+      "correlacao": 0.2235
+    },
+    {
+      "rodada": 23,
+      "quantidade": 325,
+      "erroMedio": 2.9,
+      "rmse": 4.05,
+      "mediaReal": 3.92,
+      "mediaProjetada": 3.6,
+      "correlacao": 0.2436
+    },
+    {
+      "rodada": 24,
+      "quantidade": 150,
+      "erroMedio": 0.0,
+      "rmse": 0.0,
+      "mediaReal": 0.0,
+      "mediaProjetada": 0.0,
+      "correlacao": 0.0
+    }
+  ],
+  "hipoteses": [
+    {
+      "tipo": "NEUTRA",
+      "hipotese": "Pontuacao_Basica",
+      "evidencia": "A primeira versão do sinal PB ainda não superou o modelo atual. Não promover peso sem novos testes."
+    }
+  ],
+  "recomendacao": {
+    "alterarPesosAgora": false,
+    "proximoPasso": "Comparar PB3, PB5 e PB10 por posição, principalmente nas últimas 5 e 10 rodadas. Somente depois testar incorporação no motor."
+  }
 }
