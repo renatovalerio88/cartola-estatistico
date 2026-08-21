@@ -23,9 +23,9 @@
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
-    "scoreQualidade": 100.0,
+    "scoreQualidade": 94.29,
     "testes": 18,
-    "falhasCriticas": 0,
+    "falhasCriticas": 1,
     "alertas": 0
   },
   "rodadas": {
@@ -127,13 +127,13 @@
       "teste": "ranking_existe",
       "aprovado": true,
       "critico": true,
-      "detalhes": "ranking_simulacao_v2"
+      "detalhes": "ranking_simulacao_v3"
     },
     {
       "teste": "versao_ranking",
-      "aprovado": true,
+      "aprovado": false,
       "critico": true,
-      "detalhes": "ranking_simulacao_v2"
+      "detalhes": "ranking_simulacao_v3"
     },
     {
       "teste": "amostra_minima",
@@ -325,19 +325,29 @@
       "detalhes": {
         "rankingGerado": true,
         "estrategiasEncontradas": 3,
-        "rodadasAvaliadas": 23,
-        "coberturaMediaPercentual": 98.91,
+        "rodadasAvaliadas": 22,
+        "rodadasExcluidasSemResultadoFinal": [
+          24
+        ],
+        "coberturaMediaPercentual": 99.24,
         "simulacaoOrigemAprovada": true,
         "aprovada": true
       }
     }
   ],
-  "falhasCriticas": [],
+  "falhasCriticas": [
+    {
+      "teste": "versao_ranking",
+      "aprovado": false,
+      "critico": true,
+      "detalhes": "ranking_simulacao_v3"
+    }
+  ],
   "alertas": [],
   "decisao": {
-    "aprovada": true,
-    "decisao": "SIMULACAO_VALIDADA",
-    "podeUsarRankingParaEvoluirModelo": true,
-    "observacao": "Ranking histórico liberado para análise estratégica."
+    "aprovada": false,
+    "decisao": "SIMULACAO_NAO_VALIDADA",
+    "podeUsarRankingParaEvoluirModelo": false,
+    "observacao": "Corrigir falhas críticas antes de usar o ranking para alterar o modelo."
   }
 }

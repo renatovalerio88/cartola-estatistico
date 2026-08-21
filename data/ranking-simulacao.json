@@ -1,10 +1,249 @@
 {
-  "modelo": "ranking_simulacao_v2",
-  "descricao": "Ranking histórico das estratégias Conservador, Equilibrado e Agressivo usando escalações progressivas.",
+  "modelo": "ranking_simulacao_v3",
+  "descricao": "Ranking histórico das estratégias com exclusão automática de rodada atual ainda sem resultado final e painel temporal 3/5/10/campeonato.",
   "fonte": "data/simulacao-times.json",
   "modeloSimulacao": "simulacao_times_v3",
-  "quantidadeRodadas": 23,
+  "quantidadeRodadas": 22,
+  "rodadasExcluidasSemResultadoFinal": [
+    24
+  ],
   "melhorEstrategia": "Conservador",
+  "painelTemporal": {
+    "Conservador": {
+      "campeonato": {
+        "quantidade": 22,
+        "rodadas": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 60.82,
+        "mediana": 61.03,
+        "total": 1338.08,
+        "desvioPadrao": 18.17
+      },
+      "ultimas10": {
+        "quantidade": 10,
+        "rodadas": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 62.39,
+        "mediana": 61.03,
+        "total": 623.9,
+        "desvioPadrao": 14.76
+      },
+      "ultimas5": {
+        "quantidade": 5,
+        "rodadas": [
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 67.16,
+        "mediana": 69.88,
+        "total": 335.79,
+        "desvioPadrao": 5.29
+      },
+      "ultimas3": {
+        "quantidade": 3,
+        "rodadas": [
+          21,
+          22,
+          23
+        ],
+        "media": 68.67,
+        "mediana": 69.88,
+        "total": 206.02,
+        "desvioPadrao": 3.96
+      }
+    },
+    "Agressivo": {
+      "campeonato": {
+        "quantidade": 22,
+        "rodadas": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 54.05,
+        "mediana": 52.12,
+        "total": 1189.17,
+        "desvioPadrao": 13.23
+      },
+      "ultimas10": {
+        "quantidade": 10,
+        "rodadas": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 56.88,
+        "mediana": 56.53,
+        "total": 568.75,
+        "desvioPadrao": 11.66
+      },
+      "ultimas5": {
+        "quantidade": 5,
+        "rodadas": [
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 58.4,
+        "mediana": 57.8,
+        "total": 291.99,
+        "desvioPadrao": 9.96
+      },
+      "ultimas3": {
+        "quantidade": 3,
+        "rodadas": [
+          21,
+          22,
+          23
+        ],
+        "media": 61.99,
+        "mediana": 60.15,
+        "total": 185.96,
+        "desvioPadrao": 10.85
+      }
+    },
+    "Equilibrado": {
+      "campeonato": {
+        "quantidade": 22,
+        "rodadas": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 55.09,
+        "mediana": 53.95,
+        "total": 1212.06,
+        "desvioPadrao": 14.38
+      },
+      "ultimas10": {
+        "quantidade": 10,
+        "rodadas": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 54.86,
+        "mediana": 53.53,
+        "total": 548.62,
+        "desvioPadrao": 10.4
+      },
+      "ultimas5": {
+        "quantidade": 5,
+        "rodadas": [
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "media": 59.98,
+        "mediana": 55.93,
+        "total": 299.91,
+        "desvioPadrao": 9.83
+      },
+      "ultimas3": {
+        "quantidade": 3,
+        "rodadas": [
+          21,
+          22,
+          23
+        ],
+        "media": 66.05,
+        "mediana": 65.91,
+        "total": 198.14,
+        "desvioPadrao": 8.32
+      }
+    }
+  },
   "criterioRanking": {
     "principal": "scoreGlobal",
     "desempate1": "mediaPontos",
@@ -22,101 +261,338 @@
       "nome": "Conservador",
       "perfil": "conservador",
       "formacao": "4-4-2",
-      "rodadas": 23,
+      "rodadas": 22,
       "pontosTotal": 1338.08,
-      "mediaPontos": 58.18,
-      "medianaPontos": 58.73,
-      "desvioPadrao": 21.67,
-      "consistencia": 62.75,
-      "mediaSemCapitao": 53.03,
-      "mediaBonusCapitao": 5.14,
+      "mediaPontos": 60.82,
+      "medianaPontos": 61.03,
+      "desvioPadrao": 18.17,
+      "consistencia": 70.13,
+      "mediaSemCapitao": 55.44,
+      "mediaBonusCapitao": 5.38,
       "ganhoMedioCapitaoPercentual": 9.7,
-      "maeMedioJogadores": 5.892,
-      "coberturaMediaPercentual": 98.91,
-      "escalacoesCompletas": 23,
+      "maeMedioJogadores": 5.251,
+      "coberturaMediaPercentual": 99.24,
+      "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 11,
-      "empatesNaLideranca": 1,
-      "taxaVitorias": 47.83,
+      "empatesNaLideranca": 0,
+      "taxaVitorias": 50.0,
       "melhorRodada": {
         "rodada": 18,
         "pontos": 92.85
       },
       "piorRodada": {
-        "rodada": 24,
-        "pontos": 0.0
+        "rodada": 2,
+        "pontos": 28.5
       },
-      "scoreGlobal": 60.566,
+      "desempenhoTemporal": {
+        "campeonato": {
+          "quantidade": 22,
+          "rodadas": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 60.82,
+          "mediana": 61.03,
+          "total": 1338.08,
+          "desvioPadrao": 18.17
+        },
+        "ultimas10": {
+          "quantidade": 10,
+          "rodadas": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 62.39,
+          "mediana": 61.03,
+          "total": 623.9,
+          "desvioPadrao": 14.76
+        },
+        "ultimas5": {
+          "quantidade": 5,
+          "rodadas": [
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 67.16,
+          "mediana": 69.88,
+          "total": 335.79,
+          "desvioPadrao": 5.29
+        },
+        "ultimas3": {
+          "quantidade": 3,
+          "rodadas": [
+            21,
+            22,
+            23
+          ],
+          "media": 68.67,
+          "mediana": 69.88,
+          "total": 206.02,
+          "desvioPadrao": 3.96
+        }
+      },
+      "scoreGlobal": 63.446,
       "posicao": 1
     },
     {
       "nome": "Agressivo",
       "perfil": "agressivo",
       "formacao": "3-4-3",
-      "rodadas": 23,
+      "rodadas": 22,
       "pontosTotal": 1189.17,
-      "mediaPontos": 51.7,
-      "medianaPontos": 52.06,
-      "desvioPadrao": 17.0,
-      "consistencia": 67.12,
-      "mediaSemCapitao": 46.86,
-      "mediaBonusCapitao": 4.84,
+      "mediaPontos": 54.05,
+      "medianaPontos": 52.12,
+      "desvioPadrao": 13.23,
+      "consistencia": 75.52,
+      "mediaSemCapitao": 48.99,
+      "mediaBonusCapitao": 5.06,
       "ganhoMedioCapitaoPercentual": 10.34,
-      "maeMedioJogadores": 6.885,
-      "coberturaMediaPercentual": 98.91,
-      "escalacoesCompletas": 23,
+      "maeMedioJogadores": 6.289,
+      "coberturaMediaPercentual": 99.24,
+      "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 5,
-      "empatesNaLideranca": 3,
-      "taxaVitorias": 21.74,
+      "empatesNaLideranca": 2,
+      "taxaVitorias": 22.73,
       "melhorRodada": {
         "rodada": 21,
         "pontos": 76.1
       },
       "piorRodada": {
-        "rodada": 24,
-        "pontos": 0.0
+        "rodada": 2,
+        "pontos": 30.3
       },
-      "scoreGlobal": 52.783,
+      "desempenhoTemporal": {
+        "campeonato": {
+          "quantidade": 22,
+          "rodadas": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 54.05,
+          "mediana": 52.12,
+          "total": 1189.17,
+          "desvioPadrao": 13.23
+        },
+        "ultimas10": {
+          "quantidade": 10,
+          "rodadas": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 56.88,
+          "mediana": 56.53,
+          "total": 568.75,
+          "desvioPadrao": 11.66
+        },
+        "ultimas5": {
+          "quantidade": 5,
+          "rodadas": [
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 58.4,
+          "mediana": 57.8,
+          "total": 291.99,
+          "desvioPadrao": 9.96
+        },
+        "ultimas3": {
+          "quantidade": 3,
+          "rodadas": [
+            21,
+            22,
+            23
+          ],
+          "media": 61.99,
+          "mediana": 60.15,
+          "total": 185.96,
+          "desvioPadrao": 10.85
+        }
+      },
+      "scoreGlobal": 55.391,
       "posicao": 2
     },
     {
       "nome": "Equilibrado",
       "perfil": "equilibrado",
       "formacao": "3-4-3",
-      "rodadas": 23,
+      "rodadas": 22,
       "pontosTotal": 1212.06,
-      "mediaPontos": 52.7,
-      "medianaPontos": 53.77,
-      "desvioPadrao": 18.0,
-      "consistencia": 65.85,
-      "mediaSemCapitao": 47.61,
-      "mediaBonusCapitao": 5.09,
+      "mediaPontos": 55.09,
+      "medianaPontos": 53.95,
+      "desvioPadrao": 14.38,
+      "consistencia": 73.9,
+      "mediaSemCapitao": 49.78,
+      "mediaBonusCapitao": 5.32,
       "ganhoMedioCapitaoPercentual": 10.68,
-      "maeMedioJogadores": 6.322,
-      "coberturaMediaPercentual": 98.91,
-      "escalacoesCompletas": 23,
+      "maeMedioJogadores": 5.7,
+      "coberturaMediaPercentual": 99.24,
+      "escalacoesCompletas": 22,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 4,
-      "empatesNaLideranca": 3,
-      "taxaVitorias": 17.39,
+      "empatesNaLideranca": 2,
+      "taxaVitorias": 18.18,
       "melhorRodada": {
         "rodada": 13,
         "pontos": 100.31
       },
       "piorRodada": {
-        "rodada": 24,
-        "pontos": 0.0
+        "rodada": 2,
+        "pontos": 30.3
       },
-      "scoreGlobal": 52.707,
+      "desempenhoTemporal": {
+        "campeonato": {
+          "quantidade": 22,
+          "rodadas": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 55.09,
+          "mediana": 53.95,
+          "total": 1212.06,
+          "desvioPadrao": 14.38
+        },
+        "ultimas10": {
+          "quantidade": 10,
+          "rodadas": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 54.86,
+          "mediana": 53.53,
+          "total": 548.62,
+          "desvioPadrao": 10.4
+        },
+        "ultimas5": {
+          "quantidade": 5,
+          "rodadas": [
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "media": 59.98,
+          "mediana": 55.93,
+          "total": 299.91,
+          "desvioPadrao": 9.83
+        },
+        "ultimas3": {
+          "quantidade": 3,
+          "rodadas": [
+            21,
+            22,
+            23
+          ],
+          "media": 66.05,
+          "mediana": 65.91,
+          "total": 198.14,
+          "desvioPadrao": 8.32
+        }
+      },
+      "scoreGlobal": 55.282,
       "posicao": 3
     }
   ],
   "auditoria": {
     "rankingGerado": true,
     "estrategiasEncontradas": 3,
-    "rodadasAvaliadas": 23,
-    "coberturaMediaPercentual": 98.91,
+    "rodadasAvaliadas": 22,
+    "rodadasExcluidasSemResultadoFinal": [
+      24
+    ],
+    "coberturaMediaPercentual": 99.24,
     "simulacaoOrigemAprovada": true,
     "aprovada": true
   }

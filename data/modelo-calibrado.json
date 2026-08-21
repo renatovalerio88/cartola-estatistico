@@ -1,6 +1,6 @@
 {
   "versao": "2.0",
-  "dataCalibracao": "2026-08-21 14:59:49",
+  "dataCalibracao": "2026-08-21 15:15:29",
   "modelo": "estatistico_hibrido",
   "pesos": {
     "media3": 0.05,
@@ -12,17 +12,17 @@
   "componentesMelhores": [
     {
       "componente": "media3",
-      "media": 0,
+      "media": 0.0,
       "quantidade": 0
     },
     {
       "componente": "media5",
-      "media": 0,
+      "media": 0.0,
       "quantidade": 0
     },
     {
       "componente": "mediaGeral",
-      "media": 0,
+      "media": 0.0,
       "quantidade": 0
     }
   ],
