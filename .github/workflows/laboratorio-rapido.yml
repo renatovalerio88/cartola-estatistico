@@ -1,0 +1,219 @@
+name: Cartola Estatístico - Laboratório Rápido
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-estatistico-laboratorio-rapido
+  cancel-in-progress: true
+
+jobs:
+  laboratorio-rapido:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependências
+        run: python -m pip install --disable-pip-version-check pulp
+
+      - name: Verificar otimizador global
+        run: python scripts/processamento/otimizador_global.py
+
+      - name: Gerar Backtest
+        run: python scripts/processamento/gerar_backtest.py
+
+      - name: Otimizar Pesos
+        run: python scripts/processamento/otimizar_pesos.py
+
+      - name: Gerar Laboratório
+        run: python scripts/processamento/gerar_laboratorio.py
+
+      - name: Calibrar Modelo
+        run: python scripts/processamento/calibrar_modelo.py
+
+      - name: Backtest Científico
+        run: python scripts/processamento/backtest_cientifico.py
+
+      - name: Analisar Componentes
+        run: python scripts/processamento/analisar_componentes.py
+
+      - name: Analisar Erros
+        run: python scripts/processamento/analisar_erros.py
+
+      - name: Analisar Explosões
+        run: python scripts/processamento/criar_explosoes.py
+
+      - name: Calcular Potencial Explosão
+        run: python scripts/processamento/calcular_potencial_explosao.py
+
+      - name: Calcular Índice Diferencial
+        run: python scripts/processamento/calcular_indice_diferencial.py
+
+      - name: Testar Modelo Explosão
+        run: python scripts/processamento/testar_explosao_modelo.py
+
+      - name: Backtest Inteligente
+        run: python scripts/processamento/backtest_inteligente.py
+
+      - name: Gerar Histórico do Modelo
+        run: python scripts/processamento/gerar_historico_modelo.py
+
+      - name: Gerar Histórico Detalhado
+        run: python scripts/processamento/gerar_historico_detalhado.py
+
+      - name: Auditar Top Real
+        run: python scripts/processamento/auditar_top_real.py
+
+      - name: Calibrar Modelo por Posição
+        run: python scripts/processamento/calibrar_modelo_por_posicao.py
+
+      - name: Backtest A/B Calibração
+        run: python scripts/processamento/backtest_ab_calibracao.py
+
+      - name: Promover Calibração Validada
+        run: python scripts/processamento/promover_calibracao.py
+
+      - name: Analisar Capitão
+        run: python scripts/processamento/analisar_capitao.py
+
+      - name: Gerar Escalações Históricas
+        run: python scripts/processamento/gerar_historico_escalacoes.py
+
+      - name: Diagnosticar Escalações
+        run: python scripts/processamento/diagnosticar_escalacoes.py
+
+      - name: Simular Times Históricos
+        run: python scripts/calcular_simulacao_times.py
+
+      - name: Gerar Ranking Simulação
+        run: python scripts/processamento/gerar_ranking_simulacao.py
+
+      - name: Auditar Simulação de Times
+        run: python scripts/processamento/auditar_simulacao_times.py
+
+      - name: Analisar Estratégias de Escalação
+        run: python scripts/processamento/analisar_estrategias_escalacao.py
+
+      - name: Comparar Modelos
+        run: python scripts/processamento/gerar_comparacao_modelos.py
+
+      - name: Testar Estratégia Adaptativa V1
+        run: python scripts/processamento/testar_estrategia_adaptativa.py
+
+      - name: Auditar Estratégia Adaptativa V1
+        run: python scripts/processamento/auditar_estrategia_adaptativa.py
+
+      - name: Testar Estratégia Adaptativa V2
+        run: python scripts/processamento/testar_estrategia_adaptativa_v2.py
+
+      - name: Testar Estratégia Adaptativa V3
+        run: python scripts/processamento/testar_estrategia_adaptativa_v3.py
+
+      - name: Comparar Estratégias Adaptativas V1 x V2
+        run: python scripts/processamento/comparar_estrategias_adaptativas.py
+
+      - name: Auditar Comparação Adaptativa V1 x V2
+        run: python scripts/processamento/auditar_comparacao_adaptativas.py
+
+      - name: Decidir Estratégia Adaptativa V1 x V2
+        run: python scripts/processamento/decidir_estrategia_adaptativa.py
+
+      - name: Comparar Estratégias Adaptativas V1 x V2 x V3
+        run: python scripts/processamento/comparar_estrategias_adaptativas_v3.py
+
+      - name: Auditar Comparação Adaptativa V1 x V2 x V3
+        run: python scripts/processamento/auditar_comparacao_adaptativas_v3.py
+
+      - name: Resumo rápido
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          print("=" * 60)
+          print("CARTOLA ESTATÍSTICO - RESUMO RÁPIDO")
+          print("=" * 60)
+
+          arquivos = [
+              Path("data/historico-escalacoes/indice.json"),
+              Path("data/ranking-simulacao.json"),
+              Path("data/analise-estrategias-escalacao.json"),
+              Path("data/auditoria-simulacao-times.json"),
+              Path("data/comparacao-estrategias-adaptativas-v3.json"),
+          ]
+
+          for caminho in arquivos:
+              print(f"\n--- {caminho} ---")
+              if not caminho.exists():
+                  print("NÃO GERADO")
+                  continue
+              try:
+                  dados = json.loads(caminho.read_text(encoding="utf-8"))
+              except Exception as erro:
+                  print("ERRO:", erro)
+                  continue
+
+              print("modelo:", dados.get("modelo"))
+
+              if caminho.name == "indice.json":
+                  print("rodadas:", dados.get("quantidadeRodadas"))
+                  print("escalações:", dados.get("totalEscalacoes"))
+                  print("completas:", dados.get("totalEscalacoesCompletas"))
+                  print("MILP:", dados.get("totalSelecoesMILP"))
+                  print("aprovadas:", dados.get("totalEstrategiasAprovadas"))
+                  print("reprovadas:", dados.get("rodadasReprovadas"))
+                  print("auditoria:", dados.get("auditoriaGlobalAprovada"))
+
+              elif caminho.name == "ranking-simulacao.json":
+                  print("melhor estratégia:", dados.get("melhorEstrategia"))
+                  for item in dados.get("ranking", []):
+                      print(
+                          item.get("nome"),
+                          "| média:", item.get("mediaPontos"),
+                          "| total:", item.get("pontosTotal"),
+                          "| score:", item.get("scoreGlobal"),
+                      )
+
+              elif caminho.name == "analise-estrategias-escalacao.json":
+                  resumo = dados.get("resumo", {})
+                  print("líder:", resumo.get("lider"))
+                  print("média líder:", resumo.get("mediaLider"))
+                  print("confiança:", resumo.get("scoreConfianca"))
+                  print("decisão:", dados.get("decisao", {}).get("decisao"))
+
+              elif caminho.name == "auditoria-simulacao-times.json":
+                  resumo = dados.get("resumo", {})
+                  print("cobertura:", resumo.get("coberturaMediaPercentual"))
+                  print("score qualidade:", resumo.get("scoreQualidade"))
+                  print("falhas críticas:", resumo.get("falhasCriticas"))
+
+              elif caminho.name == "comparacao-estrategias-adaptativas-v3.json":
+                  print("amostra:", dados.get("amostra", {}).get("rodadasComuns"))
+                  print("decisão:", dados.get("decisao", {}).get("decisao"))
+
+          print("\n" + "=" * 60)
+          PY
+
+      - name: Commit resultados
+        if: success()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git diff --cached --quiet || (
+            git commit -m "Atualização laboratório estatístico rápido"
+            git push
+          )
