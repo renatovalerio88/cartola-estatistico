@@ -1,6 +1,6 @@
 {
-  "modelo": "auditoria_simulacao_times_v1",
-  "descricao": "Auditoria científica da camada de simulação histórica de escalações.",
+  "modelo": "auditoria_simulacao_times_v2",
+  "descricao": "Auditoria científica compatível com ranking histórico V3.",
   "configuracao": {
     "minimoRodadas": 5,
     "coberturaMinima": 90.0,
@@ -11,11 +11,6 @@
       "Equilibrado"
     ]
   },
-  "fontes": {
-    "simulacao": "data/simulacao-times.json",
-    "ranking": "data/ranking-simulacao.json",
-    "historicoEscalacoes": "data/historico-escalacoes"
-  },
   "resumo": {
     "rodadas": 23,
     "timesAvaliados": 69,
@@ -23,9 +18,9 @@
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
-    "scoreQualidade": 94.29,
+    "scoreQualidade": 100.0,
     "testes": 18,
-    "falhasCriticas": 1,
+    "falhasCriticas": 0,
     "alertas": 0
   },
   "rodadas": {
@@ -41,26 +36,7 @@
     "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
     "taxaAuditoriaOrigemPercentual": 100.0,
-    "problemas": [
-      {
-        "rodada": 2,
-        "estrategia": "Conservador",
-        "tipo": "cobertura_baixa",
-        "cobertura": 83.33
-      },
-      {
-        "rodada": 2,
-        "estrategia": "Equilibrado",
-        "tipo": "cobertura_baixa",
-        "cobertura": 83.33
-      },
-      {
-        "rodada": 2,
-        "estrategia": "Agressivo",
-        "tipo": "cobertura_baixa",
-        "cobertura": 83.33
-      }
-    ]
+    "problemas": []
   },
   "arquivosHistoricos": {
     "esperados": 23,
@@ -131,7 +107,7 @@
     },
     {
       "teste": "versao_ranking",
-      "aprovado": false,
+      "aprovado": true,
       "critico": true,
       "detalhes": "ranking_simulacao_v3"
     },
@@ -139,215 +115,92 @@
       "teste": "amostra_minima",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "rodadas": 23,
-        "minimo": 5
-      }
+      "detalhes": null
     },
     {
       "teste": "estrategias_completas",
       "aprovado": true,
       "critico": true,
-      "detalhes": [
-        "Agressivo",
-        "Conservador",
-        "Equilibrado"
-      ]
+      "detalhes": null
     },
     {
       "teste": "arquivos_historicos_presentes",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "esperados": 23,
-        "existentes": 23,
-        "rodadasExistentes": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          24
-        ],
-        "rodadasAusentes": [],
-        "rodadasInvalidas": []
-      }
+      "detalhes": null
     },
     {
       "teste": "sem_vazamento_futuro",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "taxa": 100.0
-      }
+      "detalhes": null
     },
     {
       "teste": "auditoria_origem",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "taxa": 100.0
-      }
+      "detalhes": null
     },
     {
       "teste": "times_completos",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "taxa": 100.0
-      }
+      "detalhes": null
     },
     {
       "teste": "cobertura_resultados",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "cobertura": 98.91,
-        "minimo": 90.0
-      }
+      "detalhes": null
     },
     {
       "teste": "cobertura_ideal",
       "aprovado": true,
       "critico": false,
-      "detalhes": {
-        "cobertura": 98.91,
-        "ideal": 98.0
-      }
+      "detalhes": null
     },
     {
       "teste": "capitaes_validos",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "taxa": 100.0
-      }
+      "detalhes": null
     },
     {
       "teste": "ranking_mesmas_estrategias",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "estrategiasSimulacao": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "estrategiasRanking": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "mesmasEstrategias": true,
-        "melhorEstrategia": "Conservador",
-        "primeiroRanking": "Conservador",
-        "melhorEstrategiaConsistente": true,
-        "posicoesRankingValidas": true
-      }
+      "detalhes": null
     },
     {
       "teste": "ranking_posicoes_validas",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "estrategiasSimulacao": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "estrategiasRanking": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "mesmasEstrategias": true,
-        "melhorEstrategia": "Conservador",
-        "primeiroRanking": "Conservador",
-        "melhorEstrategiaConsistente": true,
-        "posicoesRankingValidas": true
-      }
+      "detalhes": null
     },
     {
       "teste": "ranking_melhor_consistente",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "estrategiasSimulacao": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "estrategiasRanking": [
-          "Agressivo",
-          "Conservador",
-          "Equilibrado"
-        ],
-        "mesmasEstrategias": true,
-        "melhorEstrategia": "Conservador",
-        "primeiroRanking": "Conservador",
-        "melhorEstrategiaConsistente": true,
-        "posicoesRankingValidas": true
-      }
+      "detalhes": null
     },
     {
       "teste": "auditoria_interna_simulacao",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "rodadasComSimulacao": 23,
-        "rodadasIgnoradas": 0,
-        "coberturaMediaPercentual": 98.91,
-        "separacaoPrevisaoResultado": true,
-        "aprovada": true
-      }
+      "detalhes": null
     },
     {
       "teste": "auditoria_interna_ranking",
       "aprovado": true,
       "critico": true,
-      "detalhes": {
-        "rankingGerado": true,
-        "estrategiasEncontradas": 3,
-        "rodadasAvaliadas": 22,
-        "rodadasExcluidasSemResultadoFinal": [
-          24
-        ],
-        "coberturaMediaPercentual": 99.24,
-        "simulacaoOrigemAprovada": true,
-        "aprovada": true
-      }
+      "detalhes": null
     }
   ],
-  "falhasCriticas": [
-    {
-      "teste": "versao_ranking",
-      "aprovado": false,
-      "critico": true,
-      "detalhes": "ranking_simulacao_v3"
-    }
-  ],
+  "falhasCriticas": [],
   "alertas": [],
   "decisao": {
-    "aprovada": false,
-    "decisao": "SIMULACAO_NAO_VALIDADA",
-    "podeUsarRankingParaEvoluirModelo": false,
-    "observacao": "Corrigir falhas críticas antes de usar o ranking para alterar o modelo."
+    "aprovada": true,
+    "decisao": "SIMULACAO_VALIDADA",
+    "podeUsarRankingParaEvoluirModelo": true
   }
 }

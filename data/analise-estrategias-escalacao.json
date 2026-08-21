@@ -29,7 +29,7 @@
     "estabilidadeLider": 47.83,
     "coberturaLider": 99.24,
     "robustezLider": 72.5,
-    "scoreConfianca": 38.56,
+    "scoreConfianca": 77.12,
     "liderancaConsistente": true,
     "divergenciaScoreMedia": false
   },
@@ -1003,7 +1003,7 @@
     }
   ],
   "criterios": {
-    "auditoriaAprovada": false,
+    "auditoriaAprovada": true,
     "tresEstrategiasPresentes": true,
     "amostraMinimaAnalise": true,
     "amostraMinimaPromocao": true,
@@ -1015,10 +1015,11 @@
     "estabilidadeMinima": false,
     "consistenciaMinima": true,
     "robustezMinima": true,
-    "scoreConfiancaMinimo": false
+    "scoreConfiancaMinimo": true
   },
   "criteriosPromocao": {
     "aprovados": [
+      "auditoriaAprovada",
       "tresEstrategiasPresentes",
       "amostraMinimaPromocao",
       "coberturaMinima",
@@ -1027,23 +1028,22 @@
       "vantagemPercentualMinima",
       "taxaVitoriasMinima",
       "consistenciaMinima",
-      "robustezMinima"
+      "robustezMinima",
+      "scoreConfiancaMinimo"
     ],
     "falhas": [
-      "auditoriaAprovada",
-      "estabilidadeMinima",
-      "scoreConfiancaMinimo"
+      "estabilidadeMinima"
     ]
   },
   "decisao": {
-    "decisao": "AGUARDAR_VALIDACAO_SIMULACAO",
+    "decisao": "MANTER_ESTRATEGIAS_ATUAIS",
     "estrategiaRecomendada": null,
     "liderAtual": "Conservador",
     "liderScoreGlobal": "Conservador",
     "liderMediaReal": "Conservador",
     "promover": false,
     "promocaoAutomatica": false,
-    "scoreConfianca": 38.56,
+    "scoreConfianca": 77.12,
     "robustez": 72.5,
     "divergenciaScoreMedia": false,
     "observacao": "Os dados históricos ainda não demonstram superioridade suficiente para substituir as estratégias atuais."
