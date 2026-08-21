@@ -1,130 +1,74 @@
 name: Cartola Estatístico
 
-
 on:
-
   workflow_dispatch:
 
   schedule:
-
     # Executa diariamente às 06:00
     - cron: "0 6 * * *"
 
-
+  # Permite disparar a coleta por um commit controlado neste próprio workflow.
+  # Útil quando precisamos atualizar imediatamente a rodada corrente sem
+  # depender de um clique manual no Actions.
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/coletar-cartola.yml"
 
 permissions:
-
   contents: write
 
-
+concurrency:
+  group: cartola-estatistico-coleta
+  cancel-in-progress: true
 
 jobs:
-
   atualizar:
-
-
     runs-on: ubuntu-latest
-
-
+    timeout-minutes: 20
 
     steps:
-
-
       - name: Checkout
-
         uses: actions/checkout@v4
 
-
-
       - name: Configurar Python
-
         uses: actions/setup-python@v5
-
         with:
-
           python-version: "3.11"
 
-
-
       - name: Atualizar pip
-
-        run: |
-
-          python -m pip install --upgrade pip
-
-
+        run: python -m pip install --disable-pip-version-check --upgrade pip
 
       # =====================================
       # COLETA DE DADOS
       # =====================================
 
-
       - name: Coletar API Atual
-
-        run: |
-
-          python scripts/coletar_cartola.py
-
-
+        run: python scripts/coletar_cartola.py
 
       - name: Coletar Histórico Completo
-
-        run: |
-
-          python scripts/coletar_historico_completo.py
-
-
+        run: python scripts/coletar_historico_completo.py
 
       - name: Testar API Histórica
-
-        run: |
-
-          python scripts/testar_api_historica.py
-
-
+        run: python scripts/testar_api_historica.py
 
       - name: Importar Histórico
-
-        run: |
-
-          python scripts/importar_historico.py
-
-
+        run: python scripts/importar_historico.py
 
       - name: Consolidar Base
-
-        run: |
-
-          python scripts/processamento/consolidar_base.py
-
-
+        run: python scripts/processamento/consolidar_base.py
 
       # =====================================
       # SALVAR ALTERAÇÕES
       # =====================================
 
-
       - name: Commit
-
         run: |
-
-
           git config user.name github-actions
-
-
           git config user.email github-actions@github.com
-
-
           git add .
-
-
           git diff --cached --quiet || (
-
-
             git commit -m "Atualização automática da base"
-
-
             git push
-
-
           )
