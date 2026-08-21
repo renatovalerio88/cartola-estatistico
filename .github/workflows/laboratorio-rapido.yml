@@ -2,6 +2,14 @@ name: Cartola Estatístico - Laboratório Rápido
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/processamento/**"
+      - "scripts/calcular_simulacao_times.py"
+      - "js/historico/cards.js"
+      - ".github/workflows/laboratorio-rapido.yml"
 
 permissions:
   contents: write
@@ -163,6 +171,7 @@ jobs:
               if not caminho.exists():
                   print("NÃO GERADO")
                   continue
+
               try:
                   dados = json.loads(caminho.read_text(encoding="utf-8"))
               except Exception as erro:
