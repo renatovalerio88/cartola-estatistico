@@ -21,17 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-
       - name: Atualizar pip
         run: |
           python -m pip install --upgrade pip
 
+      - name: Instalar dependências do laboratório
+        run: |
+          python -m pip install pulp
+
+      - name: Verificar otimizador global
+        run: |
+          python scripts/processamento/otimizador_global.py
 
       # ======================================
       # PROCESSAMENTO DO MODELO
@@ -41,21 +46,17 @@ jobs:
         run: |
           python scripts/processamento/gerar_backtest.py
 
-
       - name: Otimizar Pesos
         run: |
           python scripts/processamento/otimizar_pesos.py
-
 
       - name: Gerar Laboratório
         run: |
           python scripts/processamento/gerar_laboratorio.py
 
-
       - name: Calibrar Modelo
         run: |
           python scripts/processamento/calibrar_modelo.py
-
 
       # ======================================
       # TESTES CIENTÍFICOS
@@ -65,51 +66,41 @@ jobs:
         run: |
           python scripts/processamento/backtest_cientifico.py
 
-
       - name: Analisar Componentes
         run: |
           python scripts/processamento/analisar_componentes.py
-
 
       - name: Analisar Erros
         run: |
           python scripts/processamento/analisar_erros.py
 
-
       - name: Analisar Explosões
         run: |
           python scripts/processamento/criar_explosoes.py
-
 
       - name: Calcular Potencial Explosao
         run: |
           python scripts/processamento/calcular_potencial_explosao.py
 
-
       - name: Calcular Índice Diferencial
         run: |
           python scripts/processamento/calcular_indice_diferencial.py
-
 
       - name: Testar Modelo Explosao
         run: |
           python scripts/processamento/testar_explosao_modelo.py
 
-
       - name: Backtest Inteligente
         run: |
           python scripts/processamento/backtest_inteligente.py
-
 
       - name: Gerar Histórico do Modelo
         run: |
           python scripts/processamento/gerar_historico_modelo.py
 
-
       - name: Gerar Histórico Detalhado
         run: |
           python scripts/processamento/gerar_historico_detalhado.py
-
 
       # ======================================
       # VALIDAÇÃO DA CALIBRAÇÃO
@@ -119,40 +110,374 @@ jobs:
         run: |
           python scripts/processamento/auditar_top_real.py
 
-
       - name: Calibrar Modelo por Posição
         run: |
           python scripts/processamento/calibrar_modelo_por_posicao.py
-
 
       - name: Backtest A/B Calibração
         run: |
           python scripts/processamento/backtest_ab_calibracao.py
 
-
       - name: Promover Calibração Validada
         run: |
           python scripts/processamento/promover_calibracao.py
-
 
       - name: Analisar Capitão
         run: |
           python scripts/processamento/analisar_capitao.py
 
-
       # ======================================
       # ESCALAÇÕES HISTÓRICAS
+      # MILP + FALLBACK GREEDY
       # ======================================
 
       - name: Gerar Escalações Históricas
         run: |
           python scripts/processamento/gerar_historico_escalacoes.py
 
-
       - name: Diagnosticar Escalações
         run: |
           python scripts/processamento/diagnosticar_escalacoes.py
 
+      # ======================================
+      # AUDITORIA DO MILP
+      # ======================================
+
+      - name: Auditar Otimização Global
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          pasta = Path("data/historico-escalacoes")
+
+          indice_path = pasta / "indice.json"
+
+          print()
+          print("==============================================")
+          print("CARTOLA ESTATÍSTICO")
+          print("AUDITORIA DO OTIMIZADOR GLOBAL")
+          print("==============================================")
+          print()
+
+          if not indice_path.exists():
+              raise SystemExit(
+                  "[ERRO] data/historico-escalacoes/indice.json não encontrado."
+              )
+
+          with open(
+              indice_path,
+              "r",
+              encoding="utf-8"
+          ) as arquivo:
+              indice = json.load(arquivo)
+
+          print(
+              "Modelo:",
+              indice.get("modelo")
+          )
+
+          print(
+              "Rodadas:",
+              indice.get("quantidadeRodadas")
+          )
+
+          print(
+              "Escalações:",
+              indice.get("totalEscalacoes")
+          )
+
+          print(
+              "Escalações completas:",
+              indice.get("totalEscalacoesCompletas")
+          )
+
+          print(
+              "Seleções MILP:",
+              indice.get("totalSelecoesMILP")
+          )
+
+          print(
+              "Fallback greedy:",
+              indice.get("totalFallbackGreedy")
+          )
+
+          print(
+              "Estratégias aprovadas:",
+              indice.get("totalEstrategiasAprovadas")
+          )
+
+          print(
+              "Rodadas reprovadas:",
+              indice.get("rodadasReprovadas")
+          )
+
+          print(
+              "Auditoria global:",
+              (
+                  "APROVADA"
+                  if indice.get("auditoriaGlobalAprovada")
+                  else "REPROVADA"
+              )
+          )
+
+          print()
+
+          total = int(
+              indice.get("totalEscalacoes")
+              or 0
+          )
+
+          total_milp = int(
+              indice.get("totalSelecoesMILP")
+              or 0
+          )
+
+          total_fallback = int(
+              indice.get("totalFallbackGreedy")
+              or 0
+          )
+
+          completas = int(
+              indice.get("totalEscalacoesCompletas")
+              or 0
+          )
+
+          aprovadas = int(
+              indice.get("totalEstrategiasAprovadas")
+              or 0
+          )
+
+          if total > 0:
+
+              taxa_milp = (
+                  total_milp
+                  /
+                  total
+                  *
+                  100
+              )
+
+              taxa_completas = (
+                  completas
+                  /
+                  total
+                  *
+                  100
+              )
+
+              taxa_aprovadas = (
+                  aprovadas
+                  /
+                  total
+                  *
+                  100
+              )
+
+          else:
+
+              taxa_milp = 0
+              taxa_completas = 0
+              taxa_aprovadas = 0
+
+          print(
+              "Taxa MILP:",
+              round(taxa_milp, 2),
+              "%"
+          )
+
+          print(
+              "Taxa escalações completas:",
+              round(taxa_completas, 2),
+              "%"
+          )
+
+          print(
+              "Taxa auditorias aprovadas:",
+              round(taxa_aprovadas, 2),
+              "%"
+          )
+
+          print()
+
+          metodos = {}
+
+          falhas = []
+
+          for caminho in sorted(
+              pasta.glob("rodada-*.json")
+          ):
+
+              try:
+
+                  with open(
+                      caminho,
+                      "r",
+                      encoding="utf-8"
+                  ) as arquivo:
+
+                      dados = json.load(
+                          arquivo
+                      )
+
+              except Exception as erro:
+
+                  falhas.append({
+                      "arquivo": caminho.name,
+                      "erro": str(erro)
+                  })
+
+                  continue
+
+              rodada = dados.get(
+                  "rodada"
+              )
+
+              for estrategia in dados.get(
+                  "estrategias",
+                  []
+              ):
+
+                  metodo = (
+                      estrategia.get(
+                          "metodoSelecao"
+                      )
+                      or
+                      "desconhecido"
+                  )
+
+                  metodos[
+                      metodo
+                  ] = (
+                      metodos.get(
+                          metodo,
+                          0
+                      )
+                      +
+                      1
+                  )
+
+                  if not estrategia.get(
+                      "escalacaoCompleta"
+                  ):
+
+                      falhas.append({
+
+                          "rodada":
+                              rodada,
+
+                          "estrategia":
+                              estrategia.get(
+                                  "nome"
+                              ),
+
+                          "tipo":
+                              "escalacao_incompleta",
+
+                          "metodo":
+                              metodo
+                      })
+
+                  auditoria = estrategia.get(
+                      "auditoria",
+                      {}
+                  )
+
+                  if not auditoria.get(
+                      "aprovada"
+                  ):
+
+                      falhas.append({
+
+                          "rodada":
+                              rodada,
+
+                          "estrategia":
+                              estrategia.get(
+                                  "nome"
+                              ),
+
+                          "tipo":
+                              "auditoria_reprovada",
+
+                          "erros":
+                              auditoria.get(
+                                  "erros"
+                              )
+                      })
+
+          print(
+              "Métodos encontrados:",
+              metodos
+          )
+
+          print(
+              "Falhas encontradas:",
+              len(falhas)
+          )
+
+          if falhas:
+
+              print()
+
+              for falha in falhas[:30]:
+
+                  print(
+                      "[FALHA]",
+                      falha
+                  )
+
+          print()
+          print("==============================================")
+
+          if total <= 0:
+
+              raise SystemExit(
+                  "[ERRO] Nenhuma escalação foi gerada."
+              )
+
+          if total_milp <= 0:
+
+              raise SystemExit(
+                  "[ERRO] MILP não foi utilizado em nenhuma escalação."
+              )
+
+          if total_fallback > 0:
+
+              print(
+                  "[ALERTA] Houve fallback greedy em",
+                  total_fallback,
+                  "escalações."
+              )
+
+          if total_milp == total:
+
+              print(
+                  "[OK] 100% das escalações utilizaram MILP."
+              )
+
+          if completas == total:
+
+              print(
+                  "[OK] 100% das escalações estão completas."
+              )
+
+          if aprovadas == total:
+
+              print(
+                  "[OK] 100% das estratégias passaram na auditoria."
+              )
+
+          print("==============================================")
+          PY
+
+      # ======================================
+      # LABORATÓRIO DE PATRIMÔNIO
+      # ======================================
+
+      - name: Backtest de Patrimônio
+        run: |
+          python scripts/processamento/backtest_patrimonio.py
 
       # ======================================
       # SIMULAÇÃO HISTÓRICA DE TIMES
@@ -162,21 +487,17 @@ jobs:
         run: |
           python scripts/calcular_simulacao_times.py
 
-
       - name: Gerar Ranking Simulação
         run: |
           python scripts/processamento/gerar_ranking_simulacao.py
-
 
       - name: Auditar Simulação de Times
         run: |
           python scripts/processamento/auditar_simulacao_times.py
 
-
       - name: Analisar Estratégias de Escalação
         run: |
           python scripts/processamento/analisar_estrategias_escalacao.py
-
 
       # ======================================
       # COMPARAÇÃO DOS MODELOS
@@ -186,7 +507,6 @@ jobs:
         run: |
           python scripts/processamento/gerar_comparacao_modelos.py
 
-
       # ======================================
       # ESTRATÉGIAS ADAPTATIVAS V1 x V2 x V3
       # ======================================
@@ -195,21 +515,17 @@ jobs:
         run: |
           python scripts/processamento/testar_estrategia_adaptativa.py
 
-
       - name: Auditar Estratégia Adaptativa V1
         run: |
           python scripts/processamento/auditar_estrategia_adaptativa.py
-
 
       - name: Testar Estratégia Adaptativa V2
         run: |
           python scripts/processamento/testar_estrategia_adaptativa_v2.py
 
-
       - name: Testar Estratégia Adaptativa V3
         run: |
           python scripts/processamento/testar_estrategia_adaptativa_v3.py
-
 
       # ======================================
       # COMPARAÇÃO HISTÓRICA V1 x V2
@@ -219,16 +535,13 @@ jobs:
         run: |
           python scripts/processamento/comparar_estrategias_adaptativas.py
 
-
       - name: Auditar Comparação Adaptativa V1 x V2
         run: |
           python scripts/processamento/auditar_comparacao_adaptativas.py
 
-
       - name: Decidir Estratégia Adaptativa V1 x V2
         run: |
           python scripts/processamento/decidir_estrategia_adaptativa.py
-
 
       # ======================================
       # COMPARAÇÃO CIENTÍFICA V1 x V2 x V3
@@ -238,11 +551,9 @@ jobs:
         run: |
           python scripts/processamento/comparar_estrategias_adaptativas_v3.py
 
-
       - name: Auditar Comparação Adaptativa V1 x V2 x V3
         run: |
           python scripts/processamento/auditar_comparacao_adaptativas_v3.py
-
 
       # ======================================
       # RESUMO DA VALIDAÇÃO
@@ -250,176 +561,196 @@ jobs:
 
       - name: Resumo Validação Científica
         run: |
-
           python - <<'PY'
-
           import json
-
           from pathlib import Path
 
-
           arquivos = [
-
               "data/auditoria-top-real.json",
-
               "data/calibracao-posicoes-candidata.json",
-
               "data/backtest-ab-calibracao.json",
-
               "data/analise-capitao.json",
-
               "data/simulacao-times.json",
-
               "data/ranking-simulacao.json",
-
               "data/auditoria-simulacao-times.json",
-
               "data/analise-estrategias-escalacao.json",
-
               "data/comparacao-estrategias-adaptativas.json",
-
               "data/auditoria-comparacao-adaptativas.json",
-
               "data/decisao-estrategia-adaptativa.json",
-
               "data/comparacao-estrategias-adaptativas-v3.json",
-
-              "data/auditoria-comparacao-adaptativas-v3.json"
-
+              "data/auditoria-comparacao-adaptativas-v3.json",
+              "data/backtest-patrimonio.json",
+              "data/historico-escalacoes/indice.json"
           ]
 
-
           print()
-
           print(
               "=============================================="
           )
-
           print(
               "CARTOLA ESTATÍSTICO"
           )
-
           print(
               "RESUMO DA VALIDAÇÃO CIENTÍFICA"
           )
-
           print(
               "=============================================="
           )
-
           print()
 
-
           for nome in arquivos:
-
 
               caminho = Path(
                   nome
               )
 
-
               nome_arquivo = (
                   caminho.name
               )
 
-
               print(
                   "----------------------------------------------"
               )
-
               print(
                   nome
               )
-
               print(
                   "----------------------------------------------"
               )
 
-
               if not caminho.exists():
-
 
                   print(
                       "ARQUIVO NÃO GERADO"
                   )
-
                   print()
 
                   continue
 
-
               try:
 
-
                   with open(
-
                       caminho,
-
                       "r",
-
                       encoding="utf-8"
-
                   ) as arquivo:
-
 
                       dados = json.load(
                           arquivo
                       )
 
-
               except Exception as erro:
-
 
                   print(
                       "ERRO AO LER:",
                       erro
                   )
-
                   print()
 
                   continue
 
-
               print(
-
                   "Modelo:",
-
                   dados.get(
                       "modelo"
                   )
-
               )
 
+              # ==================================
+              # HISTÓRICO DE ESCALAÇÕES / MILP
+              # ==================================
+
+              if (
+                  nome
+                  ==
+                  "data/historico-escalacoes/indice.json"
+              ):
+
+                  print(
+                      "Rodadas:",
+                      dados.get(
+                          "quantidadeRodadas"
+                      )
+                  )
+
+                  print(
+                      "Escalações:",
+                      dados.get(
+                          "totalEscalacoes"
+                      )
+                  )
+
+                  print(
+                      "Escalações completas:",
+                      dados.get(
+                          "totalEscalacoesCompletas"
+                      )
+                  )
+
+                  print(
+                      "Seleções MILP:",
+                      dados.get(
+                          "totalSelecoesMILP"
+                      )
+                  )
+
+                  print(
+                      "Fallback greedy:",
+                      dados.get(
+                          "totalFallbackGreedy"
+                      )
+                  )
+
+                  print(
+                      "Estratégias aprovadas:",
+                      dados.get(
+                          "totalEstrategiasAprovadas"
+                      )
+                  )
+
+                  print(
+                      "Rodadas reprovadas:",
+                      dados.get(
+                          "rodadasReprovadas"
+                      )
+                  )
+
+                  print(
+                      "Auditoria:",
+                      (
+                          "APROVADA"
+                          if dados.get(
+                              "auditoriaGlobalAprovada"
+                          )
+                          else
+                          "REPROVADA"
+                      )
+                  )
 
               # ==================================
               # BACKTEST A/B CALIBRAÇÃO
               # ==================================
 
-
-              if (
+              elif (
                   nome_arquivo
                   ==
                   "backtest-ab-calibracao.json"
               ):
-
 
                   resumo = dados.get(
                       "resumoGlobal",
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisaoPromocao",
                       {}
                   )
 
-
                   rodadas = dados.get(
                       "rodadas",
                       {}
                   )
-
 
                   print(
                       "MAE A:",
@@ -428,14 +759,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "MAE B:",
                       resumo.get(
                           "maeB"
                       )
                   )
-
 
                   print(
                       "Melhora:",
@@ -445,14 +774,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Viés A:",
                       resumo.get(
                           "viesA"
                       )
                   )
-
 
                   print(
                       "Viés B:",
@@ -461,7 +788,6 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias A:",
                       rodadas.get(
@@ -469,14 +795,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias B:",
                       rodadas.get(
                           "vitoriasB"
                       )
                   )
-
 
                   print(
                       "Empates:",
@@ -485,7 +809,6 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Decisão:",
                       decisao.get(
@@ -493,11 +816,9 @@ jobs:
                       )
                   )
 
-
               # ==================================
               # CAPITÃO
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -505,18 +826,15 @@ jobs:
                   "analise-capitao.json"
               ):
 
-
                   resumo = dados.get(
                       "resumo",
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisaoExperimental",
                       {}
                   )
-
 
                   print(
                       "Avaliações:",
@@ -525,14 +843,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias A:",
                       resumo.get(
                           "vitoriasA"
                       )
                   )
-
 
                   print(
                       "Vitórias B:",
@@ -541,14 +857,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média capitão A:",
                       resumo.get(
                           "mediaPontosA"
                       )
                   )
-
 
                   print(
                       "Média capitão B:",
@@ -557,14 +871,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Ganho médio B vs A:",
                       resumo.get(
                           "ganhoMedioBvsA"
                       )
                   )
-
 
                   print(
                       "Decisão:",
@@ -573,11 +885,9 @@ jobs:
                       )
                   )
 
-
               # ==================================
               # SIMULAÇÃO HISTÓRICA
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -585,12 +895,10 @@ jobs:
                   "simulacao-times.json"
               ):
 
-
                   auditoria = dados.get(
                       "auditoria",
                       {}
                   )
-
 
                   print(
                       "Rodadas processadas:",
@@ -598,7 +906,6 @@ jobs:
                           "quantidadeRodadas"
                       )
                   )
-
 
                   print(
                       "Cobertura média:",
@@ -608,30 +915,21 @@ jobs:
                       "%"
                   )
 
-
                   print(
-
                       "Auditoria:",
-
                       (
                           "APROVADA"
-
                           if auditoria.get(
                               "aprovada"
                           )
-
                           else
-
                           "REPROVADA"
                       )
-
                   )
-
 
               # ==================================
               # RANKING DE SIMULAÇÃO
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -639,12 +937,10 @@ jobs:
                   "ranking-simulacao.json"
               ):
 
-
                   auditoria = dados.get(
                       "auditoria",
                       {}
                   )
-
 
                   print(
                       "Rodadas:",
@@ -653,14 +949,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Melhor estratégia:",
                       dados.get(
                           "melhorEstrategia"
                       )
                   )
-
 
                   print(
                       "Estratégias:",
@@ -669,7 +963,6 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Cobertura:",
                       auditoria.get(
@@ -678,101 +971,69 @@ jobs:
                       "%"
                   )
 
-
                   print(
-
                       "Auditoria:",
-
                       (
                           "APROVADA"
-
                           if auditoria.get(
                               "aprovada"
                           )
-
                           else
-
                           "REPROVADA"
                       )
-
                   )
 
-
                   print()
-
-
                   print(
                       "Ranking:"
                   )
-
 
                   for item in dados.get(
                       "ranking",
                       []
                   ):
 
-
                       print(
-
                           "#",
-
                           item.get(
                               "posicao"
                           ),
-
                           item.get(
                               "nome"
                           ),
-
                           "| Média:",
-
                           item.get(
                               "mediaPontos"
                           ),
-
                           "| Mediana:",
-
                           item.get(
                               "medianaPontos"
                           ),
-
                           "| Total:",
-
                           item.get(
                               "pontosTotal"
                           ),
-
                           "| Vitórias:",
-
                           item.get(
                               "vitorias"
                           ),
-
                           "| Consistência:",
-
                           item.get(
                               "consistencia"
                           ),
-
                           "| MAE:",
-
                           item.get(
                               "maeMedioJogadores"
                           ),
-
                           "| Score:",
-
                           item.get(
                               "scoreGlobal"
                           )
-
                       )
-
 
               # ==================================
               # AUDITORIA DA SIMULAÇÃO
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -780,18 +1041,15 @@ jobs:
                   "auditoria-simulacao-times.json"
               ):
 
-
                   resumo = dados.get(
                       "resumo",
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisao",
                       {}
                   )
-
 
                   print(
                       "Rodadas:",
@@ -800,14 +1058,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Times avaliados:",
                       resumo.get(
                           "timesAvaliados"
                       )
                   )
-
 
                   print(
                       "Cobertura:",
@@ -816,7 +1072,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Times completos:",
@@ -826,7 +1081,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Capitães válidos:",
                       resumo.get(
@@ -834,7 +1088,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Sem vazamento:",
@@ -844,7 +1097,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Score qualidade:",
                       resumo.get(
@@ -853,14 +1105,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Testes:",
                       resumo.get(
                           "testes"
                       )
                   )
-
 
                   print(
                       "Falhas críticas:",
@@ -869,14 +1119,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Alertas:",
                       resumo.get(
                           "alertas"
                       )
                   )
-
 
                   print(
                       "Decisão:",
@@ -885,7 +1133,6 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Pode usar ranking:",
                       decisao.get(
@@ -893,11 +1140,9 @@ jobs:
                       )
                   )
 
-
               # ==================================
               # ANÁLISE DAS ESTRATÉGIAS
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -905,33 +1150,29 @@ jobs:
                   "analise-estrategias-escalacao.json"
               ):
 
-
                   resumo = dados.get(
                       "resumo",
                       {}
                   )
 
-
-                  comparacao = dados.get(
-
-                      "comparacaoPrimeiroSegundo",
-
+                  comparacao = (
+                      dados.get(
+                          "comparacaoPrimeiroSegundo",
+                          {}
+                      )
+                      or
                       {}
-
-                  ) or {}
-
+                  )
 
                   criterios = dados.get(
                       "criteriosPromocao",
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisao",
                       {}
                   )
-
 
                   print(
                       "Rodadas:",
@@ -940,14 +1181,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Líder:",
                       resumo.get(
                           "lider"
                       )
                   )
-
 
                   print(
                       "Média líder:",
@@ -956,14 +1195,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Score global líder:",
                       resumo.get(
                           "scoreGlobalLider"
                       )
                   )
-
 
                   print(
                       "Taxa de vitórias:",
@@ -973,7 +1210,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Estabilidade:",
                       resumo.get(
@@ -981,7 +1217,6 @@ jobs:
                       ),
                       "%"
                   )
-
 
                   print(
                       "Cobertura:",
@@ -991,7 +1226,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Score confiança:",
                       resumo.get(
@@ -1000,14 +1234,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Segundo colocado:",
                       comparacao.get(
                           "segundo"
                       )
                   )
-
 
                   print(
                       "Média segundo:",
@@ -1016,14 +1248,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vantagem média:",
                       comparacao.get(
                           "vantagemMedia"
                       )
                   )
-
 
                   print(
                       "Vantagem percentual:",
@@ -1033,14 +1263,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Vantagem score:",
                       comparacao.get(
                           "vantagemScore"
                       )
                   )
-
 
                   print(
                       "Critérios aprovados:",
@@ -1049,14 +1277,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Critérios pendentes:",
                       criterios.get(
                           "falhas"
                       )
                   )
-
 
                   print(
                       "Decisão:",
@@ -1065,14 +1291,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Estratégia recomendada:",
                       decisao.get(
                           "estrategiaRecomendada"
                       )
                   )
-
 
                   print(
                       "Promoção automática:",
@@ -1081,11 +1305,9 @@ jobs:
                       )
                   )
 
-
               # ==================================
               # COMPARAÇÃO V1 x V2 x V3
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -1093,48 +1315,40 @@ jobs:
                   "comparacao-estrategias-adaptativas-v3.json"
               ):
 
-
                   metricas = dados.get(
                       "metricas",
                       {}
                   )
-
 
                   v1 = metricas.get(
                       "adaptativoV1",
                       {}
                   )
 
-
                   v2 = metricas.get(
                       "adaptativoV2",
                       {}
                   )
-
 
                   v3 = metricas.get(
                       "adaptativoV3",
                       {}
                   )
 
-
                   ganhos = dados.get(
                       "ganhos",
                       {}
                   )
-
 
                   ganho_v3_v2 = ganhos.get(
                       "v3VsV2",
                       {}
                   )
 
-
                   ganho_v3_fixa = ganhos.get(
                       "v3VsMelhorFixa",
                       {}
                   )
-
 
                   pareado = (
                       dados.get(
@@ -1146,18 +1360,15 @@ jobs:
                       )
                   )
 
-
                   oraculo = dados.get(
                       "oraculo",
                       {}
                   )
 
-
                   decisao = dados.get(
                       "decisao",
                       {}
                   )
-
 
                   print(
                       "Rodadas comuns:",
@@ -1169,14 +1380,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média V1:",
                       v1.get(
                           "media"
                       )
                   )
-
 
                   print(
                       "Média V2:",
@@ -1185,14 +1394,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média V3:",
                       v3.get(
                           "media"
                       )
                   )
-
 
                   print(
                       "Melhor fixa:",
@@ -1201,14 +1408,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Ganho V3 x V2:",
                       ganho_v3_v2.get(
                           "pontosPorRodada"
                       )
                   )
-
 
                   print(
                       "Ganho V3 x melhor fixa:",
@@ -1217,14 +1422,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias V2:",
                       pareado.get(
                           "vitoriasA"
                       )
                   )
-
 
                   print(
                       "Vitórias V3:",
@@ -1233,14 +1436,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Empates:",
                       pareado.get(
                           "empates"
                       )
                   )
-
 
                   print(
                       "Eficiência V3:",
@@ -1253,7 +1454,6 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Decisão:",
                       decisao.get(
@@ -1261,11 +1461,9 @@ jobs:
                       )
                   )
 
-
               # ==================================
               # AUDITORIA V1 x V2 x V3
               # ==================================
-
 
               elif (
                   nome_arquivo
@@ -1273,18 +1471,15 @@ jobs:
                   "auditoria-comparacao-adaptativas-v3.json"
               ):
 
-
                   resumo = dados.get(
                       "resumoTestes",
                       {}
                   )
 
-
                   resultados = dados.get(
                       "resultados",
                       {}
                   )
-
 
                   print(
                       "Rodadas auditadas:",
@@ -1292,7 +1487,6 @@ jobs:
                           "rodadasAuditadas"
                       )
                   )
-
 
                   print(
                       "Score qualidade:",
@@ -1302,14 +1496,12 @@ jobs:
                       "%"
                   )
 
-
                   print(
                       "Testes:",
                       resumo.get(
                           "quantidade"
                       )
                   )
-
 
                   print(
                       "Aprovados:",
@@ -1318,14 +1510,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Falhas críticas:",
                       resumo.get(
                           "falhasCriticas"
                       )
                   )
-
 
                   print(
                       "Alertas:",
@@ -1334,14 +1524,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média V1:",
                       resultados.get(
                           "mediaV1"
                       )
                   )
-
 
                   print(
                       "Média V2:",
@@ -1350,14 +1538,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Média V3:",
                       resultados.get(
                           "mediaV3"
                       )
                   )
-
 
                   print(
                       "Ganho V3 x V2:",
@@ -1366,14 +1552,12 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Vitórias V2:",
                       resultados.get(
                           "vitoriasV2Pareado"
                       )
                   )
-
 
                   print(
                       "Vitórias V3:",
@@ -1382,7 +1566,6 @@ jobs:
                       )
                   )
 
-
                   print(
                       "Decisão auditoria:",
                       dados.get(
@@ -1390,22 +1573,17 @@ jobs:
                       )
                   )
 
-
               # ==================================
-              # OUTROS ARQUIVOS
+              # OUTROS
               # ==================================
-
 
               else:
-
 
                   print(
                       "Arquivo gerado com sucesso."
                   )
 
-
               print()
-
 
           print(
               "=============================================="
@@ -1418,10 +1596,7 @@ jobs:
           print(
               "=============================================="
           )
-
-
           PY
-
 
       # ======================================
       # COMMIT DOS RESULTADOS
@@ -1429,17 +1604,12 @@ jobs:
 
       - name: Commit resultados
         run: |
-
           git config user.name github-actions
-
           git config user.email github-actions@github.com
 
           git add .
 
           git diff --cached --quiet || (
-
             git commit -m "Atualização laboratório estatístico"
-
             git push
-
           )
