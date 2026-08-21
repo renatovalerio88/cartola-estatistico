@@ -4,14 +4,67 @@ PERFIL: Posicional_Equilibrado
 ================================================================
 TORNEIO CIENTÍFICO DE CAPITÃES V1
 ================================================================
-Traceback (most recent call last):
-  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao_v2.py", line 220, in <module>
-    processar()
-  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao_v2.py", line 138, in processar
-    torneio.processar()
-  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao.py", line 337, in processar
-    pontuar_modelos(candidatos)
-  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao.py", line 269, in pontuar_modelos
-    pesos = PESOS_POSICAO.get(candidato["posicao"], MODELOS["V2_Balanceado"]["pesos"])
-                                                    ~~~~~~~^^^^^^^^^^^^^^^^^
-KeyError: 'V2_Balanceado'
+================================================================
+RESULTADO DO TORNEIO DE CAPITÃES
+================================================================
+01. Posicional           | camp +0.348 | 10 +1.587 | 5 +2.287 | 3 +0.678
+02. Atual_Projecao       | camp +0.000 | 10 +0.000 | 5 +0.000 | 3 +0.000
+Melhor experimental: Posicional
+================================================================
+PERFIL: Posicional_Recente
+================================================================
+================================================================
+TORNEIO CIENTÍFICO DE CAPITÃES V1
+================================================================
+================================================================
+RESULTADO DO TORNEIO DE CAPITÃES
+================================================================
+01. Posicional           | camp +0.173 | 10 +1.220 | 5 +1.553 | 3 -0.544
+02. Atual_Projecao       | camp +0.000 | 10 +0.000 | 5 +0.000 | 3 +0.000
+Melhor experimental: Posicional
+================================================================
+PERFIL: Posicional_Explosivo
+================================================================
+================================================================
+TORNEIO CIENTÍFICO DE CAPITÃES V1
+================================================================
+================================================================
+RESULTADO DO TORNEIO DE CAPITÃES
+================================================================
+01. Posicional           | camp +0.225 | 10 +1.323 | 5 +1.933 | 3 -0.211
+02. Atual_Projecao       | camp +0.000 | 10 +0.000 | 5 +0.000 | 3 +0.000
+Melhor experimental: Posicional
+================================================================
+PERFIL: Posicional_Seguro
+================================================================
+================================================================
+TORNEIO CIENTÍFICO DE CAPITÃES V1
+================================================================
+================================================================
+RESULTADO DO TORNEIO DE CAPITÃES
+================================================================
+01. Posicional           | camp +0.341 | 10 +1.587 | 5 +2.287 | 3 +0.678
+02. Atual_Projecao       | camp +0.000 | 10 +0.000 | 5 +0.000 | 3 +0.000
+Melhor experimental: Posicional
+================================================================
+PERFIL: Posicional_Hibrido
+================================================================
+================================================================
+TORNEIO CIENTÍFICO DE CAPITÃES V1
+================================================================
+================================================================
+RESULTADO DO TORNEIO DE CAPITÃES
+================================================================
+01. Posicional           | camp +0.348 | 10 +1.587 | 5 +2.287 | 3 +0.678
+02. Atual_Projecao       | camp +0.000 | 10 +0.000 | 5 +0.000 | 3 +0.000
+Melhor experimental: Posicional
+================================================================
+TORNEIO DE CAPITÃES V2 - RESULTADO
+================================================================
+01. Posicional_Equilibrado   | camp +0.348 | 10 +1.587 | 5 +2.287 | 3 +0.678 | vit 47.62%
+02. Posicional_Hibrido       | camp +0.348 | 10 +1.587 | 5 +2.287 | 3 +0.678 | vit 47.62%
+03. Posicional_Seguro        | camp +0.341 | 10 +1.587 | 5 +2.287 | 3 +0.678 | vit 47.62%
+04. Posicional_Explosivo     | camp +0.225 | 10 +1.323 | 5 +1.933 | 3 -0.211 | vit 47.62%
+05. Posicional_Recente       | camp +0.173 | 10 +1.220 | 5 +1.553 | 3 -0.544 | vit 42.86%
+Melhor perfil: Posicional_Equilibrado
+Decisão: TESTAR_PERFIL_VENCEDOR_INTEGRADO_AO_TIME
