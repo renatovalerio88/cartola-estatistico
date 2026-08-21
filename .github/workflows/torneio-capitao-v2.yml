@@ -24,32 +24,81 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - name: Executar Torneio de Capitães V2
-        run: python scripts/processamento/torneio_capitao_v2.py
+        id: torneio
+        shell: bash
+        run: |
+          set +e
+          mkdir -p data/diagnosticos
+          python scripts/processamento/torneio_capitao_v2.py 2>&1 | tee data/diagnosticos/torneio-capitao-v2.log
+          status=${PIPESTATUS[0]}
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
       - name: Validar resultado
+        id: validar
+        shell: bash
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          p = Path("data/torneio-capitao-v2.json")
-          if not p.exists():
-              raise SystemExit("torneio-capitao-v2.json não gerado")
-          d = json.loads(p.read_text(encoding="utf-8"))
-          if len(d.get("ranking") or []) != 5:
-              raise SystemExit("Torneio V2 incompleto")
-          print("Melhor perfil:", (d.get("melhorPerfil") or {}).get("perfil"))
-          print("Decisão:", d.get("decisao"))
+
+          resultado = Path("data/torneio-capitao-v2.json")
+          diagnostico = Path("data/diagnosticos/torneio-capitao-v2-validacao.txt")
+          diagnostico.parent.mkdir(parents=True, exist_ok=True)
+
+          erros = []
+          if not resultado.exists():
+              erros.append("torneio-capitao-v2.json não gerado")
+          else:
+              try:
+                  dados = json.loads(resultado.read_text(encoding="utf-8"))
+                  ranking = dados.get("ranking") or []
+                  if len(ranking) != 5:
+                      erros.append(f"Torneio V2 incompleto: {len(ranking)} perfis")
+                  else:
+                      melhor = dados.get("melhorPerfil") or {}
+                      diagnostico.write_text(
+                          "OK\n"
+                          f"Melhor perfil: {melhor.get('perfil')}\n"
+                          f"Decisão: {dados.get('decisao')}\n",
+                          encoding="utf-8",
+                      )
+              except Exception as erro:
+                  erros.append(f"JSON inválido: {erro}")
+
+          if erros:
+              diagnostico.write_text("FALHA\n" + "\n".join(erros) + "\n", encoding="utf-8")
+              print("; ".join(erros))
+          else:
+              print(diagnostico.read_text(encoding="utf-8"))
           PY
-      - name: Commit resultado
+
+      - name: Persistir resultado e diagnóstico
+        shell: bash
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -- data/torneio-capitao-v2.json
-          git diff --cached --quiet || (
-            git commit -m "Atualiza Torneio de Capitães V2"
-            git push
-          )
+          git add -- data/torneio-capitao-v2.json data/diagnosticos/torneio-capitao-v2.log data/diagnosticos/torneio-capitao-v2-validacao.txt 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Registra execução do Torneio de Capitães V2"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Encerrar com status correto
+        shell: bash
+        run: |
+          if [ "${{ steps.torneio.outputs.exit_code }}" != "0" ]; then
+            echo "Torneio V2 falhou. Diagnóstico persistido em data/diagnosticos."
+            exit 1
+          fi
+          test -f data/torneio-capitao-v2.json
