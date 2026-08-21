@@ -7,9 +7,6 @@ on:
     # Executa diariamente às 06:00
     - cron: "0 6 * * *"
 
-  # Permite disparar a coleta por um commit controlado neste próprio workflow.
-  # Útil quando precisamos atualizar imediatamente a rodada corrente sem
-  # depender de um clique manual no Actions.
   push:
     branches:
       - main
@@ -41,11 +38,12 @@ jobs:
         run: python -m pip install --disable-pip-version-check --upgrade pip
 
       # =====================================
-      # COLETA DE DADOS
+      # HISTÓRICO PRIMEIRO
       # =====================================
-
-      - name: Coletar API Atual
-        run: python scripts/coletar_cartola.py
+      # O coletor histórico reconstitui rodada-XX/jogadores.json.
+      # Por isso ele precisa terminar ANTES da coleta da rodada atual.
+      # Assim a rodada aberta nunca é sobrescrita por um snapshot
+      # histórico vazio/incompleto.
 
       - name: Coletar Histórico Completo
         run: python scripts/coletar_historico_completo.py
@@ -58,6 +56,38 @@ jobs:
 
       - name: Consolidar Base
         run: python scripts/processamento/consolidar_base.py
+
+      # =====================================
+      # RODADA ATUAL POR ÚLTIMO
+      # =====================================
+      # Esta etapa é a fonte canônica do site enquanto o mercado
+      # está aberto. Ela restaura preços, status, nomes, clubes,
+      # contexto e jogadores da rodada corrente depois de toda
+      # reconstrução histórica.
+
+      - name: Coletar API Atual
+        run: python scripts/coletar_cartola.py
+
+      - name: Validar rodada atual para o site
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          status = json.loads(Path("data/api/status.json").read_text(encoding="utf-8"))
+          rodada = int(status["rodada_atual"])
+          caminho = Path(f"data/api/rodada-{rodada:02d}/jogadores.json")
+          jogadores = json.loads(caminho.read_text(encoding="utf-8"))
+
+          print(f"Rodada atual: {rodada}")
+          print(f"Jogadores disponíveis para o site: {len(jogadores)}")
+
+          if int(status.get("status_mercado", 0)) == 1 and len(jogadores) < 100:
+              raise SystemExit(
+                  f"ERRO: mercado aberto, mas apenas {len(jogadores)} jogadores foram gerados. "
+                  "A coleta atual não pode ser publicada como válida."
+              )
+          PY
 
       # =====================================
       # SALVAR ALTERAÇÕES
