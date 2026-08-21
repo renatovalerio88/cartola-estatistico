@@ -1,0 +1,55 @@
+name: Cartola Estatístico - Capitão V2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/processamento/torneio_capitao.py"
+      - "scripts/processamento/torneio_capitao_v2.py"
+      - ".github/workflows/torneio-capitao-v2.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-estatistico-capitao-v2
+  cancel-in-progress: true
+
+jobs:
+  capitao-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Executar Torneio de Capitães V2
+        run: python scripts/processamento/torneio_capitao_v2.py
+      - name: Validar resultado
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("data/torneio-capitao-v2.json")
+          if not p.exists():
+              raise SystemExit("torneio-capitao-v2.json não gerado")
+          d = json.loads(p.read_text(encoding="utf-8"))
+          if len(d.get("ranking") or []) != 5:
+              raise SystemExit("Torneio V2 incompleto")
+          print("Melhor perfil:", (d.get("melhorPerfil") or {}).get("perfil"))
+          print("Decisão:", d.get("decisao"))
+          PY
+      - name: Commit resultado
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -- data/torneio-capitao-v2.json
+          git diff --cached --quiet || (
+            git commit -m "Atualiza Torneio de Capitães V2"
+            git push
+          )
