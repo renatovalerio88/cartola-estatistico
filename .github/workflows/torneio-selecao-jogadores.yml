@@ -1,0 +1,74 @@
+name: Cartola Estatístico - Torneio dos 11
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/processamento/torneio_selecao_jogadores.py"
+      - ".github/workflows/torneio-selecao-jogadores.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-estatistico-torneio-selecao
+  cancel-in-progress: true
+
+jobs:
+  torneio-selecao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar base histórica
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          arquivos = sorted(Path("data/historico").glob("rodada-*.json"))
+          if len(arquivos) < 10:
+              raise SystemExit(f"Base histórica insuficiente: {len(arquivos)} rodadas")
+          print(f"Base histórica válida: {len(arquivos)} rodadas")
+          PY
+
+      - name: Executar Torneio dos 11
+        run: python scripts/processamento/torneio_selecao_jogadores.py
+
+      - name: Validar resultado
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          caminho = Path("data/torneio-selecao-jogadores.json")
+          if not caminho.exists():
+              raise SystemExit("Resultado do torneio não foi gerado")
+          dados = json.loads(caminho.read_text(encoding="utf-8"))
+          ranking = dados.get("ranking") or []
+          if len(ranking) < 2:
+              raise SystemExit("Ranking do torneio inválido")
+          baseline = dados.get("baseline") or {}
+          melhor = dados.get("melhorExperimental") or {}
+          print("Baseline:", baseline.get("modelo"))
+          print("Melhor experimental:", melhor.get("modelo"))
+          print("Ganho médio:", melhor.get("ganhoMedioVsAtual"))
+          print("Estratégias avaliadas:", len(ranking))
+          PY
+
+      - name: Commit resultado
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -- data/torneio-selecao-jogadores.json
+          git diff --cached --quiet || (
+            git commit -m "Atualiza resultado do Torneio dos 11"
+            git push
+          )
