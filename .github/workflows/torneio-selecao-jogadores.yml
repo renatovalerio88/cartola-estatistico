@@ -1,4 +1,4 @@
-name: Cartola Estatístico - Torneio dos 11
+name: Cartola Estatístico - Torneios Científicos
 
 on:
   workflow_dispatch:
@@ -7,19 +7,21 @@ on:
       - main
     paths:
       - "scripts/processamento/torneio_selecao_jogadores.py"
+      - "scripts/processamento/torneio_capitao.py"
+      - "scripts/processamento/torneio_capitao_v2.py"
       - ".github/workflows/torneio-selecao-jogadores.yml"
 
 permissions:
   contents: write
 
 concurrency:
-  group: cartola-estatistico-torneio-selecao
+  group: cartola-estatistico-torneios-cientificos
   cancel-in-progress: true
 
 jobs:
-  torneio-selecao:
+  torneios:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -40,35 +42,45 @@ jobs:
           print(f"Base histórica válida: {len(arquivos)} rodadas")
           PY
 
-      - name: Executar Torneio dos 11
+      - name: Torneio de Seleção dos 11
         run: python scripts/processamento/torneio_selecao_jogadores.py
 
-      - name: Validar resultado
+      - name: Torneio de Capitães V1
+        run: python scripts/processamento/torneio_capitao.py
+
+      - name: Torneio de Capitães V2
+        run: python scripts/processamento/torneio_capitao_v2.py
+
+      - name: Validar resultados
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          caminho = Path("data/torneio-selecao-jogadores.json")
-          if not caminho.exists():
-              raise SystemExit("Resultado do torneio não foi gerado")
-          dados = json.loads(caminho.read_text(encoding="utf-8"))
-          ranking = dados.get("ranking") or []
-          if len(ranking) < 2:
-              raise SystemExit("Ranking do torneio inválido")
-          baseline = dados.get("baseline") or {}
-          melhor = dados.get("melhorExperimental") or {}
-          print("Baseline:", baseline.get("modelo"))
-          print("Melhor experimental:", melhor.get("modelo"))
-          print("Ganho médio:", melhor.get("ganhoMedioVsAtual"))
-          print("Estratégias avaliadas:", len(ranking))
+
+          arquivos = [
+              Path("data/torneio-selecao-jogadores.json"),
+              Path("data/torneio-capitao.json"),
+              Path("data/torneio-capitao-v2.json"),
+          ]
+          for caminho in arquivos:
+              if not caminho.exists():
+                  raise SystemExit(f"Resultado não gerado: {caminho}")
+              dados = json.loads(caminho.read_text(encoding="utf-8"))
+              ranking = dados.get("ranking") or []
+              if not ranking:
+                  raise SystemExit(f"Ranking vazio: {caminho}")
+              print(f"{caminho}: {len(ranking)} candidatos")
+              melhor = dados.get("melhorExperimental") or dados.get("melhorPerfil") or {}
+              print("  melhor:", melhor.get("modelo") or melhor.get("perfil"))
+              print("  ganho:", melhor.get("ganhoMedioVsAtual") or melhor.get("ganhoMedioTimeVsAtual"))
           PY
 
-      - name: Commit resultado
+      - name: Commit resultados
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -- data/torneio-selecao-jogadores.json
+          git add -- data/torneio-selecao-jogadores.json data/torneio-capitao.json data/torneio-capitao-v2.json
           git diff --cached --quiet || (
-            git commit -m "Atualiza resultado do Torneio dos 11"
+            git commit -m "Atualiza torneios científicos de seleção e capitão"
             git push
           )
