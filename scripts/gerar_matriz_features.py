@@ -1,7 +1,7 @@
 """
 ======================================================
 CARTOLA ESTATÍSTICO
-Matriz Científica de Features
+Matriz Científica de Features V2
 ======================================================
 
 Objetivo:
@@ -19,34 +19,23 @@ A pontuação da rodada R aparece apenas como TARGET.
 
 Isso impede DATA LEAKAGE.
 
-Features:
+NOVO NA V2:
 
-- média 3
-- média 5
-- média 10
-- média geral
-- EWMA
-- mediana
-- piso
-- teto
-- desvio padrão
-- regularidade
-- tendência
-- frequência 5+
-- frequência 10+
-- frequência 15+
-- frequência negativa
-- pontuação básica
-- pontuação sem G/A/SG
-- scouts históricos
-- preço
-- mando
-- força do adversário
-- pontos cedidos
-- chance de SG
-- titularidade
-- minutos esperados
-- posição
+Integração opcional com:
+
+data/modelagem/contexto_poisson.json
+
+Features Poisson:
+
+- lambda gols;
+- lambda adversário;
+- chance de SG;
+- probabilidade de vitória;
+- empate;
+- derrota;
+- saldo esperado;
+- nota ofensiva;
+- nota defensiva.
 
 Saída:
 
@@ -79,65 +68,41 @@ ARQUIVO_SAIDA = (
     "matriz_features.json"
 )
 
-
-# ======================================================
-# CONFIGURAÇÕES
-# ======================================================
+ARQUIVO_POISSON = (
+    PASTA_SAIDA
+    /
+    "contexto_poisson.json"
+)
 
 
 MINIMO_JOGOS = 1
-
 
 ALFA_EWMA = 0.45
 
 
 SCOUTS_PONTOS = {
 
-    # POSITIVOS
-
     "G": 8.0,
-
     "A": 5.0,
-
     "SG": 5.0,
-
     "FT": 3.0,
-
     "DP": 7.0,
-
     "DE": 1.3,
-
     "DD": 1.3,
-
     "FD": 1.2,
-
     "PS": 1.0,
-
     "FF": 0.8,
-
     "DS": 1.5,
-
     "FS": 0.5,
 
-
-    # NEGATIVOS
-
     "GC": -3.0,
-
     "CV": -3.0,
-
     "PP": -4.0,
-
     "CA": -1.0,
-
     "GS": -1.0,
-
     "PC": -1.0,
-
     "FC": -0.3,
-
     "I": -0.1,
-
 }
 
 
@@ -167,11 +132,6 @@ SCOUTS_DEFENSIVOS = {
 }
 
 
-# ======================================================
-# UTILIDADES
-# ======================================================
-
-
 def carregar_json(
     caminho: Path,
 ) -> Any:
@@ -194,13 +154,11 @@ def salvar_json(
     )
 
     caminho.write_text(
-
         json.dumps(
             dados,
             ensure_ascii=False,
             indent=2,
         ),
-
         encoding="utf-8",
     )
 
@@ -409,11 +367,6 @@ def taxa(
     )
 
 
-# ======================================================
-# SCOUTS
-# ======================================================
-
-
 def scouts_validos(
     registro: dict[str, Any],
 ) -> dict[str, float]:
@@ -443,7 +396,9 @@ def scouts_validos(
             quantidade = 0.0
 
         resultado[
-            str(scout)
+            str(
+                scout
+            ).upper()
         ] = quantidade
 
     return resultado
@@ -485,18 +440,6 @@ def pontuacao_basica_registro(
     registro: dict[str, Any],
 ) -> float:
 
-    """
-    Pontuação produzida SEM:
-
-    - gol
-    - assistência
-    - saldo de gols
-
-    Essa variável será muito importante para testar
-    nossa hipótese de jogadores que pontuam bem sem
-    depender de eventos difíceis de prever.
-    """
-
     scouts = scouts_validos(
         registro
     )
@@ -525,7 +468,6 @@ def pontuacao_ofensiva_registro(
 
         if scout
         in SCOUTS_OFENSIVOS
-
     }
 
     return pontos_por_scouts(
@@ -551,17 +493,11 @@ def pontuacao_defensiva_registro(
 
         if scout
         in SCOUTS_DEFENSIVOS
-
     }
 
     return pontos_por_scouts(
         selecionados
     )
-
-
-# ======================================================
-# HISTÓRICO
-# ======================================================
 
 
 def registros_com_pontos(
@@ -661,13 +597,7 @@ def medias_scouts(
 
         for scout, total
         in acumulado.items()
-
     }
-
-
-# ======================================================
-# FEATURES TEMPORAIS
-# ======================================================
 
 
 def calcular_features_historicas(
@@ -690,7 +620,6 @@ def calcular_features_historicas(
 
         return {}
 
-
     ultimos3 = pontos[
         -3:
     ]
@@ -702,7 +631,6 @@ def calcular_features_historicas(
     ultimos10 = pontos[
         -10:
     ]
-
 
     media3 = media(
         ultimos3
@@ -720,37 +648,27 @@ def calcular_features_historicas(
         pontos
     )
 
-
     mediana_geral = mediana(
         pontos
     )
 
-
     volatilidade = desvio(
         pontos
     )
-
 
     piso = percentil(
         pontos,
         0.20,
     )
 
-
     teto = percentil(
         pontos,
         0.80,
     )
 
-
     ewma_pontos = ewma(
         pontos
     )
-
-
-    # ==========================================
-    # TENDÊNCIA
-    # ==========================================
 
     tendencia_3_5 = (
         media3
@@ -758,24 +676,17 @@ def calcular_features_historicas(
         media5
     )
 
-
     tendencia_5_10 = (
         media5
         -
         media10
     )
 
-
     tendencia_ewma = (
         ewma_pontos
         -
         media_geral
     )
-
-
-    # ==========================================
-    # FREQUÊNCIAS
-    # ==========================================
 
     qtd_5 = sum(
         1
@@ -801,11 +712,6 @@ def calcular_features_historicas(
         if p < 0
     )
 
-
-    # ==========================================
-    # REGULARIDADE
-    # ==========================================
-
     regularidade = max(
 
         0.0,
@@ -826,11 +732,6 @@ def calcular_features_historicas(
 
     )
 
-
-    # ==========================================
-    # PONTUAÇÃO BÁSICA
-    # ==========================================
-
     basicas = [
 
         pontuacao_basica_registro(
@@ -839,9 +740,7 @@ def calcular_features_historicas(
 
         for registro
         in historico
-
     ]
-
 
     basicas3 = basicas[
         -3:
@@ -854,7 +753,6 @@ def calcular_features_historicas(
     basicas10 = basicas[
         -10:
     ]
-
 
     media_basica = media(
         basicas
@@ -872,7 +770,6 @@ def calcular_features_historicas(
         basicas10
     )
 
-
     taxa_basica_3 = taxa(
 
         sum(
@@ -882,9 +779,7 @@ def calcular_features_historicas(
         ),
 
         jogos,
-
     )
-
 
     taxa_basica_5 = taxa(
 
@@ -895,26 +790,14 @@ def calcular_features_historicas(
         ),
 
         jogos,
-
     )
-
-
-    # ==========================================
-    # DEPENDÊNCIA DE G/A/SG
-    # ==========================================
 
     dependencia_decisivos = (
 
         media_geral
         -
         media_basica
-
     )
-
-
-    # ==========================================
-    # OFENSIVO / DEFENSIVO
-    # ==========================================
 
     ofensivos = [
 
@@ -924,9 +807,7 @@ def calcular_features_historicas(
 
         for registro
         in historico
-
     ]
-
 
     defensivos = [
 
@@ -936,18 +817,11 @@ def calcular_features_historicas(
 
         for registro
         in historico
-
     ]
-
-
-    # ==========================================
-    # SCOUTS
-    # ==========================================
 
     scouts = medias_scouts(
         historico
     )
-
 
     return {
 
@@ -1051,10 +925,6 @@ def calcular_features_historicas(
                 )
             ),
 
-        # ======================================
-        # NOSSA NOVA HIPÓTESE PRINCIPAL
-        # ======================================
-
         "mediaBasica":
             arredondar(
                 media_basica
@@ -1103,10 +973,6 @@ def calcular_features_historicas(
                     defensivos
                 )
             ),
-
-        # ======================================
-        # SCOUTS MÉDIOS
-        # ======================================
 
         "scoutG":
             arredondar(
@@ -1195,13 +1061,7 @@ def calcular_features_historicas(
                     0
                 )
             ),
-
     }
-
-
-# ======================================================
-# CONTEXTO DA RODADA
-# ======================================================
 
 
 def contexto_rodada(
@@ -1223,7 +1083,6 @@ def contexto_rodada(
     else:
 
         mando_num = None
-
 
     return {
 
@@ -1297,17 +1156,209 @@ def contexto_rodada(
                     "chanceSG"
                 )
             ),
-
     }
 
 
-# ======================================================
-# PROCESSAMENTO DE UM JOGADOR
-# ======================================================
+def contexto_poisson_vazio() -> dict[str, Any]:
+
+    return {
+
+        "poissonLambdaGols":
+            None,
+
+        "poissonLambdaAdversario":
+            None,
+
+        "poissonChanceSG":
+            None,
+
+        "poissonProbVitoria":
+            None,
+
+        "poissonProbEmpate":
+            None,
+
+        "poissonProbDerrota":
+            None,
+
+        "poissonSaldoEsperado":
+            None,
+
+        "poissonNotaOfensiva":
+            None,
+
+        "poissonNotaDefensiva":
+            None,
+    }
+
+
+def carregar_indice_poisson() -> dict[str, Any]:
+
+    if not ARQUIVO_POISSON.exists():
+
+        print(
+            "[INFO] Poisson ainda não disponível."
+        )
+
+        return {}
+
+    try:
+
+        dados = carregar_json(
+            ARQUIVO_POISSON
+        )
+
+    except Exception as erro:
+
+        print(
+            "[AVISO] Falha ao carregar Poisson:",
+            erro,
+        )
+
+        return {}
+
+    if not isinstance(
+        dados,
+        dict,
+    ):
+
+        return {}
+
+    indice = dados.get(
+        "indice",
+        {}
+    )
+
+    if not isinstance(
+        indice,
+        dict,
+    ):
+
+        return {}
+
+    print(
+        "Registros Poisson carregados:",
+        len(
+            indice
+        ),
+    )
+
+    return indice
+
+
+def obter_contexto_poisson(
+    indice_poisson: dict[str, Any],
+    rodada: Any,
+    registro: dict[str, Any],
+) -> dict[str, Any]:
+
+    if not indice_poisson:
+
+        return contexto_poisson_vazio()
+
+    clube_id = (
+
+        registro.get(
+            "clubeId"
+        )
+
+        or
+
+        registro.get(
+            "clube_id"
+        )
+    )
+
+    if clube_id is None:
+
+        return contexto_poisson_vazio()
+
+    chave = (
+        f"{rodada}:"
+        f"{clube_id}"
+    )
+
+    contexto = indice_poisson.get(
+        chave
+    )
+
+    if not isinstance(
+        contexto,
+        dict,
+    ):
+
+        return contexto_poisson_vazio()
+
+    return {
+
+        "poissonLambdaGols":
+            arredondar(
+                contexto.get(
+                    "lambdaGols"
+                )
+            ),
+
+        "poissonLambdaAdversario":
+            arredondar(
+                contexto.get(
+                    "lambdaAdversario"
+                )
+            ),
+
+        "poissonChanceSG":
+            arredondar(
+                contexto.get(
+                    "chanceSG"
+                )
+            ),
+
+        "poissonProbVitoria":
+            arredondar(
+                contexto.get(
+                    "probabilidadeVitoria"
+                )
+            ),
+
+        "poissonProbEmpate":
+            arredondar(
+                contexto.get(
+                    "probabilidadeEmpate"
+                )
+            ),
+
+        "poissonProbDerrota":
+            arredondar(
+                contexto.get(
+                    "probabilidadeDerrota"
+                )
+            ),
+
+        "poissonSaldoEsperado":
+            arredondar(
+                contexto.get(
+                    "saldoEsperado"
+                )
+            ),
+
+        "poissonNotaOfensiva":
+            arredondar(
+                contexto.get(
+                    "notaOfensiva"
+                )
+            ),
+
+        "poissonNotaDefensiva":
+            arredondar(
+                contexto.get(
+                    "notaDefensiva"
+                )
+            ),
+    }
 
 
 def processar_jogador(
     jogador: dict[str, Any],
+    indice_poisson: dict[str, Any],
 ) -> list[dict[str, Any]]:
 
     historico = jogador.get(
@@ -1321,7 +1372,6 @@ def processar_jogador(
     ):
 
         return []
-
 
     historico = sorted(
 
@@ -1346,12 +1396,9 @@ def processar_jogador(
                     999,
                 )
             ),
-
     )
 
-
     linhas = []
-
 
     for indice, atual in enumerate(
         historico
@@ -1367,27 +1414,13 @@ def processar_jogador(
             )
         )
 
-
-        # Sem resultado real não existe target
-        # para treinamento/backtest.
-
         if alvo is None:
 
             continue
 
-
-        # ==========================================
-        # CRÍTICO:
-        #
-        # SOMENTE RODADAS ANTERIORES.
-        #
-        # NUNCA incluir a rodada atual aqui.
-        # ==========================================
-
         passado = historico[
             :indice
         ]
-
 
         passado_valido = (
             registros_com_pontos(
@@ -1395,13 +1428,11 @@ def processar_jogador(
             )
         )
 
-
         if len(
             passado_valido
         ) < MINIMO_JOGOS:
 
             continue
-
 
         features = (
             calcular_features_historicas(
@@ -1409,16 +1440,19 @@ def processar_jogador(
             )
         )
 
-
         if not features:
 
             continue
-
 
         contexto = contexto_rodada(
             atual
         )
 
+        poisson = obter_contexto_poisson(
+            indice_poisson,
+            rodada,
+            atual,
+        )
 
         linha = {
 
@@ -1463,6 +1497,15 @@ def processar_jogador(
                     "clube"
                 ),
 
+            "clubeId":
+                atual.get(
+                    "clubeId"
+                )
+                or
+                atual.get(
+                    "clube_id"
+                ),
+
             "adversario":
                 atual.get(
                     "siglaAdversario"
@@ -1472,15 +1515,11 @@ def processar_jogador(
                     "adversario"
                 ),
 
-            "features":
-                {
-                    **features,
-                    **contexto,
-                },
-
-            # ======================================
-            # TARGET
-            # ======================================
+            "features": {
+                **features,
+                **contexto,
+                **poisson,
+            },
 
             "target": {
 
@@ -1510,23 +1549,14 @@ def processar_jogador(
                             atual
                         )
                     ),
-
             },
-
         }
-
 
         linhas.append(
             linha
         )
 
-
     return linhas
-
-
-# ======================================================
-# EXECUÇÃO
-# ======================================================
 
 
 def executar() -> None:
@@ -1536,20 +1566,22 @@ def executar() -> None:
         exist_ok=True,
     )
 
-
     arquivos = sorted(
         PASTA_BASE.glob(
             "*.json"
         )
     )
 
+    indice_poisson = (
+        carregar_indice_poisson()
+    )
 
     print(
         "============================================"
     )
 
     print(
-        "MATRIZ CIENTÍFICA DE FEATURES"
+        "MATRIZ CIENTÍFICA DE FEATURES V2"
     )
 
     print(
@@ -1558,12 +1590,21 @@ def executar() -> None:
 
     print(
         "Jogadores encontrados:",
-        len(arquivos),
+        len(
+            arquivos
+        ),
     )
 
+    print(
+        "Poisson integrado:",
+        (
+            "SIM"
+            if indice_poisson
+            else "NÃO"
+        ),
+    )
 
     linhas = []
-
 
     for indice, arquivo in enumerate(
         arquivos,
@@ -1587,7 +1628,6 @@ def executar() -> None:
 
             continue
 
-
         if not isinstance(
             jogador,
             dict,
@@ -1595,29 +1635,22 @@ def executar() -> None:
 
             continue
 
-
         linhas_jogador = (
             processar_jogador(
-                jogador
+                jogador,
+                indice_poisson,
             )
         )
-
 
         linhas.extend(
             linhas_jogador
         )
-
 
         if indice % 250 == 0:
 
             print(
                 f"{indice} jogadores processados..."
             )
-
-
-    # ==========================================
-    # ORDENAÇÃO
-    # ==========================================
 
     linhas.sort(
 
@@ -1643,20 +1676,15 @@ def executar() -> None:
                     ""
                 )
             ),
-
         )
-
     )
-
-
-    # ==========================================
-    # RESUMO
-    # ==========================================
 
     rodadas = sorted({
 
         int(
-            linha["rodada"]
+            linha[
+                "rodada"
+            ]
         )
 
         for linha
@@ -1665,15 +1693,9 @@ def executar() -> None:
         if linha.get(
             "rodada"
         ) is not None
-
     })
 
-
-    posicoes: dict[
-        str,
-        int
-    ] = {}
-
+    posicoes = {}
 
     for linha in linhas:
 
@@ -1696,9 +1718,7 @@ def executar() -> None:
 
             +
             1
-
         )
-
 
     explosoes10 = sum(
 
@@ -1710,9 +1730,7 @@ def executar() -> None:
 
         for linha
         in linhas
-
     )
-
 
     explosoes15 = sum(
 
@@ -1724,9 +1742,7 @@ def executar() -> None:
 
         for linha
         in linhas
-
     )
-
 
     negativos = sum(
 
@@ -1738,17 +1754,34 @@ def executar() -> None:
 
         for linha
         in linhas
-
     )
 
+    linhas_com_poisson = sum(
+
+        1
+
+        for linha in linhas
+
+        if linha.get(
+            "features",
+            {}
+        ).get(
+            "poissonLambdaGols"
+        ) is not None
+    )
 
     resultado = {
 
         "modelo":
-            "matriz_features_v1",
+            "matriz_features_v2_poisson",
 
         "antiLeakage":
             True,
+
+        "poissonIntegrado":
+            bool(
+                indice_poisson
+            ),
 
         "regraTemporal":
             (
@@ -1772,6 +1805,25 @@ def executar() -> None:
             "amostras":
                 len(
                     linhas
+                ),
+
+            "linhasComPoisson":
+                linhas_com_poisson,
+
+            "coberturaPoissonPercentual":
+                round(
+                    (
+                        linhas_com_poisson
+                        /
+                        len(
+                            linhas
+                        )
+                        *
+                        100
+                    )
+                    if linhas
+                    else 0,
+                    2,
                 ),
 
             "rodadas":
@@ -1802,20 +1854,16 @@ def executar() -> None:
 
             "posicoes":
                 posicoes,
-
         },
 
         "linhas":
             linhas,
-
     }
-
 
     salvar_json(
         ARQUIVO_SAIDA,
         resultado,
     )
-
 
     print(
         ""
@@ -1826,7 +1874,7 @@ def executar() -> None:
     )
 
     print(
-        "MATRIZ GERADA COM SUCESSO"
+        "MATRIZ V2 GERADA COM SUCESSO"
     )
 
     print(
@@ -1835,22 +1883,32 @@ def executar() -> None:
 
     print(
         "Amostras:",
-        len(linhas),
+        len(
+            linhas
+        ),
     )
 
     print(
         "Rodadas:",
-        len(rodadas),
+        len(
+            rodadas
+        ),
     )
 
-    if rodadas:
+    print(
+        "Linhas com Poisson:",
+        linhas_com_poisson,
+    )
 
-        print(
-            "Intervalo:",
-            rodadas[0],
-            "até",
-            rodadas[-1],
-        )
+    print(
+        "Cobertura Poisson:",
+        resultado[
+            "resumo"
+        ][
+            "coberturaPoissonPercentual"
+        ],
+        "%",
+    )
 
     print(
         "Explosões 10+:",
@@ -1860,20 +1918,6 @@ def executar() -> None:
     print(
         "Explosões 15+:",
         explosoes15,
-    )
-
-    print(
-        "Pontuações negativas:",
-        negativos,
-    )
-
-    print(
-        "Posições:",
-        posicoes,
-    )
-
-    print(
-        ""
     )
 
     print(
