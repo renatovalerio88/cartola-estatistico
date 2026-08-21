@@ -1,6 +1,6 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Histórico — cards, tabela e painel temporal
+   Histórico — cards, tabela, painel temporal e torneio
    ========================================================= */
 
 function formatarNumeroHistorico(valor, casas = 2) {
@@ -27,6 +27,12 @@ function nomeCurtoHistorico(jogador) {
     || "--";
 }
 
+function formatarSinalHistorico(valor, casas = 2) {
+  const numero = Number(valor);
+  if (!Number.isFinite(numero)) return "--";
+  return `${numero > 0 ? "+" : ""}${formatarNumeroHistorico(numero, casas)}`;
+}
+
 function garantirEstiloHistorico() {
   if (document.getElementById("cartolaHistoryStyle")) {
     return;
@@ -35,7 +41,8 @@ function garantirEstiloHistorico() {
   const style = document.createElement("style");
   style.id = "cartolaHistoryStyle";
   style.textContent = `
-    .history-temporal-panel {
+    .history-temporal-panel,
+    .captain-tournament {
       margin: 0 0 18px;
       padding: 16px;
       border: 1px solid rgba(255,255,255,.08);
@@ -43,7 +50,8 @@ function garantirEstiloHistorico() {
       background: rgba(255,255,255,.025);
     }
 
-    .history-temporal-title {
+    .history-temporal-title,
+    .captain-tournament-head {
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -51,15 +59,18 @@ function garantirEstiloHistorico() {
       margin-bottom:12px;
     }
 
-    .history-temporal-title h3 {
+    .history-temporal-title h3,
+    .captain-tournament-head h3 {
       margin:3px 0 0;
       font-size:1rem;
     }
 
-    .history-temporal-title p {
+    .history-temporal-title p,
+    .captain-tournament-head p {
       margin:4px 0 0;
       opacity:.62;
       font-size:11px;
+      line-height:1.45;
     }
 
     .history-temporal-grid {
@@ -81,19 +92,22 @@ function garantirEstiloHistorico() {
       font-size:13px;
     }
 
-    .history-temporal-values {
+    .history-temporal-values,
+    .captain-tournament-grid {
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:7px;
     }
 
-    .history-temporal-value {
+    .history-temporal-value,
+    .captain-tournament-card {
       padding:8px;
       border-radius:9px;
       background:rgba(255,255,255,.035);
     }
 
-    .history-temporal-value span {
+    .history-temporal-value span,
+    .captain-tournament-card span {
       display:block;
       font-size:9px;
       opacity:.58;
@@ -101,16 +115,65 @@ function garantirEstiloHistorico() {
       letter-spacing:.05em;
     }
 
-    .history-temporal-value b {
+    .history-temporal-value b,
+    .captain-tournament-card strong {
       display:block;
       margin-top:3px;
       font-size:16px;
     }
 
-    .history-temporal-note {
+    .captain-tournament-card small {
+      display:block;
+      margin-top:3px;
+      font-size:9px;
+      opacity:.55;
+    }
+
+    .history-temporal-note,
+    .captain-tournament-note {
       margin:10px 0 0;
       font-size:10px;
       opacity:.58;
+      line-height:1.45;
+    }
+
+    .captain-tournament-badge {
+      white-space:nowrap;
+      padding:6px 9px;
+      border-radius:999px;
+      background:rgba(83,216,145,.12);
+      color:#67dfa0;
+      font-size:10px;
+      font-weight:800;
+    }
+
+    .captain-tournament-table-wrap {
+      overflow-x:auto;
+      margin-top:12px;
+    }
+
+    .captain-tournament-table {
+      width:100%;
+      min-width:660px;
+      border-collapse:collapse;
+      font-size:10px;
+    }
+
+    .captain-tournament-table th,
+    .captain-tournament-table td {
+      padding:8px 7px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      text-align:right;
+    }
+
+    .captain-tournament-table th:first-child,
+    .captain-tournament-table td:first-child {
+      text-align:left;
+    }
+
+    .captain-tournament-table th {
+      opacity:.58;
+      font-weight:700;
     }
 
     .history-summary {
@@ -191,7 +254,10 @@ function garantirEstiloHistorico() {
 
     @media (max-width:560px) {
       .history-summary { grid-template-columns:1fr; }
-      .history-temporal-values { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .history-temporal-values,
+      .captain-tournament-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .captain-tournament-head { display:block; }
+      .captain-tournament-badge { display:inline-block; margin-top:8px; }
     }
   `;
 
@@ -288,6 +354,129 @@ async function renderizarPainelTemporalHistorico() {
         <p>O ranking histórico ainda não foi gerado para esta execução.</p>
       </div>
     `;
+  }
+}
+
+function janelaTorneio(item, chave) {
+  return item?.desempenhoTemporal?.[chave] || {};
+}
+
+async function renderizarTorneioCapitaoHistorico() {
+  const secao = document.getElementById("historico");
+  if (!secao) return;
+
+  let bloco = document.getElementById("captainTournament");
+
+  try {
+    const resposta = await fetch("data/torneio-capitao.json", { cache: "no-store" });
+    if (!resposta.ok) {
+      if (bloco) bloco.remove();
+      return;
+    }
+
+    const dados = await resposta.json();
+    const melhor = dados?.melhorExperimental;
+    if (!melhor) {
+      if (bloco) bloco.remove();
+      return;
+    }
+
+    if (!bloco) {
+      bloco = document.createElement("section");
+      bloco.id = "captainTournament";
+      bloco.className = "captain-tournament";
+
+      const painelTemporal = document.getElementById("historyTemporalMetrics");
+      if (painelTemporal?.parentNode) {
+        painelTemporal.insertAdjacentElement("afterend", bloco);
+      }
+      else {
+        const resumo = document.getElementById("historySummary");
+        if (resumo?.parentNode) resumo.parentNode.insertBefore(bloco, resumo);
+        else secao.prepend(bloco);
+      }
+    }
+
+    const camp = janelaTorneio(melhor, "campeonato");
+    const u10 = janelaTorneio(melhor, "ultimas10");
+    const u5 = janelaTorneio(melhor, "ultimas5");
+    const u3 = janelaTorneio(melhor, "ultimas3");
+
+    const ranking = Array.isArray(dados?.ranking) ? dados.ranking.slice(0, 6) : [];
+    const linhas = ranking.map(item => `
+      <tr>
+        <td>${escaparHistorico(item.modelo || "--")}</td>
+        <td>${formatarNumeroHistorico(item.mediaPontosCapitao, 2)}</td>
+        <td>${formatarSinalHistorico(item.ganhoMedioTimeVsAtual, 2)}</td>
+        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas10").ganhoTimeVsAtual, 2)}</td>
+        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas5").ganhoTimeVsAtual, 2)}</td>
+        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas3").ganhoTimeVsAtual, 2)}</td>
+        <td>${formatarNumeroHistorico(item.taxaVitoriasVsAtual, 1)}%</td>
+      </tr>
+    `).join("");
+
+    bloco.innerHTML = `
+      <div class="captain-tournament-head">
+        <div>
+          <span class="section-label">LABORATÓRIO DE CAPITÃO</span>
+          <h3>Torneio de modelos experimentais</h3>
+          <p>
+            O vencedor é testado em backtest walk-forward e ainda não altera o capitão oficial.
+            O ganho representa a diferença média na pontuação total do time causada apenas pela troca do capitão.
+          </p>
+        </div>
+        <span class="captain-tournament-badge">Melhor: ${escaparHistorico(melhor.modelo || "--")}</span>
+      </div>
+
+      <div class="captain-tournament-grid">
+        <article class="captain-tournament-card">
+          <span>Campeonato</span>
+          <strong>${formatarSinalHistorico(camp.ganhoTimeVsAtual, 2)} pt</strong>
+          <small>ganho médio vs atual</small>
+        </article>
+        <article class="captain-tournament-card">
+          <span>Últimas 10</span>
+          <strong>${formatarSinalHistorico(u10.ganhoTimeVsAtual, 2)} pt</strong>
+          <small>ganho médio por rodada</small>
+        </article>
+        <article class="captain-tournament-card">
+          <span>Últimas 5</span>
+          <strong>${formatarSinalHistorico(u5.ganhoTimeVsAtual, 2)} pt</strong>
+          <small>ganho médio por rodada</small>
+        </article>
+        <article class="captain-tournament-card">
+          <span>Últimas 3</span>
+          <strong>${formatarSinalHistorico(u3.ganhoTimeVsAtual, 2)} pt</strong>
+          <small>ganho médio por rodada</small>
+        </article>
+      </div>
+
+      <div class="captain-tournament-table-wrap">
+        <table class="captain-tournament-table">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Capitão</th>
+              <th>Camp.</th>
+              <th>Últ. 10</th>
+              <th>Últ. 5</th>
+              <th>Últ. 3</th>
+              <th>Vitórias</th>
+            </tr>
+          </thead>
+          <tbody>${linhas}</tbody>
+        </table>
+      </div>
+
+      <p class="captain-tournament-note">
+        Decisão do laboratório: <strong>${escaparHistorico(dados?.decisao || "--")}</strong>.
+        Promoção automática permanece desativada para evitar overfitting.
+      </p>
+    `;
+  }
+  catch (erro) {
+    console.warn("[Histórico - torneio de capitão]", erro);
+    if (bloco) bloco.remove();
   }
 }
 
@@ -396,6 +585,7 @@ function renderizarTabelaHistorico(jogadores) {
 function renderizarHistorico() {
   garantirEstiloHistorico();
   renderizarPainelTemporalHistorico();
+  renderizarTorneioCapitaoHistorico();
 
   if (typeof HistoricoDados === "undefined") return;
 
@@ -434,6 +624,7 @@ if (typeof window !== "undefined") {
     iniciar: iniciarHistorico,
     renderizar: renderizarHistorico,
     renderizarPainelTemporal: renderizarPainelTemporalHistorico,
+    renderizarTorneioCapitao: renderizarTorneioCapitaoHistorico,
   };
   window.iniciarHistorico = iniciarHistorico;
   window.renderizarHistorico = renderizarHistorico;
