@@ -1,0 +1,17 @@
+================================================================
+PERFIL: Posicional_Equilibrado
+================================================================
+================================================================
+TORNEIO CIENTÍFICO DE CAPITÃES V1
+================================================================
+Traceback (most recent call last):
+  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao_v2.py", line 220, in <module>
+    processar()
+  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao_v2.py", line 138, in processar
+    torneio.processar()
+  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao.py", line 337, in processar
+    pontuar_modelos(candidatos)
+  File "/home/runner/work/cartola-estatistico/cartola-estatistico/scripts/processamento/torneio_capitao.py", line 269, in pontuar_modelos
+    pesos = PESOS_POSICAO.get(candidato["posicao"], MODELOS["V2_Balanceado"]["pesos"])
+                                                    ~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'V2_Balanceado'
