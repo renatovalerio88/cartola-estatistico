@@ -4,12 +4,13 @@ CARTOLA ESTATÍSTICO
 Gerador de Histórico de Escalações
 
 Versão:
-historico_escalacoes_v4
+historico_escalacoes_v5
 
-Objetivo:
-Reconstruir, rodada a rodada, as escalações que o modelo
-poderia sugerir usando SOMENTE informações disponíveis
-antes da rodada analisada.
+OBJETIVO
+---------------------------------------------------------
+Reconstruir rodada a rodada as escalações que o modelo
+poderia sugerir usando SOMENTE informações anteriores
+à rodada analisada.
 
 Estratégias:
 - Conservador
@@ -20,24 +21,69 @@ Saída:
 data/historico-escalacoes/rodada-XX.json
 data/historico-escalacoes/indice.json
 
-Regra científica:
-Para prever a rodada R, nunca utilizar a pontuação real
-da própria rodada R na escolha, ranking ou serialização
-dos jogadores.
 
-A pontuação real será consultada posteriormente pelo
-simulador histórico.
+REGRA CIENTÍFICA
+---------------------------------------------------------
+Para prever a rodada R:
 
-Regra financeira V4:
-Antes de selecionar cada titular, o motor reserva verba
-mínima para:
+    histórico permitido = R1 ... R(R-1)
 
-1. todos os titulares que ainda precisam ser escolhidos;
-2. o técnico, quando ainda não tiver sido escolhido;
-3. as cinco posições do banco.
+A pontuação real da rodada R nunca participa:
+- do ranking;
+- da projeção;
+- da escolha;
+- do capitão;
+- do banco;
+- da Reserva de Luxo.
 
-Assim, uma escolha cara no início da escalação não pode
-inviabilizar o restante do time.
+
+REGRA FINANCEIRA V5
+---------------------------------------------------------
+O patrimônio limita SOMENTE:
+
+    11 jogadores + treinador
+
+O banco NÃO consome patrimônio.
+
+Durante a montagem dos titulares, antes de aceitar um
+jogador caro, o algoritmo verifica se ainda existe verba
+mínima suficiente para completar os TITULARES restantes.
+
+A reserva financeira não inclui banco.
+
+Isso corrige a regra excessivamente restritiva da V4,
+que poderia inviabilizar uma escalação válida.
+
+
+BANCO
+---------------------------------------------------------
+É escolhido depois dos titulares.
+
+Cada posição:
+GOL
+LAT
+ZAG
+MEI
+ATA
+
+O banco não entra no custo do patrimônio.
+
+
+REGRA DE CLUBE
+---------------------------------------------------------
+Máximo de 3 titulares por clube.
+
+
+AUDITORIA
+---------------------------------------------------------
+Valida:
+- formação;
+- quantidade de titulares;
+- banco;
+- jogadores duplicados;
+- limite de clube;
+- patrimônio dos titulares;
+- ausência de vazamento da pontuação real.
 
 =========================================================
 """
@@ -47,10 +93,11 @@ import math
 
 from pathlib import Path
 from statistics import mean, median, pstdev
+from collections import defaultdict
 
 
 # ======================================================
-# CONFIGURAÇÕES
+# CAMINHOS
 # ======================================================
 
 BASE_DIR = (
@@ -91,7 +138,7 @@ RODADA_INICIAL = 2
 
 
 # ======================================================
-# REGRA DO MOTOR OFICIAL
+# REGRAS
 # ======================================================
 
 LIMITE_JOGADORES_CLUBE = 3
@@ -106,7 +153,6 @@ ESTRATEGIAS = {
 
         "formacao":
             "4-4-2"
-
     },
 
     "equilibrado": {
@@ -116,7 +162,6 @@ ESTRATEGIAS = {
 
         "formacao":
             "3-4-3"
-
     },
 
     "agressivo": {
@@ -126,15 +171,9 @@ ESTRATEGIAS = {
 
         "formacao":
             "3-4-3"
-
     }
-
 }
 
-
-# ======================================================
-# FORMAÇÕES
-# ======================================================
 
 FORMACOES = {
 
@@ -146,7 +185,6 @@ FORMACOES = {
         "MEI": 4,
         "ATA": 2,
         "TEC": 1
-
     },
 
     "3-4-3": {
@@ -157,7 +195,6 @@ FORMACOES = {
         "MEI": 4,
         "ATA": 3,
         "TEC": 1
-
     },
 
     "4-3-3": {
@@ -168,9 +205,7 @@ FORMACOES = {
         "MEI": 3,
         "ATA": 3,
         "TEC": 1
-
     }
-
 }
 
 
@@ -182,7 +217,6 @@ ORDEM_POSICOES = [
     "MEI",
     "ATA",
     "TEC"
-
 ]
 
 
@@ -193,13 +227,8 @@ POSICOES_BANCO = [
     "ZAG",
     "MEI",
     "ATA"
-
 ]
 
-
-# ======================================================
-# POSIÇÕES
-# ======================================================
 
 MAPA_POSICOES_ID = {
 
@@ -209,7 +238,6 @@ MAPA_POSICOES_ID = {
     4: "MEI",
     5: "ATA",
     6: "TEC"
-
 }
 
 
@@ -233,12 +261,11 @@ MAPA_POSICOES_TEXTO = {
     "tec": "TEC",
     "tecnico": "TEC",
     "técnico": "TEC"
-
 }
 
 
 # ======================================================
-# UTILIDADES
+# JSON
 # ======================================================
 
 def carregar_json(caminho):
@@ -292,6 +319,10 @@ def salvar_json(
             indent=2
         )
 
+
+# ======================================================
+# CONVERSÕES
+# ======================================================
 
 def numero(
     valor,
@@ -381,7 +412,6 @@ def obter_id(
         jogador.get(
             "atleta"
         )
-
     ]
 
     for valor in possibilidades:
@@ -403,7 +433,6 @@ def obter_id(
         jogador.get(
             "apelido"
         )
-
     )
 
     clube = normalizar_texto(
@@ -423,7 +452,6 @@ def obter_id(
         jogador.get(
             "clubeId"
         )
-
     )
 
     posicao = normalizar_texto(
@@ -431,7 +459,6 @@ def obter_id(
         jogador.get(
             "posicao"
         )
-
     )
 
     return (
@@ -460,7 +487,6 @@ def obter_nome(
         or
 
         ""
-
     )
 
 
@@ -495,7 +521,6 @@ def obter_clube(
         or
 
         ""
-
     )
 
 
@@ -518,7 +543,6 @@ def obter_posicao(
         jogador.get(
             "posicao_id"
         )
-
     )
 
     if posicao_id in MAPA_POSICOES_ID:
@@ -527,7 +551,7 @@ def obter_posicao(
             posicao_id
         ]
 
-    texto = normalizar_texto(
+    valor = normalizar_texto(
 
         jogador.get(
             "posicao"
@@ -538,18 +562,17 @@ def obter_posicao(
         jogador.get(
             "posicaoNome"
         )
-
     )
 
-    if texto in MAPA_POSICOES_TEXTO:
+    if valor in MAPA_POSICOES_TEXTO:
 
         return MAPA_POSICOES_TEXTO[
-            texto
+            valor
         ]
 
-    texto = texto.upper()
+    valor = valor.upper()
 
-    if texto in {
+    if valor in {
 
         "GOL",
         "LAT",
@@ -560,7 +583,7 @@ def obter_posicao(
 
     }:
 
-        return texto
+        return valor
 
     return ""
 
@@ -580,7 +603,6 @@ def obter_pontuacao_real(
         "pontuacao",
         "real",
         "pontosUltimaRodada"
-
     ]
 
     for campo in campos:
@@ -590,20 +612,17 @@ def obter_pontuacao_real(
         ) is not None:
 
             return numero(
-
                 jogador.get(
                     campo
                 ),
-
                 0
-
             )
 
     return 0
 
 
 # ======================================================
-# EXTRAÇÃO DOS JOGADORES
+# EXTRAIR LISTA
 # ======================================================
 
 def extrair_lista_jogadores(
@@ -628,15 +647,13 @@ def extrair_lista_jogadores(
 
         return []
 
-    possibilidades = [
+    for chave in [
 
         "jogadores",
         "atletas",
         "pontuados"
 
-    ]
-
-    for chave in possibilidades:
+    ]:
 
         valor = dados.get(
             chave
@@ -671,9 +688,9 @@ def extrair_lista_jogadores(
                     atleta
                 )
 
-                if not copia.get(
+                if copia.get(
                     "id"
-                ):
+                ) is None:
 
                     copia[
                         "id"
@@ -691,7 +708,7 @@ def extrair_lista_jogadores(
 
 
 # ======================================================
-# FONTES HISTÓRICAS
+# FONTES DA RODADA
 # ======================================================
 
 def caminhos_possiveis_rodada(
@@ -722,7 +739,6 @@ def caminhos_possiveis_rodada(
             f"rodada-{rodada:02d}" /
             "pontuados.json"
         )
-
     ]
 
 
@@ -740,10 +756,8 @@ def carregar_jogadores_rodada(
             caminho
         )
 
-        jogadores = (
-            extrair_lista_jogadores(
-                dados
-            )
+        jogadores = extrair_lista_jogadores(
+            dados
         )
 
         if jogadores:
@@ -754,7 +768,7 @@ def carregar_jogadores_rodada(
 
 
 # ======================================================
-# DESCOBERTA DA ÚLTIMA RODADA
+# ÚLTIMA RODADA
 # ======================================================
 
 def descobrir_rodada_maxima():
@@ -783,7 +797,6 @@ def descobrir_rodada_maxima():
                 continue
 
             numero_texto = (
-
                 nome
                 .replace(
                     "rodada-",
@@ -793,7 +806,6 @@ def descobrir_rodada_maxima():
                     ".json",
                     ""
                 )
-
             )
 
             try:
@@ -832,10 +844,8 @@ def construir_historico_ate(
         rodada_limite + 1
     ):
 
-        jogadores = (
-            carregar_jogadores_rodada(
-                rodada
-            )
+        jogadores = carregar_jogadores_rodada(
+            rodada
         )
 
         for jogador in jogadores:
@@ -861,14 +871,13 @@ def construir_historico_ate(
                     obter_pontuacao_real(
                         jogador
                     )
-
             })
 
     return historico
 
 
 # ======================================================
-# MÉTRICAS HISTÓRICAS
+# MÉTRICAS
 # ======================================================
 
 def calcular_metricas(
@@ -880,16 +889,26 @@ def calcular_metricas(
         return {
 
             "jogos": 0,
-            "media": 0,
-            "media3": 0,
-            "media5": 0,
-            "mediana": 0,
-            "piso": 0,
-            "teto": 0,
-            "regularidade": 0,
-            "volatilidade": 0,
-            "tendencia": 0
 
+            "media": 0,
+
+            "media3": 0,
+
+            "media5": 0,
+
+            "media10": 0,
+
+            "mediana": 0,
+
+            "piso": 0,
+
+            "teto": 0,
+
+            "regularidade": 0,
+
+            "volatilidade": 0,
+
+            "tendencia": 0
         }
 
     pontos = [
@@ -902,7 +921,6 @@ def calcular_metricas(
         )
 
         for registro in registros
-
     ]
 
     ultimos3 = pontos[
@@ -911,6 +929,10 @@ def calcular_metricas(
 
     ultimos5 = pontos[
         -5:
+    ]
+
+    ultimos10 = pontos[
+        -10:
     ]
 
     media_geral = mean(
@@ -923,6 +945,10 @@ def calcular_metricas(
 
     media5 = mean(
         ultimos5
+    )
+
+    media10 = mean(
+        ultimos10
     )
 
     mediana_geral = median(
@@ -948,24 +974,26 @@ def calcular_metricas(
         ) > 1
 
         else 0
-
     )
 
     regularidade = max(
 
         0,
 
-        100 -
-        (
-            volatilidade *
-            10
-        )
+        min(
+            100,
 
+            100 -
+            (
+                volatilidade *
+                10
+            )
+        )
     )
 
     tendencia = (
         media3 -
-        media_geral
+        media10
     )
 
     return {
@@ -990,6 +1018,12 @@ def calcular_metricas(
         "media5":
             round(
                 media5,
+                3
+            ),
+
+        "media10":
+            round(
+                media10,
                 3
             ),
 
@@ -1028,12 +1062,11 @@ def calcular_metricas(
                 tendencia,
                 3
             )
-
     }
 
 
 # ======================================================
-# STATUS / DISPONIBILIDADE
+# STATUS
 # ======================================================
 
 def jogador_disponivel(
@@ -1051,7 +1084,6 @@ def jogador_disponivel(
         jogador.get(
             "status_id"
         )
-
     )
 
     if status is None:
@@ -1069,29 +1101,27 @@ def obter_preco(
     jogador
 ):
 
-    campos = [
+    for campo in [
 
         "preco",
         "preco_num",
         "precoNum",
         "precoCartoleta"
 
-    ]
-
-    for campo in campos:
+    ]:
 
         if jogador.get(
             campo
         ) is not None:
 
-            return numero(
-
-                jogador.get(
-                    campo
-                ),
-
-                0
-
+            return max(
+                0,
+                numero(
+                    jogador.get(
+                        campo
+                    ),
+                    0
+                )
             )
 
     return 0
@@ -1107,12 +1137,15 @@ def obter_limite_patrimonio(
 
     limite_estrategia = numero(
 
-        (estrategia or {}).get(
+        (
+            estrategia
+            or
+            {}
+        ).get(
             "limitePatrimonio"
         ),
 
         0
-
     )
 
     if limite_estrategia > 0:
@@ -1132,13 +1165,10 @@ def obter_limite_patrimonio(
     ):
 
         limite = numero(
-
             configuracao.get(
                 "limitePatrimonio"
             ),
-
             0
-
         )
 
         if limite > 0:
@@ -1152,7 +1182,16 @@ def obter_limite_patrimonio(
 
 
 # ======================================================
-# NOTA POR ESTRATÉGIA
+# NOTA HISTÓRICA DA ESTRATÉGIA
+# ======================================================
+#
+# Esta nota continua sendo o baseline histórico.
+#
+# NÃO estamos promovendo PB, XGBoost ou qualquer modelo
+# novo neste arquivo.
+#
+# A inclusão da media10 melhora apenas a leitura temporal,
+# sem contaminar a rodada futura.
 # ======================================================
 
 def calcular_nota(
@@ -1172,6 +1211,10 @@ def calcular_nota(
         "media5"
     ]
 
+    media10 = metricas[
+        "media10"
+    ]
+
     mediana_valor = metricas[
         "mediana"
     ]
@@ -1185,12 +1228,10 @@ def calcular_nota(
     ]
 
     regularidade = (
-
         metricas[
             "regularidade"
         ] /
         100
-
     )
 
     volatilidade = metricas[
@@ -1206,49 +1247,76 @@ def calcular_nota(
 
         nota = (
 
-            media_geral * 0.24 +
-            media5 * 0.19 +
-            media3 * 0.12 +
-            mediana_valor * 0.14 +
-            piso * 0.16 +
-            regularidade * 8 * 0.10 +
-            tendencia * 0.05 -
-            volatilidade * 0.08
+            media_geral * 0.16 +
 
+            media10 * 0.12 +
+
+            media5 * 0.18 +
+
+            media3 * 0.11 +
+
+            mediana_valor * 0.13 +
+
+            piso * 0.15 +
+
+            regularidade * 8 * 0.10 +
+
+            tendencia * 0.05 -
+
+            volatilidade * 0.08
         )
+
 
     elif estrategia == "agressivo":
 
         nota = (
 
-            media_geral * 0.14 +
-            media5 * 0.19 +
-            media3 * 0.24 +
-            mediana_valor * 0.06 +
-            piso * 0.04 +
-            teto * 0.22 +
-            tendencia * 0.11
+            media_geral * 0.09 +
 
+            media10 * 0.09 +
+
+            media5 * 0.17 +
+
+            media3 * 0.23 +
+
+            mediana_valor * 0.05 +
+
+            piso * 0.03 +
+
+            teto * 0.23 +
+
+            tendencia * 0.11
         )
+
 
     else:
 
         nota = (
 
-            media_geral * 0.21 +
-            media5 * 0.20 +
-            media3 * 0.18 +
-            mediana_valor * 0.11 +
-            piso * 0.08 +
-            teto * 0.10 +
-            regularidade * 8 * 0.06 +
-            tendencia * 0.06
+            media_geral * 0.13 +
 
+            media10 * 0.11 +
+
+            media5 * 0.19 +
+
+            media3 * 0.17 +
+
+            mediana_valor * 0.10 +
+
+            piso * 0.08 +
+
+            teto * 0.10 +
+
+            regularidade * 8 * 0.06 +
+
+            tendencia * 0.06
         )
+
 
     jogos = metricas[
         "jogos"
     ]
+
 
     if jogos <= 0:
 
@@ -1261,6 +1329,7 @@ def calcular_nota(
     elif jogos == 2:
 
         nota *= 0.90
+
 
     return round(
         nota,
@@ -1278,13 +1347,12 @@ def preparar_candidatos(
     estrategia
 ):
 
-    jogadores_rodada = (
-        carregar_jogadores_rodada(
-            rodada
-        )
+    jogadores_rodada = carregar_jogadores_rodada(
+        rodada
     )
 
     candidatos = []
+
 
     for jogador in jogadores_rodada:
 
@@ -1302,23 +1370,28 @@ def preparar_candidatos(
 
             continue
 
+
         jogador_id = obter_id(
             jogador
         )
+
 
         registros = historico.get(
             jogador_id,
             []
         )
 
+
         metricas = calcular_metricas(
             registros
         )
+
 
         nota = calcular_nota(
             metricas,
             estrategia
         )
+
 
         candidatos.append({
 
@@ -1351,10 +1424,101 @@ def preparar_candidatos(
 
             "metricas":
                 metricas
-
         })
 
+
     return candidatos
+
+
+# ======================================================
+# DIAGNÓSTICO DOS CANDIDATOS
+# ======================================================
+
+def diagnosticar_candidatos(
+    candidatos
+):
+
+    por_posicao = {
+
+        posicao:
+            0
+
+        for posicao in ORDEM_POSICOES
+    }
+
+
+    precos_por_posicao = defaultdict(
+        list
+    )
+
+
+    for jogador in candidatos:
+
+        posicao = jogador.get(
+            "posicao"
+        )
+
+        if posicao not in por_posicao:
+
+            continue
+
+        por_posicao[
+            posicao
+        ] += 1
+
+        precos_por_posicao[
+            posicao
+        ].append(
+
+            numero(
+                jogador.get(
+                    "preco"
+                ),
+                0
+            )
+        )
+
+
+    preco_minimo = {}
+
+
+    for posicao in ORDEM_POSICOES:
+
+        valores = precos_por_posicao.get(
+            posicao,
+            []
+        )
+
+        preco_minimo[
+            posicao
+        ] = (
+
+            round(
+                min(
+                    valores
+                ),
+                2
+            )
+
+            if valores
+
+            else None
+        )
+
+
+    return {
+
+        "quantidadeTotal":
+            len(
+                candidatos
+            ),
+
+        "porPosicao":
+            por_posicao,
+
+        "precoMinimoPorPosicao":
+            preco_minimo
+    }
 
 
 # ======================================================
@@ -1377,13 +1541,12 @@ def pode_adicionar_clube(
         return True
 
     return (
-
         clubes.get(
             clube,
             0
-        ) <
+        )
+        <
         LIMITE_JOGADORES_CLUBE
-
     )
 
 
@@ -1405,18 +1568,16 @@ def adicionar_clube(
     clubes[
         clube
     ] = (
-
         clubes.get(
             clube,
             0
         ) +
         1
-
     )
 
 
 # ======================================================
-# CANDIDATOS DISPONÍVEIS
+# DISPONÍVEIS POR POSIÇÃO
 # ======================================================
 
 def candidatos_disponiveis_posicao(
@@ -1432,7 +1593,6 @@ def candidatos_disponiveis_posicao(
         for jogador in candidatos
 
         if (
-
             jogador.get(
                 "posicao"
             ) == posicao
@@ -1442,26 +1602,22 @@ def candidatos_disponiveis_posicao(
             jogador.get(
                 "id"
             ) not in ids_usados
-
         )
-
     ]
 
 
 # ======================================================
-# CUSTO MÍNIMO DAS VAGAS FUTURAS
+# RESERVA MÍNIMA DOS TITULARES FUTUROS
+# ======================================================
 #
-# Esta função é a principal correção da V4.
+# CORREÇÃO CENTRAL DA V5:
 #
-# Depois de simular a entrada de um jogador, calculamos
-# quanto ainda precisamos reservar para:
+# aqui NÃO existe reserva financeira para o banco.
 #
-# - titulares restantes;
-# - banco.
-#
+# O banco não consome patrimônio.
 # ======================================================
 
-def calcular_reserva_minima_futura(
+def calcular_reserva_minima_titulares(
     candidatos,
     formacao,
     titulares_simulados
@@ -1475,6 +1631,7 @@ def calcular_reserva_minima_futura(
 
         return None
 
+
     ids_usados = {
 
         jogador.get(
@@ -1482,112 +1639,70 @@ def calcular_reserva_minima_futura(
         )
 
         for jogador in titulares_simulados
-
     }
 
-    quantidade_atual = {}
+
+    quantidade_atual = defaultdict(
+        int
+    )
+
 
     for jogador in titulares_simulados:
 
-        posicao = jogador.get(
-            "posicao"
-        )
-
         quantidade_atual[
-            posicao
-        ] = (
-
-            quantidade_atual.get(
-                posicao,
-                0
-            ) +
-            1
-
-        )
-
-
-    # ==================================================
-    # Necessidade total futura por posição
-    #
-    # Para GOL/LAT/ZAG/MEI/ATA:
-    # titulares faltantes + 1 reserva.
-    #
-    # Para TEC:
-    # apenas titulares faltantes.
-    # ==================================================
-
-    necessidades = {}
-
-    for posicao in ORDEM_POSICOES:
-
-        titulares_necessarios = (
-            estrutura.get(
-                posicao,
-                0
+            jogador.get(
+                "posicao"
             )
-        )
-
-        titulares_atuais = (
-            quantidade_atual.get(
-                posicao,
-                0
-            )
-        )
-
-        faltam_titulares = max(
-
-            0,
-
-            titulares_necessarios -
-            titulares_atuais
-
-        )
-
-        reserva = (
-
-            1
-
-            if posicao in POSICOES_BANCO
-
-            else 0
-
-        )
-
-        necessidades[
-            posicao
-        ] = (
-            faltam_titulares +
-            reserva
-        )
+        ] += 1
 
 
     custo_minimo = 0
 
-    for posicao, quantidade in (
-        necessidades.items()
-    ):
 
-        if quantidade <= 0:
+    for posicao in ORDEM_POSICOES:
+
+        quantidade_necessaria = estrutura.get(
+            posicao,
+            0
+        )
+
+        quantidade_escolhida = quantidade_atual.get(
+            posicao,
+            0
+        )
+
+        faltam = max(
+
+            0,
+
+            quantidade_necessaria -
+            quantidade_escolhida
+        )
+
+
+        if faltam <= 0:
 
             continue
 
-        disponiveis = (
-            candidatos_disponiveis_posicao(
 
-                candidatos,
-                posicao,
-                ids_usados
+        disponiveis = candidatos_disponiveis_posicao(
 
-            )
+            candidatos,
+            posicao,
+            ids_usados
         )
+
 
         if len(
             disponiveis
-        ) < quantidade:
+        ) < faltam:
 
             return None
 
-        disponiveis.sort(
+
+        disponiveis = sorted(
+
+            disponiveis,
 
             key=lambda jogador: (
 
@@ -1602,14 +1717,9 @@ def calcular_reserva_minima_futura(
                         "nota"
                     )
                 )
-
             )
-
         )
 
-        escolhidos = disponiveis[
-            :quantidade
-        ]
 
         custo_minimo += sum(
 
@@ -1619,9 +1729,11 @@ def calcular_reserva_minima_futura(
                 )
             )
 
-            for jogador in escolhidos
-
+            for jogador in disponiveis[
+                :faltam
+            ]
         )
+
 
     return round(
         custo_minimo,
@@ -1630,78 +1742,7 @@ def calcular_reserva_minima_futura(
 
 
 # ======================================================
-# CUSTO MÍNIMO DO BANCO
-# ======================================================
-
-def calcular_custo_minimo_banco(
-    candidatos,
-    titulares
-):
-
-    ids_titulares = {
-
-        jogador.get(
-            "id"
-        )
-
-        for jogador in titulares
-
-    }
-
-    custo = 0
-
-    for posicao in POSICOES_BANCO:
-
-        disponiveis = (
-            candidatos_disponiveis_posicao(
-
-                candidatos,
-                posicao,
-                ids_titulares
-
-            )
-        )
-
-        if not disponiveis:
-
-            return None
-
-        jogador = min(
-
-            disponiveis,
-
-            key=lambda item: (
-
-                numero(
-                    item.get(
-                        "preco"
-                    )
-                ),
-
-                -numero(
-                    item.get(
-                        "nota"
-                    )
-                )
-
-            )
-
-        )
-
-        custo += numero(
-            jogador.get(
-                "preco"
-            )
-        )
-
-    return round(
-        custo,
-        2
-    )
-
-
-# ======================================================
-# SELEÇÃO POR POSIÇÃO
+# SELEÇÃO DE TITULARES POR POSIÇÃO
 # ======================================================
 
 def selecionar_por_posicao(
@@ -1726,7 +1767,6 @@ def selecionar_por_posicao(
             if jogador[
                 "posicao"
             ] == posicao
-
         ],
 
         key=lambda jogador: (
@@ -1745,15 +1785,21 @@ def selecionar_por_posicao(
                 "metricas"
             ][
                 "media5"
-            ]
+            ],
 
+            jogador[
+                "metricas"
+            ][
+                "media10"
+            ]
         ),
 
         reverse=True
-
     )
 
+
     escolhidos = []
+
 
     ids_usados = {
 
@@ -1762,12 +1808,13 @@ def selecionar_por_posicao(
         ]
 
         for jogador in selecionados
-
     }
+
 
     custo = numero(
         custo_atual
     )
+
 
     for jogador in ranking:
 
@@ -1777,6 +1824,7 @@ def selecionar_por_posicao(
 
             continue
 
+
         if not pode_adicionar_clube(
             jogador,
             clubes
@@ -1784,34 +1832,37 @@ def selecionar_por_posicao(
 
             continue
 
+
         preco = numero(
             jogador.get(
                 "preco"
             )
         )
 
+
         novo_custo = (
             custo +
             preco
         )
 
-        if (
 
+        if (
             patrimonio is not None
 
             and
 
             novo_custo >
-            patrimonio + 0.000001
-
+            patrimonio +
+            0.000001
         ):
 
             continue
 
 
         # ==============================================
-        # V4:
-        # Simular escolha antes de confirmar.
+        # Simula a entrada do jogador.
+        #
+        # A reserva financeira cobre somente titulares.
         # ==============================================
 
         if patrimonio is not None:
@@ -1820,31 +1871,30 @@ def selecionar_por_posicao(
 
                 *selecionados,
                 jogador
-
             ]
 
+
             reserva_futura = (
-                calcular_reserva_minima_futura(
+                calcular_reserva_minima_titulares(
 
                     candidatos,
                     formacao,
                     titulares_simulados
-
                 )
             )
+
 
             if reserva_futura is None:
 
                 continue
 
+
             if (
-
                 novo_custo +
-                reserva_futura >
-
+                reserva_futura
+                >
                 patrimonio +
                 0.000001
-
             ):
 
                 continue
@@ -1871,14 +1921,17 @@ def selecionar_por_posicao(
 
         custo = novo_custo
 
+
         if len(
             escolhidos
         ) >= quantidade:
 
             break
 
+
     return (
         escolhidos,
+
         round(
             custo,
             2
@@ -1887,7 +1940,7 @@ def selecionar_por_posicao(
 
 
 # ======================================================
-# MONTAGEM DO TIME
+# MONTAGEM DOS TITULARES
 # ======================================================
 
 def montar_time(
@@ -1907,6 +1960,7 @@ def montar_time(
             f"{formacao}"
         )
 
+
     titulares = []
 
     clubes = {}
@@ -1915,12 +1969,14 @@ def montar_time(
 
     custo_titulares = 0
 
+
     for posicao in ORDEM_POSICOES:
 
         quantidade = estrutura.get(
             posicao,
             0
         )
+
 
         if quantidade <= 0:
 
@@ -1929,6 +1985,7 @@ def montar_time(
             ] = []
 
             continue
+
 
         escolhidos, custo_titulares = (
             selecionar_por_posicao(
@@ -1941,35 +1998,60 @@ def montar_time(
                 formacao,
                 patrimonio,
                 custo_titulares
-
             )
         )
+
 
         por_posicao[
             posicao
         ] = escolhidos
 
+
     quantidade_esperada = sum(
         estrutura.values()
     )
 
-    completa = (
 
+    completa = (
         len(
             titulares
-        ) ==
-        quantidade_esperada
-
-    )
-
-    reserva_minima_banco = (
-        calcular_custo_minimo_banco(
-
-            candidatos,
-            titulares
-
         )
+        ==
+        quantidade_esperada
     )
+
+
+    faltantes = {}
+
+
+    for posicao, quantidade in (
+        estrutura.items()
+    ):
+
+        obtidos = len(
+            por_posicao.get(
+                posicao,
+                []
+            )
+        )
+
+        if obtidos < quantidade:
+
+            faltantes[
+                posicao
+            ] = {
+
+                "esperado":
+                    quantidade,
+
+                "obtido":
+                    obtidos,
+
+                "faltam":
+                    quantidade -
+                    obtidos
+            }
+
 
     return {
 
@@ -1996,9 +2078,8 @@ def montar_time(
                 2
             ),
 
-        "reservaMinimaBanco":
-            reserva_minima_banco
-
+        "posicoesFaltantes":
+            faltantes
     }
 
 
@@ -2020,12 +2101,13 @@ def escolher_capitao(
         if jogador[
             "posicao"
         ] != "TEC"
-
     ]
+
 
     if not candidatos:
 
         return None
+
 
     if estrategia == "conservador":
 
@@ -2050,10 +2132,9 @@ def escolher_capitao(
                 jogador[
                     "nota"
                 ]
-
             )
-
         )
+
 
     if estrategia == "agressivo":
 
@@ -2078,10 +2159,9 @@ def escolher_capitao(
                 jogador[
                     "nota"
                 ]
-
             )
-
         )
+
 
     return max(
 
@@ -2091,18 +2171,22 @@ def escolher_capitao(
             jogador[
                 "nota"
             ]
-
     )
 
 
 # ======================================================
 # BANCO
 # ======================================================
+#
+# O banco NÃO consome patrimônio.
+#
+# Aqui escolhemos o melhor reserva disponível
+# de cada posição.
+# ======================================================
 
 def montar_banco(
     candidatos,
-    titulares,
-    limite_banco=None
+    titulares
 ):
 
     ids_titulares = {
@@ -2112,10 +2196,11 @@ def montar_banco(
         ]
 
         for jogador in titulares
-
     }
 
-    candidatos_por_posicao = []
+
+    banco = []
+
 
     for posicao in POSICOES_BANCO:
 
@@ -2126,7 +2211,6 @@ def montar_banco(
             for jogador in candidatos
 
             if (
-
                 jogador[
                     "posicao"
                 ] == posicao
@@ -2136,10 +2220,9 @@ def montar_banco(
                 jogador[
                     "id"
                 ] not in ids_titulares
-
             )
-
         ]
+
 
         disponiveis.sort(
 
@@ -2159,229 +2242,32 @@ def montar_banco(
                     "metricas"
                 ][
                     "jogos"
-                ]
+                ],
 
+                -numero(
+                    jogador.get(
+                        "preco"
+                    )
+                )
             ),
 
             reverse=True
-
         )
+
 
         if not disponiveis:
 
             return []
 
-        candidatos_por_posicao.append(
-            disponiveis
-        )
 
-    if limite_banco is None:
-
-        return [
-
-            lista[
+        banco.append(
+            disponiveis[
                 0
             ]
-
-            for lista in candidatos_por_posicao
-
-        ]
-
-
-    # ==================================================
-    # Otimização do banco dentro do saldo disponível.
-    # ==================================================
-
-    limite_centavos = max(
-
-        0,
-
-        int(
-            round(
-                numero(
-                    limite_banco
-                ) * 100
-            )
         )
 
-    )
 
-    estados = {
-
-        0: {
-
-            "nota": 0.0,
-            "media5": 0.0,
-            "jogos": 0,
-            "jogadores": []
-
-        }
-
-    }
-
-    for lista_posicao in candidatos_por_posicao:
-
-        proximos = {}
-
-        for custo_anterior, estado in (
-            estados.items()
-        ):
-
-            for jogador in lista_posicao:
-
-                preco_centavos = max(
-
-                    0,
-
-                    int(
-                        round(
-                            numero(
-                                jogador.get(
-                                    "preco"
-                                )
-                            ) * 100
-                        )
-                    )
-
-                )
-
-                novo_custo = (
-                    custo_anterior +
-                    preco_centavos
-                )
-
-                if novo_custo > limite_centavos:
-
-                    continue
-
-                candidato = {
-
-                    "nota":
-                        estado[
-                            "nota"
-                        ] +
-                        numero(
-                            jogador.get(
-                                "nota"
-                            )
-                        ),
-
-                    "media5":
-                        estado[
-                            "media5"
-                        ] +
-                        numero(
-                            jogador.get(
-                                "metricas",
-                                {}
-                            ).get(
-                                "media5"
-                            )
-                        ),
-
-                    "jogos":
-                        estado[
-                            "jogos"
-                        ] +
-                        inteiro(
-                            jogador.get(
-                                "metricas",
-                                {}
-                            ).get(
-                                "jogos"
-                            ),
-                            0
-                        ),
-
-                    "jogadores": [
-
-                        *estado[
-                            "jogadores"
-                        ],
-
-                        jogador
-
-                    ]
-
-                }
-
-                atual = proximos.get(
-                    novo_custo
-                )
-
-                if (
-
-                    atual is None
-
-                    or
-
-                    (
-                        candidato[
-                            "nota"
-                        ],
-                        candidato[
-                            "media5"
-                        ],
-                        candidato[
-                            "jogos"
-                        ]
-                    )
-
-                    >
-
-                    (
-                        atual[
-                            "nota"
-                        ],
-                        atual[
-                            "media5"
-                        ],
-                        atual[
-                            "jogos"
-                        ]
-                    )
-
-                ):
-
-                    proximos[
-                        novo_custo
-                    ] = candidato
-
-        estados = proximos
-
-        if not estados:
-
-            return []
-
-    melhor_custo, melhor = max(
-
-        estados.items(),
-
-        key=lambda item: (
-
-            item[1][
-                "nota"
-            ],
-
-            item[1][
-                "media5"
-            ],
-
-            item[1][
-                "jogos"
-            ],
-
-            -item[0]
-
-        )
-
-    )
-
-    del melhor_custo
-
-    return melhor[
-        "jogadores"
-    ]
+    return banco
 
 
 # ======================================================
@@ -2404,12 +2290,11 @@ def escolher_reserva_luxo(
             jogador[
                 "nota"
             ]
-
     )
 
 
 # ======================================================
-# SERIALIZAÇÃO SEGURA
+# SERIALIZAÇÃO
 # ======================================================
 
 def serializar_jogador(
@@ -2419,6 +2304,13 @@ def serializar_jogador(
     if jogador is None:
 
         return None
+
+
+    metricas = jogador.get(
+        "metricas",
+        {}
+    )
+
 
     return {
 
@@ -2458,77 +2350,71 @@ def serializar_jogador(
         "historico": {
 
             "jogos":
-                jogador[
-                    "metricas"
-                ][
-                    "jogos"
-                ],
+                metricas.get(
+                    "jogos",
+                    0
+                ),
 
             "media":
-                jogador[
-                    "metricas"
-                ][
-                    "media"
-                ],
+                metricas.get(
+                    "media",
+                    0
+                ),
 
             "media3":
-                jogador[
-                    "metricas"
-                ][
-                    "media3"
-                ],
+                metricas.get(
+                    "media3",
+                    0
+                ),
 
             "media5":
-                jogador[
-                    "metricas"
-                ][
-                    "media5"
-                ],
+                metricas.get(
+                    "media5",
+                    0
+                ),
+
+            "media10":
+                metricas.get(
+                    "media10",
+                    0
+                ),
 
             "mediana":
-                jogador[
-                    "metricas"
-                ][
-                    "mediana"
-                ],
+                metricas.get(
+                    "mediana",
+                    0
+                ),
 
             "piso":
-                jogador[
-                    "metricas"
-                ][
-                    "piso"
-                ],
+                metricas.get(
+                    "piso",
+                    0
+                ),
 
             "teto":
-                jogador[
-                    "metricas"
-                ][
-                    "teto"
-                ],
+                metricas.get(
+                    "teto",
+                    0
+                ),
 
             "regularidade":
-                jogador[
-                    "metricas"
-                ][
-                    "regularidade"
-                ],
+                metricas.get(
+                    "regularidade",
+                    0
+                ),
 
             "volatilidade":
-                jogador[
-                    "metricas"
-                ][
-                    "volatilidade"
-                ],
+                metricas.get(
+                    "volatilidade",
+                    0
+                ),
 
             "tendencia":
-                jogador[
-                    "metricas"
-                ][
-                    "tendencia"
-                ]
-
+                metricas.get(
+                    "tendencia",
+                    0
+                )
         }
-
     }
 
 
@@ -2542,23 +2428,28 @@ def auditar_estrategia(
 
     erros = []
 
+
     titulares = estrategia.get(
         "titulares",
         []
     )
 
+
     formacao = estrategia.get(
         "formacao"
     )
+
 
     estrutura = FORMACOES.get(
         formacao,
         {}
     )
 
+
     quantidade_esperada = sum(
         estrutura.values()
     )
+
 
     if len(
         titulares
@@ -2568,6 +2459,7 @@ def auditar_estrategia(
             "quantidade_titulares_incorreta"
         )
 
+
     ids = [
 
         jogador.get(
@@ -2575,18 +2467,21 @@ def auditar_estrategia(
         )
 
         for jogador in titulares
-
     ]
+
 
     if len(
         ids
     ) != len(
-        set(ids)
+        set(
+            ids
+        )
     ):
 
         erros.append(
             "jogador_duplicado"
         )
+
 
     for posicao, quantidade in (
         estrutura.items()
@@ -2601,8 +2496,8 @@ def auditar_estrategia(
             if jogador.get(
                 "posicao"
             ) == posicao
-
         )
+
 
         if encontrados != quantidade:
 
@@ -2611,10 +2506,11 @@ def auditar_estrategia(
                 f"formacao_{posicao}_"
                 f"{encontrados}_"
                 f"esperado_{quantidade}"
-
             )
 
+
     clubes = {}
+
 
     for jogador in titulares:
 
@@ -2631,35 +2527,33 @@ def auditar_estrategia(
         clubes[
             clube
         ] = (
-
             clubes.get(
                 clube,
                 0
             ) +
             1
-
         )
+
 
     for clube, quantidade in (
         clubes.items()
     ):
 
-        if quantidade > (
-            LIMITE_JOGADORES_CLUBE
-        ):
+        if quantidade > LIMITE_JOGADORES_CLUBE:
 
             erros.append(
 
                 f"limite_clube_"
                 f"{clube}_"
                 f"{quantidade}"
-
             )
+
 
     banco = estrategia.get(
         "banco",
         []
     )
+
 
     if len(
         banco
@@ -2671,6 +2565,7 @@ def auditar_estrategia(
             "banco_incompleto"
         )
 
+
     posicoes_banco = {
 
         jogador.get(
@@ -2678,20 +2573,30 @@ def auditar_estrategia(
         )
 
         for jogador in banco
-
     }
 
+
     if (
-        len(banco) ==
-        len(POSICOES_BANCO)
+        len(
+            banco
+        )
+        ==
+        len(
+            POSICOES_BANCO
+        )
+
         and
+
         posicoes_banco !=
-        set(POSICOES_BANCO)
+        set(
+            POSICOES_BANCO
+        )
     ):
 
         erros.append(
             "posicoes_banco_incorretas"
         )
+
 
     ids_banco = {
 
@@ -2700,11 +2605,14 @@ def auditar_estrategia(
         )
 
         for jogador in banco
-
     }
 
+
     if (
-        set(ids) &
+        set(
+            ids
+        )
+        &
         ids_banco
     ):
 
@@ -2712,31 +2620,39 @@ def auditar_estrategia(
             "titular_repetido_no_banco"
         )
 
+
+    # ==================================================
+    # PATRIMÔNIO V5
+    #
+    # Somente titulares + treinador.
+    # ==================================================
+
     limite_patrimonio = estrategia.get(
         "limitePatrimonio"
     )
 
-    custo_total = numero(
+
+    custo_titulares = numero(
         estrategia.get(
-            "custoTotal"
+            "custoTitulares"
         )
     )
 
-    if (
 
+    if (
         limite_patrimonio is not None
 
         and
 
-        custo_total >
+        custo_titulares >
         numero(
             limite_patrimonio
-        ) + 0.000001
-
+        ) +
+        0.000001
     ):
 
         erros.append(
-            "patrimonio_excedido"
+            "patrimonio_titulares_excedido"
         )
 
 
@@ -2755,34 +2671,38 @@ def auditar_estrategia(
 
             return False
 
+
         campos_proibidos = {
 
             "pontuacaoReal",
             "real",
             "pontuacaoDaRodada",
             "resultadoReal"
-
         }
+
 
         return any(
 
             campo in jogador
 
             for campo in campos_proibidos
-
         )
+
 
     jogadores_auditados = list(
         titulares
     )
 
+
     jogadores_auditados.extend(
         banco
     )
 
+
     capitao = estrategia.get(
         "capitao"
     )
+
 
     if capitao:
 
@@ -2790,15 +2710,18 @@ def auditar_estrategia(
             capitao
         )
 
+
     reserva_luxo = estrategia.get(
         "reservaLuxo"
     )
+
 
     if reserva_luxo:
 
         jogadores_auditados.append(
             reserva_luxo
         )
+
 
     if any(
 
@@ -2807,12 +2730,12 @@ def auditar_estrategia(
         )
 
         for jogador in jogadores_auditados
-
     ):
 
         erros.append(
             "vazamento_pontuacao_real"
         )
+
 
     return {
 
@@ -2823,12 +2746,11 @@ def auditar_estrategia(
 
         "erros":
             erros
-
     }
 
 
 # ======================================================
-# GERAÇÃO DA RODADA
+# GERAR UMA RODADA
 # ======================================================
 
 def gerar_rodada(
@@ -2840,20 +2762,21 @@ def gerar_rodada(
         1
     )
 
-    historico = (
-        construir_historico_ate(
-            rodada_limite
-        )
+
+    historico = construir_historico_ate(
+        rodada_limite
     )
+
 
     limite_patrimonio_global = (
         obter_limite_patrimonio()
     )
 
+
     resultado = {
 
         "modelo":
-            "historico_escalacoes_v4",
+            "historico_escalacoes_v5",
 
         "rodada":
             rodada,
@@ -2877,15 +2800,18 @@ def gerar_rodada(
             limite_patrimonio_global,
 
         "orcamentoIncluiBanco":
-            True,
+            False,
+
+        "bancoConsomePatrimonio":
+            False,
 
         "reservaTitularesFuturos":
             True,
 
         "estrategias":
             []
-
     }
+
 
     for estrategia_id, configuracao in (
         ESTRATEGIAS.items()
@@ -2896,8 +2822,15 @@ def gerar_rodada(
             rodada,
             historico,
             estrategia_id
-
         )
+
+
+        diagnostico_candidatos = (
+            diagnosticar_candidatos(
+                candidatos
+            )
+        )
+
 
         limite_patrimonio = (
             obter_limite_patrimonio(
@@ -2905,19 +2838,23 @@ def gerar_rodada(
             )
         )
 
+
         time = montar_time(
 
             candidatos,
+
             configuracao[
                 "formacao"
             ],
-            limite_patrimonio
 
+            limite_patrimonio
         )
+
 
         titulares = time[
             "titulares"
         ]
+
 
         custo_titulares = sum(
 
@@ -2928,35 +2865,21 @@ def gerar_rodada(
             )
 
             for jogador in titulares
-
         )
 
-        saldo_para_banco = (
 
-            None
-
-            if limite_patrimonio is None
-
-            else max(
-
-                0,
-
-                limite_patrimonio -
-                custo_titulares
-
-            )
-
-        )
+        # ==============================================
+        # BANCO NÃO CONSOME PATRIMÔNIO
+        # ==============================================
 
         banco = montar_banco(
 
             candidatos,
-            titulares,
-            saldo_para_banco
-
+            titulares
         )
 
-        custo_banco = sum(
+
+        custo_banco_informativo = sum(
 
             numero(
                 jogador.get(
@@ -2965,13 +2888,8 @@ def gerar_rodada(
             )
 
             for jogador in banco
-
         )
 
-        custo_total = (
-            custo_titulares +
-            custo_banco
-        )
 
         saldo_final = (
 
@@ -2981,21 +2899,24 @@ def gerar_rodada(
 
             else (
                 limite_patrimonio -
-                custo_total
+                custo_titulares
             )
-
         )
 
+
         capitao = escolher_capitao(
+
             titulares,
             estrategia_id
         )
+
 
         reserva_luxo = (
             escolher_reserva_luxo(
                 banco
             )
         )
+
 
         projecao_total = sum(
 
@@ -3004,19 +2925,19 @@ def gerar_rodada(
             ]
 
             for jogador in titulares
-
         )
 
-        banco_completo = (
 
+        banco_completo = (
             len(
                 banco
-            ) ==
+            )
+            ==
             len(
                 POSICOES_BANCO
             )
-
         )
+
 
         registro = {
 
@@ -3071,10 +2992,8 @@ def gerar_rodada(
             "limitePatrimonio":
                 limite_patrimonio,
 
-            "reservaMinimaBanco":
-                time.get(
-                    "reservaMinimaBanco"
-                ),
+            "orcamentoIncluiBanco":
+                False,
 
             "custoTitulares":
                 round(
@@ -3082,15 +3001,19 @@ def gerar_rodada(
                     2
                 ),
 
-            "custoBanco":
+            # Mantido por compatibilidade.
+            #
+            # No V5 custoTotal representa o custo que
+            # efetivamente consome patrimônio.
+            "custoTotal":
                 round(
-                    custo_banco,
+                    custo_titulares,
                     2
                 ),
 
-            "custoTotal":
+            "custoBancoInformativo":
                 round(
-                    custo_total,
+                    custo_banco_informativo,
                     2
                 ),
 
@@ -3112,6 +3035,15 @@ def gerar_rodada(
                     2
                 ),
 
+            "diagnosticoCandidatos":
+                diagnostico_candidatos,
+
+            "posicoesFaltantes":
+                time.get(
+                    "posicoesFaltantes",
+                    {}
+                ),
+
             "titulares": [
 
                 serializar_jogador(
@@ -3119,7 +3051,6 @@ def gerar_rodada(
                 )
 
                 for jogador in titulares
-
             ],
 
             "capitao":
@@ -3134,31 +3065,31 @@ def gerar_rodada(
                 )
 
                 for jogador in banco
-
             ],
 
             "reservaLuxo":
                 serializar_jogador(
                     reserva_luxo
                 )
-
         }
 
-        auditoria = (
-            auditar_estrategia(
-                registro
-            )
+
+        auditoria = auditar_estrategia(
+            registro
         )
+
 
         registro[
             "auditoria"
         ] = auditoria
+
 
         resultado[
             "estrategias"
         ].append(
             registro
         )
+
 
     auditorias = [
 
@@ -3171,8 +3102,8 @@ def gerar_rodada(
         for estrategia in resultado[
             "estrategias"
         ]
-
     ]
+
 
     resultado[
         "auditoria"
@@ -3191,7 +3122,6 @@ def gerar_rodada(
                 for valor in auditorias
 
                 if valor
-
             ),
 
         "estrategiasTotal":
@@ -3206,14 +3136,130 @@ def gerar_rodada(
             rodada_limite,
 
         "orcamentoIncluiBanco":
-            True,
+            False,
+
+        "bancoConsomePatrimonio":
+            False,
 
         "reservaTitularesFuturos":
             True
-
     }
 
+
     return resultado
+
+
+# ======================================================
+# LOG DE DIAGNÓSTICO
+# ======================================================
+
+def imprimir_diagnostico_estrategia(
+    rodada,
+    estrategia
+):
+
+    if estrategia.get(
+        "timeCompletoComBanco"
+    ):
+
+        return
+
+
+    print()
+
+    print(
+        "  [DIAGNÓSTICO]"
+    )
+
+    print(
+        "  Rodada:",
+        rodada
+    )
+
+    print(
+        "  Estratégia:",
+        estrategia.get(
+            "nome"
+        )
+    )
+
+    print(
+        "  Formação:",
+        estrategia.get(
+            "formacao"
+        )
+    )
+
+    print(
+        "  Titulares:",
+        (
+            f"{estrategia.get('quantidadeTitulares')}/"
+            f"{estrategia.get('quantidadeEsperada')}"
+        )
+    )
+
+    print(
+        "  Banco:",
+        estrategia.get(
+            "quantidadeBanco"
+        ),
+        "/",
+        len(
+            POSICOES_BANCO
+        )
+    )
+
+    print(
+        "  Custo titulares:",
+        estrategia.get(
+            "custoTitulares"
+        )
+    )
+
+    print(
+        "  Limite:",
+        estrategia.get(
+            "limitePatrimonio"
+        )
+    )
+
+    print(
+        "  Candidatos:",
+        estrategia.get(
+            "diagnosticoCandidatos",
+            {}
+        ).get(
+            "porPosicao",
+            {}
+        )
+    )
+
+    print(
+        "  Preço mínimo:",
+        estrategia.get(
+            "diagnosticoCandidatos",
+            {}
+        ).get(
+            "precoMinimoPorPosicao",
+            {}
+        )
+    )
+
+    print(
+        "  Posições faltantes:",
+        estrategia.get(
+            "posicoesFaltantes"
+        )
+    )
+
+    print(
+        "  Auditoria:",
+        estrategia.get(
+            "auditoria"
+        )
+    )
+
+    print()
 
 
 # ======================================================
@@ -3227,9 +3273,9 @@ def processar():
         exist_ok=True
     )
 
-    rodada_maxima = (
-        descobrir_rodada_maxima()
-    )
+
+    rodada_maxima = descobrir_rodada_maxima()
+
 
     print(
         "============================================"
@@ -3240,7 +3286,7 @@ def processar():
     )
 
     print(
-        "HISTÓRICO PROGRESSIVO DE ESCALAÇÕES V4"
+        "HISTÓRICO PROGRESSIVO DE ESCALAÇÕES V5"
     )
 
     print(
@@ -3255,6 +3301,16 @@ def processar():
     print(
         "Limite de jogadores por clube:",
         LIMITE_JOGADORES_CLUBE
+    )
+
+    print(
+        "Patrimônio considera:",
+        "11 jogadores + treinador"
+    )
+
+    print(
+        "Banco consome patrimônio:",
+        "NÃO"
     )
 
     print(
@@ -3285,13 +3341,9 @@ def processar():
     )
 
     print(
-        "Proteção financeira:",
-        "titulares futuros + banco"
-    )
-
-    print(
         "============================================"
     )
+
 
     if rodada_maxima < RODADA_INICIAL:
 
@@ -3301,11 +3353,13 @@ def processar():
 
         return
 
+
     processadas = []
 
     rodadas_aprovadas = []
 
     rodadas_reprovadas = []
+
 
     total_escalacoes = 0
 
@@ -3313,11 +3367,11 @@ def processar():
 
     total_estrategias_aprovadas = 0
 
+
     for rodada in range(
 
         RODADA_INICIAL,
         rodada_maxima + 1
-
     ):
 
         candidatos_rodada = (
@@ -3326,6 +3380,7 @@ def processar():
             )
         )
 
+
         if not candidatos_rodada:
 
             print(
@@ -3333,34 +3388,38 @@ def processar():
                 f"[IGNORADA] "
                 f"Rodada {rodada:02d}: "
                 f"sem jogadores."
-
             )
 
             continue
+
 
         resultado = gerar_rodada(
             rodada
         )
 
+
         caminho_saida = (
 
             PASTA_SAIDA /
             f"rodada-{rodada:02d}.json"
-
         )
+
 
         salvar_json(
             caminho_saida,
             resultado
         )
 
+
         processadas.append(
             rodada
         )
 
+
         estrategias = resultado[
             "estrategias"
         ]
+
 
         completas = sum(
 
@@ -3371,8 +3430,8 @@ def processar():
             if estrategia[
                 "timeCompletoComBanco"
             ]
-
         )
+
 
         aprovadas = sum(
 
@@ -3385,20 +3444,23 @@ def processar():
             ][
                 "aprovada"
             ]
-
         )
+
 
         total_escalacoes += len(
             estrategias
         )
 
+
         total_escalacoes_completas += (
             completas
         )
 
+
         total_estrategias_aprovadas += (
             aprovadas
         )
+
 
         if resultado[
             "auditoria"
@@ -3420,6 +3482,7 @@ def processar():
 
             status = "REPROVADA"
 
+
         print(
 
             f"[{status}] "
@@ -3427,19 +3490,34 @@ def processar():
             f"{completas}/3 completas | "
             f"{aprovadas}/3 auditorias OK | "
             f"dados até R{rodada - 1:02d}"
-
         )
+
+
+        if status == "REPROVADA":
+
+            for estrategia in estrategias:
+
+                imprimir_diagnostico_estrategia(
+                    rodada,
+                    estrategia
+                )
+
+
+    # ==================================================
+    # ÍNDICE
+    # ==================================================
 
     indice = {
 
         "modelo":
-            "historico_escalacoes_indice_v4",
+            "historico_escalacoes_indice_v5",
 
         "descricao":
             (
                 "Índice do histórico progressivo "
-                "de escalações sem vazamento futuro "
-                "e com proteção financeira completa."
+                "de escalações sem vazamento futuro. "
+                "Patrimônio aplicado somente aos titulares "
+                "e treinador; banco fora do orçamento."
             ),
 
         "rodadasProcessadas":
@@ -3518,17 +3596,16 @@ def processar():
                 True,
 
             "orcamentoIncluiBanco":
-                True,
+                False,
+
+            "bancoConsomePatrimonio":
+                False,
 
             "reservaTitularesFuturos":
-                True,
-
-            "reservaMinimaBanco":
                 True
-
         }
-
     }
+
 
     salvar_json(
 
@@ -3536,8 +3613,12 @@ def processar():
         "indice.json",
 
         indice
-
     )
+
+
+    # ==================================================
+    # RESUMO
+    # ==================================================
 
     print(
         "============================================"
@@ -3593,6 +3674,11 @@ def processar():
             else
             "REPROVADA"
         )
+    )
+
+    print(
+        "Banco consome patrimônio:",
+        "NÃO"
     )
 
     print(
