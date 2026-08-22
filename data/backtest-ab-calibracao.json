@@ -41,30 +41,30 @@
     "amostras": 792,
     "amostrasCalibradas": 694,
     "percentualCalibrado": 87.63,
-    "maeA": 5.575,
-    "maeB": 5.105,
-    "viesA": 2.43,
-    "viesB": 1.661,
-    "melhoraAbsoluta": 0.469,
-    "melhoraPercentual": 8.42,
+    "maeA": 5.039,
+    "maeB": 4.549,
+    "viesA": 3.561,
+    "viesB": 2.658,
+    "melhoraAbsoluta": 0.489,
+    "melhoraPercentual": 9.71,
     "vitoriasA": 201,
     "vitoriasB": 493,
     "empates": 98,
     "taxaVitoriasA": 25.38,
     "taxaVitoriasB": 62.25
   },
-  "reducaoAbsolutaVies": 0.769,
+  "reducaoAbsolutaVies": 0.903,
   "porPosicao": {
     "GOL": {
       "amostras": 66,
       "amostrasCalibradas": 48,
       "percentualCalibrado": 72.73,
-      "maeA": 6.093,
-      "maeB": 5.576,
-      "viesA": 3.576,
-      "viesB": 2.856,
-      "melhoraAbsoluta": 0.517,
-      "melhoraPercentual": 8.48,
+      "maeA": 5.454,
+      "maeB": 4.916,
+      "viesA": 4.756,
+      "viesB": 3.874,
+      "melhoraAbsoluta": 0.539,
+      "melhoraPercentual": 9.87,
       "vitoriasA": 10,
       "vitoriasB": 38,
       "empates": 18,
@@ -76,12 +76,12 @@
       "amostras": 44,
       "amostrasCalibradas": 26,
       "percentualCalibrado": 59.09,
-      "maeA": 4.866,
-      "maeB": 4.799,
-      "viesA": 1.275,
-      "viesB": 1.164,
-      "melhoraAbsoluta": 0.067,
-      "melhoraPercentual": 1.38,
+      "maeA": 4.244,
+      "maeB": 4.186,
+      "viesA": 2.47,
+      "viesB": 2.326,
+      "melhoraAbsoluta": 0.058,
+      "melhoraPercentual": 1.36,
       "vitoriasA": 7,
       "vitoriasB": 19,
       "empates": 18,
@@ -93,12 +93,12 @@
       "amostras": 176,
       "amostrasCalibradas": 160,
       "percentualCalibrado": 90.91,
-      "maeA": 5.262,
-      "maeB": 4.607,
-      "viesA": 2.695,
-      "viesB": 1.554,
-      "melhoraAbsoluta": 0.655,
-      "melhoraPercentual": 12.44,
+      "maeA": 4.612,
+      "maeB": 3.924,
+      "viesA": 3.863,
+      "viesB": 2.567,
+      "melhoraAbsoluta": 0.688,
+      "melhoraPercentual": 14.91,
       "vitoriasA": 37,
       "vitoriasB": 123,
       "empates": 16,
@@ -110,12 +110,12 @@
       "amostras": 264,
       "amostrasCalibradas": 252,
       "percentualCalibrado": 95.45,
-      "maeA": 5.72,
-      "maeB": 5.427,
-      "viesA": 1.788,
-      "viesB": 1.407,
-      "melhoraAbsoluta": 0.293,
-      "melhoraPercentual": 5.12,
+      "maeA": 5.177,
+      "maeB": 4.887,
+      "viesA": 3.062,
+      "viesB": 2.552,
+      "melhoraAbsoluta": 0.289,
+      "melhoraPercentual": 5.59,
       "vitoriasA": 86,
       "vitoriasB": 166,
       "empates": 12,
@@ -127,12 +127,12 @@
       "amostras": 176,
       "amostrasCalibradas": 160,
       "percentualCalibrado": 90.91,
-      "maeA": 6.614,
-      "maeB": 5.827,
-      "viesA": 3.128,
-      "viesB": 1.73,
-      "melhoraAbsoluta": 0.787,
-      "melhoraPercentual": 11.9,
+      "maeA": 6.063,
+      "maeB": 5.219,
+      "viesA": 4.395,
+      "viesB": 2.813,
+      "melhoraAbsoluta": 0.844,
+      "melhoraPercentual": 13.92,
       "vitoriasA": 43,
       "vitoriasB": 117,
       "empates": 16,
@@ -163,12 +163,12 @@
       "amostras": 264,
       "amostrasCalibradas": 222,
       "percentualCalibrado": 84.09,
-      "maeA": 5.074,
-      "maeB": 4.871,
-      "viesA": 1.101,
-      "viesB": 0.545,
-      "melhoraAbsoluta": 0.203,
-      "melhoraPercentual": 4.0,
+      "maeA": 4.472,
+      "maeB": 4.262,
+      "viesA": 2.165,
+      "viesB": 1.498,
+      "melhoraAbsoluta": 0.209,
+      "melhoraPercentual": 4.68,
       "vitoriasA": 82,
       "vitoriasB": 140,
       "empates": 42,
@@ -180,12 +180,12 @@
       "amostras": 264,
       "amostrasCalibradas": 236,
       "percentualCalibrado": 89.39,
-      "maeA": 5.53,
-      "maeB": 5.023,
-      "viesA": 2.507,
-      "viesB": 1.684,
-      "melhoraAbsoluta": 0.507,
-      "melhoraPercentual": 9.17,
+      "maeA": 4.99,
+      "maeB": 4.461,
+      "viesA": 3.634,
+      "viesB": 2.671,
+      "melhoraAbsoluta": 0.529,
+      "melhoraPercentual": 10.61,
       "vitoriasA": 65,
       "vitoriasB": 171,
       "empates": 28,
@@ -197,12 +197,12 @@
       "amostras": 264,
       "amostrasCalibradas": 236,
       "percentualCalibrado": 89.39,
-      "maeA": 6.12,
-      "maeB": 5.422,
-      "viesA": 3.682,
-      "viesB": 2.753,
-      "melhoraAbsoluta": 0.698,
-      "melhoraPercentual": 11.41,
+      "maeA": 5.654,
+      "maeB": 4.924,
+      "viesA": 4.883,
+      "viesB": 3.804,
+      "melhoraAbsoluta": 0.73,
+      "melhoraPercentual": 12.9,
       "vitoriasA": 54,
       "vitoriasB": 182,
       "empates": 28,
@@ -226,7 +226,7 @@
       {
         "criterio": "melhora_mae_global",
         "aprovado": true,
-        "valor": 8.42,
+        "valor": 9.71,
         "minimo": 1.0
       },
       {
@@ -20033,12 +20033,12 @@
         "amostras": 36,
         "amostrasCalibradas": 36,
         "percentualCalibrado": 100.0,
-        "maeA": 18.92,
-        "maeB": 17.641,
-        "viesA": -17.746,
-        "viesB": -16.527,
-        "melhoraAbsoluta": 1.28,
-        "melhoraPercentual": 6.76,
+        "maeA": 7.129,
+        "maeB": 5.408,
+        "viesA": 7.129,
+        "viesB": 5.408,
+        "melhoraAbsoluta": 1.721,
+        "melhoraPercentual": 24.14,
         "vitoriasA": 0,
         "vitoriasB": 36,
         "empates": 0,
@@ -20053,12 +20053,12 @@
             "amostras": 12,
             "amostrasCalibradas": 12,
             "percentualCalibrado": 100.0,
-            "maeA": 18.849,
-            "maeB": 17.672,
-            "viesA": -17.817,
-            "viesB": -16.696,
-            "melhoraAbsoluta": 1.177,
-            "melhoraPercentual": 6.24,
+            "maeA": 5.591,
+            "maeB": 4.273,
+            "viesA": 5.591,
+            "viesB": 4.273,
+            "melhoraAbsoluta": 1.318,
+            "melhoraPercentual": 23.57,
             "vitoriasA": 0,
             "vitoriasB": 12,
             "empates": 0,
@@ -20067,188 +20067,188 @@
           },
           "jogadores": [
             {
-              "id": "145705",
-              "nome": "Douglas Costa Telles",
+              "id": "122121",
+              "nome": "Túlio Eduardo",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.54,
+                "erro": 5.54,
+                "erroAbsoluto": 5.54
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 3.237,
+                "erro": 3.237,
+                "erroAbsoluto": 3.237
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.303,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "151003",
-              "nome": "Eduardo Conceição Silva",
+              "id": "143193",
+              "nome": "Viveros",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.06,
+                "erro": 6.06,
+                "erroAbsoluto": 6.06
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 3.681,
+                "erro": 3.681,
+                "erroAbsoluto": 3.681
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.379,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "84268",
-              "nome": "Georgemy Gonçalves",
+              "id": "69012",
+              "nome": "Santos",
               "posicao": "GOL",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 4.51,
+                "erro": 4.51,
+                "erroAbsoluto": 4.51
               },
               "modeloB": {
-                "projecao": -18.455,
-                "erro": -18.455,
-                "erroAbsoluto": 18.455
+                "projecao": 2.684,
+                "erro": 2.684,
+                "erroAbsoluto": 2.684
               },
-              "melhoraErroAbsoluto": 1.545,
+              "melhoraErroAbsoluto": 1.826,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "122320",
-              "nome": "Daniel dos Santos Salles",
+              "id": "80313",
+              "nome": "Gilberto",
               "posicao": "LAT",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.19,
+                "erro": 6.19,
+                "erroAbsoluto": 6.19
               },
               "modeloB": {
-                "projecao": -19.532,
-                "erro": -19.532,
-                "erroAbsoluto": 19.532
+                "projecao": 5.935,
+                "erro": 5.935,
+                "erroAbsoluto": 5.935
               },
-              "melhoraErroAbsoluto": 0.468,
+              "melhoraErroAbsoluto": 0.255,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "144423",
-              "nome": "Nicolas Pontes de Souza Almeida",
+              "id": "101727",
+              "nome": "Matheuzinho",
               "posicao": "LAT",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.41,
+                "erro": 6.41,
+                "erroAbsoluto": 6.41
               },
               "modeloB": {
-                "projecao": -19.532,
-                "erro": -19.532,
-                "erroAbsoluto": 19.532
+                "projecao": 6.148,
+                "erro": 6.148,
+                "erroAbsoluto": 6.148
               },
-              "melhoraErroAbsoluto": 0.468,
+              "melhoraErroAbsoluto": 0.262,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "145413",
-              "nome": "Rafael Barbosa Coutinho",
+              "id": "99815",
+              "nome": "Arias",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.62,
+                "erro": 5.62,
+                "erroAbsoluto": 5.62
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 4.48,
+                "erro": 4.48,
+                "erroAbsoluto": 4.48
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.14,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "123005",
-              "nome": "Sidney de Carvalho Duarte",
+              "id": "94930",
+              "nome": "Lucas Paquetá",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 4.93,
+                "erro": 4.93,
+                "erroAbsoluto": 4.93
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 3.86,
+                "erro": 3.86,
+                "erroAbsoluto": 3.86
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.07,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "144889",
-              "nome": "Victor Gabriel Leite dos Santos",
+              "id": "96610",
+              "nome": "Matheus Pereira",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.17,
+                "erro": 5.17,
+                "erroAbsoluto": 5.17
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 4.076,
+                "erro": 4.076,
+                "erroAbsoluto": 4.076
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.094,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "129661",
-              "nome": "Wendel Silva Passos",
+              "id": "63007",
+              "nome": "Neymar",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 7.16,
+                "erro": 7.16,
+                "erroAbsoluto": 7.16
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 5.864,
+                "erro": 5.864,
+                "erroAbsoluto": 5.864
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.296,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
               "id": "88963",
-              "nome": "",
+              "nome": "Leonardo Jardim",
               "posicao": "TEC",
               "real": 0.0,
               "modeloA": {
@@ -20267,41 +20267,41 @@
               "_estrategia": "Conservador"
             },
             {
-              "id": "149993",
-              "nome": "Iago da Silva Machado",
+              "id": "71684",
+              "nome": "Gustavo Gómez",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 4.61,
+                "erro": 4.61,
+                "erroAbsoluto": 4.61
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 2.689,
+                "erro": 2.689,
+                "erroAbsoluto": 2.689
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 1.921,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
             },
             {
-              "id": "130393",
-              "nome": "Luiz Gustavo Marinho Ribeiro dos Santos",
+              "id": "37715",
+              "nome": "Thiago Silva",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 4.7,
+                "erro": 4.7,
+                "erroAbsoluto": 4.7
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 2.767,
+                "erro": 2.767,
+                "erroAbsoluto": 2.767
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 1.933,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Conservador"
@@ -20314,12 +20314,12 @@
             "amostras": 12,
             "amostrasCalibradas": 12,
             "percentualCalibrado": 100.0,
-            "maeA": 18.938,
-            "maeB": 17.607,
-            "viesA": -17.729,
-            "viesB": -16.461,
-            "melhoraAbsoluta": 1.33,
-            "melhoraPercentual": 7.03,
+            "maeA": 7.072,
+            "maeB": 5.25,
+            "viesA": 7.072,
+            "viesB": 5.25,
+            "melhoraAbsoluta": 1.822,
+            "melhoraPercentual": 25.77,
             "vitoriasA": 0,
             "vitoriasB": 12,
             "empates": 0,
@@ -20328,168 +20328,168 @@
           },
           "jogadores": [
             {
-              "id": "145705",
-              "nome": "Douglas Costa Telles",
+              "id": "98909",
+              "nome": "Cuello",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 7.32,
+                "erro": 7.32,
+                "erroAbsoluto": 7.32
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 4.759,
+                "erro": 4.759,
+                "erroAbsoluto": 4.759
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.561,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "151003",
-              "nome": "Eduardo Conceição Silva",
+              "id": "123101",
+              "nome": "Leozinho",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.69,
+                "erro": 6.69,
+                "erroAbsoluto": 6.69
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 4.22,
+                "erro": 4.22,
+                "erroAbsoluto": 4.22
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.47,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "146807",
-              "nome": "Rayan Passaglia Lelis",
+              "id": "143193",
+              "nome": "Viveros",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 8.54,
+                "erro": 8.54,
+                "erroAbsoluto": 8.54
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 5.802,
+                "erro": 5.802,
+                "erroAbsoluto": 5.802
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.738,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "84268",
-              "nome": "Georgemy Gonçalves",
+              "id": "69012",
+              "nome": "Santos",
               "posicao": "GOL",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.82,
+                "erro": 5.82,
+                "erroAbsoluto": 5.82
               },
               "modeloB": {
-                "projecao": -18.455,
-                "erro": -18.455,
-                "erroAbsoluto": 18.455
+                "projecao": 3.814,
+                "erro": 3.814,
+                "erroAbsoluto": 3.814
               },
-              "melhoraErroAbsoluto": 1.545,
+              "melhoraErroAbsoluto": 2.006,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "145413",
-              "nome": "Rafael Barbosa Coutinho",
+              "id": "99815",
+              "nome": "Arias",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 8.31,
+                "erro": 8.31,
+                "erroAbsoluto": 8.31
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 6.897,
+                "erro": 6.897,
+                "erroAbsoluto": 6.897
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.413,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "123005",
-              "nome": "Sidney de Carvalho Duarte",
+              "id": "68938",
+              "nome": "Giovanni Augusto",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 7.34,
+                "erro": 7.34,
+                "erroAbsoluto": 7.34
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 6.026,
+                "erro": 6.026,
+                "erroAbsoluto": 6.026
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.314,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "144889",
-              "nome": "Victor Gabriel Leite dos Santos",
+              "id": "96610",
+              "nome": "Matheus Pereira",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 7.1,
+                "erro": 7.1,
+                "erroAbsoluto": 7.1
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 5.81,
+                "erro": 5.81,
+                "erroAbsoluto": 5.81
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.29,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "129661",
-              "nome": "Wendel Silva Passos",
+              "id": "63007",
+              "nome": "Neymar",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 9.87,
+                "erro": 9.87,
+                "erroAbsoluto": 9.87
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 8.299,
+                "erro": 8.299,
+                "erroAbsoluto": 8.299
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.571,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
               "id": "88963",
-              "nome": "",
+              "nome": "Leonardo Jardim",
               "posicao": "TEC",
               "real": 0.0,
               "modeloA": {
@@ -20508,61 +20508,61 @@
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "149993",
-              "nome": "Iago da Silva Machado",
+              "id": "91772",
+              "nome": "David Duarte",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.79,
+                "erro": 5.79,
+                "erroAbsoluto": 5.79
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 3.712,
+                "erro": 3.712,
+                "erroAbsoluto": 3.712
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.078,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "130393",
-              "nome": "Luiz Gustavo Marinho Ribeiro dos Santos",
+              "id": "71684",
+              "nome": "Gustavo Gómez",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.59,
+                "erro": 5.59,
+                "erroAbsoluto": 5.59
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 3.539,
+                "erro": 3.539,
+                "erroAbsoluto": 3.539
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.051,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
             },
             {
-              "id": "139200",
-              "nome": "Pedro Kauã Rodrigues Machado",
+              "id": "97460",
+              "nome": "João Victor",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 5.25,
+                "erro": 5.25,
+                "erroAbsoluto": 5.25
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 3.244,
+                "erro": 3.244,
+                "erroAbsoluto": 3.244
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.006,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Equilibrado"
@@ -20575,12 +20575,12 @@
             "amostras": 12,
             "amostrasCalibradas": 12,
             "percentualCalibrado": 100.0,
-            "maeA": 18.974,
-            "maeB": 17.642,
-            "viesA": -17.692,
-            "viesB": -16.425,
-            "melhoraAbsoluta": 1.332,
-            "melhoraPercentual": 7.02,
+            "maeA": 8.725,
+            "maeB": 6.702,
+            "viesA": 8.725,
+            "viesB": 6.702,
+            "melhoraAbsoluta": 2.023,
+            "melhoraPercentual": 23.19,
             "vitoriasA": 0,
             "vitoriasB": 12,
             "empates": 0,
@@ -20589,168 +20589,168 @@
           },
           "jogadores": [
             {
-              "id": "145705",
-              "nome": "Douglas Costa Telles",
+              "id": "98909",
+              "nome": "Cuello",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 9.47,
+                "erro": 9.47,
+                "erroAbsoluto": 9.47
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 6.597,
+                "erro": 6.597,
+                "erroAbsoluto": 6.597
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.873,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "151003",
-              "nome": "Eduardo Conceição Silva",
+              "id": "123101",
+              "nome": "Leozinho",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 9.25,
+                "erro": 9.25,
+                "erroAbsoluto": 9.25
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 6.409,
+                "erro": 6.409,
+                "erroAbsoluto": 6.409
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.841,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "146807",
-              "nome": "Rayan Passaglia Lelis",
+              "id": "143193",
+              "nome": "Viveros",
               "posicao": "ATA",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 10.11,
+                "erro": 10.11,
+                "erroAbsoluto": 10.11
               },
               "modeloB": {
-                "projecao": -18.6,
-                "erro": -18.6,
-                "erroAbsoluto": 18.6
+                "projecao": 7.144,
+                "erro": 7.144,
+                "erroAbsoluto": 7.144
               },
-              "melhoraErroAbsoluto": 1.4,
+              "melhoraErroAbsoluto": 2.966,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "84268",
-              "nome": "Georgemy Gonçalves",
+              "id": "91101",
+              "nome": "Ronaldo",
               "posicao": "GOL",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 7.54,
+                "erro": 7.54,
+                "erroAbsoluto": 7.54
               },
               "modeloB": {
-                "projecao": -18.455,
-                "erro": -18.455,
-                "erroAbsoluto": 18.455
+                "projecao": 5.298,
+                "erro": 5.298,
+                "erroAbsoluto": 5.298
               },
-              "melhoraErroAbsoluto": 1.545,
+              "melhoraErroAbsoluto": 2.242,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "145413",
-              "nome": "Rafael Barbosa Coutinho",
+              "id": "99815",
+              "nome": "Arias",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 10.19,
+                "erro": 10.19,
+                "erroAbsoluto": 10.19
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 8.587,
+                "erro": 8.587,
+                "erroAbsoluto": 8.587
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.603,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "123005",
-              "nome": "Sidney de Carvalho Duarte",
+              "id": "68938",
+              "nome": "Giovanni Augusto",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 10.49,
+                "erro": 10.49,
+                "erroAbsoluto": 10.49
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 8.856,
+                "erro": 8.856,
+                "erroAbsoluto": 8.856
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.634,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "144889",
-              "nome": "Victor Gabriel Leite dos Santos",
+              "id": "96610",
+              "nome": "Matheus Pereira",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 8.31,
+                "erro": 8.31,
+                "erroAbsoluto": 8.31
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 6.897,
+                "erro": 6.897,
+                "erroAbsoluto": 6.897
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.413,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "129661",
-              "nome": "Wendel Silva Passos",
+              "id": "63007",
+              "nome": "Neymar",
               "posicao": "MEI",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 12.02,
+                "erro": 12.02,
+                "erroAbsoluto": 12.02
               },
               "modeloB": {
-                "projecao": -18.542,
-                "erro": -18.542,
-                "erroAbsoluto": 18.542
+                "projecao": 10.231,
+                "erro": 10.231,
+                "erroAbsoluto": 10.231
               },
-              "melhoraErroAbsoluto": 1.458,
+              "melhoraErroAbsoluto": 1.789,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
               "id": "88963",
-              "nome": "",
+              "nome": "Leonardo Jardim",
               "posicao": "TEC",
               "real": 0.0,
               "modeloA": {
@@ -20769,61 +20769,61 @@
               "_estrategia": "Agressivo"
             },
             {
-              "id": "149993",
-              "nome": "Iago da Silva Machado",
+              "id": "91772",
+              "nome": "David Duarte",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.71,
+                "erro": 6.71,
+                "erroAbsoluto": 6.71
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 4.51,
+                "erro": 4.51,
+                "erroAbsoluto": 4.51
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.2,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "130393",
-              "nome": "Luiz Gustavo Marinho Ribeiro dos Santos",
+              "id": "71684",
+              "nome": "Gustavo Gómez",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.18,
+                "erro": 6.18,
+                "erroAbsoluto": 6.18
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 4.051,
+                "erro": 4.051,
+                "erroAbsoluto": 4.051
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.129,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"
             },
             {
-              "id": "139200",
-              "nome": "Pedro Kauã Rodrigues Machado",
+              "id": "97460",
+              "nome": "João Victor",
               "posicao": "ZAG",
               "real": 0.0,
               "modeloA": {
-                "projecao": -20.0,
-                "erro": -20.0,
-                "erroAbsoluto": 20.0
+                "projecao": 6.74,
+                "erro": 6.74,
+                "erroAbsoluto": 6.74
               },
               "modeloB": {
-                "projecao": -18.661,
-                "erro": -18.661,
-                "erroAbsoluto": 18.661
+                "projecao": 4.536,
+                "erro": 4.536,
+                "erroAbsoluto": 4.536
               },
-              "melhoraErroAbsoluto": 1.339,
+              "melhoraErroAbsoluto": 2.204,
               "vencedor": "B",
               "calibracaoAplicada": true,
               "_estrategia": "Agressivo"

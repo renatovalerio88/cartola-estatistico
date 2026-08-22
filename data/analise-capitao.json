@@ -15261,215 +15261,215 @@
           "estrategia": "Conservador",
           "quantidadeJogadores": 11,
           "modeloA": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 7.16,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 76.331,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 7.16,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 1.0,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.18
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 0.9351,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.13091
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.1545,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.01545
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.0,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.0
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.9798,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.07839
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.5095,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.02548
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.8455,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00154
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.8455,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00154
               }
             }
           },
           "modeloB": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 7.16,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 76.331,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 7.16,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 1.0,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.18
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 0.9351,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.13091
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.1545,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.01545
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.0,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.0
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.9798,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.07839
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.5095,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.02548
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.8455,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00154
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.8455,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00154
               }
             }
           },
           "melhorCapitaoReal": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
+            "id": "122121",
+            "nome": "Túlio Eduardo",
             "posicao": "ATA",
-            "projecao": -20.0,
+            "projecao": 5.54,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 31.237,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 5.54,
+                "normalizado": 0.3887,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.10883
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 7.0,
+                "normalizado": 0.0706,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.01271
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 7.0,
+                "normalizado": 0.2052,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.02873
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.1
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 47.75,
+                "normalizado": 0.159,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.0159
               },
               "explosao": {
                 "valor": 0.0,
-                "normalizado": 0.5,
+                "normalizado": 0.0,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.0
               },
               "forma": {
                 "valor": 50.0,
-                "normalizado": 0.5,
+                "normalizado": 0.0431,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.00216
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 63.0,
+                "normalizado": 0.481,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.02405
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 0.0,
+                "normalizado": 0.0,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.01
               },
               "volatilidade": {
                 "valor": 0.0,
-                "normalizado": 0.5,
+                "normalizado": 0.0,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.01
               }
             }
           },
@@ -15479,223 +15479,223 @@
             "pontosCapitaoB": 0.0,
             "melhorPontuacaoReal": 0.0,
             "ganhoBvsA": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         },
         {
           "estrategia": "Equilibrado",
           "quantidadeJogadores": 11,
           "modeloA": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 9.87,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 77.469,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 9.87,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 0.7241,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.13034
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 1.0,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.14
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.4878,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.04878
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.2651,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.02651
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.7316,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05853
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.6146,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.03073
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.5112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00489
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.5089,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00491
               }
             }
           },
           "modeloB": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 9.87,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 77.469,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 9.87,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 0.7241,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.13034
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 1.0,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.14
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.4878,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.04878
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.2651,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.02651
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.7316,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05853
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.6146,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.03073
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.5112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00489
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.5089,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00491
               }
             }
           },
           "melhorCapitaoReal": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
+            "id": "98909",
+            "nome": "Cuello",
             "posicao": "ATA",
-            "projecao": -20.0,
+            "projecao": 7.32,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 53.673,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 7.32,
+                "normalizado": 0.4481,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.12545
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 20.5,
+                "normalizado": 0.592,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.10655
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 8.016,
+                "normalizado": 0.4347,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.06085
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 27.98,
+                "normalizado": 0.3848,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.03848
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 64.841,
+                "normalizado": 0.6657,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.06657
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 78.468,
+                "normalizado": 0.6876,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05501
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 66.569,
+                "normalizado": 0.5644,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.02822
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 97.113,
+                "normalizado": 0.9569,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.04784
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 55.816,
+                "normalizado": 0.614,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00386
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 7.202,
+                "normalizado": 0.6112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00389
               }
             }
           },
@@ -15705,223 +15705,223 @@
             "pontosCapitaoB": 0.0,
             "melhorPontuacaoReal": 0.0,
             "ganhoBvsA": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         },
         {
           "estrategia": "Agressivo",
           "quantidadeJogadores": 11,
           "modeloA": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 12.02,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 77.469,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 12.02,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 0.7241,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.13034
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 1.0,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.14
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.4878,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.04878
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.2651,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.02651
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.7316,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05853
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.6146,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.03073
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.5112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00489
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.5089,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00491
               }
             }
           },
           "modeloB": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
-            "posicao": "ATA",
-            "projecao": -20.0,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 12.02,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 77.469,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 12.02,
+                "normalizado": 1.0,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.28
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 22.8,
+                "normalizado": 0.7241,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.13034
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 11.268,
+                "normalizado": 1.0,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.14
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 35.47,
+                "normalizado": 0.4878,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.04878
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 40.712,
+                "normalizado": 0.2651,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.02651
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 81.501,
+                "normalizado": 0.7316,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05853
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 70.223,
+                "normalizado": 0.6146,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.03073
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 50.011,
+                "normalizado": 0.5112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00489
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 6.453,
+                "normalizado": 0.5089,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00491
               }
             }
           },
           "melhorCapitaoReal": {
-            "id": "145705",
-            "nome": "Douglas Costa Telles",
+            "id": "98909",
+            "nome": "Cuello",
             "posicao": "ATA",
-            "projecao": -20.0,
+            "projecao": 9.47,
             "real": 0.0,
-            "scoreCapitao": 50.0,
+            "scoreCapitao": 56.894,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": -20.0,
-                "normalizado": 0.5,
+                "valor": 9.47,
+                "normalizado": 0.5634,
                 "peso": 0.28,
-                "contribuicao": 0.14
+                "contribuicao": 0.15774
               },
               "teto": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 20.5,
+                "normalizado": 0.592,
                 "peso": 0.18,
-                "contribuicao": 0.09
+                "contribuicao": 0.10655
               },
               "mediaRecente": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 8.016,
+                "normalizado": 0.4347,
                 "peso": 0.14,
-                "contribuicao": 0.07
+                "contribuicao": 0.06085
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 27.98,
+                "normalizado": 0.3848,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.03848
               },
               "confianca": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 64.841,
+                "normalizado": 0.6657,
                 "peso": 0.1,
-                "contribuicao": 0.05
+                "contribuicao": 0.06657
               },
               "explosao": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 78.468,
+                "normalizado": 0.6876,
                 "peso": 0.08,
-                "contribuicao": 0.04
+                "contribuicao": 0.05501
               },
               "forma": {
-                "valor": 50.0,
-                "normalizado": 0.5,
+                "valor": 66.569,
+                "normalizado": 0.5644,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.02822
               },
               "potencialOfensivo": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 97.113,
+                "normalizado": 0.9553,
                 "peso": 0.05,
-                "contribuicao": 0.025
+                "contribuicao": 0.04777
               },
               "risco": {
-                "valor": 55.0,
-                "normalizado": 0.5,
+                "valor": 55.816,
+                "normalizado": 0.614,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00386
               },
               "volatilidade": {
-                "valor": 0.0,
-                "normalizado": 0.5,
+                "valor": 7.202,
+                "normalizado": 0.6112,
                 "peso": -0.01,
-                "contribuicao": 0.005
+                "contribuicao": 0.00389
               }
             }
           },
@@ -15931,8 +15931,8 @@
             "pontosCapitaoB": 0.0,
             "melhorPontuacaoReal": 0.0,
             "ganhoBvsA": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         }
       ]
