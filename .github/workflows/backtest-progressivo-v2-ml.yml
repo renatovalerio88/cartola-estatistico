@@ -8,6 +8,7 @@ on:
       - 'scripts/benchmark_modelos.py'
       - 'scripts/validar_ml_vs_v1.py'
       - 'scripts/validar_producao_v2.py'
+      - 'scripts/gerar_projecoes_v2_atual.py'
       - '.github/workflows/backtest-progressivo-v2-ml.yml'
   workflow_dispatch:
 
@@ -39,6 +40,7 @@ jobs:
           python -m py_compile scripts/benchmark_modelos.py
           python -m py_compile scripts/validar_ml_vs_v1.py
           python -m py_compile scripts/validar_producao_v2.py
+          python -m py_compile scripts/gerar_projecoes_v2_atual.py
 
       - name: Gerar matriz sem vazamento futuro
         run: python scripts/gerar_matriz_features.py
@@ -52,6 +54,9 @@ jobs:
       - name: Validar candidato no mercado atual
         run: PYTHONPATH=scripts python scripts/validar_producao_v2.py
 
+      - name: Gerar projeções oficiais V2 não degeneradas
+        run: PYTHONPATH=scripts python scripts/gerar_projecoes_v2_atual.py
+
       - name: Validar saídas e gates
         run: |
           python - <<'PY'
@@ -63,6 +68,7 @@ jobs:
               Path('data/modelagem/benchmark_modelos.json'),
               Path('data/modelagem/validacao_ml_vs_v1.json'),
               Path('data/modelagem/validacao_producao_v2.json'),
+              Path('data/modelagem/projecoes_v2_atual.json'),
           ]
           for p in arquivos:
               assert p.exists(), f'{p} não foi gerado'
@@ -70,6 +76,7 @@ jobs:
           b = json.loads(arquivos[1].read_text(encoding='utf-8'))
           v = json.loads(arquivos[2].read_text(encoding='utf-8'))
           p = json.loads(arquivos[3].read_text(encoding='utf-8'))
+          atual = json.loads(arquivos[4].read_text(encoding='utf-8'))
 
           assert b.get('walkForward') is True
           assert b.get('antiLeakage') is True
@@ -79,6 +86,18 @@ jobs:
           assert p.get('baselinePreservada') is True
           assert p.get('antiLeakage') is True
           assert p.get('decisao') in {'MANTER_V1','APTO_PARA_INTEGRACAO_V2'}
+
+          assert atual.get('versao') == 'V2'
+          assert atual.get('modelo') == 'RandomForest'
+          assert atual.get('antiLeakage') is True
+          assert int(atual.get('jogadoresComProjecao', 0)) >= 100
+          stats_alvo = atual.get('estatisticasAlvoTreino') or {}
+          stats_pred = atual.get('estatisticasPredicoes') or {}
+          assert float(stats_alvo.get('desvio', 0)) >= 0.5, stats_alvo
+          assert float(stats_pred.get('desvio', 0)) >= 0.1, stats_pred
+          assert int(stats_pred.get('valoresUnicos', 0)) >= 5, stats_pred
+          valores = list((atual.get('predicoes') or {}).values())
+          assert valores and any(abs(float(x)) > 0.001 for x in valores), 'Todas as projeções V2 são zero'
 
           print('VENCEDOR_BENCH=', b.get('vencedorExperimental'))
           print(json.dumps({
@@ -90,6 +109,8 @@ jobs:
               'gatesProducao': p.get('gates'),
               'formacoesValidas': p.get('formacoesValidas'),
               'decisaoProducao': p.get('decisao'),
+              'estatisticasAlvoTreino': stats_alvo,
+              'estatisticasPredicoes': stats_pred,
           }, ensure_ascii=False, indent=2))
           PY
 
@@ -104,4 +125,5 @@ jobs:
             data/modelagem/validacao_ml_vs_v1.md
             data/modelagem/validacao_producao_v2.json
             data/modelagem/validacao_producao_v2.md
+            data/modelagem/projecoes_v2_atual.json
           if-no-files-found: error

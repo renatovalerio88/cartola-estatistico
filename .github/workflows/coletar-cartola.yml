@@ -121,9 +121,21 @@ jobs:
           assert int(dados.get("jogadoresComProjecao", 0)) >= 100
           assert isinstance(dados.get("predicoes"), dict)
 
+          stats_alvo = dados.get("estatisticasAlvoTreino") or {}
+          stats_pred = dados.get("estatisticasPredicoes") or {}
+          assert float(stats_alvo.get("desvio", 0)) >= 0.5, stats_alvo
+          assert float(stats_pred.get("desvio", 0)) >= 0.1, stats_pred
+          assert int(stats_pred.get("valoresUnicos", 0)) >= 5, stats_pred
+
+          valores = list(dados["predicoes"].values())
+          assert valores, "Nenhuma projeção V2 foi gerada"
+          assert any(abs(float(v)) > 0.001 for v in valores), "Todas as projeções V2 são zero"
+
           print(
               f"V2 válida para rodada {rodada}: "
-              f"{dados['jogadoresComProjecao']} jogadores com projeção."
+              f"{dados['jogadoresComProjecao']} jogadores com projeção; "
+              f"média={stats_pred.get('media')} desvio={stats_pred.get('desvio')} "
+              f"min={stats_pred.get('min')} max={stats_pred.get('max')}."
           )
           PY
 
