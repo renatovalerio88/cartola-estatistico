@@ -1,0 +1,47 @@
+name: Cartola Estatístico - Integração Capitão
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/integracao-capitao-posicional
+    paths:
+      - "scripts/processamento/validar_integracao_capitao.py"
+      - "scripts/processamento/torneio_capitao.py"
+      - ".github/workflows/validar-integracao-capitao.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-integracao-capitao
+  cancel-in-progress: true
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/integracao-capitao-posicional
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validar integração
+        run: python scripts/processamento/validar_integracao_capitao.py
+      - name: Persistir resultado
+        if: always()
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          if [ -f data/validacao-integracao-capitao.json ]; then
+            git add data/validacao-integracao-capitao.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Registra validação integrada do capitão"
+              git pull --rebase origin feat/integracao-capitao-posicional
+              git push origin HEAD:feat/integracao-capitao-posicional
+            fi
+          fi
