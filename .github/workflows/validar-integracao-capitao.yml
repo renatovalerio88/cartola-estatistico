@@ -7,7 +7,11 @@ on:
       - feat/integracao-capitao-posicional
     paths:
       - "scripts/processamento/validar_integracao_capitao.py"
+      - "scripts/processamento/auditar_integracao_frontend.py"
       - "scripts/processamento/torneio_capitao.py"
+      - "js/capitao.js"
+      - "js/escalacoes/**"
+      - "index.html"
       - ".github/workflows/validar-integracao-capitao.yml"
 
 permissions:
@@ -29,19 +33,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Validar integração
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validar sintaxe JavaScript
+        run: |
+          node --check js/capitao.js
+          node --check js/escalacoes/dados.js
+          node --check js/escalacoes/cards.js
+      - name: Validar ciência do capitão
         run: python scripts/processamento/validar_integracao_capitao.py
-      - name: Persistir resultado
+      - name: Auditar integração frontend
+        run: python scripts/processamento/auditar_integracao_frontend.py
+      - name: Persistir resultados
         if: always()
         shell: bash
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          if [ -f data/validacao-integracao-capitao.json ]; then
-            git add data/validacao-integracao-capitao.json
-            if ! git diff --cached --quiet; then
-              git commit -m "Registra validação integrada do capitão"
-              git pull --rebase origin feat/integracao-capitao-posicional
-              git push origin HEAD:feat/integracao-capitao-posicional
-            fi
+          for f in data/validacao-integracao-capitao.json data/auditoria-integracao-frontend.json; do
+            [ -f "$f" ] && git add "$f"
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "Registra auditoria da integração do capitão"
+            git pull --rebase origin feat/integracao-capitao-posicional
+            git push origin HEAD:feat/integracao-capitao-posicional
           fi
