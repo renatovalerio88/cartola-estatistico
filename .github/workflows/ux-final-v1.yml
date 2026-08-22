@@ -1,0 +1,31 @@
+name: Cartola Estatístico - UX Final V1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/ux-final-v1]
+    paths:
+      - "js/recomendacoes/ux-clean.js"
+      - ".github/workflows/ux-final-v1.yml"
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/ux-final-v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validar sintaxe
+        run: node --check js/recomendacoes/ux-clean.js
+      - name: Validar recursos finais
+        shell: bash
+        run: |
+          grep -q "Decisão do modelo" js/recomendacoes/ux-clean.js
+          grep -q "Ordenar por" js/recomendacoes/ux-clean.js
+          grep -q "Rodada .* em andamento" js/recomendacoes/ux-clean.js
+          grep -q "Onde atacar" js/recomendacoes/ux-clean.js
+          grep -q "Ver todos os" js/recomendacoes/ux-clean.js
+          grep -q "Prioriza segurança" js/recomendacoes/ux-clean.js
