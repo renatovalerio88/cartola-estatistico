@@ -1,0 +1,64 @@
+name: Cartola Estatístico - Validação Final R24 Site
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/validacao-final-r24-site
+    paths:
+      - "scripts/processamento/auditar_validacao_final_r24.py"
+      - ".github/workflows/validacao-final-r24-site.yml"
+      - "index.html"
+      - "js/**"
+      - "data/api/status.json"
+      - "data/api/rodada-24/jogadores.json"
+      - "data/validacao-integracao-capitao.json"
+      - "data/auditoria-bloco-final-motor.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-validacao-final-r24-site
+  cancel-in-progress: true
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/validacao-final-r24-site
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validar sintaxe frontend
+        run: |
+          node --check js/capitao.js
+          node --check js/escalacoes/dados.js
+          node --check js/escalacoes/cards.js
+          node --check js/recomendacoes/dados.js
+          node --check js/recomendacoes/ranking.js
+          node --check js/recomendacoes/cards.js
+          node --check js/analise.js
+      - name: Auditar R24 e site
+        run: python scripts/processamento/auditar_validacao_final_r24.py
+      - name: Persistir resultado
+        if: always()
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          if [ -f data/auditoria-validacao-final-r24.json ]; then
+            git add data/auditoria-validacao-final-r24.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Registra auditoria final da R24 e site"
+              git pull --rebase origin feat/validacao-final-r24-site
+              git push origin HEAD:feat/validacao-final-r24-site
+            fi
+          fi
