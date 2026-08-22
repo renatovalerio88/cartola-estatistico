@@ -1,0 +1,12 @@
+{
+  "modelo": "auditoria_ux_clean_v1",
+  "aprovado": true,
+  "checks": {
+    "scriptCarregado": true,
+    "painelUnico": true,
+    "seletorJogadores": true,
+    "criteriosPorPosicao": true,
+    "responsivo": true
+  },
+  "falhas": []
+}
