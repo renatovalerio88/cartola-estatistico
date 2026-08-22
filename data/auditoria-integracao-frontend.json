@@ -1,0 +1,18 @@
+{
+  "modelo": "auditoria_integracao_frontend_v1",
+  "aprovado": true,
+  "checks": {
+    "validacaoCientificaAprovada": true,
+    "modeloPosicionalPresente": true,
+    "seletorNormalizadoPresente": true,
+    "integracaoTimesComFallback": true,
+    "timesPossuemSeletorCapitao": true,
+    "motorCarregadoAntesEscalacoes": true,
+    "formacoesSemViesExplicito": true,
+    "patrimonioConfiguravel": true,
+    "bancoImplementado": true,
+    "reservaLuxoImplementada": true,
+    "titularidadeImplementada": true,
+    "adequacaoRodadaImplementada": true
+  }
+}
