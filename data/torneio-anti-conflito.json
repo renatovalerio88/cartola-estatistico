@@ -1,0 +1,31 @@
+{
+  "modelo": "torneio_anti_conflito_reotimizacao_v1",
+  "semVazamentoFuturo": true,
+  "limitePerdaPenalidade": 1.5,
+  "resumo": {
+    "baseline": {
+      "amostras": 0,
+      "mediaReal": null,
+      "mediaProjecao": null,
+      "mediaConflitos": null
+    },
+    "penalidade": {
+      "amostras": 0,
+      "mediaReal": null,
+      "mediaProjecao": null,
+      "mediaConflitos": null,
+      "ganhoVsBaseline": null
+    },
+    "bloqueio": {
+      "amostras": 0,
+      "mediaReal": null,
+      "mediaProjecao": null,
+      "mediaConflitos": null,
+      "ganhoVsBaseline": null
+    }
+  },
+  "melhorCandidato": "baseline",
+  "ganhoMelhorCandidato": 0,
+  "decisao": "MANTER_BASELINE",
+  "registros": []
+}
