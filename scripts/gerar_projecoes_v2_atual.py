@@ -38,6 +38,42 @@ def num(v: Any, default: float = 0.0) -> float:
         return default
 
 
+def alvo_pontuacao(linha: dict[str, Any]) -> float:
+    """Extrai a pontuação real da matriz científica sem mascarar schema errado.
+
+    A matriz V2 grava target como objeto: {"pontuacaoReal": ...}. A primeira
+    integração tratava o objeto inteiro como float e silenciosamente convertia
+    todos os targets para 0.0. Esta função aceita o schema atual e o legado,
+    mas falha de forma explícita quando a pontuação real não existe.
+    """
+    target = linha.get("target")
+    if isinstance(target, dict):
+        valor = target.get("pontuacaoReal")
+    else:
+        valor = target
+
+    if valor is None:
+        raise ValueError(
+            f"Target sem pontuacaoReal para atleta={linha.get('atletaId')} "
+            f"rodada={linha.get('rodada')}"
+        )
+
+    try:
+        resultado = float(valor)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"Target inválido para atleta={linha.get('atletaId')} "
+            f"rodada={linha.get('rodada')}: {valor!r}"
+        ) from exc
+
+    if not math.isfinite(resultado):
+        raise ValueError(
+            f"Target não finito para atleta={linha.get('atletaId')} "
+            f"rodada={linha.get('rodada')}: {valor!r}"
+        )
+    return resultado
+
+
 def carregar_historico(atleta_id: Any, rodada: int) -> list[dict[str, Any]]:
     path = BASE_HIST / f"{atleta_id}.json"
     if not path.exists():
@@ -77,6 +113,33 @@ def contexto_atual(j: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def validar_distribuicao(nome: str, valores: np.ndarray, desvio_minimo: float) -> dict[str, float]:
+    if valores.size == 0:
+        raise SystemExit(f"{nome} vazio")
+    if not np.isfinite(valores).all():
+        raise SystemExit(f"{nome} contém valores não finitos")
+
+    media = float(np.mean(valores))
+    desvio = float(np.std(valores))
+    minimo = float(np.min(valores))
+    maximo = float(np.max(valores))
+    unicos = int(np.unique(np.round(valores, 6)).size)
+
+    if desvio < desvio_minimo or unicos < 5:
+        raise SystemExit(
+            f"{nome} degenerado: média={media:.3f}, desvio={desvio:.3f}, "
+            f"min={minimo:.3f}, max={maximo:.3f}, únicos={unicos}"
+        )
+
+    return {
+        "media": round(media, 4),
+        "desvio": round(desvio, 4),
+        "min": round(minimo, 4),
+        "max": round(maximo, 4),
+        "valoresUnicos": unicos,
+    }
+
+
 def main() -> None:
     status = ler(STATUS)
     rodada = int(status["rodada_atual"])
@@ -91,7 +154,12 @@ def main() -> None:
         raise SystemExit(f"Treino V2 insuficiente: {len(treino)}")
 
     X_treino = np.array([vetor_features(l) for l in treino], dtype=float)
-    y_treino = np.array([num(l.get("target")) for l in treino], dtype=float)
+    try:
+        y_treino = np.array([alvo_pontuacao(l) for l in treino], dtype=float)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+
+    estatisticas_alvo = validar_distribuicao("Targets de treino V2", y_treino, 0.5)
 
     linhas = []
     for j in jogadores:
@@ -115,7 +183,8 @@ def main() -> None:
     modelo = criar_modelos()[MODELO]
     modelo.fit(X_treino, y_treino)
     X_atual = np.array([vetor_features(l) for l in linhas], dtype=float)
-    preds = modelo.predict(X_atual)
+    preds = np.asarray(modelo.predict(X_atual), dtype=float)
+    estatisticas_predicoes = validar_distribuicao("Predições V2", preds, 0.1)
 
     predicoes = {
         str(linha["id"]): round(float(pred), 3)
@@ -129,6 +198,8 @@ def main() -> None:
         "antiLeakage": all(int(l.get("rodada") or 999) < rodada for l in treino),
         "amostrasTreino": len(treino),
         "jogadoresComProjecao": len(predicoes),
+        "estatisticasAlvoTreino": estatisticas_alvo,
+        "estatisticasPredicoes": estatisticas_predicoes,
         "predicoes": predicoes,
     }
     if not saida["antiLeakage"]:
@@ -136,7 +207,16 @@ def main() -> None:
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(saida, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({k: saida[k] for k in ("versao", "modelo", "rodada", "antiLeakage", "amostrasTreino", "jogadoresComProjecao")}, ensure_ascii=False, indent=2))
+    print(json.dumps({
+        "versao": saida["versao"],
+        "modelo": saida["modelo"],
+        "rodada": saida["rodada"],
+        "antiLeakage": saida["antiLeakage"],
+        "amostrasTreino": saida["amostrasTreino"],
+        "jogadoresComProjecao": saida["jogadoresComProjecao"],
+        "estatisticasAlvoTreino": saida["estatisticasAlvoTreino"],
+        "estatisticasPredicoes": saida["estatisticasPredicoes"],
+    }, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
