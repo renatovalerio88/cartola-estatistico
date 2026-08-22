@@ -1,7 +1,6 @@
 """Auditoria estática do bloco final do motor e frontend."""
 from pathlib import Path
 import json
-import re
 
 ROOT = Path(__file__).resolve().parents[2]
 SAIDA = ROOT / "data" / "auditoria-bloco-final-motor.json"
@@ -20,6 +19,10 @@ def main():
         "correcaoRecursaoPatrimonio": (
             "definirPatrimonioInternoEscalacoes" in dados
             and "window.definirPatrimonioEscalacoes =\n    atualizarPatrimonioEscalacoes" in dados
+        ),
+        "patrimonioPadrao200": (
+            "const PATRIMONIO_PADRAO_ESCALACOES =\n  200;" in dados
+            and "usar C$ 200 apenas como patrimônio padrão inicial" in dados
         ),
         "patrimonioSemBanco": (
             "validarPatrimonioEscalacao" in dados
@@ -51,7 +54,7 @@ def main():
     }
 
     resultado = {
-        "modelo": "auditoria_bloco_final_motor_v1",
+        "modelo": "auditoria_bloco_final_motor_v2",
         "aprovado": all(checks.values()),
         "checks": checks,
         "falhas": [nome for nome, ok in checks.items() if not ok],
