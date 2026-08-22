@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/gerar_matriz_features.py'
       - 'scripts/benchmark_modelos.py'
+      - 'scripts/validar_ml_vs_v1.py'
       - '.github/workflows/backtest-progressivo-v2-ml.yml'
   workflow_dispatch:
 
@@ -15,7 +16,7 @@ permissions:
 jobs:
   benchmark-ml:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -35,6 +36,7 @@ jobs:
         run: |
           python -m py_compile scripts/gerar_matriz_features.py
           python -m py_compile scripts/benchmark_modelos.py
+          python -m py_compile scripts/validar_ml_vs_v1.py
 
       - name: Gerar matriz sem vazamento futuro
         run: python scripts/gerar_matriz_features.py
@@ -42,23 +44,37 @@ jobs:
       - name: Executar benchmark walk-forward de modelos
         run: python scripts/benchmark_modelos.py
 
-      - name: Validar saídas
+      - name: Comparar ML diretamente com V1 oficial
+        run: PYTHONPATH=scripts python scripts/validar_ml_vs_v1.py
+
+      - name: Validar saídas e gate
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          matriz = Path('data/modelagem/matriz_features.json')
-          bench = Path('data/modelagem/benchmark_modelos.json')
-          assert matriz.exists(), 'matriz_features.json não foi gerada'
-          assert bench.exists(), 'benchmark_modelos.json não foi gerado'
+          arquivos = [
+              Path('data/modelagem/matriz_features.json'),
+              Path('data/modelagem/benchmark_modelos.json'),
+              Path('data/modelagem/validacao_ml_vs_v1.json'),
+          ]
+          for p in arquivos:
+              assert p.exists(), f'{p} não foi gerado'
 
-          m = json.loads(matriz.read_text(encoding='utf-8'))
-          b = json.loads(bench.read_text(encoding='utf-8'))
-
-          print('TIPO_MATRIZ=', type(m).__name__)
-          print('CHAVES_BENCH=', sorted(b.keys()) if isinstance(b, dict) else type(b).__name__)
-          print(json.dumps(b, ensure_ascii=False, indent=2)[:12000])
+          b = json.loads(arquivos[1].read_text(encoding='utf-8'))
+          v = json.loads(arquivos[2].read_text(encoding='utf-8'))
+          assert b.get('walkForward') is True
+          assert b.get('antiLeakage') is True
+          assert v.get('walkForward') is True
+          assert v.get('antiLeakage') is True
+          assert v.get('decisao') in {'MANTER_V1','APTO_PARA_TESTE_DE_PRODUCAO'}
+          print('VENCEDOR_BENCH=', b.get('vencedorExperimental'))
+          print(json.dumps({
+              'resumoDiretoVsV1': v.get('resumo'),
+              'gates': v.get('gates'),
+              'candidatoApto': v.get('candidatoApto'),
+              'decisao': v.get('decisao'),
+          }, ensure_ascii=False, indent=2))
           PY
 
       - name: Publicar benchmark científico
@@ -68,4 +84,6 @@ jobs:
           path: |
             data/modelagem/matriz_features.json
             data/modelagem/benchmark_modelos.json
+            data/modelagem/validacao_ml_vs_v1.json
+            data/modelagem/validacao_ml_vs_v1.md
           if-no-files-found: error
