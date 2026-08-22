@@ -1,5 +1,5 @@
 {
-  "modelo": "auditoria_validacao_final_r24_v2",
+  "modelo": "auditoria_validacao_final_r24_v3",
   "rodada": 24,
   "jogadoresRodada": 772,
   "aprovado": true,
@@ -11,7 +11,11 @@
     "patrimonioPadrao200": true,
     "paginasPrincipaisPresentes": true,
     "moduloAnalisePresente": true,
-    "capitaoAntesEscalacoes": true
+    "capitaoAntesEscalacoes": true,
+    "filtrosUiPresentes": true,
+    "filtroTimesUsaEstadoExclusao": true,
+    "filtroTimesRecalculoRobusto": true,
+    "filtroTimesAutoAuditoria": true
   },
   "falhas": []
 }
