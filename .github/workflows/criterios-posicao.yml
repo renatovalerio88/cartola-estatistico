@@ -1,0 +1,36 @@
+name: Cartola Estatístico - Critérios por Posição
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/fechamento-cientifico-producao]
+permissions:
+  contents: write
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/fechamento-cientifico-producao
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Sintaxe do motor
+        run: node --check js/motor/pesos.js
+      - name: Critérios elegíveis por posição
+        run: python scripts/processamento/auditar_criterios_por_posicao.py
+      - name: Persistir auditoria
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add data/auditoria-criterios-por-posicao.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Registra auditoria de critérios por posição'
+            git pull --rebase origin feat/fechamento-cientifico-producao
+            git push origin HEAD:feat/fechamento-cientifico-producao
+          fi
