@@ -1,1045 +1,260 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Escalações — integração dos filtros manuais
-
-   Objetivo:
-
-   Garantir que Times sugeridos consumam exatamente a mesma
-   base ativa da aba Recomendações após exclusões manuais
-   de clubes e jogadores.
-
-   Corrige o cenário:
-
-   - usuário exclui Santos;
-   - usuário exclui Neymar;
-   - Recomendações atualizam;
-   - Conservador / Equilibrado / Agressivo precisam ser
-     remontados SEM esses candidatos.
-
-   IMPORTANTE:
-
-   Este arquivo NÃO:
-   - recalcula projeções;
-   - altera pesos;
-   - altera patrimônio;
-   - altera regra do banco;
-   - altera Reserva de Luxo;
-   - altera formação;
-   - altera histórico.
-
-   Apenas garante que a montagem das escalações receba
-   a base filtrada correta.
-
+   Escalações — integração robusta dos filtros manuais
    ========================================================= */
 
-
 (function () {
-
   "use strict";
 
-
-  /* =======================================================
-     CÓPIA SEGURA
-     ======================================================= */
-
-
-  function copiarJogadorFiltroEscalacao(
-    jogador
-  ) {
-
-    if (
-      !jogador ||
-      typeof jogador !==
-        "object"
-    ) {
-
-      return jogador;
-
-    }
-
-
-    return {
-
-      ...jogador,
-
-      scouts: {
-        ...(jogador.scouts || {})
-      },
-
-      historico:
-        Array.isArray(
-          jogador.historico
-        )
-          ? jogador.historico.map(
-              item => ({
-
-                ...item,
-
-                scouts: {
-                  ...(item?.scouts || {})
-                }
-
-              })
-            )
-          : jogador.historico
-
-    };
-
+  function texto(valor) {
+    return String(valor ?? "").trim();
   }
 
-
-  /* =======================================================
-     ID
-     ======================================================= */
-
-
-  function obterIdFiltroEscalacao(
-    jogador
-  ) {
-
-    return String(
-
-      jogador?.id
-
-      ??
-
-      jogador?.atletaId
-
-      ??
-
-      jogador?.atleta_id
-
-      ??
-
+  function idJogador(jogador) {
+    return texto(
+      jogador?.id ??
+      jogador?.atletaId ??
+      jogador?.atleta_id ??
+      jogador?.atleta?.id ??
       ""
-
     );
-
   }
 
-
-  /* =======================================================
-     CLUBE
-     ======================================================= */
-
-
-  function obterClubeFiltroEscalacao(
-    jogador
-  ) {
-
-    return String(
-
-      jogador?.siglaClube
-
-      ??
-
-      jogador?.clubeSigla
-
-      ??
-
-      jogador?.clube
-
-      ??
-
+  function clubeJogador(jogador) {
+    return texto(
+      jogador?.siglaClube ??
+      jogador?.clubeSigla ??
+      jogador?.clube?.abreviacao ??
+      jogador?.clube ??
+      jogador?.atleta?.siglaClube ??
+      jogador?.atleta?.clubeSigla ??
+      jogador?.atleta?.clube?.abreviacao ??
+      jogador?.atleta?.clube ??
       ""
-
-    )
-      .trim()
-      .toUpperCase();
-
+    ).toUpperCase();
   }
 
+  function copiar(jogador) {
+    if (!jogador || typeof jogador !== "object") return jogador;
+    return {
+      ...jogador,
+      scouts: { ...(jogador.scouts || {}) },
+      historico: Array.isArray(jogador.historico)
+        ? jogador.historico.map(item => ({
+            ...item,
+            scouts: { ...(item?.scouts || {}) }
+          }))
+        : jogador.historico
+    };
+  }
 
-  /* =======================================================
-     FILTROS ATIVOS
-     ======================================================= */
-
-
-  function obterEstadoFiltrosEscalacao() {
-
+  function estadoFiltros() {
     try {
-
       if (
         window.CartolaFiltrosExclusao &&
-        typeof window
-          .CartolaFiltrosExclusao
-          .obterEstado ===
-          "function"
+        typeof window.CartolaFiltrosExclusao.obterEstado === "function"
       ) {
-
-        const filtros =
-          window
-            .CartolaFiltrosExclusao
-            .obterEstado();
-
-
-        if (
-          filtros &&
-          typeof filtros ===
-            "object"
-        ) {
-
-          return filtros;
-
-        }
-
+        return window.CartolaFiltrosExclusao.obterEstado() || {};
       }
-
     } catch (erro) {
-
-      console.warn(
-        "Não foi possível consultar os filtros manuais:",
-        erro
-      );
-
+      console.warn("Falha ao consultar filtros:", erro);
     }
+    return {};
+  }
 
-
+  function conjuntosExclusao() {
+    const estado = estadoFiltros();
     return {
-
-      clubesExcluidos: [],
-
-      jogadoresExcluidos: []
-
+      clubes: new Set(
+        (Array.isArray(estado.clubesExcluidos) ? estado.clubesExcluidos : [])
+          .map(clube => texto(clube).toUpperCase())
+          .filter(Boolean)
+      ),
+      jogadores: new Set(
+        (Array.isArray(estado.jogadoresExcluidos) ? estado.jogadoresExcluidos : [])
+          .map(texto)
+          .filter(Boolean)
+      )
     };
-
   }
 
+  function obterBaseAtiva() {
+    const tentativas = [];
 
-  /* =======================================================
-     BASE ATIVA DAS RECOMENDAÇÕES
-     ======================================================= */
-
-
-  function obterBaseAtivaRecomendacoes() {
-
-    let jogadores = [];
-
-
-    /*
-     * 1.
-     * API explicitamente preparada para escalações.
-     */
-
-    if (
-      typeof window
-        .obterJogadoresParaEscalacoes ===
-        "function"
-    ) {
-
-      try {
-
-        jogadores =
-          window
-            .obterJogadoresParaEscalacoes();
-
-      } catch (erro) {
-
-        console.warn(
-          "Falha em obterJogadoresParaEscalacoes():",
-          erro
-        );
-
+    try {
+      if (
+        typeof estadoRecomendacoes !== "undefined" &&
+        Array.isArray(estadoRecomendacoes.jogadores)
+      ) {
+        tentativas.push(estadoRecomendacoes.jogadores);
       }
+    } catch (_) {}
 
-    }
-
-
-    /*
-     * 2.
-     * API pública das Recomendações.
-     */
-
-    if (
-      (
-        !Array.isArray(
-          jogadores
-        ) ||
-        jogadores.length === 0
-      ) &&
-      window.CartolaRecomendacoes &&
-      typeof window
-        .CartolaRecomendacoes
-        .obterJogadoresParaEscalacoes ===
-        "function"
-    ) {
-
-      try {
-
-        jogadores =
-          window
-            .CartolaRecomendacoes
-            .obterJogadoresParaEscalacoes();
-
-      } catch (erro) {
-
-        console.warn(
-          "Falha em CartolaRecomendacoes.obterJogadoresParaEscalacoes():",
-          erro
-        );
-
+    try {
+      if (
+        window.CartolaRecomendacoes &&
+        typeof window.CartolaRecomendacoes.obterJogadoresParaEscalacoes === "function"
+      ) {
+        tentativas.push(window.CartolaRecomendacoes.obterJogadoresParaEscalacoes());
       }
+    } catch (_) {}
 
-    }
-
-
-    /*
-     * 3.
-     * obterJogadores() também já representa
-     * a lista disponível/filtrada.
-     */
-
-    if (
-      (
-        !Array.isArray(
-          jogadores
-        ) ||
-        jogadores.length === 0
-      ) &&
-      typeof window.obterJogadores ===
-        "function"
-    ) {
-
-      try {
-
-        jogadores =
-          window.obterJogadores();
-
-      } catch (erro) {
-
-        console.warn(
-          "Falha em obterJogadores():",
-          erro
-        );
-
+    try {
+      if (typeof window.obterJogadoresParaEscalacoes === "function") {
+        tentativas.push(window.obterJogadoresParaEscalacoes());
       }
+    } catch (_) {}
 
+    try {
+      if (typeof window.obterJogadores === "function") {
+        tentativas.push(window.obterJogadores());
+      }
+    } catch (_) {}
+
+    for (const tentativa of tentativas) {
+      if (Array.isArray(tentativa) && tentativa.length) {
+        return tentativa.map(copiar);
+      }
     }
 
-
-    /*
-     * 4.
-     * Estado ativo.
-     *
-     * Este é especialmente importante porque
-     * filtros-exclusao.js altera justamente:
-     *
-     * estadoRecomendacoes.jogadores
-     */
-
-    if (
-      (
-        !Array.isArray(
-          jogadores
-        ) ||
-        jogadores.length === 0
-      ) &&
-      typeof window
-        .estadoRecomendacoes !==
-        "undefined" &&
-      Array.isArray(
-        window
-          .estadoRecomendacoes
-          .jogadores
-      )
-    ) {
-
-      jogadores =
-        window
-          .estadoRecomendacoes
-          .jogadores;
-
-    }
-
-
-    if (
-      !Array.isArray(
-        jogadores
-      )
-    ) {
-
-      return [];
-
-    }
-
-
-    return jogadores.map(
-      copiarJogadorFiltroEscalacao
-    );
-
+    return [];
   }
 
-
-  /* =======================================================
-     GARANTIA EXTRA DOS FILTROS
-     ======================================================= */
-
-
-  function aplicarExclusoesNovamente(
-    jogadores
-  ) {
-
-    const lista =
-      Array.isArray(
-        jogadores
-      )
-        ? jogadores
-        : [];
-
-
-    const filtros =
-      obterEstadoFiltrosEscalacao();
-
-
-    const clubesExcluidos =
-      new Set(
-
-        Array.isArray(
-          filtros?.clubesExcluidos
-        )
-          ? filtros.clubesExcluidos
-              .map(
-                clube =>
-                  String(
-                    clube
-                  )
-                    .trim()
-                    .toUpperCase()
-              )
-          : []
-
-      );
-
-
-    const jogadoresExcluidos =
-      new Set(
-
-        Array.isArray(
-          filtros?.jogadoresExcluidos
-        )
-          ? filtros.jogadoresExcluidos
-              .map(
-                id =>
-                  String(id)
-              )
-          : []
-
-      );
-
-
-    return lista.filter(
-      jogador => {
-
-        const id =
-          obterIdFiltroEscalacao(
-            jogador
-          );
-
-
-        const clube =
-          obterClubeFiltroEscalacao(
-            jogador
-          );
-
-
-        if (
-          clube &&
-          clubesExcluidos.has(
-            clube
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          id &&
-          jogadoresExcluidos.has(
-            id
-          )
-        ) {
-
-          return false;
-
-        }
-
-
+  function aplicarExclusoes(jogadores) {
+    const { clubes, jogadores: ids } = conjuntosExclusao();
+    return (Array.isArray(jogadores) ? jogadores : [])
+      .filter(jogador => {
+        const clube = clubeJogador(jogador);
+        const id = idJogador(jogador);
+        if (clube && clubes.has(clube)) return false;
+        if (id && ids.has(id)) return false;
         return true;
-
-      }
-    );
-
+      })
+      .map(copiar);
   }
-
-
-  /* =======================================================
-     DISPONIBILIDADE ORIGINAL DO MOTOR
-     ======================================================= */
-
-
-  function jogadorDisponivelDepoisDoFiltro(
-    jogador
-  ) {
-
-    /*
-     * Mantém a validação que já existe
-     * no motor principal.
-     */
-
-    if (
-      typeof window
-        .jogadorDisponivelEscalacao ===
-        "function"
-    ) {
-
-      try {
-
-        return window
-          .jogadorDisponivelEscalacao(
-            jogador
-          );
-
-      } catch (erro) {
-
-        /*
-         * Em caso de incompatibilidade,
-         * não derrubamos o candidato aqui.
-         */
-
-      }
-
-    }
-
-
-    return true;
-
-  }
-
-
-  /* =======================================================
-     NOVA FONTE DOS JOGADORES
-     ======================================================= */
-
 
   function obterJogadoresDisponiveisEscalacaoFiltrados() {
+    const base = aplicarExclusoes(obterBaseAtiva());
 
-    const baseAtiva =
-      obterBaseAtivaRecomendacoes();
-
-
-    const filtrados =
-      aplicarExclusoesNovamente(
-        baseAtiva
-      );
-
-
-    return filtrados
-
-      .filter(
-        jogadorDisponivelDepoisDoFiltro
-      )
-
-      .map(
-        copiarJogadorFiltroEscalacao
-      );
-
+    return base.filter(jogador => {
+      try {
+        if (typeof window.jogadorDisponivelEscalacao === "function") {
+          return window.jogadorDisponivelEscalacao(jogador);
+        }
+      } catch (_) {}
+      return true;
+    });
   }
 
+  async function recalcularEscalacoesComFiltros() {
+    let resultado = [];
 
-  /* =======================================================
-     SOBRESCREVE A FUNÇÃO UTILIZADA PELO MOTOR
-     ======================================================= */
+    if (
+      window.EscalacoesDados &&
+      typeof window.EscalacoesDados.recarregar === "function"
+    ) {
+      resultado = await window.EscalacoesDados.recarregar();
+    } else if (typeof window.recarregarEscalacoes === "function") {
+      resultado = await window.recarregarEscalacoes();
+    } else if (typeof window.carregarEscalacoes === "function") {
+      resultado = await window.carregarEscalacoes();
+    }
 
+    if (typeof window.exibirEscalacoes === "function") {
+      try { window.exibirEscalacoes(); } catch (_) {}
+    }
+
+    return Array.isArray(resultado) ? resultado : [];
+  }
+
+  function auditarFiltrosNasEscalacoes() {
+    const { clubes, jogadores: ids } = conjuntosExclusao();
+    let escalacoes = [];
+
+    try {
+      if (
+        window.EscalacoesDados &&
+        typeof window.EscalacoesDados.obter === "function"
+      ) {
+        escalacoes = window.EscalacoesDados.obter();
+      } else if (typeof window.obterEscalacoes === "function") {
+        escalacoes = window.obterEscalacoes();
+      }
+    } catch (_) {}
+
+    if (!Array.isArray(escalacoes)) escalacoes = [];
+
+    const problemas = [];
+    escalacoes.forEach(escalacao => {
+      const lista = [
+        ...(Array.isArray(escalacao?.titulares) ? escalacao.titulares : []),
+        ...(Array.isArray(escalacao?.banco) ? escalacao.banco : []),
+        escalacao?.capitao,
+        escalacao?.reservaLuxo
+      ].filter(Boolean);
+
+      lista.forEach(jogador => {
+        const clube = clubeJogador(jogador);
+        const id = idJogador(jogador);
+        if ((clube && clubes.has(clube)) || (id && ids.has(id))) {
+          problemas.push({
+            perfil: escalacao?.perfil ?? escalacao?.nome,
+            jogador: jogador?.apelido ?? jogador?.nome,
+            clube,
+            id
+          });
+        }
+      });
+    });
+
+    const diagnostico = {
+      aprovado: problemas.length === 0,
+      problemas,
+      clubesExcluidos: [...clubes],
+      jogadoresExcluidos: [...ids]
+    };
+
+    if (!diagnostico.aprovado) {
+      console.error("Filtros não respeitados nas escalações:", diagnostico);
+    }
+
+    return diagnostico;
+  }
 
   /*
-   * scripts clássicos do navegador expõem
-   * function declarations de dados.js no escopo global.
-   *
-   * Ao substituir esta propriedade global depois
-   * de dados.js ser carregado, carregarEscalacoes()
-   * passa a resolver esta nova implementação.
+   * Ponto crítico da correção:
+   * filtros-exclusao.js chama window.recalcularEscalacoes().
+   * Antes esta integração não publicava a função robusta,
+   * então o clique podia recalcular pela rota antiga e
+   * recolocar clubes/jogadores excluídos.
    */
-
   window.obterJogadoresDisponiveisEscalacao =
     obterJogadoresDisponiveisEscalacaoFiltrados;
 
-
-  /* =======================================================
-     RECÁLCULO
-     ======================================================= */
-
-
-  async function recalcularEscalacoesComFiltros() {
-
-    let resultado = [];
-
-
-    /*
-     * Preferência pela API pública do motor.
-     */
-
-    if (
-      window.EscalacoesDados &&
-      typeof window
-        .EscalacoesDados
-        .recarregar ===
-        "function"
-    ) {
-
-      resultado =
-        await window
-          .EscalacoesDados
-          .recarregar();
-
-    }
-    else if (
-      typeof window
-        .recarregarEscalacoes ===
-        "function"
-    ) {
-
-      resultado =
-        await window
-          .recarregarEscalacoes();
-
-    }
-    else if (
-      typeof window
-        .carregarEscalacoes ===
-        "function"
-    ) {
-
-      resultado =
-        await window
-          .carregarEscalacoes();
-
-    }
-
-
-    return Array.isArray(
-      resultado
-    )
-      ? resultado
-      : [];
-
-  }
-
-
-  /* =======================================================
-     AUDITORIA DOS FILTROS
-     ======================================================= */
-
-
-  function auditarFiltrosNasEscalacoes() {
-
-    const filtros =
-      obterEstadoFiltrosEscalacao();
-
-
-    const clubesExcluidos =
-      new Set(
-
-        (
-          filtros.clubesExcluidos ||
-          []
-        )
-          .map(
-            clube =>
-              String(clube)
-                .trim()
-                .toUpperCase()
-          )
-
-      );
-
-
-    const jogadoresExcluidos =
-      new Set(
-
-        (
-          filtros.jogadoresExcluidos ||
-          []
-        )
-          .map(
-            id =>
-              String(id)
-          )
-
-      );
-
-
-    let escalacoes = [];
-
-
-    if (
-      window.EscalacoesDados &&
-      typeof window
-        .EscalacoesDados
-        .obter ===
-        "function"
-    ) {
-
-      escalacoes =
-        window
-          .EscalacoesDados
-          .obter();
-
-    }
-    else if (
-      typeof window
-        .obterEscalacoes ===
-        "function"
-    ) {
-
-      escalacoes =
-        window
-          .obterEscalacoes();
-
-    }
-
-
-    if (
-      !Array.isArray(
-        escalacoes
-      )
-    ) {
-
-      escalacoes = [];
-
-    }
-
-
-    const problemas = [];
-
-
-    escalacoes.forEach(
-      escalacao => {
-
-        const jogadores = [
-
-          ...(
-            Array.isArray(
-              escalacao?.titulares
-            )
-              ? escalacao.titulares
-              : []
-          ),
-
-          ...(
-            Array.isArray(
-              escalacao?.banco
-            )
-              ? escalacao.banco
-              : []
-          )
-
-        ];
-
-
-        jogadores.forEach(
-          jogador => {
-
-            const id =
-              obterIdFiltroEscalacao(
-                jogador
-              );
-
-
-            const clube =
-              obterClubeFiltroEscalacao(
-                jogador
-              );
-
-
-            if (
-              clubesExcluidos.has(
-                clube
-              )
-            ) {
-
-              problemas.push({
-
-                perfil:
-                  escalacao.perfil,
-
-                tipo:
-                  "CLUBE_EXCLUIDO",
-
-                jogador:
-                  jogador.apelido ??
-                  jogador.nome,
-
-                clube
-
-              });
-
-            }
-
-
-            if (
-              jogadoresExcluidos.has(
-                id
-              )
-            ) {
-
-              problemas.push({
-
-                perfil:
-                  escalacao.perfil,
-
-                tipo:
-                  "JOGADOR_EXCLUIDO",
-
-                jogador:
-                  jogador.apelido ??
-                  jogador.nome,
-
-                clube
-
-              });
-
-            }
-
-          }
-        );
-
-
-        const especiais = [
-
-          {
-            tipo:
-              "CAPITAO",
-
-            jogador:
-              escalacao?.capitao
-          },
-
-          {
-            tipo:
-              "RESERVA_LUXO",
-
-            jogador:
-              escalacao?.reservaLuxo
-          }
-
-        ];
-
-
-        especiais.forEach(
-          item => {
-
-            if (!item.jogador) {
-
-              return;
-
-            }
-
-
-            const id =
-              obterIdFiltroEscalacao(
-                item.jogador
-              );
-
-
-            const clube =
-              obterClubeFiltroEscalacao(
-                item.jogador
-              );
-
-
-            if (
-              clubesExcluidos.has(
-                clube
-              ) ||
-              jogadoresExcluidos.has(
-                id
-              )
-            ) {
-
-              problemas.push({
-
-                perfil:
-                  escalacao.perfil,
-
-                tipo:
-                  item.tipo,
-
-                jogador:
-                  item.jogador.apelido ??
-                  item.jogador.nome,
-
-                clube
-
-              });
-
-            }
-
-          }
-        );
-
+  window.recalcularEscalacoes =
+    recalcularEscalacoesComFiltros;
+
+  window.addEventListener("cartola:filtros-aplicados", () => {
+    window.setTimeout(async () => {
+      try {
+        const diagnostico = auditarFiltrosNasEscalacoes();
+        if (!diagnostico.aprovado) {
+          await recalcularEscalacoesComFiltros();
+          window.setTimeout(auditarFiltrosNasEscalacoes, 80);
+        }
+      } catch (erro) {
+        console.error("Falha ao validar filtros após aplicação:", erro);
       }
-    );
+    }, 80);
+  });
 
-
-    const diagnostico = {
-
-      aprovado:
-        problemas.length === 0,
-
-      clubesExcluidos:
-        [
-          ...clubesExcluidos
-        ],
-
-      jogadoresExcluidos:
-        [
-          ...jogadoresExcluidos
-        ],
-
-      quantidadeEscalacoes:
-        escalacoes.length,
-
-      problemas
-
-    };
-
-
-    if (
-      problemas.length === 0
-    ) {
-
-      console.info(
-        "✓ Filtros respeitados pelas escalações.",
-        diagnostico
-      );
-
-    }
-    else {
-
-      console.error(
-        "Jogadores excluídos encontrados nas escalações:",
-        diagnostico
-      );
-
-    }
-
-
-    return diagnostico;
-
-  }
-
-
-  /* =======================================================
-     EVENTO APÓS APLICAÇÃO DOS FILTROS
-     ======================================================= */
-
-
-  window.addEventListener(
-    "cartola:filtros-aplicados",
-    () => {
-
-      /*
-       * O módulo principal já tenta recalcular.
-       *
-       * Portanto aqui NÃO chamamos um segundo recálculo
-       * automaticamente.
-       *
-       * Apenas auditamos depois que a montagem terminar.
-       */
-
-      window.setTimeout(
-        () => {
-
-          auditarFiltrosNasEscalacoes();
-
-        },
-        150
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     EVENTO APÓS ESCALAÇÕES
-     ======================================================= */
-
-
-  window.addEventListener(
-    "cartola:escalacoes-atualizadas",
-    () => {
-
-      window.setTimeout(
-        () => {
-
-          const filtros =
-            obterEstadoFiltrosEscalacao();
-
-
-          const possuiFiltros =
-            (
-              (
-                filtros
-                  ?.clubesExcluidos
-                  ?.length ||
-                0
-              ) > 0
-            )
-            ||
-            (
-              (
-                filtros
-                  ?.jogadoresExcluidos
-                  ?.length ||
-                0
-              ) > 0
-            );
-
-
-          if (
-            possuiFiltros
-          ) {
-
-            auditarFiltrosNasEscalacoes();
-
-          }
-
-        },
-        50
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     API
-     ======================================================= */
-
-
-  const api = {
-
-    obterJogadores:
-      obterJogadoresDisponiveisEscalacaoFiltrados,
-
-    recalcular:
-      recalcularEscalacoesComFiltros,
-
-    auditar:
-      auditarFiltrosNasEscalacoes
-
+  window.CartolaEscalacoesFiltros = {
+    obterEstado: estadoFiltros,
+    aplicarExclusoes,
+    obterJogadoresDisponiveis: obterJogadoresDisponiveisEscalacaoFiltrados,
+    recalcular: recalcularEscalacoesComFiltros,
+    auditar: auditarFiltrosNasEscalacoes
   };
 
-
-  window.CartolaEscalacoesFiltros =
-    api;
-
-
-  console.info(
-    "Integração de filtros das escalações carregada."
-  );
-
-
+  console.info("Integração robusta dos filtros de escalação carregada.");
 })();
