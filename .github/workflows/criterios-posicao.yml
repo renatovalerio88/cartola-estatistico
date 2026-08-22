@@ -20,17 +20,21 @@ jobs:
         with:
           python-version: '3.11'
       - name: Sintaxe do motor
-        run: node --check js/motor/pesos.js
+        run: |
+          node --check js/motor/pesos.js
+          node --check js/escalacoes/anti-conflito.js
       - name: Critérios elegíveis por posição
         run: python scripts/processamento/auditar_criterios_por_posicao.py
-      - name: Avaliar anti-conflito histórico
+      - name: Avaliar anti-conflito observacional
         run: python scripts/processamento/avaliar_anti_conflito.py
+      - name: Torneio anti-conflito reotimizado
+        run: python scripts/processamento/torneio_anti_conflito_reotimizacao.py
       - name: Persistir auditorias
         if: always()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add data/auditoria-criterios-por-posicao.json data/avaliacao-anti-conflito.json || true
+          git add data/auditoria-criterios-por-posicao.json data/avaliacao-anti-conflito.json data/torneio-anti-conflito.json || true
           if ! git diff --cached --quiet; then
             git commit -m 'Registra auditorias científicas do fechamento'
             git pull --rebase origin feat/fechamento-cientifico-producao
