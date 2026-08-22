@@ -1,0 +1,71 @@
+name: Backtest Progressivo V2 ML
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/gerar_matriz_features.py'
+      - 'scripts/benchmark_modelos.py'
+      - '.github/workflows/backtest-progressivo-v2-ml.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark-ml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências científicas
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy scikit-learn
+
+      - name: Validar sintaxe
+        run: |
+          python -m py_compile scripts/gerar_matriz_features.py
+          python -m py_compile scripts/benchmark_modelos.py
+
+      - name: Gerar matriz sem vazamento futuro
+        run: python scripts/gerar_matriz_features.py
+
+      - name: Executar benchmark walk-forward de modelos
+        run: python scripts/benchmark_modelos.py
+
+      - name: Validar saídas
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          matriz = Path('data/modelagem/matriz_features.json')
+          bench = Path('data/modelagem/benchmark_modelos.json')
+          assert matriz.exists(), 'matriz_features.json não foi gerada'
+          assert bench.exists(), 'benchmark_modelos.json não foi gerado'
+
+          m = json.loads(matriz.read_text(encoding='utf-8'))
+          b = json.loads(bench.read_text(encoding='utf-8'))
+
+          print('TIPO_MATRIZ=', type(m).__name__)
+          print('CHAVES_BENCH=', sorted(b.keys()) if isinstance(b, dict) else type(b).__name__)
+          print(json.dumps(b, ensure_ascii=False, indent=2)[:12000])
+          PY
+
+      - name: Publicar benchmark científico
+        uses: actions/upload-artifact@v4
+        with:
+          name: backtest-progressivo-v2-ml
+          path: |
+            data/modelagem/matriz_features.json
+            data/modelagem/benchmark_modelos.json
+          if-no-files-found: error
