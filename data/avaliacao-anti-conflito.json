@@ -1,0 +1,1438 @@
+{
+  "modelo": "avaliacao_anti_conflito_v1",
+  "definicao": "Conflito = GOL/LAT/ZAG de um clube junto com MEI/ATA do adversário na mesma escalação.",
+  "metodologia": "Análise observacional das escalações históricas já geradas; não é reotimização causal.",
+  "totalEscalacoes": 69,
+  "comConflito": {
+    "amostras": 50,
+    "media": 56.26
+  },
+  "semConflito": {
+    "amostras": 19,
+    "media": 48.74
+  },
+  "vantagemMediaSemConflito": -7.52,
+  "evidenciaSuficiente": true,
+  "favoreceAntiConflito": false,
+  "decisaoAutomatica": "NAO_PROMOVER_SEM_REOTIMIZACAO",
+  "registros": [
+    {
+      "rodada": 2,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 28.5,
+      "detalhes": [
+        {
+          "defensor": "Pedro Morisco",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "294",
+          "ofensivo": "Christian",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 2,
+      "estrategia": "Equilibrado",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 30.3,
+      "detalhes": [
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Everton",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Samuel Lino",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 2,
+      "estrategia": "Agressivo",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 30.3,
+      "detalhes": [
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Everton",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Rochet",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "285",
+          "ofensivo": "Samuel Lino",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 3,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 45.55,
+      "detalhes": []
+    },
+    {
+      "rodada": 3,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 47.85,
+      "detalhes": [
+        {
+          "defensor": "Léo Vieira",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "265",
+          "ofensivo": "Andrés Gómez",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 3,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 47.85,
+      "detalhes": [
+        {
+          "defensor": "Léo Vieira",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "265",
+          "ofensivo": "Andrés Gómez",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 4,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 45.2,
+      "detalhes": [
+        {
+          "defensor": "Guilherme Arana",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "266",
+          "ofensivo": "Andreas Pereira",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "275"
+        }
+      ]
+    },
+    {
+      "rodada": 4,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 55.1,
+      "detalhes": []
+    },
+    {
+      "rodada": 4,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 31.0,
+      "detalhes": [
+        {
+          "defensor": "Ruan",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Carlos Vinícius",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "284"
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "estrategia": "Conservador",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 55.72,
+      "detalhes": [
+        {
+          "defensor": "Hugo Souza",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Matheus Bidu",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "estrategia": "Equilibrado",
+      "conflitos": 5,
+      "temConflito": true,
+      "pontuacaoReal": 49.82,
+      "detalhes": [
+        {
+          "defensor": "Hugo Souza",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "264",
+          "ofensivo": "Breno Lopes",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Hugo Souza",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Breno Lopes",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gustavo Gómez",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "275",
+          "ofensivo": "Barros",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "estrategia": "Agressivo",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 73.4,
+      "detalhes": [
+        {
+          "defensor": "Hugo Souza",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Lucas Ronier",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "294"
+        },
+        {
+          "defensor": "Gustavo Gómez",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "275",
+          "ofensivo": "Barros",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 6,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 68.86,
+      "detalhes": [
+        {
+          "defensor": "Fábio",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "266",
+          "ofensivo": "Julimar",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        }
+      ]
+    },
+    {
+      "rodada": 6,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 50.46,
+      "detalhes": []
+    },
+    {
+      "rodada": 6,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 52.06,
+      "detalhes": []
+    },
+    {
+      "rodada": 7,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 86.66,
+      "detalhes": [
+        {
+          "defensor": "Cuiabano",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "267",
+          "ofensivo": "Lucho Acosta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        }
+      ]
+    },
+    {
+      "rodada": 7,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 65.76,
+      "detalhes": [
+        {
+          "defensor": "Léo Pereira",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "262",
+          "ofensivo": "Patrick de Paula",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "364"
+        }
+      ]
+    },
+    {
+      "rodada": 7,
+      "estrategia": "Agressivo",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 71.46,
+      "detalhes": [
+        {
+          "defensor": "Léo Pereira",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "262",
+          "ofensivo": "Patrick de Paula",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "364"
+        },
+        {
+          "defensor": "Murilo",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "275",
+          "ofensivo": "Danilo Santos",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "estrategia": "Conservador",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 76.17,
+      "detalhes": [
+        {
+          "defensor": "Lucas Ramon",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "276",
+          "ofensivo": "Vitor Roque",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "275"
+        },
+        {
+          "defensor": "Lucas Ramon",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "276",
+          "ofensivo": "Jhon Arias",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "275"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Arrascaeta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "estrategia": "Equilibrado",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 53.77,
+      "detalhes": [
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Arrascaeta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Canobbio",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "266"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Lucho Acosta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "estrategia": "Agressivo",
+      "conflitos": 5,
+      "temConflito": true,
+      "pontuacaoReal": 52.17,
+      "detalhes": [
+        {
+          "defensor": "Everson",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "282",
+          "ofensivo": "Canobbio",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "266"
+        },
+        {
+          "defensor": "Everson",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "282",
+          "ofensivo": "Lucho Acosta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        },
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Canobbio",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "266"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Lucho Acosta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        }
+      ]
+    },
+    {
+      "rodada": 9,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 31.67,
+      "detalhes": []
+    },
+    {
+      "rodada": 9,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 34.27,
+      "detalhes": [
+        {
+          "defensor": "Jacy",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "294",
+          "ofensivo": "Barros",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 9,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 37.77,
+      "detalhes": [
+        {
+          "defensor": "Jacy",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "294",
+          "ofensivo": "Barros",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 64.98,
+      "detalhes": [
+        {
+          "defensor": "Gustavo Gómez",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "275",
+          "ofensivo": "Jean Lucas",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "265"
+        },
+        {
+          "defensor": "Lucas Veríssimo",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "277",
+          "ofensivo": "Arrascaeta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 54.18,
+      "detalhes": [
+        {
+          "defensor": "Lucas Veríssimo",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "277",
+          "ofensivo": "Arrascaeta",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 56.56,
+      "detalhes": []
+    },
+    {
+      "rodada": 11,
+      "estrategia": "Conservador",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 41.04,
+      "detalhes": [
+        {
+          "defensor": "Cuiabano",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "267",
+          "ofensivo": "Gabriel Taliari",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "364"
+        },
+        {
+          "defensor": "Natanael",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "282",
+          "ofensivo": "Neymar",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "277"
+        },
+        {
+          "defensor": "Lyanco",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Neymar",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "277"
+        }
+      ]
+    },
+    {
+      "rodada": 11,
+      "estrategia": "Equilibrado",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 54.14,
+      "detalhes": [
+        {
+          "defensor": "Tiago Volpi",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "280",
+          "ofensivo": "Christian",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        },
+        {
+          "defensor": "Lyanco",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Neymar",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "277"
+        },
+        {
+          "defensor": "Léo Pereira",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "262",
+          "ofensivo": "Canobbio",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "266"
+        }
+      ]
+    },
+    {
+      "rodada": 11,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 51.09,
+      "detalhes": []
+    },
+    {
+      "rodada": 12,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 77.12,
+      "detalhes": [
+        {
+          "defensor": "Cuiabano",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "267",
+          "ofensivo": "Calleri",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "276"
+        }
+      ]
+    },
+    {
+      "rodada": 12,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 67.48,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Christian",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 12,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 46.65,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Christian",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 13,
+      "estrategia": "Conservador",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 92.71,
+      "detalhes": [
+        {
+          "defensor": "Gabriel Paulista",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Andrés Gómez",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "267"
+        }
+      ]
+    },
+    {
+      "rodada": 13,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 100.31,
+      "detalhes": []
+    },
+    {
+      "rodada": 13,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 70.11,
+      "detalhes": []
+    },
+    {
+      "rodada": 14,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 57.65,
+      "detalhes": [
+        {
+          "defensor": "Bernabei",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "285",
+          "ofensivo": "Hércules",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        },
+        {
+          "defensor": "Bernabei",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "285",
+          "ofensivo": "Savarino",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "266"
+        }
+      ]
+    },
+    {
+      "rodada": 14,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 49.35,
+      "detalhes": []
+    },
+    {
+      "rodada": 14,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 62.95,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Viveros",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        }
+      ]
+    },
+    {
+      "rodada": 15,
+      "estrategia": "Conservador",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 49.04,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Sant Anna",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "280",
+          "ofensivo": "Neymar",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "277"
+        },
+        {
+          "defensor": "Noriega",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "284",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 15,
+      "estrategia": "Equilibrado",
+      "conflitos": 4,
+      "temConflito": true,
+      "pontuacaoReal": 44.14,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Balbuena",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "284",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Matheus Martins",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "263"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Danilo Santos",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        }
+      ]
+    },
+    {
+      "rodada": 15,
+      "estrategia": "Agressivo",
+      "conflitos": 5,
+      "temConflito": true,
+      "pontuacaoReal": 33.84,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Jorginho",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Matheus Martins",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "263"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Danilo Santos",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        },
+        {
+          "defensor": "Iván Román",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Medina",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        }
+      ]
+    },
+    {
+      "rodada": 16,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 52.71,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Acevedo",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "265"
+        },
+        {
+          "defensor": "Gilberto",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "293",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 16,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 61.01,
+      "detalhes": [
+        {
+          "defensor": "Weverton",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "284",
+          "ofensivo": "Acevedo",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "265"
+        }
+      ]
+    },
+    {
+      "rodada": 16,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 72.91,
+      "detalhes": []
+    },
+    {
+      "rodada": 17,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 35.86,
+      "detalhes": []
+    },
+    {
+      "rodada": 17,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 38.06,
+      "detalhes": [
+        {
+          "defensor": "Rossi",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "262",
+          "ofensivo": "Jhon Arias",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "275"
+        }
+      ]
+    },
+    {
+      "rodada": 17,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 55.26,
+      "detalhes": []
+    },
+    {
+      "rodada": 18,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 92.85,
+      "detalhes": [
+        {
+          "defensor": "Escobar",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "277",
+          "ofensivo": "Renê",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "287"
+        },
+        {
+          "defensor": "Viery",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "284",
+          "ofensivo": "Garro",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        }
+      ]
+    },
+    {
+      "rodada": 18,
+      "estrategia": "Equilibrado",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 56.15,
+      "detalhes": [
+        {
+          "defensor": "Viery",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "284",
+          "ofensivo": "Garro",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        },
+        {
+          "defensor": "Willian Machado",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "2305",
+          "ofensivo": "Viveros",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        }
+      ]
+    },
+    {
+      "rodada": 18,
+      "estrategia": "Agressivo",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 51.8,
+      "detalhes": [
+        {
+          "defensor": "Tiago Volpi",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "280",
+          "ofensivo": "Carbonero",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "285"
+        },
+        {
+          "defensor": "Viery",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "284",
+          "ofensivo": "Garro",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        }
+      ]
+    },
+    {
+      "rodada": 19,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 71.04,
+      "detalhes": []
+    },
+    {
+      "rodada": 19,
+      "estrategia": "Equilibrado",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 50.64,
+      "detalhes": [
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Matheus Pereira",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 19,
+      "estrategia": "Agressivo",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 57.8,
+      "detalhes": [
+        {
+          "defensor": "Marcelo Rangel",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "364",
+          "ofensivo": "André",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        },
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Matheus Pereira",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 20,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 58.73,
+      "detalhes": [
+        {
+          "defensor": "Jonathan Jesus",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "283",
+          "ofensivo": "Danilo",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        },
+        {
+          "defensor": "Jonathan Jesus",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "283",
+          "ofensivo": "Huguinho",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        }
+      ]
+    },
+    {
+      "rodada": 20,
+      "estrategia": "Equilibrado",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 51.13,
+      "detalhes": [
+        {
+          "defensor": "Jonathan Jesus",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "283",
+          "ofensivo": "Danilo",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "263"
+        },
+        {
+          "defensor": "Vitor Hugo",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Maurício",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "275"
+        }
+      ]
+    },
+    {
+      "rodada": 20,
+      "estrategia": "Agressivo",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 48.23,
+      "detalhes": [
+        {
+          "defensor": "David Duarte",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "265",
+          "ofensivo": "André",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        },
+        {
+          "defensor": "David Duarte",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "265",
+          "ofensivo": "Garro",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        },
+        {
+          "defensor": "Vitor Hugo",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "282",
+          "ofensivo": "Maurício",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "275"
+        }
+      ]
+    },
+    {
+      "rodada": 21,
+      "estrategia": "Conservador",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 69.88,
+      "detalhes": [
+        {
+          "defensor": "Marcelo Rangel",
+          "posicaoDefensor": "GOL",
+          "clubeDefensor": "364",
+          "ofensivo": "Japa",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "2305"
+        },
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 21,
+      "estrategia": "Equilibrado",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 76.3,
+      "detalhes": [
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Samuel Lino",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 21,
+      "estrategia": "Agressivo",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 76.1,
+      "detalhes": [
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Pedro",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Félix Torres",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "285",
+          "ofensivo": "Samuel Lino",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        },
+        {
+          "defensor": "Terán",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "293",
+          "ofensivo": "André",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "264"
+        }
+      ]
+    },
+    {
+      "rodada": 22,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 72.81,
+      "detalhes": []
+    },
+    {
+      "rodada": 22,
+      "estrategia": "Equilibrado",
+      "conflitos": 2,
+      "temConflito": true,
+      "pontuacaoReal": 65.91,
+      "detalhes": [
+        {
+          "defensor": "Adonis Frías",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "277",
+          "ofensivo": "Leozinho",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        },
+        {
+          "defensor": "Adonis Frías",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "277",
+          "ofensivo": "Viveros",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        }
+      ]
+    },
+    {
+      "rodada": 22,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 49.71,
+      "detalhes": [
+        {
+          "defensor": "Adonis Frías",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "277",
+          "ofensivo": "Leozinho",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        }
+      ]
+    },
+    {
+      "rodada": 23,
+      "estrategia": "Conservador",
+      "conflitos": 3,
+      "temConflito": true,
+      "pontuacaoReal": 63.33,
+      "detalhes": [
+        {
+          "defensor": "Juninho Capixaba",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "280",
+          "ofensivo": "Viveros",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "293"
+        },
+        {
+          "defensor": "Matheus Bidu",
+          "posicaoDefensor": "LAT",
+          "clubeDefensor": "264",
+          "ofensivo": "Matheus Pereira",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        },
+        {
+          "defensor": "João Pedro",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "264",
+          "ofensivo": "Matheus Pereira",
+          "posicaoOfensivo": "MEI",
+          "clubeOfensivo": "283"
+        }
+      ]
+    },
+    {
+      "rodada": 23,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 55.93,
+      "detalhes": []
+    },
+    {
+      "rodada": 23,
+      "estrategia": "Agressivo",
+      "conflitos": 1,
+      "temConflito": true,
+      "pontuacaoReal": 60.15,
+      "detalhes": [
+        {
+          "defensor": "João Victor",
+          "posicaoDefensor": "ZAG",
+          "clubeDefensor": "2305",
+          "ofensivo": "Samuel Lino",
+          "posicaoOfensivo": "ATA",
+          "clubeOfensivo": "262"
+        }
+      ]
+    },
+    {
+      "rodada": 24,
+      "estrategia": "Conservador",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 0,
+      "detalhes": []
+    },
+    {
+      "rodada": 24,
+      "estrategia": "Equilibrado",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 0,
+      "detalhes": []
+    },
+    {
+      "rodada": 24,
+      "estrategia": "Agressivo",
+      "conflitos": 0,
+      "temConflito": false,
+      "pontuacaoReal": 0,
+      "detalhes": []
+    }
+  ]
+}

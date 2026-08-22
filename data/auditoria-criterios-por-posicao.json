@@ -1,0 +1,21 @@
+{
+  "modelo": "auditoria_criterios_por_posicao_v1",
+  "aprovado": true,
+  "checks": {
+    "mapaInelegiveisExiste": true,
+    "guardDinamicoExiste": true,
+    "GOL_scoutsOfensivos_bloqueado": true,
+    "GOL_bolaParada_bloqueado": true,
+    "GOL_penaltis_bloqueado": true,
+    "MEI_chanceSG_bloqueado": true,
+    "ATA_scoutsDefensivos_bloqueado": true,
+    "ATA_chanceSG_bloqueado": true,
+    "ZAG_penaltis_bloqueado": true,
+    "TEC_scoutsOfensivos_bloqueado": true,
+    "TEC_scoutsDefensivos_bloqueado": true,
+    "TEC_minutosEsperados_bloqueado": true,
+    "TEC_bolaParada_bloqueado": true,
+    "TEC_penaltis_bloqueado": true
+  },
+  "falhas": []
+}
