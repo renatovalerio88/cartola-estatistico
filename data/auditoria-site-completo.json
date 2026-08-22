@@ -1,0 +1,30 @@
+{
+  "modelo": "auditoria_site_completo_v1",
+  "aprovado": true,
+  "checks": {
+    "scriptsReferenciadosExistem": true,
+    "abasPrincipaisExistem": true,
+    "layoutResponsivoPresente": true,
+    "modoMobilePresente": true,
+    "patrimonioPadrao200": true,
+    "tresFormacoes": true,
+    "capitaoPosicional": true,
+    "filtroClubesJogadores": true,
+    "filtroRecalculaMotorCorreto": true,
+    "filtroAuditaResultado": true,
+    "historicoCarregado": true,
+    "analiseRodadaCarregada": true,
+    "recomendacoesCarregadas": true,
+    "escalacoesCarregadas": true
+  },
+  "scriptsReferenciados": 39,
+  "scriptsAusentes": [],
+  "abasEncontradas": [
+    "recomendacoes",
+    "times",
+    "metodologia",
+    "analise",
+    "historico"
+  ],
+  "falhas": []
+}
