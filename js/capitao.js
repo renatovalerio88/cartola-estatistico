@@ -123,3 +123,261 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     };
 });
+
+/*
+======================================================
+CARTOLA ESTATÍSTICO
+Integração Frontend V2 — RandomForest
+======================================================
+
+Objetivo:
+- consumir data/modelagem/projecoes_v2_atual.json;
+- validar rodada/modelo/anti-leakage/distribuição;
+- aplicar a projeção V2 antes da montagem dos times;
+- preservar a projeção V1 em projecaoV1;
+- manter fallback integral para a V1 em qualquer falha.
+
+A V2 somente entra em uso quando o artefato passa por todos
+os gates abaixo. Caso contrário, carregarJogadores permanece
+funcional e o site segue usando a V1 sem interrupção.
+======================================================
+*/
+
+const CartolaProjecaoV2Frontend = (() => {
+    "use strict";
+
+    const CAMINHO = "data/modelagem/projecoes_v2_atual.json";
+    const MODELO = "RandomForest";
+    const MINIMO_PREDICOES = 100;
+    const MINIMO_VALORES_UNICOS = 20;
+    const MINIMO_DESVIO = 0.10;
+
+    const estado = {
+        ativo: false,
+        rodada: null,
+        modelo: null,
+        cobertura: 0,
+        total: 0,
+        motivoFallback: null
+    };
+
+    function numero(valor) {
+        const convertido = Number(valor);
+        return Number.isFinite(convertido) ? convertido : null;
+    }
+
+    async function carregarArtefato() {
+        const resposta = await fetch(CAMINHO, { cache: "no-store" });
+        if (!resposta.ok) {
+            throw new Error(`artefato V2 indisponível: HTTP ${resposta.status}`);
+        }
+        return await resposta.json();
+    }
+
+    async function obterRodadaAtual() {
+        const resposta = await fetch("data/api/status.json", { cache: "no-store" });
+        if (!resposta.ok) {
+            throw new Error(`status indisponível: HTTP ${resposta.status}`);
+        }
+        const status = await resposta.json();
+        const rodada = Number(status?.rodada_atual);
+        if (!Number.isInteger(rodada) || rodada <= 0) {
+            throw new Error("rodada atual inválida");
+        }
+        return rodada;
+    }
+
+    function validarArtefato(artefato, rodadaAtual) {
+        if (!artefato || typeof artefato !== "object") {
+            throw new Error("artefato V2 inválido");
+        }
+        if (String(artefato.versao || "").toUpperCase() !== "V2") {
+            throw new Error("versão V2 não confirmada");
+        }
+        if (String(artefato.modelo || "") !== MODELO) {
+            throw new Error("modelo V2 inesperado");
+        }
+        if (artefato.antiLeakage !== true) {
+            throw new Error("gate anti-leakage não aprovado");
+        }
+        if (Number(artefato.rodada) !== Number(rodadaAtual)) {
+            throw new Error(`artefato da rodada ${artefato.rodada}, rodada atual ${rodadaAtual}`);
+        }
+
+        const predicoes = artefato.predicoes;
+        if (!predicoes || typeof predicoes !== "object") {
+            throw new Error("predições V2 ausentes");
+        }
+
+        const valores = Object.values(predicoes)
+            .map(Number)
+            .filter(Number.isFinite);
+
+        if (valores.length < MINIMO_PREDICOES) {
+            throw new Error(`cobertura V2 insuficiente: ${valores.length}`);
+        }
+
+        const unicos = new Set(valores.map(v => v.toFixed(4))).size;
+        if (unicos < MINIMO_VALORES_UNICOS) {
+            throw new Error(`predições V2 degeneradas: ${unicos} valores únicos`);
+        }
+
+        const media = valores.reduce((soma, valor) => soma + valor, 0) / valores.length;
+        const variancia = valores.reduce((soma, valor) => soma + ((valor - media) ** 2), 0) / valores.length;
+        const desvio = Math.sqrt(variancia);
+
+        if (!Number.isFinite(desvio) || desvio < MINIMO_DESVIO) {
+            throw new Error(`distribuição V2 degenerada: desvio ${desvio}`);
+        }
+
+        if (valores.every(valor => valor === 0)) {
+            throw new Error("predições V2 zeradas");
+        }
+
+        return predicoes;
+    }
+
+    function aplicarEmLista(lista, predicoes) {
+        if (!Array.isArray(lista)) return { lista: [], cobertura: 0 };
+
+        let cobertura = 0;
+        const resultado = lista.map(jogador => {
+            const id = String(jogador?.id ?? jogador?.atletaId ?? jogador?.atleta_id ?? "");
+            const prevista = numero(predicoes?.[id]);
+
+            if (prevista === null) {
+                return jogador;
+            }
+
+            cobertura += 1;
+
+            return {
+                ...jogador,
+                projecaoV1: Number.isFinite(Number(jogador?.projecao))
+                    ? Number(jogador.projecao)
+                    : null,
+                projecaoV2: prevista,
+                projecao: prevista,
+                versaoProjecao: "V2",
+                modeloProjecao: MODELO,
+                fonteProjecao: CAMINHO
+            };
+        });
+
+        return { lista: resultado, cobertura };
+    }
+
+    function aplicarNoEstado(predicoes) {
+        if (typeof estadoRecomendacoes === "undefined" || !estadoRecomendacoes) {
+            throw new Error("estado de recomendações indisponível");
+        }
+
+        const ativos = aplicarEmLista(estadoRecomendacoes.jogadores, predicoes);
+        const originais = aplicarEmLista(estadoRecomendacoes.jogadoresOriginais, predicoes);
+
+        if (ativos.cobertura < MINIMO_PREDICOES) {
+            throw new Error(`cobertura V2 no frontend insuficiente: ${ativos.cobertura}`);
+        }
+
+        estadoRecomendacoes.jogadores = ativos.lista;
+        estadoRecomendacoes.jogadoresOriginais = originais.lista;
+
+        estado.ativo = true;
+        estado.cobertura = ativos.cobertura;
+        estado.total = ativos.lista.length;
+
+        if (typeof iniciarRecomendacoes === "function") {
+            iniciarRecomendacoes();
+        }
+
+        window.dispatchEvent(new CustomEvent("cartola:v2-aplicada", {
+            detail: {
+                rodada: estado.rodada,
+                modelo: estado.modelo,
+                cobertura: estado.cobertura,
+                total: estado.total
+            }
+        }));
+
+        console.info(
+            `[V2] RandomForest aplicado: ${estado.cobertura}/${estado.total} jogadores com projeção V2.`
+        );
+    }
+
+    async function preparar() {
+        const rodadaAtual = await obterRodadaAtual();
+        const artefato = await carregarArtefato();
+        const predicoes = validarArtefato(artefato, rodadaAtual);
+
+        estado.rodada = rodadaAtual;
+        estado.modelo = artefato.modelo;
+
+        return predicoes;
+    }
+
+    function status() {
+        return { ...estado };
+    }
+
+    return {
+        preparar,
+        aplicarNoEstado,
+        status,
+        caminho: CAMINHO
+    };
+})();
+
+window.addEventListener("DOMContentLoaded", () => {
+    let carregarLegado = null;
+
+    try {
+        if (typeof carregarJogadores === "function") {
+            carregarLegado = carregarJogadores;
+        } else if (typeof window.carregarJogadores === "function") {
+            carregarLegado = window.carregarJogadores;
+        }
+    } catch (_) {
+        carregarLegado = window.carregarJogadores;
+    }
+
+    if (typeof carregarLegado !== "function") {
+        console.warn("[V2] carregarJogadores não disponível; V1 preservada.");
+        return;
+    }
+
+    const carregarComV2 = async function (...args) {
+        let predicoes = null;
+
+        try {
+            predicoes = await CartolaProjecaoV2Frontend.preparar();
+        } catch (erro) {
+            console.warn("[V2] artefato não aprovado; fallback V1:", erro);
+        }
+
+        const resultado = await carregarLegado.apply(this, args);
+
+        if (!predicoes) {
+            return resultado;
+        }
+
+        try {
+            CartolaProjecaoV2Frontend.aplicarNoEstado(predicoes);
+
+            if (typeof obterJogadores === "function") {
+                return obterJogadores();
+            }
+        } catch (erro) {
+            console.warn("[V2] falha ao aplicar no frontend; fallback V1:", erro);
+        }
+
+        return resultado;
+    };
+
+    try {
+        carregarJogadores = carregarComV2;
+    } catch (_) {
+        /* o vínculo global pode não aceitar atribuição em ambientes de teste */
+    }
+
+    window.carregarJogadores = carregarComV2;
+});

@@ -1,0 +1,45 @@
+name: Validar Frontend V2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "js/capitao.js"
+      - "data/modelagem/projecoes_v2_atual.json"
+      - "data/api/status.json"
+      - "data/api/rodada-*/jogadores.json"
+      - "scripts/auditar_frontend_v2.py"
+      - ".github/workflows/validar-frontend-v2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-frontend-v2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar sintaxe JavaScript
+        run: node --check js/capitao.js
+
+      - name: Auditar integração RandomForest V2
+        run: python scripts/auditar_frontend_v2.py
+
+      - name: Resumo
+        run: |
+          echo "### Frontend V2" >> "$GITHUB_STEP_SUMMARY"
+          echo "- RandomForest V2: validado" >> "$GITHUB_STEP_SUMMARY"
+          echo "- anti-leakage: obrigatório" >> "$GITHUB_STEP_SUMMARY"
+          echo "- rodada: deve coincidir com status.json" >> "$GITHUB_STEP_SUMMARY"
+          echo "- distribuição não degenerada: obrigatória" >> "$GITHUB_STEP_SUMMARY"
+          echo "- cobertura real do mercado: >= 60%" >> "$GITHUB_STEP_SUMMARY"
+          echo "- fallback V1: preservado" >> "$GITHUB_STEP_SUMMARY"
