@@ -1,0 +1,104 @@
+{
+  "modelo": "validacao_integracao_capitao_posicional_equilibrado",
+  "baseline": "Atual_Projecao",
+  "candidato": {
+    "modelo": "Posicional",
+    "descricao": "Posicional_Equilibrado vencedor do Torneio V2",
+    "rodadasAvaliadas": 21,
+    "mediaCapitao": 5.565,
+    "mediaTime": 58.287,
+    "ganhoMedioTimeVsAtual": 0.348,
+    "vitoriasVsAtual": 10,
+    "empatesVsAtual": 4,
+    "derrotasVsAtual": 7,
+    "taxaVitoriasVsAtual": 47.62,
+    "taxaMelhorCapitaoReal": 12.7,
+    "desempenhoTemporal": {
+      "campeonato": {
+        "quantidade": 21,
+        "rodadas": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mediaCapitao": 5.565,
+        "mediaTime": 58.287,
+        "ganhoTimeVsAtual": 0.348
+      },
+      "ultimas10": {
+        "quantidade": 10,
+        "rodadas": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mediaCapitao": 6.733,
+        "mediaTime": 59.629,
+        "ganhoTimeVsAtual": 1.587
+      },
+      "ultimas5": {
+        "quantidade": 5,
+        "rodadas": [
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "mediaCapitao": 7.44,
+        "mediaTime": 64.133,
+        "ganhoTimeVsAtual": 2.287
+      },
+      "ultimas3": {
+        "quantidade": 3,
+        "rodadas": [
+          21,
+          22,
+          23
+        ],
+        "mediaCapitao": 7.822,
+        "mediaTime": 66.247,
+        "ganhoTimeVsAtual": 0.678
+      }
+    },
+    "posicao": 1
+  },
+  "criterios": {
+    "ganhoCampeonatoPositivo": true,
+    "ganhoUltimas10Positivo": true,
+    "ganhoUltimas5Positivo": true,
+    "ganhoUltimas3NaoNegativo": true,
+    "maisVitoriasQueDerrotas": true
+  },
+  "aprovado": true,
+  "decisao": "APROVAR_INTEGRACAO",
+  "seguranca": {
+    "semVazamentoFuturo": true,
+    "alteraModeloOficial": false
+  }
+}
