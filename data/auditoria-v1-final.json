@@ -1,0 +1,21 @@
+{
+  "modelo": "gate_final_v1",
+  "versao": "1.0.0",
+  "aprovado": true,
+  "checks": {
+    "versaoV1": true,
+    "patrimonio200Config": true,
+    "patrimonio200Motor": true,
+    "criteriosPorPosicao": true,
+    "antiConflitoProducao": true,
+    "uxClean": true,
+    "formacao433Compete": true,
+    "semPreferenciaArtificial": true,
+    "banco": true,
+    "reservaLuxo": true,
+    "capitao": true,
+    "data/auditoria-criterios-por-posicao.jsonAprovada": true,
+    "data/auditoria-ux-clean.jsonAprovada": true
+  },
+  "falhas": []
+}
