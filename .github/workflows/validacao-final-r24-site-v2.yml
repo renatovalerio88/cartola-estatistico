@@ -1,13 +1,17 @@
 name: Cartola Estatístico - Validação Final R24 Site V2
+
 on:
   workflow_dispatch:
   push:
     branches: [feat/validacao-final-r24-site-v2]
+
 permissions:
   contents: write
+
 concurrency:
   group: cartola-validacao-final-r24-site-v2
   cancel-in-progress: true
+
 jobs:
   validar:
     runs-on: ubuntu-latest
@@ -17,30 +21,45 @@ jobs:
         with:
           ref: feat/validacao-final-r24-site-v2
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
-        with: {python-version: "3.11"}
+        with:
+          python-version: "3.11"
+
       - uses: actions/setup-node@v4
-        with: {node-version: "20"}
+        with:
+          node-version: "20"
+
       - name: Validar sintaxe frontend
         run: |
           node --check js/capitao.js
+          node --check js/filtros-exclusao.js
           node --check js/escalacoes/dados.js
+          node --check js/escalacoes/filtros.js
           node --check js/escalacoes/cards.js
           node --check js/recomendacoes/dados.js
           node --check js/recomendacoes/ranking.js
           node --check js/recomendacoes/cards.js
           node --check js/analise.js
-      - name: Auditar R24 e site
+
+      - name: Auditar R24 e integração final
         run: python scripts/processamento/auditar_validacao_final_r24.py
-      - name: Persistir resultado
+
+      - name: Auditar site completo
+        run: python scripts/processamento/auditar_site_completo.py
+
+      - name: Persistir resultados
         if: always()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          if [ -f data/auditoria-validacao-final-r24.json ]; then
-            git add data/auditoria-validacao-final-r24.json
+          arquivos=""
+          [ -f data/auditoria-validacao-final-r24.json ] && arquivos="$arquivos data/auditoria-validacao-final-r24.json"
+          [ -f data/auditoria-site-completo.json ] && arquivos="$arquivos data/auditoria-site-completo.json"
+          if [ -n "$arquivos" ]; then
+            git add $arquivos
             if ! git diff --cached --quiet; then
-              git commit -m "Registra auditoria final R24 V2"
+              git commit -m "Registra auditoria final R24 e site completo"
               git pull --rebase origin feat/validacao-final-r24-site-v2
               git push origin HEAD:feat/validacao-final-r24-site-v2
             fi
