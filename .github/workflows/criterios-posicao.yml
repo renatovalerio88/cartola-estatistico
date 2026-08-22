@@ -29,14 +29,18 @@ jobs:
         run: python scripts/processamento/avaliar_anti_conflito.py
       - name: Torneio anti-conflito reotimizado
         run: python scripts/processamento/torneio_anti_conflito_reotimizacao.py
-      - name: Persistir auditorias
+      - name: Promover anti-conflito se aprovado
+        run: |
+          python scripts/processamento/integrar_anti_conflito_produto.py
+          node --check js/escalacoes/dados.js
+      - name: Persistir fechamento científico
         if: always()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add data/auditoria-criterios-por-posicao.json data/avaliacao-anti-conflito.json data/torneio-anti-conflito.json || true
+          git add data/auditoria-criterios-por-posicao.json data/avaliacao-anti-conflito.json data/torneio-anti-conflito.json js/escalacoes/dados.js || true
           if ! git diff --cached --quiet; then
-            git commit -m 'Registra auditorias científicas do fechamento'
+            git commit -m 'Consolida fechamento científico e anti-conflito'
             git pull --rebase origin feat/fechamento-cientifico-producao
             git push origin HEAD:feat/fechamento-cientifico-producao
           fi
