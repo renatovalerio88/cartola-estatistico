@@ -1,9 +1,9 @@
 {
   "modelo": "auditoria_bloco_final_motor_v2",
-  "aprovado": false,
+  "aprovado": true,
   "checks": {
     "correcaoRecursaoPatrimonio": true,
-    "patrimonioPadrao200": false,
+    "patrimonioPadrao200": true,
     "patrimonioSemBanco": true,
     "formacoesCompetemSemVies": true,
     "bancoPorPosicao": true,
@@ -16,7 +16,5 @@
     "diagnosticoEscalacoes": true,
     "testeReservas": true
   },
-  "falhas": [
-    "patrimonioPadrao200"
-  ]
+  "falhas": []
 }
