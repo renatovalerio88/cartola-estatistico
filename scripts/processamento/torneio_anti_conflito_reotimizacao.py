@@ -116,7 +116,7 @@ def reotimizar(base, pool, pares, modo):
 
 def main():
     indice=ler(HIST_ESC/"indice.json")
-    rodadas=indice.get("rodadas",[])
+    rodadas=indice.get("rodadasProcessadas") or indice.get("rodadas") or indice.get("rodadasAprovadas") or []
     nums=[]
     for r in rodadas:
         n=r.get("rodada") if isinstance(r,dict) else r
@@ -138,9 +138,10 @@ def main():
             if len(base)<8: continue
             for modo in ("baseline","penalidade","bloqueio"):
                 time=base if modo=="baseline" else reotimizar(base,pool,pares,modo)
+                real=pontos_reais(time)
                 registros.append({"rodada":rodada,"estrategia":est.get("nome") or est.get("id"),"modo":modo,
                     "conflitos":len(conflitos(time,pares)),"projecao":round(sum(j.get("projecao",0) for j in time),2),
-                    "real":round(pontos_reais(time),2) if pontos_reais(time) is not None else None})
+                    "real":round(real,2) if real is not None else None})
     resumos={}
     for modo in ("baseline","penalidade","bloqueio"):
         rs=[r for r in registros if r["modo"]==modo and isinstance(r["real"],(int,float))]
@@ -150,7 +151,7 @@ def main():
     base=resumos["baseline"]["mediaReal"]
     for modo in ("penalidade","bloqueio"):
         v=resumos[modo]["mediaReal"]; resumos[modo]["ganhoVsBaseline"]=round(v-base,2) if v is not None and base is not None else None
-    ganhos=[(resumos[m].get("ganhoVsBaseline") or -999,m) for m in ("penalidade","bloqueio")]
+    ganhos=[(resumos[m].get("ganhoVsBaseline") if resumos[m].get("ganhoVsBaseline") is not None else -999,m) for m in ("penalidade","bloqueio")]
     melhor=max(ganhos)
     promover=melhor[0]>0
     saida={"modelo":"torneio_anti_conflito_reotimizacao_v1","semVazamentoFuturo":True,
