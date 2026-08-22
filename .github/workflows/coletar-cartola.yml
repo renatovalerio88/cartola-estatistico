@@ -23,7 +23,7 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -34,8 +34,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Atualizar pip
-        run: python -m pip install --disable-pip-version-check --upgrade pip
+      - name: Atualizar pip e dependências V2
+        run: |
+          python -m pip install --disable-pip-version-check --upgrade pip
+          python -m pip install numpy scikit-learn
 
       # =====================================
       # HISTÓRICO PRIMEIRO
@@ -90,6 +92,42 @@ jobs:
           PY
 
       # =====================================
+      # MOTOR V2 OFICIAL
+      # =====================================
+      # A V2 usa o RandomForest aprovado pelo walk-forward e pelo gate
+      # de produção. O treinamento é sempre restrito às rodadas anteriores.
+
+      - name: Gerar matriz científica V2
+        run: python scripts/gerar_matriz_features.py
+
+      - name: Gerar projeções V2 da rodada atual
+        run: PYTHONPATH=scripts python scripts/gerar_projecoes_v2_atual.py
+
+      - name: Validar artefato V2 para o site
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          status = json.loads(Path("data/api/status.json").read_text(encoding="utf-8"))
+          rodada = int(status["rodada_atual"])
+          path = Path("data/modelagem/projecoes_v2_atual.json")
+          dados = json.loads(path.read_text(encoding="utf-8"))
+
+          assert dados.get("versao") == "V2"
+          assert dados.get("modelo") == "RandomForest"
+          assert int(dados.get("rodada")) == rodada
+          assert dados.get("antiLeakage") is True
+          assert int(dados.get("jogadoresComProjecao", 0)) >= 100
+          assert isinstance(dados.get("predicoes"), dict)
+
+          print(
+              f"V2 válida para rodada {rodada}: "
+              f"{dados['jogadoresComProjecao']} jogadores com projeção."
+          )
+          PY
+
+      # =====================================
       # SALVAR ALTERAÇÕES
       # =====================================
 
@@ -99,6 +137,6 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git diff --cached --quiet || (
-            git commit -m "Atualização automática da base"
+            git commit -m "Atualização automática da base e projeções V2"
             git push
           )
