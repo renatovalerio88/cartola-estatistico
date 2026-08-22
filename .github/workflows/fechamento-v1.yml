@@ -1,0 +1,47 @@
+name: Cartola Estatístico - Gate Final V1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/fechamento-v1-final]
+
+permissions:
+  contents: write
+
+jobs:
+  validar-v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/fechamento-v1-final
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validar sintaxe JavaScript crítica
+        run: |
+          node --check js/motor/pesos.js
+          node --check js/escalacoes/dados.js
+          node --check js/recomendacoes/ux-clean.js
+          node --check js/recomendacoes/composicao-nota.js
+      - name: Rodar auditorias científicas
+        run: |
+          python scripts/processamento/auditar_criterios_por_posicao.py
+          python scripts/processamento/auditar_ux_clean.py
+      - name: Gate estrutural V1
+        run: python scripts/processamento/auditar_v1_final.py
+      - name: Persistir auditoria
+        if: always()
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add data/auditoria-v1-final.json data/auditoria-criterios-por-posicao.json data/auditoria-ux-clean.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Registra gate final da V1'
+            git pull --rebase origin feat/fechamento-v1-final
+            git push origin HEAD:feat/fechamento-v1-final
+          fi
