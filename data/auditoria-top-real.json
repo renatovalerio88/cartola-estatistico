@@ -35,11 +35,11 @@
     "escalados": 759,
     "identificados": 759,
     "taxaIdentificacaoPercentual": 100.0,
-    "topNPercentual": 8.7,
+    "topNPercentual": 8.3,
     "top5Percentual": 13.31,
     "top10Percentual": 24.64,
-    "rankingRealMedio": 27.19,
-    "percentilMedio": 57.3,
+    "rankingRealMedio": 27.2,
+    "percentilMedio": 57.22,
     "pontosEscalados": 3311.51,
     "pontosTimePerfeito": 10364.1,
     "eficienciaCapturaPercentual": 31.95
@@ -114,11 +114,11 @@
       "escalados": 66,
       "identificados": 66,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 13.64,
+      "topNPercentual": 9.09,
       "top5Percentual": 30.3,
       "top10Percentual": 59.09,
-      "rankingRealMedio": 9.36,
-      "percentilMedio": 56.11,
+      "rankingRealMedio": 9.55,
+      "percentilMedio": 55.15,
       "pontosEscalados": 325.21,
       "pontosTimePerfeito": 619.2,
       "eficienciaCapturaPercentual": 52.52
@@ -743,7 +743,7 @@
     },
     {
       "rodada": 24,
-      "quantidadeJogadoresReais": 1,
+      "quantidadeJogadoresReais": 772,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -777,11 +777,11 @@
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "Top N exato: 8.7%. Top 5: 13.31%. Top 10: 24.64%."
+      "mensagem": "Top N exato: 8.3%. Top 5: 13.31%. Top 10: 24.64%."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 57.3 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 57.22 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",

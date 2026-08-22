@@ -14,14 +14,14 @@
   "resumo": {
     "rodadas": 23,
     "timesAvaliados": 69,
-    "coberturaMediaPercentual": 98.91,
+    "coberturaMediaPercentual": 94.93,
     "taxaTimesCompletosPercentual": 100.0,
-    "taxaCapitaesValidosPercentual": 100.0,
+    "taxaCapitaesValidosPercentual": 95.65,
     "taxaSemVazamentoPercentual": 100.0,
-    "scoreQualidade": 100.0,
+    "scoreQualidade": 97.14,
     "testes": 18,
     "falhasCriticas": 0,
-    "alertas": 0
+    "alertas": 1
   },
   "rodadas": {
     "quantidadeRodadas": 23,
@@ -31,9 +31,9 @@
       "Conservador",
       "Equilibrado"
     ],
-    "coberturaMediaPercentual": 98.91,
+    "coberturaMediaPercentual": 94.93,
     "taxaTimesCompletosPercentual": 100.0,
-    "taxaCapitaesValidosPercentual": 100.0,
+    "taxaCapitaesValidosPercentual": 95.65,
     "taxaSemVazamentoPercentual": 100.0,
     "taxaAuditoriaOrigemPercentual": 100.0,
     "problemas": []
@@ -155,7 +155,7 @@
     },
     {
       "teste": "cobertura_ideal",
-      "aprovado": true,
+      "aprovado": false,
       "critico": false,
       "detalhes": null
     },
@@ -197,7 +197,14 @@
     }
   ],
   "falhasCriticas": [],
-  "alertas": [],
+  "alertas": [
+    {
+      "teste": "cobertura_ideal",
+      "aprovado": false,
+      "critico": false,
+      "detalhes": null
+    }
+  ],
   "decisao": {
     "aprovada": true,
     "decisao": "SIMULACAO_VALIDADA",
