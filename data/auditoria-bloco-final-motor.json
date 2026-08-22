@@ -1,0 +1,19 @@
+{
+  "modelo": "auditoria_bloco_final_motor_v1",
+  "aprovado": true,
+  "checks": {
+    "correcaoRecursaoPatrimonio": true,
+    "patrimonioSemBanco": true,
+    "formacoesCompetemSemVies": true,
+    "bancoPorPosicao": true,
+    "reservaPrecoTitularMaisBarato": true,
+    "reservaLuxo": true,
+    "titularidade": true,
+    "adequacaoRodada": true,
+    "capitaoPosicional": true,
+    "capitaoAntesEscalacoes": true,
+    "diagnosticoEscalacoes": true,
+    "testeReservas": true
+  },
+  "falhas": []
+}
