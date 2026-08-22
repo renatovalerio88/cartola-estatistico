@@ -1,0 +1,63 @@
+name: Cartola Estatístico - Bloco Final Motor
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/bloco-final-motor-r24
+    paths:
+      - "js/capitao.js"
+      - "js/escalacoes/**"
+      - "js/recomendacoes/**"
+      - "js/analise.js"
+      - "index.html"
+      - "scripts/processamento/auditar_bloco_final_motor.py"
+      - ".github/workflows/auditar-bloco-final-motor.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-bloco-final-motor
+  cancel-in-progress: true
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/bloco-final-motor-r24
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validar sintaxe JavaScript
+        run: |
+          node --check js/capitao.js
+          node --check js/escalacoes/dados.js
+          node --check js/escalacoes/cards.js
+          node --check js/recomendacoes/dados.js
+          node --check js/recomendacoes/ranking.js
+          node --check js/recomendacoes/cards.js
+          node --check js/analise.js
+      - name: Auditar bloco final
+        run: python scripts/processamento/auditar_bloco_final_motor.py
+      - name: Persistir auditoria
+        if: always()
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          if [ -f data/auditoria-bloco-final-motor.json ]; then
+            git add data/auditoria-bloco-final-motor.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Registra auditoria do bloco final do motor"
+              git pull --rebase origin feat/bloco-final-motor-r24
+              git push origin HEAD:feat/bloco-final-motor-r24
+            fi
+          fi

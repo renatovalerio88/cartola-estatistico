@@ -17,7 +17,7 @@
    - selecionar Reserva de Luxo;
    - aplicar viabilidade/titularidade da rodada;
    - aplicar adequação contextual à rodada;
-   - usar C$ 120 apenas como patrimônio padrão inicial;
+   - usar C$ 200 apenas como patrimônio padrão inicial;
    - gerar justificativas automáticas;
    - manter compatibilidade com os cards atuais.
 
@@ -116,7 +116,7 @@ const PERFIS_ESCALACAO_PADRAO = [
 
 
 const PATRIMONIO_PADRAO_ESCALACOES =
-  120;
+  200;
 
 
 const estadoEscalacoes = {
