@@ -23,14 +23,16 @@ jobs:
         run: node --check js/motor/pesos.js
       - name: Critérios elegíveis por posição
         run: python scripts/processamento/auditar_criterios_por_posicao.py
-      - name: Persistir auditoria
+      - name: Avaliar anti-conflito histórico
+        run: python scripts/processamento/avaliar_anti_conflito.py
+      - name: Persistir auditorias
         if: always()
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add data/auditoria-criterios-por-posicao.json || true
+          git add data/auditoria-criterios-por-posicao.json data/avaliacao-anti-conflito.json || true
           if ! git diff --cached --quiet; then
-            git commit -m 'Registra auditoria de critérios por posição'
+            git commit -m 'Registra auditorias científicas do fechamento'
             git pull --rebase origin feat/fechamento-cientifico-producao
             git push origin HEAD:feat/fechamento-cientifico-producao
           fi
