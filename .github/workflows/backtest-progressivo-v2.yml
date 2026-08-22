@@ -1,0 +1,55 @@
+name: Backtest Progressivo V2
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'scripts/backtest_progressivo_v2.py'
+      - 'data/historico/**'
+      - '.github/workflows/backtest-progressivo-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  walk-forward:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validar sintaxe
+        run: python -m py_compile scripts/backtest_progressivo_v2.py
+
+      - name: Executar backtest progressivo
+        run: python scripts/backtest_progressivo_v2.py
+
+      - name: Validar saída e gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/backtest-progressivo-v2.json')
+          assert p.exists(), 'Saída JSON não foi gerada'
+          d = json.loads(p.read_text(encoding='utf-8'))
+          assert d.get('modelo') == 'backtest_progressivo_v2'
+          assert d.get('resumo', {}).get('nRodadas', 0) >= 5, 'Poucas rodadas para validação'
+          assert d.get('resumo', {}).get('nJogadores', 0) >= 500, 'Amostra histórica insuficiente'
+          assert d.get('decisao') in {'MANTER_V1', 'CANDIDATO_APTO_PARA_PROXIMO_TESTE'}
+          print(json.dumps(d['resumo'], ensure_ascii=False, indent=2))
+          print('DECISAO=', d['decisao'])
+          PY
+
+      - name: Publicar relatório
+        uses: actions/upload-artifact@v4
+        with:
+          name: backtest-progressivo-v2
+          path: |
+            data/backtest-progressivo-v2.json
+            data/backtest-progressivo-v2.md

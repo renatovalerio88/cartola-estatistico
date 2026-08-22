@@ -1,0 +1,107 @@
+name: Backtest Progressivo V2 ML
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/gerar_matriz_features.py'
+      - 'scripts/benchmark_modelos.py'
+      - 'scripts/validar_ml_vs_v1.py'
+      - 'scripts/validar_producao_v2.py'
+      - '.github/workflows/backtest-progressivo-v2-ml.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark-ml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências científicas
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy scikit-learn
+
+      - name: Validar sintaxe
+        run: |
+          python -m py_compile scripts/gerar_matriz_features.py
+          python -m py_compile scripts/benchmark_modelos.py
+          python -m py_compile scripts/validar_ml_vs_v1.py
+          python -m py_compile scripts/validar_producao_v2.py
+
+      - name: Gerar matriz sem vazamento futuro
+        run: python scripts/gerar_matriz_features.py
+
+      - name: Executar benchmark walk-forward de modelos
+        run: python scripts/benchmark_modelos.py
+
+      - name: Comparar ML diretamente com V1 oficial
+        run: PYTHONPATH=scripts python scripts/validar_ml_vs_v1.py
+
+      - name: Validar candidato no mercado atual
+        run: PYTHONPATH=scripts python scripts/validar_producao_v2.py
+
+      - name: Validar saídas e gates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          arquivos = [
+              Path('data/modelagem/matriz_features.json'),
+              Path('data/modelagem/benchmark_modelos.json'),
+              Path('data/modelagem/validacao_ml_vs_v1.json'),
+              Path('data/modelagem/validacao_producao_v2.json'),
+          ]
+          for p in arquivos:
+              assert p.exists(), f'{p} não foi gerado'
+
+          b = json.loads(arquivos[1].read_text(encoding='utf-8'))
+          v = json.loads(arquivos[2].read_text(encoding='utf-8'))
+          p = json.loads(arquivos[3].read_text(encoding='utf-8'))
+
+          assert b.get('walkForward') is True
+          assert b.get('antiLeakage') is True
+          assert v.get('walkForward') is True
+          assert v.get('antiLeakage') is True
+          assert v.get('decisao') in {'MANTER_V1','APTO_PARA_TESTE_DE_PRODUCAO'}
+          assert p.get('baselinePreservada') is True
+          assert p.get('antiLeakage') is True
+          assert p.get('decisao') in {'MANTER_V1','APTO_PARA_INTEGRACAO_V2'}
+
+          print('VENCEDOR_BENCH=', b.get('vencedorExperimental'))
+          print(json.dumps({
+              'resumoDiretoVsV1': v.get('resumo'),
+              'gatesWalkForward': v.get('gates'),
+              'candidatoApto': v.get('candidatoApto'),
+              'decisaoWalkForward': v.get('decisao'),
+              'rodadaProducao': p.get('rodada'),
+              'gatesProducao': p.get('gates'),
+              'formacoesValidas': p.get('formacoesValidas'),
+              'decisaoProducao': p.get('decisao'),
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Publicar benchmark científico
+        uses: actions/upload-artifact@v4
+        with:
+          name: backtest-progressivo-v2-ml
+          path: |
+            data/modelagem/matriz_features.json
+            data/modelagem/benchmark_modelos.json
+            data/modelagem/validacao_ml_vs_v1.json
+            data/modelagem/validacao_ml_vs_v1.md
+            data/modelagem/validacao_producao_v2.json
+            data/modelagem/validacao_producao_v2.md
+          if-no-files-found: error
