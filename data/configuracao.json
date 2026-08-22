@@ -1,10 +1,10 @@
 {
   "projeto": "Cartola Estatístico",
-  "versao": "0.1.0",
-  "rodada": 1,
-  "status": "MVP inicial carregado com sucesso",
-  "ultimaAtualizacao": "31/07/2026 às 16:15",
-  "dadosDemonstrativos": true,
-  "limitePatrimonio": 120,
-  "observacao": "A lógica será recalculada e atualizada a cada rodada."
+  "versao": "1.0.0",
+  "rodada": 24,
+  "status": "Produção V1",
+  "ultimaAtualizacao": "22/08/2026",
+  "dadosDemonstrativos": false,
+  "limitePatrimonio": 200,
+  "observacao": "Modelo validado por backtest walk-forward; parâmetros experimentais só são promovidos após evidência histórica."
 }
