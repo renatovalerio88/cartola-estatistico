@@ -24,8 +24,15 @@ const MotorCapitao = (() => {
         return Number.isFinite(valor) ? valor : 0;
     }
 
+    function posicao(jogador) {
+        return String(
+            jogador?.posicao ?? jogador?.posicaoSigla ?? jogador?.posicao_sigla ?? jogador?.posicaoAbreviacao ?? ""
+        ).trim().toUpperCase();
+    }
+
     function componente(jogador, nome) {
         const aliases = {
+            projecao: ["projecao", "projecaoCalibrada", "projecaoOriginal", "score", "media"],
             mediaRecente: ["mediaRecente", "media5", "media3", "media"],
             regularidade: ["regularidade", "confianca"],
             explosao: ["explosao", "chance10"],
@@ -33,7 +40,7 @@ const MotorCapitao = (() => {
             forma: ["forma", "score"],
             volatilidade: ["volatilidade", "risco"]
         };
-        const nomes = [nome].concat(aliases[nome] || []);
+        const nomes = aliases[nome] || [nome];
         for (const chave of nomes) {
             const valor = Number(jogador?.[chave]);
             if (Number.isFinite(valor)) return valor;
@@ -42,8 +49,7 @@ const MotorCapitao = (() => {
     }
 
     function pesos(jogador) {
-        const posicao = String(jogador?.posicao || jogador?.posicaoAbreviacao || "").toUpperCase();
-        return PESOS_POSICAO[posicao] || { projecao: 1 };
+        return PESOS_POSICAO[posicao(jogador)] || { projecao: 1 };
     }
 
     function calcular(jogador) {
@@ -60,7 +66,7 @@ const MotorCapitao = (() => {
 
     function selecionar(jogadores) {
         const lista = Array.isArray(jogadores)
-            ? jogadores.filter(j => String(j?.posicao || "").toUpperCase() !== "TEC")
+            ? jogadores.filter(j => posicao(j) && posicao(j) !== "TEC")
             : [];
         if (!lista.length) return null;
 
@@ -93,10 +99,27 @@ const MotorCapitao = (() => {
         return lista.reduce((melhor, jogador) => score(jogador) > score(melhor) ? jogador : melhor);
     }
 
-    return {
-        calcular,
-        selecionar,
-        modelo: "Posicional_Equilibrado"
-    };
+    return { calcular, selecionar, modelo: "Posicional_Equilibrado" };
 
 })();
+
+/*
+ * Integração compatível com o motor de Times Sugeridos.
+ * dados.js é carregado depois deste arquivo; por isso a substituição é feita
+ * somente após o carregamento completo. Se a função global não existir, nada
+ * é alterado. O fallback antigo fica preservado em caso de erro.
+ */
+window.addEventListener("DOMContentLoaded", () => {
+    const legado = window.selecionarCapitaoEscalacao;
+    if (typeof legado !== "function") return;
+
+    window.selecionarCapitaoEscalacao = function (titulares, ...args) {
+        try {
+            const escolhido = MotorCapitao.selecionar(titulares);
+            return escolhido || legado.call(this, titulares, ...args);
+        } catch (erro) {
+            console.warn("[Capitão] fallback para seletor legado:", erro);
+            return legado.call(this, titulares, ...args);
+        }
+    };
+});
