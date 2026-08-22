@@ -1,0 +1,50 @@
+name: Cartola Estatístico - Patrimônio C$ 200
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/bloco-final-motor-r24
+    paths:
+      - "scripts/processamento/corrigir_patrimonio_padrao.py"
+      - ".github/workflows/corrigir-patrimonio-padrao.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cartola-patrimonio-200
+  cancel-in-progress: true
+
+jobs:
+  corrigir-e-validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/bloco-final-motor-r24
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Aplicar patrimônio padrão C$ 200
+        run: python scripts/processamento/corrigir_patrimonio_padrao.py
+      - name: Validar sintaxe
+        run: node --check js/escalacoes/dados.js
+      - name: Auditar bloco final
+        run: python scripts/processamento/auditar_bloco_final_motor.py
+      - name: Persistir correção e auditoria
+        shell: bash
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add js/escalacoes/dados.js data/auditoria-bloco-final-motor.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Define patrimônio padrão em C$ 200 e valida motor"
+            git pull --rebase origin feat/bloco-final-motor-r24
+            git push origin HEAD:feat/bloco-final-motor-r24
+          fi
