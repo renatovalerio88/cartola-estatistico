@@ -1,0 +1,19 @@
+{
+  "modelo": "auditoria_validacao_final_r24_v1",
+  "rodada": 24,
+  "jogadoresRodada": 772,
+  "aprovado": false,
+  "checks": {
+    "rodadaCorrenteValida": true,
+    "baseRodadaPopulada": true,
+    "capitaoCientificoAprovado": true,
+    "motorFinalAprovado": true,
+    "patrimonioPadrao200": false,
+    "paginasPrincipaisPresentes": true,
+    "moduloAnalisePresente": true,
+    "capitaoAntesEscalacoes": true
+  },
+  "falhas": [
+    "patrimonioPadrao200"
+  ]
+}
