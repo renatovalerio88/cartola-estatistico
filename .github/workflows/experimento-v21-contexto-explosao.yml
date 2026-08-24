@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/experimento_v21_contexto_explosao.py'
+      - 'scripts/enriquecer_matriz_contexto_v21.py'
       - 'scripts/calcular_contexto_poisson.py'
       - 'scripts/gerar_matriz_features.py'
       - '.github/workflows/experimento-v21-contexto-explosao.yml'
@@ -36,13 +37,17 @@ jobs:
         run: |
           python -m py_compile scripts/calcular_contexto_poisson.py
           python -m py_compile scripts/gerar_matriz_features.py
+          python -m py_compile scripts/enriquecer_matriz_contexto_v21.py
           python -m py_compile scripts/experimento_v21_contexto_explosao.py
 
       - name: Gerar contexto Poisson walk-forward
         run: python scripts/calcular_contexto_poisson.py
 
-      - name: Regenerar matriz com contexto
+      - name: Regenerar matriz base
         run: python scripts/gerar_matriz_features.py
+
+      - name: Recompor join atleta-rodada com contexto Poisson
+        run: python scripts/enriquecer_matriz_contexto_v21.py
 
       - name: Rodar experimento R1-R23
         run: python scripts/experimento_v21_contexto_explosao.py
@@ -61,8 +66,10 @@ jobs:
           assert int(d.get('rodadaCorteDiagnostico', 999)) <= 23
           assert d.get('amostrasAvaliadas', 0) >= 2000
           assert d.get('rodadasAvaliadas', 0) >= 10
+          assert min(d.get('coberturaPoissonPct', {}).values() or [0]) >= 50.0
           assert d.get('decisaoContexto') in {'MANTER_V2_BASE', 'APTO_PARA_PROXIMO_TESTE'}
           print(json.dumps({
+              'coberturaPoissonPct': d.get('coberturaPoissonPct'),
               'resumo': d.get('resumo'),
               'explosao10': d.get('explosao10'),
               'vitoriasPorRodada': d.get('vitoriasPorRodada'),
