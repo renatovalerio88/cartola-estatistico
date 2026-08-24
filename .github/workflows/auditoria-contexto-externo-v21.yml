@@ -1,0 +1,54 @@
+name: Auditoria V2.1 - Contexto externo
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/auditar_contexto_externo_v21.py'
+      - 'data/api/**'
+      - 'data/contexto-externo/**'
+      - '.github/workflows/auditoria-contexto-externo-v21.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validar sintaxe
+        run: python -m py_compile scripts/auditar_contexto_externo_v21.py
+      - name: Auditar fontes externas sem R24
+        run: python scripts/auditar_contexto_externo_v21.py
+      - name: Validar gates de prontidão
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/modelagem/auditoria_contexto_externo_v21.json')
+          assert p.exists(), 'relatório não gerado'
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d.get('antiLeakage') is True
+          assert d.get('r24Excluida') is True
+          assert int(d.get('rodadaMaximaUsada', 99)) <= 23
+          assert d.get('amostra', {}).get('jogos', 0) >= 150
+          assert d.get('amostra', {}).get('jogadorRodada', 0) >= 5000
+          assert d.get('clima', {}).get('decisao') in {'APTO_PARA_COLETA_OPEN_METEO','PRECISA_COMPLETAR_MAPA_ESTADIOS'}
+          assert d.get('espacialLateralidade', {}).get('decisao') in {'DADO_ESPACIAL_DIRETO_APTO_TESTE','APENAS_PROXY_REPRODUZIVEL_SEM_LADO','COBERTURA_ESPACIAL_INSUFICIENTE'}
+          assert d.get('consensoPreJogo', {}).get('decisao') in {'APTO_PARA_BACKTEST','SEM_COBERTURA_REPRODUZIVEL_PARA_PROMOCAO'}
+          print(json.dumps(d, ensure_ascii=False, indent=2))
+          PY
+      - name: Publicar auditoria
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-contexto-externo-v21
+          path: |
+            data/modelagem/auditoria_contexto_externo_v21.json
+            data/modelagem/auditoria_contexto_externo_v21.md
+          if-no-files-found: error
