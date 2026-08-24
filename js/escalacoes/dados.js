@@ -48,40 +48,25 @@ const POSICOES_BANCO = [
 
 
 const FORMACOES_CANDIDATAS_ESCALACAO = [
-  "4-4-2",
   "3-4-3",
-  "4-3-3"
+  "3-5-2",
+  "4-3-3",
+  "4-4-2",
+  "4-5-1",
+  "5-3-2",
+  "5-4-1"
 ];
 
 
 const FORMACOES_ESTRUTURA_ESCALACAO = {
 
-  "4-4-2": {
-    GOL: 1,
-    LAT: 2,
-    ZAG: 2,
-    MEI: 4,
-    ATA: 2,
-    TEC: 1
-  },
-
-  "3-4-3": {
-    GOL: 1,
-    LAT: 0,
-    ZAG: 3,
-    MEI: 4,
-    ATA: 3,
-    TEC: 1
-  },
-
-  "4-3-3": {
-    GOL: 1,
-    LAT: 2,
-    ZAG: 2,
-    MEI: 3,
-    ATA: 3,
-    TEC: 1
-  }
+  "3-4-3": { GOL: 1, LAT: 0, ZAG: 3, MEI: 4, ATA: 3, TEC: 1 },
+  "3-5-2": { GOL: 1, LAT: 0, ZAG: 3, MEI: 5, ATA: 2, TEC: 1 },
+  "4-3-3": { GOL: 1, LAT: 2, ZAG: 2, MEI: 3, ATA: 3, TEC: 1 },
+  "4-4-2": { GOL: 1, LAT: 2, ZAG: 2, MEI: 4, ATA: 2, TEC: 1 },
+  "4-5-1": { GOL: 1, LAT: 2, ZAG: 2, MEI: 5, ATA: 1, TEC: 1 },
+  "5-3-2": { GOL: 1, LAT: 2, ZAG: 3, MEI: 3, ATA: 2, TEC: 1 },
+  "5-4-1": { GOL: 1, LAT: 2, ZAG: 3, MEI: 4, ATA: 1, TEC: 1 }
 
 };
 
@@ -1143,12 +1128,15 @@ function normalizarPatrimonioEscalacoes(
 
 
   /*
-   * Não existe teto artificial de 120.
-   * 120 é somente o valor padrão.
+   * V2.1: patrimônio é configurável pelo usuário,
+   * com teto operacional explícito de C$ 200.
    */
 
   return arredondarEscalacao(
-    patrimonio,
+    Math.min(
+      200,
+      Math.max(1, patrimonio)
+    ),
     2
   );
 

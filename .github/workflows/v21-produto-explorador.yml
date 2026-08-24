@@ -1,0 +1,60 @@
+name: V2.1 - Produto, Explorador e Orçamento
+
+on:
+  push:
+    branches:
+      - v21-produto-explorador-orcamento
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'js/explorador-v21.js'
+      - 'js/escalacoes/dados.js'
+      - 'index.html'
+      - 'scripts/processamento/aplicar_produto_v21.py'
+      - 'scripts/processamento/auditar_produto_v21.py'
+      - '.github/workflows/v21-produto-explorador.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  validar-produto-v21:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Aplicar migração idempotente
+        run: python scripts/processamento/aplicar_produto_v21.py
+
+      - name: Validar sintaxe JavaScript
+        run: |
+          node --check js/explorador-v21.js
+          node --check js/escalacoes/dados.js
+          node --check js/app.js
+
+      - name: Auditoria V2.1 de produto
+        run: python scripts/processamento/auditar_produto_v21.py
+
+      - name: Validar diff
+        run: git diff --check
+
+      - name: Persistir migração na branch
+        if: github.event_name == 'push'
+        run: |
+          if git diff --quiet; then
+            echo 'Nenhuma alteração pendente.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html js/escalacoes/dados.js
+          git commit -m 'Aplicar produto V2.1: explorador, 7 formações e C$ 200'
+          git push
