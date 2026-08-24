@@ -1,0 +1,57 @@
+name: Experimento V2.1 - Clima histórico
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/auditar_contexto_externo_v21.py'
+      - 'scripts/coletar_clima_historico_v21.py'
+      - '.github/workflows/experimento-v21-clima.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clima:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validar sintaxe
+        run: python -m py_compile scripts/auditar_contexto_externo_v21.py scripts/coletar_clima_historico_v21.py
+      - name: Revalidar cobertura de estádios
+        run: python scripts/auditar_contexto_externo_v21.py
+      - name: Coletar clima R1-R23
+        run: python scripts/coletar_clima_historico_v21.py
+      - name: Validar gates climáticos
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('data/modelagem/auditoria_contexto_externo_v21.json').read_text(encoding='utf-8'))
+          c=json.loads(Path('data/modelagem/clima_historico_v21.json').read_text(encoding='utf-8'))
+          assert a.get('r24Excluida') is True
+          assert a.get('antiLeakage') is True
+          assert a.get('clima',{}).get('coberturaCoordenadaPct',0) >= 95.0
+          assert a.get('clima',{}).get('decisao') == 'APTO_PARA_COLETA_OPEN_METEO'
+          assert c.get('r24Excluida') is True
+          assert c.get('antiLeakage') is True
+          assert int(c.get('rodadaMaximaUsada',99)) <= 23
+          assert c.get('jogos',0) >= 200
+          assert c.get('coberturaPct',0) >= 90.0
+          assert c.get('aptoParaBacktest') is True
+          print(json.dumps({'auditoriaClima':a['clima'],'coleta':c},ensure_ascii=False,indent=2))
+          PY
+      - name: Publicar clima histórico
+        uses: actions/upload-artifact@v4
+        with:
+          name: clima-historico-v21
+          path: |
+            data/contexto-externo/clima_historico_v21.json
+            data/modelagem/clima_historico_v21.json
+            data/modelagem/auditoria_contexto_externo_v21.json
+          if-no-files-found: error
