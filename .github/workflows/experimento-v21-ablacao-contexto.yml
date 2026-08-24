@@ -1,0 +1,54 @@
+name: Experimento V2.1 - Ablação de contexto
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/experimento_v21_ablacao_contexto.py'
+      - 'data/modelagem/matriz_features.json'
+      - '.github/workflows/experimento-v21-ablacao-contexto.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ablacao-contexto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependências
+        run: python -m pip install --upgrade numpy scikit-learn
+      - name: Sintaxe
+        run: python -m py_compile scripts/experimento_v21_ablacao_contexto.py
+      - name: Executar ablação walk-forward
+        run: python scripts/experimento_v21_ablacao_contexto.py
+      - name: Validar gates científicos
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/modelagem/experimento_v21_ablacao_contexto.json')
+          assert p.exists(), 'resultado não gerado'
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d.get('walkForward') is True
+          assert d.get('antiLeakage') is True
+          assert d.get('r24Excluida') is True
+          assert int(d.get('rodadaMaximaUsada',99)) <= 23
+          assert int(d.get('amostra',0)) >= 5000
+          assert len(d.get('familias',{})) >= 8
+          assert d.get('decisao') in {'FAMILIA_CONTEXTO_APTA_PROXIMO_TESTE','MANTER_V2_SEM_PROMOCAO_CONTEXTO'}
+          print(json.dumps({'decisao':d['decisao'],'melhorEstavel':d.get('melhorEstavel'),'top3':d.get('ranking',[])[:3]},ensure_ascii=False,indent=2))
+          PY
+      - name: Publicar relatório
+        uses: actions/upload-artifact@v4
+        with:
+          name: experimento-v21-ablacao-contexto
+          path: |
+            data/modelagem/experimento_v21_ablacao_contexto.json
+            data/modelagem/experimento_v21_ablacao_contexto.md
+          if-no-files-found: error
