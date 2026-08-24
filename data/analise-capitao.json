@@ -25,22 +25,22 @@
     "coldStartExcluidoDaDecisao": true
   },
   "resumo": {
-    "avaliacoes": 63,
+    "avaliacoes": 66,
     "vitoriasA": 6,
     "vitoriasB": 9,
-    "empates": 48,
-    "taxaVitoriasA": 9.52,
-    "taxaVitoriasB": 14.29,
-    "mediaPontosA": 5.217,
-    "mediaPontosB": 5.508,
-    "ganhoMedioBvsA": 0.29,
+    "empates": 51,
+    "taxaVitoriasA": 9.09,
+    "taxaVitoriasB": 13.64,
+    "mediaPontosA": 4.98,
+    "mediaPontosB": 5.258,
+    "ganhoMedioBvsA": 0.277,
     "acertoMelhorRealA": {
       "quantidade": 7,
-      "taxa": 11.11
+      "taxa": 10.61
     },
     "acertoMelhorRealB": {
       "quantidade": 8,
-      "taxa": 12.7
+      "taxa": 12.12
     }
   },
   "coberturaComponentes": {
@@ -113,23 +113,23 @@
       {
         "criterio": "amostra",
         "aprovado": true,
-        "valor": 63
+        "valor": 66
       },
       {
         "criterio": "ganho_medio",
         "aprovado": true,
-        "valor": 0.29
+        "valor": 0.277
       },
       {
         "criterio": "taxa_vitorias_b",
         "aprovado": false,
-        "valor": 14.29
+        "valor": 13.64
       },
       {
         "criterio": "acerto_melhor_capitao_real",
         "aprovado": true,
-        "modeloA": 11.11,
-        "modeloB": 12.7
+        "modeloA": 10.61,
+        "modeloB": 12.12
       }
     ],
     "decisao": "MANTER_CAPITAO_ATUAL",
@@ -15254,8 +15254,8 @@
       "rodada": 24,
       "dadosUtilizadosAteRodada": 23,
       "semVazamentoFuturo": true,
-      "excluidaDaDecisao": true,
-      "motivoExclusao": "rodada_aberta",
+      "excluidaDaDecisao": false,
+      "motivoExclusao": null,
       "estrategias": [
         {
           "estrategia": "Conservador",

@@ -14,7 +14,7 @@
   "resumo": {
     "rodadas": 23,
     "timesAvaliados": 69,
-    "coberturaMediaPercentual": 94.93,
+    "coberturaMediaPercentual": 94.81,
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 95.65,
     "taxaSemVazamentoPercentual": 100.0,
@@ -31,7 +31,7 @@
       "Conservador",
       "Equilibrado"
     ],
-    "coberturaMediaPercentual": 94.93,
+    "coberturaMediaPercentual": 94.81,
     "taxaTimesCompletosPercentual": 100.0,
     "taxaCapitaesValidosPercentual": 95.65,
     "taxaSemVazamentoPercentual": 100.0,
