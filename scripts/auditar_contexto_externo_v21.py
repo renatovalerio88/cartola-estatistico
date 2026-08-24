@@ -23,9 +23,11 @@ VENUES = {
     "Maracanã": (-22.9122, -43.2302),
     "São Januário": (-22.8909, -43.2283),
     "Nilton Santos": (-22.8933, -43.2927),
+    "Nilton Santos (Engenhão)": (-22.8933, -43.2927),
     "Morumbis": (-23.6000, -46.7200),
     "Neo Química Arena": (-23.5453, -46.4742),
     "Allianz Parque": (-23.5275, -46.6780),
+    "Nubank Parque": (-23.52747, -46.67856),
     "Vila Belmiro": (-23.9511, -46.3388),
     "Arena MRV": (-19.9297, -44.0147),
     "Mineirão": (-19.8659, -43.9711),
@@ -33,6 +35,7 @@ VENUES = {
     "Arena do Grêmio": (-29.9739, -51.1944),
     "Fonte Nova": (-12.9788, -38.5040),
     "Arena Fonte Nova": (-12.9788, -38.5040),
+    "Casa de Apostas Arena Fonte Nova": (-12.9788, -38.5040),
     "Barradão": (-12.9191, -38.4270),
     "Arena da Baixada": (-25.4482, -49.2769),
     "Ligga Arena": (-25.4482, -49.2769),
@@ -42,14 +45,19 @@ VENUES = {
     "Ilha do Retiro": (-8.0627, -34.9029),
     "Arena Pernambuco": (-8.0407, -35.0082),
     "Mangueirão": (-1.3818, -48.4448),
+    "Baenão": (-1.44515, -48.46608),
     "Maião": (-20.8109, -49.4906),
     "José Maria de Campos Maia": (-20.8109, -49.4906),
     "Arena Condá": (-27.1044, -52.6137),
     "Ressacada": (-27.6665, -48.5328),
     "Heriberto Hülse": (-28.6775, -49.3660),
     "Nabi Abi Chedid": (-22.9530, -46.5424),
+    "Cícero de Souza Marques": (-22.95094, -46.53052),
     "Brinco de Ouro": (-22.9092, -47.0436),
     "Serra Dourada": (-16.6995, -49.2341),
+    "Arena Barueri": (-23.51292, -46.89948),
+    "Canindé": (-23.52059, -46.61885),
+    "Mané Garrincha": (-15.78363, -47.89905),
 }
 
 SIDE_FIELDS = {"lado", "side", "corredor", "faixa", "posicaoDetalhada", "posicao_detalhada", "left", "right"}
@@ -99,7 +107,6 @@ def main() -> None:
                 y["rodada"] = r
                 jogadores.append(y)
 
-    # Clima: metadado mínimo + resolução de estádio.
     com_data = sum(bool(x.get("partida_data")) for x in jogos)
     com_local = sum(bool(x.get("local")) for x in jogos)
     locais = Counter(str(x.get("local") or "").strip() for x in jogos if x.get("local"))
@@ -110,9 +117,8 @@ def main() -> None:
     )
     clima_meta = pct(min(com_data, com_local), len(jogos))
     clima_coord = pct(com_coord, len(jogos))
-    clima_apto = clima_meta >= 95.0 and clima_coord >= 80.0
+    clima_apto = clima_meta >= 95.0 and clima_coord >= 95.0
 
-    # Espacial/lateralidade: verifica se a base realmente possui lado/coordenada.
     side_hits = 0
     spatial_hits = 0
     proxy_hits = 0
@@ -146,7 +152,6 @@ def main() -> None:
     else:
         spatial_decision = "COBERTURA_ESPACIAL_INSUFICIENTE"
 
-    # Consenso: só consideramos fonte local/curada com timestamp pré-jogo.
     consenso_path = BASE / "data" / "contexto-externo" / "consenso_pre_jogo.json"
     consenso_registros = 0
     consenso_validos = 0
