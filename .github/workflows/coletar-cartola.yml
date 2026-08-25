@@ -140,6 +140,42 @@ jobs:
           PY
 
       # =====================================
+      # HISTÓRICO V2.1 PUBLICÁVEL
+      # =====================================
+      # Reprocessa somente rodadas oficialmente encerradas e publica o JSON
+      # consumido pela aba Histórico. O gate impede atuação inferida.
+
+      - name: Reprocessar pontuação final histórica V2.1
+        run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
+
+      - name: Validar histórico V2.1 publicável
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path("data/pontuacao-final-cartola-v21.json")
+          assert p.exists(), "Histórico V2.1 não foi gerado"
+          d = json.loads(p.read_text(encoding="utf-8"))
+          assert d.get("gate", {}).get("aptaParaRankingFinal") is True, d.get("gate")
+          assert int(d.get("resumo", {}).get("entradasInferidas", -1)) == 0
+          assert int(d.get("resumo", {}).get("timesProcessados", 0)) > 0
+          assert d.get("rodadas"), "Nenhuma rodada histórica processada"
+
+          for rodada in d["rodadas"]:
+              for time in rodada.get("times", []):
+                  assert "projecaoFinalPreJogo" in time, time
+                  assert "pontuacaoFinalCartola" in time, time
+                  assert isinstance(time.get("jogadores"), list)
+
+          print(
+              f"Histórico V2.1 válido até R{d['rodadaMaximaProcessada']}: "
+              f"{d['resumo']['timesProcessados']} times, "
+              f"{d['resumo']['entradasInferidas']} entradas inferidas."
+          )
+          PY
+
+      # =====================================
       # SALVAR ALTERAÇÕES
       # =====================================
 
