@@ -1,0 +1,54 @@
+name: Auditoria Final V2.1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/metodologia.md"
+      - "scripts/auditar_v21_final.py"
+      - "index.html"
+      - "js/**"
+      - "data/modelagem/projecoes_v2_atual.json"
+      - "data/pontuacao-final-cartola-v21.json"
+      - ".github/workflows/auditoria-final-v21.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar sintaxe Python
+        run: python -m py_compile scripts/auditar_v21_final.py
+
+      - name: Validar sintaxe JavaScript principal
+        run: |
+          node --check js/app.js
+          node --check js/analise.js
+          node --check js/explorador-v21.js
+          node --check js/historico/cards.js
+          node --check js/historico/dados.js
+          node --check js/historico/graficos.js
+
+      - name: Executar gate estrutural V2.1
+        run: python scripts/auditar_v21_final.py
+
+      - name: Validar decisões científicas documentadas
+        run: |
+          grep -qi "RandomForest" docs/metodologia.md
+          grep -qi "walk-forward" docs/metodologia.md
+          grep -qi "Time Recomendado" docs/metodologia.md
+          grep -qi "expected scouts" docs/metodologia.md
+          grep -qi "upper-bound" docs/metodologia.md
+          grep -qi "7 formações" docs/metodologia.md
