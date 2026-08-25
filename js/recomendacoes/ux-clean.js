@@ -1,31 +1,23 @@
-/* Cartola Estatístico — UX clean de Recomendações + acabamento final V1 */
+/* Cartola Estatístico — UX V2.1: decisão primeiro, detalhes sob demanda */
 (function () {
   "use strict";
 
-  const INELEGIVEIS_VISUAIS = {
-    GOL: ["Scouts ofensivos", "Bola parada", "Pênaltis"],
-    LAT: [],
-    ZAG: ["Pênaltis"],
-    MEI: ["Chance de SG"],
-    ATA: ["Scouts defensivos", "Chance de SG"],
-    TEC: ["Scouts ofensivos", "Scouts defensivos", "Minutos esperados", "Bola parada", "Pênaltis"]
-  };
-
-  const ORDEM_POSICOES = { GOL: 1, LAT: 2, ZAG: 3, MEI: 4, ATA: 5, TEC: 6 };
-  const NOMES_POSICOES = { GOL:"Goleiros",LAT:"Laterais",ZAG:"Zagueiros",MEI:"Meias",ATA:"Atacantes",TEC:"Treinadores" };
-
+  const POSICOES = { GOL: "Goleiros", LAT: "Laterais", ZAG: "Zagueiros", MEI: "Meias", ATA: "Atacantes", TEC: "Treinadores" };
   let instalado = false;
   let selecionado = null;
-  let historicoOrdem = "posicao";
 
   function numero(v, p = 0) { const n = Number(v); return Number.isFinite(n) ? n : p; }
   function esc(v) { return String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+  function texto(el) { return (el?.textContent || "").replace(/\s+/g," ").trim(); }
 
-  function estilo() {
-    if (document.getElementById("ceUxCleanStyle")) return;
+  function injetarEstilo() {
+    if (document.getElementById("ceUxV21Style")) return;
     const s = document.createElement("style");
-    s.id = "ceUxCleanStyle";
+    s.id = "ceUxV21Style";
     s.textContent = `
+      #recomendacoes .hero{grid-template-columns:1fr!important;gap:14px!important}
+      #recomendacoes .hero-summary{display:none!important}
+      #recomendacoes .hero-text{max-width:860px}
       .ce-clean-recs{display:grid;gap:12px;width:100%}
       .ce-clean-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
       .ce-clean-player{appearance:none;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:999px;padding:9px 13px;cursor:pointer;font:inherit;font-weight:700;display:inline-flex;align-items:center;gap:8px}
@@ -36,25 +28,30 @@
       .ce-decision{margin:14px 18px;padding:14px 16px;border:1px solid rgba(83,216,145,.22);border-radius:14px;background:rgba(83,216,145,.07)}
       .ce-decision-kicker{font-size:10px;font-weight:800;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase}
       .ce-decision-title{display:block;margin:4px 0 6px;font-size:18px}.ce-decision p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.55}
-      .ce-decision-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.ce-decision-chip{padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.05);font-size:10px;font-weight:700}
+      .ce-decision-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.ce-decision-chip{padding:6px 9px;border-radius:999px;background:rgba(127,127,127,.10);font-size:10px;font-weight:700}
       .component-row.ce-secondary-factor{display:none}.ce-show-all-factors{margin:10px 0 0;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:9px;padding:8px 11px;cursor:pointer;font:inherit;font-size:11px;font-weight:700}
-      .ce-history-controls{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin:0 0 14px}.ce-history-controls label{display:grid;gap:5px;font-size:11px;color:var(--text-soft)}
-      .ce-history-controls select{min-width:170px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
-      .ce-history-group td{padding:9px 14px!important;background:rgba(83,216,145,.07);color:#67dfa0!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em;text-transform:uppercase}
-      .ce-open-round-state{padding:18px;border:1px solid rgba(222,185,84,.28);border-radius:14px;background:rgba(222,185,84,.08);margin:14px 0}.ce-open-round-state strong{display:block;margin-bottom:5px}.ce-open-round-state p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.5}
       .ce-analysis-decisions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 18px}.ce-analysis-decision{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
       .ce-analysis-decision span{display:block;font-size:9px;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase;font-weight:800}.ce-analysis-decision strong{display:block;margin:5px 0 4px;font-size:16px}.ce-analysis-decision p{margin:0;font-size:11px;color:var(--text-soft);line-height:1.45}
       .ce-lineup-purpose{margin:8px 0 0;font-size:11px;color:var(--text-soft)}
+      .lineup-player-numbers{min-width:124px}.lineup-player-numbers>strong>small{display:block;margin-top:3px;font-size:10px;font-weight:600;color:var(--text-soft)}
+      #projecoes .v21-player,#projecoes .v21-toolbar input,#projecoes .v21-toolbar select{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+      #projecoes .v21-player h3,#projecoes .v21-proj,#projecoes .v21-kpi strong{color:var(--text)!important}
+      #projecoes .v21-meta,#projecoes .v21-kpi span{color:var(--text-soft)!important;opacity:1!important}
+      #projecoes .v21-badge{background:var(--surface-soft)!important;color:var(--text)!important}
+      .ce-history-reprocessing{padding:18px;border:1px solid rgba(222,185,84,.28);border-radius:14px;background:rgba(222,185,84,.08);margin:14px 0}.ce-history-reprocessing strong{display:block;margin-bottom:5px}.ce-history-reprocessing p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.5}
+      .ce-tech-hidden{display:none!important}
+      .ce-tech-toggle{margin:12px 0 18px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:10px 13px;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
+      @media(min-width:1200px){.content{padding-left:28px!important;padding-right:28px!important}.main-area{min-width:0}.players-grid,.suggested-lineups-container,#projecoes .v21-grid{max-width:none!important}}
       @media(max-width:900px){.ce-analysis-decisions{grid-template-columns:repeat(2,minmax(0,1fr))}}
-      @media(max-width:700px){.ce-clean-tabs{overflow-x:auto;flex-wrap:nowrap;padding:10px}.ce-clean-player{flex:0 0 auto}.ce-analysis-decisions{grid-template-columns:1fr}}
+      @media(max-width:700px){.ce-clean-tabs{overflow-x:auto;flex-wrap:nowrap;padding:10px}.ce-clean-player{flex:0 0 auto}.ce-analysis-decisions{grid-template-columns:1fr}.lineup-player-numbers{min-width:92px}}
     `;
     document.head.appendChild(s);
   }
 
-  function id(j) { return String(j?.id ?? j?.atletaId ?? j?.atleta_id ?? j?.apelido ?? j?.nome ?? ""); }
-  function nome(j) { return String(j?.apelido || j?.nome || "Jogador"); }
   function posicaoAtual() { return typeof obterPosicaoAtiva === "function" ? String(obterPosicaoAtiva()).toUpperCase() : "GOL"; }
   function listaAtual() { const l = typeof obterJogadoresDaPosicao === "function" ? obterJogadoresDaPosicao(posicaoAtual()) : []; return Array.isArray(l) ? l : []; }
+  function id(j) { return String(j?.id ?? j?.atletaId ?? j?.atleta_id ?? j?.apelido ?? j?.nome ?? ""); }
+  function nome(j) { return String(j?.apelido || j?.nome || "Jogador"); }
 
   function textoRisco(j) {
     const t = String(j?.riscoTexto ?? j?.risco ?? "").toLowerCase();
@@ -79,23 +76,7 @@
     if (piso >= 4) contexto.push("piso interessante");
     if (proj >= 8) contexto.push("projeção forte");
     const motivo = contexto.length ? contexto.slice(0,2).join(" e ") : "combinação competitiva de projeção, contexto e confiança";
-    const plural = NOMES_POSICOES[p] || p;
-    return `<section class="ce-decision">
-      <span class="ce-decision-kicker">Decisão do modelo</span>
-      <strong class="ce-decision-title">${esc(titulo)}</strong>
-      <p><b>${idx+1}º entre ${esc(plural.toLowerCase())} indicados.</b> O modelo destaca ${esc(motivo)} nesta rodada.</p>
-      <div class="ce-decision-chips"><span class="ce-decision-chip">${proj.toFixed(1)} pts projetados</span><span class="ce-decision-chip">${Math.round(conf)}% confiança</span><span class="ce-decision-chip">${esc(risco)}</span></div>
-    </section>`;
-  }
-
-  function limparComposicaoPorPosicao(host, posicao) {
-    const proibidos = INELEGIVEIS_VISUAIS[posicao] || [];
-    host.querySelectorAll(".component-row").forEach(row => {
-      const txt = row.textContent || "";
-      if (proibidos.some(nomeCriterio => txt.includes(nomeCriterio))) row.remove();
-    });
-    const resumo = host.querySelector(".components-summary");
-    if (resumo) resumo.querySelector("small") && (resumo.querySelector("small").textContent = `${host.querySelectorAll(".component-row").length} fatores relevantes com dados disponíveis`);
+    return `<section class="ce-decision"><span class="ce-decision-kicker">Decisão do modelo</span><strong class="ce-decision-title">${esc(titulo)}</strong><p><b>${idx+1}º entre ${(POSICOES[p] || p).toLowerCase()} indicados.</b> O modelo destaca ${esc(motivo)} nesta rodada.</p><div class="ce-decision-chips"><span class="ce-decision-chip">${proj.toFixed(1)} pts projetados</span><span class="ce-decision-chip">${Math.round(conf)}% confiança</span><span class="ce-decision-chip">${esc(risco)}</span></div></section>`;
   }
 
   function limitarFatores(host) {
@@ -106,13 +87,11 @@
     const btn = document.createElement("button");
     btn.type = "button"; btn.className = "ce-show-all-factors"; btn.textContent = `Ver todos os ${rows.length} critérios técnicos`;
     btn.addEventListener("click",()=>{
-      const ocultos = host.querySelectorAll(".component-row.ce-secondary-factor");
-      const abrir = ocultos.length > 0;
-      host.querySelectorAll(".component-row").forEach((r,i)=>r.classList.toggle("ce-secondary-factor", abrir ? false : i >= 5));
-      btn.textContent = abrir ? "Mostrar apenas os 5 fatores decisivos" : `Ver todos os ${rows.length} critérios técnicos`;
+      const fechado = [...host.querySelectorAll(".component-row")].some(r=>r.classList.contains("ce-secondary-factor"));
+      host.querySelectorAll(".component-row").forEach((r,i)=>r.classList.toggle("ce-secondary-factor", fechado ? false : i >= 5));
+      btn.textContent = fechado ? "Mostrar apenas os 5 fatores decisivos" : `Ver todos os ${rows.length} critérios técnicos`;
     });
-    const ultimoVisivel = rows[Math.min(4, rows.length-1)];
-    ultimoVisivel?.insertAdjacentElement("afterend",btn);
+    rows[4]?.insertAdjacentElement("afterend",btn);
   }
 
   function renderDetalhe(jogador, host) {
@@ -120,30 +99,20 @@
     const lista = listaAtual();
     const idx = Math.max(0, lista.findIndex(x => id(x) === id(jogador)));
     const card = criarCardJogador(jogador, idx + 1);
-    host.innerHTML = "";
-    if (card) host.appendChild(card);
+    host.innerHTML = ""; if (card) host.appendChild(card);
     const cabecalho = host.querySelector(".player-card-header,.player-header") || host.querySelector(".player-card")?.firstElementChild;
     if (cabecalho) cabecalho.insertAdjacentHTML("afterend", criarVeredito(jogador, idx));
-    limparComposicaoPorPosicao(host, posicaoAtual());
     limitarFatores(host);
     if (typeof configurarBotoesAnaliseJogador === "function") configurarBotoesAnaliseJogador();
   }
 
   function aplicarRecomendacoes() {
-    estilo();
-    const grade = document.getElementById("playersGrid");
-    if (!grade) return;
-    const lista = listaAtual();
-    if (!lista.length) return;
+    const grade = document.getElementById("playersGrid"); if (!grade) return;
+    const lista = listaAtual(); if (!lista.length) return;
     if (!selecionado || !lista.some(j => id(j) === selecionado)) selecionado = id(lista[0]);
-    grade.innerHTML = `<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist" aria-label="Jogadores recomendados">${lista.map((j,i)=>`<button type="button" class="ce-clean-player ${id(j)===selecionado?"is-active":""}" data-ce-player="${esc(id(j))}" role="tab" aria-selected="${id(j)===selecionado}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A primeira leitura mostra a decisão; os detalhes técnicos ficam disponíveis sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail" role="tabpanel"></div></section>`;
-    const detalhe = document.getElementById("ceCleanDetail");
-    renderDetalhe(lista.find(j => id(j) === selecionado) || lista[0], detalhe);
-    grade.querySelectorAll("[data-ce-player]").forEach(botao => botao.addEventListener("click",()=>{
-      selecionado = botao.dataset.cePlayer;
-      grade.querySelectorAll("[data-ce-player]").forEach(b=>{const a=b.dataset.cePlayer===selecionado;b.classList.toggle("is-active",a);b.setAttribute("aria-selected",String(a));});
-      renderDetalhe(lista.find(j=>id(j)===selecionado), detalhe);
-    }));
+    grade.innerHTML = `<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist">${lista.map((j,i)=>`<button type="button" class="ce-clean-player ${id(j)===selecionado?"is-active":""}" data-ce-player="${esc(id(j))}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A conclusão vem primeiro; os critérios técnicos ficam sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail"></div></section>`;
+    const detalhe = document.getElementById("ceCleanDetail"); renderDetalhe(lista.find(j=>id(j)===selecionado)||lista[0],detalhe);
+    grade.querySelectorAll("[data-ce-player]").forEach(b=>b.addEventListener("click",()=>{selecionado=b.dataset.cePlayer;aplicarRecomendacoes();}));
   }
 
   function instalarRecomendacoes() {
@@ -154,108 +123,77 @@
     instalado = true; aplicarRecomendacoes(); return true;
   }
 
-  function obterPosicaoLinha(row) {
-    const meta = row.querySelector(".history-player-meta")?.textContent || row.cells?.[0]?.textContent || "";
-    const m = meta.toUpperCase().match(/\b(GOL|LAT|ZAG|MEI|ATA|TEC)\b/);
-    return m ? m[1] : "ZZZ";
-  }
-
-  function valorCelula(row, idx) {
-    const t = (row.cells?.[idx]?.textContent || "").replace(",",".").replace(/[^0-9.-]/g,"");
-    const n = Number(t); return Number.isFinite(n) ? n : -9999;
-  }
-
-  function ordenarHistorico() {
-    const tabela = document.querySelector("#historico .history-table");
-    if (!tabela?.tBodies?.[0]) return;
-    const tbody = tabela.tBodies[0];
-    tbody.querySelectorAll(".ce-history-group").forEach(r=>r.remove());
-    const rows = [...tbody.querySelectorAll("tr")];
-    rows.sort((a,b)=>{
-      if (historicoOrdem === "projecao") return valorCelula(b,1)-valorCelula(a,1);
-      if (historicoOrdem === "real") return valorCelula(b,2)-valorCelula(a,2);
-      if (historicoOrdem === "erro") return valorCelula(a,3)-valorCelula(b,3);
-      const pa = ORDEM_POSICOES[obterPosicaoLinha(a)] || 99, pb = ORDEM_POSICOES[obterPosicaoLinha(b)] || 99;
-      return pa-pb || valorCelula(b,1)-valorCelula(a,1);
-    });
-    rows.forEach(r=>tbody.appendChild(r));
-    const posSelect = document.getElementById("historyPosition");
-    if (!posSelect || posSelect.value !== "TODOS" || historicoOrdem !== "posicao") return;
-    let ultima = null;
-    rows.forEach(r=>{
-      const p = obterPosicaoLinha(r);
-      if (p !== ultima) {
-        const g = document.createElement("tr"); g.className="ce-history-group"; g.innerHTML=`<td colspan="6">${esc(NOMES_POSICOES[p] || p)}</td>`; tbody.insertBefore(g,r); ultima=p;
-      }
+  function simplificarTopoRecomendacoes() {
+    const hero = document.querySelector("#recomendacoes .hero-text");
+    if (!hero || hero.dataset.ceSimplificado === "1") return;
+    hero.dataset.ceSimplificado = "1";
+    const h = hero.querySelector("h2"); if (h) h.textContent = "Melhores opções da rodada";
+    const ps = [...hero.querySelectorAll("p")]; const ultimo = ps[ps.length-1];
+    if (ultimo) ultimo.textContent = "Escolha por posição e veja primeiro a recomendação do modelo. Projeção, risco e contexto aparecem apenas quando ajudam na decisão.";
+    [...document.querySelectorAll("#recomendacoes article,#recomendacoes section,#recomendacoes div")].forEach(el=>{
+      const t = texto(el);
+      if (t.startsWith("O modelo aprende com o que realmente acontece") && t.length < 900) el.classList.add("ce-tech-hidden");
     });
   }
 
-  function controlesHistorico() {
-    const pos = document.getElementById("historyPosition");
-    if (!pos || document.getElementById("ceHistoryOrder")) return;
-    const area = pos.closest(".filters,.history-filters,.filter-row") || pos.parentElement?.parentElement || pos.parentElement;
-    if (!area) return;
-    const wrap = document.createElement("label"); wrap.innerHTML=`<span>Ordenar por</span><select id="ceHistoryOrder"><option value="posicao">Posição + projeção</option><option value="projecao">Maior projeção</option><option value="real">Maior pontuação real</option><option value="erro">Menor erro</option></select>`;
-    wrap.className="ce-history-sort"; area.appendChild(wrap);
-    wrap.querySelector("select").addEventListener("change",e=>{historicoOrdem=e.target.value; ordenarHistorico();});
+  function deduplicarPatrimonio() {
+    const oficial = document.querySelector("#times .lineup-budget-control");
+    const antigo = document.getElementById("v21PatrimonioBox");
+    if (oficial && antigo) antigo.remove();
+    const input = document.getElementById("lineupBudgetInput");
+    if (input) { input.max = "200"; if (numero(input.value,200) > 200) input.value = "200"; }
   }
 
-  async function tratarRodadaAbertaHistorico() {
+  function tornarIndiceClaro() {
+    document.querySelectorAll("#times .lineup-player-numbers,#times .lineup-bench-player,#times .lineup-luxury-player").forEach(el=>{
+      if (el.dataset.ceIndice === "1") return;
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(n=>{ if (/Nota\s*/i.test(n.nodeValue||"")) n.nodeValue=(n.nodeValue||"").replace(/⭐?\s*Nota\s*/gi,"Índice de escolha "); });
+      el.title = "Índice de escolha: comparação interna do modelo; não são pontos do Cartola.";
+      el.dataset.ceIndice = "1";
+    });
+  }
+
+  function removerRuidoHistorico() {
     const tab = document.getElementById("historico"); if (!tab) return;
-    try {
-      const status = await fetch("data/api/status.json",{cache:"no-store"}).then(r=>r.ok?r.json():null);
-      const aberta = Number(status?.status_mercado ?? status?.statusMercado) === 1;
-      const rodada = Number(status?.rodada_atual ?? status?.rodadaAtual ?? status?.rodada);
-      const sel = document.getElementById("historyRound");
-      if (!aberta || !rodada || Number(sel?.value) !== rodada) {
-        tab.querySelector(".ce-open-round-state")?.remove();
-        const wrap = tab.querySelector(".history-table-wrap"); if (wrap) wrap.hidden=false;
-        return;
+    [...tab.querySelectorAll("article,section,div")].forEach(el=>{
+      const t = texto(el);
+      if ((/Laboratório de capitão/i.test(t) || /Torneio de modelos experimentais/i.test(t)) && t.length < 1800) el.classList.add("ce-tech-hidden");
+    });
+    const tabela = tab.querySelector(".history-table");
+    if (tabela?.tBodies?.[0]) {
+      const rows=[...tabela.tBodies[0].rows].filter(r=>r.cells?.length>=4);
+      const todosZero=rows.length>=3 && rows.every(r=>Math.abs(numero((r.cells[1]?.textContent||"").replace(",","."),0))<0.0001 && Math.abs(numero((r.cells[2]?.textContent||"").replace(",","."),0))<0.0001);
+      const wrap=tabela.closest(".history-table-wrap")||tabela.parentElement;
+      if (todosZero && wrap) {
+        wrap.classList.add("ce-tech-hidden");
+        if (!tab.querySelector(".ce-history-reprocessing")) {
+          const box=document.createElement("div");box.className="ce-history-reprocessing";box.innerHTML="<strong>Detalhamento em reprocessamento</strong><p>Esta rodada ainda não possui projeção × resultado confiável no formato novo. O histórico antigo com zeros foi ocultado para não confundir.</p>";wrap.insertAdjacentElement("beforebegin",box);
+        }
       }
-      const wrap = tab.querySelector(".history-table-wrap"); if (wrap) wrap.hidden=true;
-      if (!tab.querySelector(".ce-open-round-state")) {
-        const box=document.createElement("div"); box.className="ce-open-round-state"; box.innerHTML=`<strong>Rodada ${rodada} em andamento</strong><p>A avaliação individual ficará disponível após o fechamento. Enquanto o mercado estiver aberto, resultado real, erro, Top 5 e acerto de capitão não são tratados como métricas históricas.</p>`;
-        (wrap || document.getElementById("historyGrid") || tab).insertAdjacentElement("beforebegin",box);
-      }
-    } catch(_) {}
-  }
-
-  function aplicarHistorico() { controlesHistorico(); ordenarHistorico(); tratarRodadaAbertaHistorico(); }
-
-  function textoCurto(el) { return (el?.textContent || "").replace(/\s+/g," ").trim(); }
-  function acharResumoAnalise(label) {
-    const candidatos=[...document.querySelectorAll("#analise article,#analise .card,#analise > div > div")];
-    return candidatos.find(el=>textoCurto(el).toLowerCase().includes(label.toLowerCase()) && textoCurto(el).length<220);
+    }
   }
 
   function aplicarAnalise() {
-    const tab=document.getElementById("analise"); if(!tab || tab.querySelector(".ce-analysis-decisions")) return;
-    const ataque=acharResumoAnalise("Melhor ataque"), sg=acharResumoAnalise("Maior chance de SG"), jogo=acharResumoAnalise("Jogo mais aberto");
-    if(!ataque && !sg && !jogo) return;
-    const extrair=(el,label)=>{const t=textoCurto(el).replace(label,"").trim(); return t || "Dados em processamento";};
-    const grid=document.createElement("section"); grid.className="ce-analysis-decisions";
-    grid.innerHTML=`<article class="ce-analysis-decision"><span>Onde atacar</span><strong>${esc(extrair(ataque,"Melhor ataque").split(" ")[0])}</strong><p>Priorize opções ofensivas do clube com melhor cenário projetado.</p></article><article class="ce-analysis-decision"><span>Onde buscar SG</span><strong>${esc(extrair(sg,"Maior chance de SG").split(" ")[0])}</strong><p>Defesa com o cenário mais favorável para terminar sem sofrer gol.</p></article><article class="ce-analysis-decision"><span>Onde buscar teto</span><strong>${esc(extrair(jogo,"Jogo mais aberto").split(/Maior|Força/)[0].trim())}</strong><p>Confronto com maior potencial para pontuação ofensiva elevada.</p></article><article class="ce-analysis-decision"><span>Como usar esta aba</span><strong>Decida primeiro</strong><p>Os números técnicos abaixo servem para confirmar a leitura, não para substituir a conclusão.</p></article>`;
-    const intro=tab.querySelector(".analysis-human-intro"); (intro || tab.querySelector(".section-header") || tab.firstElementChild)?.insertAdjacentElement("afterend",grid);
-    [...tab.querySelectorAll("h2,h3")].forEach(h=>{ if(/posição em destaque/i.test(h.textContent||"")) h.closest("article,.card,div")?.setAttribute("hidden",""); });
+    const tab=document.getElementById("analise"); if(!tab) return;
+    if(!tab.querySelector(".ce-analysis-decisions")) {
+      const cards=[...tab.querySelectorAll(".analysis-card")];
+      const valor=(nome)=>{const c=cards.find(x=>texto(x).toLowerCase().includes(nome.toLowerCase()));return c?.querySelector("strong")?.textContent?.trim()||"Em análise";};
+      const grid=document.createElement("section");grid.className="ce-analysis-decisions";grid.innerHTML=`<article class="ce-analysis-decision"><span>Onde atacar</span><strong>${esc(valor("Melhor ataque"))}</strong><p>Clube com cenário ofensivo mais interessante.</p></article><article class="ce-analysis-decision"><span>Onde buscar SG</span><strong>${esc(valor("Maior chance de SG"))}</strong><p>Defesa com melhor cenário para não sofrer gol.</p></article><article class="ce-analysis-decision"><span>Onde buscar teto</span><strong>${esc(valor("Jogo mais aberto"))}</strong><p>Confronto mais propenso a pontuação ofensiva.</p></article><article class="ce-analysis-decision"><span>Leitura da aba</span><strong>Conclusão primeiro</strong><p>Índices técnicos ficam como apoio, não como mensagem principal.</p></article>`;
+      (tab.querySelector(".section-header")||tab.firstElementChild)?.insertAdjacentElement("afterend",grid);
+    }
+    const tecnico=[...tab.querySelectorAll("h2,h3")].find(h=>/Força dos clubes na rodada/i.test(texto(h)));
+    const bloco=tecnico?.closest("section")||tecnico?.parentElement?.parentElement;
+    if(bloco && !bloco.dataset.ceTecnico){bloco.dataset.ceTecnico="1";bloco.classList.add("ce-tech-hidden");const b=document.createElement("button");b.type="button";b.className="ce-tech-toggle";b.textContent="Ver números técnicos dos clubes";b.addEventListener("click",()=>{const oculto=bloco.classList.toggle("ce-tech-hidden");b.textContent=oculto?"Ver números técnicos dos clubes":"Ocultar números técnicos";});bloco.insertAdjacentElement("beforebegin",b);}
   }
 
-  function aplicarTimes() {
-    const tab=document.getElementById("times"); if(!tab) return;
-    const mapa={Conservador:"Prioriza segurança e menor risco.",Equilibrado:"Busca a melhor relação entre segurança e teto.",Agressivo:"Aceita mais variação em troca de maior teto potencial."};
-    Object.entries(mapa).forEach(([nome,frase])=>{
-      const headings=[...tab.querySelectorAll("h2,h3,strong")].filter(e=>textoCurto(e)===nome);
-      headings.forEach(h=>{const card=h.closest("article,.lineup-card,.suggested-lineup-card,section"); if(card && !card.querySelector(".ce-lineup-purpose")){const p=document.createElement("p");p.className="ce-lineup-purpose";p.textContent=frase;h.insertAdjacentElement("afterend",p);}});
-    });
-  }
+  function aplicarTudo(){injetarEstilo();simplificarTopoRecomendacoes();deduplicarPatrimonio();tornarIndiceClaro();removerRuidoHistorico();aplicarAnalise();}
 
-  function aplicarTudo() { estilo(); aplicarHistorico(); aplicarAnalise(); aplicarTimes(); }
-
-  let n=0; const timer=setInterval(()=>{n+=1;if(instalarRecomendacoes()||n>50)clearInterval(timer);},100);
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",aplicarTudo); else aplicarTudo();
-  const observer=new MutationObserver(()=>{clearTimeout(window.__ceUxFinalTimer);window.__ceUxFinalTimer=setTimeout(aplicarTudo,120);});
+  let tentativas=0;const timer=setInterval(()=>{tentativas++;if(instalarRecomendacoes()||tentativas>50)clearInterval(timer);},100);
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",aplicarTudo);else aplicarTudo();
+  const observer=new MutationObserver(()=>{clearTimeout(window.__ceUxV21Timer);window.__ceUxV21Timer=setTimeout(()=>{aplicarTudo();if(instalado)aplicarRecomendacoes();},140);});
   observer.observe(document.documentElement,{childList:true,subtree:true});
-  document.addEventListener("change",e=>{if(["historyRound","historyPosition"].includes(e.target?.id)) setTimeout(aplicarHistorico,80);});
-
   window.RecomendacoesUXClean={aplicar:aplicarRecomendacoes};
-  console.info("Cartola Estatístico — acabamento UX final V1 ativo.");
+  console.info("Cartola Estatístico — UX V2.1 de clareza ativa.");
 })();
