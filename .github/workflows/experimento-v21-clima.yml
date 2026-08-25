@@ -25,28 +25,50 @@ jobs:
         run: python -m py_compile scripts/auditar_contexto_externo_v21.py scripts/coletar_clima_historico_v21.py
       - name: Revalidar cobertura de estádios
         run: python scripts/auditar_contexto_externo_v21.py
-      - name: Coletar clima R1-R23
+      - name: Coletar clima das rodadas fechadas
         run: python scripts/coletar_clima_historico_v21.py
-      - name: Validar gates climáticos
+      - name: Validar cobertura e gate temporal climático
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          a=json.loads(Path('data/modelagem/auditoria_contexto_externo_v21.json').read_text(encoding='utf-8'))
-          c=json.loads(Path('data/modelagem/clima_historico_v21.json').read_text(encoding='utf-8'))
-          assert a.get('r24Excluida') is True
-          assert a.get('antiLeakage') is True
-          assert a.get('clima',{}).get('coberturaCoordenadaPct',0) >= 95.0
-          assert a.get('clima',{}).get('decisao') == 'APTO_PARA_COLETA_OPEN_METEO'
-          assert c.get('r24Excluida') is True
-          assert c.get('antiLeakage') is True
-          assert int(c.get('rodadaMaximaUsada',99)) <= 23
-          assert c.get('jogos',0) >= 200
-          assert c.get('coberturaPct',0) >= 90.0
-          assert c.get('aptoParaBacktest') is True
-          print(json.dumps({'auditoriaClima':a['clima'],'coleta':c},ensure_ascii=False,indent=2))
+
+          a = json.loads(Path('data/modelagem/auditoria_contexto_externo_v21.json').read_text(encoding='utf-8'))
+          c = json.loads(Path('data/modelagem/clima_historico_v21.json').read_text(encoding='utf-8'))
+
+          assert a.get('clima', {}).get('coberturaCoordenadaPct', 0) >= 95.0
+          assert a.get('clima', {}).get('decisao') == 'APTO_PARA_COLETA_OPEN_METEO'
+          assert c.get('jogos', 0) >= 200
+          assert c.get('coberturaPct', 0) >= 90.0
+          assert c.get('aptoParaBacktestDiagnostico') is True
+
+          assert c.get('antiLeakagePredicao') is False
+          assert c.get('preJogoReproduzivel') is False
+          assert c.get('bloqueiaPromocao') is True
+          assert c.get('aptoParaPromocao') is False
+          assert c.get('usoPermitido') == 'DIAGNOSTICO_UPPER_BOUND'
+
+          rodadas = c.get('rodadasIncluidas') or []
+          assert rodadas
+          assert max(rodadas) == int(c.get('rodadaMaximaUsada'))
+          diag = (c.get('diagnosticoRodadas') or {}).get('rodadas') or {}
+          for rodada in rodadas:
+              assert diag.get(str(rodada), {}).get('resultadoExplicito') is True
+
+          print(json.dumps({
+              'auditoriaClima': a['clima'],
+              'coleta': {
+                  'rodadasIncluidas': rodadas,
+                  'rodadaMaximaUsada': c.get('rodadaMaximaUsada'),
+                  'jogos': c.get('jogos'),
+                  'coberturaPct': c.get('coberturaPct'),
+                  'usoPermitido': c.get('usoPermitido'),
+                  'bloqueiaPromocao': c.get('bloqueiaPromocao'),
+                  'motivoBloqueio': c.get('motivoBloqueio'),
+              }
+          }, ensure_ascii=False, indent=2))
           PY
-      - name: Publicar clima histórico
+      - name: Publicar clima histórico diagnóstico
         uses: actions/upload-artifact@v4
         with:
           name: clima-historico-v21
