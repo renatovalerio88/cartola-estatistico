@@ -35,7 +35,7 @@ def lista(d):
         if isinstance(v, list):
             return v
         if isinstance(v, dict):
-            return [dict(x, id=x.get("id", aid)) for aid, x in v.items() if isinstance(x, dict)]
+            return [dict(x, id=x.get("id", atleta_id)) for atleta_id, x in v.items() if isinstance(x, dict)]
     return []
 
 
@@ -59,18 +59,34 @@ def num(v):
         return 0.0
 
 
+def qualidade_resultado(xs):
+    """Prefere snapshot pós-rodada com pontuação real e atuação explícita."""
+    if not xs:
+        return (-1, -1, -1)
+    com_pontos = sum(1 for j in xs if j.get("pontuacaoReal") is not None or j.get("pontos") is not None or j.get("pontuacao") is not None)
+    com_atuacao = sum(1 for j in xs if j.get("entrouEmCampo") is not None or j.get("entrou_em_campo") is not None)
+    return (com_pontos, com_atuacao, len(xs))
+
+
 def resultado_rodada(r):
+    # O arquivo data/historico/rodada-XX.json pode ser um snapshot pré-jogo e
+    # conter projeções, não o resultado final. Escolhemos a fonte com maior
+    # cobertura explícita de pontuação/atuação, priorizando API pós-rodada em empate.
     caminhos = [
-        HIST / f"rodada-{r:02d}" / "jogadores.json",
-        HIST / f"rodada-{r:02d}.json",
         API / f"rodada-{r:02d}" / "jogadores.json",
         API / f"rodada-{r:02d}" / "pontuados.json",
+        HIST / f"rodada-{r:02d}" / "jogadores.json",
+        HIST / f"rodada-{r:02d}.json",
     ]
-    for p in caminhos:
+    candidatos = []
+    for prioridade, p in enumerate(caminhos):
         xs = lista(carregar(p))
         if xs:
-            return xs
-    return []
+            candidatos.append((qualidade_resultado(xs), -prioridade, p, xs))
+    if not candidatos:
+        return [], None, None
+    qualidade, _, fonte, xs = max(candidatos, key=lambda x: (x[0], x[1]))
+    return xs, str(fonte.relative_to(BASE)), qualidade
 
 
 def indice_resultado(xs):
@@ -82,12 +98,11 @@ def indice_resultado(xs):
         entrou = j.get("entrouEmCampo")
         if entrou is None:
             entrou = j.get("entrou_em_campo")
-        # Ausência explícita vence. Se o snapshot não trouxer flag, presença no
-        # resultado é tratada como atuação, mas registrada como inferida.
+        pontos_raw = j.get("pontuacaoReal", j.get("pontos", j.get("pontuacao")))
         out[i] = {
-            "pontos": num(j.get("pontuacaoReal", j.get("pontos", j.get("pontuacao", 0)))),
-            "entrou": bool(entrou) if entrou is not None else True,
-            "entradaInferida": entrou is None,
+            "pontos": None if pontos_raw is None else num(pontos_raw),
+            "entrou": bool(entrou) if entrou is not None else (pontos_raw is not None),
+            "entradaInferida": entrou is None and pontos_raw is not None,
         }
     return out
 
@@ -97,7 +112,7 @@ def avaliar(j, idx):
     return {
         "id": aid(j), "nome": j.get("nome") or j.get("apelido") or "",
         "posicao": pos(j), "projecao": round(num(j.get("projecao")), 2),
-        "pontos": None if r is None else round(r["pontos"], 2),
+        "pontos": None if r is None else (None if r["pontos"] is None else round(r["pontos"], 2)),
         "entrou": False if r is None else r["entrou"],
         "entradaInferida": False if r is None else r["entradaInferida"],
     }
@@ -125,22 +140,18 @@ def simular(e, idx):
     substituicoes = []
     banco_por_pos = {j["posicao"]: j for j in banco if j["posicao"]}
 
-    # Banco normal: mesma posição; só entra se atuou e pontuou > 0.
     for i, t in enumerate(final):
         if t["posicao"] == "TEC" or t["entrou"]:
             continue
-        r = banco_por_pos.get(t["posicao"])
-        if r and r["entrou"] and r["pontos"] is not None and r["pontos"] > 0:
-            final[i] = dict(r)
-            substituicoes.append({"tipo":"banco", "sai":t["nome"], "entra":r["nome"], "posicao":t["posicao"], "ganho":round(r["pontos"],2)})
+        reserva = banco_por_pos.get(t["posicao"])
+        if reserva and reserva["entrou"] and reserva["pontos"] is not None and reserva["pontos"] > 0:
+            final[i] = dict(reserva)
+            substituicoes.append({"tipo":"banco", "sai":t["nome"], "entra":reserva["nome"], "posicao":t["posicao"], "ganho":round(reserva["pontos"],2)})
 
-    # Reserva de Luxo: somente se identificado no snapshot; não é inventado.
     luxo_aplicado = None
     luxo = next((j for j in banco if j["id"] == luxo_id), None) if luxo_id else None
     if luxo and luxo["entrou"] and luxo["pontos"] is not None:
         mesma = [(i,j) for i,j in enumerate(final) if j["posicao"] == luxo["posicao"] and j["entrou"]]
-        # Só aplica se todos os titulares originais daquela posição atuaram;
-        # caso contrário prevalece a substituição normal do banco.
         orig = [j for j in titulares if j["posicao"] == luxo["posicao"]]
         todos_orig_jogaram = orig and all(j["entrou"] for j in orig)
         if todos_orig_jogaram and mesma:
@@ -151,49 +162,43 @@ def simular(e, idx):
 
     base_original = sum(j["pontos"] or 0 for j in titulares if j["entrou"])
     base_final = sum(j["pontos"] or 0 for j in final if j["entrou"])
-
-    # Capitão só recebe bônus se permaneceu contabilizado no time final.
     cap = next((j for j in final if j["id"] == capitao_id), None)
     bonus_cap = round(0.5 * (cap["pontos"] or 0), 2) if cap and cap["entrou"] else 0.0
-    total = round(base_final + bonus_cap, 2)
 
     return {
-        "perfil": e.get("nome") or e.get("perfil"),
-        "formacao": e.get("formacao"),
+        "perfil": e.get("nome") or e.get("perfil"), "formacao": e.get("formacao"),
         "projecaoTitulares": round(sum(j["projecao"] for j in titulares),2),
         "pontuacaoTitularesOriginal": round(base_original,2),
-        "pontuacaoAposBancoLuxo": round(base_final,2),
-        "bonusCapitao15": bonus_cap,
-        "pontuacaoFinalCartola": total,
+        "pontuacaoAposBancoLuxo": round(base_final,2), "bonusCapitao15": bonus_cap,
+        "pontuacaoFinalCartola": round(base_final + bonus_cap, 2),
         "titularesQueNaoAtuaram": [j["nome"] for j in titulares if j["posicao"] != "TEC" and not j["entrou"]],
-        "substituicoesBanco": substituicoes,
-        "reservaLuxoAplicada": luxo_aplicado,
-        "reservaLuxoIdentificada": bool(luxo_id),
-        "pontosRecuperadosBancoLuxo": round(base_final-base_original,2),
-        "entradasInferidas": sum(1 for j in titulares+banco if j["entradaInferida"]),
-        "jogadores": titulares,
+        "substituicoesBanco": substituicoes, "reservaLuxoAplicada": luxo_aplicado,
+        "reservaLuxoIdentificada": bool(luxo_id), "pontosRecuperadosBancoLuxo": round(base_final-base_original,2),
+        "entradasInferidas": sum(1 for j in titulares+banco if j["entradaInferida"]), "jogadores": titulares,
     }
 
 
 def main():
     rodadas = []
+    fontes = {}
     for r in range(1, 24):
         esc = carregar(ESC / f"rodada-{r:02d}.json")
         if not esc:
             continue
-        idx = indice_resultado(resultado_rodada(r))
+        resultados, fonte, qualidade = resultado_rodada(r)
+        idx = indice_resultado(resultados)
         if not idx:
             continue
         times = [simular(e, idx) for e in esc.get("estrategias", [])]
         if times:
-            rodadas.append({"rodada":r, "times":times})
+            fontes[str(r)] = {"fonte": fonte, "qualidade": list(qualidade)}
+            rodadas.append({"rodada":r, "fonteResultado":fonte, "times":times})
 
     todos = [t for r in rodadas for t in r["times"]]
     saida = {
-        "modelo":"pontuacao_final_cartola_v21",
-        "r24Excluida":True,
+        "modelo":"pontuacao_final_cartola_v21", "r24Excluida":True,
         "regras":{"capitao":"1,5x", "banco":"mesma posição; reserva atua e pontua > 0", "reservaLuxo":"aplicada apenas quando identificada no snapshot e regra é verificável"},
-        "rodadas":rodadas,
+        "fontesResultado": fontes, "rodadas":rodadas,
         "resumo":{
             "rodadasProcessadas":len(rodadas), "timesProcessados":len(todos),
             "mediaTitularesOriginal":round(mean([t["pontuacaoTitularesOriginal"] for t in todos]),3) if todos else 0,
