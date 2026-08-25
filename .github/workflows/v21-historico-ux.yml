@@ -1,0 +1,55 @@
+name: V2.1 Historico UX
+
+on:
+  pull_request:
+    paths:
+      - 'js/historico/cards.js'
+      - 'scripts/processamento/reprocessar_pontuacao_final_cartola.py'
+      - '.github/workflows/coletar-cartola.yml'
+      - '.github/workflows/v21-historico-ux.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validar sintaxe JavaScript
+        run: node --check js/historico/cards.js
+      - name: Gerar histórico V2.1
+        run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
+      - name: Validar contrato do Histórico
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path('data/pontuacao-final-cartola-v21.json').read_text(encoding='utf-8'))
+          assert d['gate']['aptaParaRankingFinal'] is True
+          assert d['resumo']['entradasInferidas'] == 0
+          assert d['rodadaMaximaProcessada'] >= 24
+          assert set(d['resumoPorPerfil']) == {'Conservador','Equilibrado','Agressivo'}
+          for rodada in d['rodadas']:
+              for time in rodada['times']:
+                  assert 'projecaoFinalPreJogo' in time
+                  assert 'pontuacaoFinalCartola' in time
+                  assert 'erroAbsolutoFinal' in time
+                  for j in time['jogadores']:
+                      assert 'diferenca' in j
+                      assert 'leitura' in j
+                      assert 'capitao' in j
+          print(json.dumps({
+              'rodadaMaximaProcessada': d['rodadaMaximaProcessada'],
+              'resumo': d['resumo'],
+              'perfis': d['resumoPorPerfil'],
+          }, ensure_ascii=False, indent=2))
+          PY
+      - name: Upload histórico validado
+        uses: actions/upload-artifact@v4
+        with:
+          name: historico-v21-publicavel
+          path: data/pontuacao-final-cartola-v21.json
