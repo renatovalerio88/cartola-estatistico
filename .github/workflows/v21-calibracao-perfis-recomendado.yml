@@ -6,7 +6,9 @@ on:
     paths:
       - "scripts/experimentos/calibrar_perfis_recomendado_v21.py"
       - "scripts/processamento/reprocessar_pontuacao_final_cartola.py"
+      - "scripts/processamento/calibrar_historico_publico_v21.py"
       - ".github/workflows/v21-calibracao-perfis-recomendado.yml"
+      - ".github/workflows/coletar-cartola.yml"
 
 jobs:
   calibrar:
@@ -25,6 +27,7 @@ jobs:
       - name: Validar sintaxe
         run: |
           python -m py_compile scripts/processamento/reprocessar_pontuacao_final_cartola.py
+          python -m py_compile scripts/processamento/calibrar_historico_publico_v21.py
           python -m py_compile scripts/experimentos/calibrar_perfis_recomendado_v21.py
 
       - name: Reconstruir pontuacao final oficial
@@ -46,7 +49,7 @@ jobs:
       - name: Rodar calibracao walk-forward e Recomendado
         run: python scripts/experimentos/calibrar_perfis_recomendado_v21.py
 
-      - name: Validar anti-leakage e saida
+      - name: Validar anti-leakage e saida do laboratorio
         run: |
           python - <<'PY'
           import json
@@ -68,8 +71,47 @@ jobs:
           }, ensure_ascii=False, indent=2))
           PY
 
+      - name: Aplicar apenas calibracoes aprovadas ao Historico publico
+        run: python scripts/processamento/calibrar_historico_publico_v21.py
+
+      - name: Validar contrato do Historico calibrado
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          lab = json.loads(Path('data/laboratorio/calibracao-perfis-v21.json').read_text(encoding='utf-8'))
+          hist = json.loads(Path('data/pontuacao-final-cartola-v21.json').read_text(encoding='utf-8'))
+          c = hist['calibracaoHistorico']
+
+          assert c['antiLeakage'] is True
+          assert c['timeRecomendadoPromovido'] is False
+          aprovados_lab = {p for p, x in lab['calibracao']['resumo'].items() if x['gateCalibracao']}
+          assert set(c['perfisAprovados']) == aprovados_lab, (c['perfisAprovados'], aprovados_lab)
+
+          for rodada in hist['rodadas']:
+              for time in rodada.get('times', []):
+                  perfil = time.get('perfil')
+                  assert 'projecaoFinalPreJogoOriginal' in time
+                  assert 'calibracaoAplicada' in time
+                  if time['calibracaoAplicada']:
+                      assert perfil in aprovados_lab
+                      assert 0.45 <= float(time['fatorCalibracao']) <= 1.10
+                  for j in time.get('jogadores', []):
+                      assert 'projecaoOriginal' in j
+
+          print(json.dumps({
+              'perfisAprovados': c['perfisAprovados'],
+              'perfisSemAjuste': c['perfisSemAjuste'],
+              'resumoCalibrado': hist.get('resumoPorPerfilCalibrado'),
+              'recomendadoPromovido': c['timeRecomendadoPromovido'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
       - name: Publicar diagnostico como artifact
         uses: actions/upload-artifact@v4
         with:
           name: calibracao-perfis-v21
-          path: data/laboratorio/calibracao-perfis-v21.json
+          path: |
+            data/laboratorio/calibracao-perfis-v21.json
+            data/pontuacao-final-cartola-v21.json

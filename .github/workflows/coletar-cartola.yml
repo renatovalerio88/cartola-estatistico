@@ -144,9 +144,13 @@ jobs:
       # =====================================
       # Reprocessa somente rodadas oficialmente encerradas e publica o JSON
       # consumido pela aba Histórico. O gate impede atuação inferida.
+      # Em seguida, aplica apenas calibrações que venceram o gate walk-forward.
 
       - name: Reprocessar pontuação final histórica V2.1
         run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
+
+      - name: Aplicar calibração walk-forward aprovada no Histórico
+        run: python scripts/processamento/calibrar_historico_publico_v21.py
 
       - name: Validar histórico V2.1 publicável
         run: |
@@ -162,16 +166,27 @@ jobs:
           assert int(d.get("resumo", {}).get("timesProcessados", 0)) > 0
           assert d.get("rodadas"), "Nenhuma rodada histórica processada"
 
+          calibracao = d.get("calibracaoHistorico") or {}
+          assert calibracao.get("antiLeakage") is True, calibracao
+          assert calibracao.get("timeRecomendadoPromovido") is False, calibracao
+          aprovados = set(calibracao.get("perfisAprovados") or [])
+          assert aprovados.issubset({"Conservador", "Equilibrado", "Agressivo"}), aprovados
+
           for rodada in d["rodadas"]:
               for time in rodada.get("times", []):
                   assert "projecaoFinalPreJogo" in time, time
+                  assert "projecaoFinalPreJogoOriginal" in time, time
+                  assert "calibracaoAplicada" in time, time
                   assert "pontuacaoFinalCartola" in time, time
                   assert isinstance(time.get("jogadores"), list)
+                  for jogador in time.get("jogadores", []):
+                      assert "projecaoOriginal" in jogador, jogador
 
           print(
               f"Histórico V2.1 válido até R{d['rodadaMaximaProcessada']}: "
               f"{d['resumo']['timesProcessados']} times, "
-              f"{d['resumo']['entradasInferidas']} entradas inferidas."
+              f"{d['resumo']['entradasInferidas']} entradas inferidas, "
+              f"calibração aprovada para {sorted(aprovados)}."
           )
           PY
 
