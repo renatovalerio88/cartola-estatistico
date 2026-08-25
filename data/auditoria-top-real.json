@@ -35,14 +35,14 @@
     "escalados": 792,
     "identificados": 792,
     "taxaIdentificacaoPercentual": 100.0,
-    "topNPercentual": 8.33,
-    "top5Percentual": 12.88,
-    "top10Percentual": 24.37,
-    "rankingRealMedio": 27.97,
-    "percentilMedio": 57.75,
-    "pontosEscalados": 3462.35,
+    "topNPercentual": 8.46,
+    "top5Percentual": 13.01,
+    "top10Percentual": 24.62,
+    "rankingRealMedio": 27.55,
+    "percentilMedio": 58.07,
+    "pontosEscalados": 3500.04,
     "pontosTimePerfeito": 10862.61,
-    "eficienciaCapturaPercentual": 31.87
+    "eficienciaCapturaPercentual": 32.22
   },
   "resultadoPorPosicao": {
     "GOL": {
@@ -65,11 +65,11 @@
       "topNPercentual": 11.36,
       "top5Percentual": 18.18,
       "top10Percentual": 22.73,
-      "rankingRealMedio": 22.73,
-      "percentilMedio": 57.23,
-      "pontosEscalados": 231.6,
+      "rankingRealMedio": 20.32,
+      "percentilMedio": 59.22,
+      "pontosEscalados": 239.8,
       "pontosTimePerfeito": 634.1,
-      "eficienciaCapturaPercentual": 36.52
+      "eficienciaCapturaPercentual": 37.82
     },
     "ZAG": {
       "escalados": 176,
@@ -90,12 +90,12 @@
       "taxaIdentificacaoPercentual": 100.0,
       "topNPercentual": 12.88,
       "top5Percentual": 13.64,
-      "top10Percentual": 21.21,
-      "rankingRealMedio": 36.73,
-      "percentilMedio": 64.95,
-      "pontosEscalados": 1322.7,
+      "top10Percentual": 20.83,
+      "rankingRealMedio": 37.0,
+      "percentilMedio": 64.84,
+      "pontosEscalados": 1315.4,
       "pontosTimePerfeito": 3773.4,
-      "eficienciaCapturaPercentual": 35.05
+      "eficienciaCapturaPercentual": 34.86
     },
     "ATA": {
       "escalados": 176,
@@ -103,25 +103,25 @@
       "taxaIdentificacaoPercentual": 100.0,
       "topNPercentual": 7.95,
       "top5Percentual": 13.64,
-      "top10Percentual": 19.89,
-      "rankingRealMedio": 31.99,
-      "percentilMedio": 64.96,
-      "pontosEscalados": 928.2,
+      "top10Percentual": 21.02,
+      "rankingRealMedio": 30.39,
+      "percentilMedio": 65.79,
+      "pontosEscalados": 959.4,
       "pontosTimePerfeito": 3001.0,
-      "eficienciaCapturaPercentual": 30.93
+      "eficienciaCapturaPercentual": 31.97
     },
     "TEC": {
       "escalados": 66,
       "identificados": 66,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 9.09,
-      "top5Percentual": 25.76,
-      "top10Percentual": 54.55,
-      "rankingRealMedio": 9.82,
-      "percentilMedio": 53.72,
-      "pontosEscalados": 339.55,
+      "topNPercentual": 10.61,
+      "top5Percentual": 27.27,
+      "top10Percentual": 56.06,
+      "rankingRealMedio": 9.67,
+      "percentilMedio": 54.51,
+      "pontosEscalados": 345.14,
       "pontosTimePerfeito": 650.31,
-      "eficienciaCapturaPercentual": 52.21
+      "eficienciaCapturaPercentual": 53.07
     }
   },
   "detalhesRodadas": [
@@ -749,21 +749,21 @@
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 44.18,
+          "pontosEscalados": 49.68,
           "pontosPerfeitos": 172.97,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 48.78,
+          "pontosEscalados": 70.27,
           "pontosPerfeitos": 162.77,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 57.88,
+          "pontosEscalados": 68.58,
           "pontosPerfeitos": 162.77,
           "nome": "Agressivo"
         }
@@ -777,15 +777,15 @@
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "Top N exato: 8.33%. Top 5: 12.88%. Top 10: 24.37%."
+      "mensagem": "Top N exato: 8.46%. Top 5: 13.01%. Top 10: 24.62%."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 57.75 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 58.07 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 31.87%."
+      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 32.22%."
     }
   ],
   "auditoria": {
