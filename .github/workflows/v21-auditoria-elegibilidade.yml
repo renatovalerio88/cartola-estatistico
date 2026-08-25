@@ -1,0 +1,33 @@
+name: V2.1 Auditoria Elegibilidade Cartola
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/auditar_elegibilidade_cartola_v21.py'
+      - 'data/api/**'
+      - 'data/historico/**'
+      - '.github/workflows/v21-auditoria-elegibilidade.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Auditar elegibilidade R1-R23
+        run: python scripts/auditar_elegibilidade_cartola_v21.py
+      - name: Mostrar resumo
+        run: cat data/auditoria-elegibilidade-cartola-v21.md
+      - name: Publicar artefatos
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-elegibilidade-cartola-v21
+          path: |
+            data/auditoria-elegibilidade-cartola-v21.json
+            data/auditoria-elegibilidade-cartola-v21.md
