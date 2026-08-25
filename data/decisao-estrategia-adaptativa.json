@@ -16,23 +16,23 @@
   },
   "desempenho": {
     "v1": {
-      "media": 57.89,
-      "desvioPadrao": 21.17,
-      "eficienciaOraculo": 91.73,
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "eficienciaOraculo": 91.71,
       "perdaMediaOraculo": 5.22
     },
     "v2": {
-      "media": 57.89,
-      "desvioPadrao": 21.17,
-      "eficienciaOraculo": 91.73,
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "eficienciaOraculo": 91.71,
       "perdaMediaOraculo": 5.22
     },
     "melhorFixa": {
       "nome": "Conservador",
-      "media": 58.34
+      "media": 58.18
     },
     "oraculo": {
-      "media": 63.11
+      "media": 62.95
     }
   },
   "ganhosV2": {
@@ -147,8 +147,8 @@
     {
       "nome": "v2_mais_estavel",
       "passou": false,
-      "valor": 21.17,
-      "limite": "< 21.17",
+      "valor": 21.36,
+      "limite": "< 21.36",
       "nivel": "DESEJAVEL"
     }
   ],

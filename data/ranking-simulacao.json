@@ -35,10 +35,10 @@
           23,
           24
         ],
-        "media": 58.34,
+        "media": 58.18,
         "mediana": 58.73,
-        "total": 1341.78,
-        "desvioPadrao": 21.46
+        "total": 1338.08,
+        "desvioPadrao": 21.67
       },
       "ultimas10": {
         "quantidade": 10,
@@ -114,10 +114,10 @@
           23,
           24
         ],
-        "media": 51.86,
+        "media": 51.7,
         "mediana": 52.06,
-        "total": 1192.77,
-        "desvioPadrao": 16.82
+        "total": 1189.17,
+        "desvioPadrao": 17.0
       },
       "ultimas10": {
         "quantidade": 10,
@@ -193,10 +193,10 @@
           23,
           24
         ],
-        "media": 52.85,
+        "media": 52.7,
         "mediana": 53.77,
-        "total": 1215.66,
-        "desvioPadrao": 17.82
+        "total": 1212.06,
+        "desvioPadrao": 18.0
       },
       "ultimas10": {
         "quantidade": 10,
@@ -263,16 +263,16 @@
       "perfil": "conservador",
       "formacao": "4-4-2",
       "rodadas": 23,
-      "pontosTotal": 1341.78,
-      "mediaPontos": 58.34,
+      "pontosTotal": 1338.08,
+      "mediaPontos": 58.18,
       "medianaPontos": 58.73,
-      "desvioPadrao": 21.46,
-      "consistencia": 63.21,
-      "mediaSemCapitao": 53.19,
+      "desvioPadrao": 21.67,
+      "consistencia": 62.75,
+      "mediaSemCapitao": 53.03,
       "mediaBonusCapitao": 5.14,
-      "ganhoMedioCapitaoPercentual": 9.67,
-      "maeMedioJogadores": 5.026,
-      "coberturaMediaPercentual": 95.29,
+      "ganhoMedioCapitaoPercentual": 9.7,
+      "maeMedioJogadores": 5.022,
+      "coberturaMediaPercentual": 94.93,
       "escalacoesCompletas": 23,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 11,
@@ -314,10 +314,10 @@
             23,
             24
           ],
-          "media": 58.34,
+          "media": 58.18,
           "mediana": 58.73,
-          "total": 1341.78,
-          "desvioPadrao": 21.46
+          "total": 1338.08,
+          "desvioPadrao": 21.67
         },
         "ultimas10": {
           "quantidade": 10,
@@ -365,7 +365,7 @@
           "desvioPadrao": 32.32
         }
       },
-      "scoreGlobal": 60.441,
+      "scoreGlobal": 60.255,
       "posicao": 1
     },
     {
@@ -373,16 +373,16 @@
       "perfil": "agressivo",
       "formacao": "3-4-3",
       "rodadas": 23,
-      "pontosTotal": 1192.77,
-      "mediaPontos": 51.86,
+      "pontosTotal": 1189.17,
+      "mediaPontos": 51.7,
       "medianaPontos": 52.06,
-      "desvioPadrao": 16.82,
-      "consistencia": 67.57,
-      "mediaSemCapitao": 47.02,
+      "desvioPadrao": 17.0,
+      "consistencia": 67.12,
+      "mediaSemCapitao": 46.86,
       "mediaBonusCapitao": 4.84,
-      "ganhoMedioCapitaoPercentual": 10.3,
-      "maeMedioJogadores": 6.046,
-      "coberturaMediaPercentual": 94.57,
+      "ganhoMedioCapitaoPercentual": 10.34,
+      "maeMedioJogadores": 6.015,
+      "coberturaMediaPercentual": 94.93,
       "escalacoesCompletas": 23,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 5,
@@ -424,10 +424,10 @@
             23,
             24
           ],
-          "media": 51.86,
+          "media": 51.7,
           "mediana": 52.06,
-          "total": 1192.77,
-          "desvioPadrao": 16.82
+          "total": 1189.17,
+          "desvioPadrao": 17.0
         },
         "ultimas10": {
           "quantidade": 10,
@@ -475,7 +475,7 @@
           "desvioPadrao": 26.24
         }
       },
-      "scoreGlobal": 52.579,
+      "scoreGlobal": 52.471,
       "posicao": 2
     },
     {
@@ -483,16 +483,16 @@
       "perfil": "equilibrado",
       "formacao": "3-4-3",
       "rodadas": 23,
-      "pontosTotal": 1215.66,
-      "mediaPontos": 52.85,
+      "pontosTotal": 1212.06,
+      "mediaPontos": 52.7,
       "medianaPontos": 53.77,
-      "desvioPadrao": 17.82,
-      "consistencia": 66.29,
-      "mediaSemCapitao": 47.77,
+      "desvioPadrao": 18.0,
+      "consistencia": 65.85,
+      "mediaSemCapitao": 47.61,
       "mediaBonusCapitao": 5.09,
-      "ganhoMedioCapitaoPercentual": 10.65,
-      "maeMedioJogadores": 5.483,
-      "coberturaMediaPercentual": 94.57,
+      "ganhoMedioCapitaoPercentual": 10.68,
+      "maeMedioJogadores": 5.452,
+      "coberturaMediaPercentual": 94.93,
       "escalacoesCompletas": 23,
       "taxaEscalacoesCompletas": 100.0,
       "vitorias": 4,
@@ -534,10 +534,10 @@
             23,
             24
           ],
-          "media": 52.85,
+          "media": 52.7,
           "mediana": 53.77,
-          "total": 1215.66,
-          "desvioPadrao": 17.82
+          "total": 1212.06,
+          "desvioPadrao": 18.0
         },
         "ultimas10": {
           "quantidade": 10,
@@ -585,7 +585,7 @@
           "desvioPadrao": 29.01
         }
       },
-      "scoreGlobal": 52.502,
+      "scoreGlobal": 52.395,
       "posicao": 3
     }
   ],
@@ -594,7 +594,7 @@
     "estrategiasEncontradas": 3,
     "rodadasAvaliadas": 23,
     "rodadasExcluidasSemResultadoFinal": [],
-    "coberturaMediaPercentual": 94.81,
+    "coberturaMediaPercentual": 94.93,
     "simulacaoOrigemAprovada": true,
     "aprovada": true
   }

@@ -34,22 +34,22 @@
       "candidatosDisponiveisPorPosicao": {
         "GOL": 20,
         "LAT": 39,
-        "ZAG": 43,
+        "ZAG": 44,
         "MEI": 67,
-        "ATA": 49,
+        "ATA": 50,
         "TEC": 20
       },
-      "custoTitulares": 139.83,
-      "saldoPatrimonio": 60.17,
-      "projecaoTitulares": 68.22,
+      "custoTitulares": 145.59,
+      "saldoPatrimonio": 54.41,
+      "projecaoTitulares": 67.79,
       "otimizador": {
         "sucesso": true,
         "status": "OTIMO_ENCONTRADO",
         "motor": "PuLP_CBC_MILP",
-        "scoreTotal": 68.2244,
-        "custoTotal": 139.83,
-        "saldo": 60.17,
-        "custoMinimoTeorico": 36.84,
+        "scoreTotal": 67.7942,
+        "custoTotal": 145.59,
+        "saldo": 54.41,
+        "custoMinimoTeorico": 36.21,
         "auditoria": {
           "quantidadeEsperada": 12,
           "quantidadeObtida": 12,
@@ -122,23 +122,23 @@
           }
         },
         {
-          "id": "80313",
-          "nome": "Gilberto",
+          "id": "116065",
+          "nome": "Cuiabano",
           "posicao": "LAT",
-          "clube": "CAP",
-          "preco": 7.82,
-          "projecao": 6.19,
+          "clube": "VAS",
+          "preco": 13.58,
+          "projecao": 5.76,
           "historico": {
-            "jogos": 11,
-            "media": 4.882,
-            "media3": 7.4,
-            "media5": 7.5,
-            "mediana": 6.2,
-            "piso": 6.5,
-            "teto": 8.8,
-            "regularidade": 91.83,
-            "volatilidade": 0.817,
-            "tendencia": 2.518
+            "jogos": 12,
+            "media": 8.15,
+            "media3": 9.833,
+            "media5": 6.64,
+            "mediana": 8.75,
+            "piso": 0.5,
+            "teto": 13.6,
+            "regularidade": 48.19,
+            "volatilidade": 5.181,
+            "tendencia": 1.683
           }
         },
         {
@@ -344,23 +344,23 @@
           }
         },
         {
-          "id": "116065",
-          "nome": "Cuiabano",
+          "id": "78445",
+          "nome": "Renê",
           "posicao": "LAT",
-          "clube": "VAS",
-          "preco": 13.58,
-          "projecao": 5.76,
+          "clube": "FLU",
+          "preco": 10.0,
+          "projecao": 5.26,
           "historico": {
-            "jogos": 12,
-            "media": 8.15,
-            "media3": 9.833,
-            "media5": 6.64,
-            "mediana": 8.75,
-            "piso": 0.5,
-            "teto": 13.6,
-            "regularidade": 48.19,
-            "volatilidade": 5.181,
-            "tendencia": 1.683
+            "jogos": 14,
+            "media": 5.836,
+            "media3": 6.933,
+            "media5": 6.1,
+            "mediana": 5.6,
+            "piso": 3.5,
+            "teto": 9.2,
+            "regularidade": 79.18,
+            "volatilidade": 2.082,
+            "tendencia": 1.098
           }
         },
         {
@@ -425,23 +425,23 @@
         }
       ],
       "reservaLuxo": {
-        "id": "116065",
-        "nome": "Cuiabano",
-        "posicao": "LAT",
-        "clube": "VAS",
-        "preco": 13.58,
-        "projecao": 5.76,
+        "id": "122121",
+        "nome": "Túlio Eduardo",
+        "posicao": "ATA",
+        "clube": "CHA",
+        "preco": 7.38,
+        "projecao": 5.54,
         "historico": {
-          "jogos": 12,
-          "media": 8.15,
-          "media3": 9.833,
-          "media5": 6.64,
-          "mediana": 8.75,
-          "piso": 0.5,
-          "teto": 13.6,
-          "regularidade": 48.19,
-          "volatilidade": 5.181,
-          "tendencia": 1.683
+          "jogos": 1,
+          "media": 7.0,
+          "media3": 7.0,
+          "media5": 7.0,
+          "mediana": 7.0,
+          "piso": 7.0,
+          "teto": 7.0,
+          "regularidade": 100,
+          "volatilidade": 0,
+          "tendencia": 0.0
         }
       },
       "auditoria": {
@@ -462,9 +462,9 @@
       "candidatosDisponiveisPorPosicao": {
         "GOL": 20,
         "LAT": 39,
-        "ZAG": 43,
+        "ZAG": 44,
         "MEI": 67,
-        "ATA": 49,
+        "ATA": 50,
         "TEC": 20
       },
       "custoTitulares": 139.76,
@@ -477,7 +477,7 @@
         "scoreTotal": 86.7846,
         "custoTotal": 139.76,
         "saldo": 60.24,
-        "custoMinimoTeorico": 34.63,
+        "custoMinimoTeorico": 33.96,
         "auditoria": {
           "quantidadeEsperada": 12,
           "quantidadeObtida": 12,
@@ -890,9 +890,9 @@
       "candidatosDisponiveisPorPosicao": {
         "GOL": 20,
         "LAT": 39,
-        "ZAG": 43,
+        "ZAG": 44,
         "MEI": 67,
-        "ATA": 49,
+        "ATA": 50,
         "TEC": 20
       },
       "custoTitulares": 128.1,
@@ -905,7 +905,7 @@
         "scoreTotal": 107.3535,
         "custoTotal": 128.1,
         "saldo": 71.9,
-        "custoMinimoTeorico": 34.63,
+        "custoMinimoTeorico": 33.96,
         "auditoria": {
           "quantidadeEsperada": 12,
           "quantidadeObtida": 12,

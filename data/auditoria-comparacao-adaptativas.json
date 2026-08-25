@@ -8,14 +8,14 @@
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "mediaV1": 57.89,
-    "mediaV2": 57.89,
+    "mediaV1": 57.73,
+    "mediaV2": 57.73,
     "melhorEstrategiaFixa": "Conservador",
-    "mediaMelhorFixa": 58.34,
+    "mediaMelhorFixa": 58.18,
     "ganhoV2VsV1": 0.0,
     "ganhoV2VsMelhorFixa": -0.45,
-    "eficienciaV1Oraculo": 91.73,
-    "eficienciaV2Oraculo": 91.73
+    "eficienciaV1Oraculo": 91.71,
+    "eficienciaV2Oraculo": 91.71
   },
   "testes": [
     {

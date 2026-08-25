@@ -9,12 +9,12 @@
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
     "melhorEstrategiaFixa": "Conservador",
-    "mediaAdaptativo": 57.89,
-    "mediaMelhorFixa": 58.34,
+    "mediaAdaptativo": 57.73,
+    "mediaMelhorFixa": 58.18,
     "ganhoAdaptativoVsMelhorFixa": -0.45,
-    "ganhoPercentualAdaptativoVsMelhorFixa": -0.78,
-    "mediaOraculo": 63.11,
-    "eficienciaVsOraculoPercentual": 91.73
+    "ganhoPercentualAdaptativoVsMelhorFixa": -0.77,
+    "mediaOraculo": 62.95,
+    "eficienciaVsOraculoPercentual": 91.71
   },
   "testes": [
     {
@@ -146,8 +146,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1331.38,
-        "mediaCalculada": 57.89,
+        "totalCalculado": 1327.78,
+        "mediaCalculada": 57.73,
         "medianaCalculada": 57.65,
         "acertosCalculados": 14
       }
@@ -199,8 +199,8 @@
       "nivel": "CRITICO",
       "detalhes": {
         "ganhoMediaCalculado": -0.45,
-        "ganhoTotalCalculado": -10.4,
-        "ganhoPercentualCalculado": -0.78
+        "ganhoTotalCalculado": -10.3,
+        "ganhoPercentualCalculado": -0.77
       }
     },
     {
@@ -208,9 +208,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1451.48,
-        "mediaCalculada": 63.11,
-        "eficienciaCalculada": 91.73
+        "totalCalculado": 1447.88,
+        "mediaCalculada": 62.95,
+        "eficienciaCalculada": 91.71
       }
     },
     {

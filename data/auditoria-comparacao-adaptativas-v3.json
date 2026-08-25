@@ -229,58 +229,58 @@
   "resultados": {
     "v1": {
       "quantidade": 23,
-      "media": 57.89,
-      "desvioPadrao": 21.17,
-      "total": 1331.38
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "total": 1327.78
     },
     "v2": {
       "quantidade": 23,
-      "media": 57.89,
-      "desvioPadrao": 21.17,
-      "total": 1331.38
+      "media": 57.73,
+      "desvioPadrao": 21.36,
+      "total": 1327.78
     },
     "v3": {
       "quantidade": 23,
-      "media": 54.77,
-      "desvioPadrao": 18.48,
-      "total": 1259.79
+      "media": 54.62,
+      "desvioPadrao": 18.67,
+      "total": 1256.19
     },
     "estrategiasFixas": {
       "Conservador": {
         "quantidade": 23,
-        "media": 58.34,
-        "desvioPadrao": 21.46,
-        "total": 1341.78
+        "media": 58.18,
+        "desvioPadrao": 21.67,
+        "total": 1338.08
       },
       "Equilibrado": {
         "quantidade": 23,
-        "media": 52.85,
-        "desvioPadrao": 17.82,
-        "total": 1215.66
+        "media": 52.7,
+        "desvioPadrao": 18.0,
+        "total": 1212.06
       },
       "Agressivo": {
         "quantidade": 23,
-        "media": 51.86,
-        "desvioPadrao": 16.82,
-        "total": 1192.77
+        "media": 51.7,
+        "desvioPadrao": 17.0,
+        "total": 1189.17
       }
     },
     "melhorEstrategiaFixa": "Conservador",
     "oraculo": {
       "quantidade": 23,
-      "media": 63.11,
-      "desvioPadrao": 20.74,
-      "total": 1451.48
+      "media": 62.95,
+      "desvioPadrao": 20.97,
+      "total": 1447.88
     },
     "ganhos": {
-      "v3VsV1": -3.12,
-      "v3VsV2": -3.12,
-      "v3VsMelhorFixa": -3.57
+      "v3VsV1": -3.11,
+      "v3VsV2": -3.11,
+      "v3VsMelhorFixa": -3.56
     },
     "eficiencia": {
-      "v1": 91.73,
-      "v2": 91.73,
-      "v3": 86.78
+      "v1": 91.71,
+      "v2": 91.71,
+      "v3": 86.77
     },
     "pareadoV2V3": {
       "vitoriasV2": 3,
