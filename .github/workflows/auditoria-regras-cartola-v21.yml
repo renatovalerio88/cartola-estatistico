@@ -1,0 +1,27 @@
+name: Cartola V2.1 - Auditoria Regras Cartola
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/processamento/auditar_regras_cartola.py"
+      - "scripts/calcular_simulacao_times.py"
+      - "data/simulacao-times.json"
+      - ".github/workflows/auditoria-regras-cartola-v21.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  auditar-regras:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Auditar capitão, banco e Reserva de Luxo
+        run: python scripts/processamento/auditar_regras_cartola.py
+      - name: Exibir diagnóstico
+        run: cat data/auditoria-regras-cartola.json
