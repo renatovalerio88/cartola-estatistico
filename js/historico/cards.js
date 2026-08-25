@@ -1,631 +1,331 @@
 /* =========================================================
    CARTOLA ESTATÍSTICO
-   Histórico — cards, tabela, painel temporal e torneio
+   Histórico V2.1 — decisão primeiro, detalhe sob demanda
    ========================================================= */
 
-function formatarNumeroHistorico(valor, casas = 2) {
-  const numero = Number(valor);
-  return Number.isFinite(numero)
-    ? numero.toFixed(casas).replace(".", ",")
-    : "--";
-}
+const HistoricoV21 = (() => {
+  const PERFIS = ["Conservador", "Equilibrado", "Agressivo", "Recomendado"];
+  let dados = null;
+  let perfilAtual = "Equilibrado";
+  let rodadaAtual = null;
 
-function escaparHistorico(valor) {
-  return String(valor ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-function nomeCurtoHistorico(jogador) {
-  return jogador?.apelido
-    || jogador?.nomeCurto
-    || jogador?.nome_atleta
-    || jogador?.nome
-    || "--";
-}
-
-function formatarSinalHistorico(valor, casas = 2) {
-  const numero = Number(valor);
-  if (!Number.isFinite(numero)) return "--";
-  return `${numero > 0 ? "+" : ""}${formatarNumeroHistorico(numero, casas)}`;
-}
-
-function garantirEstiloHistorico() {
-  if (document.getElementById("cartolaHistoryStyle")) {
-    return;
+  function n(valor, casas = 1) {
+    const numero = Number(valor);
+    return Number.isFinite(numero) ? numero.toFixed(casas).replace(".", ",") : "--";
   }
 
-  const style = document.createElement("style");
-  style.id = "cartolaHistoryStyle";
-  style.textContent = `
-    .history-temporal-panel,
-    .captain-tournament {
-      margin: 0 0 18px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      background: rgba(255,255,255,.025);
-    }
-
-    .history-temporal-title,
-    .captain-tournament-head {
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:12px;
-    }
-
-    .history-temporal-title h3,
-    .captain-tournament-head h3 {
-      margin:3px 0 0;
-      font-size:1rem;
-    }
-
-    .history-temporal-title p,
-    .captain-tournament-head p {
-      margin:4px 0 0;
-      opacity:.62;
-      font-size:11px;
-      line-height:1.45;
-    }
-
-    .history-temporal-grid {
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
-    }
-
-    .history-temporal-strategy {
-      padding:13px;
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:13px;
-      background:rgba(255,255,255,.025);
-    }
-
-    .history-temporal-strategy > strong {
-      display:block;
-      margin-bottom:10px;
-      font-size:13px;
-    }
-
-    .history-temporal-values,
-    .captain-tournament-grid {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:7px;
-    }
-
-    .history-temporal-value,
-    .captain-tournament-card {
-      padding:8px;
-      border-radius:9px;
-      background:rgba(255,255,255,.035);
-    }
-
-    .history-temporal-value span,
-    .captain-tournament-card span {
-      display:block;
-      font-size:9px;
-      opacity:.58;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-    }
-
-    .history-temporal-value b,
-    .captain-tournament-card strong {
-      display:block;
-      margin-top:3px;
-      font-size:16px;
-    }
-
-    .captain-tournament-card small {
-      display:block;
-      margin-top:3px;
-      font-size:9px;
-      opacity:.55;
-    }
-
-    .history-temporal-note,
-    .captain-tournament-note {
-      margin:10px 0 0;
-      font-size:10px;
-      opacity:.58;
-      line-height:1.45;
-    }
-
-    .captain-tournament-badge {
-      white-space:nowrap;
-      padding:6px 9px;
-      border-radius:999px;
-      background:rgba(83,216,145,.12);
-      color:#67dfa0;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .captain-tournament-table-wrap {
-      overflow-x:auto;
-      margin-top:12px;
-    }
-
-    .captain-tournament-table {
-      width:100%;
-      min-width:660px;
-      border-collapse:collapse;
-      font-size:10px;
-    }
-
-    .captain-tournament-table th,
-    .captain-tournament-table td {
-      padding:8px 7px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      text-align:right;
-    }
-
-    .captain-tournament-table th:first-child,
-    .captain-tournament-table td:first-child {
-      text-align:left;
-    }
-
-    .captain-tournament-table th {
-      opacity:.58;
-      font-weight:700;
-    }
-
-    .history-summary {
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:14px;
-      margin:18px 0;
-    }
-
-    .history-metric-card {
-      padding:16px;
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:15px;
-      background:rgba(255,255,255,.025);
-    }
-
-    .history-metric-card span {
-      display:block;
-      margin-bottom:7px;
-      font-size:12px;
-      opacity:.72;
-    }
-
-    .history-metric-card strong {
-      display:block;
-      font-size:22px;
-    }
-
-    .history-metric-card small {
-      display:block;
-      margin-top:6px;
-      opacity:.72;
-    }
-
-    .history-table-wrap {
-      overflow-x:auto;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-    }
-
-    .history-table {
-      width:100%;
-      border-collapse:collapse;
-      min-width:760px;
-    }
-
-    .history-table th,
-    .history-table td {
-      padding:12px 14px;
-      text-align:left;
-      border-bottom:1px solid rgba(255,255,255,.07);
-    }
-
-    .history-table th {
-      font-size:11px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      opacity:.68;
-    }
-
-    .history-player-name { font-weight:700; }
-    .history-player-meta {
-      display:block;
-      margin-top:3px;
-      font-size:11px;
-      opacity:.65;
-    }
-
-    .history-error-good { font-weight:700; color:#52c98b; }
-    .history-error-medium { font-weight:700; color:#dcb954; }
-    .history-error-high { font-weight:700; color:#e67d70; }
-    .history-info-note { margin:14px 0 0; font-size:12px; opacity:.68; }
-
-    @media (max-width:900px) {
-      .history-temporal-grid { grid-template-columns:1fr; }
-      .history-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    }
-
-    @media (max-width:560px) {
-      .history-summary { grid-template-columns:1fr; }
-      .history-temporal-values,
-      .captain-tournament-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .captain-tournament-head { display:block; }
-      .captain-tournament-badge { display:inline-block; margin-top:8px; }
-    }
-  `;
-
-  document.head.appendChild(style);
-}
-
-function obterClasseErroHistorico(erro) {
-  const valor = Number(erro);
-  if (!Number.isFinite(valor)) return "";
-  if (valor <= 2) return "history-error-good";
-  if (valor <= 5) return "history-error-medium";
-  return "history-error-high";
-}
-
-async function renderizarPainelTemporalHistorico() {
-  const secao = document.getElementById("historico");
-  if (!secao) return;
-
-  let painel = document.getElementById("historyTemporalMetrics");
-  if (!painel) {
-    painel = document.createElement("section");
-    painel.id = "historyTemporalMetrics";
-    painel.className = "history-temporal-panel";
-
-    const resumo = document.getElementById("historySummary");
-    if (resumo?.parentNode) {
-      resumo.parentNode.insertBefore(painel, resumo);
-    }
-    else {
-      secao.prepend(painel);
-    }
+  function sinal(valor, casas = 1) {
+    const numero = Number(valor);
+    if (!Number.isFinite(numero)) return "--";
+    return `${numero > 0 ? "+" : ""}${n(numero, casas)}`;
   }
 
-  try {
-    const resposta = await fetch("data/ranking-simulacao.json", { cache: "no-store" });
-    if (!resposta.ok) throw new Error("ranking-simulacao.json indisponível");
+  function esc(valor) {
+    return String(valor ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-    const dados = await resposta.json();
-    const painelTemporal = dados?.painelTemporal || {};
-    const ordem = ["Conservador", "Equilibrado", "Agressivo"];
+  function estilos() {
+    if (document.getElementById("historicoV21Style")) return;
+    const style = document.createElement("style");
+    style.id = "historicoV21Style";
+    style.textContent = `
+      #historyTemporalMetrics,
+      #captainTournament,
+      #historySummary,
+      #historyGrid,
+      .history-filters,
+      .history-filter-bar { display:none !important; }
 
-    const cards = ordem.map(nome => {
-      const janela = painelTemporal[nome] || {};
-      const valor = chave => formatarNumeroHistorico(janela?.[chave]?.media, 2);
+      .history-v21 { display:grid; gap:18px; }
+      .history-v21-intro { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; }
+      .history-v21-intro h3 { margin:4px 0 0; font-size:1.15rem; }
+      .history-v21-intro p { margin:5px 0 0; opacity:.68; max-width:720px; font-size:12px; line-height:1.5; }
+
+      .history-v21-profiles { display:flex; flex-wrap:wrap; gap:8px; }
+      .history-v21-profile {
+        border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.035);
+        color:inherit; border-radius:999px; padding:9px 13px; cursor:pointer; font-weight:750;
+      }
+      .history-v21-profile.is-active { border-color:rgba(92,220,147,.55); background:rgba(92,220,147,.12); }
+      .history-v21-profile[disabled] { opacity:.42; cursor:not-allowed; }
+
+      .history-v21-card {
+        border:1px solid rgba(255,255,255,.08); border-radius:16px;
+        background:rgba(255,255,255,.025); padding:16px;
+      }
+      .history-v21-card-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:12px; }
+      .history-v21-card-head h4 { margin:0; font-size:1rem; }
+      .history-v21-card-head p { margin:4px 0 0; opacity:.62; font-size:11px; }
+      .history-v21-badge { font-size:10px; font-weight:800; border-radius:999px; padding:6px 9px; background:rgba(255,255,255,.05); white-space:nowrap; }
+
+      .history-v21-chart-wrap { overflow-x:auto; }
+      .history-v21-chart { width:100%; min-width:620px; height:auto; display:block; }
+      .history-v21-legend { display:flex; gap:16px; margin-top:8px; font-size:11px; opacity:.72; }
+      .history-v21-legend span::before { content:""; display:inline-block; width:18px; height:3px; border-radius:3px; margin-right:6px; vertical-align:middle; background:currentColor; }
+      .history-v21-legend .proj { color:#8da2ff; }
+      .history-v21-legend .real { color:#66dca0; }
+
+      .history-v21-controls { display:flex; flex-wrap:wrap; gap:10px; align-items:end; }
+      .history-v21-control { display:grid; gap:5px; min-width:180px; }
+      .history-v21-control span { font-size:10px; opacity:.62; text-transform:uppercase; letter-spacing:.06em; }
+      .history-v21-control select {
+        width:100%; border-radius:10px; border:1px solid rgba(255,255,255,.1);
+        background:var(--surface, #151a22); color:inherit; padding:10px 11px;
+      }
+
+      .history-v21-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+      .history-v21-summary article { padding:13px; border-radius:12px; background:rgba(255,255,255,.035); }
+      .history-v21-summary span { display:block; font-size:10px; opacity:.62; }
+      .history-v21-summary strong { display:block; margin-top:4px; font-size:18px; }
+      .history-v21-summary small { display:block; margin-top:3px; opacity:.58; font-size:10px; }
+
+      .history-v21-table-wrap { overflow-x:auto; border:1px solid rgba(255,255,255,.07); border-radius:13px; }
+      .history-v21-table { width:100%; min-width:760px; border-collapse:collapse; }
+      .history-v21-table th, .history-v21-table td { padding:11px 12px; border-bottom:1px solid rgba(255,255,255,.065); text-align:left; }
+      .history-v21-table th { font-size:10px; opacity:.62; text-transform:uppercase; letter-spacing:.055em; }
+      .history-v21-table td { font-size:12px; }
+      .history-v21-player { font-weight:750; }
+      .history-v21-meta { display:block; margin-top:2px; font-size:10px; opacity:.6; }
+      .history-v21-diff.pos { color:#66dca0; font-weight:800; }
+      .history-v21-diff.neg { color:#e88a7d; font-weight:800; }
+      .history-v21-reading { max-width:330px; line-height:1.4; opacity:.82; }
+      .history-v21-note { margin:10px 0 0; font-size:10px; opacity:.58; line-height:1.5; }
+      .history-v21-empty { padding:24px; text-align:center; opacity:.7; }
+
+      @media (max-width:900px) {
+        .history-v21-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        .history-v21-intro { display:block; }
+        .history-v21-profiles { margin-top:12px; }
+      }
+      @media (max-width:560px) {
+        .history-v21-summary { grid-template-columns:1fr 1fr; }
+        .history-v21-control { min-width:calc(50% - 5px); flex:1; }
+        .history-v21-card { padding:13px; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function obterSecao() {
+    return document.getElementById("historico");
+  }
+
+  function garantirRaiz() {
+    const secao = obterSecao();
+    if (!secao) return null;
+    let raiz = document.getElementById("historyV21");
+    if (!raiz) {
+      raiz = document.createElement("div");
+      raiz.id = "historyV21";
+      raiz.className = "history-v21";
+      const alvo = secao.querySelector("#historySummary") || secao.firstElementChild;
+      if (alvo?.parentNode) alvo.parentNode.insertBefore(raiz, alvo);
+      else secao.appendChild(raiz);
+    }
+    return raiz;
+  }
+
+  function timeDaRodada(rodada, perfil) {
+    return rodada?.times?.find(t => String(t.perfil).toLowerCase() === String(perfil).toLowerCase()) || null;
+  }
+
+  function perfilDisponivel(perfil) {
+    return Array.isArray(dados?.rodadas) && dados.rodadas.some(r => timeDaRodada(r, perfil));
+  }
+
+  function rodadasDoPerfil(perfil) {
+    return (dados?.rodadas || [])
+      .map(r => ({ rodada: Number(r.rodada), time: timeDaRodada(r, perfil) }))
+      .filter(x => x.time)
+      .sort((a, b) => a.rodada - b.rodada);
+  }
+
+  function svgGrafico(itens) {
+    if (!itens.length) return '<div class="history-v21-empty">Sem histórico confiável para este perfil.</div>';
+    const W = 920, H = 300, L = 46, R = 18, T = 22, B = 38;
+    const valores = itens.flatMap(x => [Number(x.time.projecaoFinalPreJogo ?? x.time.projecaoTitulares), Number(x.time.pontuacaoFinalCartola)]).filter(Number.isFinite);
+    const max = Math.max(20, Math.ceil(Math.max(...valores) / 10) * 10);
+    const min = Math.min(0, Math.floor(Math.min(...valores) / 10) * 10);
+    const x = i => itens.length === 1 ? (L + W - R) / 2 : L + i * ((W - L - R) / (itens.length - 1));
+    const y = v => T + (max - v) * ((H - T - B) / (max - min || 1));
+    const pontos = chave => itens.map((item, i) => `${x(i).toFixed(1)},${y(Number(item.time[chave] ?? item.time.projecaoTitulares)).toFixed(1)}`).join(" ");
+    const linhasY = 4;
+    let grade = "";
+    for (let i = 0; i <= linhasY; i++) {
+      const valor = min + (max - min) * (i / linhasY);
+      const yy = y(valor);
+      grade += `<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="currentColor" opacity=".08"/><text x="${L-8}" y="${yy+4}" text-anchor="end" font-size="10" fill="currentColor" opacity=".48">${Math.round(valor)}</text>`;
+    }
+    const rotulos = itens.map((item, i) => `<text x="${x(i)}" y="${H-12}" text-anchor="middle" font-size="9" fill="currentColor" opacity=".5">R${item.rodada}</text>`).join("");
+    return `
+      <div class="history-v21-chart-wrap">
+        <svg class="history-v21-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Projeção e pontuação real por rodada">
+          ${grade}
+          <polyline points="${pontos("projecaoFinalPreJogo")}" fill="none" stroke="#8da2ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polyline points="${pontos("pontuacaoFinalCartola")}" fill="none" stroke="#66dca0" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          ${rotulos}
+        </svg>
+      </div>
+      <div class="history-v21-legend"><span class="proj">Projeção pré-rodada</span><span class="real">Real final</span></div>
+    `;
+  }
+
+  function resumoRodada(time) {
+    const proj = Number(time?.projecaoFinalPreJogo ?? time?.projecaoTitulares);
+    const real = Number(time?.pontuacaoFinalCartola);
+    const banco = Number(time?.pontosRecuperadosBancoLuxo);
+    const cap = Number(time?.bonusCapitao15);
+    return `
+      <div class="history-v21-summary">
+        <article><span>Projeção</span><strong>${n(proj)} pts</strong><small>antes da rodada</small></article>
+        <article><span>Real final</span><strong>${n(real)} pts</strong><small>com regras do Cartola</small></article>
+        <article><span>Banco + Luxo</span><strong>${sinal(banco)} pt</strong><small>impacto efetivo</small></article>
+        <article><span>Capitão</span><strong>${sinal(cap)} pt</strong><small>bônus de 50%</small></article>
+      </div>
+    `;
+  }
+
+  function tabela(time) {
+    const jogadores = Array.isArray(time?.jogadores) ? time.jogadores : [];
+    if (!jogadores.length) return '<div class="history-v21-empty">Sem jogadores disponíveis para esta rodada.</div>';
+    const linhas = jogadores.map(j => {
+      const dif = Number(j.diferenca ?? (Number(j.pontos) - Number(j.projecao)));
+      const classe = Number.isFinite(dif) ? (dif >= 0 ? "pos" : "neg") : "";
+      const meta = [j.posicao, j.clube].filter(Boolean).join(" · ");
+      const marcador = j.capitao ? " ©" : "";
       return `
-        <article class="history-temporal-strategy">
-          <strong>${escaparHistorico(nome)}</strong>
-          <div class="history-temporal-values">
-            <div class="history-temporal-value">
-              <span>Campeonato</span>
-              <b>${valor("campeonato")}</b>
-            </div>
-            <div class="history-temporal-value">
-              <span>Últimas 10</span>
-              <b>${valor("ultimas10")}</b>
-            </div>
-            <div class="history-temporal-value">
-              <span>Últimas 5</span>
-              <b>${valor("ultimas5")}</b>
-            </div>
-            <div class="history-temporal-value">
-              <span>Últimas 3</span>
-              <b>${valor("ultimas3")}</b>
-            </div>
-          </div>
-        </article>
+        <tr>
+          <td><span class="history-v21-player">${esc(j.nome)}${marcador}</span><span class="history-v21-meta">${esc(meta || "--")}</span></td>
+          <td>${n(j.projecao)}</td>
+          <td>${j.entrou === false ? "Não jogou" : n(j.pontos)}</td>
+          <td class="history-v21-diff ${classe}">${j.entrou === false ? "--" : sinal(dif)}</td>
+          <td class="history-v21-reading">${esc(j.leitura || (j.entrou === false ? "Não entrou em campo" : "Resultado comparado à projeção"))}</td>
+        </tr>
       `;
     }).join("");
-
-    const excluidas = Array.isArray(dados?.rodadasExcluidasSemResultadoFinal)
-      ? dados.rodadasExcluidasSemResultadoFinal
-      : [];
-
-    painel.innerHTML = `
-      <div class="history-temporal-title">
-        <div>
-          <span class="section-label">DESEMPENHO RECENTE</span>
-          <h3>Médias dos times sugeridos</h3>
-          <p>Campeonato completo e recortes das rodadas mais recentes.</p>
-        </div>
-      </div>
-      <div class="history-temporal-grid">${cards}</div>
-      <p class="history-temporal-note">
-        Rodadas sem resultado final não entram nas médias${
-          excluidas.length ? ` (excluídas: ${excluidas.map(r => `R${r}`).join(", ")})` : ""
-        }.
-      </p>
-    `;
-  }
-  catch (erro) {
-    painel.innerHTML = `
-      <div class="empty-state">
-        <strong>Médias temporais indisponíveis</strong>
-        <p>O ranking histórico ainda não foi gerado para esta execução.</p>
-      </div>
-    `;
-  }
-}
-
-function janelaTorneio(item, chave) {
-  return item?.desempenhoTemporal?.[chave] || {};
-}
-
-async function renderizarTorneioCapitaoHistorico() {
-  const secao = document.getElementById("historico");
-  if (!secao) return;
-
-  let bloco = document.getElementById("captainTournament");
-
-  try {
-    const resposta = await fetch("data/torneio-capitao.json", { cache: "no-store" });
-    if (!resposta.ok) {
-      if (bloco) bloco.remove();
-      return;
-    }
-
-    const dados = await resposta.json();
-    const melhor = dados?.melhorExperimental;
-    if (!melhor) {
-      if (bloco) bloco.remove();
-      return;
-    }
-
-    if (!bloco) {
-      bloco = document.createElement("section");
-      bloco.id = "captainTournament";
-      bloco.className = "captain-tournament";
-
-      const painelTemporal = document.getElementById("historyTemporalMetrics");
-      if (painelTemporal?.parentNode) {
-        painelTemporal.insertAdjacentElement("afterend", bloco);
-      }
-      else {
-        const resumo = document.getElementById("historySummary");
-        if (resumo?.parentNode) resumo.parentNode.insertBefore(bloco, resumo);
-        else secao.prepend(bloco);
-      }
-    }
-
-    const camp = janelaTorneio(melhor, "campeonato");
-    const u10 = janelaTorneio(melhor, "ultimas10");
-    const u5 = janelaTorneio(melhor, "ultimas5");
-    const u3 = janelaTorneio(melhor, "ultimas3");
-
-    const ranking = Array.isArray(dados?.ranking) ? dados.ranking.slice(0, 6) : [];
-    const linhas = ranking.map(item => `
-      <tr>
-        <td>${escaparHistorico(item.modelo || "--")}</td>
-        <td>${formatarNumeroHistorico(item.mediaPontosCapitao, 2)}</td>
-        <td>${formatarSinalHistorico(item.ganhoMedioTimeVsAtual, 2)}</td>
-        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas10").ganhoTimeVsAtual, 2)}</td>
-        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas5").ganhoTimeVsAtual, 2)}</td>
-        <td>${formatarSinalHistorico(janelaTorneio(item, "ultimas3").ganhoTimeVsAtual, 2)}</td>
-        <td>${formatarNumeroHistorico(item.taxaVitoriasVsAtual, 1)}%</td>
-      </tr>
-    `).join("");
-
-    bloco.innerHTML = `
-      <div class="captain-tournament-head">
-        <div>
-          <span class="section-label">LABORATÓRIO DE CAPITÃO</span>
-          <h3>Torneio de modelos experimentais</h3>
-          <p>
-            O vencedor é testado em backtest walk-forward e ainda não altera o capitão oficial.
-            O ganho representa a diferença média na pontuação total do time causada apenas pela troca do capitão.
-          </p>
-        </div>
-        <span class="captain-tournament-badge">Melhor: ${escaparHistorico(melhor.modelo || "--")}</span>
-      </div>
-
-      <div class="captain-tournament-grid">
-        <article class="captain-tournament-card">
-          <span>Campeonato</span>
-          <strong>${formatarSinalHistorico(camp.ganhoTimeVsAtual, 2)} pt</strong>
-          <small>ganho médio vs atual</small>
-        </article>
-        <article class="captain-tournament-card">
-          <span>Últimas 10</span>
-          <strong>${formatarSinalHistorico(u10.ganhoTimeVsAtual, 2)} pt</strong>
-          <small>ganho médio por rodada</small>
-        </article>
-        <article class="captain-tournament-card">
-          <span>Últimas 5</span>
-          <strong>${formatarSinalHistorico(u5.ganhoTimeVsAtual, 2)} pt</strong>
-          <small>ganho médio por rodada</small>
-        </article>
-        <article class="captain-tournament-card">
-          <span>Últimas 3</span>
-          <strong>${formatarSinalHistorico(u3.ganhoTimeVsAtual, 2)} pt</strong>
-          <small>ganho médio por rodada</small>
-        </article>
-      </div>
-
-      <div class="captain-tournament-table-wrap">
-        <table class="captain-tournament-table">
-          <thead>
-            <tr>
-              <th>Modelo</th>
-              <th>Capitão</th>
-              <th>Camp.</th>
-              <th>Últ. 10</th>
-              <th>Últ. 5</th>
-              <th>Últ. 3</th>
-              <th>Vitórias</th>
-            </tr>
-          </thead>
+    return `
+      <div class="history-v21-table-wrap">
+        <table class="history-v21-table">
+          <thead><tr><th>Jogador</th><th>Projeção</th><th>Real</th><th>Diferença</th><th>Leitura</th></tr></thead>
           <tbody>${linhas}</tbody>
         </table>
       </div>
-
-      <p class="captain-tournament-note">
-        Decisão do laboratório: <strong>${escaparHistorico(dados?.decisao || "--")}</strong>.
-        Promoção automática permanece desativada para evitar overfitting.
-      </p>
+      <p class="history-v21-note">A leitura separa a projeção pré-rodada do que aconteceu depois. Surpresas de escalação não são tratadas automaticamente como erro do modelo; o impacto do banco é medido à parte.</p>
     `;
   }
-  catch (erro) {
-    console.warn("[Histórico - torneio de capitão]", erro);
-    if (bloco) bloco.remove();
-  }
-}
 
-function renderizarResumoHistorico(rodada, jogadores) {
-  const container = document.getElementById("historySummary");
-  if (!container) return;
-
-  const metricas = typeof calcularMetricasHistorico === "function"
-    ? calcularMetricasHistorico(jogadores, rodada?.metricas || {})
-    : null;
-
-  if (!metricas) {
-    container.innerHTML = "";
-    return;
+  function opcoesRodada(perfil) {
+    return rodadasDoPerfil(perfil).map(x => `<option value="${x.rodada}" ${x.rodada === rodadaAtual ? "selected" : ""}>Rodada ${x.rodada}</option>`).join("");
   }
 
-  const top5Texto = `${metricas.top5.acertos} / ${metricas.top5.total}`;
-  const capitaoTexto = metricas.capitao.acertou ? "Acertou" : "Não acertou";
+  function renderizar() {
+    estilos();
+    const raiz = garantirRaiz();
+    if (!raiz) return;
+    if (!dados) {
+      raiz.innerHTML = '<div class="history-v21-card history-v21-empty">Carregando histórico validado...</div>';
+      return;
+    }
 
-  container.innerHTML = `
-    <article class="history-metric-card">
-      <span>Erro médio (MAE)</span>
-      <strong>${formatarNumeroHistorico(metricas.erroMedio, 2)}</strong>
-      <small>Quanto menor, melhor</small>
-    </article>
-    <article class="history-metric-card">
-      <span>Top 5</span>
-      <strong>${top5Texto}</strong>
-      <small>Acertos entre os melhores</small>
-    </article>
-    <article class="history-metric-card">
-      <span>Correlação</span>
-      <strong>${formatarNumeroHistorico(metricas.correlacao, 2)}</strong>
-      <small>Projeção x resultado real</small>
-    </article>
-    <article class="history-metric-card">
-      <span>Capitão</span>
-      <strong>${capitaoTexto}</strong>
-      <small>${escaparHistorico(nomeCurtoHistorico(metricas.capitao.jogador || {}))}</small>
-    </article>
-  `;
-}
+    if (!perfilDisponivel(perfilAtual)) perfilAtual = PERFIS.find(perfilDisponivel) || "Equilibrado";
+    const itens = rodadasDoPerfil(perfilAtual);
+    if (!rodadaAtual || !itens.some(x => x.rodada === rodadaAtual)) rodadaAtual = itens.at(-1)?.rodada || null;
+    const registro = itens.find(x => x.rodada === rodadaAtual);
+    const time = registro?.time;
 
-function renderizarTabelaHistorico(jogadores) {
-  const container = document.getElementById("historyGrid");
-  if (!container) return;
+    const botoes = PERFIS.map(perfil => {
+      const disponivel = perfilDisponivel(perfil);
+      const ativo = perfil === perfilAtual;
+      const titulo = perfil === "Recomendado" && !disponivel ? "Em validação científica" : perfil;
+      return `<button class="history-v21-profile ${ativo ? "is-active" : ""}" data-history-profile="${esc(perfil)}" ${disponivel ? "" : "disabled"} title="${esc(titulo)}">${esc(perfil)}${perfil === "Recomendado" && !disponivel ? " · em validação" : ""}</button>`;
+    }).join("");
 
-  const lista = (Array.isArray(jogadores) ? jogadores : [])
-    .filter(j => Number.isFinite(Number(j.projecao)) || Number.isFinite(Number(j.real)))
-    .sort((a, b) => (Number(b.projecao) || -999) - (Number(a.projecao) || -999));
-
-  if (!lista.length) {
-    container.innerHTML = `
-      <div class="empty-state">
-        <strong>Sem jogadores avaliáveis</strong>
-        <p>A rodada existe no histórico, mas não há projeção e resultado real suficientes para o filtro atual.</p>
+    raiz.innerHTML = `
+      <div class="history-v21-intro">
+        <div>
+          <span class="section-label">HISTÓRICO VALIDADO</span>
+          <h3>O que projetamos × o que aconteceu</h3>
+          <p>Escolha um perfil para acompanhar a evolução. A pontuação real considera capitão 1,5x, banco e Reserva de Luxo quando a regra pôde ser comprovada no histórico.</p>
+        </div>
+        <div class="history-v21-profiles">${botoes}</div>
       </div>
+
+      <section class="history-v21-card">
+        <div class="history-v21-card-head">
+          <div><h4>${esc(perfilAtual)} · Projeção x Real</h4><p>${itens.length} rodadas com resultado confiável.</p></div>
+          <span class="history-v21-badge">até R${dados.rodadaMaximaProcessada || "--"}</span>
+        </div>
+        ${svgGrafico(itens)}
+      </section>
+
+      <section class="history-v21-card">
+        <div class="history-v21-card-head">
+          <div><h4>Auditoria da escalação</h4><p>Veja jogador por jogador sem excesso de métricas.</p></div>
+        </div>
+        <div class="history-v21-controls">
+          <label class="history-v21-control"><span>Rodada</span><select id="historyRoundSelect">${opcoesRodada(perfilAtual)}</select></label>
+          <label class="history-v21-control"><span>Time</span><select id="historyProfileSelect">${PERFIS.map(p => `<option value="${esc(p)}" ${p === perfilAtual ? "selected" : ""} ${perfilDisponivel(p) ? "" : "disabled"}>${esc(p)}${p === "Recomendado" && !perfilDisponivel(p) ? " · em validação" : ""}</option>`).join("")}</select></label>
+        </div>
+        <div style="margin-top:14px">${time ? resumoRodada(time) : ""}</div>
+        <div style="margin-top:14px">${time ? tabela(time) : '<div class="history-v21-empty">Sem dados para este filtro.</div>'}</div>
+      </section>
     `;
-    return;
+
+    raiz.querySelectorAll("[data-history-profile]").forEach(btn => btn.addEventListener("click", () => {
+      perfilAtual = btn.dataset.historyProfile;
+      rodadaAtual = rodadasDoPerfil(perfilAtual).at(-1)?.rodada || null;
+      renderizar();
+    }));
+    raiz.querySelector("#historyRoundSelect")?.addEventListener("change", e => {
+      rodadaAtual = Number(e.target.value);
+      renderizar();
+    });
+    raiz.querySelector("#historyProfileSelect")?.addEventListener("change", e => {
+      perfilAtual = e.target.value;
+      rodadaAtual = rodadasDoPerfil(perfilAtual).at(-1)?.rodada || null;
+      renderizar();
+    });
   }
 
-  const linhas = lista.map(jogador => {
-    const proj = Number(jogador.projecao);
-    const real = Number(jogador.real);
-    const erro = Number.isFinite(proj) && Number.isFinite(real)
-      ? Math.abs(proj - real)
-      : null;
+  async function iniciar() {
+    estilos();
+    garantirRaiz();
+    try {
+      const resposta = await fetch("data/pontuacao-final-cartola-v21.json", { cache: "no-store" });
+      if (!resposta.ok) throw new Error("histórico V2.1 ainda não publicado");
+      dados = await resposta.json();
+      if (dados?.gate?.aptaParaRankingFinal !== true) throw new Error("histórico ainda não passou pelo gate de atuação explícita");
+      renderizar();
+    } catch (erro) {
+      const raiz = garantirRaiz();
+      if (raiz) raiz.innerHTML = `
+        <div class="history-v21-card history-v21-empty">
+          <strong>Histórico validado em atualização</strong>
+          <p>Os dados antigos foram ocultados para não mostrar números incompletos. A nova série Projeção x Real será exibida assim que o reprocessamento científico estiver publicado.</p>
+        </div>`;
+      console.warn("[Histórico V2.1]", erro);
+    }
+  }
 
-    return `
-      <tr>
-        <td>
-          <span class="history-player-name">${escaparHistorico(nomeCurtoHistorico(jogador))}</span>
-          <span class="history-player-meta">${escaparHistorico(jogador.posicao || "--")} · ${escaparHistorico(jogador.clube || "--")}</span>
-        </td>
-        <td>${formatarNumeroHistorico(jogador.projecao, 1)}</td>
-        <td>${formatarNumeroHistorico(jogador.real, 1)}</td>
-        <td class="${obterClasseErroHistorico(erro)}">${formatarNumeroHistorico(erro, 1)}</td>
-        <td>${jogador.top5 ? "✓" : "—"}</td>
-        <td>${jogador.capitao ? "C" : "—"}</td>
-      </tr>
-    `;
-  }).join("");
-
-  container.innerHTML = `
-    <div class="history-table-wrap">
-      <table class="history-table">
-        <thead>
-          <tr>
-            <th>Jogador</th>
-            <th>Projeção</th>
-            <th>Real</th>
-            <th>Erro</th>
-            <th>Top 5</th>
-            <th>Capitão</th>
-          </tr>
-        </thead>
-        <tbody>${linhas}</tbody>
-      </table>
-    </div>
-    <p class="history-info-note">
-      O erro representa a diferença absoluta entre a projeção disponível antes da rodada e a pontuação real registrada.
-    </p>
-  `;
-}
+  return { iniciar, renderizar };
+})();
 
 function renderizarHistorico() {
-  garantirEstiloHistorico();
-  renderizarPainelTemporalHistorico();
-  renderizarTorneioCapitaoHistorico();
-
-  if (typeof HistoricoDados === "undefined") return;
-
-  const rodada = HistoricoDados.obterRodada();
-  const jogadores = HistoricoDados.obterJogadores();
-
-  if (!rodada) {
-    const container = document.getElementById("historyGrid");
-    if (container) {
-      container.innerHTML = `
-        <div class="empty-state">
-          <strong>Histórico ainda não carregado</strong>
-          <p>Aguarde o carregamento das rodadas disponíveis.</p>
-        </div>
-      `;
-    }
-    return;
-  }
-
-  renderizarResumoHistorico(rodada, jogadores);
-  renderizarTabelaHistorico(jogadores);
+  HistoricoV21.renderizar();
 }
 
 async function iniciarHistorico() {
-  if (typeof HistoricoDados === "undefined") return;
-  await HistoricoDados.carregar();
-  if (typeof criarFiltrosHistorico === "function") {
-    criarFiltrosHistorico();
-  }
-  renderizarHistorico();
+  await HistoricoV21.iniciar();
 }
 
 if (typeof window !== "undefined") {
   window.addEventListener("load", () => setTimeout(iniciarHistorico, 0));
-  window.HistoricoCards = {
-    iniciar: iniciarHistorico,
-    renderizar: renderizarHistorico,
-    renderizarPainelTemporal: renderizarPainelTemporalHistorico,
-    renderizarTorneioCapitao: renderizarTorneioCapitaoHistorico,
-  };
+  window.HistoricoCards = { iniciar: iniciarHistorico, renderizar: renderizarHistorico };
   window.iniciarHistorico = iniciarHistorico;
   window.renderizarHistorico = renderizarHistorico;
 }
