@@ -1,0 +1,75 @@
+name: V2.1 - Calibracao de perfis e Recomendado
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/experimentos/calibrar_perfis_recomendado_v21.py"
+      - "scripts/processamento/reprocessar_pontuacao_final_cartola.py"
+      - ".github/workflows/v21-calibracao-perfis-recomendado.yml"
+
+jobs:
+  calibrar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar sintaxe
+        run: |
+          python -m py_compile scripts/processamento/reprocessar_pontuacao_final_cartola.py
+          python -m py_compile scripts/experimentos/calibrar_perfis_recomendado_v21.py
+
+      - name: Reconstruir pontuacao final oficial
+        run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
+
+      - name: Exigir gate da pontuacao final
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/pontuacao-final-cartola-v21.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          assert d['gate']['aptaParaRankingFinal'] is True, d['gate']
+          assert d['resumo']['entradasInferidas'] == 0, d['resumo']
+          assert d['resumo']['timesProcessados'] >= 60, d['resumo']
+          print('Pontuacao final apta:', d['resumo'])
+          PY
+
+      - name: Rodar calibracao walk-forward e Recomendado
+        run: python scripts/experimentos/calibrar_perfis_recomendado_v21.py
+
+      - name: Validar anti-leakage e saida
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/laboratorio/calibracao-perfis-v21.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          assert d['antiLeakage'] is True
+          assert d['rodadaMaximaFonte'] >= 23
+          assert set(d['calibracao']['resumo']) == {'Conservador','Equilibrado','Agressivo'}
+          for perfil, x in d['calibracao']['resumo'].items():
+              assert x['rodadasAvaliadas'] >= 15, (perfil, x)
+              assert 0.45 <= x['fatorAtual'] <= 1.10, (perfil, x)
+          assert d['politicaVencedora'] in {'cumulativo','janela3','janela5','janela8','ewma','consistencia5'}
+          print(json.dumps({
+              'calibracao': d['calibracao']['resumo'],
+              'politicaVencedora': d['politicaVencedora'],
+              'gatePoliticaVencedora': d['gatePoliticaVencedora'],
+              'promocao': d['promocao'],
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Publicar diagnostico como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calibracao-perfis-v21
+          path: data/laboratorio/calibracao-perfis-v21.json
