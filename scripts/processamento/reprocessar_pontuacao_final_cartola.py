@@ -1,7 +1,9 @@
-"""Reprocessa R1-R23 com capitão 1,5x, banco e Reserva de Luxo.
+"""Reprocessa rodadas oficialmente encerradas com capitão 1,5x, banco e Reserva de Luxo.
 
 Camada V2.1 diagnóstica: não altera a V2 de produção. Usa somente escalações
-pré-rodada já congeladas e resultados posteriores. R24 fica excluída.
+pré-rodada já congeladas e resultados posteriores. A rodada corrente só entra
+quando houver resultado pós-rodada explícito e suficiente; com mercado aberto,
+a rodada-alvo fica automaticamente fora do retrospectivo.
 """
 from __future__ import annotations
 
@@ -14,6 +16,7 @@ ESC = BASE / "data" / "historico-escalacoes"
 HIST = BASE / "data" / "historico"
 API = BASE / "data" / "api"
 SAIDA = BASE / "data" / "pontuacao-final-cartola-v21.json"
+MIN_COBERTURA_RESULTADO = 100
 
 
 def carregar(p: Path):
@@ -66,6 +69,13 @@ def qualidade_resultado(xs):
     com_pontos = sum(1 for j in xs if j.get("pontuacaoReal") is not None or j.get("pontos") is not None or j.get("pontuacao") is not None)
     com_atuacao = sum(1 for j in xs if j.get("entrouEmCampo") is not None or j.get("entrou_em_campo") is not None)
     return (com_pontos, com_atuacao, len(xs))
+
+
+def resultado_completo(qualidade):
+    if not qualidade:
+        return False
+    com_pontos, com_atuacao, _ = qualidade
+    return com_pontos >= MIN_COBERTURA_RESULTADO and com_atuacao >= MIN_COBERTURA_RESULTADO
 
 
 def resultado_rodada(r):
@@ -178,14 +188,37 @@ def simular(e, idx):
     }
 
 
+def limite_retrospectivo():
+    status = carregar(API / "status.json") or {}
+    atual = int(status.get("rodada_atual") or 0)
+    mercado = int(status.get("status_mercado") or 0)
+    bola = bool(status.get("bola_rolando"))
+
+    # Mercado aberto: a rodada atual é a rodada-alvo e jamais entra no treino.
+    # Mercado fechado/sem jogo: permitimos testar a rodada atual, mas ela só é
+    # efetivamente processada se houver snapshot pós-rodada completo.
+    limite = atual if mercado == 2 and not bola else max(0, atual - 1)
+    return limite, {
+        "rodadaAtual": atual,
+        "statusMercado": mercado,
+        "bolaRolando": bola,
+    }
+
+
 def main():
+    limite, status_meta = limite_retrospectivo()
     rodadas = []
     fontes = {}
-    for r in range(1, 24):
+    ignoradas_incompletas = []
+
+    for r in range(1, limite + 1):
         esc = carregar(ESC / f"rodada-{r:02d}.json")
         if not esc:
             continue
         resultados, fonte, qualidade = resultado_rodada(r)
+        if not resultado_completo(qualidade):
+            ignoradas_incompletas.append({"rodada": r, "fonte": fonte, "qualidade": list(qualidade) if qualidade else None})
+            continue
         idx = indice_resultado(resultados)
         if not idx:
             continue
@@ -195,8 +228,18 @@ def main():
             rodadas.append({"rodada":r, "fonteResultado":fonte, "times":times})
 
     todos = [t for r in rodadas for t in r["times"]]
+    processadas = [int(r["rodada"]) for r in rodadas]
+    ultima_processada = max(processadas, default=0)
+    rodada_atual_incluida = bool(status_meta["rodadaAtual"] and status_meta["rodadaAtual"] in processadas)
+
     saida = {
-        "modelo":"pontuacao_final_cartola_v21", "r24Excluida":True,
+        "modelo":"pontuacao_final_cartola_v21",
+        "politicaRetrospectiva":"somente rodadas com resultado pós-rodada explícito; rodada-alvo de mercado aberto fica fora automaticamente",
+        "statusColeta": status_meta,
+        "rodadaMaximaCandidata": limite,
+        "rodadaMaximaProcessada": ultima_processada,
+        "rodadaAtualIncluida": rodada_atual_incluida,
+        "rodadasIgnoradasPorResultadoIncompleto": ignoradas_incompletas,
         "regras":{"capitao":"1,5x", "banco":"mesma posição; reserva atua e pontua > 0", "reservaLuxo":"aplicada apenas quando identificada no snapshot e regra é verificável"},
         "fontesResultado": fontes, "rodadas":rodadas,
         "resumo":{
@@ -209,10 +252,17 @@ def main():
             "naoAtuacoesTitulares":sum(len(t["titularesQueNaoAtuaram"]) for t in todos),
             "entradasInferidas":sum(t["entradasInferidas"] for t in todos),
         },
-        "gate":{"aptaParaRankingFinal": bool(todos) and all(t["entradasInferidas"] == 0 for t in todos), "motivo":"Exige flag de atuação explícita para todos os atletas usados; inferência por presença não é suficiente para promoção científica."}
+        "gate":{
+            "aptaParaRankingFinal": bool(todos) and all(t["entradasInferidas"] == 0 for t in todos),
+            "motivo":"Exige flag de atuação explícita para todos os atletas usados; inferência por presença não é suficiente para promoção científica.",
+        }
     }
     SAIDA.write_text(json.dumps(saida, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-    print(json.dumps(saida["resumo"] | saida["gate"], ensure_ascii=False, indent=2))
+    print(json.dumps(saida["statusColeta"] | saida["resumo"] | saida["gate"] | {
+        "rodadaMaximaCandidata": saida["rodadaMaximaCandidata"],
+        "rodadaMaximaProcessada": saida["rodadaMaximaProcessada"],
+        "rodadaAtualIncluida": saida["rodadaAtualIncluida"],
+    }, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()
