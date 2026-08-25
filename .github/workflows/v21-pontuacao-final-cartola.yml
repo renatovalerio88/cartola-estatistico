@@ -1,0 +1,43 @@
+name: V2.1 Pontuacao Final Cartola
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/processamento/reprocessar_pontuacao_final_cartola.py'
+      - 'data/historico-escalacoes/**'
+      - 'data/historico/**'
+      - 'data/api/**'
+      - '.github/workflows/v21-pontuacao-final-cartola.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reprocessar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reprocessar R1-R23
+        run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
+      - name: Validar saída e R24 excluída
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/pontuacao-final-cartola-v21.json')
+          assert p.exists(), 'saida ausente'
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['r24Excluida'] is True
+          assert all(int(r['rodada']) <= 23 for r in d['rodadas'])
+          assert d['resumo']['timesProcessados'] > 0
+          print(json.dumps(d['resumo'] | d['gate'], ensure_ascii=False, indent=2))
+          PY
+      - name: Upload diagnóstico
+        uses: actions/upload-artifact@v4
+        with:
+          name: pontuacao-final-cartola-v21
+          path: data/pontuacao-final-cartola-v21.json
