@@ -612,27 +612,27 @@
         "e",
         "v",
         "e",
-        "e"
+        "v"
       ],
       "aproveitamento_mandante": [
         "e",
         "v",
         "e",
         "d",
-        "e"
+        "d"
       ],
       "transmissao": {
-        "label": "fique por dentro",
+        "label": "saiba como foi",
         "url": "https://ge.globo.com/rj/futebol/brasileirao-serie-a/jogo/24-08-2026/botafogo-atletico-pr.ghtml?utm_source=cartolafc"
       },
       "local": "Nilton Santos (Engenhão)",
-      "status_transmissao_tr": "CRIADA",
+      "status_transmissao_tr": "ENCERRADA",
       "status_cronometro_tr": "PAUSADO",
-      "periodo_tr": "",
+      "periodo_tr": "POS_JOGO",
       "partida_data": "2026-08-24 20:00:00",
-      "inicio_cronometro_tr": "",
-      "placar_oficial_visitante": null,
-      "placar_oficial_mandante": null,
+      "inicio_cronometro_tr": "2026-08-25T01:04:36.669Z",
+      "placar_oficial_visitante": 3,
+      "placar_oficial_mandante": 2,
       "partida_id": 346372,
       "clube_visitante_posicao": 3,
       "clube_visitante_id": 293,
