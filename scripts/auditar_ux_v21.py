@@ -14,7 +14,10 @@ checks = {
     "contraste_explorador": '#projecoes .v21-player' in ux and 'color:var(--text)!important' in ux,
     "historico_sem_laboratorio": 'Laboratório de capitão' in ux and 'Torneio de modelos experimentais' in ux,
     "historico_zeros_ocultos": 'Detalhamento em reprocessamento' in ux,
-    "analise_decisao_primeiro": 'Conclusão primeiro' in ux and 'Ver números técnicos dos clubes' in ux,
+    # Valida a implementação funcional de "decisão primeiro", sem acoplar o gate
+    # a um rótulo editorial específico. O bloco de conclusões deve existir e os
+    # números técnicos dos clubes devem permanecer sob demanda.
+    "analise_decisao_primeiro": 'ce-analysis-decisions' in ux and 'Ver números técnicos dos clubes' in ux,
     "desktop_responsivo": '@media(min-width:1200px)' in ux and '@media(max-width:700px)' in ux,
 }
 
