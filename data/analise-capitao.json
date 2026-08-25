@@ -289,11 +289,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "87863",
-            "nome": "Arrascaeta",
+            "id": "102911",
+            "nome": "Zé Ricardo",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 8.4,
+            "real": 6.4,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -363,7 +363,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 1.2,
             "pontosCapitaoB": 1.2,
-            "melhorPontuacaoReal": 8.4,
+            "melhorPontuacaoReal": 6.4,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -515,11 +515,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "82455",
-            "nome": "Zé Rafael",
+            "id": "85403",
+            "nome": "Danielzinho",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 10.1,
+            "real": 6.2,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -589,7 +589,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 3.4,
             "pontosCapitaoB": 3.4,
-            "melhorPontuacaoReal": 10.1,
+            "melhorPontuacaoReal": 6.2,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -741,11 +741,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "82455",
-            "nome": "Zé Rafael",
+            "id": "85403",
+            "nome": "Danielzinho",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 10.1,
+            "real": 6.2,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -815,7 +815,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 3.4,
             "pontosCapitaoB": 3.4,
-            "melhorPontuacaoReal": 10.1,
+            "melhorPontuacaoReal": 6.2,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
