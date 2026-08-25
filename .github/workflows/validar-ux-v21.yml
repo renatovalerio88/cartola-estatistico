@@ -1,0 +1,25 @@
+name: Validar UX V2.1
+
+on:
+  pull_request:
+    paths:
+      - 'js/recomendacoes/ux-clean.js'
+      - 'scripts/auditar_ux_v21.py'
+      - '.github/workflows/validar-ux-v21.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validar sintaxe JavaScript
+        run: node --check js/recomendacoes/ux-clean.js
+
+      - name: Auditar gates de UX
+        run: python scripts/auditar_ux_v21.py
