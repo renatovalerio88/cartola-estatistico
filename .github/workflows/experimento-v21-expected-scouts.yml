@@ -1,0 +1,61 @@
+name: V2.1 - Expected scouts diagnostico
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/experimento_expected_scouts_v21.py"
+      - ".github/workflows/experimento-v21-expected-scouts.yml"
+      - "data/api/rodada-*/jogadores.json"
+
+permissions:
+  contents: read
+
+jobs:
+  expected-scouts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar sintaxe
+        run: python -m py_compile scripts/experimento_expected_scouts_v21.py
+
+      - name: Rodar diagnostico walk-forward
+        run: python scripts/experimento_expected_scouts_v21.py
+
+      - name: Validar contrato anti-leakage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/laboratorio/expected-scouts-v21.json")
+          d = json.loads(path.read_text(encoding="utf-8"))
+
+          assert d["antiLeakage"] is True
+          assert d["uso"] == "explicabilidade_auxiliar"
+          assert d["naoDecompoeRandomForest"] is True
+          assert isinstance(d["aptoParaExplicabilidade"], bool)
+          assert len(d["rodadasAvaliadas"]) >= 10, d["rodadasAvaliadas"]
+          assert d["maeGlobalModelo"] >= 0
+          assert d["maeGlobalBaseline"] >= 0
+
+          print("Contrato científico validado.")
+          print("Apto para explicabilidade:", d["aptoParaExplicabilidade"])
+          print("Ganho global (%):", d["ganhoGlobalPct"])
+          print("Scouts aprovados:", d["scoutsAprovados"])
+          PY
+
+      - name: Publicar diagnostico como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: expected-scouts-v21
+          path: data/laboratorio/expected-scouts-v21.json
