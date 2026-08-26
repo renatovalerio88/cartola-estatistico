@@ -14,11 +14,19 @@ checks = {
     "contraste_explorador": '#projecoes .v21-player' in ux and 'color:var(--text)!important' in ux,
     "historico_sem_laboratorio": 'Laboratório de capitão' in ux and 'Torneio de modelos experimentais' in ux,
     "historico_zeros_ocultos": 'Detalhamento em reprocessamento' in ux,
-    # Valida a implementação funcional de "decisão primeiro", sem acoplar o gate
-    # a um rótulo editorial específico. O bloco de conclusões deve existir e os
-    # números técnicos dos clubes devem permanecer sob demanda.
     "analise_decisao_primeiro": 'ce-analysis-decisions' in ux and 'Ver números técnicos dos clubes' in ux,
     "desktop_responsivo": '@media(min-width:1200px)' in ux and '@media(max-width:700px)' in ux,
+    # Evita a regressão que fazia a lista inteira de Recomendações ser recriada a
+    # cada clique/mutação no mobile. A seleção deve atualizar somente estado +
+    # detalhe; mutações internas do shell não podem disparar nova renderização.
+    "mobile_sem_flicker": (
+        'function selecionarJogador' in ux
+        and 'sincronizarSelecao(grade, lista, true)' in ux
+        and 'novoId === selecionado' in ux
+        and '#playersGrid .ce-clean-recs' in ux
+        and 'return !alvo?.closest?.("#playersGrid .ce-clean-recs")' in ux
+        and 'transition:none!important' in ux
+    ),
 }
 
 falhas = [nome for nome, ok in checks.items() if not ok]
