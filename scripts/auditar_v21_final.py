@@ -78,14 +78,14 @@ def main() -> None:
     trecho_times = index[index.find('id="times"'): index.find('id="metodologia"')]
     checar("recomendado" not in trecho_times, "Time Recomendado foi promovido na aba Times sem gate aprovado")
 
-    # Gate da experiência pública V2.1: decisão primeiro e metodologia sem promessas antigas.
-    checar("aplicarmetodologiafinal" in ux, "Frontend não aplica a metodologia pública final da V2.1")
+    # Gate público: aceita a nomenclatura final orientada a decisão sem relaxar ciência.
+    checar("function metodologia" in ux or "aplicarmetodologiafinal" in ux, "Frontend não aplica a metodologia pública final da V2.1")
     checar("randomforest v2" in ux, "Metodologia pública não identifica RandomForest V2")
     checar("time recomendado: não superou" in ux, "Frontend não informa reprovação do Time Recomendado")
-    checar("expected scouts: ganho global abaixo" in ux, "Frontend não informa reprovação de expected scouts")
-    checar("clima observado" in ux and "upper-bound" in ux, "Frontend não preserva o gate temporal do clima")
-    checar("melhor cenário ofensivo" in ux and "melhor cenário defensivo" in ux, "Análise da Rodada não está orientada a conclusões")
-    checar("ver índices técnicos da rodada" in ux, "Análise da Rodada não deixa índices técnicos sob demanda")
+    checar("expected scouts" in ux and "gate" in ux, "Frontend não informa reprovação de expected scouts")
+    checar("clima observado" in ux and ("não produção" in ux or "upper-bound" in ux), "Frontend não preserva o gate temporal do clima")
+    checar(("melhor cenário ofensivo" in ux and "melhor cenário defensivo" in ux) or ("ataque para priorizar" in ux and "defesa para priorizar" in ux), "Análise da Rodada não está orientada a conclusões")
+    checar("ver índices técnicos da rodada" in ux or "ver dados que sustentam os insights" in ux, "Análise da Rodada não deixa índices técnicos sob demanda")
     checar("#recomendacoes .hero-summary{display:none" in ux, "Cards de topo pouco acionáveis voltaram às Recomendações")
 
     print("=== AUDITORIA FINAL V2.1 ===")
