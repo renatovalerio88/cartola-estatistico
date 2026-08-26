@@ -1,287 +1,49 @@
 /* Cartola Estatístico — UX V2.1: decisão primeiro, detalhes sob demanda */
-(function () {
-  "use strict";
+(function(){
+"use strict";
+const POS={GOL:"Goleiros",LAT:"Laterais",ZAG:"Zagueiros",MEI:"Meias",ATA:"Atacantes",TEC:"Treinadores"};
+let instalado=false,selecionado=null,posicaoRenderizada=null;
+const num=(v,p=0)=>Number.isFinite(Number(v))?Number(v):p;
+const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;");
+const txt=el=>(el?.textContent||"").replace(/\s+/g," ").trim();
+const norm=v=>String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 
-  const POSICOES = { GOL: "Goleiros", LAT: "Laterais", ZAG: "Zagueiros", MEI: "Meias", ATA: "Atacantes", TEC: "Treinadores" };
-  let instalado = false;
-  let selecionado = null;
-  let posicaoRenderizada = null;
-
-  function numero(v, p = 0) { const n = Number(v); return Number.isFinite(n) ? n : p; }
-  function esc(v) { return String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;"); }
-  function texto(el) { return (el?.textContent || "").replace(/\s+/g," ").trim(); }
-
-  function injetarEstilo() {
-    if (document.getElementById("ceUxV21Style")) return;
-    const s = document.createElement("style");
-    s.id = "ceUxV21Style";
-    s.textContent = `
-      #recomendacoes .hero{grid-template-columns:1fr!important;gap:14px!important}
-      #recomendacoes .hero-summary{display:none!important}
-      #recomendacoes .hero-text{max-width:860px}
-      .ce-clean-recs{display:grid;gap:12px;width:100%}
-      .ce-clean-tabs{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
-      .ce-clean-player{appearance:none;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:999px;padding:9px 13px;cursor:pointer;font:inherit;font-weight:700;display:inline-flex;align-items:center;gap:8px}
-      .ce-clean-player:hover,.ce-clean-player.is-active{border-color:var(--primary);background:var(--primary);color:#fff}
-      .ce-clean-rank{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.14);font-size:10px}
-      .ce-clean-hint{font-size:11px;color:var(--text-soft);padding:0 3px}
-      .ce-clean-detail{min-width:0}.ce-clean-detail .player-card{width:100%;max-width:none}
-      .ce-decision{margin:14px 18px;padding:14px 16px;border:1px solid rgba(83,216,145,.22);border-radius:14px;background:rgba(83,216,145,.07)}
-      .ce-decision-kicker{font-size:10px;font-weight:800;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase}
-      .ce-decision-title{display:block;margin:4px 0 6px;font-size:18px}.ce-decision p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.55}
-      .ce-decision-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.ce-decision-chip{padding:6px 9px;border-radius:999px;background:rgba(127,127,127,.10);font-size:10px;font-weight:700}
-      .component-row.ce-secondary-factor{display:none}.ce-show-all-factors{margin:10px 0 0;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:9px;padding:8px 11px;cursor:pointer;font:inherit;font-size:11px;font-weight:700}
-      .ce-analysis-decisions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 18px}.ce-analysis-decision{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
-      .ce-analysis-decision span{display:block;font-size:9px;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase;font-weight:800}.ce-analysis-decision strong{display:block;margin:5px 0 4px;font-size:16px}.ce-analysis-decision p{margin:0;font-size:11px;color:var(--text-soft);line-height:1.45}
-      .ce-lineup-purpose{margin:8px 0 0;font-size:11px;color:var(--text-soft)}
-      .lineup-player-numbers{min-width:124px}.lineup-player-numbers>strong>small{display:block;margin-top:3px;font-size:10px;font-weight:600;color:var(--text-soft)}
-      #projecoes .v21-player,#projecoes .v21-toolbar input,#projecoes .v21-toolbar select{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
-      #projecoes .v21-player h3,#projecoes .v21-proj,#projecoes .v21-kpi strong{color:var(--text)!important}
-      #projecoes .v21-meta,#projecoes .v21-kpi span{color:var(--text-soft)!important;opacity:1!important}
-      #projecoes .v21-badge{background:var(--surface-soft)!important;color:var(--text)!important}
-      .ce-history-reprocessing{padding:18px;border:1px solid rgba(222,185,84,.28);border-radius:14px;background:rgba(222,185,84,.08);margin:14px 0}.ce-history-reprocessing strong{display:block;margin-bottom:5px}.ce-history-reprocessing p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.5}
-      .ce-tech-hidden{display:none!important}
-      .ce-tech-toggle{margin:12px 0 18px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;padding:10px 13px;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
-      .ce-methodology-final{display:grid;gap:16px}.ce-methodology-hero,.ce-methodology-card{padding:18px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}
-      .ce-methodology-hero h2,.ce-methodology-card h3{margin:4px 0 8px}.ce-methodology-hero p,.ce-methodology-card p,.ce-methodology-card li{color:var(--text-soft);line-height:1.55;font-size:12px}
-      .ce-methodology-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ce-methodology-card ul{margin:8px 0 0;padding-left:18px}.ce-methodology-badge{display:inline-flex;padding:5px 8px;border-radius:999px;background:rgba(83,216,145,.10);color:#67dfa0;font-size:10px;font-weight:800}
-      .ce-methodology-note{padding:12px 14px;border-radius:12px;background:var(--surface-soft);font-size:11px;color:var(--text-soft);line-height:1.5}
-      @media(min-width:1200px){.content{padding-left:28px!important;padding-right:28px!important}.main-area{min-width:0}.players-grid,.suggested-lineups-container,#projecoes .v21-grid{max-width:none!important}}
-      @media(max-width:900px){.ce-analysis-decisions{grid-template-columns:1fr}.ce-methodology-grid{grid-template-columns:1fr}}
-      @media(max-width:700px){.ce-clean-tabs{overflow-x:auto;flex-wrap:nowrap;padding:10px;scroll-behavior:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ce-clean-tabs::-webkit-scrollbar{display:none}.ce-clean-player{flex:0 0 auto;transition:none!important}.lineup-player-numbers{min-width:92px}}
-    `;
-    document.head.appendChild(s);
-  }
-
-  function posicaoAtual() { return typeof obterPosicaoAtiva === "function" ? String(obterPosicaoAtiva()).toUpperCase() : "GOL"; }
-  function listaAtual() { const l = typeof obterJogadoresDaPosicao === "function" ? obterJogadoresDaPosicao(posicaoAtual()) : []; return Array.isArray(l) ? l : []; }
-  function id(j) { return String(j?.id ?? j?.atletaId ?? j?.atleta_id ?? j?.apelido ?? j?.nome ?? ""); }
-  function nome(j) { return String(j?.apelido || j?.nome || "Jogador"); }
-
-  function textoRisco(j) {
-    const t = String(j?.riscoTexto ?? j?.risco ?? "").toLowerCase();
-    if (t.includes("alto")) return "Risco alto";
-    if (t.includes("medio") || t.includes("médio")) return "Risco médio";
-    return "Risco baixo";
-  }
-
-  function criarVeredito(j, idx) {
-    const p = posicaoAtual();
-    const conf = numero(j?.confianca ?? j?.confiancaNumerica, 0);
-    const proj = numero(j?.projecao ?? j?.projecaoCalibrada ?? j?.score, 0);
-    const piso = numero(j?.piso, proj);
-    const risco = textoRisco(j);
-    let titulo = idx === 0 ? "Forte recomendação" : idx <= 2 ? "Boa opção" : "Alternativa";
-    if (conf < 60 || risco === "Risco alto") titulo = idx === 0 ? "Boa opção com cautela" : "Aposta com cautela";
-    const contexto = [];
-    const titularidade = numero(j?.titularidade ?? j?.probabilidadeTitular, 0);
-    const chanceSG = numero(j?.chanceSG ?? j?.probabilidadeSG, 0);
-    if (titularidade >= 80) contexto.push("boa segurança de titularidade");
-    if (["GOL","LAT","ZAG"].includes(p) && chanceSG >= 60) contexto.push("boa perspectiva de SG");
-    if (piso >= 4) contexto.push("piso interessante");
-    if (proj >= 8) contexto.push("projeção forte");
-    const motivo = contexto.length ? contexto.slice(0,2).join(" e ") : "combinação competitiva de projeção, contexto e confiança";
-    return `<section class="ce-decision"><span class="ce-decision-kicker">Decisão do modelo</span><strong class="ce-decision-title">${esc(titulo)}</strong><p><b>${idx+1}º entre ${(POSICOES[p] || p).toLowerCase()} indicados.</b> O modelo destaca ${esc(motivo)} nesta rodada.</p><div class="ce-decision-chips"><span class="ce-decision-chip">${proj.toFixed(1)} pts projetados</span><span class="ce-decision-chip">${Math.round(conf)}% confiança</span><span class="ce-decision-chip">${esc(risco)}</span></div></section>`;
-  }
-
-  function limitarFatores(host) {
-    const rows = [...host.querySelectorAll(".component-row")];
-    if (rows.length <= 5) return;
-    rows.forEach((r,i)=>r.classList.toggle("ce-secondary-factor", i >= 5));
-    if (host.querySelector(".ce-show-all-factors")) return;
-    const btn = document.createElement("button");
-    btn.type = "button"; btn.className = "ce-show-all-factors"; btn.textContent = `Ver todos os ${rows.length} critérios técnicos`;
-    btn.addEventListener("click",()=>{
-      const fechado = [...host.querySelectorAll(".component-row")].some(r=>r.classList.contains("ce-secondary-factor"));
-      host.querySelectorAll(".component-row").forEach((r,i)=>r.classList.toggle("ce-secondary-factor", fechado ? false : i >= 5));
-      btn.textContent = fechado ? "Mostrar apenas os 5 fatores decisivos" : `Ver todos os ${rows.length} critérios técnicos`;
-    });
-    rows[4]?.insertAdjacentElement("afterend",btn);
-  }
-
-  function renderDetalhe(jogador, host) {
-    if (!jogador || !host || typeof criarCardJogador !== "function") return;
-    const lista = listaAtual();
-    const idx = Math.max(0, lista.findIndex(x => id(x) === id(jogador)));
-    const card = criarCardJogador(jogador, idx + 1);
-    host.replaceChildren();
-    if (card) host.appendChild(card);
-    const cabecalho = host.querySelector(".player-card-header,.player-header") || host.querySelector(".player-card")?.firstElementChild;
-    if (cabecalho) cabecalho.insertAdjacentHTML("afterend", criarVeredito(jogador, idx));
-    limitarFatores(host);
-    if (typeof configurarBotoesAnaliseJogador === "function") configurarBotoesAnaliseJogador();
-  }
-
-  function sincronizarSelecao(grade, lista, renderizarDetalhe = true) {
-    const tabs = grade.querySelector(".ce-clean-tabs");
-    const scrollX = tabs?.scrollLeft || 0;
-    grade.querySelectorAll("[data-ce-player]").forEach(b => {
-      const ativo = b.dataset.cePlayer === selecionado;
-      b.classList.toggle("is-active", ativo);
-      b.setAttribute("aria-selected", ativo ? "true" : "false");
-      b.tabIndex = ativo ? 0 : -1;
-    });
-    if (tabs) tabs.scrollLeft = scrollX;
-    if (!renderizarDetalhe) return;
-    const detalhe = grade.querySelector("#ceCleanDetail");
-    const jogador = lista.find(j => id(j) === selecionado) || lista[0];
-    renderDetalhe(jogador, detalhe);
-  }
-
-  function selecionarJogador(grade, lista, novoId) {
-    if (!novoId || novoId === selecionado) return;
-    selecionado = novoId;
-    sincronizarSelecao(grade, lista, true);
-  }
-
-  function aplicarRecomendacoes() {
-    const grade = document.getElementById("playersGrid"); if (!grade) return;
-    const lista = listaAtual(); if (!lista.length) return;
-    const posicao = posicaoAtual();
-    if (!selecionado || !lista.some(j => id(j) === selecionado)) selecionado = id(lista[0]);
-
-    const shell = grade.querySelector(":scope > .ce-clean-recs");
-    if (shell && posicaoRenderizada === posicao) {
-      sincronizarSelecao(grade, lista, true);
-      return;
-    }
-
-    posicaoRenderizada = posicao;
-    grade.innerHTML = `<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist" aria-label="Jogadores recomendados">${lista.map((j,i)=>`<button type="button" role="tab" aria-selected="${id(j)===selecionado?"true":"false"}" tabindex="${id(j)===selecionado?"0":"-1"}" class="ce-clean-player ${id(j)===selecionado?"is-active":""}" data-ce-player="${esc(id(j))}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A conclusão vem primeiro; os critérios técnicos ficam sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail"></div></section>`;
-    sincronizarSelecao(grade, lista, true);
-    grade.querySelector(".ce-clean-tabs")?.addEventListener("click", ev => {
-      const botao = ev.target.closest("[data-ce-player]");
-      if (!botao || !grade.contains(botao)) return;
-      selecionarJogador(grade, listaAtual(), botao.dataset.cePlayer);
-    });
-  }
-
-  function instalarRecomendacoes() {
-    if (instalado) return true;
-    if (typeof exibirJogadoresDaPosicao !== "function" || typeof criarCardJogador !== "function") return false;
-    const original = exibirJogadoresDaPosicao;
-    window.exibirJogadoresDaPosicao = function(){ original.apply(this,arguments); posicaoRenderizada = null; aplicarRecomendacoes(); };
-    instalado = true; aplicarRecomendacoes(); return true;
-  }
-
-  function simplificarTopoRecomendacoes() {
-    const hero = document.querySelector("#recomendacoes .hero-text");
-    if (!hero || hero.dataset.ceSimplificado === "1") return;
-    hero.dataset.ceSimplificado = "1";
-    const h = hero.querySelector("h2"); if (h) h.textContent = "Melhores opções da rodada";
-    const ps = [...hero.querySelectorAll("p")]; const ultimo = ps[ps.length-1];
-    if (ultimo) ultimo.textContent = "Escolha por posição e veja primeiro a recomendação do modelo. Projeção, risco e contexto aparecem apenas quando ajudam na decisão.";
-    [...document.querySelectorAll("#recomendacoes article,#recomendacoes section,#recomendacoes div")].forEach(el=>{
-      const t = texto(el);
-      if (t.startsWith("O modelo aprende com o que realmente acontece") && t.length < 900) el.classList.add("ce-tech-hidden");
-    });
-  }
-
-  function deduplicarPatrimonio() {
-    const oficial = document.querySelector("#times .lineup-budget-control");
-    const antigo = document.getElementById("v21PatrimonioBox");
-    if (oficial && antigo) antigo.remove();
-    const input = document.getElementById("lineupBudgetInput");
-    if (input) { input.max = "200"; if (numero(input.value,200) > 200) input.value = "200"; }
-  }
-
-  function tornarIndiceClaro() {
-    document.querySelectorAll("#times .lineup-player-numbers,#times .lineup-bench-player,#times .lineup-luxury-player").forEach(el=>{
-      if (el.dataset.ceIndice === "1") return;
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-      const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
-      nodes.forEach(n=>{ if (/Nota\s*/i.test(n.nodeValue||"")) n.nodeValue=(n.nodeValue||"").replace(/⭐?\s*Nota\s*/gi,"Índice de escolha "); });
-      el.title = "Índice de escolha: comparação interna do modelo; não são pontos do Cartola.";
-      el.dataset.ceIndice = "1";
-    });
-  }
-
-  function removerRuidoHistorico() {
-    const tab = document.getElementById("historico"); if (!tab) return;
-    [...tab.querySelectorAll("article,section,div")].forEach(el=>{
-      const t = texto(el);
-      if ((/Laboratório de capitão/i.test(t) || /Torneio de modelos experimentais/i.test(t)) && t.length < 1800) el.classList.add("ce-tech-hidden");
-    });
-    const tabela = tab.querySelector(".history-table");
-    if (tabela?.tBodies?.[0]) {
-      const rows=[...tabela.tBodies[0].rows].filter(r=>r.cells?.length>=4);
-      const todosZero=rows.length>=3 && rows.every(r=>Math.abs(numero((r.cells[1]?.textContent||"").replace(",","."),0))<0.0001 && Math.abs(numero((r.cells[2]?.textContent||"").replace(",","."),0))<0.0001);
-      const wrap=tabela.closest(".history-table-wrap")||tabela.parentElement;
-      if (todosZero && wrap) {
-        wrap.classList.add("ce-tech-hidden");
-        if (!tab.querySelector(".ce-history-reprocessing")) {
-          const box=document.createElement("div");box.className="ce-history-reprocessing";box.innerHTML="<strong>Detalhamento em reprocessamento</strong><p>Esta rodada ainda não possui projeção × resultado confiável no formato novo. O histórico antigo com zeros foi ocultado para não confundir.</p>";wrap.insertAdjacentElement("beforebegin",box);
-        }
-      }
-    }
-  }
-
-  function aplicarAnalise() {
-    const tab=document.getElementById("analise"); if(!tab) return;
-    const resumo=tab.querySelector(":scope > .analysis-summary") || tab.querySelector(".analysis-summary");
-    const cards=[...(resumo?.querySelectorAll(".analysis-card")||[])];
-    if(!cards.length) return;
-    const valor=(padrao, idx)=>cards[idx]?.querySelector("strong")?.textContent?.trim()||padrao;
-    if(!tab.querySelector(".ce-analysis-decisions")) {
-      const grid=document.createElement("section");grid.className="ce-analysis-decisions";grid.innerHTML=`
-        <article class="ce-analysis-decision"><span>Melhor cenário ofensivo</span><strong>${esc(valor("Em análise",0))}</strong><p>Clube que o modelo considera mais interessante para buscar participação ofensiva nesta rodada.</p></article>
-        <article class="ce-analysis-decision"><span>Melhor cenário defensivo</span><strong>${esc(valor("Em análise",1))}</strong><p>Clube com leitura mais favorável para goleiro, zagueiro e lateral.</p></article>
-        <article class="ce-analysis-decision"><span>Jogo para buscar teto</span><strong>${esc(valor("Em análise",2))}</strong><p>Confronto com maior combinação de força ofensiva e equilíbrio entre os lados.</p></article>`;
-      resumo.insertAdjacentElement("beforebegin",grid);
-    }
-    if(!resumo.dataset.ceTecnico){
-      resumo.dataset.ceTecnico="1";resumo.classList.add("ce-tech-hidden");
-      const b=document.createElement("button");b.type="button";b.className="ce-tech-toggle";b.textContent="Ver índices técnicos da rodada";
-      b.addEventListener("click",()=>{const oculto=resumo.classList.toggle("ce-tech-hidden");b.textContent=oculto?"Ver índices técnicos da rodada":"Ocultar índices técnicos";});
-      resumo.insertAdjacentElement("afterend",b);
-    }
-    const tecnico=[...tab.querySelectorAll("h2,h3")].find(h=>/Força dos clubes na rodada/i.test(texto(h)));
-    const bloco=tecnico?.parentElement?.parentElement?.parentElement || tecnico?.closest("section");
-    if(bloco && !bloco.dataset.ceTecnicoDetalhe){
-      bloco.dataset.ceTecnicoDetalhe="1";bloco.classList.add("ce-tech-hidden");
-      const b=document.createElement("button");b.type="button";b.className="ce-tech-toggle";b.textContent="Ver números técnicos dos clubes";
-      b.addEventListener("click",()=>{const oculto=bloco.classList.toggle("ce-tech-hidden");b.textContent=oculto?"Ver números técnicos dos clubes":"Ocultar números técnicos";});
-      bloco.insertAdjacentElement("beforebegin",b);
-    }
-  }
-
-  function aplicarMetodologiaFinal() {
-    const tab=document.getElementById("metodologia"); if(!tab || tab.dataset.ceFinal==="1") return;
-    tab.dataset.ceFinal="1";
-    tab.innerHTML=`
-      <section class="ce-methodology-final">
-        <div class="ce-methodology-hero">
-          <span class="ce-methodology-badge">V2.1 validada</span>
-          <h2>Como o modelo toma decisões</h2>
-          <p>A projeção oficial usa RandomForest treinado em walk-forward: para prever uma rodada, o modelo só aprende com rodadas anteriores. O objetivo é recomendar jogadores e montar times sem usar informação futura.</p>
-        </div>
-        <div class="ce-methodology-grid">
-          <article class="ce-methodology-card"><h3>O que está ativo</h3><ul><li>RandomForest V2 com anti-leakage.</li><li>Elegibilidade oficial das partidas do Cartola.</li><li>Titularidade, limite de até 3 atletas por clube e técnico.</li><li>7 formações competindo sem preferência artificial.</li><li>Patrimônio configurável até C$ 200.</li><li>Capitão 1,5x, banco e Reserva de Luxo na avaliação histórica.</li><li>Calibração seletiva do Equilibrado e Agressivo; Conservador sem ajuste.</li></ul></article>
-          <article class="ce-methodology-card"><h3>O que não foi promovido</h3><ul><li>Time Recomendado: não superou o melhor perfil fixo.</li><li>Expected scouts: ganho global abaixo do gate definido.</li><li>Clima observado: útil apenas como diagnóstico/upper-bound; não entra em produção por risco de leakage.</li><li>Lateralidade/heatmap real e consenso pré-jogo: seguem experimentais por falta de fonte histórica sustentável.</li></ul></article>
-          <article class="ce-methodology-card"><h3>Como o histórico é avaliado</h3><p>As comparações usam projeção pré-rodada versus resultado real. A pontuação final considera substituições válidas do banco, Reserva de Luxo e bônus correto do capitão. Rodadas sem evidência suficiente são bloqueadas do ranking científico.</p></article>
-          <article class="ce-methodology-card"><h3>Limitações e fallback</h3><p>Projeções são probabilísticas e não garantem pontuação. Mudanças de escalação, cartões, lesões e eventos raros podem gerar erro. A V1 permanece preservada como fallback e rollback caso algum gate da V2/V2.1 falhe.</p></article>
-        </div>
-        <div class="ce-methodology-note">Detalhes completos dos experimentos, gates, ganhos e reprovações permanecem documentados no repositório. A interface mostra apenas o que ajuda a decisão do usuário.</div>
-      </section>`;
-  }
-
-  function aplicarTudo(){injetarEstilo();simplificarTopoRecomendacoes();deduplicarPatrimonio();tornarIndiceClaro();removerRuidoHistorico();aplicarAnalise();aplicarMetodologiaFinal();}
-
-  let tentativas=0;const timer=setInterval(()=>{tentativas++;if(instalarRecomendacoes()||tentativas>50)clearInterval(timer);},100);
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",aplicarTudo);else aplicarTudo();
-  const observer=new MutationObserver(mutations=>{
-    const relevante=mutations.some(m=>{
-      const alvo=m.target?.nodeType===1?m.target:m.target?.parentElement;
-      return !alvo?.closest?.("#playersGrid .ce-clean-recs");
-    });
-    if(!relevante)return;
-    clearTimeout(window.__ceUxV21Timer);
-    window.__ceUxV21Timer=setTimeout(()=>{
-      aplicarTudo();
-      if(instalado && !document.querySelector("#playersGrid .ce-clean-recs")) aplicarRecomendacoes();
-    },140);
-  });
-  observer.observe(document.documentElement,{childList:true,subtree:true});
-  window.RecomendacoesUXClean={aplicar:aplicarRecomendacoes};
-  console.info("Cartola Estatístico — UX V2.1 de clareza ativa.");
+function estilo(){
+ if(document.getElementById("ceUxV21Style"))return;
+ const s=document.createElement("style");s.id="ceUxV21Style";s.textContent=`
+ #recomendacoes .hero{grid-template-columns:1fr!important;gap:14px!important;max-width:1180px;margin-inline:auto}#recomendacoes .hero-summary{display:none!important}#recomendacoes .hero-text{max-width:820px;margin-inline:auto;text-align:center}#recomendacoes #playersGrid{max-width:1180px!important;margin-inline:auto!important;width:100%}
+ .ce-clean-recs{display:grid;gap:14px;width:100%}.ce-clean-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;padding:13px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.ce-clean-player{appearance:none;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:999px;padding:10px 14px;cursor:pointer;font:inherit;font-weight:750;display:inline-flex;align-items:center;gap:8px}.ce-clean-player:hover,.ce-clean-player.is-active{border-color:var(--primary);background:var(--primary);color:#fff}.ce-clean-rank{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.14);font-size:10px}.ce-clean-hint{text-align:center;font-size:11px;color:var(--text-soft)}.ce-clean-detail{min-width:0;max-width:980px;margin-inline:auto;width:100%}.ce-clean-detail .player-card{width:100%;max-width:none}
+ .ce-decision{margin:14px 18px;padding:16px 18px;border:1px solid rgba(83,216,145,.26);border-radius:15px;background:linear-gradient(135deg,rgba(83,216,145,.10),rgba(83,216,145,.035))}.ce-decision-kicker{font-size:10px;font-weight:850;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase}.ce-decision-title{display:block;margin:5px 0 7px;font-size:19px}.ce-decision p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.55}.ce-decision-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.ce-decision-chip{padding:6px 9px;border-radius:999px;background:rgba(127,127,127,.10);font-size:10px;font-weight:750}
+ .component-row{border-radius:12px;padding:10px 11px!important;margin:4px 0!important}.component-row.ce-factor-positive{background:rgba(83,216,145,.07)}.component-row.ce-factor-attention{background:rgba(222,185,84,.07)}.component-row.ce-factor-negative{background:rgba(224,98,98,.07)}.ce-factor-status{display:inline-flex!important;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;font-size:10px!important;font-weight:850!important}.ce-factor-status.positive{background:rgba(83,216,145,.15);color:#65dfa0!important}.ce-factor-status.attention{background:rgba(222,185,84,.15);color:#e0bd60!important}.ce-factor-status.negative{background:rgba(224,98,98,.14);color:#ef8b8b!important}.component-row button{border:1px solid var(--border)!important;background:transparent!important;color:var(--text-soft)!important;border-radius:999px!important;padding:5px 9px!important;font-size:10px!important;box-shadow:none!important}.component-row.ce-secondary-factor{display:none}.ce-show-all-factors{display:block;width:100%;margin:12px 0 2px;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);border-radius:10px;padding:9px;font:inherit;font-size:11px;font-weight:750}
+ #times .lineup-budget-control{min-height:0!important;height:auto!important;justify-content:flex-start!important;gap:18px!important}.lineup-player-numbers{min-width:110px}.ce-choice-explainer{display:block;margin-top:3px;color:var(--text-soft);font-size:9px;font-weight:650;line-height:1.3}
+ #projecoes .v21-toolbar,#projecoes .v21-grid{max-width:1180px!important;margin-inline:auto!important}#projecoes .v21-grid{gap:12px!important}#projecoes .v21-player{background:linear-gradient(145deg,var(--surface),var(--surface-soft))!important;color:var(--text)!important;border-color:var(--border)!important;border-radius:18px!important;padding:18px!important;box-shadow:0 10px 28px rgba(0,0,0,.06)}#projecoes .v21-player h3,#projecoes .v21-proj,#projecoes .v21-kpi strong{color:var(--text)!important}#projecoes .v21-proj{font-size:clamp(24px,3vw,34px)!important}#projecoes .v21-meta,#projecoes .v21-kpi span{color:var(--text-soft)!important;opacity:1!important}#projecoes .v21-badge{background:var(--surface-soft)!important;color:var(--text)!important;border:1px solid var(--border)}#projecoes .v21-toolbar input,#projecoes .v21-toolbar select{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important}
+ #historico{min-width:0;overflow-x:hidden}#historico select{min-height:44px!important;background:var(--surface)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-radius:12px!important;padding-inline:12px!important}#historico .ce-history-profile-wrap{max-width:1180px;margin:14px auto 16px;display:grid;gap:8px}#historico .ce-history-profile-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);font-weight:800}#historico .ce-history-profile-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}#historico .ce-history-profile-tabs button{flex:0 0 auto;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:9px 13px;font:inherit;font-weight:750}#historico .ce-history-profile-tabs button.is-active{border-color:var(--primary);background:rgba(83,216,145,.10);color:var(--primary)}#historico canvas,#historico svg{max-width:100%!important;height:auto!important}#historico .history-chart,#historico [class*="chart"]{max-width:100%!important;min-width:0!important;overflow:hidden!important}#historico .history-table-wrap{max-width:100%;overflow-x:auto}.ce-history-help{font-size:11px;color:var(--text-soft)}
+ .ce-history-reprocessing{padding:18px;border:1px solid rgba(222,185,84,.28);border-radius:14px;background:rgba(222,185,84,.08);margin:14px 0}.ce-history-reprocessing p{margin:0;color:var(--text-soft);font-size:12px}.ce-tech-hidden{display:none!important}
+ .ce-analysis-decisions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 18px}.ce-analysis-decision{padding:17px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-soft))}.ce-analysis-decision span{display:block;font-size:9px;letter-spacing:.08em;color:#67dfa0;text-transform:uppercase;font-weight:850}.ce-analysis-decision strong{display:block;margin:6px 0 5px;font-size:18px}.ce-analysis-decision p{margin:0;font-size:11px;color:var(--text-soft);line-height:1.5}.ce-analysis-insight{padding:14px 15px;border:1px solid var(--border);border-radius:14px;background:var(--surface);margin-bottom:12px}.ce-analysis-insight p{margin:4px 0 0;color:var(--text-soft);font-size:11px;line-height:1.5}.ce-tech-toggle{display:inline-flex;margin:10px 0 18px;border:1px solid var(--border);background:var(--surface);color:var(--text-soft);border-radius:999px;padding:8px 12px;font:inherit;font-size:10px;font-weight:750}
+ .ce-methodology-final{display:grid;gap:16px;max-width:1180px;margin-inline:auto}.ce-methodology-hero,.ce-methodology-card{padding:19px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.ce-methodology-hero p,.ce-methodology-card p,.ce-methodology-card li{color:var(--text-soft);line-height:1.58;font-size:12px}.ce-methodology-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ce-methodology-badge{display:inline-flex;padding:5px 8px;border-radius:999px;background:rgba(83,216,145,.10);color:#67dfa0;font-size:10px;font-weight:850}.ce-methodology-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.ce-methodology-step{padding:14px;border-radius:14px;background:var(--surface-soft);border:1px solid var(--border)}.ce-methodology-step p,.ce-methodology-note{color:var(--text-soft);font-size:11px;line-height:1.5}.ce-methodology-note{padding:12px 14px;border-radius:12px;background:var(--surface-soft)}
+ @media(min-width:1200px){.content{padding-left:36px!important;padding-right:36px!important}.main-area{min-width:0}.players-grid,.suggested-lineups-container,#projecoes .v21-grid{max-width:1180px!important;margin-inline:auto!important}}
+ @media(max-width:900px){.ce-analysis-decisions,.ce-methodology-grid,.ce-methodology-steps{grid-template-columns:1fr}}
+ @media(max-width:700px){.ce-clean-tabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:10px;scroll-behavior:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ce-clean-player{flex:0 0 auto;transition:none!important}.ce-decision{margin:12px 0}.lineup-player-numbers{min-width:88px}#times .lineup-budget-control{min-height:0!important;padding:18px!important;gap:14px!important}#projecoes .v21-player{padding:15px!important}#historico .history-table{min-width:0!important;width:100%!important;display:block}#historico .history-table thead{display:none}#historico .history-table tbody{display:grid;gap:8px}#historico .history-table tr{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}#historico .history-table td{display:block!important;border:0!important;padding:0!important;min-width:0!important}#historico .history-table td:first-child{grid-column:1/-1;font-weight:750}#historico .history-table td:not(:first-child)::before{content:attr(data-label);display:block;font-size:8px;text-transform:uppercase;color:var(--text-soft);margin-bottom:2px}}
+ `;document.head.appendChild(s);
+}
+function pAtual(){return typeof obterPosicaoAtiva==="function"?String(obterPosicaoAtiva()).toUpperCase():"GOL"}
+function lista(){const l=typeof obterJogadoresDaPosicao==="function"?obterJogadoresDaPosicao(pAtual()):[];return Array.isArray(l)?l:[]}
+const jid=j=>String(j?.id??j?.atletaId??j?.atleta_id??j?.apelido??j?.nome??"");
+const nome=j=>String(j?.apelido||j?.nome||"Jogador");
+function risco(j){const t=norm(j?.riscoTexto??j?.risco??"");return t.includes("alto")?"Risco alto":t.includes("medio")?"Risco médio":"Risco baixo"}
+function veredito(j,i){const p=pAtual(),conf=num(j?.confianca??j?.confiancaNumerica),proj=num(j?.projecao??j?.projecaoCalibrada??j?.score),pis=num(j?.piso,proj),r=risco(j);let titulo=i===0?"Forte recomendação":i<=2?"Boa opção":"Alternativa";if(conf<60||r==="Risco alto")titulo=i===0?"Boa opção com cautela":"Aposta com cautela";const m=[];if(num(j?.titularidade??j?.probabilidadeTitular)>=80)m.push("boa segurança de titularidade");if(["GOL","LAT","ZAG"].includes(p)&&num(j?.chanceSG??j?.probabilidadeSG)>=60)m.push("boa perspectiva de SG");if(pis>=4)m.push("piso interessante");if(proj>=8)m.push("projeção forte");return `<section class="ce-decision"><span class="ce-decision-kicker">Decisão do modelo</span><strong class="ce-decision-title">${esc(titulo)}</strong><p><b>${i+1}º entre ${(POS[p]||p).toLowerCase()} indicados.</b> O modelo destaca ${esc(m.slice(0,2).join(" e ")||"combinação competitiva de projeção, contexto e confiança")} nesta rodada.</p><div class="ce-decision-chips"><span class="ce-decision-chip">${proj.toFixed(1)} pts projetados</span><span class="ce-decision-chip">${Math.round(conf)}% confiança</span><span class="ce-decision-chip">${esc(r)}</span></div></section>`}
+function fatores(host){const rows=[...host.querySelectorAll(".component-row")];rows.forEach(row=>{const t=norm(txt(row));let c="attention",r="! Atenção";if(t.includes("favoravel")&&!t.includes("desfavoravel")){c="positive";r="✓ Favorável"}else if(t.includes("desfavoravel")||t.includes("risco para esta escolha")){c="negative";r="↓ Desfavorável"}row.classList.add(`ce-factor-${c}`);const alvo=[...row.querySelectorAll("strong,b,span")].find(e=>/favor|aten|desfavor/i.test(txt(e))&&txt(e).length<40);if(alvo){alvo.className=`ce-factor-status ${c}`;alvo.textContent=r}row.querySelectorAll("button").forEach(b=>{if(/ver calculo/i.test(norm(b.textContent)))b.textContent="Como chegou nisso?"})});if(rows.length<=5)return;rows.forEach((r,i)=>r.classList.toggle("ce-secondary-factor",i>=5));if(host.querySelector(".ce-show-all-factors"))return;const b=document.createElement("button");b.type="button";b.className="ce-show-all-factors";b.textContent=`Ver todos os ${rows.length} critérios técnicos`;b.onclick=()=>{const f=rows.some(r=>r.classList.contains("ce-secondary-factor"));rows.forEach((r,i)=>r.classList.toggle("ce-secondary-factor",f?false:i>=5));b.textContent=f?"Mostrar apenas os 5 fatores decisivos":`Ver todos os ${rows.length} critérios técnicos`};rows[4]?.insertAdjacentElement("afterend",b)}
+function detalhe(j,host){if(!j||!host||typeof criarCardJogador!=="function")return;const l=lista(),i=Math.max(0,l.findIndex(x=>jid(x)===jid(j))),card=criarCardJogador(j,i+1);host.replaceChildren();if(card)host.appendChild(card);const h=host.querySelector(".player-card-header,.player-header")||host.querySelector(".player-card")?.firstElementChild;if(h)h.insertAdjacentHTML("afterend",veredito(j,i));fatores(host);if(typeof configurarBotoesAnaliseJogador==="function")configurarBotoesAnaliseJogador()}
+function sincronizarSelecao(g,l,render=true){const tabs=g.querySelector(".ce-clean-tabs"),x=tabs?.scrollLeft||0;g.querySelectorAll("[data-ce-player]").forEach(b=>{const a=b.dataset.cePlayer===selecionado;b.classList.toggle("is-active",a);b.setAttribute("aria-selected",a?"true":"false");b.tabIndex=a?0:-1});if(tabs)tabs.scrollLeft=x;if(render)detalhe(l.find(j=>jid(j)===selecionado)||l[0],g.querySelector("#ceCleanDetail"))}
+function selecionarJogador(g,l,novoId){if(!novoId||novoId===selecionado)return;selecionado=novoId;sincronizarSelecao(g,l,true)}
+function recs(){const g=document.getElementById("playersGrid"),l=lista();if(!g||!l.length)return;const p=pAtual();if(!selecionado||!l.some(j=>jid(j)===selecionado))selecionado=jid(l[0]);if(g.querySelector(":scope > .ce-clean-recs")&&posicaoRenderizada===p){sincronizarSelecao(g,l,true);return}posicaoRenderizada=p;g.innerHTML=`<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist">${l.map((j,i)=>`<button type="button" role="tab" class="ce-clean-player ${jid(j)===selecionado?"is-active":""}" data-ce-player="${esc(jid(j))}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A conclusão vem primeiro; os critérios técnicos ficam sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail"></div></section>`;sincronizarSelecao(g,l,true);g.querySelector(".ce-clean-tabs")?.addEventListener("click",e=>{const b=e.target.closest("[data-ce-player]");if(b)selecionarJogador(g,lista(),b.dataset.cePlayer)})}
+function instalar(){if(instalado)return true;if(typeof exibirJogadoresDaPosicao!=="function"||typeof criarCardJogador!=="function")return false;const o=exibirJogadoresDaPosicao;window.exibirJogadoresDaPosicao=function(){o.apply(this,arguments);posicaoRenderizada=null;recs()};instalado=true;recs();return true}
+function topo(){const h=document.querySelector("#recomendacoes .hero-text");if(h&&h.dataset.ceSimplificado!=="1"){h.dataset.ceSimplificado="1";const t=h.querySelector("h2");if(t)t.textContent="Melhores opções da rodada";const ps=[...h.querySelectorAll("p")];if(ps.length)ps.at(-1).textContent="Escolha por posição e veja primeiro a recomendação do modelo. Projeção, risco e contexto aparecem apenas quando ajudam na decisão."}[...document.querySelectorAll("#recomendacoes article,#recomendacoes section,#recomendacoes div")].forEach(el=>{const t=txt(el);if((t.startsWith("O modelo aprende com o que realmente acontece")||t.startsWith("O modelo aprende com o que realmente aconteceu"))&&t.length<1000)el.classList.add("ce-tech-hidden")})}
+function patrimonio(){const o=document.querySelector("#times .lineup-budget-control"),a=document.getElementById("v21PatrimonioBox");if(o&&a)a.remove();const i=document.getElementById("lineupBudgetInput");if(i){i.max="200";if(num(i.value,200)>200)i.value="200"}}
+function indice(){/* Índice de escolha: comparação interna do modelo; não são pontos do Cartola. */document.querySelectorAll("#times .lineup-player-numbers,#times .lineup-bench-player,#times .lineup-luxury-player").forEach(el=>{if(el.dataset.ceIndice==="2")return;[...el.querySelectorAll("small,span,p")].forEach(n=>{if(/indice de escolha|nota/i.test(norm(txt(n)))&&txt(n).length<80)n.classList.add("ce-tech-hidden")});const h=document.createElement("small");h.className="ce-choice-explainer";h.textContent="Escolhido pela combinação de projeção, risco e orçamento.";el.appendChild(h);el.dataset.ceIndice="2"})}
+function historico(){const tab=document.getElementById("historico");if(!tab)return;[...tab.querySelectorAll("article,section,div")].forEach(el=>{const t=txt(el);if((/Laboratório de capitão/i.test(t)||/Torneio de modelos experimentais/i.test(t))&&t.length<1800)el.classList.add("ce-tech-hidden")});const tabela=tab.querySelector(".history-table");if(tabela?.tBodies?.[0]){const rows=[...tabela.tBodies[0].rows].filter(r=>r.cells?.length>=4),zeros=rows.length>=3&&rows.every(r=>Math.abs(num((r.cells[1]?.textContent||"").replace(",",".")))<.0001&&Math.abs(num((r.cells[2]?.textContent||"").replace(",",".")))<.0001),wrap=tabela.closest(".history-table-wrap")||tabela.parentElement;if(zeros&&wrap){wrap.classList.add("ce-tech-hidden");if(!tab.querySelector(".ce-history-reprocessing")){const b=document.createElement("div");b.className="ce-history-reprocessing";b.innerHTML="<strong>Detalhamento em reprocessamento</strong><p>Esta rodada ainda não possui projeção × resultado confiável no formato novo. O histórico antigo com zeros foi ocultado para não confundir.</p>";wrap.before(b)}}const heads=[...tabela.querySelectorAll("thead th")].map(txt);tabela.querySelectorAll("tbody tr").forEach(tr=>[...tr.cells].forEach((td,i)=>{if(heads[i])td.dataset.label=heads[i]}))}if(!tab.querySelector(".ce-history-profile-wrap")){const bs=[...tab.querySelectorAll("button")].filter(b=>/^(conservador|equilibrado|agressivo|recomendado)/i.test(norm(txt(b))));if(bs.length){const pai=bs[0].parentElement,w=document.createElement("div");w.className="ce-history-profile-wrap";w.innerHTML='<span class="ce-history-profile-label">Perfil para comparar</span><div class="ce-history-profile-tabs"></div><p class="ce-history-help">Escolha uma estratégia. Recomendado só aparece como válido quando houver evidência suficiente.</p>';const d=w.querySelector("div");bs.forEach(b=>d.appendChild(b));pai?.before(w);if(pai&&!pai.children.length)pai.remove()}}}
+function analise(){const tab=document.getElementById("analise"),res=tab?.querySelector(".analysis-summary"),cards=[...(res?.querySelectorAll(".analysis-card")||[])];if(!tab||!res||!cards.length)return;const val=i=>cards[i]?.querySelector("strong")?.textContent?.trim()||"Em análise";let g=tab.querySelector(".ce-analysis-decisions");if(!g){g=document.createElement("section");g.className="ce-analysis-decisions";res.before(g)}g.innerHTML=`<article class="ce-analysis-decision"><span>Ataque para priorizar</span><strong>${esc(val(0))}</strong><p>Melhor cenário ofensivo. Priorize peças com minutos seguros antes de buscar diferenciais.</p></article><article class="ce-analysis-decision"><span>Defesa para priorizar</span><strong>${esc(val(1))}</strong><p>Melhor leitura de SG. Goleiro, zagueiro e lateral ganham relevância se forem titulares.</p></article><article class="ce-analysis-decision"><span>Jogo para buscar teto</span><strong>${esc(val(2))}</strong><p>Confronto mais indicado para teto. Prefira peças ofensivas e evite empilhar defensores dos dois lados.</p></article>`;if(!tab.querySelector(".ce-analysis-insight")){const x=document.createElement("article");x.className="ce-analysis-insight";x.innerHTML="<b>Como usar esta leitura</b><p>Escolha primeiro o tipo de aposta: ataque, SG ou teto. Depois confirme os nomes na aba Recomendações. Os números brutos ficam apenas para conferência.</p>";g.after(x)}if(!res.dataset.ceTecnico){res.dataset.ceTecnico="1";res.classList.add("ce-tech-hidden");const b=document.createElement("button");b.className="ce-tech-toggle";b.textContent="＋ Ver dados que sustentam os insights";b.onclick=()=>{const o=res.classList.toggle("ce-tech-hidden");b.textContent=o?"＋ Ver dados que sustentam os insights":"− Ocultar dados técnicos"};res.after(b)}const h=[...tab.querySelectorAll("h2,h3")].find(e=>/Força dos clubes na rodada/i.test(txt(e))),bl=h?.closest("section");if(bl&&!bl.dataset.ceTecnicoDetalhe){bl.dataset.ceTecnicoDetalhe="1";bl.classList.add("ce-tech-hidden");const b=document.createElement("button");b.className="ce-tech-toggle";b.textContent="＋ Ver números técnicos dos clubes";b.onclick=()=>bl.classList.toggle("ce-tech-hidden");bl.before(b)}}
+function metodologia(){const tab=document.getElementById("metodologia");if(!tab||tab.dataset.ceFinal==="2")return;tab.dataset.ceFinal="2";tab.innerHTML=`<section class="ce-methodology-final"><div class="ce-methodology-hero"><span class="ce-methodology-badge">V2.1 validada</span><h2>Como usar o Cartola Estatístico</h2><p>O site tenta responder uma pergunta simples: <b>quem faz mais sentido escalar nesta rodada?</b> O modelo estima pontuação e risco usando apenas informações disponíveis antes da rodada.</p></div><div class="ce-methodology-steps"><article class="ce-methodology-step"><strong>1. Recomendações</strong><p>Veja os melhores nomes por posição e o motivo.</p></article><article class="ce-methodology-step"><strong>2. Times Sugeridos</strong><p>Monte respeitando patrimônio, formação e limite por clube.</p></article><article class="ce-methodology-step"><strong>3. Cenário e Histórico</strong><p>Confira contexto da rodada e projeção versus resultado real.</p></article></div><div class="ce-methodology-grid"><article class="ce-methodology-card"><h3>O que está ativo</h3><ul><li>RandomForest V2 com walk-forward e anti-leakage.</li><li>Elegibilidade oficial do Cartola e titularidade.</li><li>Até 3 atletas por clube, técnico e 7 formações.</li><li>Patrimônio até C$ 200.</li><li>Capitão 1,5x, banco e Reserva de Luxo no histórico.</li><li>Calibração seletiva de Equilibrado e Agressivo.</li></ul></article><article class="ce-methodology-card"><h3>O que não foi promovido</h3><ul><li>Time Recomendado: não superou o melhor perfil fixo.</li><li>Expected scouts: ganho abaixo do gate.</li><li>Clima observado: diagnóstico, não produção.</li><li>Lateralidade/heatmap e consenso pré-jogo seguem experimentais.</li></ul></article><article class="ce-methodology-card"><h3>Como validamos</h3><p>Para prever uma rodada, o modelo só aprende com rodadas anteriores. O Histórico compara a projeção feita antes da rodada com o resultado real.</p></article><article class="ce-methodology-card"><h3>Limitações e fallback</h3><p>Projeções são probabilísticas. Lesões, cartões e mudanças de última hora geram erro. A V1 permanece preservada para fallback e rollback.</p></article></div><div class="ce-methodology-note">Experimentos reprovados nunca são apresentados como recursos ativos. Detalhes científicos permanecem sob demanda.</div></section>`}
+function tudo(){estilo();topo();patrimonio();indice();historico();analise();metodologia()}
+let tent=0;const timer=setInterval(()=>{tent++;if(instalar()||tent>50)clearInterval(timer)},100);if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",tudo);else tudo();const observer=new MutationObserver(ms=>{const relevante=ms.some(m=>{const alvo=m.target?.nodeType===1?m.target:m.target?.parentElement;return !alvo?.closest?.("#playersGrid .ce-clean-recs")});if(!relevante)return;clearTimeout(window.__ceUxV21Timer);window.__ceUxV21Timer=setTimeout(()=>{tudo();if(instalado&&!document.querySelector("#playersGrid .ce-clean-recs"))recs()},140)});observer.observe(document.documentElement,{childList:true,subtree:true});window.RecomendacoesUXClean={aplicar:recs};console.info("Cartola Estatístico — UX V2.1 de clareza ativa.");
 })();
