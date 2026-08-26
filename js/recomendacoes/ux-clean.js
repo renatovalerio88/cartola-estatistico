@@ -5,6 +5,7 @@
   const POSICOES = { GOL: "Goleiros", LAT: "Laterais", ZAG: "Zagueiros", MEI: "Meias", ATA: "Atacantes", TEC: "Treinadores" };
   let instalado = false;
   let selecionado = null;
+  let posicaoRenderizada = null;
 
   function numero(v, p = 0) { const n = Number(v); return Number.isFinite(n) ? n : p; }
   function esc(v) { return String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;"); }
@@ -47,7 +48,7 @@
       .ce-methodology-note{padding:12px 14px;border-radius:12px;background:var(--surface-soft);font-size:11px;color:var(--text-soft);line-height:1.5}
       @media(min-width:1200px){.content{padding-left:28px!important;padding-right:28px!important}.main-area{min-width:0}.players-grid,.suggested-lineups-container,#projecoes .v21-grid{max-width:none!important}}
       @media(max-width:900px){.ce-analysis-decisions{grid-template-columns:1fr}.ce-methodology-grid{grid-template-columns:1fr}}
-      @media(max-width:700px){.ce-clean-tabs{overflow-x:auto;flex-wrap:nowrap;padding:10px}.ce-clean-player{flex:0 0 auto}.lineup-player-numbers{min-width:92px}}
+      @media(max-width:700px){.ce-clean-tabs{overflow-x:auto;flex-wrap:nowrap;padding:10px;scroll-behavior:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ce-clean-tabs::-webkit-scrollbar{display:none}.ce-clean-player{flex:0 0 auto;transition:none!important}.lineup-player-numbers{min-width:92px}}
     `;
     document.head.appendChild(s);
   }
@@ -103,27 +104,63 @@
     const lista = listaAtual();
     const idx = Math.max(0, lista.findIndex(x => id(x) === id(jogador)));
     const card = criarCardJogador(jogador, idx + 1);
-    host.innerHTML = ""; if (card) host.appendChild(card);
+    host.replaceChildren();
+    if (card) host.appendChild(card);
     const cabecalho = host.querySelector(".player-card-header,.player-header") || host.querySelector(".player-card")?.firstElementChild;
     if (cabecalho) cabecalho.insertAdjacentHTML("afterend", criarVeredito(jogador, idx));
     limitarFatores(host);
     if (typeof configurarBotoesAnaliseJogador === "function") configurarBotoesAnaliseJogador();
   }
 
+  function sincronizarSelecao(grade, lista, renderizarDetalhe = true) {
+    const tabs = grade.querySelector(".ce-clean-tabs");
+    const scrollX = tabs?.scrollLeft || 0;
+    grade.querySelectorAll("[data-ce-player]").forEach(b => {
+      const ativo = b.dataset.cePlayer === selecionado;
+      b.classList.toggle("is-active", ativo);
+      b.setAttribute("aria-selected", ativo ? "true" : "false");
+      b.tabIndex = ativo ? 0 : -1;
+    });
+    if (tabs) tabs.scrollLeft = scrollX;
+    if (!renderizarDetalhe) return;
+    const detalhe = grade.querySelector("#ceCleanDetail");
+    const jogador = lista.find(j => id(j) === selecionado) || lista[0];
+    renderDetalhe(jogador, detalhe);
+  }
+
+  function selecionarJogador(grade, lista, novoId) {
+    if (!novoId || novoId === selecionado) return;
+    selecionado = novoId;
+    sincronizarSelecao(grade, lista, true);
+  }
+
   function aplicarRecomendacoes() {
     const grade = document.getElementById("playersGrid"); if (!grade) return;
     const lista = listaAtual(); if (!lista.length) return;
+    const posicao = posicaoAtual();
     if (!selecionado || !lista.some(j => id(j) === selecionado)) selecionado = id(lista[0]);
-    grade.innerHTML = `<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist">${lista.map((j,i)=>`<button type="button" class="ce-clean-player ${id(j)===selecionado?"is-active":""}" data-ce-player="${esc(id(j))}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A conclusão vem primeiro; os critérios técnicos ficam sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail"></div></section>`;
-    const detalhe = document.getElementById("ceCleanDetail"); renderDetalhe(lista.find(j=>id(j)===selecionado)||lista[0],detalhe);
-    grade.querySelectorAll("[data-ce-player]").forEach(b=>b.addEventListener("click",()=>{selecionado=b.dataset.cePlayer;aplicarRecomendacoes();}));
+
+    const shell = grade.querySelector(":scope > .ce-clean-recs");
+    if (shell && posicaoRenderizada === posicao) {
+      sincronizarSelecao(grade, lista, true);
+      return;
+    }
+
+    posicaoRenderizada = posicao;
+    grade.innerHTML = `<section class="ce-clean-recs"><div class="ce-clean-tabs" role="tablist" aria-label="Jogadores recomendados">${lista.map((j,i)=>`<button type="button" role="tab" aria-selected="${id(j)===selecionado?"true":"false"}" tabindex="${id(j)===selecionado?"0":"-1"}" class="ce-clean-player ${id(j)===selecionado?"is-active":""}" data-ce-player="${esc(id(j))}"><span class="ce-clean-rank">${i+1}</span><span>${esc(nome(j))}</span></button>`).join("")}</div><div class="ce-clean-hint">Escolha um jogador. A conclusão vem primeiro; os critérios técnicos ficam sob demanda.</div><div class="ce-clean-detail" id="ceCleanDetail"></div></section>`;
+    sincronizarSelecao(grade, lista, true);
+    grade.querySelector(".ce-clean-tabs")?.addEventListener("click", ev => {
+      const botao = ev.target.closest("[data-ce-player]");
+      if (!botao || !grade.contains(botao)) return;
+      selecionarJogador(grade, listaAtual(), botao.dataset.cePlayer);
+    });
   }
 
   function instalarRecomendacoes() {
     if (instalado) return true;
     if (typeof exibirJogadoresDaPosicao !== "function" || typeof criarCardJogador !== "function") return false;
     const original = exibirJogadoresDaPosicao;
-    window.exibirJogadoresDaPosicao = function(){ original.apply(this,arguments); aplicarRecomendacoes(); };
+    window.exibirJogadoresDaPosicao = function(){ original.apply(this,arguments); posicaoRenderizada = null; aplicarRecomendacoes(); };
     instalado = true; aplicarRecomendacoes(); return true;
   }
 
@@ -232,7 +269,18 @@
 
   let tentativas=0;const timer=setInterval(()=>{tentativas++;if(instalarRecomendacoes()||tentativas>50)clearInterval(timer);},100);
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",aplicarTudo);else aplicarTudo();
-  const observer=new MutationObserver(()=>{clearTimeout(window.__ceUxV21Timer);window.__ceUxV21Timer=setTimeout(()=>{aplicarTudo();if(instalado)aplicarRecomendacoes();},140);});
+  const observer=new MutationObserver(mutations=>{
+    const relevante=mutations.some(m=>{
+      const alvo=m.target?.nodeType===1?m.target:m.target?.parentElement;
+      return !alvo?.closest?.("#playersGrid .ce-clean-recs");
+    });
+    if(!relevante)return;
+    clearTimeout(window.__ceUxV21Timer);
+    window.__ceUxV21Timer=setTimeout(()=>{
+      aplicarTudo();
+      if(instalado && !document.querySelector("#playersGrid .ce-clean-recs")) aplicarRecomendacoes();
+    },140);
+  });
   observer.observe(document.documentElement,{childList:true,subtree:true});
   window.RecomendacoesUXClean={aplicar:aplicarRecomendacoes};
   console.info("Cartola Estatístico — UX V2.1 de clareza ativa.");
