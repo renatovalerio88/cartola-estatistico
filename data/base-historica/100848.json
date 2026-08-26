@@ -129,6 +129,17 @@
         "I": 2,
         "SG": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 1.1,
+      "scouts": {
+        "DS": 1,
+        "FC": 3,
+        "FS": 1
+      }
     }
   ]
 }

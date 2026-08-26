@@ -190,6 +190,16 @@
         "FS": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 1.6,
+      "scouts": {
+        "DE": 2,
+        "GS": 1
+      }
     }
   ]
 }

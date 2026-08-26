@@ -84,6 +84,18 @@
         "FS": 1,
         "GS": 3
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 9.7,
+      "scouts": {
+        "CA": 1,
+        "DE": 4,
+        "FS": 1,
+        "SG": 1
+      }
     }
   ]
 }

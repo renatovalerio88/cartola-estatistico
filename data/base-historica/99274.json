@@ -158,6 +158,15 @@
         "FF": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 6,
+      "scouts": {
+        "DS": 4
+      }
     }
   ]
 }

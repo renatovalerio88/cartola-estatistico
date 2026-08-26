@@ -34,6 +34,16 @@
       "scouts": {
         "CA": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": -0.7,
+      "scouts": {
+        "DE": 1,
+        "GS": 2
+      }
     }
   ]
 }

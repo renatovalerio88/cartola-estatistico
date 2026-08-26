@@ -144,6 +144,16 @@
         "DS": 1,
         "G": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 4.2,
+      "scouts": {
+        "DS": 2,
+        "FD": 1
+      }
     }
   ]
 }

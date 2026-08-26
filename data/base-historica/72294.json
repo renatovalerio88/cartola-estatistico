@@ -230,6 +230,17 @@
         "DE": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 8.6,
+      "scouts": {
+        "DE": 3,
+        "FC": 1,
+        "SG": 1
+      }
     }
   ]
 }

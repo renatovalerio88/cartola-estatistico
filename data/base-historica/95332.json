@@ -215,6 +215,17 @@
         "G": 1,
         "I": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 1.1,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 3
+      }
     }
   ]
 }

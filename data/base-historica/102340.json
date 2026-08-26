@@ -154,6 +154,16 @@
         "FC": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 24,
+      "preco": null,
+      "media": null,
+      "pontos": 0.6,
+      "scouts": {
+        "CA": 1,
+        "FF": 2
+      }
     }
   ]
 }
