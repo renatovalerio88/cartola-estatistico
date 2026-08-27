@@ -1,0 +1,426 @@
+/* =========================================================
+   CARTOLA ESTATÍSTICO V2.1
+   Campo visual responsivo das escalações
+   ========================================================= */
+
+.lineup-pitch-shell {
+  margin: 22px 0 18px;
+  border: 1px solid rgba(24, 90, 60, .18);
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 16px 38px rgba(13, 52, 36, .08);
+}
+
+.dark-theme .lineup-pitch-shell {
+  background: rgba(14, 35, 26, .9);
+  border-color: rgba(122, 214, 163, .16);
+}
+
+.lineup-pitch-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+}
+
+.lineup-pitch-toolbar > div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.lineup-pitch-toolbar span,
+.pitch-bench-heading span,
+.pitch-coach > span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: #4f7a67;
+}
+
+.lineup-pitch-toolbar strong {
+  font-size: 15px;
+}
+
+.lineup-pitch-toolbar small {
+  color: #6d7e75;
+  font-size: 11px;
+}
+
+.lineup-pitch {
+  position: relative;
+  min-height: 610px;
+  margin: 0 14px;
+  border: 2px solid rgba(255,255,255,.72);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.035) 50%, transparent 50%) 0 0 / 18% 100%,
+    linear-gradient(180deg, #157348 0%, #176a45 48%, #125b3b 100%);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, .12);
+}
+
+.lineup-pitch::before,
+.lineup-pitch::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42%;
+  height: 12%;
+  border: 2px solid rgba(255,255,255,.55);
+  z-index: 0;
+}
+
+.lineup-pitch::before { top: -2px; border-top: 0; }
+.lineup-pitch::after { bottom: -2px; border-bottom: 0; }
+
+.pitch-center-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,.52);
+  z-index: 0;
+}
+
+.pitch-center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 118px;
+  height: 118px;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255,255,255,.52);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.pitch-center-circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255,255,255,.72);
+}
+
+.pitch-box {
+  position: absolute;
+  left: 50%;
+  width: 20%;
+  height: 5.5%;
+  transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,.48);
+  z-index: 0;
+}
+
+.pitch-box-top { top: 0; border-top: 0; }
+.pitch-box-bottom { bottom: 0; border-bottom: 0; }
+
+.pitch-line {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.pitch-line.attack { top: 7%; }
+.pitch-line.midfield { top: 31%; }
+.pitch-line.defense { top: 58%; }
+.pitch-line.goalkeeper { top: 81%; }
+
+.pitch-player {
+  width: min(118px, 100%);
+  text-align: center;
+  color: #fff;
+  filter: drop-shadow(0 4px 9px rgba(0,0,0,.18));
+}
+
+.pitch-player-avatar-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.pitch-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 7px;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,.92);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dfe9e3, #9fb9aa);
+  color: #143d2b;
+  box-shadow: 0 7px 16px rgba(0,0,0,.22);
+}
+
+.pitch-avatar.small {
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  border-width: 2px;
+  flex: 0 0 auto;
+}
+
+.pitch-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pitch-avatar b {
+  font-size: 14px;
+  letter-spacing: -.03em;
+}
+
+.pitch-avatar:not(.fallback) b { opacity: 0; }
+.pitch-avatar.fallback b { opacity: 1; }
+
+.pitch-captain {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #f3bc22;
+  color: #163522;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+}
+
+.pitch-player > strong {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.pitch-player-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  font-size: 10px;
+  color: rgba(255,255,255,.86);
+}
+
+.pitch-player-meta > b {
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(7, 34, 23, .55);
+  color: #fff;
+  font-size: 10px;
+}
+
+.pitch-club {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pitch-club img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.pitch-coach {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 14px 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #f3f7f4;
+}
+
+.dark-theme .pitch-coach { background: rgba(255,255,255,.06); }
+
+.pitch-coach > span { margin-right: 2px; }
+.pitch-coach > div { min-width: 0; }
+.pitch-coach strong,
+.pitch-coach small { display: block; }
+.pitch-coach strong { font-size: 13px; }
+.pitch-coach small { margin-top: 2px; color: #718078; font-size: 11px; }
+
+.pitch-bench {
+  padding: 14px;
+}
+
+.pitch-bench-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pitch-bench-heading > div span,
+.pitch-bench-heading > div strong { display: block; }
+.pitch-bench-heading > div strong { margin-top: 2px; font-size: 14px; }
+.pitch-bench-heading small { color: #7b8b82; font-size: 10px; }
+
+.pitch-bench-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pitch-bench-player {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid rgba(24, 90, 60, .12);
+  border-radius: 14px;
+  background: #fbfdfb;
+}
+
+.dark-theme .pitch-bench-player {
+  background: rgba(255,255,255,.045);
+  border-color: rgba(255,255,255,.08);
+}
+
+.pitch-bench-player.luxury {
+  border-color: rgba(221, 170, 36, .52);
+  box-shadow: inset 0 0 0 1px rgba(221, 170, 36, .12);
+}
+
+.pitch-bench-player > div { min-width: 0; }
+.pitch-bench-player > div > span,
+.pitch-bench-player > div > strong,
+.pitch-bench-player > div > small { display: block; }
+.pitch-bench-player > div > span { color: #4c7d66; font-size: 9px; font-weight: 800; }
+.pitch-bench-player > div > strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; }
+.pitch-bench-player > div > small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 2px; color: #738179; font-size: 9px; }
+
+.pitch-luxury {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  color: #d1a01b;
+  font-size: 14px;
+}
+
+.has-visual-pitch > .lineup-players-title,
+.has-visual-pitch > .lineup-players-list {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .pitch-bench-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .lineup-pitch-shell {
+    margin: 16px -2px 14px;
+    border-radius: 18px;
+  }
+
+  .lineup-pitch-toolbar {
+    align-items: flex-start;
+    padding: 12px 12px 10px;
+  }
+
+  .lineup-pitch-toolbar small {
+    max-width: 135px;
+    text-align: right;
+    line-height: 1.25;
+  }
+
+  .lineup-pitch {
+    min-height: 535px;
+    margin: 0 8px;
+    border-radius: 16px;
+  }
+
+  .pitch-line {
+    left: 2%;
+    right: 2%;
+    gap: 3px;
+  }
+
+  .pitch-line.attack { top: 7%; }
+  .pitch-line.midfield { top: 31%; }
+  .pitch-line.defense { top: 59%; }
+  .pitch-line.goalkeeper { top: 82%; }
+
+  .pitch-player { width: min(82px, 100%); }
+
+  .pitch-avatar {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 5px;
+    border-width: 2px;
+  }
+
+  .pitch-avatar b { font-size: 11px; }
+  .pitch-captain { width: 20px; height: 20px; right: -3px; top: -3px; font-size: 9px; }
+  .pitch-player > strong { font-size: 10px; }
+  .pitch-player-meta { gap: 3px; font-size: 8px; }
+  .pitch-player-meta > b { padding: 2px 4px; font-size: 8px; }
+  .pitch-club img { width: 12px; height: 12px; }
+
+  .pitch-coach {
+    margin: 8px 8px 0;
+    padding: 10px;
+  }
+
+  .pitch-coach > span { display: none; }
+
+  .pitch-bench { padding: 12px 8px 10px; }
+
+  .pitch-bench-list {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+    scroll-snap-type: x proximity;
+  }
+
+  .pitch-bench-player {
+    flex: 0 0 145px;
+    scroll-snap-align: start;
+  }
+
+  .pitch-center-circle { width: 88px; height: 88px; }
+}
+
+@media (max-width: 390px) {
+  .lineup-pitch { min-height: 505px; }
+  .pitch-player { width: min(72px, 100%); }
+  .pitch-avatar { width: 40px; height: 40px; }
+  .pitch-player > strong { font-size: 9px; }
+  .pitch-player-meta { font-size: 7px; }
+  .pitch-player-meta > b { font-size: 7px; }
+}

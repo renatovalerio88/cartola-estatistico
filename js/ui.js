@@ -743,3 +743,26 @@ function abrirAbaPorId(
 
   botao.click();
 }
+
+
+/* =========================================================
+   V2.1 — CAMPO VISUAL DAS ESCALAÇÕES
+   Carregado de forma desacoplada para poder ser reutilizado
+   no futuro "Monte seu time" sem duplicar o motor atual.
+   ========================================================= */
+
+(function carregarCampoVisualEscalacoes() {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  if (document.querySelector('script[data-cartola-campo-escalacoes]')) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = "js/escalacoes/campo.js";
+  script.defer = true;
+  script.dataset.cartolaCampoEscalacoes = "true";
+  document.head.appendChild(script);
+})();

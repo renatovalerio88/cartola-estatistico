@@ -1,0 +1,32 @@
+name: Campo visual V2.1
+
+on:
+  pull_request:
+    paths:
+      - 'js/escalacoes/campo.js'
+      - 'css/campo-escalacoes.css'
+      - 'js/ui.js'
+      - 'scripts/auditar_campo_visual_v21.py'
+      - '.github/workflows/campo-visual-v21.yml'
+  workflow_dispatch:
+
+jobs:
+  validar-campo-visual:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validar sintaxe JavaScript
+        run: |
+          node --check js/ui.js
+          node --check js/escalacoes/campo.js
+
+      - name: Auditar campo visual
+        run: python scripts/auditar_campo_visual_v21.py
