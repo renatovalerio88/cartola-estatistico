@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'js/recomendacoes/ux-clean.js'
+      - 'js/escalacoes/monte-seu-time.js'
+      - 'css/monte-seu-time.css'
       - 'scripts/auditar_ux_v21.py'
       - '.github/workflows/validar-ux-v21.yml'
   workflow_dispatch:
@@ -19,7 +21,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validar sintaxe JavaScript
-        run: node --check js/recomendacoes/ux-clean.js
+        run: |
+          node --check js/recomendacoes/ux-clean.js
+          node --check js/escalacoes/monte-seu-time.js
 
       - name: Auditar gates de UX
         run: python scripts/auditar_ux_v21.py
