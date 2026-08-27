@@ -4,6 +4,8 @@
 
   const STYLE_ID = "cartola-ux-final-v23";
   const ORANGE = "#d9822b";
+  const GREEN = "#53d891";
+  let reparandoRecomendacao = false;
 
   function norm(v) {
     return String(v ?? "")
@@ -27,6 +29,24 @@
     return [];
   }
 
+  function jogadoresDaPosicao() {
+    try {
+      if (typeof window.obterPosicaoAtiva === "function" && typeof window.obterJogadoresDaPosicao === "function") {
+        const lista = window.obterJogadoresDaPosicao(window.obterPosicaoAtiva());
+        if (Array.isArray(lista)) return lista.filter(Boolean);
+      }
+    } catch (_) {}
+    return [];
+  }
+
+  function idJogador(j) {
+    return String(j?.id ?? j?.atletaId ?? j?.atleta_id ?? j?.apelido ?? j?.nome ?? "");
+  }
+
+  function nomeJogador(j) {
+    return String(j?.apelido || j?.nome || "").trim();
+  }
+
   function clube(j) {
     return String(j?.siglaClube || j?.clubeSigla || j?.clube?.abreviacao || j?.clube || "").toUpperCase();
   }
@@ -40,12 +60,14 @@
     const style = document.createElement("style");
     style.id = STYLE_ID;
     style.textContent = `
-      /* Recomendações: hierarquia mais limpa e menos cor */
+      /* Recomendações: nº1 = destaque do ranking; seleção = contorno secundário */
       #recomendacoes .ce-clean-tabs{gap:7px!important;padding:10px!important}
       #recomendacoes .ce-clean-player{padding:8px 11px!important;font-size:12px!important;position:relative}
-      #recomendacoes .ce-clean-player:first-child{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important}
+      #recomendacoes .ce-clean-player:first-child{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important;box-shadow:none!important}
+      #recomendacoes .ce-clean-player:first-child .ce-clean-rank{background:rgba(255,255,255,.2)!important}
       #recomendacoes .ce-clean-player.is-active:not(:first-child){background:var(--surface)!important;color:var(--text)!important;border-color:var(--text-soft)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text-soft) 45%,transparent)!important}
       #recomendacoes .ce-clean-player.is-active:not(:first-child)::after{content:"aberto";font-size:7px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;color:var(--text-soft);margin-left:1px}
+      #recomendacoes .ce-clean-player:first-child.is-active::after{content:"#1";font-size:7px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.8);margin-left:1px}
       #recomendacoes .ce-clean-detail{max-width:900px!important}
       #recomendacoes .player-card{box-shadow:0 8px 22px rgba(0,0,0,.045)!important}
       #recomendacoes .ce-decision{margin:9px 12px!important;padding:11px 13px!important;border-color:var(--border)!important;background:var(--surface-soft)!important}
@@ -65,13 +87,15 @@
       #times .lineup-budget-control>*{margin-top:0!important;margin-bottom:0!important}
 
       /* Monte seu time: campo menor e defesa estável */
-      #monte-seu-time .monte-builder-pitch{min-height:500px!important}
-      #monte-seu-time .monte-line.defense{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important}
+      #monte-seu-time .monte-builder-pitch{min-height:500px!important;max-width:980px!important;margin-inline:auto!important}
+      #monte-seu-time .monte-line.defense{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;align-items:center!important}
       #monte-seu-time .monte-slot{transition:none!important}
 
       /* Histórico */
       #historico .history-v21-legend .proj{color:${ORANGE}!important}
+      #historico .history-v21-legend .real{color:${GREEN}!important}
       #historico [data-ux-v23-filter="1"]{display:none!important}
+      #historico .history-toolbar:empty{display:none!important}
       #historico .history-v21-table tr{box-shadow:none!important}
 
       /* Análise: confronto explícito e menos peso visual */
@@ -120,6 +144,40 @@
     }, true);
   }
 
+  function detalheCorrespondeAoSelecionado() {
+    const detalhe = document.querySelector("#recomendacoes #ceCleanDetail");
+    const ativo = document.querySelector("#recomendacoes .ce-clean-player.is-active[data-ce-player]");
+    if (!detalhe || !ativo) return true;
+    const lista = jogadoresDaPosicao();
+    const jogador = lista.find(j => idJogador(j) === ativo.dataset.cePlayer);
+    if (!jogador) return true;
+    const nome = norm(nomeJogador(jogador));
+    if (!nome) return true;
+    return norm(detalhe.textContent).includes(nome);
+  }
+
+  function repararDetalheSeNecessario() {
+    if (reparandoRecomendacao || detalheCorrespondeAoSelecionado()) return;
+    if (typeof window.exibirJogadoresDaPosicao !== "function") return;
+    reparandoRecomendacao = true;
+    try {
+      window.exibirJogadoresDaPosicao();
+    } catch (_) {
+    } finally {
+      window.setTimeout(() => { reparandoRecomendacao = false; }, 80);
+    }
+  }
+
+  function configurarGateRecomendacoes() {
+    if (document.documentElement.dataset.uxV23RecGate === "1") return;
+    document.documentElement.dataset.uxV23RecGate = "1";
+    document.addEventListener("click", evento => {
+      if (!evento.target.closest?.("#recomendacoes [data-ce-player]")) return;
+      window.setTimeout(repararDetalheSeNecessario, 0);
+      window.setTimeout(repararDetalheSeNecessario, 60);
+    }, false);
+  }
+
   function ajustarRecomendacoes() {
     const detalhe = document.querySelector("#recomendacoes .ce-clean-detail");
     if (!detalhe) return;
@@ -139,9 +197,12 @@
     if (tabs) {
       const botoes = [...tabs.querySelectorAll(".ce-clean-player")];
       botoes.forEach((b, i) => {
+        b.dataset.uxV23Rank = String(i + 1);
         b.title = i === 0 ? "Melhor opção do modelo nesta posição" : (b.classList.contains("is-active") ? "Jogador aberto nos detalhes" : "Abrir detalhes");
       });
     }
+
+    repararDetalheSeNecessario();
   }
 
   function corrigirDefesaMonte() {
@@ -154,7 +215,11 @@
         .sort((a,b) => String(a.dataset.monteSlot).localeCompare(String(b.dataset.monteSlot)));
       if (!lat.length || !zag.length) return;
       const ordem = lat.length >= 2 ? [lat[0], ...zag, lat[1], ...lat.slice(2)] : [...lat, ...zag];
-      ordem.forEach(slot => linha.appendChild(slot));
+      ordem.forEach((slot, i) => {
+        slot.style.order = String(i + 1);
+        linha.appendChild(slot);
+      });
+      linha.dataset.uxV23DefenseStable = "1";
     });
   }
 
@@ -165,11 +230,13 @@
       const label = select.closest("label");
       (label || select).dataset.uxV23Filter = "1";
     });
+    const toolbar = document.querySelector("#historico .history-toolbar");
+    if (toolbar && [...toolbar.children].every(el => el.dataset.uxV23Filter === "1")) toolbar.dataset.uxV23Filter = "1";
   }
 
   function trocarCorGrafico() {
-    document.querySelectorAll("#historico svg [stroke='#6077db']").forEach(el => el.setAttribute("stroke", ORANGE));
-    document.querySelectorAll("#historico svg [fill='#6077db']").forEach(el => el.setAttribute("fill", ORANGE));
+    document.querySelectorAll("#historico svg [stroke='#6077db'],#historico svg [stroke='#4f67d8'],#historico svg [stroke='rgb(96, 119, 219)']").forEach(el => el.setAttribute("stroke", ORANGE));
+    document.querySelectorAll("#historico svg [fill='#6077db'],#historico svg [fill='#4f67d8'],#historico svg [fill='rgb(96, 119, 219)']").forEach(el => el.setAttribute("fill", ORANGE));
   }
 
   function enriquecerAnalise() {
@@ -181,7 +248,7 @@
       card.querySelectorAll(".ce-round-item").forEach(item => {
         const strong = item.querySelector("strong");
         const small = item.querySelector("small");
-        if (!strong || !small || norm(small.textContent).includes(" vs ")) return;
+        if (!strong || !small || norm(small.textContent).includes(" vs ") || norm(small.textContent).includes(" x ")) return;
         const sigla = String(strong.textContent || "").trim().toUpperCase();
         const atleta = base.find(j => clube(j) === sigla && adversario(j));
         if (!atleta) return;
@@ -195,6 +262,7 @@
   function aplicar() {
     css();
     ajustarMenu();
+    configurarGateRecomendacoes();
     ajustarRecomendacoes();
     corrigirDefesaMonte();
     removerFiltrosHistorico();
