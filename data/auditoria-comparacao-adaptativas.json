@@ -2,20 +2,20 @@
   "modelo": "auditoria_comparacao_adaptativas_v1",
   "descricao": "Auditoria científica da comparação pareada entre Adaptativo V1 e V2.",
   "resumo": {
-    "rodadasAuditadas": 23,
+    "rodadasAuditadas": 24,
     "testes": 23,
     "testesAprovados": 23,
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
-    "mediaV1": 57.73,
-    "mediaV2": 57.73,
+    "mediaV1": 63.59,
+    "mediaV2": 63.59,
     "melhorEstrategiaFixa": "Conservador",
-    "mediaMelhorFixa": 58.18,
+    "mediaMelhorFixa": 64.03,
     "ganhoV2VsV1": 0.0,
-    "ganhoV2VsMelhorFixa": -0.45,
-    "eficienciaV1Oraculo": 91.71,
-    "eficienciaV2Oraculo": 91.71
+    "ganhoV2VsMelhorFixa": -0.44,
+    "eficienciaV1Oraculo": 90.46,
+    "eficienciaV2Oraculo": 90.46
   },
   "testes": [
     {
@@ -88,7 +88,8 @@
           21,
           22,
           23,
-          24
+          24,
+          25
         ],
         "publicadas": [
           2,
@@ -113,7 +114,8 @@
           21,
           22,
           23,
-          24
+          24,
+          25
         ]
       }
     },
@@ -122,8 +124,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "esperado": 23,
-        "encontrado": 23
+        "esperado": 24,
+        "encontrado": 24
       }
     },
     {

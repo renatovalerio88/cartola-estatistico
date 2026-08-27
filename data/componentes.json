@@ -1,10 +1,10 @@
 {
   "modelo": "laboratorio_componentes_v4",
   "descricao": "Análise científica dos componentes do modelo e integração com o diagnóstico walk-forward de Pontuação Básica Sustentável.",
-  "amostras": 6698,
+  "amostras": 7021,
   "rodadas": 23,
-  "erroMedio": 2.97,
-  "rmse": 4.05,
+  "erroMedio": 2.98,
+  "rmse": 4.06,
   "componentes": {
     "media3": {
       "media": 0.0,
@@ -51,64 +51,64 @@
   },
   "posicoes": {
     "MEI": {
-      "quantidade": 2189,
-      "erroMedio": 2.67,
-      "rmse": 3.75,
-      "mediaReal": 2.9,
-      "mediaProjetada": 2.92,
-      "correlacao": 0.2453,
-      "taxa10Mais": 5.44,
-      "taxa15Mais": 1.37
+      "quantidade": 2294,
+      "erroMedio": 2.69,
+      "rmse": 3.76,
+      "mediaReal": 2.95,
+      "mediaProjetada": 2.93,
+      "correlacao": 0.2487,
+      "taxa10Mais": 5.62,
+      "taxa15Mais": 1.48
     },
     "LAT": {
-      "quantidade": 972,
-      "erroMedio": 3.42,
+      "quantidade": 1017,
+      "erroMedio": 3.41,
       "rmse": 4.34,
-      "mediaReal": 4.25,
+      "mediaReal": 4.32,
       "mediaProjetada": 4.27,
-      "correlacao": 0.1645,
-      "taxa10Mais": 9.88,
-      "taxa15Mais": 1.65
+      "correlacao": 0.1616,
+      "taxa10Mais": 10.03,
+      "taxa15Mais": 1.67
     },
     "ATA": {
-      "quantidade": 1716,
-      "erroMedio": 3.26,
-      "rmse": 4.54,
+      "quantidade": 1805,
+      "erroMedio": 3.27,
+      "rmse": 4.53,
       "mediaReal": 3.63,
-      "mediaProjetada": 3.55,
-      "correlacao": 0.2469,
-      "taxa10Mais": 10.2,
-      "taxa15Mais": 2.74
+      "mediaProjetada": 3.57,
+      "correlacao": 0.2482,
+      "taxa10Mais": 10.19,
+      "taxa15Mais": 2.71
     },
     "GOL": {
-      "quantidade": 444,
-      "erroMedio": 3.19,
+      "quantidade": 463,
+      "erroMedio": 3.21,
       "rmse": 4.21,
-      "mediaReal": 3.55,
-      "mediaProjetada": 3.57,
-      "correlacao": 0.1476,
-      "taxa10Mais": 6.98,
-      "taxa15Mais": 1.13
+      "mediaReal": 3.59,
+      "mediaProjetada": 3.6,
+      "correlacao": 0.1403,
+      "taxa10Mais": 6.91,
+      "taxa15Mais": 1.08
     },
     "TEC": {
-      "quantidade": 424,
-      "erroMedio": 2.2,
-      "rmse": 2.77,
-      "mediaReal": 4.88,
-      "mediaProjetada": 4.98,
-      "correlacao": 0.1441,
-      "taxa10Mais": 2.59,
+      "quantidade": 444,
+      "erroMedio": 2.18,
+      "rmse": 2.76,
+      "mediaReal": 4.94,
+      "mediaProjetada": 4.99,
+      "correlacao": 0.1539,
+      "taxa10Mais": 2.93,
       "taxa15Mais": 0.0
     },
     "ZAG": {
-      "quantidade": 953,
-      "erroMedio": 2.94,
-      "rmse": 3.9,
-      "mediaReal": 3.13,
-      "mediaProjetada": 3.05,
-      "correlacao": 0.013,
-      "taxa10Mais": 4.72,
-      "taxa15Mais": 0.73
+      "quantidade": 998,
+      "erroMedio": 2.95,
+      "rmse": 3.89,
+      "mediaReal": 3.17,
+      "mediaProjetada": 3.06,
+      "correlacao": 0.0143,
+      "taxa10Mais": 4.71,
+      "taxa15Mais": 0.7
     }
   },
   "rankingComponentes": [
@@ -167,111 +167,111 @@
       "rodadas": 5,
       "inicio": 20,
       "fim": 24,
-      "erroMedio": 2.33,
-      "rmseMedio": 3.08,
-      "correlacaoMedia": 0.181
+      "erroMedio": 2.76,
+      "rmseMedio": 3.76,
+      "correlacaoMedia": 0.2864
     },
     "ultimas10": {
       "rodadas": 10,
       "inicio": 15,
       "fim": 24,
-      "erroMedio": 2.65,
-      "rmseMedio": 3.58,
-      "correlacaoMedia": 0.2107
+      "erroMedio": 2.87,
+      "rmseMedio": 3.92,
+      "correlacaoMedia": 0.2634
     }
   },
   "pontuacaoBasica": {
     "modeloFonte": "backtest_cientifico_v2_pb_walk_forward",
     "amostra": {
       "rodadas": 23,
-      "jogadores": 6698,
-      "jogadoresComHistoricoAnterior": 6698,
+      "jogadores": 7021,
+      "jogadoresComHistoricoAnterior": 7021,
       "coberturaPercentual": 100.0
     },
     "correlacoes": {
       "pb3": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.1168
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.1151
       },
       "pb5": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.1322
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.1292
       },
       "pb10": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.1385
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.1377
       },
       "media3": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.1977
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.1972
       },
       "media5": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.2228
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.222
       },
       "media10": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.2349
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.236
       },
       "projecao": {
-        "amostras": 6698,
-        "correlacaoComProximaPontuacao": 0.2288
+        "amostras": 7021,
+        "correlacaoComProximaPontuacao": 0.2302
       }
     },
     "resumoGlobal": {
       "modeloAtual": {
-        "selecionados": 685.0,
-        "taxaTop5": 22.77,
-        "taxaTop10": 37.52,
-        "taxa10Mais": 10.36,
-        "taxa15Mais": 3.21,
-        "mediaRealSelecionados": 4.49
+        "selecionados": 690.0,
+        "taxaTop5": 19.71,
+        "taxaTop10": 35.51,
+        "taxa10Mais": 11.3,
+        "taxa15Mais": 3.33,
+        "mediaRealSelecionados": 4.75
       },
       "pontuacaoBasica": {
-        "selecionados": 685.0,
-        "taxaTop5": 21.02,
-        "taxaTop10": 37.37,
-        "taxa10Mais": 8.18,
-        "taxa15Mais": 2.48,
-        "mediaRealSelecionados": 4.36
+        "selecionados": 690.0,
+        "taxaTop5": 17.83,
+        "taxaTop10": 34.78,
+        "taxa10Mais": 8.55,
+        "taxa15Mais": 2.46,
+        "mediaRealSelecionados": 4.54
       },
-      "ganhoMediaRealPB": -0.13,
-      "ganhoTaxaTop5PB": -1.75
+      "ganhoMediaRealPB": -0.21,
+      "ganhoTaxaTop5PB": -1.88
     },
     "ultimas5Rodadas": {
       "modeloAtual": {
-        "selecionados": 145.0,
-        "taxaTop5": 33.79,
-        "taxaTop10": 46.9,
-        "taxa10Mais": 5.52,
-        "taxa15Mais": 4.14,
-        "mediaRealSelecionados": 3.77
+        "selecionados": 150.0,
+        "taxaTop5": 19.33,
+        "taxaTop10": 37.33,
+        "taxa10Mais": 10.0,
+        "taxa15Mais": 4.67,
+        "mediaRealSelecionados": 4.99
       },
       "pontuacaoBasica": {
-        "selecionados": 145.0,
-        "taxaTop5": 33.1,
-        "taxaTop10": 49.66,
-        "taxa10Mais": 5.52,
-        "taxa15Mais": 1.38,
-        "mediaRealSelecionados": 3.7
+        "selecionados": 150.0,
+        "taxaTop5": 18.0,
+        "taxaTop10": 37.33,
+        "taxa10Mais": 7.33,
+        "taxa15Mais": 1.33,
+        "mediaRealSelecionados": 4.57
       }
     },
     "ultimas10Rodadas": {
       "modeloAtual": {
-        "selecionados": 295.0,
-        "taxaTop5": 25.76,
-        "taxaTop10": 42.03,
-        "taxa10Mais": 8.47,
-        "taxa15Mais": 4.07,
-        "mediaRealSelecionados": 4.32
+        "selecionados": 300.0,
+        "taxaTop5": 18.67,
+        "taxaTop10": 37.33,
+        "taxa10Mais": 10.67,
+        "taxa15Mais": 4.33,
+        "mediaRealSelecionados": 4.92
       },
       "pontuacaoBasica": {
-        "selecionados": 295.0,
-        "taxaTop5": 25.08,
-        "taxaTop10": 41.36,
-        "taxa10Mais": 5.76,
-        "taxa15Mais": 1.69,
-        "mediaRealSelecionados": 4.11
+        "selecionados": 300.0,
+        "taxaTop5": 17.67,
+        "taxaTop10": 35.33,
+        "taxa10Mais": 6.67,
+        "taxa15Mais": 1.67,
+        "mediaRealSelecionados": 4.54
       }
     },
     "decisaoExperimental": {
@@ -481,12 +481,12 @@
     },
     {
       "rodada": 24,
-      "quantidade": 150,
-      "erroMedio": 0.0,
-      "rmse": 0.0,
-      "mediaReal": 0.0,
-      "mediaProjetada": 0.0,
-      "correlacao": 0.0
+      "quantidade": 473,
+      "erroMedio": 2.13,
+      "rmse": 3.38,
+      "mediaReal": 2.9,
+      "mediaProjetada": 2.5,
+      "correlacao": 0.5268
     }
   ],
   "hipoteses": [

@@ -1,9 +1,9 @@
 {
   "modelo": "experimento_explosao_v1",
-  "jogadoresAnalisados": 6698,
-  "erroMedioOriginal": 2.975,
-  "erroMedioComExplosao": 3.045,
-  "melhorouEm": 2729,
+  "jogadoresAnalisados": 7021,
+  "erroMedioOriginal": 2.981,
+  "erroMedioComExplosao": 3.051,
+  "melhorouEm": 2874,
   "impacto": -0.07,
   "amostras": [
     {
@@ -30,31 +30,31 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 16.2,
-      "ajusteExplosao": 0.59,
-      "novaProjecao": 16.79,
+      "ajusteExplosao": 0.64,
+      "novaProjecao": 16.84,
       "real": 8.9,
       "erroOriginal": 7.3,
-      "erroComExplosao": 7.89
+      "erroComExplosao": 7.94
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 16.1,
-      "ajusteExplosao": 0.35,
-      "novaProjecao": 16.45,
+      "ajusteExplosao": 0.88,
+      "novaProjecao": 16.98,
       "real": 4.9,
       "erroOriginal": 11.2,
-      "erroComExplosao": 11.55
+      "erroComExplosao": 12.08
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 15.3,
-      "ajusteExplosao": 0.29,
-      "novaProjecao": 15.59,
+      "ajusteExplosao": 0.42,
+      "novaProjecao": 15.72,
       "real": 4.8,
       "erroOriginal": 10.5,
-      "erroComExplosao": 10.79
+      "erroComExplosao": 10.92
     },
     {
       "rodada": 2,
@@ -90,51 +90,51 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 12.6,
-      "ajusteExplosao": 0.36,
-      "novaProjecao": 12.96,
+      "ajusteExplosao": 0.84,
+      "novaProjecao": 13.44,
       "real": 5.6,
       "erroOriginal": 7.0,
-      "erroComExplosao": 7.36
+      "erroComExplosao": 7.84
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 12.5,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 12.83,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 12.82,
       "real": 0.5,
       "erroOriginal": 12.0,
-      "erroComExplosao": 12.33
+      "erroComExplosao": 12.32
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 12.0,
-      "ajusteExplosao": 0.73,
-      "novaProjecao": 12.73,
+      "ajusteExplosao": 0.68,
+      "novaProjecao": 12.68,
       "real": 24.1,
       "erroOriginal": 12.1,
-      "erroComExplosao": 11.37
+      "erroComExplosao": 11.42
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 11.7,
-      "ajusteExplosao": 0.26,
-      "novaProjecao": 11.96,
+      "ajusteExplosao": 0.23,
+      "novaProjecao": 11.93,
       "real": 2.9,
       "erroOriginal": 8.8,
-      "erroComExplosao": 9.06
+      "erroComExplosao": 9.03
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 11.2,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 11.53,
+      "ajusteExplosao": 0.39,
+      "novaProjecao": 11.59,
       "real": 2.7,
       "erroOriginal": 8.5,
-      "erroComExplosao": 8.83
+      "erroComExplosao": 8.89
     },
     {
       "rodada": 2,
@@ -160,11 +160,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 10.0,
-      "ajusteExplosao": 0.73,
-      "novaProjecao": 10.73,
+      "ajusteExplosao": 0.77,
+      "novaProjecao": 10.77,
       "real": 1.2,
       "erroOriginal": 8.8,
-      "erroComExplosao": 9.53
+      "erroComExplosao": 9.57
     },
     {
       "rodada": 2,
@@ -180,11 +180,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 9.7,
-      "ajusteExplosao": 0.22,
-      "novaProjecao": 9.92,
+      "ajusteExplosao": 0.69,
+      "novaProjecao": 10.39,
       "real": 9,
       "erroOriginal": 0.7,
-      "erroComExplosao": 0.92
+      "erroComExplosao": 1.39
     },
     {
       "rodada": 2,
@@ -200,11 +200,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 9.7,
-      "ajusteExplosao": 0.36,
-      "novaProjecao": 10.06,
+      "ajusteExplosao": 0.26,
+      "novaProjecao": 9.96,
       "real": 4.5,
       "erroOriginal": 5.2,
-      "erroComExplosao": 5.56
+      "erroComExplosao": 5.46
     },
     {
       "rodada": 2,
@@ -270,11 +270,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 8.89,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 9.2,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 9.25,
       "real": 3.31,
       "erroOriginal": 5.58,
-      "erroComExplosao": 5.89
+      "erroComExplosao": 5.94
     },
     {
       "rodada": 2,
@@ -290,41 +290,41 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 8.12,
-      "ajusteExplosao": 0.25,
-      "novaProjecao": 8.37,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 8.41,
       "real": 0,
       "erroOriginal": 8.12,
-      "erroComExplosao": 8.37
+      "erroComExplosao": 8.41
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 8.07,
-      "ajusteExplosao": 0.69,
-      "novaProjecao": 8.76,
+      "ajusteExplosao": 0.79,
+      "novaProjecao": 8.86,
       "real": 6.95,
       "erroOriginal": 1.12,
-      "erroComExplosao": 1.81
+      "erroComExplosao": 1.91
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 8.0,
-      "ajusteExplosao": 0.45,
-      "novaProjecao": 8.45,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 8.31,
       "real": -0.1,
       "erroOriginal": 8.1,
-      "erroComExplosao": 8.55
+      "erroComExplosao": 8.41
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 8.0,
-      "ajusteExplosao": 0.35,
-      "novaProjecao": 8.35,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 8.29,
       "real": 2,
       "erroOriginal": 6.0,
-      "erroComExplosao": 6.35
+      "erroComExplosao": 6.29
     },
     {
       "rodada": 2,
@@ -360,31 +360,31 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.7,
-      "ajusteExplosao": 0.37,
-      "novaProjecao": 8.07,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 7.95,
       "real": 5.8,
       "erroOriginal": 1.9,
-      "erroComExplosao": 2.27
+      "erroComExplosao": 2.15
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.6,
-      "ajusteExplosao": 0.85,
-      "novaProjecao": 8.45,
+      "ajusteExplosao": 0.95,
+      "novaProjecao": 8.55,
       "real": 4.4,
       "erroOriginal": 3.2,
-      "erroComExplosao": 4.05
+      "erroComExplosao": 4.15
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.6,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 7.93,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 7.96,
       "real": 6.2,
       "erroOriginal": 1.4,
-      "erroComExplosao": 1.73
+      "erroComExplosao": 1.76
     },
     {
       "rodada": 2,
@@ -400,21 +400,21 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.5,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 7.83,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 7.82,
       "real": 0,
       "erroOriginal": 7.5,
-      "erroComExplosao": 7.83
+      "erroComExplosao": 7.82
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.5,
-      "ajusteExplosao": 0.28,
-      "novaProjecao": 7.78,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 7.82,
       "real": 12.2,
       "erroOriginal": 4.7,
-      "erroComExplosao": 4.42
+      "erroComExplosao": 4.38
     },
     {
       "rodada": 2,
@@ -450,11 +450,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 7.0,
-      "ajusteExplosao": 0.36,
-      "novaProjecao": 7.36,
+      "ajusteExplosao": 0.47,
+      "novaProjecao": 7.47,
       "real": 2.5,
       "erroOriginal": 4.5,
-      "erroComExplosao": 4.86
+      "erroComExplosao": 4.97
     },
     {
       "rodada": 2,
@@ -470,61 +470,61 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.7,
-      "ajusteExplosao": 0.26,
-      "novaProjecao": 6.96,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 7.03,
       "real": -0.3,
       "erroOriginal": 7.0,
-      "erroComExplosao": 7.26
+      "erroComExplosao": 7.33
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.7,
-      "ajusteExplosao": 0.45,
-      "novaProjecao": 7.15,
+      "ajusteExplosao": 0.41,
+      "novaProjecao": 7.11,
       "real": 16.5,
       "erroOriginal": 9.8,
-      "erroComExplosao": 9.35
+      "erroComExplosao": 9.39
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.6,
-      "ajusteExplosao": 0.21,
-      "novaProjecao": 6.81,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 6.85,
       "real": 0,
       "erroOriginal": 6.6,
-      "erroComExplosao": 6.81
+      "erroComExplosao": 6.85
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.5,
-      "ajusteExplosao": 0.68,
-      "novaProjecao": 7.18,
+      "ajusteExplosao": 0.75,
+      "novaProjecao": 7.25,
       "real": -0.3,
       "erroOriginal": 6.8,
-      "erroComExplosao": 7.48
+      "erroComExplosao": 7.55
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.4,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 6.73,
+      "ajusteExplosao": 0.29,
+      "novaProjecao": 6.69,
       "real": 4.2,
       "erroOriginal": 2.2,
-      "erroComExplosao": 2.53
+      "erroComExplosao": 2.49
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.4,
-      "ajusteExplosao": 1.07,
-      "novaProjecao": 7.47,
+      "ajusteExplosao": 1.3,
+      "novaProjecao": 7.7,
       "real": 0.2,
       "erroOriginal": 6.2,
-      "erroComExplosao": 7.27
+      "erroComExplosao": 7.5
     },
     {
       "rodada": 2,
@@ -540,11 +540,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.2,
-      "ajusteExplosao": 0.81,
-      "novaProjecao": 7.01,
+      "ajusteExplosao": 0.87,
+      "novaProjecao": 7.07,
       "real": 5.8,
       "erroOriginal": 0.4,
-      "erroComExplosao": 1.21
+      "erroComExplosao": 1.27
     },
     {
       "rodada": 2,
@@ -570,21 +570,21 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.1,
-      "ajusteExplosao": 0.41,
-      "novaProjecao": 6.51,
+      "ajusteExplosao": 0.52,
+      "novaProjecao": 6.62,
       "real": 2.4,
       "erroOriginal": 3.7,
-      "erroComExplosao": 4.11
+      "erroComExplosao": 4.22
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 6.0,
-      "ajusteExplosao": 0.42,
-      "novaProjecao": 6.42,
+      "ajusteExplosao": 0.44,
+      "novaProjecao": 6.44,
       "real": 13.1,
       "erroOriginal": 7.1,
-      "erroComExplosao": 6.68
+      "erroComExplosao": 6.66
     },
     {
       "rodada": 2,
@@ -610,31 +610,31 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.8,
-      "ajusteExplosao": 0.34,
-      "novaProjecao": 6.14,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 6.1,
       "real": 5.5,
       "erroOriginal": 0.3,
-      "erroComExplosao": 0.64
+      "erroComExplosao": 0.6
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.7,
-      "ajusteExplosao": 0.35,
-      "novaProjecao": 6.05,
+      "ajusteExplosao": 0.31,
+      "novaProjecao": 6.01,
       "real": 2.5,
       "erroOriginal": 3.2,
-      "erroComExplosao": 3.55
+      "erroComExplosao": 3.51
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.7,
-      "ajusteExplosao": 0.25,
-      "novaProjecao": 5.95,
+      "ajusteExplosao": 0.46,
+      "novaProjecao": 6.16,
       "real": 0,
       "erroOriginal": 5.7,
-      "erroComExplosao": 5.95
+      "erroComExplosao": 6.16
     },
     {
       "rodada": 2,
@@ -680,11 +680,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.47,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 5.79,
+      "ajusteExplosao": 0.62,
+      "novaProjecao": 6.09,
       "real": 5.9,
       "erroOriginal": 0.43,
-      "erroComExplosao": 0.11
+      "erroComExplosao": 0.19
     },
     {
       "rodada": 2,
@@ -710,11 +710,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.3,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 5.69,
+      "ajusteExplosao": 0.47,
+      "novaProjecao": 5.77,
       "real": 2.4,
       "erroOriginal": 2.9,
-      "erroComExplosao": 3.29
+      "erroComExplosao": 3.37
     },
     {
       "rodada": 2,
@@ -730,11 +730,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.2,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 5.51,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 5.45,
       "real": 1.4,
       "erroOriginal": 3.8,
-      "erroComExplosao": 4.11
+      "erroComExplosao": 4.05
     },
     {
       "rodada": 2,
@@ -750,11 +750,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 5.1,
-      "ajusteExplosao": 0.41,
-      "novaProjecao": 5.51,
+      "ajusteExplosao": 0.42,
+      "novaProjecao": 5.52,
       "real": 3.4,
       "erroOriginal": 1.7,
-      "erroComExplosao": 2.11
+      "erroComExplosao": 2.12
     },
     {
       "rodada": 2,
@@ -800,71 +800,71 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.7,
-      "ajusteExplosao": 0.32,
-      "novaProjecao": 5.02,
+      "ajusteExplosao": 0.35,
+      "novaProjecao": 5.05,
       "real": 7,
       "erroOriginal": 2.3,
-      "erroComExplosao": 1.98
+      "erroComExplosao": 1.95
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.6,
-      "ajusteExplosao": 0.8,
-      "novaProjecao": 5.4,
+      "ajusteExplosao": 0.67,
+      "novaProjecao": 5.27,
       "real": 4.4,
       "erroOriginal": 0.2,
-      "erroComExplosao": 1.0
+      "erroComExplosao": 0.87
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.51,
-      "ajusteExplosao": 0.29,
-      "novaProjecao": 4.8,
+      "ajusteExplosao": 0.32,
+      "novaProjecao": 4.83,
       "real": 5.49,
       "erroOriginal": 0.98,
-      "erroComExplosao": 0.69
+      "erroComExplosao": 0.66
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.5,
-      "ajusteExplosao": 0.3,
-      "novaProjecao": 4.8,
+      "ajusteExplosao": 0.27,
+      "novaProjecao": 4.77,
       "real": 4,
       "erroOriginal": 0.5,
-      "erroComExplosao": 0.8
+      "erroComExplosao": 0.77
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.5,
-      "ajusteExplosao": 0.39,
-      "novaProjecao": 4.89,
+      "ajusteExplosao": 0.36,
+      "novaProjecao": 4.86,
       "real": 5.5,
       "erroOriginal": 1.0,
-      "erroComExplosao": 0.61
+      "erroComExplosao": 0.64
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.47,
-      "ajusteExplosao": 0.31,
-      "novaProjecao": 4.78,
+      "ajusteExplosao": 0.28,
+      "novaProjecao": 4.75,
       "real": 5.45,
       "erroOriginal": 0.98,
-      "erroComExplosao": 0.67
+      "erroComExplosao": 0.7
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.4,
-      "ajusteExplosao": 0.25,
-      "novaProjecao": 4.65,
+      "ajusteExplosao": 0.22,
+      "novaProjecao": 4.62,
       "real": 0.7,
       "erroOriginal": 3.7,
-      "erroComExplosao": 3.95
+      "erroComExplosao": 3.92
     },
     {
       "rodada": 2,
@@ -880,11 +880,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.32,
-      "ajusteExplosao": 0.29,
-      "novaProjecao": 4.61,
+      "ajusteExplosao": 0.33,
+      "novaProjecao": 4.65,
       "real": 7.92,
       "erroOriginal": 3.6,
-      "erroComExplosao": 3.31
+      "erroComExplosao": 3.27
     },
     {
       "rodada": 2,
@@ -900,41 +900,41 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.13,
-      "novaProjecao": 4.33,
+      "ajusteExplosao": 0.24,
+      "novaProjecao": 4.44,
       "real": 4.5,
       "erroOriginal": 0.3,
-      "erroComExplosao": 0.17
+      "erroComExplosao": 0.06
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.29,
-      "novaProjecao": 4.49,
+      "ajusteExplosao": 0.28,
+      "novaProjecao": 4.48,
       "real": 2.9,
       "erroOriginal": 1.3,
-      "erroComExplosao": 1.59
+      "erroComExplosao": 1.58
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.2,
-      "ajusteExplosao": 0.83,
-      "novaProjecao": 5.03,
+      "ajusteExplosao": 0.66,
+      "novaProjecao": 4.86,
       "real": 2.9,
       "erroOriginal": 1.3,
-      "erroComExplosao": 2.13
+      "erroComExplosao": 1.96
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.0,
-      "ajusteExplosao": 0.2,
-      "novaProjecao": 4.2,
+      "ajusteExplosao": 0.25,
+      "novaProjecao": 4.25,
       "real": 7.7,
       "erroOriginal": 3.7,
-      "erroComExplosao": 3.5
+      "erroComExplosao": 3.45
     },
     {
       "rodada": 2,
@@ -950,11 +950,11 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 4.0,
-      "ajusteExplosao": 0.38,
-      "novaProjecao": 4.38,
+      "ajusteExplosao": 0.39,
+      "novaProjecao": 4.39,
       "real": 0,
       "erroOriginal": 4.0,
-      "erroComExplosao": 4.38
+      "erroComExplosao": 4.39
     },
     {
       "rodada": 2,
@@ -970,41 +970,41 @@
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 3.9,
-      "ajusteExplosao": 0.1,
-      "novaProjecao": 4.0,
+      "ajusteExplosao": 0.16,
+      "novaProjecao": 4.06,
       "real": 5,
       "erroOriginal": 1.1,
-      "erroComExplosao": 1.0
+      "erroComExplosao": 0.94
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 3.9,
-      "ajusteExplosao": 0.33,
-      "novaProjecao": 4.23,
+      "ajusteExplosao": 0.3,
+      "novaProjecao": 4.2,
       "real": 1,
       "erroOriginal": 2.9,
-      "erroComExplosao": 3.23
+      "erroComExplosao": 3.2
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 3.77,
-      "ajusteExplosao": 0.59,
-      "novaProjecao": 4.36,
+      "ajusteExplosao": 0.7,
+      "novaProjecao": 4.47,
       "real": 11.43,
       "erroOriginal": 7.66,
-      "erroComExplosao": 7.07
+      "erroComExplosao": 6.96
     },
     {
       "rodada": 2,
       "nome": null,
       "projecaoOriginal": 3.7,
-      "ajusteExplosao": 0.73,
-      "novaProjecao": 4.43,
+      "ajusteExplosao": 0.72,
+      "novaProjecao": 4.42,
       "real": 4.2,
       "erroOriginal": 0.5,
-      "erroComExplosao": 0.23
+      "erroComExplosao": 0.22
     }
   ]
 }

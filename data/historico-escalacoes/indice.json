@@ -24,17 +24,18 @@
     21,
     22,
     23,
-    24
+    24,
+    25
   ],
-  "quantidadeRodadas": 23,
+  "quantidadeRodadas": 24,
   "primeiraRodada": 2,
-  "ultimaRodada": 24,
+  "ultimaRodada": 25,
   "patrimonio": 200.0,
-  "totalEscalacoes": 69,
-  "totalEscalacoesCompletas": 69,
-  "totalEstrategiasAuditadas": 69,
-  "totalEstrategiasAprovadas": 69,
-  "totalSelecoesMILP": 69,
+  "totalEscalacoes": 72,
+  "totalEscalacoesCompletas": 72,
+  "totalEstrategiasAuditadas": 72,
+  "totalEstrategiasAprovadas": 72,
+  "totalSelecoesMILP": 72,
   "totalFallbackGreedy": 0,
   "rodadasAprovadas": [
     2,
@@ -59,7 +60,8 @@
     21,
     22,
     23,
-    24
+    24,
+    25
   ],
   "rodadasReprovadas": [],
   "auditoriaGlobalAprovada": true,

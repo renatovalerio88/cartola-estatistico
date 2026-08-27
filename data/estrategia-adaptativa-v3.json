@@ -7,16 +7,16 @@
       "historicoDisponivel": 0,
       "regime": null,
       "estrategiaEscolhida": "Equilibrado",
-      "pontuacao": 30.3,
+      "pontuacao": 33.9,
       "melhorEstrategia": "Equilibrado",
-      "pontuacaoOraculo": 30.3,
+      "pontuacaoOraculo": 33.9,
       "perdaOraculo": 0.0,
       "acertouMelhorEstrategia": true,
       "semVazamentoFuturo": true,
       "pontuacoesEstrategias": {
-        "Conservador": 28.5,
-        "Equilibrado": 30.3,
-        "Agressivo": 30.3
+        "Conservador": 32.2,
+        "Equilibrado": 33.9,
+        "Agressivo": 33.9
       },
       "scores": {}
     },
@@ -74,37 +74,37 @@
       },
       "scores": {
         "Conservador": {
-          "score": 29.96,
-          "mediaHistorica": 39.75,
-          "mediaRecente": 39.75,
+          "score": 29.86,
+          "mediaHistorica": 40.98,
+          "mediaRecente": 40.98,
           "mediana": 45.2,
-          "desvio": 7.96,
+          "desvio": 6.21,
           "taxaVitorias": 0.0,
-          "tendencia": 16.88,
+          "tendencia": 13.17,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
         },
         "Equilibrado": {
-          "score": 44.07,
-          "mediaHistorica": 44.42,
-          "mediaRecente": 44.42,
+          "score": 43.96,
+          "mediaHistorica": 45.62,
+          "mediaRecente": 45.62,
           "mediana": 47.85,
-          "desvio": 10.41,
+          "desvio": 8.8,
           "taxaVitorias": 100.0,
-          "tendencia": 21.18,
+          "tendencia": 17.58,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
         },
         "Agressivo": {
-          "score": 24.74,
-          "mediaHistorica": 36.38,
-          "mediaRecente": 36.38,
-          "mediana": 31.0,
-          "desvio": 8.11,
+          "score": 24.85,
+          "mediaHistorica": 37.58,
+          "mediaRecente": 37.58,
+          "mediana": 33.9,
+          "desvio": 7.36,
           "taxaVitorias": 0.0,
-          "tendencia": 9.12,
+          "tendencia": 5.52,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
@@ -129,37 +129,37 @@
       },
       "scores": {
         "Conservador": {
-          "score": 31.17,
-          "mediaHistorica": 43.74,
-          "mediaRecente": 43.74,
+          "score": 31.33,
+          "mediaHistorica": 44.67,
+          "mediaRecente": 44.67,
           "mediana": 45.38,
-          "desvio": 9.76,
+          "desvio": 8.35,
           "taxaVitorias": 0.0,
-          "tendencia": 13.44,
+          "tendencia": 11.59,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
         },
         "Equilibrado": {
-          "score": 40.66,
-          "mediaHistorica": 45.77,
-          "mediaRecente": 45.77,
+          "score": 40.82,
+          "mediaHistorica": 46.67,
+          "mediaRecente": 46.67,
           "mediana": 48.84,
-          "desvio": 9.32,
+          "desvio": 7.83,
           "taxaVitorias": 75.0,
-          "tendencia": 13.38,
+          "tendencia": 11.59,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
         },
         "Agressivo": {
-          "score": 34.92,
-          "mediaHistorica": 45.64,
-          "mediaRecente": 45.64,
-          "mediana": 39.42,
-          "desvio": 17.5,
+          "score": 35.17,
+          "mediaHistorica": 46.54,
+          "mediaRecente": 46.54,
+          "mediana": 40.88,
+          "desvio": 16.77,
           "taxaVitorias": 25.0,
-          "tendencia": 13.12,
+          "tendencia": 11.33,
           "mediaRegime": 0.0,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 0
@@ -184,37 +184,37 @@
       },
       "scores": {
         "Conservador": {
-          "score": 37.2,
-          "mediaHistorica": 48.77,
-          "mediaRecente": 48.77,
+          "score": 37.24,
+          "mediaHistorica": 49.51,
+          "mediaRecente": 49.51,
           "mediana": 45.55,
-          "desvio": 13.31,
+          "desvio": 12.22,
           "taxaVitorias": 20.0,
-          "tendencia": 19.57,
+          "tendencia": 17.72,
           "mediaRegime": 68.86,
           "taxaVitoriasRegime": 100.0,
           "amostraRegime": 1
         },
         "Equilibrado": {
-          "score": 39.67,
-          "mediaHistorica": 46.71,
-          "mediaRecente": 46.71,
+          "score": 39.72,
+          "mediaHistorica": 47.43,
+          "mediaRecente": 47.43,
           "mediana": 49.82,
-          "desvio": 8.54,
+          "desvio": 7.17,
           "taxaVitorias": 60.0,
-          "tendencia": 12.72,
+          "tendencia": 10.92,
           "mediaRegime": 50.46,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 1
         },
         "Agressivo": {
-          "score": 36.09,
-          "mediaHistorica": 46.92,
-          "mediaRecente": 46.92,
+          "score": 36.1,
+          "mediaHistorica": 47.64,
+          "mediaRecente": 47.64,
           "mediana": 47.85,
-          "desvio": 15.86,
+          "desvio": 15.16,
           "taxaVitorias": 20.0,
-          "tendencia": 13.08,
+          "tendencia": 11.28,
           "mediaRegime": 52.06,
           "taxaVitoriasRegime": 0.0,
           "amostraRegime": 1
@@ -239,11 +239,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 68.61,
-          "mediaHistorica": 55.08,
+          "score": 68.83,
+          "mediaHistorica": 55.7,
           "mediaRecente": 60.4,
           "mediana": 50.63,
-          "desvio": 18.63,
+          "desvio": 17.78,
           "taxaVitorias": 33.33,
           "tendencia": 25.04,
           "mediaRegime": 77.76,
@@ -251,11 +251,11 @@
           "amostraRegime": 2
         },
         "Equilibrado": {
-          "score": 50.87,
-          "mediaHistorica": 49.88,
+          "score": 51.11,
+          "mediaHistorica": 50.48,
           "mediaRecente": 53.8,
           "mediana": 50.14,
-          "desvio": 10.55,
+          "desvio": 9.46,
           "taxaVitorias": 50.0,
           "tendencia": 3.87,
           "mediaRegime": 58.11,
@@ -263,11 +263,11 @@
           "amostraRegime": 2
         },
         "Agressivo": {
-          "score": 55.0,
-          "mediaHistorica": 51.01,
+          "score": 55.2,
+          "mediaHistorica": 51.61,
           "mediaRecente": 55.15,
           "mediana": 49.95,
-          "desvio": 17.13,
+          "desvio": 16.44,
           "taxaVitorias": 16.67,
           "tendencia": 26.22,
           "mediaRegime": 61.76,
@@ -294,11 +294,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 72.98,
-          "mediaHistorica": 58.09,
+          "score": 73.17,
+          "mediaHistorica": 58.62,
           "mediaRecente": 66.52,
           "mediana": 55.72,
-          "desvio": 18.76,
+          "desvio": 17.95,
           "taxaVitorias": 42.86,
           "tendencia": 26.77,
           "mediaRegime": 77.23,
@@ -306,11 +306,11 @@
           "amostraRegime": 3
         },
         "Equilibrado": {
-          "score": 50.53,
-          "mediaHistorica": 50.44,
+          "score": 50.74,
+          "mediaHistorica": 50.95,
           "mediaRecente": 54.98,
           "mediana": 50.46,
-          "desvio": 9.86,
+          "desvio": 8.83,
           "taxaVitorias": 42.86,
           "tendencia": 4.2,
           "mediaRegime": 56.66,
@@ -318,11 +318,11 @@
           "amostraRegime": 3
         },
         "Agressivo": {
-          "score": 49.77,
-          "mediaHistorica": 51.18,
+          "score": 49.95,
+          "mediaHistorica": 51.69,
           "mediaRecente": 56.02,
           "mediana": 52.06,
-          "desvio": 15.86,
+          "desvio": 15.22,
           "taxaVitorias": 14.29,
           "tendencia": 6.36,
           "mediaRegime": 58.56,
@@ -349,11 +349,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 41.72,
-          "mediaHistorica": 54.79,
+          "score": 41.89,
+          "mediaHistorica": 55.25,
           "mediaRecente": 63.82,
           "mediana": 50.63,
-          "desvio": 19.6,
+          "desvio": 19.01,
           "taxaVitorias": 37.5,
           "tendencia": 2.54,
           "mediaRegime": 0.0,
@@ -361,11 +361,11 @@
           "amostraRegime": 0
         },
         "Equilibrado": {
-          "score": 35.54,
-          "mediaHistorica": 48.42,
+          "score": 35.71,
+          "mediaHistorica": 48.87,
           "mediaRecente": 50.82,
           "mediana": 50.14,
-          "desvio": 10.66,
+          "desvio": 9.94,
           "taxaVitorias": 37.5,
           "tendencia": 1.13,
           "mediaRegime": 0.0,
@@ -373,11 +373,11 @@
           "amostraRegime": 0
         },
         "Agressivo": {
-          "score": 33.11,
-          "mediaHistorica": 49.5,
+          "score": 33.27,
+          "mediaHistorica": 49.95,
           "mediaRecente": 57.37,
           "mediana": 49.95,
-          "desvio": 15.49,
+          "desvio": 14.96,
           "taxaVitorias": 25.0,
           "tendencia": -8.93,
           "mediaRegime": 0.0,
@@ -404,11 +404,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 37.16,
-          "mediaHistorica": 55.92,
+          "score": 37.31,
+          "mediaHistorica": 56.33,
           "mediaRecente": 65.67,
           "mediana": 55.72,
-          "desvio": 18.76,
+          "desvio": 18.18,
           "taxaVitorias": 44.44,
           "tendencia": -20.15,
           "mediaRegime": 55.72,
@@ -416,11 +416,11 @@
           "amostraRegime": 1
         },
         "Equilibrado": {
-          "score": 33.06,
-          "mediaHistorica": 49.06,
+          "score": 33.21,
+          "mediaHistorica": 49.46,
           "mediaRecente": 51.69,
           "mediana": 50.46,
-          "desvio": 10.21,
+          "desvio": 9.52,
           "taxaVitorias": 33.33,
           "tendencia": -10.7,
           "mediaRegime": 49.82,
@@ -428,11 +428,11 @@
           "amostraRegime": 1
         },
         "Agressivo": {
-          "score": 31.79,
-          "mediaHistorica": 50.29,
+          "score": 31.93,
+          "mediaHistorica": 50.69,
           "mediaRecente": 54.0,
           "mediana": 52.06,
-          "desvio": 14.77,
+          "desvio": 14.26,
           "taxaVitorias": 22.22,
           "tendencia": -12.93,
           "mediaRegime": 73.4,
@@ -459,11 +459,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 40.03,
-          "mediaHistorica": 54.44,
+          "score": 40.16,
+          "mediaHistorica": 54.81,
           "mediaRecente": 60.1,
           "mediana": 50.63,
-          "desvio": 18.35,
+          "desvio": 17.85,
           "taxaVitorias": 40.0,
           "tendencia": -35.52,
           "mediaRegime": 48.38,
@@ -471,11 +471,11 @@
           "amostraRegime": 2
         },
         "Equilibrado": {
-          "score": 48.28,
-          "mediaHistorica": 49.56,
+          "score": 48.43,
+          "mediaHistorica": 49.92,
           "mediaRecente": 52.42,
           "mediana": 52.12,
-          "desvio": 9.81,
+          "desvio": 9.14,
           "taxaVitorias": 40.0,
           "tendencia": -12.23,
           "mediaRegime": 51.98,
@@ -483,11 +483,11 @@
           "amostraRegime": 2
         },
         "Agressivo": {
-          "score": 47.88,
-          "mediaHistorica": 50.37,
+          "score": 48.01,
+          "mediaHistorica": 50.73,
           "mediaRecente": 53.81,
           "mediana": 51.58,
-          "desvio": 14.01,
+          "desvio": 13.53,
           "taxaVitorias": 20.0,
           "tendencia": -13.34,
           "mediaRegime": 62.25,
@@ -514,11 +514,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 56.25,
-          "mediaHistorica": 56.5,
+          "score": 56.37,
+          "mediaHistorica": 56.83,
           "mediaRecente": 58.2,
           "mediana": 55.72,
-          "desvio": 18.67,
+          "desvio": 18.19,
           "taxaVitorias": 45.45,
           "tendencia": 7.13,
           "mediaRegime": 57.96,
@@ -526,11 +526,11 @@
           "amostraRegime": 3
         },
         "Equilibrado": {
-          "score": 54.93,
-          "mediaHistorica": 51.19,
+          "score": 55.06,
+          "mediaHistorica": 51.52,
           "mediaRecente": 52.77,
           "mediana": 53.77,
-          "desvio": 10.67,
+          "desvio": 10.07,
           "taxaVitorias": 36.36,
           "tendencia": 14.58,
           "mediaRegime": 57.15,
@@ -538,11 +538,11 @@
           "amostraRegime": 3
         },
         "Agressivo": {
-          "score": 48.71,
-          "mediaHistorica": 50.03,
+          "score": 48.83,
+          "mediaHistorica": 50.36,
           "mediaRecente": 48.85,
           "mediana": 51.09,
-          "desvio": 13.4,
+          "desvio": 12.95,
           "taxaVitorias": 18.18,
           "tendencia": 6.46,
           "mediaRegime": 57.05,
@@ -569,11 +569,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 66.55,
-          "mediaHistorica": 59.52,
+          "score": 66.66,
+          "mediaHistorica": 59.82,
           "mediaRecente": 61.5,
           "mediana": 60.35,
-          "desvio": 20.49,
+          "desvio": 20.04,
           "taxaVitorias": 41.67,
           "tendencia": 21.97,
           "mediaRegime": 65.84,
@@ -581,11 +581,11 @@
           "amostraRegime": 4
         },
         "Equilibrado": {
-          "score": 58.8,
-          "mediaHistorica": 55.29,
+          "score": 58.91,
+          "mediaHistorica": 55.59,
           "mediaRecente": 62.08,
           "mediana": 53.95,
-          "desvio": 16.99,
+          "desvio": 16.58,
           "taxaVitorias": 41.67,
           "tendencia": 29.75,
           "mediaRegime": 51.07,
@@ -593,11 +593,11 @@
           "amostraRegime": 4
         },
         "Agressivo": {
-          "score": 50.73,
-          "mediaHistorica": 51.7,
+          "score": 50.84,
+          "mediaHistorica": 52.0,
           "mediaRecente": 52.44,
           "mediana": 51.58,
-          "desvio": 13.98,
+          "desvio": 13.55,
           "taxaVitorias": 16.67,
           "tendencia": 8.79,
           "mediaRegime": 53.37,
@@ -624,11 +624,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 63.92,
-          "mediaHistorica": 59.37,
+          "score": 64.03,
+          "mediaHistorica": 59.66,
           "mediaRecente": 66.7,
           "mediana": 57.65,
-          "desvio": 19.69,
+          "desvio": 19.26,
           "taxaVitorias": 38.46,
           "tendencia": 22.82,
           "mediaRegime": 66.65,
@@ -636,11 +636,11 @@
           "amostraRegime": 4
         },
         "Equilibrado": {
-          "score": 63.69,
-          "mediaHistorica": 54.83,
+          "score": 63.79,
+          "mediaHistorica": 55.11,
           "mediaRecente": 65.09,
           "mediana": 53.77,
-          "desvio": 16.4,
+          "desvio": 16.01,
           "taxaVitorias": 38.46,
           "tendencia": 18.22,
           "mediaRegime": 67.94,
@@ -648,11 +648,11 @@
           "amostraRegime": 4
         },
         "Agressivo": {
-          "score": 52.38,
-          "mediaHistorica": 52.57,
+          "score": 52.48,
+          "mediaHistorica": 52.84,
           "mediaRecente": 57.47,
           "mediana": 52.06,
-          "desvio": 13.76,
+          "desvio": 13.34,
           "taxaVitorias": 23.08,
           "tendencia": 6.08,
           "mediaRegime": 60.31,
@@ -679,11 +679,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 44.98,
-          "mediaHistorica": 58.63,
+          "score": 45.08,
+          "mediaHistorica": 58.9,
           "mediaRecente": 63.51,
           "mediana": 56.69,
-          "desvio": 19.16,
+          "desvio": 18.76,
           "taxaVitorias": 42.86,
           "tendencia": 7.39,
           "mediaRegime": 64.98,
@@ -691,11 +691,11 @@
           "amostraRegime": 1
         },
         "Equilibrado": {
-          "score": 40.89,
-          "mediaHistorica": 54.07,
+          "score": 40.98,
+          "mediaHistorica": 54.32,
           "mediaRecente": 63.08,
           "mediana": 52.12,
-          "desvio": 16.04,
+          "desvio": 15.69,
           "taxaVitorias": 35.71,
           "tendencia": 3.79,
           "mediaRegime": 54.18,
@@ -703,11 +703,11 @@
           "amostraRegime": 1
         },
         "Agressivo": {
-          "score": 36.05,
-          "mediaHistorica": 51.23,
+          "score": 36.14,
+          "mediaHistorica": 51.49,
           "mediaRecente": 52.93,
           "mediana": 51.58,
-          "desvio": 14.11,
+          "desvio": 13.76,
           "taxaVitorias": 21.43,
           "tendencia": 6.76,
           "mediaRegime": 56.56,
@@ -734,11 +734,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 50.28,
-          "mediaHistorica": 58.24,
+          "score": 50.37,
+          "mediaHistorica": 58.49,
           "mediaRecente": 65.85,
           "mediana": 55.72,
-          "desvio": 18.57,
+          "desvio": 18.19,
           "taxaVitorias": 40.0,
           "tendencia": -31.78,
           "mediaRegime": 63.13,
@@ -746,11 +746,11 @@
           "amostraRegime": 5
         },
         "Equilibrado": {
-          "score": 48.57,
-          "mediaHistorica": 54.53,
+          "score": 48.66,
+          "mediaHistorica": 54.77,
           "mediaRecente": 64.46,
           "mediana": 53.77,
-          "desvio": 15.6,
+          "desvio": 15.25,
           "taxaVitorias": 33.33,
           "tendencia": -32.4,
           "mediaRegime": 63.18,
@@ -758,11 +758,11 @@
           "amostraRegime": 5
         },
         "Agressivo": {
-          "score": 49.21,
-          "mediaHistorica": 52.67,
+          "score": 49.29,
+          "mediaHistorica": 52.91,
           "mediaRecente": 57.29,
           "mediana": 52.06,
-          "desvio": 14.67,
+          "desvio": 14.32,
           "taxaVitorias": 26.67,
           "tendencia": -1.81,
           "mediaRegime": 55.02,
@@ -789,11 +789,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 48.6,
-          "mediaHistorica": 56.84,
+          "score": 48.68,
+          "mediaHistorica": 57.07,
           "mediaRecente": 57.59,
           "mediana": 54.22,
-          "desvio": 18.78,
+          "desvio": 18.45,
           "taxaVitorias": 37.5,
           "tendencia": -29.31,
           "mediaRegime": 58.84,
@@ -801,11 +801,11 @@
           "amostraRegime": 2
         },
         "Equilibrado": {
-          "score": 42.78,
-          "mediaHistorica": 53.5,
+          "score": 42.86,
+          "mediaHistorica": 53.72,
           "mediaRecente": 58.57,
           "mediana": 52.12,
-          "desvio": 15.62,
+          "desvio": 15.31,
           "taxaVitorias": 31.25,
           "tendencia": -27.09,
           "mediaRegime": 57.59,
@@ -813,11 +813,11 @@
           "amostraRegime": 2
         },
         "Agressivo": {
-          "score": 51.43,
-          "mediaHistorica": 52.84,
+          "score": 51.51,
+          "mediaHistorica": 53.06,
           "mediaRecente": 59.01,
           "mediana": 52.12,
-          "desvio": 14.21,
+          "desvio": 13.88,
           "taxaVitorias": 31.25,
           "tendencia": -12.53,
           "mediaRegime": 64.73,
@@ -844,11 +844,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 59.53,
-          "mediaHistorica": 58.96,
+          "score": 59.61,
+          "mediaHistorica": 59.18,
           "mediaRecente": 57.62,
           "mediana": 55.72,
-          "desvio": 20.09,
+          "desvio": 19.78,
           "taxaVitorias": 41.18,
           "tendencia": 7.13,
           "mediaRegime": 64.2,
@@ -856,11 +856,11 @@
           "amostraRegime": 5
         },
         "Equilibrado": {
-          "score": 47.33,
-          "mediaHistorica": 53.66,
+          "score": 47.41,
+          "mediaHistorica": 53.87,
           "mediaRecente": 49.74,
           "mediana": 53.77,
-          "desvio": 15.16,
+          "desvio": 14.86,
           "taxaVitorias": 29.41,
           "tendencia": 4.99,
           "mediaRegime": 50.72,
@@ -868,11 +868,11 @@
           "amostraRegime": 5
         },
         "Agressivo": {
-          "score": 55.5,
-          "mediaHistorica": 52.78,
+          "score": 55.58,
+          "mediaHistorica": 52.99,
           "mediaRecente": 55.35,
           "mediana": 52.06,
-          "desvio": 13.79,
+          "desvio": 13.47,
           "taxaVitorias": 29.41,
           "tendencia": 11.59,
           "mediaRegime": 55.28,
@@ -899,11 +899,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 59.84,
-          "mediaHistorica": 59.63,
+          "score": 59.92,
+          "mediaHistorica": 59.84,
           "mediaRecente": 60.3,
           "mediana": 56.69,
-          "desvio": 19.72,
+          "desvio": 19.41,
           "taxaVitorias": 44.44,
           "tendencia": 15.71,
           "mediaRegime": 58.58,
@@ -911,11 +911,11 @@
           "amostraRegime": 6
         },
         "Equilibrado": {
-          "score": 48.98,
-          "mediaHistorica": 53.49,
+          "score": 49.06,
+          "mediaHistorica": 53.69,
           "mediaRecente": 50.0,
           "mediana": 52.2,
-          "desvio": 14.75,
+          "desvio": 14.46,
           "taxaVitorias": 27.78,
           "tendencia": -4.29,
           "mediaRegime": 58.99,
@@ -923,11 +923,11 @@
           "amostraRegime": 6
         },
         "Agressivo": {
-          "score": 50.55,
-          "mediaHistorica": 53.05,
+          "score": 50.62,
+          "mediaHistorica": 53.25,
           "mediaRecente": 54.32,
           "mediana": 52.12,
-          "desvio": 13.45,
+          "desvio": 13.14,
           "taxaVitorias": 27.78,
           "tendencia": 1.58,
           "mediaRegime": 55.06,
@@ -954,11 +954,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 65.16,
-          "mediaHistorica": 59.58,
+          "score": 65.24,
+          "mediaHistorica": 59.78,
           "mediaRecente": 62.24,
           "mediana": 57.65,
-          "desvio": 19.19,
+          "desvio": 18.89,
           "taxaVitorias": 47.37,
           "tendencia": 29.92,
           "mediaRegime": 58.6,
@@ -966,11 +966,11 @@
           "amostraRegime": 7
         },
         "Equilibrado": {
-          "score": 50.39,
-          "mediaHistorica": 53.36,
+          "score": 50.46,
+          "mediaHistorica": 53.55,
           "mediaRecente": 51.4,
           "mediana": 51.13,
-          "desvio": 14.37,
+          "desvio": 14.09,
           "taxaVitorias": 26.32,
           "tendencia": 3.1,
           "mediaRegime": 57.87,
@@ -978,11 +978,11 @@
           "amostraRegime": 7
         },
         "Agressivo": {
-          "score": 47.38,
-          "mediaHistorica": 52.8,
+          "score": 47.45,
+          "mediaHistorica": 52.99,
           "mediaRecente": 57.2,
           "mediana": 52.06,
-          "desvio": 13.14,
+          "desvio": 12.84,
           "taxaVitorias": 26.32,
           "tendencia": -11.48,
           "mediaRegime": 54.08,
@@ -1009,11 +1009,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 62.49,
-          "mediaHistorica": 60.1,
+          "score": 62.56,
+          "mediaHistorica": 60.28,
           "mediaRecente": 65.67,
           "mediana": 58.19,
-          "desvio": 18.84,
+          "desvio": 18.55,
           "taxaVitorias": 45.0,
           "tendencia": 2.2,
           "mediaRegime": 65.34,
@@ -1021,11 +1021,11 @@
           "amostraRegime": 6
         },
         "Equilibrado": {
-          "score": 50.72,
-          "mediaHistorica": 54.51,
+          "score": 50.79,
+          "mediaHistorica": 54.69,
           "mediaRecente": 54.46,
           "mediana": 52.45,
-          "desvio": 14.87,
+          "desvio": 14.6,
           "taxaVitorias": 30.0,
           "tendencia": 12.25,
           "mediaRegime": 50.71,
@@ -1033,11 +1033,11 @@
           "amostraRegime": 6
         },
         "Agressivo": {
-          "score": 54.55,
-          "mediaHistorica": 53.97,
+          "score": 54.62,
+          "mediaHistorica": 54.15,
           "mediaRecente": 57.84,
           "mediana": 52.12,
-          "desvio": 13.78,
+          "desvio": 13.49,
           "taxaVitorias": 25.0,
           "tendencia": 7.18,
           "mediaRegime": 55.7,
@@ -1064,11 +1064,11 @@
       },
       "scores": {
         "Conservador": {
-          "score": 57.54,
-          "mediaHistorica": 60.7,
+          "score": 57.61,
+          "mediaHistorica": 60.88,
           "mediaRecente": 73.06,
           "mediana": 58.73,
-          "desvio": 18.59,
+          "desvio": 18.3,
           "taxaVitorias": 47.62,
           "tendencia": -14.8,
           "mediaRegime": 60.01,
@@ -1076,11 +1076,11 @@
           "amostraRegime": 8
         },
         "Equilibrado": {
-          "score": 57.03,
-          "mediaHistorica": 55.05,
+          "score": 57.09,
+          "mediaHistorica": 55.23,
           "mediaRecente": 60.03,
           "mediana": 53.77,
-          "desvio": 14.71,
+          "desvio": 14.44,
           "taxaVitorias": 28.57,
           "tendencia": 11.05,
           "mediaRegime": 60.17,
@@ -1088,11 +1088,11 @@
           "amostraRegime": 8
         },
         "Agressivo": {
-          "score": 51.14,
-          "mediaHistorica": 53.76,
+          "score": 51.2,
+          "mediaHistorica": 53.93,
           "mediaRecente": 56.73,
           "mediana": 52.06,
-          "desvio": 13.47,
+          "desvio": 13.19,
           "taxaVitorias": 23.81,
           "tendencia": 3.21,
           "mediaRegime": 56.84,
@@ -1106,24 +1106,24 @@
       "historicoDisponivel": 22,
       "regime": "medio",
       "estrategiaEscolhida": "Conservador",
-      "pontuacao": 0.0,
-      "melhorEstrategia": "Conservador",
-      "pontuacaoOraculo": 0.0,
-      "perdaOraculo": 0.0,
-      "acertouMelhorEstrategia": true,
+      "pontuacao": 78.28,
+      "melhorEstrategia": "Equilibrado",
+      "pontuacaoOraculo": 91.38,
+      "perdaOraculo": 13.1,
+      "acertouMelhorEstrategia": false,
       "semVazamentoFuturo": true,
       "pontuacoesEstrategias": {
-        "Conservador": 0.0,
-        "Equilibrado": 0.0,
-        "Agressivo": 0.0
+        "Conservador": 78.28,
+        "Equilibrado": 91.38,
+        "Agressivo": 88.58
       },
       "scores": {
         "Conservador": {
-          "score": 61.58,
-          "mediaHistorica": 60.82,
+          "score": 61.65,
+          "mediaHistorica": 60.99,
           "mediaRecente": 67.16,
           "mediana": 61.03,
-          "desvio": 18.17,
+          "desvio": 17.88,
           "taxaVitorias": 50.0,
           "tendencia": 3.79,
           "mediaRegime": 60.38,
@@ -1131,11 +1131,11 @@
           "amostraRegime": 9
         },
         "Equilibrado": {
-          "score": 57.54,
-          "mediaHistorica": 55.09,
+          "score": 57.6,
+          "mediaHistorica": 55.26,
           "mediaRecente": 59.98,
           "mediana": 53.95,
-          "desvio": 14.38,
+          "desvio": 14.11,
           "taxaVitorias": 27.27,
           "tendencia": 15.16,
           "mediaRegime": 59.7,
@@ -1143,11 +1143,11 @@
           "amostraRegime": 9
         },
         "Agressivo": {
-          "score": 52.92,
-          "mediaHistorica": 54.05,
+          "score": 52.98,
+          "mediaHistorica": 54.22,
           "mediaRecente": 58.4,
           "mediana": 52.12,
-          "desvio": 13.23,
+          "desvio": 12.96,
           "taxaVitorias": 22.73,
           "tendencia": 8.97,
           "mediaRegime": 57.2,
@@ -1155,73 +1155,128 @@
           "amostraRegime": 9
         }
       }
+    },
+    {
+      "rodada": 25,
+      "historicoDisponivel": 23,
+      "regime": "alto",
+      "estrategiaEscolhida": "Conservador",
+      "pontuacao": 116.57,
+      "melhorEstrategia": "Equilibrado",
+      "pontuacaoOraculo": 144.28,
+      "perdaOraculo": 27.71,
+      "acertouMelhorEstrategia": false,
+      "semVazamentoFuturo": true,
+      "pontuacoesEstrategias": {
+        "Conservador": 116.57,
+        "Equilibrado": 144.28,
+        "Agressivo": 140.18
+      },
+      "scores": {
+        "Conservador": {
+          "score": 66.49,
+          "mediaHistorica": 61.74,
+          "mediaRecente": 68.61,
+          "mediana": 63.33,
+          "desvio": 17.84,
+          "taxaVitorias": 47.83,
+          "tendencia": 7.17,
+          "mediaRegime": 66.41,
+          "taxaVitoriasRegime": 71.43,
+          "amostraRegime": 7
+        },
+        "Equilibrado": {
+          "score": 54.77,
+          "mediaHistorica": 56.83,
+          "mediaRecente": 68.13,
+          "mediana": 54.14,
+          "desvio": 15.64,
+          "taxaVitorias": 30.43,
+          "tendencia": 7.36,
+          "mediaRegime": 52.88,
+          "taxaVitoriasRegime": 0.0,
+          "amostraRegime": 7
+        },
+        "Agressivo": {
+          "score": 55.28,
+          "mediaHistorica": 55.71,
+          "mediaRecente": 64.55,
+          "mediana": 52.17,
+          "desvio": 14.48,
+          "taxaVitorias": 21.74,
+          "tendencia": 3.98,
+          "mediaRegime": 54.85,
+          "taxaVitoriasRegime": 28.57,
+          "amostraRegime": 7
+        }
+      }
     }
   ],
   "resumo": {
-    "rodadas": 23,
+    "rodadas": 24,
     "adaptativoV3": {
-      "media": 54.62,
-      "total": 1256.19,
-      "mediana": 55.1,
-      "desvio": 18.67,
-      "acertos": 11,
-      "taxaAcerto": 47.83
+      "media": 60.61,
+      "total": 1454.64,
+      "mediana": 58.19,
+      "desvio": 18.71,
+      "acertos": 10,
+      "taxaAcerto": 41.67
     },
     "estrategiasFixas": {
       "Conservador": {
-        "media": 58.18,
-        "total": 1338.08,
-        "mediana": 58.73,
-        "desvio": 21.67,
-        "vitorias": 12
+        "media": 64.03,
+        "total": 1536.63,
+        "mediana": 64.16,
+        "desvio": 20.62,
+        "vitorias": 11
       },
       "Equilibrado": {
-        "media": 52.7,
-        "total": 1212.06,
-        "mediana": 53.77,
-        "desvio": 18.0,
-        "vitorias": 6
+        "media": 60.47,
+        "total": 1451.32,
+        "mediana": 54.16,
+        "desvio": 23.24,
+        "vitorias": 8
       },
       "Agressivo": {
-        "media": 51.7,
-        "total": 1189.17,
-        "mediana": 52.06,
-        "desvio": 17.0,
+        "media": 59.23,
+        "total": 1421.53,
+        "mediana": 53.72,
+        "desvio": 22.04,
         "vitorias": 5
       }
     },
     "melhorEstrategiaFixa": {
       "estrategia": "Conservador",
-      "media": 58.18
+      "media": 64.03
     },
     "comparacaoMelhorFixa": {
-      "ganhoPontosRodada": -3.56,
-      "ganhoPercentual": -6.12
+      "ganhoPontosRodada": -3.42,
+      "ganhoPercentual": -5.34
     },
     "oraculo": {
-      "media": 62.95,
-      "eficienciaV3": 86.76
+      "media": 70.3,
+      "eficienciaV3": 86.22
     },
     "escolhas": {
-      "Conservador": 15,
+      "Conservador": 16,
       "Equilibrado": 7,
       "Agressivo": 1
     },
     "regimes": {
       "None": 3,
       "medio": 10,
-      "alto": 7,
+      "alto": 8,
       "baixo": 3
     }
   },
   "decisao": "MANTER_ESTRATEGIAS_FIXAS",
   "promocaoAutomatica": false,
   "validacaoBase": {
-    "quantidadeValores": 69,
-    "quantidadeZeros": 3,
-    "quantidadeNaoZero": 66,
-    "percentualZeros": 4.35,
-    "mediaAbsoluta": 54.19,
+    "quantidadeValores": 72,
+    "quantidadeZeros": 0,
+    "quantidadeNaoZero": 72,
+    "percentualZeros": 0.0,
+    "mediaAbsoluta": 61.24,
     "baseValida": true
   },
   "auditoria": {

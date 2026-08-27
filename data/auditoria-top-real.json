@@ -39,7 +39,7 @@
     "top5Percentual": 13.38,
     "top10Percentual": 25.25,
     "rankingRealMedio": 26.94,
-    "percentilMedio": 58.41,
+    "percentilMedio": 57.67,
     "pontosEscalados": 3569.84,
     "pontosTimePerfeito": 10904.21,
     "eficienciaCapturaPercentual": 32.74
@@ -53,7 +53,7 @@
       "top5Percentual": 13.64,
       "top10Percentual": 50.0,
       "rankingRealMedio": 11.91,
-      "percentilMedio": 40.38,
+      "percentilMedio": 39.46,
       "pontosEscalados": 181.7,
       "pontosTimePerfeito": 812.4,
       "eficienciaCapturaPercentual": 22.37
@@ -66,7 +66,7 @@
       "top5Percentual": 18.18,
       "top10Percentual": 22.73,
       "rankingRealMedio": 19.68,
-      "percentilMedio": 59.75,
+      "percentilMedio": 58.58,
       "pontosEscalados": 243.6,
       "pontosTimePerfeito": 634.1,
       "eficienciaCapturaPercentual": 38.42
@@ -78,8 +78,8 @@
       "topNPercentual": 3.41,
       "top5Percentual": 4.55,
       "top10Percentual": 14.2,
-      "rankingRealMedio": 24.84,
-      "percentilMedio": 48.06,
+      "rankingRealMedio": 24.81,
+      "percentilMedio": 46.48,
       "pontosEscalados": 470.2,
       "pontosTimePerfeito": 1997.2,
       "eficienciaCapturaPercentual": 23.54
@@ -92,7 +92,7 @@
       "top5Percentual": 13.64,
       "top10Percentual": 20.83,
       "rankingRealMedio": 37.14,
-      "percentilMedio": 64.78,
+      "percentilMedio": 64.26,
       "pontosEscalados": 1315.4,
       "pontosTimePerfeito": 3799.8,
       "eficienciaCapturaPercentual": 34.62
@@ -105,7 +105,7 @@
       "top5Percentual": 15.34,
       "top10Percentual": 22.73,
       "rankingRealMedio": 27.66,
-      "percentilMedio": 67.19,
+      "percentilMedio": 66.89,
       "pontosEscalados": 1013.8,
       "pontosTimePerfeito": 3010.4,
       "eficienciaCapturaPercentual": 33.68
@@ -743,7 +743,7 @@
     },
     {
       "rodada": 24,
-      "quantidadeJogadoresReais": 774,
+      "quantidadeJogadoresReais": 337,
       "quantidadeEstrategias": 3,
       "estrategias": [
         {
@@ -781,7 +781,7 @@
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 58.41 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 57.67 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",

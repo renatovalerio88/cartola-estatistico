@@ -3,7 +3,7 @@
   "descricao": "Decisão científica consolidada sobre a estratégia adaptativa V1 e V2.",
   "status": "experimental",
   "amostra": {
-    "rodadas": 23,
+    "rodadas": 24,
     "minimoExigido": 10,
     "suficiente": true
   },
@@ -16,23 +16,23 @@
   },
   "desempenho": {
     "v1": {
-      "media": 57.73,
-      "desvioPadrao": 21.36,
-      "eficienciaOraculo": 91.71,
-      "perdaMediaOraculo": 5.22
+      "media": 63.59,
+      "desvioPadrao": 20.44,
+      "eficienciaOraculo": 90.46,
+      "perdaMediaOraculo": 6.7
     },
     "v2": {
-      "media": 57.73,
-      "desvioPadrao": 21.36,
-      "eficienciaOraculo": 91.71,
-      "perdaMediaOraculo": 5.22
+      "media": 63.59,
+      "desvioPadrao": 20.44,
+      "eficienciaOraculo": 90.46,
+      "perdaMediaOraculo": 6.7
     },
     "melhorFixa": {
       "nome": "Conservador",
-      "media": 58.18
+      "media": 64.03
     },
     "oraculo": {
-      "media": 62.95
+      "media": 70.3
     }
   },
   "ganhosV2": {
@@ -41,15 +41,15 @@
       "percentual": 0.0
     },
     "vsMelhorFixa": {
-      "pontosPorRodada": -0.45,
-      "percentual": -0.77
+      "pontosPorRodada": -0.44,
+      "percentual": -0.69
     }
   },
   "comparacaoPareada": {
-    "rodadas": 23,
+    "rodadas": 24,
     "vitoriasV1": 0,
     "vitoriasV2": 0,
-    "empates": 23,
+    "empates": 24,
     "taxaVitoriasV2": 0.0
   },
   "criterios": [
@@ -84,7 +84,7 @@
     {
       "nome": "amostra_minima",
       "passou": true,
-      "valor": 23,
+      "valor": 24,
       "limite": 10,
       "nivel": "CRITICO"
     },
@@ -126,7 +126,7 @@
     {
       "nome": "v2_supera_melhor_fixa",
       "passou": false,
-      "valor": -0.45,
+      "valor": -0.44,
       "limite": "> 0",
       "nivel": "CRITICO"
     },
@@ -140,15 +140,15 @@
     {
       "nome": "v2_mais_proximo_oraculo",
       "passou": false,
-      "valor": 5.22,
-      "limite": "< 5.22",
+      "valor": 6.7,
+      "limite": "< 6.7",
       "nivel": "CRITICO"
     },
     {
       "nome": "v2_mais_estavel",
       "passou": false,
-      "valor": 21.36,
-      "limite": "< 21.36",
+      "valor": 20.44,
+      "limite": "< 20.44",
       "nivel": "DESEJAVEL"
     }
   ],

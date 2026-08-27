@@ -6,27 +6,27 @@
       "id": 94583,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 71.2,
-      "perfilExplosao": "Explosao_Comprovada_EmQueda",
+      "indiceDiferencial": 78.36,
+      "perfilExplosao": "Explosao_Comprovada",
       "explosoes": 5,
       "teto": 20.6,
-      "tendencia": -6.37,
+      "tendencia": 3.17,
       "motivos": [
         "5 explosões históricas",
         "teto 20.6",
-        "momento em queda",
-        "Explosao_Comprovada_EmQueda"
+        "momento positivo",
+        "Explosao_Comprovada"
       ]
     },
     {
       "id": 63007,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 68.14,
+      "indiceDiferencial": 68.79,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 2,
       "teto": 22.8,
-      "tendencia": 3.93,
+      "tendencia": 7.23,
       "motivos": [
         "2 explosões históricas",
         "teto 22.8",
@@ -38,31 +38,47 @@
       "id": 88963,
       "nome": null,
       "posicao": "TEC",
-      "indiceDiferencial": 62.73,
-      "perfilExplosao": "Explosao_Comprovada_EmQueda",
+      "indiceDiferencial": 64.88,
+      "perfilExplosao": "Explosao_Comprovada",
       "explosoes": 5,
       "teto": 11.64,
-      "tendencia": -0.77,
+      "tendencia": 2.09,
       "motivos": [
         "5 explosões históricas",
-        "momento em queda",
-        "Explosao_Comprovada_EmQueda"
+        "momento positivo",
+        "Explosao_Comprovada"
       ]
     },
     {
       "id": 110426,
       "nome": null,
       "posicao": "LAT",
-      "indiceDiferencial": 62.61,
+      "indiceDiferencial": 62.38,
       "perfilExplosao": "Explosao_Comprovada",
       "explosoes": 3,
       "teto": 17.2,
-      "tendencia": 4.73,
+      "tendencia": 5.37,
       "motivos": [
         "3 explosões históricas",
         "teto 17.2",
         "momento positivo",
         "Explosao_Comprovada"
+      ]
+    },
+    {
+      "id": 143193,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 60.07,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "teto": 21.1,
+      "tendencia": 6.63,
+      "motivos": [
+        "2 explosões históricas",
+        "teto 21.1",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -85,11 +101,11 @@
       "id": 105436,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 57.44,
+      "indiceDiferencial": 57.02,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 24.9,
-      "tendencia": 10.03,
+      "tendencia": 14.6,
       "motivos": [
         "1 explosões históricas",
         "teto 24.9",
@@ -98,14 +114,29 @@
       ]
     },
     {
+      "id": 72605,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 56.3,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "teto": 14.5,
+      "tendencia": 1.0,
+      "motivos": [
+        "2 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
       "id": 68938,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 54.77,
+      "indiceDiferencial": 53.45,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 23.2,
-      "tendencia": 7.63,
+      "tendencia": 6.5,
       "motivos": [
         "1 explosões históricas",
         "teto 23.2",
@@ -114,34 +145,19 @@
       ]
     },
     {
-      "id": 143193,
+      "id": 114802,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 54.63,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 21.1,
-      "tendencia": -1.27,
+      "indiceDiferencial": 52.64,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 21.2,
+      "tendencia": 4.67,
       "motivos": [
-        "2 explosões históricas",
-        "teto 21.1",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 72605,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 52.82,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 14.5,
-      "tendencia": -1.97,
-      "motivos": [
-        "2 explosões históricas",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "1 explosões históricas",
+        "teto 21.2",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -161,33 +177,33 @@
       ]
     },
     {
-      "id": 107989,
+      "id": 107093,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 51.12,
+      "posicao": "LAT",
+      "indiceDiferencial": 51.53,
       "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 24.9,
-      "tendencia": 2.07,
+      "explosoes": 2,
+      "teto": 18,
+      "tendencia": 0.57,
       "motivos": [
-        "1 explosões históricas",
-        "teto 24.9",
+        "2 explosões históricas",
+        "teto 18",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
     },
     {
-      "id": 71684,
+      "id": 113103,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 49.85,
+      "posicao": "ATA",
+      "indiceDiferencial": 51.2,
       "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 2,
-      "teto": 15.5,
-      "tendencia": 3.0,
+      "explosoes": 1,
+      "teto": 22.8,
+      "tendencia": 4.13,
       "motivos": [
-        "2 explosões históricas",
-        "teto 15.5",
+        "1 explosões históricas",
+        "teto 22.8",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -196,11 +212,11 @@
       "id": 95131,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 49.73,
+      "indiceDiferencial": 50.17,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 19.3,
-      "tendencia": 1.8,
+      "tendencia": 3.4,
       "motivos": [
         "1 explosões históricas",
         "teto 19.3",
@@ -212,48 +228,16 @@
       "id": 101290,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 49.56,
-      "perfilExplosao": "Explosao_Ocasional",
+      "indiceDiferencial": 49.73,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 26,
-      "tendencia": -0.23,
+      "tendencia": 0.43,
       "motivos": [
         "1 explosões históricas",
         "teto 26",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 114802,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 49.5,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 21.2,
-      "tendencia": -0.53,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 21.2",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 107093,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 49.43,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 18,
-      "tendencia": -1.27,
-      "motivos": [
-        "2 explosões históricas",
-        "teto 18",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -288,33 +272,49 @@
       ]
     },
     {
-      "id": 93988,
+      "id": 107989,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 48.83,
-      "perfilExplosao": "Explosao_Em_Evolucao",
+      "indiceDiferencial": 48.67,
+      "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 21,
-      "tendencia": 2.57,
+      "teto": 24.9,
+      "tendencia": -0.93,
       "motivos": [
         "1 explosões históricas",
-        "teto 21",
+        "teto 24.9",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 131516,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 48.59,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 18.5,
+      "tendencia": 6.4,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 18.5",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
     },
     {
-      "id": 78117,
+      "id": 71684,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 48.46,
+      "posicao": "ZAG",
+      "indiceDiferencial": 48.52,
       "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 18.8,
-      "tendencia": 3.87,
+      "explosoes": 2,
+      "teto": 15.5,
+      "tendencia": 1.87,
       "motivos": [
-        "1 explosões históricas",
-        "teto 18.8",
+        "2 explosões históricas",
+        "teto 15.5",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -336,17 +336,49 @@
       ]
     },
     {
-      "id": 105213,
+      "id": 93988,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 48.14,
+      "posicao": "ATA",
+      "indiceDiferencial": 48.16,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 15.8,
-      "tendencia": 3.2,
+      "teto": 21,
+      "tendencia": 2.0,
       "motivos": [
         "1 explosões históricas",
-        "teto 15.8",
+        "teto 21",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 98873,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 47.92,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 26,
+      "tendencia": -2.3,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 26",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 126471,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 47.83,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 19.5,
+      "tendencia": 4.43,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 19.5",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -382,22 +414,6 @@
       ]
     },
     {
-      "id": 105563,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 47.18,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 24.1,
-      "tendencia": -2.93,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 24.1",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
       "id": 107453,
       "nome": null,
       "posicao": "ZAG",
@@ -408,6 +424,22 @@
       "tendencia": 2.0,
       "motivos": [
         "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 111831,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 47.06,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 21.6,
+      "tendencia": 0.5,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 21.6",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -429,14 +461,108 @@
       ]
     },
     {
+      "id": 78117,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 46.54,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 18.8,
+      "tendencia": 1.87,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 18.8",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 97878,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 46.24,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "teto": 13,
+      "tendencia": 1.5,
+      "motivos": [
+        "2 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 63289,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 45.71,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 18.4,
+      "tendencia": 1.3,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 18.4",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 105213,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 45.7,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 15.8,
+      "tendencia": 1.8,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 15.8",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 105563,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 45.67,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 24.1,
+      "tendencia": -4.63,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 24.1",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 146430,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 45.66,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 14.2,
+      "tendencia": 5.27,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
       "id": 123101,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 46.35,
+      "indiceDiferencial": 45.44,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "teto": 27.6,
-      "tendencia": -12.23,
+      "tendencia": -12.27,
       "motivos": [
         "1 explosões históricas",
         "teto 27.6",
@@ -445,81 +571,33 @@
       ]
     },
     {
-      "id": 111831,
+      "id": 72018,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 45.94,
+      "posicao": "GOL",
+      "indiceDiferencial": 45.33,
       "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 21.6,
-      "tendencia": -1.43,
+      "explosoes": 2,
+      "teto": 15.6,
+      "tendencia": -4.57,
       "motivos": [
-        "1 explosões históricas",
-        "teto 21.6",
+        "2 explosões históricas",
+        "teto 15.6",
         "momento em queda",
         "Explosao_Ocasional"
       ]
     },
     {
-      "id": 98873,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 45.61,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 26,
-      "tendencia": -5.67,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 26",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 91706,
+      "id": 102975,
       "nome": null,
       "posicao": "LAT",
-      "indiceDiferencial": 45.55,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 17.9,
-      "tendencia": -2.5,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 17.9",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 105647,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 45.47,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 21.4,
-      "tendencia": -1.67,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 21.4",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 99815,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 45.25,
+      "indiceDiferencial": 45.02,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 20.4,
-      "tendencia": 0.03,
+      "teto": 18.4,
+      "tendencia": 2.93,
       "motivos": [
         "1 explosões históricas",
-        "teto 20.4",
+        "teto 18.4",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -541,79 +619,17 @@
       ]
     },
     {
-      "id": 146430,
+      "id": 93790,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 44.8,
+      "posicao": "MEI",
+      "indiceDiferencial": 44.53,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 14.2,
-      "tendencia": 4.3,
+      "teto": 19.1,
+      "tendencia": 0.4,
       "motivos": [
         "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 97878,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 44.77,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 13,
-      "tendencia": -1.1,
-      "motivos": [
-        "2 explosões históricas",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 72018,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 44.3,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 15.6,
-      "tendencia": -7.23,
-      "motivos": [
-        "2 explosões históricas",
-        "teto 15.6",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 72294,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 44.26,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 2,
-      "teto": 15.9,
-      "tendencia": -2.33,
-      "motivos": [
-        "2 explosões históricas",
-        "teto 15.9",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 91101,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 44.2,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 16.7,
-      "tendencia": 5.07,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 16.7",
+        "teto 19.1",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -635,30 +651,14 @@
       ]
     },
     {
-      "id": 107554,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 44.13,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 17.7,
-      "tendencia": 0.57,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 17.7",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
       "id": 103523,
       "nome": null,
       "posicao": "ZAG",
-      "indiceDiferencial": 44.11,
+      "indiceDiferencial": 44.15,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 12.7,
-      "tendencia": 4.8,
+      "tendencia": 6.07,
       "motivos": [
         "1 explosões históricas",
         "momento positivo",
@@ -666,33 +666,64 @@
       ]
     },
     {
-      "id": 93790,
+      "id": 72294,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 43.83,
+      "posicao": "GOL",
+      "indiceDiferencial": 43.99,
       "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 19.1,
-      "tendencia": -0.8,
+      "explosoes": 2,
+      "teto": 15.9,
+      "tendencia": -2.17,
       "motivos": [
-        "1 explosões históricas",
-        "teto 19.1",
+        "2 explosões históricas",
+        "teto 15.9",
         "momento em queda",
         "Explosao_Ocasional"
       ]
     },
     {
-      "id": 102975,
+      "id": 105647,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 43.74,
-      "perfilExplosao": "Explosao_Em_Evolucao",
+      "posicao": "MEI",
+      "indiceDiferencial": 43.58,
+      "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 18.4,
-      "tendencia": 0.67,
+      "teto": 21.4,
+      "tendencia": -3.87,
       "motivos": [
         "1 explosões históricas",
-        "teto 18.4",
+        "teto 21.4",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 141451,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 43.37,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 18.1,
+      "tendencia": -0.63,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 18.1",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 39850,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 43.1,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 2,
+      "teto": 11.12,
+      "tendencia": 3.56,
+      "motivos": [
+        "2 explosões históricas",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -746,6 +777,21 @@
       ]
     },
     {
+      "id": 84847,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 42.05,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 13.5,
+      "tendencia": 6.2,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
       "id": 101574,
       "nome": null,
       "posicao": "GOL",
@@ -759,6 +805,22 @@
         "teto 15.9",
         "momento positivo",
         "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 130209,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 41.5,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 18.1,
+      "tendencia": -4.67,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 18.1",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
@@ -793,33 +855,17 @@
       ]
     },
     {
-      "id": 97653,
+      "id": 107554,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 41.15,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 16,
-      "tendencia": 2.33,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 16",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 141451,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 41.06,
+      "posicao": "LAT",
+      "indiceDiferencial": 41.03,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 18.1,
-      "tendencia": -4.03,
+      "teto": 17.7,
+      "tendencia": -2.83,
       "motivos": [
         "1 explosões históricas",
-        "teto 18.1",
+        "teto 17.7",
         "momento em queda",
         "Explosao_Ocasional"
       ]
@@ -841,46 +887,30 @@
       ]
     },
     {
-      "id": 63289,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 40.76,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 18.4,
-      "tendencia": -5.93,
-      "motivos": [
-        "1 explosões históricas",
-        "teto 18.4",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 130048,
+      "id": 97653,
       "nome": null,
       "posicao": "ZAG",
       "indiceDiferencial": 40.51,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 15.7,
+      "teto": 16,
       "tendencia": 1.8,
       "motivos": [
         "1 explosões históricas",
-        "teto 15.7",
+        "teto 16",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
     },
     {
-      "id": 39850,
+      "id": 110506,
       "nome": null,
       "posicao": "TEC",
-      "indiceDiferencial": 40.17,
+      "indiceDiferencial": 40.49,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 2,
-      "teto": 11.12,
-      "tendencia": -0.83,
+      "teto": 11.43,
+      "tendencia": -0.24,
       "motivos": [
         "2 explosões históricas",
         "momento em queda",
@@ -888,33 +918,35 @@
       ]
     },
     {
-      "id": 72951,
+      "id": 108133,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 39.99,
-      "perfilExplosao": "Explosao_Em_Evolucao",
+      "posicao": "ATA",
+      "indiceDiferencial": 40.46,
+      "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 13,
-      "tendencia": 2.8,
+      "teto": 18,
+      "tendencia": -5.07,
       "motivos": [
         "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
+        "teto 18",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
-      "id": 97460,
+      "id": 91706,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 39.98,
-      "perfilExplosao": "Explosao_Em_Evolucao",
+      "posicao": "LAT",
+      "indiceDiferencial": 39.93,
+      "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 12.5,
-      "tendencia": 4.5,
+      "teto": 17.9,
+      "tendencia": -8.13,
       "motivos": [
         "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
+        "teto 17.9",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
@@ -934,32 +966,48 @@
       ]
     },
     {
-      "id": 108133,
+      "id": 72951,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 39.85,
-      "perfilExplosao": "Explosao_Ocasional",
+      "posicao": "ZAG",
+      "indiceDiferencial": 39.72,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 18,
-      "tendencia": -6.2,
+      "teto": 13,
+      "tendencia": 3.07,
       "motivos": [
         "1 explosões históricas",
-        "teto 18",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
-      "id": 84847,
+      "id": 130048,
       "nome": null,
       "posicao": "ZAG",
-      "indiceDiferencial": 39.84,
+      "indiceDiferencial": 39.69,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 13.5,
-      "tendencia": 2.7,
+      "teto": 15.7,
+      "tendencia": 1.2,
       "motivos": [
         "1 explosões históricas",
+        "teto 15.7",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 69208,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 39.47,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 16.6,
+      "tendencia": 0.37,
+      "motivos": [
+        "1 explosões históricas",
+        "teto 16.6",
         "momento positivo",
         "Explosao_Em_Evolucao"
       ]
@@ -980,33 +1028,64 @@
       ]
     },
     {
-      "id": 94514,
+      "id": 94968,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 39.25,
+      "posicao": "LAT",
+      "indiceDiferencial": 39.39,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 12,
-      "tendencia": -2.6,
+      "teto": 16.2,
+      "tendencia": -2.23,
       "motivos": [
         "1 explosões históricas",
+        "teto 16.2",
         "momento em queda",
         "Explosao_Ocasional"
       ]
     },
     {
-      "id": 82627,
+      "id": 105300,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 39.18,
+      "posicao": "ZAG",
+      "indiceDiferencial": 39.29,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 12.1,
+      "tendencia": 4.93,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 128431,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 39.19,
       "perfilExplosao": "Promessa",
       "explosoes": 0,
-      "teto": 17.6,
-      "tendencia": 6.47,
+      "teto": 15.7,
+      "tendencia": 9.17,
       "motivos": [
-        "teto 17.6",
+        "teto 15.7",
         "momento positivo",
         "Promessa"
+      ]
+    },
+    {
+      "id": 94514,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 39.04,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 12,
+      "tendencia": -1.03,
+      "motivos": [
+        "1 explosões históricas",
+        "momento em queda",
+        "Explosao_Ocasional"
       ]
     },
     {
@@ -1025,30 +1104,30 @@
       ]
     },
     {
-      "id": 130209,
+      "id": 91101,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 38.57,
+      "posicao": "GOL",
+      "indiceDiferencial": 38.63,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 18.1,
-      "tendencia": -9.2,
+      "teto": 16.7,
+      "tendencia": -1.63,
       "motivos": [
         "1 explosões históricas",
-        "teto 18.1",
+        "teto 16.7",
         "momento em queda",
         "Explosao_Ocasional"
       ]
     },
     {
-      "id": 105300,
+      "id": 110750,
       "nome": null,
       "posicao": "ZAG",
-      "indiceDiferencial": 38.18,
+      "indiceDiferencial": 38.61,
       "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 12.1,
-      "tendencia": 3.03,
+      "teto": 13.5,
+      "tendencia": 2.93,
       "motivos": [
         "1 explosões históricas",
         "momento positivo",
@@ -1059,11 +1138,11 @@
       "id": 97795,
       "nome": null,
       "posicao": "LAT",
-      "indiceDiferencial": 38.17,
+      "indiceDiferencial": 38.59,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "teto": 16.7,
-      "tendencia": -3.07,
+      "tendencia": -3.83,
       "motivos": [
         "1 explosões históricas",
         "teto 16.7",
@@ -1072,108 +1151,153 @@
       ]
     },
     {
-      "id": 104783,
+      "id": 99815,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 37.84,
-      "perfilExplosao": "Promessa",
-      "explosoes": 0,
-      "teto": 15.4,
-      "tendencia": 6.03,
-      "motivos": [
-        "teto 15.4",
-        "momento positivo",
-        "Promessa"
-      ]
-    },
-    {
-      "id": 102340,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 37.65,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 13,
-      "tendencia": 0.3,
-      "motivos": [
-        "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 94968,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 37.62,
+      "indiceDiferencial": 37.83,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 16.2,
-      "tendencia": -3.27,
+      "teto": 20.4,
+      "tendencia": -9.47,
       "motivos": [
         "1 explosões históricas",
-        "teto 16.2",
+        "teto 20.4",
         "momento em queda",
         "Explosao_Ocasional"
       ]
     },
     {
-      "id": 97867,
+      "id": 71631,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 37.58,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 13,
-      "tendencia": 1.27,
-      "motivos": [
-        "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 69208,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 37.58,
+      "posicao": "GOL",
+      "indiceDiferencial": 37.5,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
-      "teto": 16.6,
-      "tendencia": -2.57,
+      "teto": 15.9,
+      "tendencia": -1.1,
       "motivos": [
         "1 explosões históricas",
-        "teto 16.6",
+        "teto 15.9",
         "momento em queda",
         "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 113125,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 37.44,
-      "perfilExplosao": "Promessa",
-      "explosoes": 0,
-      "teto": 15.7,
-      "tendencia": 5.17,
-      "motivos": [
-        "teto 15.7",
-        "momento positivo",
-        "Promessa"
       ]
     },
     {
       "id": 87552,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 36.99,
+      "indiceDiferencial": 37.44,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 17.8,
-      "tendencia": 4.0,
+      "tendencia": 4.6,
       "motivos": [
         "teto 17.8",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 82627,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 37.28,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 17.6,
+      "tendencia": 3.93,
+      "motivos": [
+        "teto 17.6",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104783,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 36.97,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 15.4,
+      "tendencia": 4.87,
+      "motivos": [
+        "teto 15.4",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 97867,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 36.78,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 13,
+      "tendencia": 0.63,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 102340,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 36.6,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 13,
+      "tendencia": -0.53,
+      "motivos": [
+        "1 explosões históricas",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 92747,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 36.32,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 12.13,
+      "tendencia": 3.01,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 42411,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 36.23,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 10.31,
+      "tendencia": 5.43,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 141776,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 36.23,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16,
+      "tendencia": 4.9,
+      "motivos": [
+        "teto 16",
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -1209,32 +1333,91 @@
       ]
     },
     {
-      "id": 101960,
+      "id": 99552,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 35.79,
+      "perfilExplosao": "Explosao_Em_Evolucao",
+      "explosoes": 1,
+      "teto": 12.8,
+      "tendencia": 0.53,
+      "motivos": [
+        "1 explosões históricas",
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 132264,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 35.46,
+      "indiceDiferencial": 35.63,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14.2,
-      "tendencia": 3.47,
+      "teto": 13.6,
+      "tendencia": 4.33,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 99552,
+      "id": 80129,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 35.57,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16,
+      "tendencia": 4.03,
+      "motivos": [
+        "teto 16",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 90302,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 35.49,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 12.8,
+      "tendencia": 5.0,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104118,
       "nome": null,
       "posicao": "GOL",
-      "indiceDiferencial": 35.4,
-      "perfilExplosao": "Explosao_Ocasional",
+      "indiceDiferencial": 35.32,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
       "teto": 12.8,
-      "tendencia": -0.27,
+      "tendencia": 0.23,
       "motivos": [
         "1 explosões históricas",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "momento positivo",
+        "Explosao_Em_Evolucao"
+      ]
+    },
+    {
+      "id": 105214,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 35.27,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16.5,
+      "tendencia": 3.1,
+      "motivos": [
+        "teto 16.5",
+        "momento positivo",
+        "Baixo_Risco"
       ]
     },
     {
@@ -1253,31 +1436,73 @@
       ]
     },
     {
-      "id": 80129,
+      "id": 97460,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 35.0,
+      "posicao": "ZAG",
+      "indiceDiferencial": 34.96,
+      "perfilExplosao": "Explosao_Ocasional",
+      "explosoes": 1,
+      "teto": 12.5,
+      "tendencia": -1.87,
+      "motivos": [
+        "1 explosões históricas",
+        "momento em queda",
+        "Explosao_Ocasional"
+      ]
+    },
+    {
+      "id": 117930,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 34.95,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16,
-      "tendencia": 3.27,
+      "teto": 13.5,
+      "tendencia": 3.53,
       "motivos": [
-        "teto 16",
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 89274,
+      "id": 116706,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 34.82,
+      "posicao": "ATA",
+      "indiceDiferencial": 34.95,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16.5,
-      "tendencia": 0.83,
+      "teto": 16.9,
+      "tendencia": 1.57,
       "motivos": [
-        "teto 16.5",
+        "teto 16.9",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 98517,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 34.83,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "teto": 12.2,
+      "tendencia": 5.43,
+      "motivos": [
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
+      "id": 39148,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 34.77,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 14.8,
+      "tendencia": 3.57,
+      "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -1298,32 +1523,17 @@
       ]
     },
     {
-      "id": 116706,
+      "id": 105048,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 34.42,
+      "indiceDiferencial": 34.51,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16.9,
-      "tendencia": 0.87,
+      "teto": 13.7,
+      "tendencia": 2.73,
       "motivos": [
-        "teto 16.9",
         "momento positivo",
         "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 116065,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 34.18,
-      "perfilExplosao": "Promessa",
-      "explosoes": 0,
-      "teto": 13.7,
-      "tendencia": 6.63,
-      "motivos": [
-        "momento positivo",
-        "Promessa"
       ]
     },
     {
@@ -1342,19 +1552,76 @@
       ]
     },
     {
-      "id": 71631,
+      "id": 87863,
       "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 33.98,
-      "perfilExplosao": "Explosao_Ocasional",
+      "posicao": "MEI",
+      "indiceDiferencial": 34.07,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "teto": 13,
+      "tendencia": 5.23,
+      "motivos": [
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
+      "id": 95466,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 33.96,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "teto": 14.2,
+      "tendencia": 5.8,
+      "motivos": [
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
+      "id": 89274,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 33.75,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16.5,
+      "tendencia": -0.6,
+      "motivos": [
+        "teto 16.5",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 80287,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 33.71,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 15.3,
+      "tendencia": 1.63,
+      "motivos": [
+        "teto 15.3",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 97341,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 33.65,
+      "perfilExplosao": "Explosao_Em_Evolucao",
       "explosoes": 1,
-      "teto": 15.9,
-      "tendencia": -4.47,
+      "teto": 10.25,
+      "tendencia": 2.24,
       "motivos": [
         "1 explosões históricas",
-        "teto 15.9",
-        "momento em queda",
-        "Explosao_Ocasional"
+        "momento positivo",
+        "Explosao_Em_Evolucao"
       ]
     },
     {
@@ -1388,28 +1655,28 @@
       ]
     },
     {
-      "id": 110506,
+      "id": 117910,
       "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 33.09,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 11.43,
-      "tendencia": 0.0,
+      "posicao": "MEI",
+      "indiceDiferencial": 33.23,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 14.7,
+      "tendencia": 0.63,
       "motivos": [
-        "1 explosões históricas",
-        "Explosao_Em_Evolucao"
+        "momento positivo",
+        "Baixo_Risco"
       ]
     },
     {
-      "id": 89840,
+      "id": 90061,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 33.04,
+      "posicao": "LAT",
+      "indiceDiferencial": 33.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12.3,
-      "tendencia": 2.27,
+      "teto": 14.4,
+      "tendencia": 4.57,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -1431,21 +1698,6 @@
       ]
     },
     {
-      "id": 92747,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 32.94,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 12.13,
-      "tendencia": -1.82,
-      "motivos": [
-        "1 explosões históricas",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
       "id": 92811,
       "nome": null,
       "posicao": "ATA",
@@ -1460,6 +1712,63 @@
       ]
     },
     {
+      "id": 98022,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 32.92,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 15.5,
+      "tendencia": 1.03,
+      "motivos": [
+        "teto 15.5",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 132071,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 32.71,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.8,
+      "tendencia": 3.43,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 109096,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 32.68,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 14.6,
+      "tendencia": 1.0,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 68708,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 32.67,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "teto": 11,
+      "tendencia": 5.5,
+      "motivos": [
+        "momento positivo",
+        "Promessa"
+      ]
+    },
+    {
       "id": 141595,
       "nome": null,
       "posicao": "ATA",
@@ -1468,50 +1777,6 @@
       "explosoes": 0,
       "teto": 14.5,
       "tendencia": 1.0,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 42411,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 32.58,
-      "perfilExplosao": "Explosao_Em_Evolucao",
-      "explosoes": 1,
-      "teto": 10.31,
-      "tendencia": 0.13,
-      "motivos": [
-        "1 explosões históricas",
-        "momento positivo",
-        "Explosao_Em_Evolucao"
-      ]
-    },
-    {
-      "id": 104118,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 32.57,
-      "perfilExplosao": "Explosao_Ocasional",
-      "explosoes": 1,
-      "teto": 12.8,
-      "tendencia": -3.87,
-      "motivos": [
-        "1 explosões históricas",
-        "momento em queda",
-        "Explosao_Ocasional"
-      ]
-    },
-    {
-      "id": 90302,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 32.56,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.8,
-      "tendencia": 1.1,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -1532,28 +1797,28 @@
       ]
     },
     {
-      "id": 109096,
+      "id": 96652,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 32.36,
-      "perfilExplosao": "Baixo_Risco",
+      "posicao": "MEI",
+      "indiceDiferencial": 32.5,
+      "perfilExplosao": "Promessa",
       "explosoes": 0,
-      "teto": 14.6,
-      "tendencia": 0.57,
+      "teto": 11,
+      "tendencia": 5.27,
       "motivos": [
         "momento positivo",
-        "Baixo_Risco"
+        "Promessa"
       ]
     },
     {
       "id": 109987,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 32.35,
+      "indiceDiferencial": 32.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 17,
-      "tendencia": -1.33,
+      "tendencia": -1.27,
       "motivos": [
         "teto 17",
         "momento em queda",
@@ -1561,28 +1826,14 @@
       ]
     },
     {
-      "id": 39148,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 32.33,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.7,
-      "tendencia": 0.43,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 72391,
       "nome": null,
       "posicao": "TEC",
-      "indiceDiferencial": 32.29,
+      "indiceDiferencial": 32.36,
       "perfilExplosao": "Explosao_Ocasional",
       "explosoes": 1,
       "teto": 10.48,
-      "tendencia": -0.93,
+      "tendencia": -0.34,
       "motivos": [
         "1 explosões históricas",
         "momento em queda",
@@ -1593,13 +1844,27 @@
       "id": 102256,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 32.2,
+      "indiceDiferencial": 32.24,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 15.4,
-      "tendencia": 0.17,
+      "tendencia": 0.23,
       "motivos": [
         "teto 15.4",
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 141754,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 32.14,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 14.3,
+      "tendencia": 1.27,
+      "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
@@ -1608,72 +1873,42 @@
       "id": 98225,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 32.17,
+      "indiceDiferencial": 32.1,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 10.5,
-      "tendencia": 4.7,
+      "tendencia": 4.6,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 94930,
+      "id": 131967,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 32.16,
+      "posicao": "ATA",
+      "indiceDiferencial": 32.05,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 15.7,
-      "tendencia": -0.2,
+      "teto": 15.6,
+      "tendencia": -0.9,
       "motivos": [
-        "teto 15.7",
+        "teto 15.6",
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 116447,
+      "id": 90031,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.95,
+      "posicao": "ATA",
+      "indiceDiferencial": 32.0,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.1,
-      "tendencia": 3.83,
+      "teto": 12,
+      "tendencia": 1.2,
       "motivos": [
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 90917,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.94,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 15.9,
-      "tendencia": -1.37,
-      "motivos": [
-        "teto 15.9",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 102928,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.94,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 16.2,
-      "tendencia": -1.7,
-      "motivos": [
-        "teto 16.2",
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -1681,11 +1916,11 @@
       "id": 101254,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 31.88,
+      "indiceDiferencial": 32.0,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 16.1,
-      "tendencia": -3.33,
+      "tendencia": -3.17,
       "motivos": [
         "teto 16.1",
         "momento em queda",
@@ -1693,74 +1928,17 @@
       ]
     },
     {
-      "id": 95799,
+      "id": 90917,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 31.81,
+      "indiceDiferencial": 31.72,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16.2,
-      "tendencia": -1.87,
+      "teto": 15.9,
+      "tendencia": -1.67,
       "motivos": [
-        "teto 16.2",
+        "teto 15.9",
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 113103,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.78,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 16.1,
-      "tendencia": -3.47,
-      "motivos": [
-        "teto 16.1",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 118563,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.74,
-      "perfilExplosao": "Promessa",
-      "explosoes": 0,
-      "teto": 9.9,
-      "tendencia": 5.43,
-      "motivos": [
-        "momento positivo",
-        "Promessa"
-      ]
-    },
-    {
-      "id": 125746,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.71,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.2,
-      "tendencia": 0.8,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 68685,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.7,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.5,
-      "tendencia": 2.6,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -1793,14 +1971,14 @@
       ]
     },
     {
-      "id": 132071,
+      "id": 95556,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.64,
+      "posicao": "MEI",
+      "indiceDiferencial": 31.62,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.8,
-      "tendencia": 2.0,
+      "teto": 11.4,
+      "tendencia": 3.67,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -1821,20 +1999,6 @@
       ]
     },
     {
-      "id": 95332,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.6,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.5,
-      "tendencia": 2.27,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 102130,
       "nome": null,
       "posicao": "LAT",
@@ -1845,20 +2009,6 @@
       "tendencia": 3.17,
       "motivos": [
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 117910,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.51,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.7,
-      "tendencia": -1.67,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -1877,59 +2027,30 @@
       ]
     },
     {
-      "id": 72493,
+      "id": 42500,
       "nome": null,
       "posicao": "LAT",
-      "indiceDiferencial": 31.42,
-      "perfilExplosao": "Promessa",
+      "indiceDiferencial": 31.45,
+      "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.3,
-      "tendencia": 6.57,
+      "teto": 13.4,
+      "tendencia": 3.3,
       "motivos": [
         "momento positivo",
-        "Promessa"
+        "Baixo_Risco"
       ]
     },
     {
-      "id": 83257,
+      "id": 91908,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 31.39,
+      "indiceDiferencial": 31.35,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16.2,
-      "tendencia": -2.43,
+      "teto": 14.4,
+      "tendencia": -2.23,
       "motivos": [
-        "teto 16.2",
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 79631,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.37,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": 4.23,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 98517,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.36,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.2,
-      "tendencia": 2.47,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -1976,72 +2097,29 @@
       ]
     },
     {
-      "id": 84626,
+      "id": 96591,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 31.12,
+      "posicao": "LAT",
+      "indiceDiferencial": 31.08,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 13.9,
-      "tendencia": -1.33,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 117930,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 31.05,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 13.5,
-      "tendencia": -1.67,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 117330,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 31.0,
-      "perfilExplosao": "Promessa",
-      "explosoes": 0,
-      "teto": 11,
-      "tendencia": 5.6,
+      "teto": 14,
+      "tendencia": 0.5,
       "motivos": [
         "momento positivo",
-        "Promessa"
-      ]
-    },
-    {
-      "id": 91908,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 30.8,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.4,
-      "tendencia": -1.3,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 131967,
+      "id": 125746,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 30.63,
+      "posicao": "MEI",
+      "indiceDiferencial": 30.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 15.6,
-      "tendencia": -2.8,
+      "teto": 14.2,
+      "tendencia": -0.3,
       "motivos": [
-        "teto 15.6",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -2050,11 +2128,11 @@
       "id": 112886,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 30.61,
+      "indiceDiferencial": 30.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 15.2,
-      "tendencia": -2.4,
+      "tendencia": -3.7,
       "motivos": [
         "teto 15.2",
         "momento em queda",
@@ -2062,14 +2140,100 @@
       ]
     },
     {
-      "id": 87863,
+      "id": 73384,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 30.47,
+      "posicao": "LAT",
+      "indiceDiferencial": 30.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 13,
-      "tendencia": 0.43,
+      "teto": 12.4,
+      "tendencia": 3.53,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 79631,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 30.77,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.5,
+      "tendencia": 3.43,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 84626,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 30.67,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 13.9,
+      "tendencia": -1.93,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 83257,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 30.66,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16.2,
+      "tendencia": -3.4,
+      "motivos": [
+        "teto 16.2",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 116065,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 30.61,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 13.7,
+      "tendencia": 1.87,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 102928,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 30.56,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16.2,
+      "tendencia": -3.53,
+      "motivos": [
+        "teto 16.2",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106202,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 30.55,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10,
+      "tendencia": 2.07,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -2090,28 +2254,28 @@
       ]
     },
     {
-      "id": 132412,
+      "id": 90703,
       "nome": null,
-      "posicao": "LAT",
+      "posicao": "MEI",
       "indiceDiferencial": 30.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12.5,
-      "tendencia": 4.53,
+      "teto": 11.5,
+      "tendencia": 0.27,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 90031,
+      "id": 142004,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 30.3,
+      "indiceDiferencial": 30.38,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12,
-      "tendencia": -1.07,
+      "teto": 11.5,
+      "tendencia": -0.43,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -2132,42 +2296,14 @@
       ]
     },
     {
-      "id": 106202,
+      "id": 84735,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 30.22,
+      "indiceDiferencial": 30.18,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10,
-      "tendencia": 1.63,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97321,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 30.21,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.7,
-      "tendencia": -0.27,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105048,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 30.17,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.8,
-      "tendencia": -0.43,
+      "teto": 14.7,
+      "tendencia": -1.77,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -2188,14 +2324,57 @@
       ]
     },
     {
-      "id": 90703,
+      "id": 86686,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 30.0,
+      "indiceDiferencial": 30.06,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": 1.4,
+      "teto": 9.7,
+      "tendencia": 3.4,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 103445,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 30.03,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 13,
+      "tendencia": -0.83,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 95799,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 30.01,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 16.2,
+      "tendencia": -4.27,
+      "motivos": [
+        "teto 16.2",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 109401,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 29.99,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.9,
+      "tendencia": 2.9,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -2216,34 +2395,6 @@
       ]
     },
     {
-      "id": 126471,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 29.98,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.6,
-      "tendencia": 0.2,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 114040,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 29.98,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 13.1,
-      "tendencia": -1.0,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 101314,
       "nome": null,
       "posicao": "ATA",
@@ -2252,20 +2403,6 @@
       "explosoes": 0,
       "teto": 13.2,
       "tendencia": -2.77,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97810,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 29.97,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14,
-      "tendencia": -1.97,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -2314,30 +2451,45 @@
       ]
     },
     {
-      "id": 131516,
+      "id": 101597,
       "nome": null,
       "posicao": "LAT",
-      "indiceDiferencial": 29.83,
+      "indiceDiferencial": 29.86,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 13,
-      "tendencia": 1.57,
+      "teto": 14.2,
+      "tendencia": 0.33,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 84735,
+      "id": 94930,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 29.81,
+      "indiceDiferencial": 29.78,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14.7,
-      "tendencia": -2.27,
+      "teto": 15.7,
+      "tendencia": -3.37,
       "motivos": [
+        "teto 15.7",
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 123738,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 29.75,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.5,
+      "tendencia": 3.6,
+      "motivos": [
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -2370,16 +2522,16 @@
       ]
     },
     {
-      "id": 142004,
+      "id": 97810,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 29.68,
+      "indiceDiferencial": 29.63,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": 0.3,
+      "teto": 14,
+      "tendencia": -2.43,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -2393,6 +2545,21 @@
       "teto": 14.4,
       "tendencia": -2.87,
       "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 113125,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 29.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 15.7,
+      "tendencia": -5.3,
+      "motivos": [
+        "teto 15.7",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -2412,49 +2579,6 @@
       ]
     },
     {
-      "id": 69012,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 29.52,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": 4.43,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 80287,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 29.51,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 15.3,
-      "tendencia": -3.97,
-      "motivos": [
-        "teto 15.3",
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 128431,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 29.46,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.2,
-      "tendencia": 1.0,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 142877,
       "nome": null,
       "posicao": "ATA",
@@ -2469,73 +2593,72 @@
       ]
     },
     {
-      "id": 73384,
+      "id": 101960,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 29.35,
+      "posicao": "ATA",
+      "indiceDiferencial": 29.41,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12.4,
-      "tendencia": 1.57,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 89256,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 29.33,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.1,
-      "tendencia": -1.8,
+      "teto": 14.2,
+      "tendencia": -4.6,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 42500,
+      "id": 107256,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 29.27,
+      "posicao": "MEI",
+      "indiceDiferencial": 29.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 13.4,
-      "tendencia": 0.4,
+      "tendencia": -1.43,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 117330,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 29.3,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11,
+      "tendencia": 3.33,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 96591,
+      "id": 113397,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 29.25,
+      "posicao": "ATA",
+      "indiceDiferencial": 29.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14,
-      "tendencia": -1.93,
+      "teto": 11,
+      "tendencia": 0.2,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 96610,
+      "id": 62977,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 29.24,
+      "indiceDiferencial": 29.19,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 15.8,
-      "tendencia": -5.87,
+      "teto": 7.3,
+      "tendencia": 4.8,
       "motivos": [
-        "teto 15.8",
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -2554,16 +2677,16 @@
       ]
     },
     {
-      "id": 98022,
+      "id": 118844,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 29.15,
+      "posicao": "ATA",
+      "indiceDiferencial": 29.16,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 15.5,
-      "tendencia": -4.0,
+      "teto": 16.7,
+      "tendencia": -5.93,
       "motivos": [
-        "teto 15.5",
+        "teto 16.7",
         "momento em queda",
         "Baixo_Risco"
       ]
@@ -2597,16 +2720,16 @@
       ]
     },
     {
-      "id": 101597,
+      "id": 93716,
       "nome": null,
       "posicao": "LAT",
       "indiceDiferencial": 29.01,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14.2,
-      "tendencia": -0.8,
+      "teto": 9.7,
+      "tendencia": 4.0,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -2625,16 +2748,30 @@
       ]
     },
     {
-      "id": 86686,
+      "id": 118563,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 28.96,
+      "indiceDiferencial": 28.95,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": 1.93,
+      "teto": 9.9,
+      "tendencia": 1.7,
       "motivos": [
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 105089,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 28.94,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.3,
+      "tendencia": -0.47,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -2666,69 +2803,41 @@
       ]
     },
     {
-      "id": 85048,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.89,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.3,
-      "tendencia": 3.27,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 115914,
+      "id": 71536,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 28.88,
+      "indiceDiferencial": 28.9,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10,
-      "tendencia": 1.5,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 78445,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 28.85,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.9,
-      "tendencia": 0.37,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 68920,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.78,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12,
-      "tendencia": -1.43,
+      "teto": 11.9,
+      "tendencia": -0.5,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 88393,
+      "id": 109573,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 28.77,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12.3,
+      "teto": 7.5,
+      "tendencia": 4.17,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 80196,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.88,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9,
       "tendencia": 0.9,
       "motivos": [
         "momento positivo",
@@ -2736,58 +2845,16 @@
       ]
     },
     {
-      "id": 124239,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.76,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.7,
-      "tendencia": 2.07,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 113113,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 28.72,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.4,
-      "tendencia": 1.8,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 95556,
+      "id": 68685,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 28.72,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.4,
-      "tendencia": -0.2,
+      "teto": 12.5,
+      "tendencia": -1.37,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 87258,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.66,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7.3,
-      "tendencia": 3.43,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -2820,6 +2887,20 @@
       ]
     },
     {
+      "id": 122394,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.63,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 12.2,
+      "tendencia": -1.17,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 115986,
       "nome": null,
       "posicao": "MEI",
@@ -2830,6 +2911,34 @@
       "tendencia": -3.2,
       "motivos": [
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 91473,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.62,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11,
+      "tendencia": 0.1,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 78445,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 28.62,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 12.9,
+      "tendencia": 0.07,
+      "motivos": [
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -2862,30 +2971,71 @@
       ]
     },
     {
-      "id": 123738,
+      "id": 82775,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.53,
+      "posicao": "LAT",
+      "indiceDiferencial": 28.51,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.5,
-      "tendencia": 1.97,
+      "teto": 14.7,
+      "tendencia": -2.0,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 68920,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 28.48,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 12,
+      "tendencia": -1.83,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 114208,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 28.44,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.8,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 103388,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.43,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 6.7,
+      "tendencia": 4.43,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 147088,
+      "id": 89840,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 28.41,
+      "posicao": "ATA",
+      "indiceDiferencial": 28.42,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.2,
-      "tendencia": 1.73,
+      "teto": 12.3,
+      "tendencia": -3.9,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -2904,59 +3054,45 @@
       ]
     },
     {
-      "id": 78478,
+      "id": 124526,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 28.35,
+      "posicao": "LAT",
+      "indiceDiferencial": 28.3,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": 1.33,
+      "teto": 11.9,
+      "tendencia": 0.7,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 87225,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 28.31,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.7,
-      "tendencia": 4.0,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 92696,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.24,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.7,
-      "tendencia": -1.83,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 107256,
+      "id": 116447,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 28.24,
+      "indiceDiferencial": 28.25,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 13.4,
-      "tendencia": -2.97,
+      "teto": 10.1,
+      "tendencia": -1.1,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 98720,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 28.22,
+      "perfilExplosao": "Promessa",
+      "explosoes": 0,
+      "teto": 8.8,
+      "tendencia": 5.57,
+      "motivos": [
+        "momento positivo",
+        "Promessa"
       ]
     },
     {
@@ -2970,20 +3106,6 @@
       "tendencia": -0.47,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 113359,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 28.21,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.2,
-      "tendencia": 2.53,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3002,28 +3124,14 @@
       ]
     },
     {
-      "id": 82775,
+      "id": 115914,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 28.16,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.7,
-      "tendencia": -2.47,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 100898,
-      "nome": null,
-      "posicao": "LAT",
+      "posicao": "MEI",
       "indiceDiferencial": 28.1,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": 3.0,
+      "teto": 10,
+      "tendencia": 0.47,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -3044,14 +3152,14 @@
       ]
     },
     {
-      "id": 71536,
+      "id": 95332,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 28.09,
+      "posicao": "ATA",
+      "indiceDiferencial": 28.08,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.9,
-      "tendencia": -1.57,
+      "teto": 10.5,
+      "tendencia": -2.43,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -3072,20 +3180,6 @@
       ]
     },
     {
-      "id": 68708,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 28.05,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.5,
-      "tendencia": 2.0,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 97520,
       "nome": null,
       "posicao": "MEI",
@@ -3100,44 +3194,44 @@
       ]
     },
     {
-      "id": 113397,
+      "id": 114040,
       "nome": null,
       "posicao": "ATA",
       "indiceDiferencial": 28.05,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11,
-      "tendencia": -1.33,
+      "teto": 13.1,
+      "tendencia": -3.57,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 106822,
+      "id": 113359,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 28.03,
+      "indiceDiferencial": 28.01,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14.1,
-      "tendencia": -4.0,
+      "teto": 8.2,
+      "tendencia": 2.27,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 105089,
+      "id": 147088,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 28.02,
+      "posicao": "MEI",
+      "indiceDiferencial": 28.01,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.3,
-      "tendencia": -1.7,
+      "teto": 9.2,
+      "tendencia": 1.2,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3170,31 +3264,45 @@
       ]
     },
     {
-      "id": 90285,
+      "id": 88393,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 27.93,
+      "posicao": "LAT",
+      "indiceDiferencial": 27.94,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8,
-      "tendencia": 1.7,
+      "teto": 12.3,
+      "tendencia": -0.2,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 132412,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 27.92,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 12.5,
+      "tendencia": 1.23,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 98720,
+      "id": 84558,
       "nome": null,
-      "posicao": "LAT",
+      "posicao": "MEI",
       "indiceDiferencial": 27.92,
-      "perfilExplosao": "Promessa",
+      "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.8,
-      "tendencia": 5.17,
+      "teto": 12.4,
+      "tendencia": -2.33,
       "motivos": [
-        "momento positivo",
-        "Promessa"
+        "momento em queda",
+        "Baixo_Risco"
       ]
     },
     {
@@ -3206,34 +3314,6 @@
       "explosoes": 0,
       "teto": 11.2,
       "tendencia": 0.93,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 95466,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 27.91,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.2,
-      "tendencia": -2.27,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105175,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 27.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.5,
-      "tendencia": 3.8,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -3254,6 +3334,20 @@
       ]
     },
     {
+      "id": 90309,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 27.87,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.5,
+      "tendencia": 0.03,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 101594,
       "nome": null,
       "posicao": "MEI",
@@ -3268,16 +3362,16 @@
       ]
     },
     {
-      "id": 132264,
+      "id": 105990,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 27.79,
+      "posicao": "ZAG",
+      "indiceDiferencial": 27.8,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.8,
-      "tendencia": -2.53,
+      "teto": 9,
+      "tendencia": 3.47,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3290,20 +3384,6 @@
       "explosoes": 0,
       "teto": 13.9,
       "tendencia": -4.8,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 84558,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.74,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12.4,
-      "tendencia": -2.57,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -3324,14 +3404,14 @@
       ]
     },
     {
-      "id": 87470,
+      "id": 101002,
       "nome": null,
-      "posicao": "MEI",
+      "posicao": "ATA",
       "indiceDiferencial": 27.7,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10,
-      "tendencia": -0.07,
+      "teto": 9.4,
+      "tendencia": -0.1,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -3352,72 +3432,86 @@
       ]
     },
     {
-      "id": 90309,
+      "id": 87225,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 27.61,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.7,
+      "tendencia": 3.07,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 100842,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 27.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.2,
+      "tendencia": 1.9,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 100742,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 27.51,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.3,
+      "tendencia": -0.17,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 85403,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 27.45,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.6,
+      "tendencia": 0.5,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 87258,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 27.68,
+      "indiceDiferencial": 27.43,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": -0.23,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 124526,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 27.57,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.9,
-      "tendencia": -0.27,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 141995,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.41,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.8,
-      "tendencia": 0.83,
+      "teto": 7.5,
+      "tendencia": 1.57,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 122394,
+      "id": 97321,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.39,
+      "posicao": "ATA",
+      "indiceDiferencial": 27.36,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 12.2,
-      "tendencia": -2.83,
+      "teto": 12.7,
+      "tendencia": -4.07,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 78850,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 27.35,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": 3.6,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -3436,56 +3530,28 @@
       ]
     },
     {
-      "id": 80196,
+      "id": 142279,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 27.3,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9,
-      "tendencia": -1.2,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 141754,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.29,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 14.3,
-      "tendencia": -5.2,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 83433,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.26,
+      "indiceDiferencial": 27.31,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 9.7,
-      "tendencia": -2.0,
+      "tendencia": -0.27,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 71123,
+      "id": 92696,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.22,
+      "posicao": "ATA",
+      "indiceDiferencial": 27.29,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.9,
-      "tendencia": -1.67,
+      "teto": 11.7,
+      "tendencia": -3.1,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -3519,14 +3585,28 @@
       ]
     },
     {
-      "id": 109573,
+      "id": 102911,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 27.15,
+      "indiceDiferencial": 27.12,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.5,
-      "tendencia": 1.87,
+      "teto": 7,
+      "tendencia": 0.7,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 99274,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 27.12,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.8,
+      "tendencia": 2.3,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -3547,85 +3627,72 @@
       ]
     },
     {
-      "id": 103445,
+      "id": 106822,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 27.1,
+      "posicao": "MEI",
+      "indiceDiferencial": 27.11,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 13,
-      "tendencia": -4.73,
+      "teto": 14.1,
+      "tendencia": -5.23,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 123360,
+      "id": 113113,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.05,
+      "posicao": "LAT",
+      "indiceDiferencial": 27.09,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": -0.4,
+      "teto": 11.4,
+      "tendencia": -0.37,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 91473,
+      "id": 89256,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 27.03,
+      "indiceDiferencial": 27.08,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11,
-      "tendencia": -2.03,
+      "teto": 12.1,
+      "tendencia": -4.8,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 126182,
+      "id": 84816,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 27.01,
+      "posicao": "LAT",
+      "indiceDiferencial": 27.07,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.2,
-      "tendencia": 0.93,
+      "teto": 9.9,
+      "tendencia": 1.2,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 106294,
+      "id": 87470,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 27.01,
+      "indiceDiferencial": 27.07,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.7,
-      "tendencia": 0.4,
+      "teto": 10,
+      "tendencia": -0.9,
       "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 141400,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.98,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.6,
-      "tendencia": 0,
-      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3633,42 +3700,55 @@
       "id": 143153,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 26.97,
+      "indiceDiferencial": 27.02,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 11,
-      "tendencia": -2.77,
+      "tendencia": -2.7,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 118844,
+      "id": 84339,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 26.96,
+      "posicao": "LAT",
+      "indiceDiferencial": 26.95,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 16.7,
-      "tendencia": -8.87,
+      "teto": 9.5,
+      "tendencia": -0.2,
       "motivos": [
-        "teto 16.7",
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 90768,
+      "id": 106294,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 26.86,
+      "posicao": "MEI",
+      "indiceDiferencial": 26.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.2,
-      "tendencia": 2.0,
+      "teto": 8.7,
+      "tendencia": 0.23,
       "motivos": [
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106708,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 26.88,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 14,
+      "tendencia": -3.43,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3687,56 +3767,56 @@
       ]
     },
     {
-      "id": 93716,
+      "id": 123360,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 26.74,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": 0.97,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 91772,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 26.74,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.9,
-      "tendencia": 0.63,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 84339,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 26.67,
+      "posicao": "MEI",
+      "indiceDiferencial": 26.8,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 9.5,
-      "tendencia": -0.57,
+      "tendencia": -0.73,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 103388,
+      "id": 72493,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.61,
+      "posicao": "LAT",
+      "indiceDiferencial": 26.79,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.7,
-      "tendencia": 2.0,
+      "teto": 10.3,
+      "tendencia": 0.4,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 130843,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 26.71,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.2,
+      "tendencia": 1.8,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 126182,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 26.66,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.2,
+      "tendencia": 0.47,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -3756,30 +3836,72 @@
       ]
     },
     {
-      "id": 85403,
+      "id": 78248,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.53,
+      "posicao": "ZAG",
+      "indiceDiferencial": 26.57,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.6,
-      "tendencia": 0.93,
+      "teto": 10,
+      "tendencia": 2.43,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 142890,
+      "id": 108131,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 26.46,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 6.7,
+      "tendencia": 2.8,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 106593,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 26.45,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.5,
+      "tendencia": 2.8,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 78478,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 26.4,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.5,
-      "tendencia": 1.93,
+      "teto": 9.5,
+      "tendencia": -1.27,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104811,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 26.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7,
+      "tendencia": -0.3,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3798,72 +3920,43 @@
       ]
     },
     {
-      "id": 100842,
+      "id": 141995,
       "nome": null,
-      "posicao": "ZAG",
+      "posicao": "MEI",
       "indiceDiferencial": 26.34,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.2,
-      "tendencia": 1.9,
+      "teto": 8.8,
+      "tendencia": -0.6,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 109401,
+      "id": 141339,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 26.33,
+      "indiceDiferencial": 26.31,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.7,
-      "tendencia": -1.77,
+      "teto": 10.7,
+      "tendencia": 0,
       "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 142279,
+      "id": 137542,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.33,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": -1.57,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 126189,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.32,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.9,
-      "tendencia": 2.47,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 111682,
-      "nome": null,
-      "posicao": "MEI",
+      "posicao": "ATA",
       "indiceDiferencial": 26.3,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.1,
-      "tendencia": 0.1,
+      "teto": 8,
+      "tendencia": -0.47,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3896,28 +3989,56 @@
       ]
     },
     {
-      "id": 70592,
+      "id": 110510,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 26.27,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.3,
+      "tendencia": 0.77,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 86859,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 26.27,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.5,
-      "tendencia": -2.5,
+      "teto": 9.5,
+      "tendencia": -3.1,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 101405,
+      "id": 71123,
       "nome": null,
       "posicao": "MEI",
+      "indiceDiferencial": 26.27,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.9,
+      "tendencia": -2.93,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 90768,
+      "nome": null,
+      "posicao": "ZAG",
       "indiceDiferencial": 26.24,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.2,
-      "tendencia": 0.97,
+      "teto": 9.2,
+      "tendencia": 1.17,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -3934,6 +4055,20 @@
       "tendencia": 3.2,
       "motivos": [
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 90285,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 26.22,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8,
+      "tendencia": -0.57,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -3966,6 +4101,21 @@
       ]
     },
     {
+      "id": 96610,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 26.16,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 15.8,
+      "tendencia": -9.97,
+      "motivos": [
+        "teto 15.8",
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 147883,
       "nome": null,
       "posicao": "ATA",
@@ -3979,42 +4129,42 @@
       ]
     },
     {
-      "id": 130843,
+      "id": 124239,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 26.11,
+      "posicao": "ATA",
+      "indiceDiferencial": 26.06,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.2,
-      "tendencia": 2.67,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 102911,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 26.02,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7,
-      "tendencia": -0.77,
+      "teto": 8.7,
+      "tendencia": -1.53,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 104084,
+      "id": 132580,
       "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 26.01,
+      "posicao": "ATA",
+      "indiceDiferencial": 26.03,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.2,
-      "tendencia": 1.13,
+      "teto": 6.1,
+      "tendencia": 1.2,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101393,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 25.98,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.5,
+      "tendencia": 1.57,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4034,6 +4184,34 @@
       ]
     },
     {
+      "id": 92180,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 25.95,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.46,
+      "tendencia": 3.18,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 69012,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 25.95,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.5,
+      "tendencia": -0.33,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 99366,
       "nome": null,
       "posicao": "TEC",
@@ -4042,34 +4220,6 @@
       "explosoes": 0,
       "teto": 9.9,
       "tendencia": 2.67,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 37656,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 25.89,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.2,
-      "tendencia": 0.97,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 104075,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 25.84,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.4,
-      "tendencia": 1.03,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4090,28 +4240,28 @@
       ]
     },
     {
-      "id": 100987,
+      "id": 72460,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 25.79,
+      "indiceDiferencial": 25.81,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.4,
-      "tendencia": 1.23,
+      "teto": 9.7,
+      "tendencia": -3.93,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 99274,
+      "id": 97095,
       "nome": null,
       "posicao": "ZAG",
-      "indiceDiferencial": 25.74,
+      "indiceDiferencial": 25.78,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.8,
-      "tendencia": 0.47,
+      "teto": 8.5,
+      "tendencia": 2.97,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4142,6 +4292,20 @@
       "tendencia": -0.6,
       "motivos": [
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 107173,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.69,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.9,
+      "tendencia": 1.63,
+      "motivos": [
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4215,6 +4379,20 @@
       ]
     },
     {
+      "id": 110598,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 25.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.3,
+      "tendencia": -0.67,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 105584,
       "nome": null,
       "posicao": "LAT",
@@ -4225,34 +4403,6 @@
       "tendencia": -5.17,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 86859,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 25.55,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": -2.4,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 106593,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 25.54,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.2,
-      "tendencia": 2.97,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4285,62 +4435,6 @@
       ]
     },
     {
-      "id": 100804,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 25.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": 3.13,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 100742,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 25.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 6,
-      "tendencia": -0.4,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 96652,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 25.49,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.4,
-      "tendencia": 1.9,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 77777,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 25.47,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.5,
-      "tendencia": 2.83,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 80313,
       "nome": null,
       "posicao": "LAT",
@@ -4355,29 +4449,44 @@
       ]
     },
     {
-      "id": 78248,
+      "id": 105175,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 25.45,
+      "posicao": "LAT",
+      "indiceDiferencial": 25.43,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10,
-      "tendencia": 0.93,
+      "teto": 8.5,
+      "tendencia": 0.5,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 114208,
+      "id": 100804,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 25.43,
+      "posicao": "ZAG",
+      "indiceDiferencial": 25.42,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.6,
-      "tendencia": 0,
+      "teto": 8,
+      "tendencia": 3.03,
       "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 70592,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.4,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.5,
+      "tendencia": -3.67,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -4410,6 +4519,48 @@
       ]
     },
     {
+      "id": 78850,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 25.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8,
+      "tendencia": 0.97,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 111682,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.38,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.1,
+      "tendencia": -1.13,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 147090,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 25.36,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.2,
+      "tendencia": 3.47,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 117909,
       "nome": null,
       "posicao": "ATA",
@@ -4423,27 +4574,14 @@
       ]
     },
     {
-      "id": 141339,
+      "id": 101405,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 25.35,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.34,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.5,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 145404,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 25.27,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.4,
-      "tendencia": -1.73,
+      "teto": 7.2,
+      "tendencia": -0.23,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -4463,6 +4601,20 @@
       ]
     },
     {
+      "id": 83433,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.26,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.7,
+      "tendencia": -4.67,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 114405,
       "nome": null,
       "posicao": "ATA",
@@ -4477,16 +4629,16 @@
       ]
     },
     {
-      "id": 106708,
+      "id": 108683,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 25.23,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 14,
-      "tendencia": -5.63,
+      "teto": 5.9,
+      "tendencia": 0.97,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4504,6 +4656,33 @@
       ]
     },
     {
+      "id": 37656,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 25.16,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.2,
+      "tendencia": 0.0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 123869,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 25.16,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.3,
+      "tendencia": 0.23,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 106104,
       "nome": null,
       "posicao": "ATA",
@@ -4512,6 +4691,20 @@
       "explosoes": 0,
       "teto": 8.2,
       "tendencia": -2.23,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 85048,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 25.14,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.3,
+      "tendencia": -1.73,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -4532,16 +4725,16 @@
       ]
     },
     {
-      "id": 115479,
+      "id": 70944,
       "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 25.12,
+      "posicao": "MEI",
+      "indiceDiferencial": 25.11,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.45,
-      "tendencia": 2.08,
+      "teto": 5.2,
+      "tendencia": -0.07,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -4588,30 +4781,16 @@
       ]
     },
     {
-      "id": 105157,
+      "id": 111690,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 25.04,
+      "posicao": "GOL",
+      "indiceDiferencial": 25.01,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5.3,
-      "tendencia": 1.4,
+      "teto": 10.2,
+      "tendencia": 1.47,
       "motivos": [
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 84816,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 24.99,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.9,
-      "tendencia": -1.57,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -4624,6 +4803,34 @@
       "explosoes": 0,
       "teto": 6.5,
       "tendencia": 0.03,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 142890,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 24.97,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 6.5,
+      "tendencia": 0.03,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 105047,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 24.97,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.4,
+      "tendencia": 1.53,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4686,14 +4893,28 @@
       ]
     },
     {
-      "id": 87742,
+      "id": 102906,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 24.91,
+      "posicao": "GOL",
+      "indiceDiferencial": 24.88,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5.8,
-      "tendencia": 0.7,
+      "teto": 11.5,
+      "tendencia": 1.57,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 115479,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 24.83,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.45,
+      "tendencia": 1.69,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4703,25 +4924,11 @@
       "id": 146375,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 24.89,
+      "indiceDiferencial": 24.83,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 5.7,
-      "tendencia": 1.77,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 70360,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 24.87,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.9,
-      "tendencia": 2.0,
+      "tendencia": 0.03,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4736,20 +4943,6 @@
       "explosoes": 0,
       "teto": 8,
       "tendencia": 2.23,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105990,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 24.8,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7,
-      "tendencia": 1.6,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4784,6 +4977,34 @@
       ]
     },
     {
+      "id": 78855,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 24.77,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.4,
+      "tendencia": 0.67,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 111683,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 24.75,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.5,
+      "tendencia": -0.27,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 101807,
       "nome": null,
       "posicao": "MEI",
@@ -4798,28 +5019,14 @@
       ]
     },
     {
-      "id": 97341,
+      "id": 100987,
       "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 24.73,
+      "posicao": "MEI",
+      "indiceDiferencial": 24.67,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.96,
-      "tendencia": 1.01,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 90061,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 24.68,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 12,
-      "tendencia": -4.23,
+      "teto": 6.4,
+      "tendencia": -0.27,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -4840,14 +5047,41 @@
       ]
     },
     {
-      "id": 105047,
+      "id": 114323,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 24.55,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.5,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 91772,
       "nome": null,
       "posicao": "ZAG",
       "indiceDiferencial": 24.55,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.4,
-      "tendencia": 0.97,
+      "teto": 11.9,
+      "tendencia": -2.3,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 126977,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 24.54,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.19,
+      "tendencia": 1.59,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -4895,30 +5129,16 @@
       ]
     },
     {
-      "id": 72460,
+      "id": 92182,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 24.53,
+      "posicao": "ZAG",
+      "indiceDiferencial": 24.51,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": -3.97,
+      "teto": 8.1,
+      "tendencia": 3.37,
       "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 39656,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 24.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7.9,
-      "tendencia": -2.1,
-      "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -4937,6 +5157,48 @@
       ]
     },
     {
+      "id": 100898,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 24.45,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.5,
+      "tendencia": -1.87,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 98617,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 24.44,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.7,
+      "tendencia": 3.7,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 90370,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 24.41,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 4.3,
+      "tendencia": 1.63,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 128433,
       "nome": null,
       "posicao": "MEI",
@@ -4951,72 +5213,72 @@
       ]
     },
     {
-      "id": 125803,
+      "id": 100848,
       "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 24.29,
+      "posicao": "LAT",
+      "indiceDiferencial": 24.31,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 11.7,
-      "tendencia": 0.57,
+      "teto": 9.7,
+      "tendencia": -2.27,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 70944,
+      "id": 126189,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 24.3,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.9,
+      "tendencia": -0.23,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 82730,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 24.3,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.5,
+      "tendencia": -2.53,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104084,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 24.26,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.2,
+      "tendencia": -1.2,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 105157,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 24.21,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5.2,
-      "tendencia": -1.27,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 62977,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 24.19,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.8,
-      "tendencia": 0.8,
+      "teto": 5.3,
+      "tendencia": 0.3,
       "motivos": [
         "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 117404,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 24.18,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.1,
-      "tendencia": 2.6,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 122660,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 24.15,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": -1.0,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5035,14 +5297,14 @@
       ]
     },
     {
-      "id": 92180,
+      "id": 88037,
       "nome": null,
       "posicao": "TEC",
       "indiceDiferencial": 24.12,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.46,
-      "tendencia": 0.74,
+      "teto": 7.92,
+      "tendencia": 2.38,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -5077,30 +5339,29 @@
       ]
     },
     {
-      "id": 100848,
+      "id": 99267,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 24.04,
+      "posicao": "MEI",
+      "indiceDiferencial": 24.02,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": -2.63,
+      "teto": 6.9,
+      "tendencia": 0,
       "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 77485,
+      "id": 39656,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 24.03,
+      "indiceDiferencial": 24.02,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5,
-      "tendencia": 0.37,
+      "teto": 7.9,
+      "tendencia": -2.73,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5119,58 +5380,30 @@
       ]
     },
     {
-      "id": 91607,
+      "id": 92273,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 23.95,
+      "posicao": "TEC",
+      "indiceDiferencial": 23.98,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5.5,
-      "tendencia": -0.93,
+      "teto": 9.85,
+      "tendencia": 0.13,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 132580,
+      "id": 70360,
       "nome": null,
       "posicao": "ATA",
-      "indiceDiferencial": 23.95,
+      "indiceDiferencial": 23.97,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.1,
-      "tendencia": -1.57,
+      "teto": 3.9,
+      "tendencia": 0.8,
       "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101002,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 23.95,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.4,
-      "tendencia": -3.43,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 81720,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 23.94,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.2,
-      "tendencia": -0.63,
-      "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5189,6 +5422,34 @@
       ]
     },
     {
+      "id": 141400,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 23.93,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.6,
+      "tendencia": -4.07,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 142086,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 23.92,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.4,
+      "tendencia": 0.8,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 112017,
       "nome": null,
       "posicao": "MEI",
@@ -5199,6 +5460,20 @@
       "tendencia": -2.6,
       "motivos": [
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 77777,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 23.9,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 4.5,
+      "tendencia": 0.73,
+      "motivos": [
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5217,30 +5492,30 @@
       ]
     },
     {
-      "id": 101393,
+      "id": 104075,
       "nome": null,
       "posicao": "ZAG",
-      "indiceDiferencial": 23.85,
+      "indiceDiferencial": 23.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.5,
-      "tendencia": 0.4,
+      "teto": 10.4,
+      "tendencia": -1.67,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 97095,
+      "id": 69140,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 23.83,
+      "posicao": "MEI",
+      "indiceDiferencial": 23.81,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.5,
-      "tendencia": 0.37,
+      "teto": 5.7,
+      "tendencia": -0.67,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5254,34 +5529,6 @@
       "teto": 8.2,
       "tendencia": 0,
       "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 127273,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 23.8,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.78,
-      "tendencia": 1.64,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 108683,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 23.77,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.9,
-      "tendencia": -0.93,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5300,14 +5547,27 @@
       ]
     },
     {
-      "id": 123869,
+      "id": 123016,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 23.74,
+      "posicao": "MEI",
+      "indiceDiferencial": 23.75,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10.3,
-      "tendencia": -1.67,
+      "teto": 5,
+      "tendencia": 0.0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 145404,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 23.72,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.4,
+      "tendencia": -3.8,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -5328,28 +5588,14 @@
       ]
     },
     {
-      "id": 104519,
+      "id": 87742,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 23.7,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 6.9,
-      "tendencia": -2.1,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 110598,
-      "nome": null,
-      "posicao": "ATA",
       "indiceDiferencial": 23.69,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.3,
-      "tendencia": -3.2,
+      "teto": 5.8,
+      "tendencia": -0.93,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -5394,20 +5640,6 @@
       "tendencia": -0.07,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 104027,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 23.64,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8.2,
-      "tendencia": 1.44,
-      "motivos": [
-        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -5466,6 +5698,20 @@
       ]
     },
     {
+      "id": 106907,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 23.5,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.85,
+      "tendencia": 3.89,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 132274,
       "nome": null,
       "posicao": "MEI",
@@ -5480,14 +5726,14 @@
       ]
     },
     {
-      "id": 87008,
+      "id": 108713,
       "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 23.45,
+      "posicao": "ATA",
+      "indiceDiferencial": 23.46,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.9,
-      "tendencia": -0.9,
+      "teto": 4.7,
+      "tendencia": -0.73,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -5508,14 +5754,41 @@
       ]
     },
     {
-      "id": 126977,
+      "id": 114801,
       "nome": null,
-      "posicao": "TEC",
+      "posicao": "ATA",
+      "indiceDiferencial": 23.43,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.1,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 81720,
+      "nome": null,
+      "posicao": "ATA",
       "indiceDiferencial": 23.41,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 9.19,
-      "tendencia": 0.08,
+      "teto": 5.2,
+      "tendencia": -1.33,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104470,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 23.39,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 6.4,
+      "tendencia": 0.03,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -5563,19 +5836,6 @@
       ]
     },
     {
-      "id": 142086,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 23.32,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.4,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 73318,
       "nome": null,
       "posicao": "LAT",
@@ -5589,20 +5849,6 @@
       ]
     },
     {
-      "id": 69140,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 23.31,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.7,
-      "tendencia": -1.33,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 116461,
       "nome": null,
       "posicao": "LAT",
@@ -5611,6 +5857,20 @@
       "explosoes": 0,
       "teto": 7.8,
       "tendencia": -1.57,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 125803,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 23.31,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 11.7,
+      "tendencia": -0.73,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -5645,14 +5905,14 @@
       ]
     },
     {
-      "id": 104470,
+      "id": 91607,
       "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 23.24,
+      "posicao": "ATA",
+      "indiceDiferencial": 23.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.4,
-      "tendencia": -0.17,
+      "teto": 5.5,
+      "tendencia": -1.93,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -5687,34 +5947,6 @@
       ]
     },
     {
-      "id": 68928,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 23.13,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7.6,
-      "tendencia": 0.07,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105214,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 23.13,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5.7,
-      "tendencia": -1.57,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 90608,
       "nome": null,
       "posicao": "ATA",
@@ -5743,41 +5975,13 @@
       ]
     },
     {
-      "id": 110510,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 23.07,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": -2.1,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 90370,
+      "id": 77485,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 23.06,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.3,
-      "tendencia": -0.17,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 111690,
-      "nome": null,
-      "posicao": "GOL",
       "indiceDiferencial": 23.02,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 10,
+      "teto": 5,
       "tendencia": -0.97,
       "motivos": [
         "momento em queda",
@@ -5799,44 +6003,44 @@
       ]
     },
     {
-      "id": 108713,
+      "id": 68928,
       "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 22.96,
+      "posicao": "GOL",
+      "indiceDiferencial": 22.95,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 4.7,
-      "tendencia": -1.4,
+      "teto": 7.6,
+      "tendencia": -0.17,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 137542,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 22.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": -3.33,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 88037,
+      "id": 127273,
       "nome": null,
       "posicao": "TEC",
+      "indiceDiferencial": 22.92,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.78,
+      "tendencia": 0.46,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 131832,
+      "nome": null,
+      "posicao": "MEI",
       "indiceDiferencial": 22.86,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 7.92,
-      "tendencia": 0.7,
+      "teto": 4.7,
+      "tendencia": -0.87,
       "motivos": [
-        "momento positivo",
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -5869,20 +6073,6 @@
       ]
     },
     {
-      "id": 102906,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 22.85,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": -1.13,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 130612,
       "nome": null,
       "posicao": "ATA",
@@ -5891,20 +6081,6 @@
       "explosoes": 0,
       "teto": 3.4,
       "tendencia": 1.47,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 123016,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 22.82,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5,
-      "tendencia": 0.43,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -5921,6 +6097,19 @@
       "tendencia": -2.3,
       "motivos": [
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104649,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 22.79,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.8,
+      "tendencia": 0,
+      "motivos": [
         "Baixo_Risco"
       ]
     },
@@ -5994,6 +6183,20 @@
       ]
     },
     {
+      "id": 37457,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 22.71,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 9.31,
+      "tendencia": -0.98,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 140906,
       "nome": null,
       "posicao": "ATA",
@@ -6003,20 +6206,6 @@
       "teto": 6.2,
       "tendencia": 0,
       "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 92273,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 22.69,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.85,
-      "tendencia": -1.59,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6035,28 +6224,14 @@
       ]
     },
     {
-      "id": 104811,
+      "id": 104519,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 22.68,
+      "indiceDiferencial": 22.64,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 6.5,
-      "tendencia": -3.03,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 70666,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 22.66,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7.7,
-      "tendencia": -2.0,
+      "teto": 6.9,
+      "tendencia": -3.5,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -6077,55 +6252,42 @@
       ]
     },
     {
-      "id": 110750,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 22.61,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.7,
-      "tendencia": -2.53,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 123689,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 22.6,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 78855,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 22.57,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.4,
-      "tendencia": -2.27,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 104693,
       "nome": null,
       "posicao": "MEI",
-      "indiceDiferencial": 22.56,
+      "indiceDiferencial": 22.59,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 5.2,
-      "tendencia": -0.13,
+      "tendencia": -0.1,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104027,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 22.57,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.2,
+      "tendencia": 0.02,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 124270,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 22.51,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3.7,
+      "tendencia": -0.27,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -6185,16 +6347,43 @@
       ]
     },
     {
-      "id": 108131,
+      "id": 103295,
       "nome": null,
-      "posicao": "ATA",
+      "posicao": "MEI",
       "indiceDiferencial": 22.29,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 3.3,
-      "tendencia": 0.87,
+      "teto": 2.7,
+      "tendencia": 0.5,
       "motivos": [
         "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101908,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 22.27,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 10.4,
+      "tendencia": -3.73,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 150180,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 22.26,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 4.7,
+      "tendencia": 0,
+      "motivos": [
         "Baixo_Risco"
       ]
     },
@@ -6213,16 +6402,16 @@
       ]
     },
     {
-      "id": 131832,
+      "id": 68952,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 22.23,
+      "posicao": "ATA",
+      "indiceDiferencial": 22.2,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 4.7,
-      "tendencia": -1.7,
+      "teto": 3.9,
+      "tendencia": 0.1,
       "motivos": [
-        "momento em queda",
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -6267,20 +6456,6 @@
       ]
     },
     {
-      "id": 141776,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 22.16,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.2,
-      "tendencia": 0.4,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 124757,
       "nome": null,
       "posicao": "ATA",
@@ -6294,6 +6469,33 @@
       ]
     },
     {
+      "id": 101352,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 22.1,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 4.5,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 70666,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 22.08,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.7,
+      "tendencia": -2.77,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 91204,
       "nome": null,
       "posicao": "GOL",
@@ -6303,6 +6505,20 @@
       "teto": 11,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 40990,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 21.98,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.77,
+      "tendencia": 0.28,
+      "motivos": [
+        "momento positivo",
         "Baixo_Risco"
       ]
     },
@@ -6335,6 +6551,20 @@
       ]
     },
     {
+      "id": 128177,
+      "nome": null,
+      "posicao": "TEC",
+      "indiceDiferencial": 21.86,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.3,
+      "tendencia": 3.36,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 110605,
       "nome": null,
       "posicao": "MEI",
@@ -6348,20 +6578,6 @@
       ]
     },
     {
-      "id": 68952,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 21.82,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.9,
-      "tendencia": -0.4,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 95620,
       "nome": null,
       "posicao": "ZAG",
@@ -6370,20 +6586,6 @@
       "explosoes": 0,
       "teto": 5,
       "tendencia": 1.37,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 69783,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 21.77,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5,
-      "tendencia": 3.03,
       "motivos": [
         "momento positivo",
         "Baixo_Risco"
@@ -6404,6 +6606,33 @@
       ]
     },
     {
+      "id": 111760,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 21.75,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3.9,
+      "tendencia": 0.17,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 140484,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 21.75,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 130232,
       "nome": null,
       "posicao": "LAT",
@@ -6413,6 +6642,33 @@
       "teto": 7.5,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 88479,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 21.7,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 4,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 51413,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 21.62,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 7.8,
+      "tendencia": -0.5,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6430,6 +6686,48 @@
       ]
     },
     {
+      "id": 87008,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 21.62,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.9,
+      "tendencia": -3.33,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 89368,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 21.61,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 1.6,
+      "tendencia": 0.1,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 133543,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 21.59,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 2.7,
+      "tendencia": 0.57,
+      "motivos": [
+        "momento positivo",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 91130,
       "nome": null,
       "posicao": "ATA",
@@ -6439,6 +6737,20 @@
       "teto": 4.8,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 117404,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 21.58,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8.1,
+      "tendencia": -0.87,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -6479,19 +6791,6 @@
       "explosoes": 0,
       "teto": 4.7,
       "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101237,
-      "nome": "Niclas Eliasson Santana",
-      "posicao": "ATA",
-      "indiceDiferencial": 21.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
       "motivos": [
         "Baixo_Risco"
       ]
@@ -6810,34 +7109,6 @@
       ]
     },
     {
-      "id": 89368,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 21.47,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 1.5,
-      "tendencia": 0.03,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 103295,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 21.46,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2.7,
-      "tendencia": -0.6,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 130620,
       "nome": null,
       "posicao": "MEI",
@@ -6876,6 +7147,32 @@
       "tendencia": -5.47,
       "motivos": [
         "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 123445,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 21.41,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.2,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 95541,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 21.41,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.2,
+      "tendencia": 0,
+      "motivos": [
         "Baixo_Risco"
       ]
     },
@@ -6920,20 +7217,6 @@
       ]
     },
     {
-      "id": 107173,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 21.38,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2.7,
-      "tendencia": -0.7,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 125488,
       "nome": null,
       "posicao": "ZAG",
@@ -6961,13 +7244,13 @@
       ]
     },
     {
-      "id": 95541,
+      "id": 103967,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 21.33,
+      "posicao": "ATA",
+      "indiceDiferencial": 21.32,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 5.1,
+      "teto": 2.9,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -6983,6 +7266,20 @@
       "teto": 8.8,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 122660,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 21.28,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8,
+      "tendencia": -4.83,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -7028,47 +7325,6 @@
       ]
     },
     {
-      "id": 37457,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 21.2,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 9.31,
-      "tendencia": -3.0,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 111760,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 21.19,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.9,
-      "tendencia": -0.57,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 133543,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 21.16,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 145379,
       "nome": null,
       "posicao": "ATA",
@@ -7090,20 +7346,6 @@
       "explosoes": 0,
       "teto": 7,
       "tendencia": -1.6,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 111683,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 21.13,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": -3.43,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
@@ -7132,32 +7374,6 @@
       "explosoes": 0,
       "teto": 4.1,
       "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 150180,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 21.01,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 106843,
-      "nome": "Dylan Felipe Borrero Caicedo",
-      "posicao": "MEI",
-      "indiceDiferencial": 21.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
       "motivos": [
         "Baixo_Risco"
       ]
@@ -7644,19 +7860,6 @@
       ]
     },
     {
-      "id": 77510,
-      "nome": "Frederico Rodrigues de Paula Santos",
-      "posicao": "MEI",
-      "indiceDiferencial": 21.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 86711,
       "nome": "Richard Cândido Coelho",
       "posicao": "MEI",
@@ -7665,45 +7868,6 @@
       "explosoes": 0,
       "teto": 0,
       "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 86777,
-      "nome": "Danilo Barbosa da Silva",
-      "posicao": "MEI",
-      "indiceDiferencial": 21.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 147090,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 21.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 97868,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 21.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5,
-      "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
       ]
@@ -7792,6 +7956,19 @@
       ]
     },
     {
+      "id": 84428,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 20.9,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 89637,
       "nome": null,
       "posicao": "MEI",
@@ -7820,6 +7997,19 @@
       ]
     },
     {
+      "id": 117314,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 20.87,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3.9,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 99228,
       "nome": null,
       "posicao": "MEI",
@@ -7830,19 +8020,6 @@
       "tendencia": -1.83,
       "motivos": [
         "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101352,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 20.85,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 4.5,
-      "tendencia": 0,
-      "motivos": [
         "Baixo_Risco"
       ]
     },
@@ -7861,30 +8038,29 @@
       ]
     },
     {
-      "id": 124270,
+      "id": 123689,
       "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 20.81,
+      "posicao": "LAT",
+      "indiceDiferencial": 20.82,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 3.7,
-      "tendencia": -0.87,
+      "teto": 7,
+      "tendencia": -2.37,
       "motivos": [
         "momento em queda",
         "Baixo_Risco"
       ]
     },
     {
-      "id": 40990,
+      "id": 102255,
       "nome": null,
-      "posicao": "TEC",
+      "posicao": "MEI",
       "indiceDiferencial": 20.77,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 8.77,
-      "tendencia": -1.33,
+      "teto": 4.4,
+      "tendencia": 0,
       "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -7956,6 +8132,20 @@
       ]
     },
     {
+      "id": 97868,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 20.64,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.7,
+      "tendencia": -1.23,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 150197,
       "nome": null,
       "posicao": "ZAG",
@@ -7963,47 +8153,6 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 6.4,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 82730,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 20.6,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 11.5,
-      "tendencia": -7.47,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101729,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 20.56,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 1.2,
-      "tendencia": 0.8,
-      "motivos": [
-        "momento positivo",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 114801,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 20.55,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.5,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -8037,19 +8186,6 @@
       ]
     },
     {
-      "id": 114323,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 20.39,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.3,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 142764,
       "nome": null,
       "posicao": "ATA",
@@ -8059,20 +8195,6 @@
       "teto": 3.3,
       "tendencia": 0,
       "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 105518,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 20.38,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.5,
-      "tendencia": -1.9,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -8185,6 +8307,33 @@
       ]
     },
     {
+      "id": 100596,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 20.21,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3.7,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 105518,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 20.2,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 3.5,
+      "tendencia": -2.13,
+      "motivos": [
+        "momento em queda",
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 145400,
       "nome": null,
       "posicao": "LAT",
@@ -8194,20 +8343,6 @@
       "teto": 5.5,
       "tendencia": 0,
       "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 101908,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 20.12,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 10.4,
-      "tendencia": -6.6,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -8226,13 +8361,26 @@
       ]
     },
     {
-      "id": 103967,
+      "id": 141405,
       "nome": null,
-      "posicao": "ATA",
+      "posicao": "LAT",
       "indiceDiferencial": 20.07,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 2.9,
+      "teto": 5.4,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 86864,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 20.07,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.4,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -8261,6 +8409,19 @@
       "explosoes": 0,
       "teto": 3.4,
       "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 101729,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 19.96,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 1.2,
+      "tendencia": 0.0,
       "motivos": [
         "Baixo_Risco"
       ]
@@ -8316,6 +8477,20 @@
       "teto": 5.1,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 104994,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 19.83,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 8,
+      "tendencia": -4.43,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -8412,7 +8587,7 @@
       ]
     },
     {
-      "id": 130414,
+      "id": 106843,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 19.65,
@@ -8425,7 +8600,7 @@
       ]
     },
     {
-      "id": 84428,
+      "id": 130414,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 19.65,
@@ -8585,19 +8760,6 @@
     {
       "id": 126996,
       "nome": "Paulo Ricardo Alves Ibelli",
-      "posicao": "LAT",
-      "indiceDiferencial": 19.5,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 127932,
-      "nome": "Julio Cesar Lima Fidelis",
       "posicao": "LAT",
       "indiceDiferencial": 19.5,
       "perfilExplosao": "Baixo_Risco",
@@ -8846,19 +9008,6 @@
       ]
     },
     {
-      "id": 128177,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 19.34,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 7.3,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 110698,
       "nome": null,
       "posicao": "GOL",
@@ -8872,15 +9021,42 @@
       ]
     },
     {
-      "id": 98617,
+      "id": 141382,
       "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 19.26,
+      "posicao": "ATA",
+      "indiceDiferencial": 19.27,
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
-      "teto": 4.7,
+      "teto": 1.9,
       "tendencia": 0,
       "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 141131,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 19.21,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 6.2,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 69783,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 19.2,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5,
+      "tendencia": -0.4,
+      "motivos": [
+        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -8899,33 +9075,7 @@
       ]
     },
     {
-      "id": 102255,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 19.17,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2.4,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 133690,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 19.11,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 1.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 140484,
       "nome": null,
       "posicao": "ATA",
       "indiceDiferencial": 19.11,
@@ -8945,19 +9095,6 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 1.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 100596,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 19.09,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2.3,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -9004,6 +9141,19 @@
     },
     {
       "id": 106313,
+      "nome": null,
+      "posicao": "ZAG",
+      "indiceDiferencial": 18.97,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 5.9,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 130806,
       "nome": null,
       "posicao": "ZAG",
       "indiceDiferencial": 18.97,
@@ -9134,19 +9284,6 @@
       ]
     },
     {
-      "id": 99267,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 18.85,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 2,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 97432,
       "nome": null,
       "posicao": "ZAG",
@@ -9209,20 +9346,6 @@
       "teto": 1.9,
       "tendencia": 0,
       "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 92182,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 18.75,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 5,
-      "tendencia": -1.0,
-      "motivos": [
-        "momento em queda",
         "Baixo_Risco"
       ]
     },
@@ -9331,46 +9454,6 @@
       ]
     },
     {
-      "id": 106907,
-      "nome": null,
-      "posicao": "TEC",
-      "indiceDiferencial": 18.58,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 6.56,
-      "tendencia": -0.22,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 104649,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 18.55,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 3.5,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 123445,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 18.45,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 1.5,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 141536,
       "nome": null,
       "posicao": "MEI",
@@ -9436,6 +9519,19 @@
       ]
     },
     {
+      "id": 129663,
+      "nome": null,
+      "posicao": "ATA",
+      "indiceDiferencial": 18.39,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 0.8,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 42222,
       "nome": null,
       "posicao": "ATA",
@@ -9443,6 +9539,19 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 0.8,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 124961,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 18.37,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 1.4,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -9608,19 +9717,6 @@
     },
     {
       "id": 148215,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 18.21,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 1.2,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 88479,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 18.21,
@@ -9868,19 +9964,6 @@
       ]
     },
     {
-      "id": 141131,
-      "nome": "Vitor Fernandes Chaves Teixeira",
-      "posicao": "ZAG",
-      "indiceDiferencial": 18.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 141184,
       "nome": "Wallace Fernandes Alves Falcão",
       "posicao": "ZAG",
@@ -10089,20 +10172,6 @@
       ]
     },
     {
-      "id": 104994,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 17.9,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 8,
-      "tendencia": -5.33,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 85465,
       "nome": null,
       "posicao": "MEI",
@@ -10129,20 +10198,7 @@
       ]
     },
     {
-      "id": 129663,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 17.75,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 141382,
+      "id": 101237,
       "nome": null,
       "posicao": "ATA",
       "indiceDiferencial": 17.75,
@@ -10266,33 +10322,6 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 6.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 51413,
-      "nome": null,
-      "posicao": "GOL",
-      "indiceDiferencial": 17.56,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 6.3,
-      "tendencia": -4.3,
-      "motivos": [
-        "momento em queda",
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 117314,
-      "nome": null,
-      "posicao": "ATA",
-      "indiceDiferencial": 17.51,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": -0.3,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -10442,6 +10471,19 @@
       ]
     },
     {
+      "id": 86777,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 17.25,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 0,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 147850,
       "nome": null,
       "posicao": "TEC",
@@ -10462,6 +10504,19 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 1.8,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 77510,
+      "nome": null,
+      "posicao": "MEI",
+      "indiceDiferencial": 17.17,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": -0.1,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"
@@ -11119,19 +11174,6 @@
       ]
     },
     {
-      "id": 98333,
-      "nome": "Gabriel Batista de Souza",
-      "posicao": "GOL",
-      "indiceDiferencial": 17.0,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0.0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 98484,
       "nome": null,
       "posicao": "ZAG",
@@ -11158,7 +11200,7 @@
       ]
     },
     {
-      "id": 141405,
+      "id": 150959,
       "nome": null,
       "posicao": "LAT",
       "indiceDiferencial": 16.95,
@@ -11185,19 +11227,6 @@
     },
     {
       "id": 124674,
-      "nome": null,
-      "posicao": "MEI",
-      "indiceDiferencial": 16.77,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": -0.6,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 124961,
       "nome": null,
       "posicao": "MEI",
       "indiceDiferencial": 16.77,
@@ -11315,19 +11344,6 @@
       ]
     },
     {
-      "id": 86864,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 15.91,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0.2,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 91251,
       "nome": null,
       "posicao": "ZAG",
@@ -11393,19 +11409,6 @@
       ]
     },
     {
-      "id": 150959,
-      "nome": null,
-      "posicao": "LAT",
-      "indiceDiferencial": 15.75,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": 0,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
       "id": 70163,
       "nome": null,
       "posicao": "TEC",
@@ -11433,6 +11436,19 @@
     },
     {
       "id": 114308,
+      "nome": null,
+      "posicao": "LAT",
+      "indiceDiferencial": 15.51,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": -0.3,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
+      "id": 127932,
       "nome": null,
       "posicao": "LAT",
       "indiceDiferencial": 15.51,
@@ -11614,6 +11630,19 @@
       ]
     },
     {
+      "id": 98333,
+      "nome": null,
+      "posicao": "GOL",
+      "indiceDiferencial": 13.97,
+      "perfilExplosao": "Baixo_Risco",
+      "explosoes": 0,
+      "teto": 0.9,
+      "tendencia": 0,
+      "motivos": [
+        "Baixo_Risco"
+      ]
+    },
+    {
       "id": 124483,
       "nome": null,
       "posicao": "ZAG",
@@ -11634,19 +11663,6 @@
       "perfilExplosao": "Baixo_Risco",
       "explosoes": 0,
       "teto": 0.7,
-      "tendencia": 0,
-      "motivos": [
-        "Baixo_Risco"
-      ]
-    },
-    {
-      "id": 130806,
-      "nome": null,
-      "posicao": "ZAG",
-      "indiceDiferencial": 13.77,
-      "perfilExplosao": "Baixo_Risco",
-      "explosoes": 0,
-      "teto": -0.6,
       "tendencia": 0,
       "motivos": [
         "Baixo_Risco"

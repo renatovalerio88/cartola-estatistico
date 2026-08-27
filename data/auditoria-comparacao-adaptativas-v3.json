@@ -1,7 +1,7 @@
 {
   "modelo": "auditoria_comparacao_adaptativas_v3",
   "descricao": "Auditoria independente da comparação científica V1 x V2 x V3.",
-  "rodadasAuditadas": 23,
+  "rodadasAuditadas": 24,
   "testes": [
     {
       "nome": "arquivo_v1_existe",
@@ -228,68 +228,68 @@
   },
   "resultados": {
     "v1": {
-      "quantidade": 23,
-      "media": 57.73,
-      "desvioPadrao": 21.36,
-      "total": 1327.78
+      "quantidade": 24,
+      "media": 63.59,
+      "desvioPadrao": 20.44,
+      "total": 1526.23
     },
     "v2": {
-      "quantidade": 23,
-      "media": 57.73,
-      "desvioPadrao": 21.36,
-      "total": 1327.78
+      "quantidade": 24,
+      "media": 63.59,
+      "desvioPadrao": 20.44,
+      "total": 1526.23
     },
     "v3": {
-      "quantidade": 23,
-      "media": 54.62,
-      "desvioPadrao": 18.67,
-      "total": 1256.19
+      "quantidade": 24,
+      "media": 60.61,
+      "desvioPadrao": 18.71,
+      "total": 1454.64
     },
     "estrategiasFixas": {
       "Conservador": {
-        "quantidade": 23,
-        "media": 58.18,
-        "desvioPadrao": 21.67,
-        "total": 1338.08
+        "quantidade": 24,
+        "media": 64.03,
+        "desvioPadrao": 20.62,
+        "total": 1536.63
       },
       "Equilibrado": {
-        "quantidade": 23,
-        "media": 52.7,
-        "desvioPadrao": 18.0,
-        "total": 1212.06
+        "quantidade": 24,
+        "media": 60.47,
+        "desvioPadrao": 23.24,
+        "total": 1451.32
       },
       "Agressivo": {
-        "quantidade": 23,
-        "media": 51.7,
-        "desvioPadrao": 17.0,
-        "total": 1189.17
+        "quantidade": 24,
+        "media": 59.23,
+        "desvioPadrao": 22.04,
+        "total": 1421.53
       }
     },
     "melhorEstrategiaFixa": "Conservador",
     "oraculo": {
-      "quantidade": 23,
-      "media": 62.95,
-      "desvioPadrao": 20.97,
-      "total": 1447.88
+      "quantidade": 24,
+      "media": 70.3,
+      "desvioPadrao": 22.42,
+      "total": 1687.14
     },
     "ganhos": {
-      "v3VsV1": -3.11,
-      "v3VsV2": -3.11,
-      "v3VsMelhorFixa": -3.56
+      "v3VsV1": -2.98,
+      "v3VsV2": -2.98,
+      "v3VsMelhorFixa": -3.42
     },
     "eficiencia": {
-      "v1": 91.71,
-      "v2": 91.71,
-      "v3": 86.77
+      "v1": 90.46,
+      "v2": 90.46,
+      "v3": 86.22
     },
     "pareadoV2V3": {
       "vitoriasV2": 3,
       "vitoriasV3": 0,
-      "empates": 20,
+      "empates": 21,
       "taxaV3": 0.0
     },
     "escolhasV3": {
-      "Conservador": 15,
+      "Conservador": 16,
       "Equilibrado": 7,
       "Agressivo": 1
     }

@@ -1,44 +1,44 @@
 {
   "modelo": "diagnostico_erros_v1",
-  "totalJogadores": 6698,
-  "erroMedio": 2.97,
+  "totalJogadores": 7021,
+  "erroMedio": 2.98,
   "porPosicao": {
     "MEI": {
-      "quantidade": 2189,
-      "erroMedio": 2.67
+      "quantidade": 2294,
+      "erroMedio": 2.69
     },
     "LAT": {
-      "quantidade": 972,
-      "erroMedio": 3.42
+      "quantidade": 1017,
+      "erroMedio": 3.41
     },
     "ATA": {
-      "quantidade": 1716,
-      "erroMedio": 3.26
+      "quantidade": 1805,
+      "erroMedio": 3.27
     },
     "GOL": {
-      "quantidade": 444,
-      "erroMedio": 3.19
+      "quantidade": 463,
+      "erroMedio": 3.21
     },
     "TEC": {
-      "quantidade": 424,
-      "erroMedio": 2.2
+      "quantidade": 444,
+      "erroMedio": 2.18
     },
     "ZAG": {
-      "quantidade": 953,
-      "erroMedio": 2.94
+      "quantidade": 998,
+      "erroMedio": 2.95
     }
   },
   "porPreco": {
     "sem_preco": {
-      "quantidade": 6547,
+      "quantidade": 6877,
       "erroMedio": 3.04
     },
     "0-5": {
-      "quantidade": 143,
+      "quantidade": 139,
       "erroMedio": 0.0
     },
     "5-10": {
-      "quantidade": 8,
+      "quantidade": 5,
       "erroMedio": 0.0
     }
   },
@@ -182,30 +182,30 @@
     {
       "nome": null,
       "posicao": "ATA",
-      "rodada": 16,
-      "projecao": 4.52,
-      "real": 21,
-      "erro": 16.48
+      "rodada": 24,
+      "projecao": 6.02,
+      "real": 22.8,
+      "erro": 16.78
     },
     {
       "nome": null,
-      "posicao": "MEI",
-      "rodada": 18,
-      "projecao": 2.25,
-      "real": 18.4,
-      "erro": 16.15
+      "posicao": "LAT",
+      "rodada": 24,
+      "projecao": 1.75,
+      "real": 18.5,
+      "erro": 16.75
     },
     {
       "nome": null,
       "posicao": "ATA",
-      "rodada": 19,
-      "projecao": 3.97,
-      "real": 19.9,
-      "erro": 15.93
+      "rodada": 16,
+      "projecao": 4.52,
+      "real": 21,
+      "erro": 16.48
     }
   ],
   "tendenciaErro": {
-    "superestimou": 3671,
-    "subestimou": 2841
+    "superestimou": 3838,
+    "subestimou": 3003
   }
 }

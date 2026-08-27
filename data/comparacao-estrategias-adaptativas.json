@@ -2,7 +2,7 @@
   "modelo": "comparacao_estrategias_adaptativas_v1",
   "descricao": "Comparação pareada entre as estratégias adaptativas V1 e V2, estratégias fixas e oráculo histórico.",
   "amostra": {
-    "rodadasComuns": 23,
+    "rodadasComuns": 24,
     "rodadas": [
       2,
       3,
@@ -26,7 +26,8 @@
       21,
       22,
       23,
-      24
+      24,
+      25
     ],
     "amostraMinima": 10,
     "amostraSuficiente": true
@@ -39,68 +40,68 @@
   },
   "metricas": {
     "adaptativoV1": {
-      "rodadas": 23,
-      "total": 1327.78,
-      "media": 57.73,
-      "mediana": 57.65,
-      "desvioPadrao": 21.36,
-      "minimo": 0.0,
-      "maximo": 92.85
+      "rodadas": 24,
+      "total": 1526.23,
+      "media": 63.59,
+      "mediana": 61.03,
+      "desvioPadrao": 20.44,
+      "minimo": 31.67,
+      "maximo": 116.57
     },
     "adaptativoV2": {
-      "rodadas": 23,
-      "total": 1327.78,
-      "media": 57.73,
-      "mediana": 57.65,
-      "desvioPadrao": 21.36,
-      "minimo": 0.0,
-      "maximo": 92.85
+      "rodadas": 24,
+      "total": 1526.23,
+      "media": 63.59,
+      "mediana": 61.03,
+      "desvioPadrao": 20.44,
+      "minimo": 31.67,
+      "maximo": 116.57
     },
     "estrategiasFixas": {
       "Conservador": {
-        "rodadas": 23,
-        "total": 1338.08,
-        "media": 58.18,
-        "mediana": 58.73,
-        "desvioPadrao": 21.67,
-        "minimo": 0.0,
-        "maximo": 92.85
+        "rodadas": 24,
+        "total": 1536.63,
+        "media": 64.03,
+        "mediana": 64.16,
+        "desvioPadrao": 20.62,
+        "minimo": 31.67,
+        "maximo": 116.57
       },
       "Equilibrado": {
-        "rodadas": 23,
-        "total": 1212.06,
-        "media": 52.7,
-        "mediana": 53.77,
-        "desvioPadrao": 18.0,
-        "minimo": 0.0,
-        "maximo": 100.31
+        "rodadas": 24,
+        "total": 1451.32,
+        "media": 60.47,
+        "mediana": 54.16,
+        "desvioPadrao": 23.24,
+        "minimo": 33.9,
+        "maximo": 144.28
       },
       "Agressivo": {
-        "rodadas": 23,
-        "total": 1189.17,
-        "media": 51.7,
-        "mediana": 52.06,
-        "desvioPadrao": 17.0,
-        "minimo": 0.0,
-        "maximo": 76.1
+        "rodadas": 24,
+        "total": 1421.53,
+        "media": 59.23,
+        "mediana": 53.72,
+        "desvioPadrao": 22.04,
+        "minimo": 31.0,
+        "maximo": 140.18
       }
     },
     "melhorEstrategiaFixa": "Conservador",
     "oraculo": {
-      "rodadas": 23,
-      "total": 1447.88,
-      "media": 62.95,
-      "mediana": 64.98,
-      "desvioPadrao": 20.97,
-      "minimo": 0.0,
-      "maximo": 100.31
+      "rodadas": 24,
+      "total": 1687.14,
+      "media": 70.3,
+      "mediana": 69.95,
+      "desvioPadrao": 22.42,
+      "minimo": 33.9,
+      "maximo": 144.28
     }
   },
   "comparacaoPareadaV1V2": {
-    "rodadas": 23,
+    "rodadas": 24,
     "vitoriasV1": 0,
     "vitoriasV2": 0,
-    "empates": 23,
+    "empates": 24,
     "taxaVitoriasV1": 0.0,
     "taxaVitoriasV2": 0.0,
     "diferencaMediaV2MenosV1": 0.0,
@@ -112,7 +113,7 @@
   "escolhas": {
     "v1": {
       "estrategias": {
-        "Conservador": 18,
+        "Conservador": 19,
         "Equilibrado": 5,
         "Agressivo": 0
       },
@@ -120,7 +121,7 @@
     },
     "v2": {
       "estrategias": {
-        "Conservador": 18,
+        "Conservador": 19,
         "Equilibrado": 5,
         "Agressivo": 0
       },
@@ -129,19 +130,19 @@
   },
   "oraculo": {
     "v1": {
-      "acertos": 14,
-      "taxaAcerto": 60.87,
-      "perdaMediaParaOraculo": 5.22,
+      "acertos": 13,
+      "taxaAcerto": 54.17,
+      "perdaMediaParaOraculo": 6.7,
       "perdaMedianaParaOraculo": 0.0
     },
     "v2": {
-      "acertos": 14,
-      "taxaAcerto": 60.87,
-      "perdaMediaParaOraculo": 5.22,
+      "acertos": 13,
+      "taxaAcerto": 54.17,
+      "perdaMediaParaOraculo": 6.7,
       "perdaMedianaParaOraculo": 0.0
     },
-    "eficienciaV1Percentual": 91.71,
-    "eficienciaV2Percentual": 91.71
+    "eficienciaV1Percentual": 90.46,
+    "eficienciaV2Percentual": 90.46
   },
   "ganhos": {
     "v2VsV1": {
@@ -150,17 +151,17 @@
     },
     "v2VsMelhorFixa": {
       "estrategia": "Conservador",
-      "pontosPorRodada": -0.45,
-      "percentual": -0.77
+      "pontosPorRodada": -0.44,
+      "percentual": -0.69
     },
     "v1VsMelhorFixa": {
       "estrategia": "Conservador",
-      "pontosPorRodada": -0.45
+      "pontosPorRodada": -0.44
     }
   },
   "estabilidade": {
-    "desvioPadraoV1": 21.36,
-    "desvioPadraoV2": 21.36,
+    "desvioPadraoV1": 20.44,
+    "desvioPadraoV2": 20.44,
     "v2MaisEstavel": false
   },
   "criterios": {

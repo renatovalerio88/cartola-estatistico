@@ -14,11 +14,11 @@
     "ganhoMedioVsAtual": 0.0,
     "vitoriasVsAtual": 0,
     "derrotasVsAtual": 0,
-    "empatesVsAtual": 22,
+    "empatesVsAtual": 23,
     "taxaVitoriasVsAtual": 0.0,
     "desempenhoTemporal": {
       "campeonato": {
-        "quantidade": 22,
+        "quantidade": 23,
         "rodadas": [
           2,
           3,
@@ -41,17 +41,17 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 61.68,
-        "mediana": 55.99,
+        "media": 63.26,
+        "mediana": 56.35,
         "melhor": 101.05,
-        "capturaPerfeitoPct": 32.61
+        "capturaPerfeitoPct": 33.23
       },
       "ultimas10": {
         "quantidade": 10,
         "rodadas": [
-          14,
           15,
           16,
           17,
@@ -60,52 +60,53 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 63.7,
-        "mediana": 59.7,
+        "media": 67.85,
+        "mediana": 67.96,
         "melhor": 101.05,
-        "capturaPerfeitoPct": 32.97
+        "capturaPerfeitoPct": 34.54
       },
       "ultimas5": {
         "quantidade": 5,
         "rodadas": [
-          19,
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 63.27,
+        "media": 68.28,
         "mediana": 63.04,
-        "melhor": 74.9,
-        "capturaPerfeitoPct": 33.36
+        "melhor": 97.92,
+        "capturaPerfeitoPct": 35.36
       },
       "ultimas3": {
         "quantidade": 3,
         "rodadas": [
-          21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 62.62,
+        "media": 70.29,
         "mediana": 63.04,
-        "melhor": 74.9,
-        "capturaPerfeitoPct": 33.69
+        "melhor": 97.92,
+        "capturaPerfeitoPct": 35.46
       }
     },
     "posicao": 4
   },
   "melhorExperimental": {
-    "modelo": "Recencia_Exponencial",
-    "ganhoMedioVsAtual": -0.77,
-    "vitoriasVsAtual": 10,
-    "derrotasVsAtual": 8,
-    "empatesVsAtual": 4,
-    "taxaVitoriasVsAtual": 45.45,
+    "modelo": "Explosao_Teto",
+    "ganhoMedioVsAtual": -1.29,
+    "vitoriasVsAtual": 6,
+    "derrotasVsAtual": 14,
+    "empatesVsAtual": 3,
+    "taxaVitoriasVsAtual": 26.09,
     "desempenhoTemporal": {
       "campeonato": {
-        "quantidade": 22,
+        "quantidade": 23,
         "rodadas": [
           2,
           3,
@@ -128,17 +129,17 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 60.91,
-        "mediana": 58.04,
-        "melhor": 87.94,
-        "capturaPerfeitoPct": 32.3
+        "media": 61.97,
+        "mediana": 62.04,
+        "melhor": 115.82,
+        "capturaPerfeitoPct": 32.57
       },
       "ultimas10": {
         "quantidade": 10,
         "rodadas": [
-          14,
           15,
           16,
           17,
@@ -147,53 +148,54 @@
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 61.88,
-        "mediana": 60.62,
-        "melhor": 87.94,
-        "capturaPerfeitoPct": 32.2
+        "media": 66.5,
+        "mediana": 63.95,
+        "melhor": 115.82,
+        "capturaPerfeitoPct": 34.02
       },
       "ultimas5": {
         "quantidade": 5,
         "rodadas": [
-          19,
           20,
           21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 68.3,
-        "mediana": 62.73,
-        "melhor": 87.94,
-        "capturaPerfeitoPct": 35.69
+        "media": 72.57,
+        "mediana": 65.7,
+        "melhor": 115.82,
+        "capturaPerfeitoPct": 37.65
       },
       "ultimas3": {
         "quantidade": 3,
         "rodadas": [
-          21,
           22,
-          23
+          23,
+          24
         ],
-        "media": 63.6,
-        "mediana": 61.65,
-        "melhor": 78.05,
-        "capturaPerfeitoPct": 33.81
+        "media": 81.27,
+        "mediana": 65.96,
+        "melhor": 115.82,
+        "capturaPerfeitoPct": 41.38
       }
     },
     "posicao": 1
   },
   "ranking": [
     {
-      "modelo": "Recencia_Exponencial",
-      "ganhoMedioVsAtual": -0.77,
-      "vitoriasVsAtual": 10,
-      "derrotasVsAtual": 8,
-      "empatesVsAtual": 4,
-      "taxaVitoriasVsAtual": 45.45,
+      "modelo": "Explosao_Teto",
+      "ganhoMedioVsAtual": -1.29,
+      "vitoriasVsAtual": 6,
+      "derrotasVsAtual": 14,
+      "empatesVsAtual": 3,
+      "taxaVitoriasVsAtual": 26.09,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -216,17 +218,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.91,
-          "mediana": 58.04,
-          "melhor": 87.94,
-          "capturaPerfeitoPct": 32.3
+          "media": 61.97,
+          "mediana": 62.04,
+          "melhor": 115.82,
+          "capturaPerfeitoPct": 32.57
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -235,52 +237,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 61.88,
-          "mediana": 60.62,
-          "melhor": 87.94,
-          "capturaPerfeitoPct": 32.2
+          "media": 66.5,
+          "mediana": 63.95,
+          "melhor": 115.82,
+          "capturaPerfeitoPct": 34.02
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 68.3,
-          "mediana": 62.73,
-          "melhor": 87.94,
-          "capturaPerfeitoPct": 35.69
+          "media": 72.57,
+          "mediana": 65.7,
+          "melhor": 115.82,
+          "capturaPerfeitoPct": 37.65
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 63.6,
-          "mediana": 61.65,
-          "melhor": 78.05,
-          "capturaPerfeitoPct": 33.81
+          "media": 81.27,
+          "mediana": 65.96,
+          "melhor": 115.82,
+          "capturaPerfeitoPct": 41.38
         }
       },
       "posicao": 1
     },
     {
-      "modelo": "Anti_Outlier",
-      "ganhoMedioVsAtual": -1.76,
-      "vitoriasVsAtual": 6,
-      "derrotasVsAtual": 12,
+      "modelo": "Posicional",
+      "ganhoMedioVsAtual": -0.51,
+      "vitoriasVsAtual": 10,
+      "derrotasVsAtual": 9,
       "empatesVsAtual": 4,
-      "taxaVitoriasVsAtual": 27.27,
+      "taxaVitoriasVsAtual": 43.48,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -303,17 +306,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 59.92,
-          "mediana": 55.39,
-          "melhor": 94.74,
-          "capturaPerfeitoPct": 31.67
+          "media": 62.75,
+          "mediana": 61.53,
+          "melhor": 113.12,
+          "capturaPerfeitoPct": 33.04
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -322,52 +325,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 61.92,
-          "mediana": 62.88,
-          "melhor": 94.74,
-          "capturaPerfeitoPct": 32.13
+          "media": 65.43,
+          "mediana": 64.17,
+          "melhor": 113.12,
+          "capturaPerfeitoPct": 33.46
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 65.32,
-          "mediana": 65.54,
-          "melhor": 81.28,
-          "capturaPerfeitoPct": 34.62
+          "media": 72.1,
+          "mediana": 64.2,
+          "melhor": 113.12,
+          "capturaPerfeitoPct": 37.2
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 69.01,
-          "mediana": 65.54,
-          "melhor": 81.28,
-          "capturaPerfeitoPct": 37.32
+          "media": 78.26,
+          "mediana": 66.34,
+          "melhor": 113.12,
+          "capturaPerfeitoPct": 39.49
         }
       },
       "posicao": 2
     },
     {
-      "modelo": "Basica_Consistente",
-      "ganhoMedioVsAtual": -1.84,
-      "vitoriasVsAtual": 8,
-      "derrotasVsAtual": 11,
-      "empatesVsAtual": 3,
-      "taxaVitoriasVsAtual": 36.36,
+      "modelo": "Anti_Outlier",
+      "ganhoMedioVsAtual": -1.95,
+      "vitoriasVsAtual": 6,
+      "derrotasVsAtual": 13,
+      "empatesVsAtual": 4,
+      "taxaVitoriasVsAtual": 26.09,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -390,17 +394,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 59.84,
-          "mediana": 54.77,
-          "melhor": 123.95,
-          "capturaPerfeitoPct": 31.55
+          "media": 61.3,
+          "mediana": 55.72,
+          "melhor": 94.74,
+          "capturaPerfeitoPct": 32.2
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -409,38 +413,39 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 64.21,
-          "mediana": 57.23,
-          "melhor": 123.95,
-          "capturaPerfeitoPct": 33.09
+          "media": 66.41,
+          "mediana": 66.89,
+          "melhor": 94.74,
+          "capturaPerfeitoPct": 33.92
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 63.42,
-          "mediana": 59.42,
-          "melhor": 77.04,
-          "capturaPerfeitoPct": 33.55
+          "media": 70.04,
+          "mediana": 65.54,
+          "melhor": 91.82,
+          "capturaPerfeitoPct": 36.51
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.21,
-          "mediana": 55.03,
-          "melhor": 71.08,
-          "capturaPerfeitoPct": 32.65
+          "media": 72.52,
+          "mediana": 65.54,
+          "melhor": 91.82,
+          "capturaPerfeitoPct": 36.94
         }
       },
       "posicao": 3
@@ -450,11 +455,11 @@
       "ganhoMedioVsAtual": 0.0,
       "vitoriasVsAtual": 0,
       "derrotasVsAtual": 0,
-      "empatesVsAtual": 22,
+      "empatesVsAtual": 23,
       "taxaVitoriasVsAtual": 0.0,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -477,17 +482,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 61.68,
-          "mediana": 55.99,
+          "media": 63.26,
+          "mediana": 56.35,
           "melhor": 101.05,
-          "capturaPerfeitoPct": 32.61
+          "capturaPerfeitoPct": 33.23
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -496,52 +501,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 63.7,
-          "mediana": 59.7,
+          "media": 67.85,
+          "mediana": 67.96,
           "melhor": 101.05,
-          "capturaPerfeitoPct": 32.97
+          "capturaPerfeitoPct": 34.54
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 63.27,
+          "media": 68.28,
           "mediana": 63.04,
-          "melhor": 74.9,
-          "capturaPerfeitoPct": 33.36
+          "melhor": 97.92,
+          "capturaPerfeitoPct": 35.36
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 62.62,
+          "media": 70.29,
           "mediana": 63.04,
-          "melhor": 74.9,
-          "capturaPerfeitoPct": 33.69
+          "melhor": 97.92,
+          "capturaPerfeitoPct": 35.46
         }
       },
       "posicao": 4
     },
     {
-      "modelo": "Posicional",
-      "ganhoMedioVsAtual": -1.22,
-      "vitoriasVsAtual": 9,
+      "modelo": "Recencia_Exponencial",
+      "ganhoMedioVsAtual": -1.44,
+      "vitoriasVsAtual": 10,
       "derrotasVsAtual": 9,
       "empatesVsAtual": 4,
-      "taxaVitoriasVsAtual": 40.91,
+      "taxaVitoriasVsAtual": 43.48,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -564,17 +570,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.46,
-          "mediana": 58.42,
-          "melhor": 106.81,
-          "capturaPerfeitoPct": 32.07
+          "media": 61.81,
+          "mediana": 59.6,
+          "melhor": 87.94,
+          "capturaPerfeitoPct": 32.6
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -583,52 +589,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 59.29,
-          "mediana": 62.84,
-          "melhor": 71.31,
-          "capturaPerfeitoPct": 30.91
+          "media": 64.88,
+          "mediana": 62.19,
+          "melhor": 87.94,
+          "capturaPerfeitoPct": 33.25
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 62.3,
-          "mediana": 64.14,
-          "melhor": 66.34,
-          "capturaPerfeitoPct": 32.85
+          "media": 67.06,
+          "mediana": 62.73,
+          "melhor": 81.78,
+          "capturaPerfeitoPct": 34.62
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 61.95,
-          "mediana": 64.2,
-          "melhor": 66.34,
-          "capturaPerfeitoPct": 33.3
+          "media": 70.31,
+          "mediana": 78.05,
+          "melhor": 81.78,
+          "capturaPerfeitoPct": 35.46
         }
       },
       "posicao": 5
     },
     {
-      "modelo": "Explosao_Teto",
-      "ganhoMedioVsAtual": -2.16,
-      "vitoriasVsAtual": 5,
-      "derrotasVsAtual": 14,
+      "modelo": "Forma_3_5",
+      "ganhoMedioVsAtual": -4.35,
+      "vitoriasVsAtual": 7,
+      "derrotasVsAtual": 13,
       "empatesVsAtual": 3,
-      "taxaVitoriasVsAtual": 22.73,
+      "taxaVitoriasVsAtual": 30.43,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -651,17 +658,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 59.52,
-          "mediana": 59.16,
-          "melhor": 102.28,
-          "capturaPerfeitoPct": 31.53
+          "media": 58.91,
+          "mediana": 52.57,
+          "melhor": 93.18,
+          "capturaPerfeitoPct": 31.09
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -670,52 +677,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 59.57,
-          "mediana": 62.83,
-          "melhor": 87.08,
-          "capturaPerfeitoPct": 31.04
+          "media": 59.95,
+          "mediana": 57.38,
+          "melhor": 91.92,
+          "capturaPerfeitoPct": 30.78
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 62.27,
-          "mediana": 64.3,
-          "melhor": 65.96,
-          "capturaPerfeitoPct": 33.06
+          "media": 65.12,
+          "mediana": 62.83,
+          "melhor": 91.92,
+          "capturaPerfeitoPct": 33.91
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 64.57,
-          "mediana": 65.7,
-          "melhor": 65.96,
-          "capturaPerfeitoPct": 35.04
+          "media": 64.56,
+          "mediana": 52.41,
+          "melhor": 91.92,
+          "capturaPerfeitoPct": 32.87
         }
       },
       "posicao": 6
     },
     {
       "modelo": "Ensemble",
-      "ganhoMedioVsAtual": -3.38,
+      "ganhoMedioVsAtual": -3.88,
       "vitoriasVsAtual": 5,
-      "derrotasVsAtual": 11,
+      "derrotasVsAtual": 12,
       "empatesVsAtual": 6,
-      "taxaVitoriasVsAtual": 22.73,
+      "taxaVitoriasVsAtual": 21.74,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -738,17 +746,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 58.3,
-          "mediana": 55.91,
+          "media": 59.37,
+          "mediana": 56.44,
           "melhor": 102.51,
-          "capturaPerfeitoPct": 30.95
+          "capturaPerfeitoPct": 31.33
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -757,52 +765,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 56.73,
-          "mediana": 57.97,
-          "melhor": 74.25,
-          "capturaPerfeitoPct": 29.7
+          "media": 59.85,
+          "mediana": 61.25,
+          "melhor": 82.92,
+          "capturaPerfeitoPct": 30.8
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.62,
+          "media": 64.38,
           "mediana": 63.0,
-          "melhor": 68.21,
-          "capturaPerfeitoPct": 32.28
+          "melhor": 82.92,
+          "capturaPerfeitoPct": 33.73
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 62.55,
-          "mediana": 63.0,
-          "melhor": 68.21,
-          "capturaPerfeitoPct": 34.11
+          "media": 69.19,
+          "mediana": 68.21,
+          "melhor": 82.92,
+          "capturaPerfeitoPct": 35.7
         }
       },
       "posicao": 7
     },
     {
-      "modelo": "Piso_Regularidade",
-      "ganhoMedioVsAtual": -1.44,
-      "vitoriasVsAtual": 6,
-      "derrotasVsAtual": 13,
+      "modelo": "Basica_Consistente",
+      "ganhoMedioVsAtual": -2.68,
+      "vitoriasVsAtual": 8,
+      "derrotasVsAtual": 12,
       "empatesVsAtual": 3,
-      "taxaVitoriasVsAtual": 27.27,
+      "taxaVitoriasVsAtual": 34.78,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -825,17 +834,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.24,
-          "mediana": 56.26,
-          "melhor": 110.54,
-          "capturaPerfeitoPct": 31.82
+          "media": 60.57,
+          "mediana": 55.03,
+          "melhor": 123.95,
+          "capturaPerfeitoPct": 31.78
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -844,52 +853,53 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 61.98,
-          "mediana": 59.58,
-          "melhor": 110.54,
-          "capturaPerfeitoPct": 32.06
+          "media": 68.42,
+          "mediana": 65.25,
+          "melhor": 123.95,
+          "capturaPerfeitoPct": 34.85
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.11,
-          "mediana": 59.91,
-          "melhor": 68.08,
-          "capturaPerfeitoPct": 31.83
+          "media": 63.33,
+          "mediana": 59.42,
+          "melhor": 76.62,
+          "capturaPerfeitoPct": 33.09
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 60.35,
-          "mediana": 59.91,
-          "melhor": 61.88,
-          "capturaPerfeitoPct": 32.68
+          "media": 62.05,
+          "mediana": 55.03,
+          "melhor": 76.62,
+          "capturaPerfeitoPct": 31.73
         }
       },
       "posicao": 8
     },
     {
-      "modelo": "Forma_3_5",
-      "ganhoMedioVsAtual": -4.27,
-      "vitoriasVsAtual": 7,
-      "derrotasVsAtual": 12,
+      "modelo": "Piso_Regularidade",
+      "ganhoMedioVsAtual": -2.59,
+      "vitoriasVsAtual": 6,
+      "derrotasVsAtual": 14,
       "empatesVsAtual": 3,
-      "taxaVitoriasVsAtual": 31.82,
+      "taxaVitoriasVsAtual": 26.09,
       "desempenhoTemporal": {
         "campeonato": {
-          "quantidade": 22,
+          "quantidade": 23,
           "rodadas": [
             2,
             3,
@@ -912,17 +922,17 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 57.41,
-          "mediana": 52.49,
-          "melhor": 93.18,
-          "capturaPerfeitoPct": 30.5
+          "media": 60.66,
+          "mediana": 59.25,
+          "melhor": 110.54,
+          "capturaPerfeitoPct": 31.89
         },
         "ultimas10": {
           "quantidade": 10,
           "rodadas": [
-            14,
             15,
             16,
             17,
@@ -931,38 +941,39 @@
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 55.39,
-          "mediana": 51.67,
-          "melhor": 80.51,
-          "capturaPerfeitoPct": 28.94
+          "media": 64.26,
+          "mediana": 60.89,
+          "melhor": 110.54,
+          "capturaPerfeitoPct": 32.79
         },
         "ultimas5": {
           "quantidade": 5,
           "rodadas": [
-            19,
             20,
             21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 56.93,
-          "mediana": 52.41,
-          "melhor": 69.1,
-          "capturaPerfeitoPct": 30.25
+          "media": 60.48,
+          "mediana": 59.91,
+          "melhor": 69.92,
+          "capturaPerfeitoPct": 31.64
         },
         "ultimas3": {
           "quantidade": 3,
           "rodadas": [
-            21,
             22,
-            23
+            23,
+            24
           ],
-          "media": 56.95,
-          "mediana": 52.41,
-          "melhor": 69.1,
-          "capturaPerfeitoPct": 30.98
+          "media": 63.03,
+          "mediana": 59.91,
+          "melhor": 69.92,
+          "capturaPerfeitoPct": 32.4
         }
       },
       "posicao": 9

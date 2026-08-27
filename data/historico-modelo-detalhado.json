@@ -3853,109 +3853,113 @@
     },
     {
       "rodada": 24,
-      "mae": 0.0,
-      "quantidadeJogadores": 150,
+      "mae": 2.13,
+      "quantidadeJogadores": 473,
       "posicoes": {
-        "ATA": {
-          "quantidade": 23,
-          "mae": 0.0
-        },
-        "GOL": {
-          "quantidade": 45,
-          "mae": 0.0
-        },
         "MEI": {
-          "quantidade": 41,
-          "mae": 0.0
+          "quantidade": 146,
+          "mae": 2.1
+        },
+        "ATA": {
+          "quantidade": 112,
+          "mae": 2.73
+        },
+        "TEC": {
+          "quantidade": 20,
+          "mae": 1.83
         },
         "LAT": {
-          "quantidade": 19,
-          "mae": 0.0
+          "quantidade": 64,
+          "mae": 2.33
+        },
+        "GOL": {
+          "quantidade": 64,
+          "mae": 1.12
         },
         "ZAG": {
-          "quantidade": 22,
-          "mae": 0.0
+          "quantidade": 67,
+          "mae": 2.04
         }
       },
       "maioresErros": [
         {
-          "nome": "Niclas Eliasson Santana",
+          "nome": null,
           "posicao": "ATA",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "projecao": 6.02,
+          "real": 22.8,
+          "erro": 16.78
         },
         {
-          "nome": "Marcelo de Araújo Pitaluga Filho",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "nome": null,
+          "posicao": "LAT",
+          "projecao": 1.75,
+          "real": 18.5,
+          "erro": 16.75
         },
         {
-          "nome": "Vitor Eudes de Souza Costa",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Andrew da Silva Ventura",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Guido Gabriel Herrera",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Fabrício Oliveira de Souza",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Carlos Miguel Coronel",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Dylan Felipe Borrero Caicedo",
+          "nome": null,
           "posicao": "MEI",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "projecao": 4.84,
+          "real": 19.5,
+          "erro": 14.66
         },
         {
-          "nome": "Yuri Sena dos Reis Batista",
-          "posicao": "GOL",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
-          "nome": "Bruno Conceição Praxedes",
+          "nome": null,
           "posicao": "MEI",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "projecao": 1.88,
+          "real": 16.5,
+          "erro": 14.62
+        },
+        {
+          "nome": null,
+          "posicao": "MEI",
+          "projecao": 1.9,
+          "real": 16,
+          "erro": 14.1
+        },
+        {
+          "nome": null,
+          "posicao": "MEI",
+          "projecao": 3.59,
+          "real": 15.7,
+          "erro": 12.11
+        },
+        {
+          "nome": null,
+          "posicao": "LAT",
+          "projecao": 3.56,
+          "real": 14.4,
+          "erro": 10.84
+        },
+        {
+          "nome": null,
+          "posicao": "ATA",
+          "projecao": 3.37,
+          "real": 13.6,
+          "erro": 10.23
+        },
+        {
+          "nome": null,
+          "posicao": "ATA",
+          "projecao": 4.93,
+          "real": 14.8,
+          "erro": 9.87
+        },
+        {
+          "nome": null,
+          "posicao": "ZAG",
+          "projecao": 3.75,
+          "real": 13.5,
+          "erro": 9.75
         }
       ],
       "melhoresAcertos": [
         {
-          "nome": "Niclas Eliasson Santana",
-          "posicao": "ATA",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
+          "nome": null,
+          "posicao": "MEI",
+          "projecao": 4.2,
+          "real": 4.2,
+          "erro": -0.0
         },
         {
           "nome": "Marcelo de Araújo Pitaluga Filho",
@@ -4000,13 +4004,6 @@
           "erro": 0.0
         },
         {
-          "nome": "Dylan Felipe Borrero Caicedo",
-          "posicao": "MEI",
-          "projecao": 0.0,
-          "real": 0,
-          "erro": 0.0
-        },
-        {
           "nome": "Yuri Sena dos Reis Batista",
           "posicao": "GOL",
           "projecao": 0.0,
@@ -4016,6 +4013,13 @@
         {
           "nome": "Bruno Conceição Praxedes",
           "posicao": "MEI",
+          "projecao": 0.0,
+          "real": 0,
+          "erro": 0.0
+        },
+        {
+          "nome": "Alexandre Fintelman de Mello Ribeiro da Silva",
+          "posicao": "GOL",
           "projecao": 0.0,
           "real": 0,
           "erro": 0.0
@@ -4025,28 +4029,28 @@
   ],
   "resumoPosicoes": {
     "MEI": {
-      "quantidade": 2189,
-      "mae": 2.67
+      "quantidade": 2294,
+      "mae": 2.69
     },
     "LAT": {
-      "quantidade": 972,
-      "mae": 3.42
+      "quantidade": 1017,
+      "mae": 3.41
     },
     "ATA": {
-      "quantidade": 1716,
-      "mae": 3.26
+      "quantidade": 1805,
+      "mae": 3.27
     },
     "GOL": {
-      "quantidade": 444,
-      "mae": 3.19
+      "quantidade": 463,
+      "mae": 3.21
     },
     "TEC": {
-      "quantidade": 424,
-      "mae": 2.2
+      "quantidade": 444,
+      "mae": 2.18
     },
     "ZAG": {
-      "quantidade": 953,
-      "mae": 2.94
+      "quantidade": 998,
+      "mae": 2.95
     }
   },
   "simulacaoTimes": {

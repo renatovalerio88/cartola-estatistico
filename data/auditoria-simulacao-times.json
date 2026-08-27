@@ -12,35 +12,35 @@
     ]
   },
   "resumo": {
-    "rodadas": 23,
-    "timesAvaliados": 69,
-    "coberturaMediaPercentual": 94.93,
+    "rodadas": 24,
+    "timesAvaliados": 72,
+    "coberturaMediaPercentual": 99.19,
     "taxaTimesCompletosPercentual": 100.0,
-    "taxaCapitaesValidosPercentual": 95.65,
+    "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
-    "scoreQualidade": 97.14,
+    "scoreQualidade": 100.0,
     "testes": 18,
     "falhasCriticas": 0,
-    "alertas": 1
+    "alertas": 0
   },
   "rodadas": {
-    "quantidadeRodadas": 23,
-    "quantidadeTimes": 69,
+    "quantidadeRodadas": 24,
+    "quantidadeTimes": 72,
     "estrategiasEncontradas": [
       "Agressivo",
       "Conservador",
       "Equilibrado"
     ],
-    "coberturaMediaPercentual": 94.93,
+    "coberturaMediaPercentual": 99.19,
     "taxaTimesCompletosPercentual": 100.0,
-    "taxaCapitaesValidosPercentual": 95.65,
+    "taxaCapitaesValidosPercentual": 100.0,
     "taxaSemVazamentoPercentual": 100.0,
     "taxaAuditoriaOrigemPercentual": 100.0,
     "problemas": []
   },
   "arquivosHistoricos": {
-    "esperados": 23,
-    "existentes": 23,
+    "esperados": 24,
+    "existentes": 24,
     "rodadasExistentes": [
       2,
       3,
@@ -64,7 +64,8 @@
       21,
       22,
       23,
-      24
+      24,
+      25
     ],
     "rodadasAusentes": [],
     "rodadasInvalidas": []
@@ -155,7 +156,7 @@
     },
     {
       "teste": "cobertura_ideal",
-      "aprovado": false,
+      "aprovado": true,
       "critico": false,
       "detalhes": null
     },
@@ -197,14 +198,7 @@
     }
   ],
   "falhasCriticas": [],
-  "alertas": [
-    {
-      "teste": "cobertura_ideal",
-      "aprovado": false,
-      "critico": false,
-      "detalhes": null
-    }
-  ],
+  "alertas": [],
   "decisao": {
     "aprovada": true,
     "decisao": "SIMULACAO_VALIDADA",

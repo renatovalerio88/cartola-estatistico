@@ -2,19 +2,19 @@
   "modelo": "auditoria_estrategia_adaptativa_v1",
   "descricao": "Auditoria científica do backtest progressivo da estratégia adaptativa.",
   "resumo": {
-    "rodadasAuditadas": 23,
+    "rodadasAuditadas": 24,
     "testes": 24,
     "testesAprovados": 24,
     "falhasCriticas": 0,
     "alertas": 0,
     "scoreQualidadePercentual": 100.0,
     "melhorEstrategiaFixa": "Conservador",
-    "mediaAdaptativo": 57.73,
-    "mediaMelhorFixa": 58.18,
-    "ganhoAdaptativoVsMelhorFixa": -0.45,
-    "ganhoPercentualAdaptativoVsMelhorFixa": -0.77,
-    "mediaOraculo": 62.95,
-    "eficienciaVsOraculoPercentual": 91.71
+    "mediaAdaptativo": 63.59,
+    "mediaMelhorFixa": 64.03,
+    "ganhoAdaptativoVsMelhorFixa": -0.44,
+    "ganhoPercentualAdaptativoVsMelhorFixa": -0.68,
+    "mediaOraculo": 70.3,
+    "eficienciaVsOraculoPercentual": 90.46
   },
   "testes": [
     {
@@ -43,7 +43,7 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "rodadas": 23,
+        "rodadas": 24,
         "minimo": 10
       }
     },
@@ -92,7 +92,8 @@
         21,
         22,
         23,
-        24
+        24,
+        25
       ]
     },
     {
@@ -146,10 +147,10 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1327.78,
-        "mediaCalculada": 57.73,
-        "medianaCalculada": 57.65,
-        "acertosCalculados": 14
+        "totalCalculado": 1526.23,
+        "mediaCalculada": 63.59,
+        "medianaCalculada": 61.03,
+        "acertosCalculados": 13
       }
     },
     {
@@ -157,8 +158,8 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "calculada": 60.87,
-        "informada": 60.87
+        "calculada": 54.17,
+        "informada": 54.17
       }
     },
     {
@@ -167,12 +168,12 @@
       "nivel": "CRITICO",
       "detalhes": {
         "calculadas": {
-          "Conservador": 18,
+          "Conservador": 19,
           "Equilibrado": 5,
           "Agressivo": 0
         },
         "informadas": {
-          "Conservador": 18,
+          "Conservador": 19,
           "Equilibrado": 5,
           "Agressivo": 0
         }
@@ -198,9 +199,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "ganhoMediaCalculado": -0.45,
-        "ganhoTotalCalculado": -10.3,
-        "ganhoPercentualCalculado": -0.77
+        "ganhoMediaCalculado": -0.44,
+        "ganhoTotalCalculado": -10.4,
+        "ganhoPercentualCalculado": -0.68
       }
     },
     {
@@ -208,9 +209,9 @@
       "passou": true,
       "nivel": "CRITICO",
       "detalhes": {
-        "totalCalculado": 1447.88,
-        "mediaCalculada": 62.95,
-        "eficienciaCalculada": 91.71
+        "totalCalculado": 1687.14,
+        "mediaCalculada": 70.3,
+        "eficienciaCalculada": 90.46
       }
     },
     {

@@ -6,11 +6,11 @@
   },
   "resumo": {
     "rodadasAnalisadas": 23,
-    "mae": 2.93,
+    "mae": 3.02,
     "melhorRodada": {
       "rodada": 24,
-      "erro": 0.0,
-      "taxaAcerto": 100.0
+      "erro": 2.13,
+      "taxaAcerto": 71.67
     },
     "piorRodada": {
       "rodada": 3,
@@ -131,8 +131,8 @@
     },
     {
       "rodada": 24,
-      "mae": 0.0,
-      "taxaAcerto": 100.0
+      "mae": 2.13,
+      "taxaAcerto": 71.67
     }
   ],
   "evolucao": [
@@ -226,33 +226,33 @@
     },
     {
       "rodada": 24,
-      "mae": 0.0
+      "mae": 2.13
     }
   ],
   "posicoes": {
     "MEI": {
-      "quantidade": 2189,
-      "erroMedio": 2.67
+      "quantidade": 2294,
+      "erroMedio": 2.69
     },
     "LAT": {
-      "quantidade": 972,
-      "erroMedio": 3.42
+      "quantidade": 1017,
+      "erroMedio": 3.41
     },
     "ATA": {
-      "quantidade": 1716,
-      "erroMedio": 3.26
+      "quantidade": 1805,
+      "erroMedio": 3.27
     },
     "GOL": {
-      "quantidade": 444,
-      "erroMedio": 3.19
+      "quantidade": 463,
+      "erroMedio": 3.21
     },
     "TEC": {
-      "quantidade": 424,
-      "erroMedio": 2.2
+      "quantidade": 444,
+      "erroMedio": 2.18
     },
     "ZAG": {
-      "quantidade": 953,
-      "erroMedio": 2.94
+      "quantidade": 998,
+      "erroMedio": 2.95
     }
   },
   "versoes": [
@@ -280,8 +280,8 @@
       "nome": "Índice Explosão",
       "tipo": "camada estratégica",
       "resultado": "não incorporado na projeção",
-      "erroOriginal": 2.975,
-      "erroComExplosao": 3.045,
+      "erroOriginal": 2.981,
+      "erroComExplosao": 3.051,
       "impacto": -0.07,
       "decisao": "usar futuramente em capitão e diferenciais"
     }
