@@ -1,206 +1,54 @@
-/* =========================================================
-   CARTOLA ESTATÍSTICO V2.1
-   Polimento final de UX pós-revisão
-   ========================================================= */
+/* Cartola Estatístico V2.2 — polimento final de UX */
 (() => {
   "use strict";
+  const STYLE_ID="cartola-ux-final-v22";
+  const POS=["GOL","LAT","ZAG","MEI","ATA","TEC"];
+  const PN={GOL:"Goleiro",LAT:"Lateral",ZAG:"Zagueiro",MEI:"Meia",ATA:"Atacante",TEC:"Técnico"};
+  const state={busca:"",pos:"",clube:"",rodada:""};
+  const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+  const n=(v,p=0)=>Number.isFinite(Number(v))?Number(v):p;
+  const norm=v=>String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+  const nome=j=>String(j?.apelido||j?.nome||"Jogador").trim();
+  const clube=j=>String(j?.siglaClube||j?.clubeSigla||j?.clube?.abreviacao||j?.clube||"--").toUpperCase();
+  const pos=j=>String(j?.posicao||j?.posicaoSigla||"--").toUpperCase();
+  const preco=j=>n(j?.preco??j?.preco_num??j?.valor,NaN);
+  const adversario=j=>String(j?.siglaAdversario||j?.adversarioSigla||j?.adversario||j?.clubeAdversario||"--").toUpperCase();
+  const round=j=>String(j?.rodada??j?.round??"").trim();
+  const fmt=(v,c=1)=>Number.isFinite(Number(v))?Number(v).toFixed(c).replace(".",","):"--";
+  function proj(j){for(const v of [j?.projecaoViabilidade,j?.projecaoContextualizada,j?.projecaoCalibrada,j?.projecao,j?.score,j?.media3,j?.media5,j?.media]){const x=Number(v);if(Number.isFinite(x))return x}return 0}
+  function mando(j){const v=j?.mando??j?.mandante??j?.ehMandante;if(v===true||v===1||String(v).toLowerCase()==="casa")return"Casa";if(v===false||v===0||String(v).toLowerCase()==="fora")return"Fora";return"--"}
+  function status(j){const t=String(j?.status||j?.statusNome||j?.status_nome||"").trim();if(t)return t;const id=Number(j?.statusId??j?.status_id);if(id===7)return"Provável";if([2,3,5,6].includes(id))return"Atenção";return"Não informado"}
+  function jogadores(){try{if(typeof window.obterJogadoresCarregados==="function"){const l=window.obterJogadoresCarregados();if(Array.isArray(l))return l.filter(Boolean)}if(Array.isArray(window.estadoRecomendacoes?.jogadores))return window.estadoRecomendacoes.jogadores.filter(Boolean)}catch(_){}return[]}
 
-  const ID_STYLE = "cartola-ux-polimento-v21";
+  function css(){if(document.getElementById(STYLE_ID))return;const s=document.createElement("style");s.id=STYLE_ID;s.textContent=`
+  #recomendacoes .ce-clean-player:first-child{border-color:var(--primary)!important;background:var(--primary)!important;color:#fff!important}
+  #recomendacoes .ce-clean-player.is-active:not(:first-child){background:var(--surface)!important;color:var(--text)!important;border-color:var(--primary)!important;box-shadow:inset 0 0 0 1px var(--primary)}
+  #recomendacoes .ce-clean-player:first-child .ce-clean-rank{background:rgba(255,255,255,.22)!important}
+  #recomendacoes .ce-clean-player.is-active:not(:first-child) .ce-clean-rank{background:rgba(83,216,145,.12)!important;color:var(--primary)!important}
+  .component-row.component-explained{padding:11px 13px!important;border-radius:13px!important;margin:6px 0!important}.component-row .component-label>strong,.ce-factor-status{font-size:.68rem!important;padding:4px 8px!important}.component-row.ce-factor-positive{background:rgba(83,216,145,.07)!important}.component-row.ce-factor-attention{background:rgba(222,185,84,.07)!important}.component-row.ce-factor-negative{background:rgba(224,98,98,.07)!important}
+  .suggested-lineup-card.has-visual-pitch .lineup-players-title,.suggested-lineup-card.has-visual-pitch .lineup-players-list{display:none!important}.suggested-lineup-card .lineup-detail-section[data-ux-hide-bank="1"]{display:none!important}.pitch-bench{padding:11px!important}.pitch-bench-list{gap:7px!important}.pitch-bench-player{min-height:52px!important;padding:7px 9px!important}
+  #projecoes .section-header{margin-bottom:12px!important}#projecoes .section-header p{max-width:760px}.ce-proj-shell{max-width:1180px;margin:0 auto;display:grid;gap:10px}.ce-proj-toolbar{display:grid;grid-template-columns:minmax(220px,1.5fr) repeat(3,minmax(135px,.55fr));gap:8px}.ce-proj-toolbar input,.ce-proj-toolbar select{width:100%;min-height:40px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text);padding:0 11px;font:inherit;font-size:12px}.ce-proj-summary{display:flex;justify-content:space-between;gap:10px;color:var(--text-soft);font-size:10px;padding:2px 2px 5px}.ce-proj-table{border:1px solid var(--border);border-radius:15px;overflow:hidden;background:var(--surface)}.ce-proj-head,.ce-proj-row{display:grid;grid-template-columns:minmax(220px,1.4fr) minmax(155px,.8fr) 100px 105px;gap:10px;align-items:center}.ce-proj-head{padding:8px 12px;background:var(--surface-soft);font-size:9px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft)}.ce-proj-row{padding:9px 12px;border-top:1px solid var(--border);cursor:pointer}.ce-proj-row:hover{background:rgba(83,216,145,.04)}.ce-proj-player{min-width:0;display:flex;align-items:center;gap:10px}.ce-proj-rank{display:grid;place-items:center;width:26px;height:26px;flex:0 0 26px;border-radius:50%;background:var(--surface-soft);font-size:9px;font-weight:850;color:var(--text-soft)}.ce-proj-rank.top{background:rgba(83,216,145,.14);color:var(--primary)}.ce-proj-name{min-width:0}.ce-proj-name strong{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ce-proj-name small{display:flex;gap:5px;align-items:center;margin-top:2px;color:var(--text-soft);font-size:9px}.ce-proj-chip{display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:2px 5px;font-size:8px}.ce-proj-game{font-size:10px;color:var(--text-soft)}.ce-proj-game b{color:var(--text)}.ce-proj-score{font-size:16px;font-weight:900;text-align:right}.ce-proj-score small{font-size:9px;color:var(--text-soft)}.ce-proj-price{text-align:right;font-size:9px;color:var(--text-soft)}.ce-proj-price b{display:block;color:var(--text);font-size:11px}.ce-proj-detail{grid-column:1/-1;display:none;padding:7px 0 2px 36px;color:var(--text-soft);font-size:9px;line-height:1.45}.ce-proj-row.is-open .ce-proj-detail{display:block}.ce-proj-empty{padding:28px;text-align:center;color:var(--text-soft);font-size:12px}#projecoes #v21GridExplorador,#projecoes #v21ResumoExplorador,#projecoes .v21-toolbar{display:none!important}
+  #analise>.decision-dashboard,#analise>.ce-analysis-final{display:none!important}#analise>.ce-round-final{display:grid!important}.ce-round-final{max-width:1180px;margin:0 auto;gap:12px}.ce-round-hero{padding:18px;border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-soft))}.ce-round-kicker{font-size:9px;font-weight:850;letter-spacing:.09em;color:var(--primary);text-transform:uppercase}.ce-round-hero h2{margin:4px 0 6px;font-size:22px}.ce-round-hero p{margin:0;color:var(--text-soft);font-size:12px;line-height:1.55;max-width:850px}.ce-round-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ce-round-card{padding:15px;border:1px solid var(--border);border-radius:15px;background:var(--surface)}.ce-round-card header{display:flex;align-items:center;gap:9px;margin-bottom:9px}.ce-round-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--surface-soft);font-size:16px}.ce-round-card h3{margin:0;font-size:14px}.ce-round-card header small{display:block;margin-top:2px;color:var(--text-soft);font-size:9px}.ce-round-list{display:grid;gap:1px}.ce-round-item{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--border)}.ce-round-item:first-child{border-top:0}.ce-round-item strong{font-size:11px}.ce-round-item small{display:block;margin-top:2px;color:var(--text-soft);font-size:9px;line-height:1.4}.ce-round-tag{flex:0 0 auto;align-self:center;border-radius:999px;padding:4px 7px;background:rgba(83,216,145,.10);color:var(--primary);font-size:8px;font-weight:850}.ce-round-plan{padding:15px;border:1px solid rgba(83,216,145,.24);border-radius:15px;background:rgba(83,216,145,.07)}.ce-round-plan h3{margin:0 0 9px;font-size:14px}.ce-round-plan-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.ce-round-plan-item{padding:9px 10px;border-radius:10px;background:var(--surface);font-size:9px;color:var(--text-soft)}.ce-round-plan-item b{display:block;margin-top:3px;color:var(--text);font-size:11px}#analise .analysis-summary,#analise [data-analise-detalhes],#analise .analysis-human-intro,#analise .ce-analysis-decisions,#analise .ce-analysis-insight,#analise .ce-tech-toggle{display:none!important}
+  #historico canvas{max-height:300px!important}#historico .history-card,#historico .historico-card{border-radius:14px!important}
+  @media(max-width:850px){.ce-proj-toolbar{grid-template-columns:1fr 1fr}.ce-proj-toolbar input{grid-column:1/-1}.ce-proj-head{display:none}.ce-proj-row{grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}.ce-proj-game{grid-column:1}.ce-proj-score{grid-column:2;grid-row:1}.ce-proj-price{grid-column:2;grid-row:2}.ce-proj-detail{grid-column:1/-1;padding-left:36px}.ce-round-grid{grid-template-columns:1fr}.ce-round-plan-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.ce-proj-toolbar{grid-template-columns:1fr}.ce-proj-toolbar input{grid-column:auto}.ce-proj-row{padding:9px 10px}.ce-round-hero{padding:14px}.ce-round-hero h2{font-size:18px}.ce-round-card{padding:12px}.ce-round-plan-grid{grid-template-columns:1fr}}
+  `;document.head.appendChild(s)}
 
-  function esc(v) {
-    return String(v ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+  function composicao(){document.querySelectorAll(".component-row").forEach(r=>{const t=norm(r.textContent);r.classList.remove("ce-factor-positive","ce-factor-attention","ce-factor-negative");if(t.includes("favoravel")&&!t.includes("desfavoravel"))r.classList.add("ce-factor-positive");else if(t.includes("desfavoravel")||t.includes("risco para esta escolha"))r.classList.add("ce-factor-negative");else r.classList.add("ce-factor-attention")})}
+  function times(){document.querySelectorAll(".suggested-lineup-card .lineup-detail-section").forEach(s=>{const t=norm(s.textContent);if(t.includes("banco")||t.includes("reserva de luxo"))s.dataset.uxHideBank="1"})}
+  function defesaMonte(){document.querySelectorAll(".monte-line.defense").forEach(l=>{const a=[...l.querySelectorAll("[data-monte-slot]")],lat=a.filter(e=>e.dataset.pos==="LAT").sort((x,y)=>String(x.dataset.monteSlot).localeCompare(String(y.dataset.monteSlot))),zag=a.filter(e=>e.dataset.pos==="ZAG").sort((x,y)=>String(x.dataset.monteSlot).localeCompare(String(y.dataset.monteSlot)));if(!lat.length||!zag.length)return;const ordem=lat.length>=2?[lat[0],...zag,lat[1],...lat.slice(2)]:[...lat,...zag];ordem.filter(Boolean).forEach(e=>l.appendChild(e))})}
 
-  function n(v, p = 0) {
-    const x = Number(v);
-    return Number.isFinite(x) ? x : p;
-  }
+  function projecoes(){const tab=document.getElementById("projecoes");if(!tab)return;let sh=tab.querySelector(".ce-proj-shell");if(!sh){sh=document.createElement("div");sh.className="ce-proj-shell";(tab.querySelector(".section-header")||tab).insertAdjacentElement(tab.querySelector(".section-header")?"afterend":"afterbegin",sh)}const base=jogadores().slice().sort((a,b)=>proj(b)-proj(a));if(!base.length){sh.innerHTML='<div class="ce-proj-empty">Carregando projeções da rodada...</div>';return}const clubes=[...new Set(base.map(clube).filter(x=>x&&x!=="--"))].sort(),rodadas=[...new Set(base.map(round).filter(Boolean))].sort((a,b)=>n(b)-n(a));if(!state.rodada&&rodadas.length)state.rodada=rodadas[0];const busca=norm(state.busca),f=base.filter(j=>(!busca||norm(`${nome(j)} ${clube(j)} ${pos(j)}`).includes(busca))&&(!state.pos||pos(j)===state.pos)&&(!state.clube||clube(j)===state.clube)&&(!state.rodada||!round(j)||round(j)===state.rodada));sh.innerHTML=`<div class="ce-proj-toolbar"><input id="ceProjBusca" type="search" placeholder="🔎 Buscar jogador" value="${esc(state.busca)}"><select id="ceProjRodada"><option value="">📅 Rodada atual</option>${rodadas.map(r=>`<option value="${esc(r)}" ${r===state.rodada?"selected":""}>Rodada ${esc(r)}</option>`).join("")}</select><select id="ceProjPos"><option value="">⚽ Todas posições</option>${POS.map(p=>`<option value="${p}" ${p===state.pos?"selected":""}>${PN[p]}</option>`).join("")}</select><select id="ceProjClube"><option value="">🛡️ Todos clubes</option>${clubes.map(c=>`<option value="${esc(c)}" ${c===state.clube?"selected":""}>${esc(c)}</option>`).join("")}</select></div><div class="ce-proj-summary"><span><b>${f.length}</b> atleta(s) • ranking pela projeção vigente</span><span>Toque na linha para detalhes</span></div><div class="ce-proj-table"><div class="ce-proj-head"><span>Atleta</span><span>Confronto</span><span style="text-align:right">Projeção</span><span style="text-align:right">Preço</span></div>${f.length?f.map((j,i)=>{const p=preco(j),st=status(j),ic=/prov/i.test(st)?"✓":/aten/i.test(st)?"!":"•";return`<div class="ce-proj-row" tabindex="0"><div class="ce-proj-player"><span class="ce-proj-rank ${i<3?"top":""}">${i+1}</span><div class="ce-proj-name"><strong>${esc(nome(j))}</strong><small><span class="ce-proj-chip">${esc(pos(j))}</span><span>${esc(clube(j))}</span><span>${ic} ${esc(st)}</span></small></div></div><div class="ce-proj-game"><b>vs ${esc(adversario(j))}</b> • ${esc(mando(j))}</div><div class="ce-proj-score">${fmt(proj(j))}<small> pts</small></div><div class="ce-proj-price"><b>${Number.isFinite(p)?`C$ ${fmt(p,2)}`:"C$ --"}</b>${esc(PN[pos(j)]||pos(j))}</div><div class="ce-proj-detail">A projeção é a estimativa central. Status, mando, adversário e preço ajudam a decidir se o atleta faz sentido para sua estratégia.</div></div>`}).join(""):'<div class="ce-proj-empty">Nenhum atleta encontrado com esses filtros.</div>'}</div>`;sh.querySelector("#ceProjBusca")?.addEventListener("input",e=>{state.busca=e.target.value;projecoes()});sh.querySelector("#ceProjRodada")?.addEventListener("change",e=>{state.rodada=e.target.value;projecoes()});sh.querySelector("#ceProjPos")?.addEventListener("change",e=>{state.pos=e.target.value;projecoes()});sh.querySelector("#ceProjClube")?.addEventListener("change",e=>{state.clube=e.target.value;projecoes()});sh.querySelectorAll(".ce-proj-row").forEach(r=>{const t=()=>r.classList.toggle("is-open");r.onclick=t;r.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}})}
 
-  function nome(j) {
-    return String(j?.apelido || j?.nome || "Jogador").trim();
-  }
+  function top(l,p,q=1){return l.filter(j=>!p||pos(j)===p).slice().sort((a,b)=>proj(b)-proj(a)).slice(0,q)}
+  function analiseEstado(){try{const api=window.AnaliseRodada||window.CartolaAnaliseRodada;if(api&&typeof api.obterEstado==="function")return api.obterEstado()||{}}catch(_){}return{}}
+  const sigla=a=>a?.clube||a?.sigla||a?.abreviacao||"--";
+  const itemClube=(a,texto,tag)=>`<div class="ce-round-item"><div><strong>${esc(sigla(a))}</strong><small>${esc(texto)}</small></div>${tag?`<span class="ce-round-tag">${esc(tag)}</span>`:""}</div>`;
+  const itemJog=(j,tag)=>`<div class="ce-round-item"><div><strong>${esc(nome(j))}</strong><small>${esc(pos(j))} • ${esc(clube(j))} • vs ${esc(adversario(j))}</small></div><span class="ce-round-tag">${esc(tag||`${fmt(proj(j))} pts`)}</span></div>`;
+  function analise(){const tab=document.getElementById("analise");if(!tab)return;let box=tab.querySelector(".ce-round-final");if(!box){box=document.createElement("div");box.className="ce-round-final";tab.prepend(box)}const st=analiseEstado(),js=Array.isArray(st?.jogadores)&&st.jogadores.length?st.jogadores:jogadores(),cs=Array.isArray(st?.analises)?st.analises.filter(Boolean):[];if(!js.length){box.innerHTML='<div class="ce-proj-empty">Preparando a leitura da rodada...</div>';return}const atk=cs.slice().sort((a,b)=>n(b?.forcaOfensiva)-n(a?.forcaOfensiva)).slice(0,3),def=cs.slice().sort((a,b)=>n(b?.forcaDefensiva)-n(a?.forcaDefensiva)).slice(0,3),caut=cs.slice().sort((a,b)=>n(a?.forcaDefensiva)-n(b?.forcaDefensiva)).slice(0,2),mel=top(js,"",3),pp=["GOL","LAT","ZAG","MEI","ATA"].map(p=>top(js,p,1)[0]).filter(Boolean),cap=top(js.filter(j=>["MEI","ATA"].includes(pos(j))),"",1)[0]||mel[0],r=st?.rodada||js.map(round).find(Boolean)||document.getElementById("roundNumber")?.textContent||"",an=sigla(atk[0])!=="--"?sigla(atk[0]):clube(mel[0]),dn=sigla(def[0])!=="--"?sigla(def[0]):clube(pp.find(j=>["GOL","LAT","ZAG"].includes(pos(j)))||mel[0]);box.innerHTML=`<section class="ce-round-hero"><span class="ce-round-kicker">LEITURA DA RODADA ${esc(r)}</span><h2>O que vale fazer nesta rodada</h2><p>Resumo direto para montar o time: onde concentrar jogadores, onde buscar segurança, quais nomes merecem prioridade e onde reduzir exposição. Os cálculos técnicos continuam rodando por trás.</p></section><div class="ce-round-grid"><section class="ce-round-card"><header><span class="ce-round-icon">🔥</span><div><h3>Onde atacar</h3><small>Melhores cenários ofensivos</small></div></header><div class="ce-round-list">${atk.length?atk.map((a,i)=>itemClube(a,i===0?"Principal alvo para meias e atacantes.":"Boa alternativa ofensiva.",`#${i+1}`)).join(""):mel.map((j,i)=>itemJog(j,`#${i+1}`)).join("")}</div></section><section class="ce-round-card"><header><span class="ce-round-icon">🛡️</span><div><h3>Onde buscar segurança</h3><small>Melhores cenários para SG e defesa</small></div></header><div class="ce-round-list">${def.length?def.map((a,i)=>itemClube(a,i===0?"Melhor cenário defensivo da rodada.":"Boa opção para goleiro, lateral ou zagueiro.",`#${i+1}`)).join(""):pp.filter(j=>["GOL","LAT","ZAG"].includes(pos(j))).map(j=>itemJog(j,"SG")).join("")}</div></section><section class="ce-round-card"><header><span class="ce-round-icon">⭐</span><div><h3>Melhores oportunidades</h3><small>Um destaque forte por posição</small></div></header><div class="ce-round-list">${pp.map(j=>itemJog(j,`${fmt(proj(j))} pts`)).join("")}</div></section><section class="ce-round-card"><header><span class="ce-round-icon">🚨</span><div><h3>Onde ter cautela</h3><small>Reduza exposição sem boa justificativa</small></div></header><div class="ce-round-list">${caut.length?caut.map(a=>itemClube(a,"Cenário defensivo mais frágil; evite concentração em goleiro/defensores.","CAUTELA")).join(""):'<div class="ce-round-item"><div><strong>Evite concentração excessiva</strong><small>Distribua risco quando houver alternativas de projeção parecida.</small></div><span class="ce-round-tag">!</span></div>'}</div></section></div><section class="ce-round-plan"><h3>🧠 Plano recomendado para a rodada</h3><div class="ce-round-plan-grid"><div class="ce-round-plan-item">Priorizar ataque<b>${esc(an)}</b></div><div class="ce-round-plan-item">Buscar segurança<b>${esc(dn)}</b></div><div class="ce-round-plan-item">Capitão sugerido<b>${esc(nome(cap))} • ${fmt(proj(cap))} pts</b></div></div></section>`}
 
-  function posicao(j) {
-    return String(j?.posicao || j?.posicaoSigla || "").toUpperCase();
-  }
-
-  function projecao(j) {
-    const candidatos = [j?.projecaoViabilidade, j?.projecaoContextualizada, j?.projecaoCalibrada, j?.projecao, j?.score];
-    for (const valor of candidatos) {
-      const x = Number(valor);
-      if (Number.isFinite(x)) return x;
-    }
-    return 0;
-  }
-
-  function clube(j) {
-    return String(j?.siglaClube || j?.clube?.abreviacao || j?.clube || "--").toUpperCase();
-  }
-
-  function injetarCss() {
-    if (document.getElementById(ID_STYLE)) return;
-    const style = document.createElement("style");
-    style.id = ID_STYLE;
-    style.textContent = `
-      /* Composição da nota */
-      .component-row.component-explained{padding:12px 14px;border-radius:14px;margin:8px 0;background:var(--card-bg,#fff);border:1px solid var(--border-color,#e1e6e3)}
-      .component-row .component-label{align-items:flex-start;gap:10px}.component-row .component-label>span{min-width:0;flex:1}.component-row .component-label b{display:block;font-size:.92rem}.component-row .component-label small{display:block;margin-top:3px;line-height:1.35;opacity:.72}
-      .component-row .component-label>strong{flex:0 0 auto;padding:5px 9px;border-radius:999px;font-size:.7rem;letter-spacing:.02em;border:1px solid currentColor}
-      .component-row.is-good .component-label>strong{color:#087a46;background:rgba(8,122,70,.08)}
-      .component-row.is-neutral .component-label>strong{color:#6c7370;background:rgba(108,115,112,.08)}
-      .component-row.is-attention .component-label>strong{color:#a46100;background:rgba(164,97,0,.09)}
-      .component-row.is-bad .component-label>strong{color:#b42318;background:rgba(180,35,24,.08)}
-      .component-row .component-track{height:5px;margin-top:9px}.component-row .component-human-reading{display:none}
-
-      /* Times sugeridos */
-      .suggested-lineup-card.has-visual-pitch .lineup-players-title,.suggested-lineup-card.has-visual-pitch .lineup-players-list{display:none!important}
-      .suggested-lineup-card .lineup-detail-section[data-ux-hide-bank="1"]{display:none!important}
-      .suggested-lineups-container>.lineup-budget-panel,.suggested-lineups-container>.lineup-patrimony-control{margin-bottom:14px!important}
-      .suggested-lineup-card{overflow:hidden}.lineup-pitch-shell{margin-top:14px!important}.lineup-strategy-summary{margin-top:12px!important}
-      .pitch-bench{padding:12px!important}.pitch-bench-heading{margin-bottom:9px!important}.pitch-bench-list{gap:7px!important}.pitch-bench-player{min-height:54px!important;padding:7px 9px!important}
-
-      /* Projeções */
-      #projecoes .section-header{margin-bottom:10px}#projecoes .v21-toolbar{margin:10px 0!important;gap:8px!important}
-      #projecoes .v21-grid{grid-template-columns:repeat(auto-fit,minmax(235px,1fr))!important;gap:8px!important}
-      #projecoes .v21-player{padding:10px 12px!important;border-radius:13px!important;min-height:0!important}
-      #projecoes .v21-player h3{font-size:.98rem!important}#projecoes .v21-proj{font-size:1.18rem!important}
-      #projecoes .v21-chips{margin-top:5px!important}.v21-badge{padding:3px 6px!important;font-size:.67rem!important}.v21-match{margin-top:6px!important}
-
-      /* Histórico */
-      #historico .section-header{margin-bottom:12px}#historico .history-filters,#historico .historico-filtros{gap:8px!important}
-      #historico .history-card,#historico .historico-card{border-radius:14px!important}
-      #historico canvas{max-height:300px!important}
-      #historico .history-chart-note{margin:8px 0 14px;padding:9px 11px;border-radius:10px;background:rgba(164,97,0,.08);font-size:.78rem;line-height:1.4}
-
-      /* Nova análise */
-      #analise .analysis-summary,#analise [data-analise-detalhes]{display:none!important}
-      #analise .analysis-human-intro{display:none!important}
-      .decision-dashboard{display:grid;gap:14px;margin-top:10px}
-      .decision-hero{padding:17px 18px;border:1px solid var(--border-color,#dfe5e1);border-radius:16px;background:var(--card-bg,#fff)}
-      .decision-hero>span,.decision-block>span{font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--primary,#138a52)}
-      .decision-hero h3{margin:4px 0 6px;font-size:1.25rem}.decision-hero p{margin:0;line-height:1.5;opacity:.78}
-      .decision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-      .decision-block{padding:15px;border:1px solid var(--border-color,#dfe5e1);border-radius:15px;background:var(--card-bg,#fff)}
-      .decision-block h3{margin:4px 0 10px;font-size:1.05rem}.decision-list{display:grid;gap:7px}.decision-item{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(127,127,127,.12)}.decision-item:first-child{border-top:0;padding-top:0}
-      .decision-item strong{font-size:.9rem}.decision-item small{display:block;margin-top:2px;line-height:1.35;opacity:.7}.decision-rank{flex:0 0 auto;font-size:.7rem;font-weight:800;padding:4px 7px;border-radius:999px;background:rgba(19,138,82,.08);color:#087a46}
-      .decision-plan{padding:16px;border-radius:15px;background:rgba(19,138,82,.08);border:1px solid rgba(19,138,82,.22)}.decision-plan h3{margin:0 0 9px}.decision-plan ul{margin:0;padding-left:18px;line-height:1.7}
-      @media(max-width:720px){.decision-grid{grid-template-columns:1fr}.decision-hero{padding:14px}.decision-block{padding:13px}.decision-hero h3{font-size:1.1rem}#projecoes .v21-grid{grid-template-columns:1fr!important}.pitch-bench-list{grid-template-columns:1fr!important}}
-    `;
-    document.head.appendChild(style);
-  }
-
-  function polirComposicao() {
-    document.querySelectorAll(".component-row.component-explained").forEach(row => {
-      const badge = row.querySelector(".component-label>strong");
-      const txt = (badge?.textContent || "").toLowerCase();
-      row.classList.remove("is-good","is-neutral","is-attention","is-bad");
-      if (txt.includes("favor")) row.classList.add("is-good");
-      else if (txt.includes("atenção") || txt.includes("atencao")) row.classList.add("is-attention");
-      else if (txt.includes("desfavor")) row.classList.add("is-bad");
-      else row.classList.add("is-neutral");
-    });
-  }
-
-  function polirTimes() {
-    document.querySelectorAll(".suggested-lineup-card").forEach(card => {
-      const detalhes = card.querySelector(".lineup-complete-analysis");
-      detalhes?.querySelectorAll(".lineup-detail-section").forEach(sec => {
-        const txt = (sec.textContent || "").toLowerCase();
-        if (txt.includes("banco") || txt.includes("reserva de luxo")) sec.dataset.uxHideBank = "1";
-      });
-      const botao = card.querySelector("[data-lineup-details-button] span:first-child");
-      if (botao && /banco/i.test(botao.textContent || "")) botao.textContent = "Ver análise completa";
-    });
-  }
-
-  function polirHistorico() {
-    const tab = document.getElementById("historico");
-    if (!tab || tab.querySelector(".history-chart-note")) return;
-    const texto = tab.textContent || "";
-    if (!texto.includes("-250") && !texto.includes("-240")) return;
-    const alvo = tab.querySelector("canvas")?.parentElement || tab.querySelector(".section-header");
-    if (!alvo) return;
-    const nota = document.createElement("div");
-    nota.className = "history-chart-note";
-    nota.innerHTML = "<strong>R2 marcada como não confiável.</strong> A projeção histórica dessa rodada contém um valor inválido de origem e não deve ser usada para avaliar o modelo. O dado foi preservado para auditoria, mas será desconsiderado na leitura visual.";
-    alvo.insertAdjacentElement("afterend", nota);
-  }
-
-  function topJogadores(jogadores, filtro, qtd = 3) {
-    return jogadores.filter(filtro).slice().sort((a,b) => projecao(b) - projecao(a)).slice(0,qtd);
-  }
-
-  function linhaJogador(j, rotulo = "") {
-    return `<div class="decision-item"><div><strong>${esc(nome(j))}</strong><small>${esc(posicao(j))} · ${esc(clube(j))} · projeção ${projecao(j).toFixed(1).replace(".",",")} pts</small></div>${rotulo ? `<span class="decision-rank">${esc(rotulo)}</span>` : ""}</div>`;
-  }
-
-  function montarAnaliseDecisao() {
-    const tab = document.getElementById("analise");
-    if (!tab || tab.querySelector(".decision-dashboard")) return;
-    const api = window.AnaliseRodada || window.CartolaAnaliseRodada;
-    if (!api || typeof api.obterEstado !== "function") return;
-    const st = api.obterEstado();
-    const jogadores = Array.isArray(st?.jogadores) ? st.jogadores : [];
-    const clubes = Array.isArray(st?.analises) ? st.analises : [];
-    if (!jogadores.length || !clubes.length) return;
-
-    const ataque = clubes.slice().sort((a,b)=>n(b.forcaOfensiva)-n(a.forcaOfensiva)).slice(0,3);
-    const defesa = clubes.slice().sort((a,b)=>n(b.forcaDefensiva)-n(a.forcaDefensiva)).slice(0,3);
-    const riscoDef = clubes.slice().sort((a,b)=>n(a.forcaDefensiva)-n(b.forcaDefensiva)).slice(0,2);
-    const melhores = topJogadores(jogadores, j => posicao(j) !== "TEC", 5);
-    const destaquesPos = ["GOL","LAT","ZAG","MEI","ATA","TEC"].map(p => topJogadores(jogadores,j=>posicao(j)===p,1)[0]).filter(Boolean);
-
-    const hero = `Rodada com melhor cenário ofensivo em <b>${esc(ataque[0]?.clube || "--")}</b> e melhor proteção defensiva em <b>${esc(defesa[0]?.clube || "--")}</b>. Use os blocos abaixo como guia rápido; os índices técnicos continuam no modelo, mas não precisam ser a primeira coisa que você vê.`;
-    const jogos = Array.isArray(st?.partidas) ? st.partidas.slice(0,5) : [];
-    const jogoHtml = jogos.map((p,i)=>{
-      const casa = p?.clube_casa?.abreviacao || p?.clubeCasa?.abreviacao || p?.mandante?.abreviacao || "Mandante";
-      const fora = p?.clube_visitante?.abreviacao || p?.clubeVisitante?.abreviacao || p?.visitante?.abreviacao || "Visitante";
-      return `<div class="decision-item"><div><strong>${esc(casa)} × ${esc(fora)}</strong><small>${i===0?"Priorize jogadores com boa projeção individual e evite concentração excessiva.":"Confronto para combinar projeção, titularidade e risco antes de escalar."}</small></div></div>`;
-    }).join("");
-
-    const dash = document.createElement("div");
-    dash.className = "decision-dashboard";
-    dash.innerHTML = `
-      <section class="decision-hero"><span>LEITURA DA RODADA ${esc(st?.rodada || "")}</span><h3>O que fazer nesta rodada</h3><p>${hero}</p></section>
-      <div class="decision-grid">
-        <section class="decision-block"><span>🔥 ONDE ATACAR</span><h3>Melhores cenários ofensivos</h3><div class="decision-list">${ataque.map((a,i)=>`<div class="decision-item"><div><strong>${esc(a.clube)}</strong><small>${i===0?"Principal alvo ofensivo da rodada.":"Boa alternativa para meias e atacantes."}</small></div><span class="decision-rank">#${i+1}</span></div>`).join("")}</div></section>
-        <section class="decision-block"><span>🛡️ ONDE BUSCAR SG</span><h3>Defesas mais interessantes</h3><div class="decision-list">${defesa.map((a,i)=>`<div class="decision-item"><div><strong>${esc(a.clube)}</strong><small>${i===0?"Melhor cenário defensivo do modelo.":"Boa opção para goleiro, laterais e zagueiros."}</small></div><span class="decision-rank">#${i+1}</span></div>`).join("")}</div></section>
-        <section class="decision-block"><span>⚽ JOGOS PARA FICAR DE OLHO</span><h3>Leitura rápida dos confrontos</h3><div class="decision-list">${jogoHtml}</div></section>
-        <section class="decision-block"><span>⭐ MELHORES OPORTUNIDADES</span><h3>Destaques por posição</h3><div class="decision-list">${destaquesPos.map(j=>linhaJogador(j,"TOP")).join("")}</div></section>
-        <section class="decision-block"><span>🚨 CAUTELAS</span><h3>Onde reduzir exposição</h3><div class="decision-list">${riscoDef.map((a,i)=>`<div class="decision-item"><div><strong>Defesa de ${esc(a.clube)}</strong><small>${i===0?"Cenário defensivo mais frágil entre os clubes analisados.":"Evite concentração defensiva sem boa justificativa individual."}</small></div></div>`).join("")}${melhores.length?`<div class="decision-item"><div><strong>Não dependa só dos óbvios</strong><small>Mesmo os melhores projetados devem respeitar orçamento, formação e limite de atletas por clube.</small></div></div>`:""}</div></section>
-        <section class="decision-block"><span>💎 ACHADOS DO MODELO</span><h3>Quem merece atenção</h3><div class="decision-list">${melhores.slice(0,4).map((j,i)=>linhaJogador(j,i===0?"ÓBVIO":i===1?"FORTE":"OPÇÃO")).join("")}</div></section>
-      </div>
-      <section class="decision-plan"><h3>Plano da rodada</h3><ul><li><b>Priorizar ataque:</b> ${esc(ataque.slice(0,2).map(x=>x.clube).join(" e "))}</li><li><b>Buscar SG:</b> ${esc(defesa.slice(0,2).map(x=>x.clube).join(" e "))}</li><li><b>Evitar concentração defensiva:</b> ${esc(riscoDef.map(x=>x.clube).join(" e "))}</li><li><b>Capitão:</b> comece pelo atleta de maior projeção entre os titulares seguros.</li></ul></section>`;
-
-    const header = tab.querySelector(".section-header");
-    (header || tab.firstElementChild)?.insertAdjacentElement("afterend", dash);
-  }
-
-  function executar() {
-    injetarCss();
-    polirComposicao();
-    polirTimes();
-    polirHistorico();
-    montarAnaliseDecisao();
-  }
-
-  let timer = null;
-  function agendar() {
-    clearTimeout(timer);
-    timer = setTimeout(executar, 80);
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", agendar, {once:true});
-  else agendar();
-
-  const observer = new MutationObserver(agendar);
-  observer.observe(document.documentElement, {childList:true, subtree:true});
-  window.addEventListener("cartola:escalacoes-atualizadas", agendar);
-  setTimeout(agendar, 700);
-  setTimeout(agendar, 1800);
+  function historico(){document.querySelectorAll("#historico canvas").forEach(c=>c.style.maxHeight="300px")}
+  function aplicar(){composicao();times();defesaMonte();projecoes();analise();historico()}
+  function iniciar(){css();[0,350,900,1800,3200].forEach(ms=>setTimeout(aplicar,ms));document.querySelector(".menu")?.addEventListener("click",e=>{if(e.target.closest("[data-tab]"))setTimeout(aplicar,80)});window.addEventListener("cartola:escalacoes-atualizadas",()=>setTimeout(aplicar,50));window.addEventListener("cartola:rodada-atualizada",()=>setTimeout(aplicar,50))}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",iniciar,{once:true});else iniciar();
 })();
