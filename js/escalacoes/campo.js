@@ -303,3 +303,15 @@
   script.dataset.cartolaMonte = "true";
   document.head.appendChild(script);
 })();
+
+/* =========================================================
+   Polimento final V2.1 — camada visual e análise orientada à decisão
+   ========================================================= */
+(() => {
+  if (document.querySelector('script[data-cartola-ux-polimento="true"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/ux-polimento-v21.js";
+  script.defer = true;
+  script.dataset.cartolaUxPolimento = "true";
+  document.head.appendChild(script);
+})();
