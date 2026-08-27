@@ -315,3 +315,15 @@
   script.dataset.cartolaUxPolimento = "true";
   document.head.appendChild(script);
 })();
+
+/* =========================================================
+   Fechamento visual V2.3 — correções finais desktop/mobile
+   ========================================================= */
+(() => {
+  if (document.querySelector('script[data-cartola-ux-final-v23="true"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/ux-final-v23.js";
+  script.defer = true;
+  script.dataset.cartolaUxFinalV23 = "true";
+  document.head.appendChild(script);
+})();
