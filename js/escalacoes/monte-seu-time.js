@@ -24,7 +24,8 @@
     travas: new Map(),
     resultado: null,
     pickerSlot: null,
-    pickerBusca: ""
+    pickerBusca: "",
+    processando: false
   };
 
   function carregarCss() {
@@ -129,6 +130,16 @@
     return lista.some(outro => fn("jogadoresConflitamEscalacao")(jogador, outro));
   }
 
+  function contarConflitosLista(lista) {
+    let total = 0;
+    for (let i = 0; i < lista.length; i += 1) {
+      for (let j = i + 1; j < lista.length; j += 1) {
+        if (fn("jogadoresConflitamEscalacao")(lista[i], lista[j])) total += 1;
+      }
+    }
+    return total;
+  }
+
   function limiteClubesOk(lista) { return Boolean(fn("respeitaLimiteClubesEscalacao")(lista, 3)); }
 
   function candidatosPosicao(posicao, usados = new Set()) {
@@ -144,28 +155,75 @@
     if (new Set(ids).size !== ids.length) return "O mesmo jogador foi escolhido em mais de uma posição.";
     if (custo(travados) > estado.patrimonio + 0.001) return "Suas escolhas fixas já ultrapassam o patrimônio informado.";
     if (!limiteClubesOk(travados)) return "Suas escolhas fixas ultrapassam o limite de 3 atletas do mesmo clube.";
-    for (let i = 0; i < travados.length; i += 1) {
-      for (let j = i + 1; j < travados.length; j += 1) {
-        if (fn("jogadoresConflitamEscalacao")(travados[i], travados[j])) return "Há conflito entre uma peça defensiva e um atacante/meia do adversário nas escolhas fixas.";
-      }
-    }
     const contagem = {};
     travados.forEach(j => { const p = posJogador(j); contagem[p] = (contagem[p] || 0) + 1; });
     for (const [p, q] of Object.entries(contagem)) if (q > numero(e[p])) return `Há jogadores demais de ${p} para a formação ${estado.formacao}.`;
     return "";
   }
 
-  function menorCustoRestante(slots, usados) {
+  function avisoTravas() {
+    const travados = [...estado.travas.values()];
+    const conflitos = contarConflitosLista(travados);
+    return conflitos > 0
+      ? `${conflitos} conflito(s) estratégico(s) entre escolhas manuais será(ão) mantido(s); o modelo não criará novos conflitos.`
+      : "";
+  }
+
+  function construirIndiceBusca() {
+    const porPosicao = new Map();
+    for (const jogador of pool()) {
+      const posicao = posJogador(jogador);
+      if (!porPosicao.has(posicao)) porPosicao.set(posicao, []);
+      porPosicao.get(posicao).push({
+        jogador,
+        id: idJogador(jogador),
+        preco: precoJogador(jogador),
+        projecao: projJogador(jogador),
+        score: score(jogador)
+      });
+    }
+    for (const itens of porPosicao.values()) {
+      itens.sort((a, b) => b.score - a.score || b.projecao - a.projecao || a.preco - b.preco);
+    }
+    return porPosicao;
+  }
+
+  function candidatosBusca(indice, posicao, usados, limite = 18) {
+    const todos = indice.get(posicao) || [];
+    const disponiveis = todos.filter(item => !usados.has(item.id));
+    if (disponiveis.length <= limite) return disponiveis;
+
+    const selecionados = [];
+    const ids = new Set();
+    const adicionar = item => {
+      if (!item || ids.has(item.id)) return;
+      ids.add(item.id);
+      selecionados.push(item);
+    };
+
+    disponiveis.slice(0, 11).forEach(adicionar);
+    [...disponiveis].sort((a, b) => a.preco - b.preco || b.score - a.score).slice(0, 8).forEach(adicionar);
+    return selecionados.slice(0, limite);
+  }
+
+  function menorCustoRestante(indice, slots, usados) {
     let total = 0;
     for (const slot of slots) {
-      const precos = candidatosPosicao(slot.posicao, usados).slice(0, 30).map(precoJogador);
-      if (!precos.length) return Infinity;
-      total += Math.min(...precos);
+      let menor = Infinity;
+      for (const item of indice.get(slot.posicao) || []) {
+        if (!usados.has(item.id) && item.preco < menor) menor = item.preco;
+      }
+      if (!Number.isFinite(menor)) return Infinity;
+      total += menor;
     }
     return total;
   }
 
-  function completarTitulares() {
+  function cederThread() {
+    return new Promise(resolve => window.setTimeout(resolve, 0));
+  }
+
+  async function completarTitulares() {
     const erro = validarTravas();
     if (erro) throw new Error(erro);
 
@@ -174,47 +232,59 @@
     const slotsRestantes = todosSlots.filter(s => !travadosPorChave.has(s.chave));
     const fixos = todosSlots.filter(s => travadosPorChave.has(s.chave)).map(s => travadosPorChave.get(s.chave));
     const idsFixos = new Set(fixos.map(idJogador));
+    const indice = construirIndiceBusca();
 
-    slotsRestantes.sort((a, b) => candidatosPosicao(a.posicao, idsFixos).length - candidatosPosicao(b.posicao, idsFixos).length);
+    slotsRestantes.sort((a, b) => (indice.get(a.posicao)?.length || 0) - (indice.get(b.posicao)?.length || 0));
 
     let feixe = [{ jogadores: [...fixos], score: fixos.reduce((s, j) => s + score(j), 0), custo: custo(fixos) }];
-    const LARGURA = 140;
-    const CANDIDATOS_POR_SLOT = 22;
+    const LARGURA = 48;
+    const CANDIDATOS_POR_SLOT = 18;
 
-    slotsRestantes.forEach((slot, indice) => {
+    for (let indiceSlot = 0; indiceSlot < slotsRestantes.length; indiceSlot += 1) {
+      const slot = slotsRestantes[indiceSlot];
       const proximos = [];
+
       for (const estadoBusca of feixe) {
         const usados = new Set(estadoBusca.jogadores.map(idJogador));
-        const candidatos = candidatosPosicao(slot.posicao, usados).slice(0, CANDIDATOS_POR_SLOT);
-        for (const candidato of candidatos) {
+        const candidatos = candidatosBusca(indice, slot.posicao, usados, CANDIDATOS_POR_SLOT);
+        for (const item of candidatos) {
+          const candidato = item.jogador;
           if (conflitoComLista(candidato, estadoBusca.jogadores)) continue;
           const novaLista = [...estadoBusca.jogadores, candidato];
           if (!limiteClubesOk(novaLista)) continue;
-          const novoCusto = estadoBusca.custo + precoJogador(candidato);
+          const novoCusto = estadoBusca.custo + item.preco;
           if (novoCusto > estado.patrimonio + 0.001) continue;
-          const faltantes = slotsRestantes.slice(indice + 1);
+          const faltantes = slotsRestantes.slice(indiceSlot + 1);
           const idsNovos = new Set(novaLista.map(idJogador));
-          if (novoCusto + menorCustoRestante(faltantes, idsNovos) > estado.patrimonio + 0.001) continue;
-          proximos.push({ jogadores: novaLista, score: estadoBusca.score + score(candidato), custo: novoCusto });
+          if (novoCusto + menorCustoRestante(indice, faltantes, idsNovos) > estado.patrimonio + 0.001) continue;
+          proximos.push({ jogadores: novaLista, score: estadoBusca.score + item.score, custo: novoCusto });
         }
       }
+
       proximos.sort((a, b) => b.score - a.score || a.custo - b.custo);
       feixe = proximos.slice(0, LARGURA);
-      if (!feixe.length) throw new Error("Não encontrei combinação viável com essas escolhas, formação e patrimônio. Tente liberar uma escolha ou aumentar as cartoletas.");
-    });
+      if (!feixe.length) {
+        throw new Error("Não encontrei uma combinação viável com essas escolhas, formação e patrimônio. Tente liberar uma escolha ou aumentar as cartoletas.");
+      }
+
+      await cederThread();
+    }
 
     const melhor = feixe[0];
     if (!melhor) throw new Error("Não foi possível completar o time.");
     const idsTravados = new Set(fixos.map(idJogador));
-    const enriquecidos = fn("enriquecerTitularesEscalacao")(melhor.jogadores, perfilAtual()).map(j => ({ ...j, travadoUsuario: idsTravados.has(idJogador(j)) }));
-    return enriquecidos;
+    return fn("enriquecerTitularesEscalacao")(melhor.jogadores, perfilAtual())
+      .map(j => ({ ...j, travadoUsuario: idsTravados.has(idJogador(j)) }));
   }
 
-  function montarResultado() {
-    const titulares = completarTitulares();
+  async function montarResultado() {
+    const fixos = [...estado.travas.values()];
+    const conflitosFixos = contarConflitosLista(fixos);
+    const titulares = await completarTitulares();
     if (!fn("validarQuantidadeTitularesEscalacao")(titulares, estado.formacao)) throw new Error("A formação final ficou inconsistente e foi bloqueada pelo gate de quantidade.");
     if (!limiteClubesOk(titulares)) throw new Error("A escalação final violou o limite por clube e foi bloqueada.");
-    if (typeof window.contarConflitosEscalacao === "function" && window.contarConflitosEscalacao(titulares) > 0) throw new Error("A escalação final contém conflito ataque × defesa e foi bloqueada.");
+    const conflitosTotais = contarConflitosLista(titulares);
+    if (conflitosTotais > conflitosFixos) throw new Error("O modelo criou um novo conflito ataque × defesa e a escalação foi bloqueada.");
 
     const banco = fn("montarBancoEscalacao")(pool(), titulares, perfilAtual());
     const posicoesBanco = fn("obterPosicoesBancoEscalacao")(titulares);
@@ -222,6 +292,7 @@
     const capitao = fn("selecionarCapitaoEscalacao")(titulares, perfilAtual());
     const reservaLuxo = fn("selecionarReservaLuxoEscalacao")(banco, perfilAtual());
     const custoTitulares = numero(fn("calcularCustoListaEscalacao")(titulares));
+    const aviso = avisoTravas();
 
     const escalacao = {
       perfil: `${perfilAtual().nome} personalizado`, perfilChave: perfilAtual().chave,
@@ -236,7 +307,7 @@
       custo: custoTitulares, custoTitulares, custoBanco: numero(fn("calcularCustoListaEscalacao")(banco)),
       saldo: Math.round((estado.patrimonio - custoTitulares) * 100) / 100,
       bancoCompleto, quantidadeReservas: banco.length, quantidadeReservasEsperada: posicoesBanco.length, posicoesBanco,
-      descricao: `Você fixou ${estado.travas.size} escolha(s); o motor ${perfilAtual().nome} completou o restante respeitando as regras vigentes.`,
+      descricao: `Você fixou ${estado.travas.size} escolha(s); o motor ${perfilAtual().nome} completou o restante respeitando as regras vigentes.${aviso ? ` ${aviso}` : ""}`,
       pontosPositivos: [], pontosAtencao: [], origem: "monte-seu-time-v21"
     };
     escalacao.pontosPositivos = fn("gerarPontosPositivosEscalacao")(escalacao);
@@ -308,7 +379,17 @@
     el.textContent = texto; el.className = `monte-message ${tipo}`.trim();
   }
 
+  function definirProcessando(valor) {
+    estado.processando = Boolean(valor);
+    const botao = document.querySelector(`#${ABA_ID} [data-monte-completar]`);
+    if (!botao) return;
+    botao.disabled = estado.processando;
+    botao.setAttribute("aria-busy", estado.processando ? "true" : "false");
+    botao.textContent = estado.processando ? "Calculando melhor combinação…" : "✨ Completar com o modelo";
+  }
+
   function abrirPicker(chave) {
+    if (estado.processando) return;
     estado.pickerSlot = chave; estado.pickerBusca = "";
     renderPicker();
   }
@@ -353,17 +434,32 @@
       botao.addEventListener("click", () => ativarAba(botao));
     }
 
-    secao.addEventListener("click", e => {
+    secao.addEventListener("click", async e => {
       const slot = e.target.closest("[data-monte-slot]"); if (slot) return abrirPicker(slot.dataset.monteSlot);
-      if (e.target.closest("[data-monte-limpar]")) { estado.travas.clear(); estado.resultado = null; renderCampoBuilder(); renderResultado(); mensagem("Escolhas liberadas. O modelo pode preencher todas as posições."); return; }
+      if (e.target.closest("[data-monte-limpar]")) {
+        if (estado.processando) return;
+        estado.travas.clear(); estado.resultado = null; renderCampoBuilder(); renderResultado(); mensagem("Escolhas liberadas. O modelo pode preencher todas as posições."); return;
+      }
       if (e.target.closest("[data-monte-completar]")) {
-        try { estado.resultado = montarResultado(); renderResultado(); mensagem(`Time completado com ${estado.travas.size} escolha(s) fixa(s).`, "success"); }
-        catch (erro) { estado.resultado = null; renderResultado(); mensagem(erro?.message || String(erro), "error"); }
+        if (estado.processando) return;
+        definirProcessando(true);
+        mensagem("Calculando uma combinação viável sem travar a página…");
+        try {
+          await cederThread();
+          estado.resultado = await montarResultado();
+          renderResultado();
+          const aviso = avisoTravas();
+          mensagem(aviso ? `Time completado. ${aviso}` : `Time completado com ${estado.travas.size} escolha(s) fixa(s).`, aviso ? "warning" : "success");
+        } catch (erro) {
+          estado.resultado = null; renderResultado(); mensagem(erro?.message || String(erro), "error");
+        } finally {
+          definirProcessando(false);
+        }
       }
     });
-    secao.querySelector("[data-monte-patrimonio]")?.addEventListener("change", e => { estado.patrimonio = Math.max(40, Math.min(200, numero(e.target.value, 120))); e.target.value = estado.patrimonio; estado.resultado = null; renderResumo(); renderResultado(); });
-    secao.querySelector("[data-monte-formacao]")?.addEventListener("change", e => { estado.formacao = FORMACOES.includes(e.target.value) ? e.target.value : "4-3-3"; reconciliarTravas(); renderCampoBuilder(); renderResultado(); });
-    secao.querySelector("[data-monte-perfil]")?.addEventListener("change", e => { estado.perfil = PERFIS[e.target.value] ? e.target.value : "equilibrado"; estado.resultado = null; renderCampoBuilder(); renderResultado(); });
+    secao.querySelector("[data-monte-patrimonio]")?.addEventListener("change", e => { if (estado.processando) return; estado.patrimonio = Math.max(40, Math.min(200, numero(e.target.value, 120))); e.target.value = estado.patrimonio; estado.resultado = null; renderResumo(); renderResultado(); });
+    secao.querySelector("[data-monte-formacao]")?.addEventListener("change", e => { if (estado.processando) return; estado.formacao = FORMACOES.includes(e.target.value) ? e.target.value : "4-3-3"; reconciliarTravas(); renderCampoBuilder(); renderResultado(); });
+    secao.querySelector("[data-monte-perfil]")?.addEventListener("change", e => { if (estado.processando) return; estado.perfil = PERFIS[e.target.value] ? e.target.value : "equilibrado"; estado.resultado = null; renderCampoBuilder(); renderResultado(); });
 
     document.addEventListener("click", e => {
       const item = e.target.closest(".menu-item"); if (item && item.dataset.tab !== ABA_ID) secao.classList.remove("active");
