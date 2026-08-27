@@ -8,6 +8,7 @@ on:
       - 'js/escalacoes/cards.js'
       - 'js/explorador-v21.js'
       - 'js/historico/cards.js'
+      - 'js/ux-final-v23.js'
       - 'css/monte-seu-time.css'
       - 'css/campo-escalacoes.css'
       - 'scripts/auditar_ux_v21.py'
@@ -31,6 +32,7 @@ jobs:
           node --check js/explorador-v21.js
           node --check js/escalacoes/cards.js
           node --check js/historico/cards.js
+          node --check js/ux-final-v23.js
 
       - name: Auditar gates de UX
         run: python scripts/auditar_ux_v21.py
