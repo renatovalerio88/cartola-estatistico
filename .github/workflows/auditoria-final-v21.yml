@@ -37,6 +37,8 @@ jobs:
           node --check js/app.js
           node --check js/analise.js
           node --check js/explorador-v21.js
+          node --check js/ux-polimento-v21.js
+          node --check js/escalacoes/monte-seu-time.js
           node --check js/historico/cards.js
           node --check js/historico/dados.js
           node --check js/historico/graficos.js
