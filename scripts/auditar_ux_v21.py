@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ux = (ROOT / "js/recomendacoes/ux-clean.js").read_text(encoding="utf-8")
+monte = (ROOT / "js/escalacoes/monte-seu-time.js").read_text(encoding="utf-8")
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 
 checks = {
@@ -31,6 +32,28 @@ checks = {
         and '#playersGrid .ce-clean-recs' in ux
         and 'return !alvo?.closest?.("#playersGrid .ce-clean-recs")' in ux
         and 'transition:none!important' in ux
+    ),
+    "monte_busca_assincrona": (
+        'async function completarTitulares()' in monte
+        and 'await cederThread()' in monte
+        and 'const LARGURA = 48' in monte
+        and 'const CANDIDATOS_POR_SLOT = 18' in monte
+    ),
+    "monte_sem_clique_concorrente": (
+        'processando: false' in monte
+        and 'if (estado.processando) return;' in monte
+        and 'definirProcessando(true)' in monte
+        and 'definirProcessando(false)' in monte
+    ),
+    "monte_travas_respeitadas": (
+        'const conflitosFixos = contarConflitosLista(fixos)' in monte
+        and 'if (conflitosTotais > conflitosFixos)' in monte
+        and 'o modelo não criará novos conflitos' in monte
+    ),
+    "monte_indice_cacheado": (
+        'function construirIndiceBusca()' in monte
+        and 'function candidatosBusca(' in monte
+        and 'function menorCustoRestante(indice' in monte
     ),
 }
 
