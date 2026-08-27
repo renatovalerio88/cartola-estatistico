@@ -29,15 +29,25 @@ for valor in (80, 100, 120, 150, 180, 200):
 if min(200, max(1, 250)) != 200:
     falhas.append("teto 200 falhou")
 
+# O orçamento pertence ao motor/Times Sugeridos e ao Monte seu Time. O Explorador
+# não deve mais injetar um segundo controle de patrimônio, porque isso gerava o
+# bloco branco duplicado visto na revisão visual.
 obrigatorios_explorador = [
     'data-tab', 'Projeções', 'v21BuscaJogador', 'v21FiltroClube',
-    'v21Patrimonio', 'max="${MAX_PATRIMONIO}"', 'Reconstruir times',
     'Piso', 'Projeção', 'Teto', 'Confiança', 'Risco', 'Explosão 10+',
-    'Baseline/fallback', 'Clima, lateralidade e consenso só serão exibidos'
+    'Baseline/fallback'
 ]
 for token in obrigatorios_explorador:
     if token not in explorador:
         falhas.append(f"explorador sem requisito: {token}")
+
+proibidos_explorador = [
+    'id="v21Patrimonio"',
+    'Reconstruir times'
+]
+for token in proibidos_explorador:
+    if token in explorador:
+        falhas.append(f"explorador voltou a duplicar controle de orçamento: {token}")
 
 if re.search(r"R24|rodada[-_ ]?24", explorador, re.I):
     falhas.append("explorador não deve embutir ajuste retrospectivo da R24")
@@ -50,7 +60,8 @@ if falhas:
 
 print("AUDITORIA PRODUTO V2.1: APROVADA")
 print("7 formações: OK")
-print("Patrimônio configurável 1..200: OK")
+print("Patrimônio configurável 1..200 no motor: OK")
 print("Valores auditados: 80, 100, 120, 150, 180, 200")
 print("Explorador por jogador/clube: OK")
+print("Explorador sem orçamento duplicado: OK")
 print("Fallback/explicabilidade: OK")
