@@ -1,0 +1,39 @@
+name: Monte seu time V2.1
+
+on:
+  pull_request:
+    paths:
+      - "js/escalacoes/monte-seu-time.js"
+      - "js/escalacoes/campo.js"
+      - "css/monte-seu-time.css"
+      - "scripts/auditar_monte_seu_time_v21.py"
+      - ".github/workflows/monte-seu-time-v21.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validar sintaxe JavaScript
+        run: |
+          node --check js/escalacoes/campo.js
+          node --check js/escalacoes/monte-seu-time.js
+
+      - name: Auditar Monte seu time
+        run: python scripts/auditar_monte_seu_time_v21.py

@@ -130,11 +130,13 @@
 
   function jogadorCampoHtml(jogador, escalacao) {
     const capitao = ehCapitao(jogador, escalacao);
+    const travado = Boolean(jogador?.travadoUsuario);
     return `
-      <article class="pitch-player" title="${escapar(nomeCurto(jogador))} • ${escapar(posicao(jogador))} • ${escapar(preco(jogador))}">
+      <article class="pitch-player" data-user-lock="${travado ? "true" : "false"}" title="${escapar(nomeCurto(jogador))} • ${escapar(posicao(jogador))} • ${escapar(preco(jogador))}">
         <div class="pitch-player-avatar-wrap">
           ${avatarHtml(jogador)}
           ${capitao ? '<span class="pitch-captain" aria-label="Capitão">C</span>' : ""}
+          ${travado ? '<span class="monte-lock-badge" aria-label="Sua escolha" title="Sua escolha">🔒</span>' : ""}
         </div>
         <strong>${escapar(nomeCurto(jogador))}</strong>
         <span class="pitch-player-meta">${clubeHtml(jogador)} <b>${escapar(projecao(jogador))}</b></span>
@@ -288,4 +290,16 @@
     renderizar,
     campoHtml
   };
+})();
+
+/* =========================================================
+   Monte seu time — carregamento sob o mesmo componente visual
+   ========================================================= */
+(() => {
+  if (document.querySelector('script[data-cartola-monte="true"]')) return;
+  const script = document.createElement("script");
+  script.src = "js/escalacoes/monte-seu-time.js";
+  script.defer = true;
+  script.dataset.cartolaMonte = "true";
+  document.head.appendChild(script);
 })();
