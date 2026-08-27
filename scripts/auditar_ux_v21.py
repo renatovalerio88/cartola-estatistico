@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ux = (ROOT / "js/recomendacoes/ux-clean.js").read_text(encoding="utf-8")
 monte = (ROOT / "js/escalacoes/monte-seu-time.js").read_text(encoding="utf-8")
+historico = (ROOT / "js/historico/cards.js").read_text(encoding="utf-8")
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 
 checks = {
@@ -21,6 +22,24 @@ checks = {
     "historico_zeros_ocultos": 'Detalhamento em reprocessamento' in ux,
     "historico_mobile_cards": '#historico .history-table thead{display:none}' in ux and 'data-label' in ux,
     "historico_perfis": 'ce-history-profile-tabs' in ux and 'Perfil para comparar' in ux,
+    "historico_v21_filtra_anomalias": (
+        'function rodadaConfiavel(item)' in historico
+        and 'const invalidos = itensOriginais.filter(item => !rodadaConfiavel(item));' in historico
+        and 'const itens = itensOriginais.filter(rodadaConfiavel);' in historico
+        and 'não altera a escala nem a leitura do gráfico' in historico
+    ),
+    "historico_v21_rotulos_grafico": (
+        'history-point-proj' in historico
+        and 'history-point-real' in historico
+        and 'valores rotulados em cada ponto' in historico
+        and '<title>R${item.rodada}: ${n(valor)} pts</title>' in historico
+    ),
+    "historico_v21_mobile_legivel": (
+        '.history-v21-table thead{display:none}' in historico
+        and 'content:attr(data-label)' in historico
+        and 'data-label="Projeção"' in historico
+        and 'data-label="Leitura"' in historico
+    ),
     "analise_decisao_primeiro": 'ce-analysis-decisions' in ux and 'Ver números técnicos dos clubes' in ux,
     "analise_insights": 'Ataque para priorizar' in ux and 'Defesa para priorizar' in ux and 'Como usar esta leitura' in ux,
     "metodologia_onboarding": 'Como usar o Cartola Estatístico' in ux and 'O que não foi promovido' in ux,
