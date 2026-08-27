@@ -5,200 +5,16 @@
   "ranking": [
     {
       "modelo": "Posicional",
-      "descricao": "Perfil posicional original do torneio V1.",
-      "rodadasAvaliadas": 22,
-      "mediaCapitao": 5.312,
-      "mediaTime": 55.638,
-      "ganhoMedioTimeVsAtual": 0.332,
-      "vitoriasVsAtual": 10,
-      "empatesVsAtual": 5,
-      "derrotasVsAtual": 7,
-      "taxaVitoriasVsAtual": 45.45,
-      "taxaMelhorCapitaoReal": 12.12,
-      "desempenhoTemporal": {
-        "campeonato": {
-          "quantidade": 22,
-          "rodadas": [
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.312,
-          "mediaTime": 55.638,
-          "ganhoTimeVsAtual": 0.332
-        },
-        "ultimas10": {
-          "quantidade": 10,
-          "rodadas": [
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.553,
-          "mediaTime": 53.604,
-          "ganhoTimeVsAtual": 1.227
-        },
-        "ultimas5": {
-          "quantidade": 5,
-          "rodadas": [
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.813,
-          "mediaTime": 50.947,
-          "ganhoTimeVsAtual": 1.067
-        },
-        "ultimas3": {
-          "quantidade": 3,
-          "rodadas": [
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.344,
-          "mediaTime": 41.549,
-          "ganhoTimeVsAtual": 0.678
-        }
-      },
-      "posicao": 1,
-      "perfil": "Posicional_Equilibrado",
-      "descricaoPerfil": "Perfil posicional original do torneio V1.",
-      "scorePerfilV2": 6.4666,
-      "posicaoV2": 1
-    },
-    {
-      "modelo": "Posicional",
-      "descricao": "Mistura momento recente com potencial de explosão.",
-      "rodadasAvaliadas": 22,
-      "mediaCapitao": 5.312,
-      "mediaTime": 55.638,
-      "ganhoMedioTimeVsAtual": 0.332,
-      "vitoriasVsAtual": 10,
-      "empatesVsAtual": 5,
-      "derrotasVsAtual": 7,
-      "taxaVitoriasVsAtual": 45.45,
-      "taxaMelhorCapitaoReal": 12.12,
-      "desempenhoTemporal": {
-        "campeonato": {
-          "quantidade": 22,
-          "rodadas": [
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.312,
-          "mediaTime": 55.638,
-          "ganhoTimeVsAtual": 0.332
-        },
-        "ultimas10": {
-          "quantidade": 10,
-          "rodadas": [
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.553,
-          "mediaTime": 53.604,
-          "ganhoTimeVsAtual": 1.227
-        },
-        "ultimas5": {
-          "quantidade": 5,
-          "rodadas": [
-            20,
-            21,
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.813,
-          "mediaTime": 50.947,
-          "ganhoTimeVsAtual": 1.067
-        },
-        "ultimas3": {
-          "quantidade": 3,
-          "rodadas": [
-            22,
-            23,
-            24
-          ],
-          "mediaCapitao": 5.344,
-          "mediaTime": 41.549,
-          "ganhoTimeVsAtual": 0.678
-        }
-      },
-      "posicao": 1,
-      "perfil": "Posicional_Hibrido",
-      "descricaoPerfil": "Mistura momento recente com potencial de explosão.",
-      "scorePerfilV2": 6.4666,
-      "posicaoV2": 2
-    },
-    {
-      "modelo": "Posicional",
       "descricao": "Aumenta piso, regularidade e confiança.",
       "rodadasAvaliadas": 22,
-      "mediaCapitao": 5.306,
-      "mediaTime": 55.632,
-      "ganhoMedioTimeVsAtual": 0.326,
-      "vitoriasVsAtual": 10,
-      "empatesVsAtual": 5,
+      "mediaCapitao": 5.87,
+      "mediaTime": 59.763,
+      "ganhoMedioTimeVsAtual": 0.544,
+      "vitoriasVsAtual": 11,
+      "empatesVsAtual": 4,
       "derrotasVsAtual": 7,
-      "taxaVitoriasVsAtual": 45.45,
-      "taxaMelhorCapitaoReal": 12.12,
+      "taxaVitoriasVsAtual": 50.0,
+      "taxaMelhorCapitaoReal": 13.64,
       "desempenhoTemporal": {
         "campeonato": {
           "quantidade": 22,
@@ -226,9 +42,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.306,
-          "mediaTime": 55.632,
-          "ganhoTimeVsAtual": 0.326
+          "mediaCapitao": 5.87,
+          "mediaTime": 59.763,
+          "ganhoTimeVsAtual": 0.544
         },
         "ultimas10": {
           "quantidade": 10,
@@ -244,9 +60,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.553,
-          "mediaTime": 53.604,
-          "ganhoTimeVsAtual": 1.227
+          "mediaCapitao": 6.793,
+          "mediaTime": 62.692,
+          "ganhoTimeVsAtual": 1.707
         },
         "ultimas5": {
           "quantidade": 5,
@@ -257,9 +73,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.813,
-          "mediaTime": 50.947,
-          "ganhoTimeVsAtual": 1.067
+          "mediaCapitao": 8.293,
+          "mediaTime": 69.123,
+          "ganhoTimeVsAtual": 2.027
         },
         "ultimas3": {
           "quantidade": 3,
@@ -268,29 +84,213 @@
             23,
             24
           ],
-          "mediaCapitao": 5.344,
-          "mediaTime": 41.549,
-          "ganhoTimeVsAtual": 0.678
+          "mediaCapitao": 9.478,
+          "mediaTime": 71.842,
+          "ganhoTimeVsAtual": 2.278
         }
       },
       "posicao": 1,
       "perfil": "Posicional_Seguro",
       "descricaoPerfil": "Aumenta piso, regularidade e confiança.",
-      "scorePerfilV2": 6.4546,
+      "scorePerfilV2": 11.0751,
+      "posicaoV2": 1
+    },
+    {
+      "modelo": "Posicional",
+      "descricao": "Perfil posicional original do torneio V1.",
+      "rodadasAvaliadas": 22,
+      "mediaCapitao": 5.679,
+      "mediaTime": 59.572,
+      "ganhoMedioTimeVsAtual": 0.353,
+      "vitoriasVsAtual": 11,
+      "empatesVsAtual": 4,
+      "derrotasVsAtual": 7,
+      "taxaVitoriasVsAtual": 50.0,
+      "taxaMelhorCapitaoReal": 13.64,
+      "desempenhoTemporal": {
+        "campeonato": {
+          "quantidade": 22,
+          "rodadas": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 5.679,
+          "mediaTime": 59.572,
+          "ganhoTimeVsAtual": 0.353
+        },
+        "ultimas10": {
+          "quantidade": 10,
+          "rodadas": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 6.36,
+          "mediaTime": 62.259,
+          "ganhoTimeVsAtual": 1.273
+        },
+        "ultimas5": {
+          "quantidade": 5,
+          "rodadas": [
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 7.427,
+          "mediaTime": 68.257,
+          "ganhoTimeVsAtual": 1.16
+        },
+        "ultimas3": {
+          "quantidade": 3,
+          "rodadas": [
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 8.033,
+          "mediaTime": 70.398,
+          "ganhoTimeVsAtual": 0.834
+        }
+      },
+      "posicao": 1,
+      "perfil": "Posicional_Equilibrado",
+      "descricaoPerfil": "Perfil posicional original do torneio V1.",
+      "scorePerfilV2": 7.0375,
+      "posicaoV2": 2
+    },
+    {
+      "modelo": "Posicional",
+      "descricao": "Mistura momento recente com potencial de explosão.",
+      "rodadasAvaliadas": 22,
+      "mediaCapitao": 5.679,
+      "mediaTime": 59.572,
+      "ganhoMedioTimeVsAtual": 0.353,
+      "vitoriasVsAtual": 11,
+      "empatesVsAtual": 4,
+      "derrotasVsAtual": 7,
+      "taxaVitoriasVsAtual": 50.0,
+      "taxaMelhorCapitaoReal": 13.64,
+      "desempenhoTemporal": {
+        "campeonato": {
+          "quantidade": 22,
+          "rodadas": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 5.679,
+          "mediaTime": 59.572,
+          "ganhoTimeVsAtual": 0.353
+        },
+        "ultimas10": {
+          "quantidade": 10,
+          "rodadas": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 6.36,
+          "mediaTime": 62.259,
+          "ganhoTimeVsAtual": 1.273
+        },
+        "ultimas5": {
+          "quantidade": 5,
+          "rodadas": [
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 7.427,
+          "mediaTime": 68.257,
+          "ganhoTimeVsAtual": 1.16
+        },
+        "ultimas3": {
+          "quantidade": 3,
+          "rodadas": [
+            22,
+            23,
+            24
+          ],
+          "mediaCapitao": 8.033,
+          "mediaTime": 70.398,
+          "ganhoTimeVsAtual": 0.834
+        }
+      },
+      "posicao": 1,
+      "perfil": "Posicional_Hibrido",
+      "descricaoPerfil": "Mistura momento recente com potencial de explosão.",
+      "scorePerfilV2": 7.0375,
       "posicaoV2": 3
     },
     {
       "modelo": "Posicional",
       "descricao": "Aumenta teto, explosão e potencial ofensivo.",
       "rodadasAvaliadas": 22,
-      "mediaCapitao": 5.195,
-      "mediaTime": 55.521,
-      "ganhoMedioTimeVsAtual": 0.215,
-      "vitoriasVsAtual": 10,
-      "empatesVsAtual": 4,
+      "mediaCapitao": 5.562,
+      "mediaTime": 59.455,
+      "ganhoMedioTimeVsAtual": 0.236,
+      "vitoriasVsAtual": 11,
+      "empatesVsAtual": 3,
       "derrotasVsAtual": 8,
-      "taxaVitoriasVsAtual": 45.45,
-      "taxaMelhorCapitaoReal": 10.61,
+      "taxaVitoriasVsAtual": 50.0,
+      "taxaMelhorCapitaoReal": 12.12,
       "desempenhoTemporal": {
         "campeonato": {
           "quantidade": 22,
@@ -318,9 +318,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.195,
-          "mediaTime": 55.521,
-          "ganhoTimeVsAtual": 0.215
+          "mediaCapitao": 5.562,
+          "mediaTime": 59.455,
+          "ganhoTimeVsAtual": 0.236
         },
         "ultimas10": {
           "quantidade": 10,
@@ -336,9 +336,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.377,
-          "mediaTime": 53.428,
-          "ganhoTimeVsAtual": 1.05
+          "mediaCapitao": 6.183,
+          "mediaTime": 62.082,
+          "ganhoTimeVsAtual": 1.097
         },
         "ultimas5": {
           "quantidade": 5,
@@ -349,9 +349,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.46,
-          "mediaTime": 50.594,
-          "ganhoTimeVsAtual": 0.713
+          "mediaCapitao": 7.073,
+          "mediaTime": 67.904,
+          "ganhoTimeVsAtual": 0.807
         },
         "ultimas3": {
           "quantidade": 3,
@@ -360,29 +360,29 @@
             23,
             24
           ],
-          "mediaCapitao": 5.344,
-          "mediaTime": 41.549,
-          "ganhoTimeVsAtual": 0.678
+          "mediaCapitao": 8.033,
+          "mediaTime": 70.398,
+          "ganhoTimeVsAtual": 0.834
         }
       },
       "posicao": 1,
       "perfil": "Posicional_Explosivo",
       "descricaoPerfil": "Aumenta teto, explosão e potencial ofensivo.",
-      "scorePerfilV2": 5.3299,
+      "scorePerfilV2": 5.9041,
       "posicaoV2": 4
     },
     {
       "modelo": "Posicional",
       "descricao": "Aumenta forma, tendência e média recente.",
       "rodadasAvaliadas": 22,
-      "mediaCapitao": 5.145,
-      "mediaTime": 55.471,
-      "ganhoMedioTimeVsAtual": 0.165,
-      "vitoriasVsAtual": 9,
-      "empatesVsAtual": 6,
+      "mediaCapitao": 5.512,
+      "mediaTime": 59.405,
+      "ganhoMedioTimeVsAtual": 0.186,
+      "vitoriasVsAtual": 10,
+      "empatesVsAtual": 5,
       "derrotasVsAtual": 7,
-      "taxaVitoriasVsAtual": 40.91,
-      "taxaMelhorCapitaoReal": 10.61,
+      "taxaVitoriasVsAtual": 45.45,
+      "taxaMelhorCapitaoReal": 12.12,
       "desempenhoTemporal": {
         "campeonato": {
           "quantidade": 22,
@@ -410,9 +410,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.145,
-          "mediaTime": 55.471,
-          "ganhoTimeVsAtual": 0.165
+          "mediaCapitao": 5.512,
+          "mediaTime": 59.405,
+          "ganhoTimeVsAtual": 0.186
         },
         "ultimas10": {
           "quantidade": 10,
@@ -428,9 +428,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.186,
-          "mediaTime": 53.237,
-          "ganhoTimeVsAtual": 0.86
+          "mediaCapitao": 5.993,
+          "mediaTime": 61.892,
+          "ganhoTimeVsAtual": 0.907
         },
         "ultimas5": {
           "quantidade": 5,
@@ -441,9 +441,9 @@
             23,
             24
           ],
-          "mediaCapitao": 5.08,
-          "mediaTime": 50.214,
-          "ganhoTimeVsAtual": 0.333
+          "mediaCapitao": 6.693,
+          "mediaTime": 67.523,
+          "ganhoTimeVsAtual": 0.427
         },
         "ultimas3": {
           "quantidade": 3,
@@ -452,30 +452,30 @@
             23,
             24
           ],
-          "mediaCapitao": 4.122,
-          "mediaTime": 40.327,
-          "ganhoTimeVsAtual": -0.544
+          "mediaCapitao": 6.811,
+          "mediaTime": 69.176,
+          "ganhoTimeVsAtual": -0.389
         }
       },
       "posicao": 1,
       "perfil": "Posicional_Recente",
       "descricaoPerfil": "Aumenta forma, tendência e média recente.",
-      "scorePerfilV2": 2.9027,
+      "scorePerfilV2": 3.4756,
       "posicaoV2": 5
     }
   ],
   "melhorPerfil": {
     "modelo": "Posicional",
-    "descricao": "Perfil posicional original do torneio V1.",
+    "descricao": "Aumenta piso, regularidade e confiança.",
     "rodadasAvaliadas": 22,
-    "mediaCapitao": 5.312,
-    "mediaTime": 55.638,
-    "ganhoMedioTimeVsAtual": 0.332,
-    "vitoriasVsAtual": 10,
-    "empatesVsAtual": 5,
+    "mediaCapitao": 5.87,
+    "mediaTime": 59.763,
+    "ganhoMedioTimeVsAtual": 0.544,
+    "vitoriasVsAtual": 11,
+    "empatesVsAtual": 4,
     "derrotasVsAtual": 7,
-    "taxaVitoriasVsAtual": 45.45,
-    "taxaMelhorCapitaoReal": 12.12,
+    "taxaVitoriasVsAtual": 50.0,
+    "taxaMelhorCapitaoReal": 13.64,
     "desempenhoTemporal": {
       "campeonato": {
         "quantidade": 22,
@@ -503,9 +503,9 @@
           23,
           24
         ],
-        "mediaCapitao": 5.312,
-        "mediaTime": 55.638,
-        "ganhoTimeVsAtual": 0.332
+        "mediaCapitao": 5.87,
+        "mediaTime": 59.763,
+        "ganhoTimeVsAtual": 0.544
       },
       "ultimas10": {
         "quantidade": 10,
@@ -521,9 +521,9 @@
           23,
           24
         ],
-        "mediaCapitao": 5.553,
-        "mediaTime": 53.604,
-        "ganhoTimeVsAtual": 1.227
+        "mediaCapitao": 6.793,
+        "mediaTime": 62.692,
+        "ganhoTimeVsAtual": 1.707
       },
       "ultimas5": {
         "quantidade": 5,
@@ -534,9 +534,9 @@
           23,
           24
         ],
-        "mediaCapitao": 5.813,
-        "mediaTime": 50.947,
-        "ganhoTimeVsAtual": 1.067
+        "mediaCapitao": 8.293,
+        "mediaTime": 69.123,
+        "ganhoTimeVsAtual": 2.027
       },
       "ultimas3": {
         "quantidade": 3,
@@ -545,15 +545,15 @@
           23,
           24
         ],
-        "mediaCapitao": 5.344,
-        "mediaTime": 41.549,
-        "ganhoTimeVsAtual": 0.678
+        "mediaCapitao": 9.478,
+        "mediaTime": 71.842,
+        "ganhoTimeVsAtual": 2.278
       }
     },
     "posicao": 1,
-    "perfil": "Posicional_Equilibrado",
-    "descricaoPerfil": "Perfil posicional original do torneio V1.",
-    "scorePerfilV2": 6.4666,
+    "perfil": "Posicional_Seguro",
+    "descricaoPerfil": "Aumenta piso, regularidade e confiança.",
+    "scorePerfilV2": 11.0751,
     "posicaoV2": 1
   },
   "criterios": {

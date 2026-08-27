@@ -31,77 +31,77 @@
     "empates": 51,
     "taxaVitoriasA": 9.09,
     "taxaVitoriasB": 13.64,
-    "mediaPontosA": 4.98,
-    "mediaPontosB": 5.258,
+    "mediaPontosA": 5.326,
+    "mediaPontosB": 5.603,
     "ganhoMedioBvsA": 0.277,
     "acertoMelhorRealA": {
-      "quantidade": 8,
-      "taxa": 12.12
+      "quantidade": 7,
+      "taxa": 10.61
     },
     "acertoMelhorRealB": {
-      "quantidade": 9,
-      "taxa": 13.64
+      "quantidade": 8,
+      "taxa": 12.12
     }
   },
   "coberturaComponentes": {
     "projecao": {
       "peso": 0.28,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "teto": {
       "peso": 0.18,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "mediaRecente": {
       "peso": 0.14,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "regularidade": {
       "peso": 0.1,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "confianca": {
       "peso": 0.1,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "explosao": {
       "peso": 0.08,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "forma": {
       "peso": 0.05,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "potencialOfensivo": {
       "peso": 0.05,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "risco": {
       "peso": -0.01,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     },
     "volatilidade": {
       "peso": -0.01,
-      "disponivel": 69,
-      "total": 69,
+      "disponivel": 72,
+      "total": 72,
       "cobertura": 100.0
     }
   },
@@ -128,8 +128,8 @@
       {
         "criterio": "acerto_melhor_capitao_real",
         "aprovado": true,
-        "modeloA": 12.12,
-        "modeloB": 13.64
+        "modeloA": 10.61,
+        "modeloB": 12.12
       }
     ],
     "decisao": "MANTER_CAPITAO_ATUAL",
@@ -289,11 +289,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "102911",
-            "nome": "Zé Ricardo",
+            "id": "87863",
+            "nome": "Arrascaeta",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 6.4,
+            "real": 8.4,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -363,7 +363,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 1.2,
             "pontosCapitaoB": 1.2,
-            "melhorPontuacaoReal": 6.4,
+            "melhorPontuacaoReal": 8.4,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -515,11 +515,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "85403",
-            "nome": "Danielzinho",
+            "id": "82455",
+            "nome": "Zé Rafael",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 6.2,
+            "real": 10.1,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -589,7 +589,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 3.4,
             "pontosCapitaoB": 3.4,
-            "melhorPontuacaoReal": 6.2,
+            "melhorPontuacaoReal": 10.1,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -741,11 +741,11 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "85403",
-            "nome": "Danielzinho",
+            "id": "82455",
+            "nome": "Zé Rafael",
             "posicao": "MEI",
             "projecao": -20.0,
-            "real": 6.2,
+            "real": 10.1,
             "scoreCapitao": 50.0,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -815,7 +815,7 @@
             "vencedor": "EMPATE",
             "pontosCapitaoA": 3.4,
             "pontosCapitaoB": 3.4,
-            "melhorPontuacaoReal": 6.2,
+            "melhorPontuacaoReal": 10.1,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -15265,8 +15265,8 @@
             "nome": "Samuel Lino",
             "posicao": "ATA",
             "projecao": 7.92,
-            "real": 0.0,
-            "scoreCapitao": 74.298,
+            "real": 4.5,
+            "scoreCapitao": 74.225,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
@@ -15289,9 +15289,9 @@
               },
               "regularidade": {
                 "valor": 83.16,
-                "normalizado": 0.7794,
+                "normalizado": 0.7733,
                 "peso": 0.1,
-                "contribuicao": 0.07794
+                "contribuicao": 0.07733
               },
               "confianca": {
                 "valor": 92.422,
@@ -15319,15 +15319,15 @@
               },
               "risco": {
                 "valor": 13.051,
-                "normalizado": 0.2206,
+                "normalizado": 0.2267,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00773
               },
               "volatilidade": {
                 "valor": 1.684,
-                "normalizado": 0.2206,
+                "normalizado": 0.2267,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00773
               }
             }
           },
@@ -15336,8 +15336,8 @@
             "nome": "Samuel Lino",
             "posicao": "ATA",
             "projecao": 7.92,
-            "real": 0.0,
-            "scoreCapitao": 74.298,
+            "real": 4.5,
+            "scoreCapitao": 74.225,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
@@ -15360,9 +15360,9 @@
               },
               "regularidade": {
                 "valor": 83.16,
-                "normalizado": 0.7794,
+                "normalizado": 0.7733,
                 "peso": 0.1,
-                "contribuicao": 0.07794
+                "contribuicao": 0.07733
               },
               "confianca": {
                 "valor": 92.422,
@@ -15390,97 +15390,97 @@
               },
               "risco": {
                 "valor": 13.051,
-                "normalizado": 0.2206,
+                "normalizado": 0.2267,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00773
               },
               "volatilidade": {
                 "valor": 1.684,
-                "normalizado": 0.2206,
+                "normalizado": 0.2267,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00773
               }
             }
           },
           "melhorCapitaoReal": {
-            "id": "98873",
-            "nome": "Samuel Lino",
-            "posicao": "ATA",
-            "projecao": 7.92,
-            "real": 0.0,
-            "scoreCapitao": 74.298,
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 7.16,
+            "real": 12.4,
+            "scoreCapitao": 71.979,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.92,
-                "normalizado": 1.0,
+                "valor": 7.16,
+                "normalizado": 0.7771,
                 "peso": 0.28,
-                "contribuicao": 0.28
+                "contribuicao": 0.2176
               },
               "teto": {
-                "valor": 11.9,
-                "normalizado": 0.3588,
+                "valor": 22.8,
+                "normalizado": 1.0,
                 "peso": 0.18,
-                "contribuicao": 0.06459
+                "contribuicao": 0.18
               },
               "mediaRecente": {
-                "valor": 9.9,
-                "normalizado": 0.7498,
+                "valor": 11.268,
+                "normalizado": 1.0,
                 "peso": 0.14,
-                "contribuicao": 0.10497
+                "contribuicao": 0.14
               },
               "regularidade": {
-                "valor": 83.16,
-                "normalizado": 0.7794,
+                "valor": 35.47,
+                "normalizado": 0.1311,
                 "peso": 0.1,
-                "contribuicao": 0.07794
+                "contribuicao": 0.01311
               },
               "confianca": {
-                "valor": 92.422,
-                "normalizado": 1.0,
+                "valor": 40.712,
+                "normalizado": 0.0,
                 "peso": 0.1,
-                "contribuicao": 0.1
+                "contribuicao": 0.0
               },
               "explosao": {
-                "valor": 28.272,
-                "normalizado": 0.3469,
+                "valor": 81.501,
+                "normalizado": 1.0,
                 "peso": 0.08,
-                "contribuicao": 0.02775
+                "contribuicao": 0.08
               },
               "forma": {
-                "valor": 63.951,
-                "normalizado": 0.5398,
+                "valor": 70.223,
+                "normalizado": 0.7292,
                 "peso": 0.05,
-                "contribuicao": 0.02699
+                "contribuicao": 0.03646
               },
               "potencialOfensivo": {
-                "valor": 93.099,
-                "normalizado": 0.9032,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.04516
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 13.051,
-                "normalizado": 0.2206,
+                "valor": 50.011,
+                "normalizado": 0.8689,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00131
               },
               "volatilidade": {
-                "valor": 1.684,
-                "normalizado": 0.2206,
+                "valor": 6.453,
+                "normalizado": 0.8689,
                 "peso": -0.01,
-                "contribuicao": 0.00779
+                "contribuicao": 0.00131
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 0.0,
-            "pontosCapitaoB": 0.0,
-            "melhorPontuacaoReal": 0.0,
+            "pontosCapitaoA": 4.5,
+            "pontosCapitaoB": 4.5,
+            "melhorPontuacaoReal": 12.4,
             "ganhoBvsA": 0.0,
-            "AEscolheuMelhorReal": true,
-            "BEscolheuMelhorReal": true
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
           }
         },
         {
@@ -15491,8 +15491,8 @@
             "nome": "Neymar",
             "posicao": "MEI",
             "projecao": 9.87,
-            "real": 0.0,
-            "scoreCapitao": 74.916,
+            "real": 12.4,
+            "scoreCapitao": 74.246,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
@@ -15503,9 +15503,9 @@
               },
               "teto": {
                 "valor": 22.8,
-                "normalizado": 0.8571,
+                "normalizado": 0.8654,
                 "peso": 0.18,
-                "contribuicao": 0.15429
+                "contribuicao": 0.15577
               },
               "mediaRecente": {
                 "valor": 11.268,
@@ -15515,9 +15515,9 @@
               },
               "regularidade": {
                 "valor": 35.47,
-                "normalizado": 0.4265,
+                "normalizado": 0.3547,
                 "peso": 0.1,
-                "contribuicao": 0.04265
+                "contribuicao": 0.03547
               },
               "confianca": {
                 "valor": 40.712,
@@ -15527,15 +15527,15 @@
               },
               "explosao": {
                 "valor": 81.501,
-                "normalizado": 0.7421,
+                "normalizado": 0.815,
                 "peso": 0.08,
-                "contribuicao": 0.05937
+                "contribuicao": 0.0652
               },
               "forma": {
                 "valor": 70.223,
-                "normalizado": 0.5122,
+                "normalizado": 0.4045,
                 "peso": 0.05,
-                "contribuicao": 0.02561
+                "contribuicao": 0.02022
               },
               "potencialOfensivo": {
                 "valor": 100.0,
@@ -15545,15 +15545,15 @@
               },
               "risco": {
                 "valor": 50.011,
-                "normalizado": 0.5692,
+                "normalizado": 0.6413,
                 "peso": -0.01,
-                "contribuicao": 0.00431
+                "contribuicao": 0.00359
               },
               "volatilidade": {
                 "valor": 6.453,
-                "normalizado": 0.5592,
+                "normalizado": 0.6318,
                 "peso": -0.01,
-                "contribuicao": 0.00441
+                "contribuicao": 0.00368
               }
             }
           },
@@ -15562,8 +15562,8 @@
             "nome": "Neymar",
             "posicao": "MEI",
             "projecao": 9.87,
-            "real": 0.0,
-            "scoreCapitao": 74.916,
+            "real": 12.4,
+            "scoreCapitao": 74.246,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
@@ -15574,9 +15574,9 @@
               },
               "teto": {
                 "valor": 22.8,
-                "normalizado": 0.8571,
+                "normalizado": 0.8654,
                 "peso": 0.18,
-                "contribuicao": 0.15429
+                "contribuicao": 0.15577
               },
               "mediaRecente": {
                 "valor": 11.268,
@@ -15586,9 +15586,9 @@
               },
               "regularidade": {
                 "valor": 35.47,
-                "normalizado": 0.4265,
+                "normalizado": 0.3547,
                 "peso": 0.1,
-                "contribuicao": 0.04265
+                "contribuicao": 0.03547
               },
               "confianca": {
                 "valor": 40.712,
@@ -15598,15 +15598,15 @@
               },
               "explosao": {
                 "valor": 81.501,
-                "normalizado": 0.7421,
+                "normalizado": 0.815,
                 "peso": 0.08,
-                "contribuicao": 0.05937
+                "contribuicao": 0.0652
               },
               "forma": {
                 "valor": 70.223,
-                "normalizado": 0.5122,
+                "normalizado": 0.4045,
                 "peso": 0.05,
-                "contribuicao": 0.02561
+                "contribuicao": 0.02022
               },
               "potencialOfensivo": {
                 "valor": 100.0,
@@ -15616,94 +15616,94 @@
               },
               "risco": {
                 "valor": 50.011,
-                "normalizado": 0.5692,
+                "normalizado": 0.6413,
                 "peso": -0.01,
-                "contribuicao": 0.00431
+                "contribuicao": 0.00359
               },
               "volatilidade": {
                 "valor": 6.453,
-                "normalizado": 0.5592,
+                "normalizado": 0.6318,
                 "peso": -0.01,
-                "contribuicao": 0.00441
+                "contribuicao": 0.00368
               }
             }
           },
           "melhorCapitaoReal": {
-            "id": "94583",
-            "nome": "Pedro",
+            "id": "143193",
+            "nome": "Viveros",
             "posicao": "ATA",
-            "projecao": 7.72,
-            "real": 0.0,
-            "scoreCapitao": 43.877,
+            "projecao": 8.54,
+            "real": 17.2,
+            "scoreCapitao": 56.153,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": 7.72,
-                "normalizado": 0.5346,
+                "valor": 8.54,
+                "normalizado": 0.7121,
                 "peso": 0.28,
-                "contribuicao": 0.1497
+                "contribuicao": 0.19939
               },
               "teto": {
-                "valor": 20.2,
-                "normalizado": 0.6803,
+                "valor": 19.2,
+                "normalizado": 0.6346,
                 "peso": 0.18,
-                "contribuicao": 0.12245
+                "contribuicao": 0.11423
               },
               "mediaRecente": {
-                "valor": 7.744,
-                "normalizado": 0.2609,
+                "valor": 9.332,
+                "normalizado": 0.5439,
                 "peso": 0.14,
-                "contribuicao": 0.03653
+                "contribuicao": 0.07614
               },
               "regularidade": {
-                "valor": 9.42,
-                "normalizado": 0.1133,
+                "valor": 23.68,
+                "normalizado": 0.2368,
                 "peso": 0.1,
-                "contribuicao": 0.01133
+                "contribuicao": 0.02368
               },
               "confianca": {
-                "valor": 59.239,
-                "normalizado": 0.3846,
+                "valor": 62.906,
+                "normalizado": 0.4526,
                 "peso": 0.1,
-                "contribuicao": 0.03846
+                "contribuicao": 0.04526
               },
               "explosao": {
-                "valor": 56.775,
-                "normalizado": 0.3974,
+                "valor": 55.079,
+                "normalizado": 0.5508,
                 "peso": 0.08,
-                "contribuicao": 0.03179
+                "contribuicao": 0.04406
               },
               "forma": {
-                "valor": 38.954,
-                "normalizado": 0.0,
+                "valor": 53.822,
+                "normalizado": 0.0764,
                 "peso": 0.05,
-                "contribuicao": 0.0
+                "contribuicao": 0.00382
               },
               "potencialOfensivo": {
-                "valor": 94.609,
-                "normalizado": 0.9194,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.04597
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 70.2,
-                "normalizado": 0.8802,
+                "valor": 59.148,
+                "normalizado": 0.7585,
                 "peso": -0.01,
-                "contribuicao": 0.0012
+                "contribuicao": 0.00241
               },
               "volatilidade": {
-                "valor": 9.058,
-                "normalizado": 0.8646,
+                "valor": 7.632,
+                "normalizado": 0.7473,
                 "peso": -0.01,
-                "contribuicao": 0.00135
+                "contribuicao": 0.00253
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 0.0,
-            "pontosCapitaoB": 0.0,
-            "melhorPontuacaoReal": 0.0,
+            "pontosCapitaoA": 12.4,
+            "pontosCapitaoB": 12.4,
+            "melhorPontuacaoReal": 17.2,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false
@@ -15717,7 +15717,7 @@
             "nome": "Carrascal",
             "posicao": "MEI",
             "projecao": 12.33,
-            "real": 0.0,
+            "real": 5.9,
             "scoreCapitao": 77.49,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -15788,7 +15788,7 @@
             "nome": "Carrascal",
             "posicao": "MEI",
             "projecao": 12.33,
-            "real": 0.0,
+            "real": 5.9,
             "scoreCapitao": 77.49,
             "coberturaScore": 100.0,
             "componentesScore": {
@@ -15855,81 +15855,768 @@
             }
           },
           "melhorCapitaoReal": {
-            "id": "123101",
-            "nome": "Leozinho",
+            "id": "143193",
+            "nome": "Viveros",
             "posicao": "ATA",
-            "projecao": 9.25,
-            "real": 0.0,
-            "scoreCapitao": 44.527,
+            "projecao": 10.11,
+            "real": 17.2,
+            "scoreCapitao": 55.538,
             "coberturaScore": 100.0,
             "componentesScore": {
               "projecao": {
-                "valor": 9.25,
-                "normalizado": 0.4992,
+                "valor": 10.11,
+                "normalizado": 0.639,
                 "peso": 0.28,
-                "contribuicao": 0.13977
+                "contribuicao": 0.17893
               },
               "teto": {
-                "valor": 27.6,
-                "normalizado": 1.0,
+                "valor": 19.2,
+                "normalizado": 0.5172,
                 "peso": 0.18,
-                "contribuicao": 0.18
+                "contribuicao": 0.0931
               },
               "mediaRecente": {
-                "valor": 5.516,
-                "normalizado": 0.0,
+                "valor": 9.332,
+                "normalizado": 0.5985,
                 "peso": 0.14,
-                "contribuicao": 0.0
+                "contribuicao": 0.08379
               },
               "regularidade": {
-                "valor": 0.0,
-                "normalizado": 0.0,
+                "valor": 23.68,
+                "normalizado": 0.3257,
                 "peso": 0.1,
-                "contribuicao": 0.0
+                "contribuicao": 0.03257
               },
               "confianca": {
-                "valor": 24.75,
-                "normalizado": 0.0,
+                "valor": 62.906,
+                "normalizado": 0.6336,
                 "peso": 0.1,
-                "contribuicao": 0.0
+                "contribuicao": 0.06336
               },
               "explosao": {
-                "valor": 100.0,
-                "normalizado": 1.0,
+                "valor": 55.079,
+                "normalizado": 0.3482,
                 "peso": 0.08,
-                "contribuicao": 0.08
+                "contribuicao": 0.02786
               },
               "forma": {
-                "valor": 25.5,
-                "normalizado": 0.0,
+                "valor": 53.822,
+                "normalizado": 0.3802,
                 "peso": 0.05,
-                "contribuicao": 0.0
+                "contribuicao": 0.01901
               },
               "potencialOfensivo": {
-                "valor": 93.812,
-                "normalizado": 0.9042,
+                "valor": 100.0,
+                "normalizado": 1.0,
                 "peso": 0.05,
-                "contribuicao": 0.04521
+                "contribuicao": 0.05
               },
               "risco": {
-                "valor": 77.606,
-                "normalizado": 0.9934,
+                "valor": 59.148,
+                "normalizado": 0.6686,
                 "peso": -0.01,
-                "contribuicao": 7e-05
+                "contribuicao": 0.00331
               },
               "volatilidade": {
-                "valor": 10.047,
-                "normalizado": 0.9778,
+                "valor": 7.632,
+                "normalizado": 0.6551,
                 "peso": -0.01,
-                "contribuicao": 0.00022
+                "contribuicao": 0.00345
               }
             }
           },
           "resultado": {
             "vencedor": "EMPATE",
-            "pontosCapitaoA": 0.0,
-            "pontosCapitaoB": 0.0,
-            "melhorPontuacaoReal": 0.0,
+            "pontosCapitaoA": 5.9,
+            "pontosCapitaoB": 5.9,
+            "melhorPontuacaoReal": 17.2,
+            "ganhoBvsA": 0.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        }
+      ]
+    },
+    {
+      "rodada": 25,
+      "dadosUtilizadosAteRodada": 24,
+      "semVazamentoFuturo": true,
+      "excluidaDaDecisao": true,
+      "motivoExclusao": "rodada_aberta",
+      "estrategias": [
+        {
+          "estrategia": "Conservador",
+          "quantidadeJogadores": 11,
+          "modeloA": {
+            "id": "143193",
+            "nome": "Viveros",
+            "posicao": "ATA",
+            "projecao": 8.03,
+            "real": 17.2,
+            "scoreCapitao": 78.053,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.03,
+                "normalizado": 1.0,
+                "peso": 0.28,
+                "contribuicao": 0.28
+              },
+              "teto": {
+                "valor": 19.2,
+                "normalizado": 0.7534,
+                "peso": 0.18,
+                "contribuicao": 0.13562
+              },
+              "mediaRecente": {
+                "valor": 13.612,
+                "normalizado": 1.0,
+                "peso": 0.14,
+                "contribuicao": 0.14
+              },
+              "regularidade": {
+                "valor": 32.49,
+                "normalizado": 0.0739,
+                "peso": 0.1,
+                "contribuicao": 0.00739
+              },
+              "confianca": {
+                "valor": 69.621,
+                "normalizado": 0.5712,
+                "peso": 0.1,
+                "contribuicao": 0.05712
+              },
+              "explosao": {
+                "valor": 71.218,
+                "normalizado": 0.7948,
+                "peso": 0.08,
+                "contribuicao": 0.06359
+              },
+              "forma": {
+                "valor": 85.819,
+                "normalizado": 0.9068,
+                "peso": 0.05,
+                "contribuicao": 0.04534
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 52.32,
+                "normalizado": 0.9261,
+                "peso": -0.01,
+                "contribuicao": 0.00074
+              },
+              "volatilidade": {
+                "valor": 6.751,
+                "normalizado": 0.9261,
+                "peso": -0.01,
+                "contribuicao": 0.00074
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 7.97,
+            "real": 12.4,
+            "scoreCapitao": 78.469,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 7.97,
+                "normalizado": 0.9841,
+                "peso": 0.28,
+                "contribuicao": 0.27556
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 1.0,
+                "peso": 0.18,
+                "contribuicao": 0.18
+              },
+              "mediaRecente": {
+                "valor": 13.36,
+                "normalizado": 0.969,
+                "peso": 0.14,
+                "contribuicao": 0.13566
+              },
+              "regularidade": {
+                "valor": 37.26,
+                "normalizado": 0.1394,
+                "peso": 0.1,
+                "contribuicao": 0.01394
+              },
+              "confianca": {
+                "valor": 44.267,
+                "normalizado": 0.0,
+                "peso": 0.1,
+                "contribuicao": 0.0
+              },
+              "explosao": {
+                "valor": 89.602,
+                "normalizado": 1.0,
+                "peso": 0.08,
+                "contribuicao": 0.08
+              },
+              "forma": {
+                "valor": 87.541,
+                "normalizado": 0.9351,
+                "peso": 0.05,
+                "contribuicao": 0.04675
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 48.624,
+                "normalizado": 0.8606,
+                "peso": -0.01,
+                "contribuicao": 0.00139
+              },
+              "volatilidade": {
+                "valor": 6.274,
+                "normalizado": 0.8606,
+                "peso": -0.01,
+                "contribuicao": 0.00139
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "126471",
+            "nome": "Barreal",
+            "posicao": "MEI",
+            "projecao": 5.68,
+            "real": 19.5,
+            "scoreCapitao": 56.923,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 5.68,
+                "normalizado": 0.3783,
+                "peso": 0.28,
+                "contribuicao": 0.10593
+              },
+              "teto": {
+                "valor": 19.5,
+                "normalizado": 0.774,
+                "peso": 0.18,
+                "contribuicao": 0.13932
+              },
+              "mediaRecente": {
+                "valor": 9.676,
+                "normalizado": 0.5164,
+                "peso": 0.14,
+                "contribuicao": 0.0723
+              },
+              "regularidade": {
+                "valor": 44.71,
+                "normalizado": 0.2416,
+                "peso": 0.1,
+                "contribuicao": 0.02416
+              },
+              "confianca": {
+                "valor": 66.87,
+                "normalizado": 0.5092,
+                "peso": 0.1,
+                "contribuicao": 0.05092
+              },
+              "explosao": {
+                "valor": 89.554,
+                "normalizado": 0.9995,
+                "peso": 0.08,
+                "contribuicao": 0.07996
+              },
+              "forma": {
+                "valor": 81.542,
+                "normalizado": 0.8364,
+                "peso": 0.05,
+                "contribuicao": 0.04182
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 42.85,
+                "normalizado": 0.7584,
+                "peso": -0.01,
+                "contribuicao": 0.00242
+              },
+              "volatilidade": {
+                "valor": 5.529,
+                "normalizado": 0.7584,
+                "peso": -0.01,
+                "contribuicao": 0.00242
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "A",
+            "pontosCapitaoA": 17.2,
+            "pontosCapitaoB": 12.4,
+            "melhorPontuacaoReal": 19.5,
+            "ganhoBvsA": -4.8,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Equilibrado",
+          "quantidadeJogadores": 11,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 10.85,
+            "real": 12.4,
+            "scoreCapitao": 79.066,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.85,
+                "normalizado": 1.0,
+                "peso": 0.28,
+                "contribuicao": 0.28
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9692,
+                "peso": 0.18,
+                "contribuicao": 0.17446
+              },
+              "mediaRecente": {
+                "valor": 13.36,
+                "normalizado": 0.9656,
+                "peso": 0.14,
+                "contribuicao": 0.13519
+              },
+              "regularidade": {
+                "valor": 37.26,
+                "normalizado": 0.3076,
+                "peso": 0.1,
+                "contribuicao": 0.03076
+              },
+              "confianca": {
+                "valor": 44.267,
+                "normalizado": 0.0603,
+                "peso": 0.1,
+                "contribuicao": 0.00603
+              },
+              "explosao": {
+                "valor": 89.602,
+                "normalizado": 0.8219,
+                "peso": 0.08,
+                "contribuicao": 0.06575
+              },
+              "forma": {
+                "valor": 87.541,
+                "normalizado": 0.8463,
+                "peso": 0.05,
+                "contribuicao": 0.04232
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 48.624,
+                "normalizado": 0.6924,
+                "peso": -0.01,
+                "contribuicao": 0.00308
+              },
+              "volatilidade": {
+                "valor": 6.274,
+                "normalizado": 0.6924,
+                "peso": -0.01,
+                "contribuicao": 0.00308
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 10.85,
+            "real": 12.4,
+            "scoreCapitao": 79.066,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 10.85,
+                "normalizado": 1.0,
+                "peso": 0.28,
+                "contribuicao": 0.28
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9692,
+                "peso": 0.18,
+                "contribuicao": 0.17446
+              },
+              "mediaRecente": {
+                "valor": 13.36,
+                "normalizado": 0.9656,
+                "peso": 0.14,
+                "contribuicao": 0.13519
+              },
+              "regularidade": {
+                "valor": 37.26,
+                "normalizado": 0.3076,
+                "peso": 0.1,
+                "contribuicao": 0.03076
+              },
+              "confianca": {
+                "valor": 44.267,
+                "normalizado": 0.0603,
+                "peso": 0.1,
+                "contribuicao": 0.00603
+              },
+              "explosao": {
+                "valor": 89.602,
+                "normalizado": 0.8219,
+                "peso": 0.08,
+                "contribuicao": 0.06575
+              },
+              "forma": {
+                "valor": 87.541,
+                "normalizado": 0.8463,
+                "peso": 0.05,
+                "contribuicao": 0.04232
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 48.624,
+                "normalizado": 0.6924,
+                "peso": -0.01,
+                "contribuicao": 0.00308
+              },
+              "volatilidade": {
+                "valor": 6.274,
+                "normalizado": 0.6924,
+                "peso": -0.01,
+                "contribuicao": 0.00308
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "113103",
+            "nome": "Flaco López",
+            "posicao": "ATA",
+            "projecao": 8.45,
+            "real": 22.8,
+            "scoreCapitao": 61.532,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 8.45,
+                "normalizado": 0.5628,
+                "peso": 0.28,
+                "contribuicao": 0.1576
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9692,
+                "peso": 0.18,
+                "contribuicao": 0.17446
+              },
+              "mediaRecente": {
+                "valor": 9.984,
+                "normalizado": 0.5057,
+                "peso": 0.14,
+                "contribuicao": 0.0708
+              },
+              "regularidade": {
+                "valor": 20.7,
+                "normalizado": 0.0,
+                "peso": 0.1,
+                "contribuicao": 0.0
+              },
+              "confianca": {
+                "valor": 64.315,
+                "normalizado": 0.5197,
+                "peso": 0.1,
+                "contribuicao": 0.05197
+              },
+              "explosao": {
+                "valor": 96.685,
+                "normalizado": 0.9432,
+                "peso": 0.08,
+                "contribuicao": 0.07546
+              },
+              "forma": {
+                "valor": 77.755,
+                "normalizado": 0.7007,
+                "peso": 0.05,
+                "contribuicao": 0.03503
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 61.458,
+                "normalizado": 1.0,
+                "peso": -0.01,
+                "contribuicao": 0.0
+              },
+              "volatilidade": {
+                "valor": 7.93,
+                "normalizado": 1.0,
+                "peso": -0.01,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 12.4,
+            "pontosCapitaoB": 12.4,
+            "melhorPontuacaoReal": 22.8,
+            "ganhoBvsA": 0.0,
+            "AEscolheuMelhorReal": false,
+            "BEscolheuMelhorReal": false
+          }
+        },
+        {
+          "estrategia": "Agressivo",
+          "quantidadeJogadores": 11,
+          "modeloA": {
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 13.22,
+            "real": 12.4,
+            "scoreCapitao": 80.729,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.22,
+                "normalizado": 1.0,
+                "peso": 0.28,
+                "contribuicao": 0.28
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9619,
+                "peso": 0.18,
+                "contribuicao": 0.17314
+              },
+              "mediaRecente": {
+                "valor": 13.36,
+                "normalizado": 0.9687,
+                "peso": 0.14,
+                "contribuicao": 0.13561
+              },
+              "regularidade": {
+                "valor": 37.26,
+                "normalizado": 0.4671,
+                "peso": 0.1,
+                "contribuicao": 0.04671
+              },
+              "confianca": {
+                "valor": 44.267,
+                "normalizado": 0.0809,
+                "peso": 0.1,
+                "contribuicao": 0.00809
+              },
+              "explosao": {
+                "valor": 89.602,
+                "normalizado": 0.7759,
+                "peso": 0.08,
+                "contribuicao": 0.06207
+              },
+              "forma": {
+                "valor": 87.541,
+                "normalizado": 0.8463,
+                "peso": 0.05,
+                "contribuicao": 0.04232
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 48.624,
+                "normalizado": 0.5329,
+                "peso": -0.01,
+                "contribuicao": 0.00467
+              },
+              "volatilidade": {
+                "valor": 6.274,
+                "normalizado": 0.5329,
+                "peso": -0.01,
+                "contribuicao": 0.00467
+              }
+            }
+          },
+          "modeloB": {
+            "id": "63007",
+            "nome": "Neymar",
+            "posicao": "MEI",
+            "projecao": 13.22,
+            "real": 12.4,
+            "scoreCapitao": 80.729,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 13.22,
+                "normalizado": 1.0,
+                "peso": 0.28,
+                "contribuicao": 0.28
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9619,
+                "peso": 0.18,
+                "contribuicao": 0.17314
+              },
+              "mediaRecente": {
+                "valor": 13.36,
+                "normalizado": 0.9687,
+                "peso": 0.14,
+                "contribuicao": 0.13561
+              },
+              "regularidade": {
+                "valor": 37.26,
+                "normalizado": 0.4671,
+                "peso": 0.1,
+                "contribuicao": 0.04671
+              },
+              "confianca": {
+                "valor": 44.267,
+                "normalizado": 0.0809,
+                "peso": 0.1,
+                "contribuicao": 0.00809
+              },
+              "explosao": {
+                "valor": 89.602,
+                "normalizado": 0.7759,
+                "peso": 0.08,
+                "contribuicao": 0.06207
+              },
+              "forma": {
+                "valor": 87.541,
+                "normalizado": 0.8463,
+                "peso": 0.05,
+                "contribuicao": 0.04232
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 48.624,
+                "normalizado": 0.5329,
+                "peso": -0.01,
+                "contribuicao": 0.00467
+              },
+              "volatilidade": {
+                "valor": 6.274,
+                "normalizado": 0.5329,
+                "peso": -0.01,
+                "contribuicao": 0.00467
+              }
+            }
+          },
+          "melhorCapitaoReal": {
+            "id": "113103",
+            "nome": "Flaco López",
+            "posicao": "ATA",
+            "projecao": 11.04,
+            "real": 22.8,
+            "scoreCapitao": 66.642,
+            "coberturaScore": 100.0,
+            "componentesScore": {
+              "projecao": {
+                "valor": 11.04,
+                "normalizado": 0.6692,
+                "peso": 0.28,
+                "contribuicao": 0.18737
+              },
+              "teto": {
+                "valor": 22.8,
+                "normalizado": 0.9619,
+                "peso": 0.18,
+                "contribuicao": 0.17314
+              },
+              "mediaRecente": {
+                "valor": 9.984,
+                "normalizado": 0.5494,
+                "peso": 0.14,
+                "contribuicao": 0.07692
+              },
+              "regularidade": {
+                "valor": 20.7,
+                "normalizado": 0.0,
+                "peso": 0.1,
+                "contribuicao": 0.0
+              },
+              "confianca": {
+                "valor": 64.315,
+                "normalizado": 0.6966,
+                "peso": 0.1,
+                "contribuicao": 0.06966
+              },
+              "explosao": {
+                "valor": 96.685,
+                "normalizado": 0.9286,
+                "peso": 0.08,
+                "contribuicao": 0.07428
+              },
+              "forma": {
+                "valor": 77.755,
+                "normalizado": 0.7007,
+                "peso": 0.05,
+                "contribuicao": 0.03503
+              },
+              "potencialOfensivo": {
+                "valor": 100.0,
+                "normalizado": 1.0,
+                "peso": 0.05,
+                "contribuicao": 0.05
+              },
+              "risco": {
+                "valor": 61.458,
+                "normalizado": 1.0,
+                "peso": -0.01,
+                "contribuicao": 0.0
+              },
+              "volatilidade": {
+                "valor": 7.93,
+                "normalizado": 1.0,
+                "peso": -0.01,
+                "contribuicao": 0.0
+              }
+            }
+          },
+          "resultado": {
+            "vencedor": "EMPATE",
+            "pontosCapitaoA": 12.4,
+            "pontosCapitaoB": 12.4,
+            "melhorPontuacaoReal": 22.8,
             "ganhoBvsA": 0.0,
             "AEscolheuMelhorReal": false,
             "BEscolheuMelhorReal": false

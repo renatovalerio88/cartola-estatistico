@@ -26,102 +26,103 @@
       21,
       22,
       23,
-      24
+      24,
+      25
     ],
-    "validas": 23,
+    "validas": 24,
     "ignoradas": []
   },
   "resultadoGlobalSemColdStart": {
-    "escalados": 792,
-    "identificados": 792,
+    "escalados": 828,
+    "identificados": 828,
     "taxaIdentificacaoPercentual": 100.0,
-    "topNPercentual": 8.46,
-    "top5Percentual": 13.38,
-    "top10Percentual": 25.25,
-    "rankingRealMedio": 26.94,
-    "percentilMedio": 57.67,
-    "pontosEscalados": 3569.84,
+    "topNPercentual": 8.21,
+    "top5Percentual": 13.29,
+    "top10Percentual": 24.52,
+    "rankingRealMedio": 28.4,
+    "percentilMedio": 57.75,
+    "pontosEscalados": 3547.75,
     "pontosTimePerfeito": 10904.21,
-    "eficienciaCapturaPercentual": 32.74
+    "eficienciaCapturaPercentual": 32.54
   },
   "resultadoPorPosicao": {
     "GOL": {
-      "escalados": 66,
-      "identificados": 66,
+      "escalados": 69,
+      "identificados": 69,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 1.52,
-      "top5Percentual": 13.64,
-      "top10Percentual": 50.0,
-      "rankingRealMedio": 11.91,
-      "percentilMedio": 39.46,
+      "topNPercentual": 1.45,
+      "top5Percentual": 13.04,
+      "top10Percentual": 49.28,
+      "rankingRealMedio": 12.12,
+      "percentilMedio": 41.28,
       "pontosEscalados": 181.7,
       "pontosTimePerfeito": 812.4,
       "eficienciaCapturaPercentual": 22.37
     },
     "LAT": {
-      "escalados": 44,
-      "identificados": 44,
+      "escalados": 46,
+      "identificados": 46,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 11.36,
-      "top5Percentual": 18.18,
-      "top10Percentual": 22.73,
-      "rankingRealMedio": 19.68,
-      "percentilMedio": 58.58,
+      "topNPercentual": 10.87,
+      "top5Percentual": 17.39,
+      "top10Percentual": 21.74,
+      "rankingRealMedio": 23.74,
+      "percentilMedio": 56.36,
       "pontosEscalados": 243.6,
       "pontosTimePerfeito": 634.1,
       "eficienciaCapturaPercentual": 38.42
     },
     "ZAG": {
-      "escalados": 176,
-      "identificados": 176,
+      "escalados": 184,
+      "identificados": 184,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 3.41,
-      "top5Percentual": 4.55,
-      "top10Percentual": 14.2,
-      "rankingRealMedio": 24.81,
-      "percentilMedio": 46.48,
+      "topNPercentual": 3.26,
+      "top5Percentual": 4.35,
+      "top10Percentual": 13.59,
+      "rankingRealMedio": 26.16,
+      "percentilMedio": 46.79,
       "pontosEscalados": 470.2,
       "pontosTimePerfeito": 1997.2,
       "eficienciaCapturaPercentual": 23.54
     },
     "MEI": {
-      "escalados": 264,
-      "identificados": 264,
+      "escalados": 276,
+      "identificados": 276,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 11.74,
-      "top5Percentual": 13.64,
-      "top10Percentual": 20.83,
-      "rankingRealMedio": 37.14,
-      "percentilMedio": 64.26,
-      "pontosEscalados": 1315.4,
+      "topNPercentual": 12.32,
+      "top5Percentual": 14.13,
+      "top10Percentual": 20.65,
+      "rankingRealMedio": 38.45,
+      "percentilMedio": 64.62,
+      "pontosEscalados": 1314.5,
       "pontosTimePerfeito": 3799.8,
-      "eficienciaCapturaPercentual": 34.62
+      "eficienciaCapturaPercentual": 34.59
     },
     "ATA": {
-      "escalados": 176,
-      "identificados": 176,
+      "escalados": 184,
+      "identificados": 184,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 9.66,
-      "top5Percentual": 15.34,
-      "top10Percentual": 22.73,
-      "rankingRealMedio": 27.66,
-      "percentilMedio": 66.89,
-      "pontosEscalados": 1013.8,
+      "topNPercentual": 8.7,
+      "top5Percentual": 14.67,
+      "top10Percentual": 21.2,
+      "rankingRealMedio": 29.79,
+      "percentilMedio": 66.56,
+      "pontosEscalados": 998.2,
       "pontosTimePerfeito": 3010.4,
-      "eficienciaCapturaPercentual": 33.68
+      "eficienciaCapturaPercentual": 33.16
     },
     "TEC": {
-      "escalados": 66,
-      "identificados": 66,
+      "escalados": 69,
+      "identificados": 69,
       "taxaIdentificacaoPercentual": 100.0,
-      "topNPercentual": 10.61,
-      "top5Percentual": 27.27,
-      "top10Percentual": 56.06,
-      "rankingRealMedio": 9.73,
-      "percentilMedio": 54.19,
-      "pontosEscalados": 345.14,
+      "topNPercentual": 8.7,
+      "top5Percentual": 27.54,
+      "top10Percentual": 55.07,
+      "rankingRealMedio": 9.88,
+      "percentilMedio": 53.36,
+      "pontosEscalados": 339.55,
       "pontosTimePerfeito": 650.31,
-      "eficienciaCapturaPercentual": 53.07
+      "eficienciaCapturaPercentual": 52.21
     }
   },
   "detalhesRodadas": [
@@ -749,22 +750,50 @@
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 76.48,
+          "pontosEscalados": 71.48,
           "pontosPerfeitos": 185.77,
           "nome": "Conservador"
         },
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 93.27,
+          "pontosEscalados": 78.98,
           "pontosPerfeitos": 177.17,
           "nome": "Equilibrado"
         },
         {
           "escalados": 12,
           "identificados": 12,
-          "pontosEscalados": 88.58,
+          "pontosEscalados": 85.78,
           "pontosPerfeitos": 177.17,
+          "nome": "Agressivo"
+        }
+      ]
+    },
+    {
+      "rodada": 25,
+      "quantidadeJogadoresReais": 773,
+      "quantidadeEstrategias": 3,
+      "estrategias": [
+        {
+          "escalados": 12,
+          "identificados": 12,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
+          "nome": "Conservador"
+        },
+        {
+          "escalados": 12,
+          "identificados": 12,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
+          "nome": "Equilibrado"
+        },
+        {
+          "escalados": 12,
+          "identificados": 12,
+          "pontosEscalados": 0.0,
+          "pontosPerfeitos": 0.0,
           "nome": "Agressivo"
         }
       ]
@@ -777,15 +806,15 @@
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "Top N exato: 8.46%. Top 5: 13.38%. Top 10: 25.25%."
+      "mensagem": "Top N exato: 8.21%. Top 5: 13.29%. Top 10: 24.52%."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "O jogador escalado médio está no percentil 57.67 da sua posição."
+      "mensagem": "O jogador escalado médio está no percentil 57.75 da sua posição."
     },
     {
       "nivel": "INFORMATIVO",
-      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 32.74%."
+      "mensagem": "A eficiência global de captura de pontos em relação ao time perfeito é 32.54%."
     }
   ],
   "auditoria": {
