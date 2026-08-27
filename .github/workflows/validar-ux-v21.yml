@@ -5,7 +5,11 @@ on:
     paths:
       - 'js/recomendacoes/ux-clean.js'
       - 'js/escalacoes/monte-seu-time.js'
+      - 'js/escalacoes/cards.js'
+      - 'js/explorador-v21.js'
+      - 'js/historico/cards.js'
       - 'css/monte-seu-time.css'
+      - 'css/campo-escalacoes.css'
       - 'scripts/auditar_ux_v21.py'
       - '.github/workflows/validar-ux-v21.yml'
   workflow_dispatch:
@@ -24,6 +28,9 @@ jobs:
         run: |
           node --check js/recomendacoes/ux-clean.js
           node --check js/escalacoes/monte-seu-time.js
+          node --check js/explorador-v21.js
+          node --check js/escalacoes/cards.js
+          node --check js/historico/cards.js
 
       - name: Auditar gates de UX
         run: python scripts/auditar_ux_v21.py
