@@ -10,6 +10,7 @@
   const CSS_PATH = "css/campo-escalacoes.css";
   const CONTAINER_SELECTOR = "#suggestedLineupsGrid";
   const CARD_SELECTOR = ".suggested-lineup-card";
+  let agendamento = null;
 
   function carregarCss() {
     if (document.getElementById(CSS_ID)) return;
@@ -77,12 +78,10 @@
 
   function obterEscalacoes() {
     try {
-      if (typeof window.EscalacoesDados !== "undefined" &&
-          typeof window.EscalacoesDados?.obter === "function") {
+      if (typeof window.EscalacoesDados !== "undefined" && typeof window.EscalacoesDados?.obter === "function") {
         const dados = window.EscalacoesDados.obter();
         if (Array.isArray(dados)) return dados;
       }
-
       if (typeof window.obterEscalacoesCarregadas === "function") {
         const dados = window.obterEscalacoesCarregadas();
         if (Array.isArray(dados)) return dados;
@@ -112,11 +111,11 @@
 
   function avatarHtml(jogador, pequeno = false) {
     const foto = fotoJogador(jogador);
-    const classe = pequeno ? " pitch-avatar small" : " pitch-avatar";
+    const classe = pequeno ? "pitch-avatar small" : "pitch-avatar";
     if (foto) {
-      return `<span class="${classe.trim()}"><img loading="lazy" decoding="async" src="${escapar(foto)}" alt="" onerror="this.parentElement.classList.add('fallback');this.remove();"><b>${escapar(iniciais(jogador))}</b></span>`;
+      return `<span class="${classe}"><img loading="lazy" decoding="async" src="${escapar(foto)}" alt="" onerror="this.parentElement.classList.add('fallback');this.remove();"><b>${escapar(iniciais(jogador))}</b></span>`;
     }
-    return `<span class="${classe.trim()} fallback"><b>${escapar(iniciais(jogador))}</b></span>`;
+    return `<span class="${classe} fallback"><b>${escapar(iniciais(jogador))}</b></span>`;
   }
 
   function clubeHtml(jogador) {
@@ -131,8 +130,9 @@
   function jogadorCampoHtml(jogador, escalacao) {
     const capitao = ehCapitao(jogador, escalacao);
     const travado = Boolean(jogador?.travadoUsuario);
+    const pos = posicao(jogador);
     return `
-      <article class="pitch-player" data-user-lock="${travado ? "true" : "false"}" title="${escapar(nomeCurto(jogador))} • ${escapar(posicao(jogador))} • ${escapar(preco(jogador))}">
+      <article class="pitch-player" data-posicao="${escapar(pos)}" data-user-lock="${travado ? "true" : "false"}" title="${escapar(nomeCurto(jogador))} • ${escapar(pos)} • ${escapar(preco(jogador))}">
         <div class="pitch-player-avatar-wrap">
           ${avatarHtml(jogador)}
           ${capitao ? '<span class="pitch-captain" aria-label="Capitão">C</span>' : ""}
@@ -145,156 +145,99 @@
 
   function linhaHtml(classe, jogadores, escalacao, rotulo) {
     if (!jogadores.length) return "";
-    return `
-      <div class="pitch-line ${classe}" aria-label="${escapar(rotulo)}">
-        ${jogadores.map(jogador => jogadorCampoHtml(jogador, escalacao)).join("")}
-      </div>`;
+    return `<div class="pitch-line ${classe}" aria-label="${escapar(rotulo)}">${jogadores.map(j => jogadorCampoHtml(j, escalacao)).join("")}</div>`;
+  }
+
+  function ordenarDefesa(jogadores) {
+    const lat = jogadores.filter(j => posicao(j) === "LAT");
+    const zag = jogadores.filter(j => posicao(j) === "ZAG");
+    if (lat.length >= 2 && zag.length) return [lat[0], ...zag, lat[1], ...lat.slice(2)];
+    if (lat.length === 1 && zag.length) return [lat[0], ...zag];
+    return jogadores;
   }
 
   function bancoHtml(escalacao) {
     const banco = Array.isArray(escalacao?.banco) ? escalacao.banco.filter(Boolean) : [];
     if (!banco.length) return "";
-
-    return `
-      <section class="pitch-bench" aria-label="Banco de reservas">
-        <div class="pitch-bench-heading">
-          <div><span>RESERVAS</span><strong>Banco de reservas</strong></div>
-          <small>★ Reserva de Luxo</small>
-        </div>
-        <div class="pitch-bench-list">
-          ${banco.map(jogador => `
-            <article class="pitch-bench-player ${ehReservaLuxo(jogador, escalacao) ? "luxury" : ""}">
-              ${avatarHtml(jogador, true)}
-              <div>
-                <span>${escapar(posicao(jogador))}</span>
-                <strong>${escapar(nomeCurto(jogador))}</strong>
-                <small>${escapar(jogador?.siglaClube || jogador?.clube || "--")} • ${escapar(projecao(jogador))} pts</small>
-              </div>
-              ${ehReservaLuxo(jogador, escalacao) ? '<b class="pitch-luxury" title="Reserva de Luxo">★</b>' : ""}
-            </article>`).join("")}
-        </div>
-      </section>`;
+    return `<section class="pitch-bench" aria-label="Banco de reservas">
+      <div class="pitch-bench-heading"><div><span>RESERVAS</span><strong>Banco de reservas</strong></div><small>★ Reserva de Luxo</small></div>
+      <div class="pitch-bench-list">${banco.map(jogador => `
+        <article class="pitch-bench-player ${ehReservaLuxo(jogador, escalacao) ? "luxury" : ""}">
+          ${avatarHtml(jogador, true)}<div><span>${escapar(posicao(jogador))}</span><strong>${escapar(nomeCurto(jogador))}</strong><small>${escapar(jogador?.siglaClube || jogador?.clube || "--")} • ${escapar(projecao(jogador))} pts</small></div>
+          ${ehReservaLuxo(jogador, escalacao) ? '<b class="pitch-luxury" title="Reserva de Luxo">★</b>' : ""}
+        </article>`).join("")}</div></section>`;
   }
 
   function treinadorHtml(treinador) {
     if (!treinador) return "";
-    return `
-      <aside class="pitch-coach">
-        <span>🧠 TÉCNICO</span>
-        ${avatarHtml(treinador, true)}
-        <div>
-          <strong>${escapar(nomeCurto(treinador))}</strong>
-          <small>${escapar(treinador?.siglaClube || treinador?.clube || "--")} • ${escapar(projecao(treinador))} pts</small>
-        </div>
-      </aside>`;
+    return `<aside class="pitch-coach"><span>🧠 TÉCNICO</span>${avatarHtml(treinador, true)}<div><strong>${escapar(nomeCurto(treinador))}</strong><small>${escapar(treinador?.siglaClube || treinador?.clube || "--")} • ${escapar(projecao(treinador))} pts</small></div></aside>`;
   }
 
   function campoHtml(escalacao) {
     const titulares = titularesDaEscalacao(escalacao);
-    const treinador = titulares.find(jogador => posicao(jogador) === "TEC") || escalacao?.tecnico || null;
-    const jogadores = titulares.filter(jogador => posicao(jogador) !== "TEC");
+    const treinador = titulares.find(j => posicao(j) === "TEC") || escalacao?.tecnico || null;
+    const jogadores = titulares.filter(j => posicao(j) !== "TEC");
+    const ataque = jogadores.filter(j => posicao(j) === "ATA");
+    const meio = jogadores.filter(j => posicao(j) === "MEI");
+    const defesa = ordenarDefesa(jogadores.filter(j => ["LAT", "ZAG"].includes(posicao(j))));
+    const goleiro = jogadores.filter(j => posicao(j) === "GOL");
 
-    const ataque = jogadores.filter(jogador => posicao(jogador) === "ATA");
-    const meio = jogadores.filter(jogador => posicao(jogador) === "MEI");
-    const defesa = jogadores.filter(jogador => ["LAT", "ZAG"].includes(posicao(jogador)));
-    const goleiro = jogadores.filter(jogador => posicao(jogador) === "GOL");
-
-    return `
-      <section class="lineup-pitch-shell" data-lineup-pitch="true">
-        <div class="lineup-pitch-toolbar">
-          <div>
-            <span>CAMPO</span>
-            <strong>${escapar(escalacao?.formacao || "Formação")}</strong>
-          </div>
-          <small>Projeção nos cards • toque/aponte para detalhes</small>
-        </div>
-
-        <div class="lineup-pitch" role="group" aria-label="Escalação em campo">
-          <span class="pitch-center-line" aria-hidden="true"></span>
-          <span class="pitch-center-circle" aria-hidden="true"></span>
-          <span class="pitch-box pitch-box-top" aria-hidden="true"></span>
-          <span class="pitch-box pitch-box-bottom" aria-hidden="true"></span>
-          ${linhaHtml("attack", ataque, escalacao, "Ataque")}
-          ${linhaHtml("midfield", meio, escalacao, "Meio-campo")}
-          ${linhaHtml("defense", defesa, escalacao, "Defesa")}
-          ${linhaHtml("goalkeeper", goleiro, escalacao, "Goleiro")}
-        </div>
-
-        ${treinadorHtml(treinador)}
-        ${bancoHtml(escalacao)}
-      </section>`;
+    return `<section class="lineup-pitch-shell" data-lineup-pitch="true">
+      <div class="lineup-pitch-toolbar"><div><span>CAMPO</span><strong>${escapar(escalacao?.formacao || "Formação")}</strong></div><small>Projeção nos cards • toque/aponte para detalhes</small></div>
+      <div class="lineup-pitch" role="group" aria-label="Escalação em campo">
+        <span class="pitch-center-line" aria-hidden="true"></span><span class="pitch-center-circle" aria-hidden="true"></span><span class="pitch-box pitch-box-top" aria-hidden="true"></span><span class="pitch-box pitch-box-bottom" aria-hidden="true"></span>
+        ${linhaHtml("attack", ataque, escalacao, "Ataque")}${linhaHtml("midfield", meio, escalacao, "Meio-campo")}${linhaHtml("defense", defesa, escalacao, "Defesa")}${linhaHtml("goalkeeper", goleiro, escalacao, "Goleiro")}
+      </div>${treinadorHtml(treinador)}${bancoHtml(escalacao)}</section>`;
   }
 
   function aplicarCampo(card, escalacao) {
     if (!card || !escalacao) return;
-
     const existente = card.querySelector("[data-lineup-pitch='true']");
-    if (existente) existente.remove();
-
-    const alvo = card.querySelector(".lineup-players-title") ||
-      card.querySelector(".lineup-players-list") ||
-      card.querySelector(".lineup-strategy-summary");
-
+    const novo = campoHtml(escalacao);
+    if (existente) {
+      const wrap = document.createElement("div");
+      wrap.innerHTML = novo.trim();
+      existente.replaceWith(wrap.firstElementChild);
+      return;
+    }
+    const alvo = card.querySelector(".lineup-players-title") || card.querySelector(".lineup-players-list") || card.querySelector(".lineup-strategy-summary");
     if (!alvo) return;
-
-    alvo.insertAdjacentHTML("beforebegin", campoHtml(escalacao));
+    alvo.insertAdjacentHTML("beforebegin", novo);
     card.classList.add("has-visual-pitch");
   }
 
   function renderizar() {
     const container = document.querySelector(CONTAINER_SELECTOR);
-    if (!container) return;
-
+    if (!container) return false;
     const cards = Array.from(container.querySelectorAll(CARD_SELECTOR));
     const escalacoes = obterEscalacoes();
-    if (!cards.length || !escalacoes.length) return;
-
-    cards.forEach((card, indice) => {
-      aplicarCampo(card, escalacoes[indice]);
-    });
+    if (!cards.length || !escalacoes.length) return false;
+    cards.forEach((card, indice) => aplicarCampo(card, escalacoes[indice]));
+    return true;
   }
 
-  let agendamento = null;
-  function agendarRender() {
+  function agendarRender(atraso = 30) {
     window.clearTimeout(agendamento);
-    agendamento = window.setTimeout(renderizar, 30);
+    agendamento = window.setTimeout(renderizar, atraso);
   }
 
-  function observar() {
-    const container = document.querySelector(CONTAINER_SELECTOR);
-    if (!container) {
-      window.setTimeout(observar, 250);
-      return;
-    }
-
-    const observer = new MutationObserver(mudancas => {
-      const mudouEstrutura = mudancas.some(mudanca => mudanca.type === "childList" && mudanca.addedNodes.length);
-      if (mudouEstrutura) agendarRender();
+  function iniciar() {
+    carregarCss();
+    [0, 120, 350, 800, 1600, 3000].forEach(ms => window.setTimeout(renderizar, ms));
+    window.addEventListener("cartola:escalacoes-atualizadas", () => agendarRender(60));
+    window.addEventListener("cartola:rodada-atualizada", () => agendarRender(80));
+    document.addEventListener("click", evento => {
+      if (evento.target.closest?.("#times, [data-tab='times'], [data-section='times']")) agendarRender(80);
     });
-
-    observer.observe(container, { childList: true, subtree: true });
-    agendarRender();
   }
 
-  carregarCss();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar, { once: true });
+  else iniciar();
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", observar, { once: true });
-  } else {
-    observar();
-  }
-
-  window.addEventListener("cartola:escalacoes-atualizadas", agendarRender);
-
-  window.CartolaCampoEscalacao = {
-    renderizar,
-    campoHtml
-  };
+  window.CartolaCampoEscalacao = { renderizar, campoHtml, ordenarDefesa };
 })();
 
-/* =========================================================
-   Monte seu time — carregamento sob o mesmo componente visual
-   ========================================================= */
+/* Monte seu time — carregamento sob o mesmo componente visual */
 (() => {
   if (document.querySelector('script[data-cartola-monte="true"]')) return;
   const script = document.createElement("script");
@@ -304,9 +247,7 @@
   document.head.appendChild(script);
 })();
 
-/* =========================================================
-   Polimento final V2.1 — camada visual e análise orientada à decisão
-   ========================================================= */
+/* Polimento final V2.1 */
 (() => {
   if (document.querySelector('script[data-cartola-ux-polimento="true"]')) return;
   const script = document.createElement("script");
@@ -316,9 +257,7 @@
   document.head.appendChild(script);
 })();
 
-/* =========================================================
-   Fechamento visual V2.3 — correções finais desktop/mobile
-   ========================================================= */
+/* Fechamento visual V2.4 */
 (() => {
   if (document.querySelector('script[data-cartola-ux-final-v23="true"]')) return;
   const script = document.createElement("script");
