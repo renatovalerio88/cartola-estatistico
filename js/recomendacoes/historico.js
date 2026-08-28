@@ -292,3 +292,39 @@ const HistoricoJogadores = (() => {
   };
 
 })();
+
+/* =========================================================
+   BOOTSTRAP DA CAMADA VISUAL V2.4
+
+   O artefato final já existe no Pages, mas o index legado
+   não o referencia diretamente. Carregamos aqui uma única
+   vez, a partir de um módulo que já faz parte do bootstrap
+   principal, garantindo que as correções V2.4 sejam de fato
+   executadas sem reintroduzir MutationObserver contínuo.
+   ========================================================= */
+
+(() => {
+  const SCRIPT_ID = "cartola-ux-final-v24-loader";
+  const SCRIPT_SRC = "js/ux-final-v23.js";
+
+  if (
+    typeof document === "undefined" ||
+    document.getElementById(SCRIPT_ID) ||
+    document.querySelector(`script[src="${SCRIPT_SRC}"]`)
+  ) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = SCRIPT_ID;
+  script.src = SCRIPT_SRC;
+  script.async = false;
+  script.defer = false;
+  script.onerror = () => {
+    console.error(
+      "Falha ao carregar a camada visual final V2.4."
+    );
+  };
+
+  document.head.appendChild(script);
+})();
