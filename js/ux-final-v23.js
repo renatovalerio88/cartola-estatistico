@@ -32,14 +32,16 @@
       #recomendacoes .ce-decision{margin:7px 10px!important;padding:9px 11px!important}
       #recomendacoes .component-row.component-explained{padding:7px 9px!important;margin:3px 0!important}
       #recomendacoes [data-ux-v24-mobile-extra="1"]{display:none!important}
+      #recomendacoes [data-ux-v24-tech-collapsed="1"]{display:none!important}
+      #recomendacoes .ce-v24-tech-toggle{display:block;width:100%;margin:8px 0 2px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-weight:700;cursor:pointer}
 
       #times .lineup-budget-control{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;max-height:none!important;padding:14px!important;margin:0 0 12px!important;gap:10px!important}
-      #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{display:flex!important;flex-direction:column!important;position:static!important;inset:auto!important;transform:none!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;gap:8px!important}
-      #times .lineup-budget-control .lineup-budget-input-wrap{min-height:0!important;height:auto!important;margin:0!important}
+      #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{display:flex!important;flex-direction:column!important;position:static!important;inset:auto!important;transform:none!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;gap:8px!important;flex:0 0 auto!important}
+      #times .lineup-budget-control .lineup-budget-input-wrap{min-height:0!important;height:auto!important;margin:0!important;position:static!important}
       #times .lineup-budget-control>*{min-height:0!important;max-height:none!important}
+      #times .pitch-line.defense,#monte-seu-time .monte-line.defense,#monte-seu-time .pitch-line.defense{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;align-items:center!important}
 
       #monte-seu-time .monte-builder-pitch{min-height:470px!important;max-width:920px!important;margin-inline:auto!important}
-      #monte-seu-time .monte-line.defense,#monte-seu-time .pitch-line.defense{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;align-items:center!important}
       #monte-seu-time .monte-slot{transition:none!important}
 
       #historico .history-v21-legend .proj{color:${ORANGE}!important}
@@ -56,9 +58,15 @@
       @media(max-width:700px){
         #recomendacoes .ce-clean-tabs{padding:7px!important;gap:5px!important}
         #recomendacoes .ce-clean-player{padding:6px 8px!important;font-size:10px!important}
-        #recomendacoes .ce-clean-detail .player-card{border-radius:13px!important;padding:10px!important}
+        #recomendacoes .ce-clean-detail .player-card{border-radius:13px!important;padding:8px!important}
+        #recomendacoes .ce-clean-detail .player-header{padding:7px!important;margin-bottom:5px!important}
+        #recomendacoes .ce-clean-detail .player-card h2,#recomendacoes .ce-clean-detail .player-card h3{margin-top:3px!important;margin-bottom:4px!important}
+        #recomendacoes .ce-clean-detail .projection-box,#recomendacoes .ce-clean-detail .projection-highlight{padding:8px!important;margin:6px 0!important;min-height:0!important}
         #recomendacoes .ce-decision{margin:5px 0!important;padding:8px 9px!important}
-        #times .lineup-budget-control{padding:11px!important;gap:8px!important}
+        #recomendacoes .component-row.component-explained{padding:6px 7px!important;margin:2px 0!important}
+        #recomendacoes .ce-v24-tech-toggle{margin-top:6px!important;padding:8px!important}
+        #times .lineup-budget-control{padding:11px!important;gap:8px!important;min-height:0!important;height:auto!important}
+        #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{gap:6px!important;min-height:0!important;height:auto!important}
         #monte-seu-time .monte-builder-pitch{min-height:365px!important;margin:0 4px!important}
         #monte-seu-time .monte-line.attack{top:5%!important}
         #monte-seu-time .monte-line.midfield{top:29%!important}
@@ -104,6 +112,27 @@
       .slice(3)
       .forEach(el => el.dataset.uxV24MobileExtra = "1");
 
+    const componentes = [...detalhe.querySelectorAll(".component-row.component-explained, .component-row")];
+    if (componentes.length) {
+      const pai = componentes[0].parentElement;
+      if (pai && !pai.querySelector(".ce-v24-tech-toggle")) {
+        const botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "ce-v24-tech-toggle";
+        botao.textContent = "Ver critérios técnicos";
+        botao.addEventListener("click", () => {
+          const fechado = componentes.some(el => el.dataset.uxV24TechCollapsed === "1");
+          componentes.forEach(el => {
+            if (fechado) delete el.dataset.uxV24TechCollapsed;
+            else el.dataset.uxV24TechCollapsed = "1";
+          });
+          botao.textContent = fechado ? "Ocultar critérios técnicos" : "Ver critérios técnicos";
+        });
+        componentes.forEach(el => el.dataset.uxV24TechCollapsed = "1");
+        pai.insertBefore(botao, componentes[0]);
+      }
+    }
+
     const ativo = botoes.find(botao => botao.classList.contains("is-active"));
     if (!ativo || reparando) return;
     const jogador = jogadoresDaPosicao().find(j => idJogador(j) === ativo.dataset.cePlayer);
@@ -119,13 +148,23 @@
     document.querySelectorAll(selector).forEach(linha => {
       const itens = [...linha.querySelectorAll(seletorItens)];
       if (itens.length < 3) return;
+      itens.forEach(item => { item.style.order = ""; });
       const lat = itens.filter(i => obterPosicao(i) === "LAT");
       const zag = itens.filter(i => obterPosicao(i) === "ZAG");
-      if (lat.length < 2 || !zag.length) return;
-      const ordem = [lat[0], ...zag, lat[1], ...lat.slice(2)].filter(Boolean);
+      let ordem = itens;
+      if (lat.length >= 2 && zag.length) ordem = [lat[0], ...zag, lat[1], ...lat.slice(2)].filter(Boolean);
+      else if (lat.length === 1 && zag.length) ordem = [lat[0], ...zag].filter(Boolean);
       ordem.forEach((item, i) => { item.style.order = String(i + 1); });
       linha.dataset.uxV24DefenseStable = "1";
+      linha.dataset.uxV24DefenseOrder = ordem.map(obterPosicao).join("|");
     });
+  }
+
+  function posicaoCardCampo(card) {
+    const titulo = String(card.getAttribute("title") || "").toUpperCase();
+    if (/\bLAT\b/.test(titulo)) return "LAT";
+    if (/\bZAG\b/.test(titulo)) return "ZAG";
+    return "";
   }
 
   function ajustarDefesa() {
@@ -135,14 +174,9 @@
       slot => String(slot.dataset.pos || "").toUpperCase()
     );
     ordenarDefesa(
-      "#monte-seu-time .pitch-line.defense",
+      "#monte-seu-time .pitch-line.defense, #times .pitch-line.defense",
       ":scope > .pitch-player",
-      card => {
-        const titulo = String(card.getAttribute("title") || "").toUpperCase();
-        if (/\bLAT\b/.test(titulo)) return "LAT";
-        if (/\bZAG\b/.test(titulo)) return "ZAG";
-        return "";
-      }
+      posicaoCardCampo
     );
   }
 
@@ -169,14 +203,19 @@
     return [];
   }
 
+  function ocultarCabecalhoAntigo(raiz) {
+    [...raiz.querySelectorAll("h1,h2,h3,h4,.section-kicker,.eyebrow,strong")].forEach(el => {
+      const texto = norm(el.textContent);
+      if (!texto.includes("leitura dos confrontos") && !texto.includes("leitura rapida para a rodada")) return;
+      const bloco = el.closest(".section-header,.analysis-header,.round-reading,.quick-reading") || el.parentElement;
+      if (bloco && bloco !== raiz) bloco.dataset.uxV24OldReading = "1";
+    });
+  }
+
   function ajustarAnalise() {
     const raiz = document.getElementById("analise");
     if (!raiz) return;
-    [...raiz.querySelectorAll("h2,h3,h4,strong")].forEach(titulo => {
-      if (!norm(titulo.textContent).includes("leitura rapida para a rodada")) return;
-      const bloco = titulo.closest("section,article,.analysis-card,.analysis-summary,.round-reading,.quick-reading") || titulo.parentElement;
-      if (bloco && bloco !== raiz) bloco.dataset.uxV24OldReading = "1";
-    });
+    ocultarCabecalhoAntigo(raiz);
 
     const base = jogadores();
     if (!base.length) return;
@@ -215,7 +254,7 @@
     window.addEventListener("cartola:escalacoes-atualizadas", () => agendar(80));
     window.addEventListener("cartola:rodada-atualizada", () => agendar(80));
     document.addEventListener("click", evento => {
-      if (evento.target.closest?.("#recomendacoes, #monte-seu-time, #historico, #analise")) agendar(50);
+      if (evento.target.closest?.("#recomendacoes, #times, #monte-seu-time, #historico, #analise")) agendar(50);
     });
   }
 
