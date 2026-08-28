@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ux = (ROOT / "js/recomendacoes/ux-clean.js").read_text(encoding="utf-8")
+ux_final = (ROOT / "js/ux-final-v23.js").read_text(encoding="utf-8")
 monte = (ROOT / "js/escalacoes/monte-seu-time.js").read_text(encoding="utf-8")
 historico = (ROOT / "js/historico/cards.js").read_text(encoding="utf-8")
 index = (ROOT / "index.html").read_text(encoding="utf-8")
@@ -73,6 +74,58 @@ checks = {
         'function construirIndiceBusca()' in monte
         and 'function candidatosBusca(' in monte
         and 'function menorCustoRestante(indice' in monte
+    ),
+
+    # Gates do fechamento V2.4: os pontos reportados nos prints do usuário.
+    "v24_ranking_independente_selecao": (
+        'data-ux-rank="1"' in ux_final
+        and 'is-active:not([data-ux-rank="1"])' in ux_final
+        and 'detalheCorrespondeAoSelecionado' in ux_final
+        and 'garantirSelecaoRecomendacao' in ux_final
+    ),
+    "v24_recomendacoes_mobile_compactas": (
+        'data-ux-v24-mobile-extra' in ux_final
+        and 'fatores.slice(3)' in ux_final
+        and '#recomendacoes .ce-clean-detail .player-card' in ux_final
+    ),
+    "v24_patrimonio_sem_vazio": (
+        '#times .lineup-budget-control{' in ux_final
+        and 'display:flex!important;flex-direction:column!important' in ux_final
+        and '.lineup-budget-copy' in ux_final
+        and '.lineup-budget-actions' in ux_final
+        and 'position:static!important' in ux_final
+    ),
+    "v24_defesa_builder_estavel": (
+        'function ordenarDefesaBuilder()' in ux_final
+        and 'const ordem = lat.length >= 2 ? [lat[0], ...zag, lat[1]' in ux_final
+        and 'linha.dataset.uxV24DefenseStable = "1"' in ux_final
+    ),
+    "v24_defesa_resultado_estavel": (
+        'function ordenarDefesaResultado()' in ux_final
+        and '#monte-seu-time .pitch-line.defense' in ux_final
+        and '/\\bLAT\\b/' in ux_final
+        and '/\\bZAG\\b/' in ux_final
+    ),
+    "v24_historico_cores_e_mobile": (
+        'const ORANGE = "#d9822b"' in ux_final
+        and 'const GREEN = "#53d891"' in ux_final
+        and 'history-v21-chart' in ux_final
+        and 'min-width:620px' in ux_final
+        and 'historyRound' in ux_final
+        and 'historyPosition' in ux_final
+    ),
+    "v24_analise_sem_bloco_antigo": (
+        'function removerLeituraAntigaAnalise()' in ux_final
+        and 'leitura rapida para a rodada' in ux_final
+        and 'data-ux-v24-old-reading' in ux_final
+    ),
+    "v24_analise_com_adversario": (
+        '["onde atacar", "onde buscar seguranca", "onde ter cautela"]' in ux_final
+        and 'small.textContent = `${sigla} x ${adv}' in ux_final
+    ),
+    "v24_observer_imediato": (
+        'new MutationObserver(() => aplicarImediato())' in ux_final
+        and 'window.setTimeout(aplicarImediato, 0)' in ux_final
     ),
 }
 
