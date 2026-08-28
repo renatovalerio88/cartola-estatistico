@@ -106,9 +106,10 @@ checks = {
     ),
     "v24_defesa_builder_estavel": (
         'function ordenarDefesa(' in ux_final
-        and 'const ordem = [lat[0], ...zag, lat[1]' in ux_final
+        and 'ordem = [lat[0], ...zag, lat[1]' in ux_final
         and '#monte-seu-time .monte-line.defense' in ux_final
         and 'linha.dataset.uxV24DefenseStable = "1"' in ux_final
+        and 'linha.dataset.uxV24DefenseOrder = ordem.map(obterPosicao).join("|")' in ux_final
     ),
     "v24_historico_cores_e_mobile": (
         'const ORANGE = "#d9822b"' in ux_final
@@ -146,6 +147,7 @@ checks["v24_ordem_lat_zag_zag_lat"] = (
     and '[lat[0], ...zag, lat[1]' in ux_final
     and '#times .pitch-line.defense' in ux_final
     and '#monte-seu-time .monte-line.defense' in ux_final
+    and 'uxV24DefenseOrder' in ux_final
 )
 
 falhas = [nome for nome, ok in checks.items() if not ok]
