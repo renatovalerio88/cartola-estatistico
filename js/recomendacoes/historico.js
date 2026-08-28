@@ -2,26 +2,30 @@
    CARTOLA ESTATÍSTICO
    Carregamento do histórico individual dos jogadores
 
-   HOTFIX DE PERFORMANCE
+   HOTFIX DE PERFORMANCE / RESILIÊNCIA
 
    - evita centenas de requests simultâneos no carregamento;
-   - prioriza atletas prováveis, que são os elegíveis reais
-     para recomendação/escalação;
-   - reutiliza o cache do navegador durante a mesma rodada;
-   - mantém a rodada na URL para invalidar o cache quando
-     os dados históricos forem atualizados na rodada seguinte.
+   - prioriza atletas prováveis;
+   - reutiliza cache durante a mesma rodada;
+   - invalida o cache pela rodada;
+   - impõe timeout individual e orçamento global para que
+     histórico lento nunca prenda a tela em "Carregando".
    ========================================================= */
 
 const HistoricoJogadores = (() => {
 
   const LIMITE_CONCORRENCIA = 16;
-
+  const TIMEOUT_REQUEST_MS = 3500;
+  const ORCAMENTO_GLOBAL_MS = 7000;
   const cacheSessao = new Map();
 
-
-  /* =======================================================
-     CARREGAMENTO DA LISTA
-     ======================================================= */
+  function prepararJogador(jogador) {
+    return {
+      ...jogador,
+      historico: [],
+      historicoPontuacoes: []
+    };
+  }
 
   async function carregar(jogadores) {
     if (!Array.isArray(jogadores)) {
@@ -32,8 +36,9 @@ const HistoricoJogadores = (() => {
       return [];
     }
 
-    const resultados = new Array(jogadores.length);
+    const resultados = jogadores.map(prepararJogador);
     let proximoIndice = 0;
+    let encerrado = false;
 
     const quantidadeWorkers = Math.min(
       LIMITE_CONCORRENCIA,
@@ -41,7 +46,7 @@ const HistoricoJogadores = (() => {
     );
 
     async function worker() {
-      while (true) {
+      while (!encerrado) {
         const indice = proximoIndice;
         proximoIndice += 1;
 
@@ -55,20 +60,38 @@ const HistoricoJogadores = (() => {
       }
     }
 
-    await Promise.all(
+    const workers = Promise.all(
       Array.from(
         { length: quantidadeWorkers },
         () => worker()
       )
     );
 
+    let timerGlobal = null;
+
+    const limiteGlobal = new Promise(resolve => {
+      timerGlobal = setTimeout(() => {
+        encerrado = true;
+        console.warn(
+          "Histórico parcial: orçamento global de carregamento atingido. Recomendações liberadas com fallback seguro."
+        );
+        resolve();
+      }, ORCAMENTO_GLOBAL_MS);
+    });
+
+    await Promise.race([
+      workers,
+      limiteGlobal
+    ]);
+
+    if (timerGlobal !== null) {
+      clearTimeout(timerGlobal);
+    }
+
+    encerrado = true;
+
     return resultados;
   }
-
-
-  /* =======================================================
-     ELEGIBILIDADE PARA CARREGAR HISTÓRICO
-     ======================================================= */
 
   function deveCarregarHistorico(jogador) {
     if (!jogador || !jogador.id) {
@@ -79,17 +102,6 @@ const HistoricoJogadores = (() => {
       jogador.statusId ?? jogador.status_id
     );
 
-    /*
-     * Status 7 = Provável na API do Cartola.
-     *
-     * O histórico individual é usado no ranking e na montagem
-     * das escalações. Jogadores explicitamente não prováveis
-     * não precisam bloquear a abertura do site com uma busca
-     * histórica própria.
-     *
-     * Se o status não vier no payload, mantemos compatibilidade
-     * e carregamos normalmente.
-     */
     if (Number.isFinite(statusId)) {
       return statusId === 7;
     }
@@ -97,48 +109,48 @@ const HistoricoJogadores = (() => {
     return true;
   }
 
-
-  /* =======================================================
-     CARREGAMENTO INDIVIDUAL
-     ======================================================= */
-
   async function carregarJogador(jogador) {
-    const jogadorPreparado = {
-      ...jogador,
-      historico: [],
-      historicoPontuacoes: []
-    };
+    const jogadorPreparado = prepararJogador(jogador);
 
     if (!deveCarregarHistorico(jogador)) {
       return jogadorPreparado;
     }
 
-    const rodada = Number(
-      jogador.rodada
-    );
-
+    const rodada = Number(jogador.rodada);
     const chaveCache = `${jogador.id}:${
       Number.isFinite(rodada) ? rodada : "atual"
     }`;
 
     if (cacheSessao.has(chaveCache)) {
-      const historicoCache = cacheSessao.get(chaveCache);
-
       return montarJogadorComHistorico(
         jogador,
-        historicoCache
+        cacheSessao.get(chaveCache)
+      );
+    }
+
+    const versaoRodada = Number.isFinite(rodada)
+      ? `?r=${rodada}`
+      : "";
+
+    const controller = typeof AbortController !== "undefined"
+      ? new AbortController()
+      : null;
+
+    let timerRequest = null;
+
+    if (controller) {
+      timerRequest = setTimeout(
+        () => controller.abort(),
+        TIMEOUT_REQUEST_MS
       );
     }
 
     try {
-      const versaoRodada = Number.isFinite(rodada)
-        ? `?r=${rodada}`
-        : "";
-
       const resposta = await fetch(
         `data/base-historica/${jogador.id}.json${versaoRodada}`,
         {
-          cache: "default"
+          cache: "default",
+          ...(controller ? { signal: controller.signal } : {})
         }
       );
 
@@ -149,9 +161,7 @@ const HistoricoJogadores = (() => {
 
       const dados = await resposta.json();
 
-      const historico = Array.isArray(
-        dados?.historico
-      )
+      const historico = Array.isArray(dados?.historico)
         ? dados.historico
             .filter(validarRegistro)
             .sort(
@@ -161,48 +171,40 @@ const HistoricoJogadores = (() => {
             )
         : [];
 
-      cacheSessao.set(
-        chaveCache,
-        historico
-      );
+      cacheSessao.set(chaveCache, historico);
 
       return montarJogadorComHistorico(
         jogador,
         historico
       );
-
     } catch (erro) {
-      console.warn(
-        `Histórico não carregado para o jogador ${jogador.id}:`,
-        erro
-      );
+      if (erro?.name === "AbortError") {
+        console.warn(
+          `Histórico excedeu ${TIMEOUT_REQUEST_MS}ms para o jogador ${jogador.id}; usando fallback.`
+        );
+      } else {
+        console.warn(
+          `Histórico não carregado para o jogador ${jogador.id}:`,
+          erro
+        );
+      }
 
       return jogadorPreparado;
+    } finally {
+      if (timerRequest !== null) {
+        clearTimeout(timerRequest);
+      }
     }
   }
 
-
-  /* =======================================================
-     MONTA JOGADOR COM HISTÓRICO
-     ======================================================= */
-
-  function montarJogadorComHistorico(
-    jogador,
-    historico
-  ) {
+  function montarJogadorComHistorico(jogador, historico) {
     const listaHistorico = Array.isArray(historico)
       ? historico
       : [];
 
     const historicoPontuacoes = listaHistorico
-      .filter(
-        registro =>
-          possuiPontuacaoValida(registro)
-      )
-      .map(
-        registro =>
-          obterPontuacao(registro)
-      );
+      .filter(possuiPontuacaoValida)
+      .map(obterPontuacao);
 
     return {
       ...jogador,
@@ -211,43 +213,20 @@ const HistoricoJogadores = (() => {
     };
   }
 
-
-  /* =======================================================
-     VALIDAÇÃO DOS REGISTROS
-     ======================================================= */
-
   function validarRegistro(registro) {
-    if (
-      !registro ||
-      typeof registro !== "object"
-    ) {
-      return false;
-    }
-
-    return Number.isFinite(
-      Number(registro.rodada)
+    return Boolean(
+      registro &&
+      typeof registro === "object" &&
+      Number.isFinite(Number(registro.rodada))
     );
   }
 
-
-  /* =======================================================
-     PONTUAÇÃO
-     ======================================================= */
-
-  function possuiPontuacaoValida(
-    registro
-  ) {
-    if (
-      !registro ||
-      typeof registro !== "object"
-    ) {
+  function possuiPontuacaoValida(registro) {
+    if (!registro || typeof registro !== "object") {
       return false;
     }
 
-    const valor =
-      obterValorPontuacaoBruto(
-        registro
-      );
+    const valor = obterValorPontuacaoBruto(registro);
 
     if (
       valor === null ||
@@ -257,19 +236,11 @@ const HistoricoJogadores = (() => {
       return false;
     }
 
-    return Number.isFinite(
-      Number(valor)
-    );
+    return Number.isFinite(Number(valor));
   }
 
-
-  function obterPontuacao(
-    registro
-  ) {
-    const valor =
-      obterValorPontuacaoBruto(
-        registro
-      );
+  function obterPontuacao(registro) {
+    const valor = obterValorPontuacaoBruto(registro);
 
     if (
       valor === null ||
@@ -279,28 +250,21 @@ const HistoricoJogadores = (() => {
       return null;
     }
 
-    const pontuacao =
-      Number(valor);
+    const pontuacao = Number(valor);
 
-    return Number.isFinite(
-      pontuacao
-    )
+    return Number.isFinite(pontuacao)
       ? pontuacao
       : null;
   }
 
-
-  function obterValorPontuacaoBruto(
-    registro
-  ) {
+  function obterValorPontuacaoBruto(registro) {
     if (
       Object.prototype.hasOwnProperty.call(
         registro,
         "pontuacao"
       )
     ) {
-      const pontuacao =
-        registro.pontuacao;
+      const pontuacao = registro.pontuacao;
 
       if (
         pontuacao !== null &&
@@ -322,11 +286,6 @@ const HistoricoJogadores = (() => {
 
     return null;
   }
-
-
-  /* =======================================================
-     API PÚBLICA
-     ======================================================= */
 
   return {
     carregar
