@@ -5,6 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ux = (ROOT / "js/recomendacoes/ux-clean.js").read_text(encoding="utf-8")
 ux_final = (ROOT / "js/ux-final-v23.js").read_text(encoding="utf-8")
 monte = (ROOT / "js/escalacoes/monte-seu-time.js").read_text(encoding="utf-8")
+campo = (ROOT / "js/escalacoes/campo.js").read_text(encoding="utf-8")
 historico = (ROOT / "js/historico/cards.js").read_text(encoding="utf-8")
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 
@@ -75,8 +76,6 @@ checks = {
         and 'function candidatosBusca(' in monte
         and 'function menorCustoRestante(indice' in monte
     ),
-
-    # Gates do fechamento V2.4: os pontos reportados nos prints do usuário.
     "v24_ranking_independente_selecao": (
         'data-ux-rank="1"' in ux_final
         and 'is-active:not([data-ux-rank="1"])' in ux_final
@@ -86,7 +85,8 @@ checks = {
     "v24_recomendacoes_mobile_compactas": (
         'data-ux-v24-mobile-extra' in ux_final
         and '.slice(3)' in ux_final
-        and '#recomendacoes .ce-clean-detail .player-card' in ux_final
+        and 'ce-v24-tech-toggle' in ux_final
+        and 'data-ux-v24-tech-collapsed' in ux_final
     ),
     "v24_patrimonio_sem_vazio": (
         '#times .lineup-budget-control{' in ux_final
@@ -94,16 +94,21 @@ checks = {
         and '.lineup-budget-copy' in ux_final
         and '.lineup-budget-actions' in ux_final
         and 'position:static!important' in ux_final
+        and 'flex:0 0 auto!important' in ux_final
+    ),
+    "v24_defesa_compartilhada_semantica": (
+        'function ordenarDefesa(jogadores)' in campo
+        and 'return [lat[0], ...zag, lat[1], ...lat.slice(2)]' in campo
+        and 'data-posicao=' in campo
+        and '#times .pitch-line.defense' in ux_final
+        and '#monte-seu-time .pitch-line.defense' in ux_final
+        and 'data.uxV24DefenseOrder' not in ux_final
     ),
     "v24_defesa_builder_estavel": (
         'function ordenarDefesa(' in ux_final
         and 'const ordem = [lat[0], ...zag, lat[1]' in ux_final
+        and '#monte-seu-time .monte-line.defense' in ux_final
         and 'linha.dataset.uxV24DefenseStable = "1"' in ux_final
-    ),
-    "v24_defesa_resultado_estavel": (
-        '#monte-seu-time .pitch-line.defense' in ux_final
-        and '/\\bLAT\\b/' in ux_final
-        and '/\\bZAG\\b/' in ux_final
     ),
     "v24_historico_cores_e_mobile": (
         'const ORANGE = "#d9822b"' in ux_final
@@ -115,6 +120,7 @@ checks = {
     ),
     "v24_analise_sem_bloco_antigo": (
         'function ajustarAnalise()' in ux_final
+        and 'leitura dos confrontos' in ux_final
         and 'leitura rapida para a rodada' in ux_final
         and 'data-ux-v24-old-reading' in ux_final
     ),
@@ -124,12 +130,23 @@ checks = {
     ),
     "v24_sem_observer_continuo": (
         'MutationObserver' not in ux_final
-        and 'function agendar(atraso = 60)' in ux_final
+        and 'MutationObserver' not in campo
         and '[0, 120, 450, 1000, 2200].forEach' in ux_final
-        and 'cartola:escalacoes-atualizadas' in ux_final
-        and 'cartola:rodada-atualizada' in ux_final
+        and '[0, 120, 350, 800, 1600, 3000].forEach' in campo
+        and 'cartola:escalacoes-atualizadas' in campo
+        and 'cartola:rodada-atualizada' in campo
     ),
 }
+
+# Gate estrutural explícito: o campo de quatro defensores precisa ter laterais nas pontas.
+# O renderer compartilhado monta [LAT, ZAG..., LAT], e a camada final aplica a mesma
+# semântica no builder e em qualquer campo já existente no DOM.
+checks["v24_ordem_lat_zag_zag_lat"] = (
+    '[lat[0], ...zag, lat[1]' in campo
+    and '[lat[0], ...zag, lat[1]' in ux_final
+    and '#times .pitch-line.defense' in ux_final
+    and '#monte-seu-time .monte-line.defense' in ux_final
+)
 
 falhas = [nome for nome, ok in checks.items() if not ok]
 for nome, ok in checks.items():
