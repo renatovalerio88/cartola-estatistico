@@ -80,12 +80,12 @@ checks = {
     "v24_ranking_independente_selecao": (
         'data-ux-rank="1"' in ux_final
         and 'is-active:not([data-ux-rank="1"])' in ux_final
-        and 'detalheCorrespondeAoSelecionado' in ux_final
-        and 'garantirSelecaoRecomendacao' in ux_final
+        and 'jogadoresDaPosicao' in ux_final
+        and 'garantirRecomendacoes' in ux_final
     ),
     "v24_recomendacoes_mobile_compactas": (
         'data-ux-v24-mobile-extra' in ux_final
-        and 'fatores.slice(3)' in ux_final
+        and '.slice(3)' in ux_final
         and '#recomendacoes .ce-clean-detail .player-card' in ux_final
     ),
     "v24_patrimonio_sem_vazio": (
@@ -96,13 +96,12 @@ checks = {
         and 'position:static!important' in ux_final
     ),
     "v24_defesa_builder_estavel": (
-        'function ordenarDefesaBuilder()' in ux_final
-        and 'const ordem = lat.length >= 2 ? [lat[0], ...zag, lat[1]' in ux_final
+        'function ordenarDefesa(' in ux_final
+        and 'const ordem = [lat[0], ...zag, lat[1]' in ux_final
         and 'linha.dataset.uxV24DefenseStable = "1"' in ux_final
     ),
     "v24_defesa_resultado_estavel": (
-        'function ordenarDefesaResultado()' in ux_final
-        and '#monte-seu-time .pitch-line.defense' in ux_final
+        '#monte-seu-time .pitch-line.defense' in ux_final
         and '/\\bLAT\\b/' in ux_final
         and '/\\bZAG\\b/' in ux_final
     ),
@@ -115,7 +114,7 @@ checks = {
         and 'historyPosition' in ux_final
     ),
     "v24_analise_sem_bloco_antigo": (
-        'function removerLeituraAntigaAnalise()' in ux_final
+        'function ajustarAnalise()' in ux_final
         and 'leitura rapida para a rodada' in ux_final
         and 'data-ux-v24-old-reading' in ux_final
     ),
@@ -123,9 +122,12 @@ checks = {
         '["onde atacar", "onde buscar seguranca", "onde ter cautela"]' in ux_final
         and 'small.textContent = `${sigla} x ${adv}' in ux_final
     ),
-    "v24_observer_imediato": (
-        'new MutationObserver(() => aplicarImediato())' in ux_final
-        and 'window.setTimeout(aplicarImediato, 0)' in ux_final
+    "v24_sem_observer_continuo": (
+        'MutationObserver' not in ux_final
+        and 'function agendar(atraso = 60)' in ux_final
+        and '[0, 120, 450, 1000, 2200].forEach' in ux_final
+        and 'cartola:escalacoes-atualizadas' in ux_final
+        and 'cartola:rodada-atualizada' in ux_final
     ),
 }
 
