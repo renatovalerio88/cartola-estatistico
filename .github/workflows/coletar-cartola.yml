@@ -191,6 +191,16 @@ jobs:
           PY
 
       # =====================================
+      # GATE DE UX / REGRESSÃO DE PRODUÇÃO
+      # =====================================
+      # Impede que uma atualização automática publique dados novos quando
+      # o frontend perdeu algum dos contratos de UX/estabilidade já aprovados,
+      # incluindo a proteção contra MutationObserver contínuo da V2.4.
+
+      - name: Auditar UX V2.4 segura
+        run: python scripts/auditar_ux_v21.py
+
+      # =====================================
       # SALVAR ALTERAÇÕES
       # =====================================
 
