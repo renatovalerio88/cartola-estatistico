@@ -196,6 +196,7 @@ jobs:
       # Impede que uma atualização automática publique dados novos quando
       # o frontend perdeu algum dos contratos de UX/estabilidade já aprovados,
       # incluindo a proteção contra MutationObserver contínuo da V2.4.
+      # Revalidação final do pacote visual publicada em 28/08/2026.
 
       - name: Auditar UX V2.4 segura
         run: python scripts/auditar_ux_v21.py
