@@ -1,8 +1,8 @@
-/* Cartola Estatístico — fechamento visual V2.4 seguro */
+/* Cartola Estatístico — fechamento visual V2.5 seguro */
 (() => {
   "use strict";
 
-  const STYLE_ID = "cartola-ux-final-v24-safe";
+  const STYLE_ID = "cartola-ux-final-v25-safe";
   const ORANGE = "#d9822b";
   const GREEN = "#53d891";
   let timer = null;
@@ -58,13 +58,13 @@
       @media(max-width:700px){
         #recomendacoes .ce-clean-tabs{padding:7px!important;gap:5px!important}
         #recomendacoes .ce-clean-player{padding:6px 8px!important;font-size:10px!important}
-        #recomendacoes .ce-clean-detail .player-card{border-radius:13px!important;padding:8px!important}
-        #recomendacoes .ce-clean-detail .player-header{padding:7px!important;margin-bottom:5px!important}
-        #recomendacoes .ce-clean-detail .player-card h2,#recomendacoes .ce-clean-detail .player-card h3{margin-top:3px!important;margin-bottom:4px!important}
-        #recomendacoes .ce-clean-detail .projection-box,#recomendacoes .ce-clean-detail .projection-highlight{padding:8px!important;margin:6px 0!important;min-height:0!important}
-        #recomendacoes .ce-decision{margin:5px 0!important;padding:8px 9px!important}
-        #recomendacoes .component-row.component-explained{padding:6px 7px!important;margin:2px 0!important}
-        #recomendacoes .ce-v24-tech-toggle{margin-top:6px!important;padding:8px!important}
+        #recomendacoes .ce-clean-detail .player-card{border-radius:13px!important;padding:7px!important}
+        #recomendacoes .ce-clean-detail .player-header{padding:6px!important;margin-bottom:4px!important}
+        #recomendacoes .ce-clean-detail .player-card h2,#recomendacoes .ce-clean-detail .player-card h3{margin-top:2px!important;margin-bottom:3px!important}
+        #recomendacoes .ce-clean-detail .projection-box,#recomendacoes .ce-clean-detail .projection-highlight{padding:7px!important;margin:5px 0!important;min-height:0!important}
+        #recomendacoes .ce-decision{margin:4px 0!important;padding:7px 8px!important}
+        #recomendacoes .component-row.component-explained{padding:5px 6px!important;margin:2px 0!important}
+        #recomendacoes .ce-v24-tech-toggle{margin-top:5px!important;padding:7px!important}
         #times .lineup-budget-control{padding:11px!important;gap:8px!important;min-height:0!important;height:auto!important}
         #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{gap:6px!important;min-height:0!important;height:auto!important}
         #monte-seu-time .monte-builder-pitch{min-height:365px!important;margin:0 4px!important}
@@ -74,8 +74,8 @@
         #monte-seu-time .monte-line.goalkeeper{top:80%!important}
         #monte-seu-time .monte-slot{min-height:50px!important;width:min(66px,100%)!important;padding:5px!important}
         #monte-seu-time .lineup-pitch{min-height:370px!important}
-        #historico .history-v21-chart,#historico .history-chart{min-height:210px!important;overflow-x:auto!important;overflow-y:hidden!important}
-        #historico .history-v21-chart svg,#historico .history-chart svg{min-width:620px!important;height:210px!important}
+        #historico .history-v21-chart,#historico .history-chart{min-height:250px!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch}
+        #historico .history-v21-chart svg,#historico .history-chart svg{min-width:860px!important;height:250px!important}
         #historico .history-v21-table tr{grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(58px,.5fr))!important;gap:3px 6px!important;padding:6px 7px!important;border-radius:8px!important}
         #historico .history-v21-table td{font-size:8.5px!important}
       }
@@ -180,6 +180,14 @@
     );
   }
 
+  function ajustarMenuAtivo(item) {
+    if (!item?.matches?.(".menu-item[data-tab]")) return;
+    document.querySelectorAll(".menu-item.active").forEach(outro => {
+      if (outro !== item) outro.classList.remove("active");
+    });
+    item.classList.add("active");
+  }
+
   function ajustarHistorico() {
     ["historyRound", "historyPosition"].forEach(id => {
       const select = document.getElementById(id);
@@ -254,7 +262,12 @@
     window.addEventListener("cartola:escalacoes-atualizadas", () => agendar(80));
     window.addEventListener("cartola:rodada-atualizada", () => agendar(80));
     document.addEventListener("click", evento => {
-      if (evento.target.closest?.("#recomendacoes, #times, #monte-seu-time, #historico, #analise")) agendar(50);
+      const itemMenu = evento.target.closest?.(".menu-item[data-tab]");
+      if (itemMenu) {
+        window.setTimeout(() => ajustarMenuAtivo(itemMenu), 0);
+        agendar(50);
+      }
+      if (evento.target.closest?.("#recomendacoes, #times, #monte-seu-time, #historico, #analise, .monte-picker-backdrop")) agendar(50);
     });
   }
 
