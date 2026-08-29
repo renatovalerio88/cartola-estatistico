@@ -1,8 +1,8 @@
-/* Cartola Estatístico — fechamento visual V2.5 seguro */
+/* Cartola Estatístico — fechamento visual V2.6 seguro */
 (() => {
   "use strict";
 
-  const STYLE_ID = "cartola-ux-final-v25-safe";
+  const STYLE_ID = "cartola-ux-final-v26-safe";
   const ORANGE = "#d9822b";
   const GREEN = "#53d891";
   let timer = null;
@@ -24,19 +24,20 @@
     style.textContent = `
       #recomendacoes .ce-clean-tabs{gap:7px!important;padding:9px!important}
       #recomendacoes .ce-clean-player{padding:7px 10px!important;font-size:11px!important;position:relative;transition:none!important}
-      #recomendacoes .ce-clean-player[data-ux-rank="1"]{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important;box-shadow:none!important}
-      #recomendacoes .ce-clean-player[data-ux-rank="1"] .ce-clean-rank{background:rgba(255,255,255,.22)!important;color:#fff!important}
-      #recomendacoes .ce-clean-player.is-active:not([data-ux-rank="1"]){background:var(--surface)!important;color:var(--text)!important;border-color:var(--text-soft)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text-soft) 45%,transparent)!important}
+      #recomendacoes .ce-clean-player[data-ux-rank="1"]{background:var(--surface)!important;color:var(--text)!important;border-color:var(--border)!important;box-shadow:none!important}
+      #recomendacoes .ce-clean-player[data-ux-rank="1"] .ce-clean-rank{background:color-mix(in srgb,var(--primary) 18%,transparent)!important;color:var(--primary)!important}
+      #recomendacoes .ce-clean-player.is-active{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important;box-shadow:none!important}
+      #recomendacoes .ce-clean-player.is-active .ce-clean-rank{background:rgba(255,255,255,.22)!important;color:#fff!important}
       #recomendacoes .ce-clean-detail{max-width:900px!important}
       #recomendacoes .player-card{box-shadow:0 7px 20px rgba(0,0,0,.04)!important}
       #recomendacoes .ce-decision{margin:7px 10px!important;padding:9px 11px!important}
       #recomendacoes .component-row.component-explained{padding:7px 9px!important;margin:3px 0!important}
-      #recomendacoes [data-ux-v24-mobile-extra="1"]{display:none!important}
       #recomendacoes [data-ux-v24-tech-collapsed="1"]{display:none!important}
       #recomendacoes .ce-v24-tech-toggle{display:block;width:100%;margin:8px 0 2px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-weight:700;cursor:pointer}
 
-      #times .lineup-budget-control{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;min-height:0!important;height:auto!important;max-height:none!important;padding:14px!important;margin:0 0 12px!important;gap:10px!important}
-      #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{display:flex!important;flex-direction:column!important;position:static!important;inset:auto!important;transform:none!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;gap:8px!important;flex:0 0 auto!important}
+      #times .lineup-budget-control{display:grid!important;grid-template-columns:minmax(0,1fr) 170px!important;align-items:start!important;justify-content:stretch!important;min-height:0!important;height:auto!important;max-height:none!important;padding:14px!important;margin:0 0 12px!important;gap:16px!important}
+      #times .lineup-budget-control .lineup-budget-copy{display:block!important;position:static!important;inset:auto!important;transform:none!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important}
+      #times .lineup-budget-control .lineup-budget-actions{display:flex!important;flex-direction:column!important;align-items:stretch!important;position:static!important;inset:auto!important;transform:none!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:0!important;gap:8px!important}
       #times .lineup-budget-control .lineup-budget-input-wrap{min-height:0!important;height:auto!important;margin:0!important;position:static!important}
       #times .lineup-budget-control>*{min-height:0!important;max-height:none!important}
       #times .pitch-line.defense,#monte-seu-time .monte-line.defense,#monte-seu-time .pitch-line.defense{display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;align-items:center!important}
@@ -46,10 +47,16 @@
 
       #historico .history-v21-legend .proj{color:${ORANGE}!important}
       #historico .history-v21-legend .real{color:${GREEN}!important}
+      #historico .history-v21-chart polyline:first-of-type{stroke:${ORANGE}!important}
+      #historico .history-v21-chart .history-point-proj circle{fill:${ORANGE}!important}
+      #historico .history-v21-chart .history-point-proj text{fill:${ORANGE}!important}
+      #historico .history-v21-chart polyline:nth-of-type(2){stroke:${GREEN}!important}
+      #historico .history-v21-chart .history-point-real circle{fill:${GREEN}!important}
+      #historico .history-v21-chart .history-point-real text{fill:${GREEN}!important}
       #historico [data-ux-v24-filter="1"],#historico [data-ux-v24-toolbar-hidden="1"]{display:none!important}
       #historico svg{overflow:visible!important}
 
-      #analise [data-ux-v24-old-reading="1"]{display:none!important}
+      #analise [data-ux-v24-old-reading="1"],#analise [data-ux-v26-orphan-reading="1"]{display:none!important}
       #analise .ce-round-item{padding:7px 0!important}
       #analise .ce-round-item strong{font-size:11px!important}
       #analise .ce-round-item small{font-size:9px!important;line-height:1.35!important}
@@ -65,8 +72,8 @@
         #recomendacoes .ce-decision{margin:4px 0!important;padding:7px 8px!important}
         #recomendacoes .component-row.component-explained{padding:5px 6px!important;margin:2px 0!important}
         #recomendacoes .ce-v24-tech-toggle{margin-top:5px!important;padding:7px!important}
-        #times .lineup-budget-control{padding:11px!important;gap:8px!important;min-height:0!important;height:auto!important}
-        #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{gap:6px!important;min-height:0!important;height:auto!important}
+        #times .lineup-budget-control{display:flex!important;flex-direction:column!important;padding:11px!important;gap:8px!important;min-height:0!important;height:auto!important}
+        #times .lineup-budget-control .lineup-budget-copy,#times .lineup-budget-control .lineup-budget-actions{display:flex!important;flex-direction:column!important;gap:6px!important;min-height:0!important;height:auto!important}
         #monte-seu-time .monte-builder-pitch{min-height:365px!important;margin:0 4px!important}
         #monte-seu-time .monte-line.attack{top:5%!important}
         #monte-seu-time .monte-line.midfield{top:29%!important}
@@ -108,9 +115,6 @@
     const detalhe = document.querySelector("#recomendacoes .ce-clean-detail");
     if (!detalhe) return;
     detalhe.querySelectorAll("[data-ux-v24-mobile-extra]").forEach(el => delete el.dataset.uxV24MobileExtra);
-    [...detalhe.querySelectorAll(".component-row.component-explained, .component-row")]
-      .slice(3)
-      .forEach(el => el.dataset.uxV24MobileExtra = "1");
 
     const componentes = [...detalhe.querySelectorAll(".component-row.component-explained, .component-row")];
     if (componentes.length) {
@@ -215,8 +219,23 @@
     [...raiz.querySelectorAll("h1,h2,h3,h4,.section-kicker,.eyebrow,strong")].forEach(el => {
       const texto = norm(el.textContent);
       if (!texto.includes("leitura dos confrontos") && !texto.includes("leitura rapida para a rodada")) return;
-      const bloco = el.closest(".section-header,.analysis-header,.round-reading,.quick-reading") || el.parentElement;
-      if (bloco && bloco !== raiz) bloco.dataset.uxV24OldReading = "1";
+
+      const pai = el.parentElement;
+      const textoPai = norm(pai?.textContent);
+      const somenteTitulo = textoPai === "leitura dos confrontos analise da rodada" ||
+        textoPai === "leitura rapida para a rodada analise da rodada";
+
+      if (pai && somenteTitulo) {
+        pai.dataset.uxV26OrphanReading = "1";
+        return;
+      }
+
+      el.dataset.uxV26OrphanReading = "1";
+      if (pai) {
+        [...pai.querySelectorAll("h1,h2,h3,h4")].forEach(titulo => {
+          if (titulo !== el && norm(titulo.textContent) === "analise da rodada") titulo.dataset.uxV26OrphanReading = "1";
+        });
+      }
     });
   }
 
