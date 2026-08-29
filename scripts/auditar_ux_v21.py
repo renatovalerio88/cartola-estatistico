@@ -115,7 +115,7 @@ checks = {
         'const ORANGE = "#d9822b"' in ux_final
         and 'const GREEN = "#53d891"' in ux_final
         and 'history-v21-chart' in ux_final
-        and 'min-width:620px' in ux_final
+        and 'min-width:860px' in ux_final
         and 'historyRound' in ux_final
         and 'historyPosition' in ux_final
     ),
