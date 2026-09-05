@@ -140,6 +140,16 @@
         "FS": 6,
         "G": 1
       }
+    },
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 3,
+      "scouts": {
+        "DS": 1,
+        "FS": 3
+      }
     }
   ]
 }

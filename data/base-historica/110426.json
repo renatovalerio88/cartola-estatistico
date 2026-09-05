@@ -270,6 +270,17 @@
         "I": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 7.3,
+      "scouts": {
+        "CA": 1,
+        "DS": 5,
+        "FF": 1
+      }
     }
   ]
 }

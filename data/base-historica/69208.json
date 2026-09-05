@@ -200,6 +200,18 @@
         "DS": 2,
         "FF": 1
       }
+    },
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 0.1,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 1,
+        "I": 1
+      }
     }
   ]
 }

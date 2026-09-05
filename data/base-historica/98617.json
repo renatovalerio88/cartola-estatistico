@@ -70,6 +70,18 @@
         "FS": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 0.4,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 3,
+        "FF": 1
+      }
     }
   ]
 }

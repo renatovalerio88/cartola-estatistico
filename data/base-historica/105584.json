@@ -147,6 +147,18 @@
         "FC": 1,
         "FD": 1
       }
+    },
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 7.9,
+      "scouts": {
+        "A": 1,
+        "DS": 2,
+        "FC": 2,
+        "FS": 1
+      }
     }
   ]
 }

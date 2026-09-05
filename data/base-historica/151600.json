@@ -1,0 +1,18 @@
+{
+  "id": 151600,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 25,
+      "preco": null,
+      "media": null,
+      "pontos": 3.1,
+      "scouts": {
+        "DS": 1,
+        "FF": 2
+      }
+    }
+  ]
+}
