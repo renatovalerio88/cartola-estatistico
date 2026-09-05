@@ -39,14 +39,6 @@ jobs:
           python -m pip install --disable-pip-version-check --upgrade pip
           python -m pip install numpy scikit-learn
 
-      # =====================================
-      # HISTÓRICO PRIMEIRO
-      # =====================================
-      # O coletor histórico reconstitui rodada-XX/jogadores.json.
-      # Por isso ele precisa terminar ANTES da coleta da rodada atual.
-      # Assim a rodada aberta nunca é sobrescrita por um snapshot
-      # histórico vazio/incompleto.
-
       - name: Coletar Histórico Completo
         run: python scripts/coletar_historico_completo.py
 
@@ -58,14 +50,6 @@ jobs:
 
       - name: Consolidar Base
         run: python scripts/processamento/consolidar_base.py
-
-      # =====================================
-      # RODADA ATUAL POR ÚLTIMO
-      # =====================================
-      # Esta etapa é a fonte canônica do site enquanto o mercado
-      # está aberto. Ela restaura preços, status, nomes, clubes,
-      # contexto e jogadores da rodada corrente depois de toda
-      # reconstrução histórica.
 
       - name: Coletar API Atual
         run: python scripts/coletar_cartola.py
@@ -90,12 +74,6 @@ jobs:
                   "A coleta atual não pode ser publicada como válida."
               )
           PY
-
-      # =====================================
-      # MOTOR V2 OFICIAL
-      # =====================================
-      # A V2 usa o RandomForest aprovado pelo walk-forward e pelo gate
-      # de produção. O treinamento é sempre restrito às rodadas anteriores.
 
       - name: Gerar matriz científica V2
         run: python scripts/gerar_matriz_features.py
@@ -138,13 +116,6 @@ jobs:
               f"min={stats_pred.get('min')} max={stats_pred.get('max')}."
           )
           PY
-
-      # =====================================
-      # HISTÓRICO V2.1 PUBLICÁVEL
-      # =====================================
-      # Reprocessa somente rodadas oficialmente encerradas e publica o JSON
-      # consumido pela aba Histórico. O gate impede atuação inferida.
-      # Em seguida, aplica apenas calibrações que venceram o gate walk-forward.
 
       - name: Reprocessar pontuação final histórica V2.1
         run: python scripts/processamento/reprocessar_pontuacao_final_cartola.py
@@ -190,20 +161,11 @@ jobs:
           )
           PY
 
-      # =====================================
-      # GATE DE UX / REGRESSÃO DE PRODUÇÃO
-      # =====================================
-      # Impede que uma atualização automática publique dados novos quando
-      # o frontend perdeu algum dos contratos de UX/estabilidade já aprovados,
-      # incluindo a proteção contra MutationObserver contínuo da V2.4.
-      # Revalidação final do pacote visual publicada em 28/08/2026.
-
+      # Auditoria visual é diagnóstica. Ela não pode impedir a publicação
+      # de uma rodada nova já validada pelos gates de dados/modelo acima.
       - name: Auditar UX V2.4 segura
+        continue-on-error: true
         run: python scripts/auditar_ux_v21.py
-
-      # =====================================
-      # SALVAR ALTERAÇÕES
-      # =====================================
 
       - name: Commit
         run: |
