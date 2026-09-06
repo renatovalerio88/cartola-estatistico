@@ -3,10 +3,10 @@
   "politicaRetrospectiva": "somente rodadas com resultado pós-rodada explícito; rodada-alvo de mercado aberto fica fora automaticamente",
   "statusColeta": {
     "rodadaAtual": 26,
-    "statusMercado": 1,
+    "statusMercado": 2,
     "bolaRolando": false
   },
-  "rodadaMaximaCandidata": 25,
+  "rodadaMaximaCandidata": 26,
   "rodadaMaximaProcessada": 25,
   "rodadaAtualIncluida": false,
   "rodadasIgnoradasPorResultadoIncompleto": [],
