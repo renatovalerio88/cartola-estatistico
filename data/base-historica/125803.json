@@ -96,6 +96,17 @@
         "DP": 1,
         "GS": 2
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 3.7,
+      "scouts": {
+        "DE": 4,
+        "FS": 1,
+        "GS": 2
+      }
     }
   ]
 }

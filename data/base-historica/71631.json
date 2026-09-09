@@ -222,6 +222,16 @@
         "DE": 7,
         "GS": 1
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 5.5,
+      "scouts": {
+        "DE": 5,
+        "GS": 1
+      }
     }
   ]
 }

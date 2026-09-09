@@ -175,6 +175,16 @@
         "DS": 3,
         "FS": 2
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": -4,
+      "scouts": {
+        "CV": 1,
+        "PC": 1
+      }
     }
   ]
 }

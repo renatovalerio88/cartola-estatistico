@@ -356,42 +356,6 @@
     },
     {
       "aproveitamento_visitante": [
-        "v",
-        "d",
-        "d",
-        "v",
-        "d"
-      ],
-      "aproveitamento_mandante": [
-        "e",
-        "d",
-        "d",
-        "d",
-        "e"
-      ],
-      "transmissao": {
-        "label": "",
-        "url": ""
-      },
-      "local": "Nilton Santos (Engenhão)",
-      "status_transmissao_tr": "",
-      "status_cronometro_tr": "",
-      "periodo_tr": "",
-      "partida_data": "2026-09-16 19:30:00",
-      "inicio_cronometro_tr": "",
-      "placar_oficial_visitante": null,
-      "placar_oficial_mandante": null,
-      "partida_id": 346282,
-      "clube_visitante_posicao": 15,
-      "clube_visitante_id": 284,
-      "clube_casa_posicao": 14,
-      "clube_casa_id": 263,
-      "timestamp": 1789597800,
-      "campeonato_id": 26,
-      "valida": false
-    },
-    {
-      "aproveitamento_visitante": [
         "d",
         "v",
         "e",
@@ -641,6 +605,42 @@
       "timestamp": 1785457800,
       "campeonato_id": 26,
       "valida": true
+    },
+    {
+      "aproveitamento_visitante": [
+        "v",
+        "d",
+        "d",
+        "v",
+        "d"
+      ],
+      "aproveitamento_mandante": [
+        "e",
+        "d",
+        "d",
+        "d",
+        "e"
+      ],
+      "transmissao": {
+        "label": "",
+        "url": ""
+      },
+      "local": "Nilton Santos (Engenhão)",
+      "status_transmissao_tr": "",
+      "status_cronometro_tr": "",
+      "periodo_tr": "",
+      "partida_data": "2026-09-16 19:30:00",
+      "inicio_cronometro_tr": "",
+      "placar_oficial_visitante": null,
+      "placar_oficial_mandante": null,
+      "partida_id": 346282,
+      "clube_visitante_posicao": 15,
+      "clube_visitante_id": 284,
+      "clube_casa_posicao": 14,
+      "clube_casa_id": 263,
+      "timestamp": 1789597800,
+      "campeonato_id": 26,
+      "valida": false
     }
   ],
   "rodada": 21

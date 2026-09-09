@@ -158,6 +158,18 @@
         "CV": 1,
         "FC": 3
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 10.5,
+      "scouts": {
+        "DS": 6,
+        "FC": 1,
+        "FF": 1,
+        "FS": 2
+      }
     }
   ]
 }

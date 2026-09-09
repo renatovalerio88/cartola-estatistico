@@ -157,6 +157,17 @@
         "I": 1,
         "PS": 1
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 3.6,
+      "scouts": {
+        "DS": 2,
+        "FC": 2,
+        "FD": 1
+      }
     }
   ]
 }

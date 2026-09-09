@@ -246,6 +246,15 @@
         "A": 1,
         "DS": 2
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 0.8,
+      "scouts": {
+        "FF": 1
+      }
     }
   ]
 }

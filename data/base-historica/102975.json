@@ -200,6 +200,16 @@
         "FS": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 26,
+      "preco": null,
+      "media": null,
+      "pontos": 3.5,
+      "scouts": {
+        "CA": 1,
+        "DS": 3
+      }
     }
   ]
 }
