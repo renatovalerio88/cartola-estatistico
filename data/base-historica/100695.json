@@ -124,6 +124,16 @@
         "FF": 1,
         "FS": 1
       }
+    },
+    {
+      "rodada": 27,
+      "preco": null,
+      "media": null,
+      "pontos": 2.6,
+      "scouts": {
+        "FF": 2,
+        "FS": 2
+      }
     }
   ]
 }

@@ -25,6 +25,18 @@
         "CA": 1,
         "DS": 1
       }
+    },
+    {
+      "rodada": 27,
+      "preco": null,
+      "media": null,
+      "pontos": 0.7,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 1,
+        "PC": 1
+      }
     }
   ]
 }

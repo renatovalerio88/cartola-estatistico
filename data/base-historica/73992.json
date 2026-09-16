@@ -1,0 +1,19 @@
+{
+  "id": 73992,
+  "nome": null,
+  "posicao": "LAT",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 27,
+      "preco": null,
+      "media": null,
+      "pontos": 1.3,
+      "scouts": {
+        "DS": 1,
+        "FC": 4,
+        "FS": 2
+      }
+    }
+  ]
+}

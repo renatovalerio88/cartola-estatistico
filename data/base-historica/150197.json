@@ -55,6 +55,16 @@
       "scouts": {
         "FC": 2
       }
+    },
+    {
+      "rodada": 27,
+      "preco": null,
+      "media": null,
+      "pontos": -3.6,
+      "scouts": {
+        "CV": 1,
+        "FC": 2
+      }
     }
   ]
 }
