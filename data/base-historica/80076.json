@@ -1,0 +1,19 @@
+{
+  "id": 80076,
+  "nome": null,
+  "posicao": "ATA",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 1.4,
+      "scouts": {
+        "FC": 1,
+        "FD": 1,
+        "FS": 1
+      }
+    }
+  ]
+}

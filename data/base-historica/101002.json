@@ -135,6 +135,15 @@
         "FF": 3,
         "I": 2
       }
+    },
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": -0.6,
+      "scouts": {
+        "FC": 2
+      }
     }
   ]
 }

@@ -120,6 +120,20 @@
         "DS": 2,
         "SG": 1
       }
+    },
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 16.5,
+      "scouts": {
+        "A": 1,
+        "DS": 3,
+        "FC": 1,
+        "FF": 1,
+        "FS": 3,
+        "SG": 1
+      }
     }
   ]
 }

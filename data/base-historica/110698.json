@@ -35,6 +35,18 @@
         "GS": 3,
         "PC": 1
       }
+    },
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 7.8,
+      "scouts": {
+        "DE": 1,
+        "DP": 1,
+        "FS": 1,
+        "GS": 1
+      }
     }
   ]
 }

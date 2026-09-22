@@ -185,6 +185,19 @@
         "CV": 1,
         "PC": 1
       }
+    },
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 2.1,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 1,
+        "FS": 1,
+        "I": 1
+      }
     }
   ]
 }

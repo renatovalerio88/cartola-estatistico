@@ -1,0 +1,20 @@
+{
+  "id": 130525,
+  "nome": null,
+  "posicao": "LAT",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 9.9,
+      "scouts": {
+        "DS": 3,
+        "FC": 2,
+        "FS": 2,
+        "SG": 1
+      }
+    }
+  ]
+}

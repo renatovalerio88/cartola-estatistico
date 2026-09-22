@@ -1,0 +1,18 @@
+{
+  "id": 97133,
+  "nome": null,
+  "posicao": "LAT",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 6.5,
+      "scouts": {
+        "A": 1,
+        "DS": 1
+      }
+    }
+  ]
+}

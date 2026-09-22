@@ -1,0 +1,19 @@
+{
+  "id": 117926,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": -2.6,
+      "scouts": {
+        "CA": 1,
+        "FC": 2,
+        "PC": 1
+      }
+    }
+  ]
+}

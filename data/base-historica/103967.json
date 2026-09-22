@@ -98,6 +98,17 @@
         "G": 1,
         "I": 1
       }
+    },
+    {
+      "rodada": 28,
+      "preco": null,
+      "media": null,
+      "pontos": 1.5,
+      "scouts": {
+        "FC": 1,
+        "FF": 1,
+        "FS": 2
+      }
     }
   ]
 }
