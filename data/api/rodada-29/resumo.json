@@ -1,12 +1,12 @@
 {
   "rodada": 29,
-  "coletadoEm": "2026-09-29T12:24:19",
+  "coletadoEm": "2026-09-30T12:09:36",
   "statusMercado": 1,
-  "quantidadeJogadores": 779,
-  "quantidadeComConfronto": 779,
-  "quantidadeComForcaAdversario": 779,
-  "quantidadeComPontosCedidos": 779,
-  "quantidadeComChanceSG": 779,
+  "quantidadeJogadores": 777,
+  "quantidadeComConfronto": 777,
+  "quantidadeComForcaAdversario": 777,
+  "quantidadeComPontosCedidos": 777,
+  "quantidadeComChanceSG": 777,
   "contextoSomenteRodadasAnteriores": true,
   "dadosDemonstrativos": false
 }
