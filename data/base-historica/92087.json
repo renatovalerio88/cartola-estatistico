@@ -94,6 +94,17 @@
       "scouts": {
         "FF": 1
       }
+    },
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 8.4,
+      "scouts": {
+        "FC": 2,
+        "FS": 2,
+        "G": 1
+      }
     }
   ]
 }

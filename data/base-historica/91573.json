@@ -143,6 +143,15 @@
         "FS": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 0.5,
+      "scouts": {
+        "FS": 1
+      }
     }
   ]
 }

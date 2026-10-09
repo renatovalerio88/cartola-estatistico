@@ -1,0 +1,20 @@
+{
+  "id": 68899,
+  "nome": null,
+  "posicao": "MEI",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 2.5,
+      "scouts": {
+        "DS": 1,
+        "FC": 1,
+        "FF": 1,
+        "FS": 1
+      }
+    }
+  ]
+}

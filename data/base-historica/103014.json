@@ -1,0 +1,19 @@
+{
+  "id": 103014,
+  "nome": null,
+  "posicao": "ATA",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 1,
+      "scouts": {
+        "FC": 1,
+        "FF": 1,
+        "FS": 1
+      }
+    }
+  ]
+}

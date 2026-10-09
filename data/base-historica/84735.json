@@ -222,6 +222,18 @@
         "A": 1,
         "DS": 1
       }
+    },
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 3,
+      "scouts": {
+        "CV": 1,
+        "DS": 4,
+        "FS": 2,
+        "PC": 1
+      }
     }
   ]
 }

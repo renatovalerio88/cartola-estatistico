@@ -247,6 +247,16 @@
         "DS": 2,
         "FC": 3
       }
+    },
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 2,
+      "scouts": {
+        "FD": 1,
+        "FF": 1
+      }
     }
   ]
 }

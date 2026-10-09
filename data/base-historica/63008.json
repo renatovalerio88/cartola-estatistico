@@ -90,6 +90,17 @@
         "FC": 3,
         "SG": 1
       }
+    },
+    {
+      "rodada": 29,
+      "preco": null,
+      "media": null,
+      "pontos": 6.2,
+      "scouts": {
+        "DS": 4,
+        "FC": 2,
+        "FF": 1
+      }
     }
   ]
 }
