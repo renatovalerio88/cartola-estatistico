@@ -220,6 +220,16 @@
         "FF": 1,
         "FS": 1
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 0.9,
+      "scouts": {
+        "DS": 1,
+        "FC": 2
+      }
     }
   ]
 }

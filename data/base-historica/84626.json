@@ -278,6 +278,16 @@
         "FS": 5,
         "FT": 1
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 2.7,
+      "scouts": {
+        "FD": 1,
+        "FS": 3
+      }
     }
   ]
 }

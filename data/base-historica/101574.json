@@ -247,6 +247,17 @@
         "DE": 5,
         "GS": 2
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 9.5,
+      "scouts": {
+        "DE": 5,
+        "DP": 1,
+        "GS": 4
+      }
     }
   ]
 }

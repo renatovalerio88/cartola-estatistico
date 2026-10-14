@@ -260,6 +260,20 @@
       "scouts": {
         "FS": 1
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 5.5,
+      "scouts": {
+        "CA": 1,
+        "DS": 4,
+        "FC": 1,
+        "FF": 1,
+        "FS": 2,
+        "PC": 1
+      }
     }
   ]
 }

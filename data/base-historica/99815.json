@@ -273,6 +273,20 @@
         "FD": 1,
         "FS": 2
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 10.8,
+      "scouts": {
+        "A": 1,
+        "CA": 1,
+        "DS": 2,
+        "FC": 2,
+        "FD": 3,
+        "FF": 1
+      }
     }
   ]
 }

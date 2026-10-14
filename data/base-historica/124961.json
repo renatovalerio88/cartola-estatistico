@@ -62,6 +62,15 @@
         "FC": 1,
         "FS": 1
       }
+    },
+    {
+      "rodada": 30,
+      "preco": null,
+      "media": null,
+      "pontos": 1,
+      "scouts": {
+        "FS": 2
+      }
     }
   ]
 }
