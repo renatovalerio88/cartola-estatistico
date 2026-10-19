@@ -4,9 +4,9 @@
   "statusColeta": {
     "rodadaAtual": 31,
     "statusMercado": 2,
-    "bolaRolando": false
+    "bolaRolando": true
   },
-  "rodadaMaximaCandidata": 31,
+  "rodadaMaximaCandidata": 30,
   "rodadaMaximaProcessada": 25,
   "rodadaAtualIncluida": false,
   "rodadasIgnoradasPorResultadoIncompleto": [],
