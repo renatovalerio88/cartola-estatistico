@@ -229,6 +229,16 @@
         "G": 1,
         "I": 3
       }
+    },
+    {
+      "rodada": 31,
+      "preco": null,
+      "media": null,
+      "pontos": 8.5,
+      "scouts": {
+        "FS": 1,
+        "G": 1
+      }
     }
   ]
 }

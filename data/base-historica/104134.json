@@ -90,6 +90,16 @@
         "DS": 2,
         "FF": 1
       }
+    },
+    {
+      "rodada": 31,
+      "preco": null,
+      "media": null,
+      "pontos": -0.4,
+      "scouts": {
+        "FC": 1,
+        "I": 1
+      }
     }
   ]
 }

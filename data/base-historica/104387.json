@@ -1,0 +1,19 @@
+{
+  "id": 104387,
+  "nome": null,
+  "posicao": "ZAG",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 31,
+      "preco": null,
+      "media": null,
+      "pontos": -1.4,
+      "scouts": {
+        "CA": 1,
+        "FC": 4,
+        "FF": 1
+      }
+    }
+  ]
+}
