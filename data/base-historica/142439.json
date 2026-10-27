@@ -1,0 +1,20 @@
+{
+  "id": 142439,
+  "nome": null,
+  "posicao": "ZAG",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 0.1,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 3,
+        "FS": 1
+      }
+    }
+  ]
+}

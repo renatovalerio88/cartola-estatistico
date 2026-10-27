@@ -100,6 +100,16 @@
         "I": 1,
         "PC": 1
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 4.7,
+      "scouts": {
+        "FC": 1,
+        "SG": 1
+      }
     }
   ]
 }

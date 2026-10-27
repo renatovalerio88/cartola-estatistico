@@ -127,6 +127,15 @@
         "FC": 1,
         "FS": 2
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": -3,
+      "scouts": {
+        "CV": 1
+      }
     }
   ]
 }

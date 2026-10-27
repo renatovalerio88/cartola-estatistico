@@ -68,6 +68,13 @@
       "scouts": {
         "V": 1
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 3.75,
+      "scouts": {}
     }
   ]
 }

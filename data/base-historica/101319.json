@@ -168,6 +168,16 @@
         "FF": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 11,
+      "scouts": {
+        "DS": 2,
+        "G": 1
+      }
     }
   ]
 }

@@ -97,6 +97,17 @@
         "DS": 1,
         "FC": 1
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 6.9,
+      "scouts": {
+        "DS": 1,
+        "FF": 3,
+        "FT": 1
+      }
     }
   ]
 }

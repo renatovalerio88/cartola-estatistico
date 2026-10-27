@@ -252,6 +252,17 @@
         "PC": 1,
         "PP": 1
       }
+    },
+    {
+      "rodada": 32,
+      "preco": null,
+      "media": null,
+      "pontos": 9.2,
+      "scouts": {
+        "A": 1,
+        "DS": 2,
+        "FD": 1
+      }
     }
   ]
 }
