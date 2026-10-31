@@ -182,6 +182,18 @@
         "G": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 33,
+      "preco": null,
+      "media": null,
+      "pontos": 4.9,
+      "scouts": {
+        "CA": 1,
+        "DS": 1,
+        "FC": 2,
+        "SG": 1
+      }
     }
   ]
 }

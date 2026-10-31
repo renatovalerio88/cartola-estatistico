@@ -84,6 +84,16 @@
         "DE": 6,
         "GS": 3
       }
+    },
+    {
+      "rodada": 33,
+      "preco": null,
+      "media": null,
+      "pontos": 6.8,
+      "scouts": {
+        "DE": 6,
+        "GS": 1
+      }
     }
   ]
 }

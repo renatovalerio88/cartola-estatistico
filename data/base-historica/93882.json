@@ -80,6 +80,16 @@
       "media": null,
       "pontos": 0,
       "scouts": {}
+    },
+    {
+      "rodada": 33,
+      "preco": null,
+      "media": null,
+      "pontos": 8.9,
+      "scouts": {
+        "DE": 3,
+        "SG": 1
+      }
     }
   ]
 }

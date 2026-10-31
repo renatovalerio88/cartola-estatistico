@@ -173,6 +173,17 @@
       "scouts": {
         "FS": 1
       }
+    },
+    {
+      "rodada": 33,
+      "preco": null,
+      "media": null,
+      "pontos": 10,
+      "scouts": {
+        "CA": 1,
+        "DS": 4,
+        "SG": 1
+      }
     }
   ]
 }

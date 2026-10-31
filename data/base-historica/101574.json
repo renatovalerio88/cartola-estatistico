@@ -278,6 +278,15 @@
         "DE": 5,
         "GS": 3
       }
+    },
+    {
+      "rodada": 33,
+      "preco": null,
+      "media": null,
+      "pontos": 5,
+      "scouts": {
+        "SG": 1
+      }
     }
   ]
 }
