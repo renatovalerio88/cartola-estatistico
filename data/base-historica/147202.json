@@ -26,6 +26,15 @@
       "media": null,
       "pontos": 0,
       "scouts": {}
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": -1,
+      "scouts": {
+        "CA": 1
+      }
     }
   ]
 }

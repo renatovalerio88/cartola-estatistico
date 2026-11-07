@@ -252,6 +252,18 @@
         "FS": 3,
         "I": 1
       }
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": 6.2,
+      "scouts": {
+        "DS": 1,
+        "FD": 1,
+        "FS": 1,
+        "FT": 1
+      }
     }
   ]
 }

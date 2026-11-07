@@ -206,6 +206,17 @@
       "media": null,
       "pontos": 0,
       "scouts": {}
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": 4.9,
+      "scouts": {
+        "DS": 1,
+        "FD": 2,
+        "FS": 2
+      }
     }
   ]
 }

@@ -88,6 +88,19 @@
         "FD": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": 7.9,
+      "scouts": {
+        "CA": 1,
+        "DS": 2,
+        "FC": 1,
+        "FD": 1,
+        "SG": 1
+      }
     }
   ]
 }

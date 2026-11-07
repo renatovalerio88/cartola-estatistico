@@ -163,6 +163,16 @@
         "FC": 1,
         "FS": 2
       }
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": 9.2,
+      "scouts": {
+        "FD": 1,
+        "G": 1
+      }
     }
   ]
 }

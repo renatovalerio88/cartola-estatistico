@@ -2,11 +2,11 @@
   "modelo": "pontuacao_final_cartola_v21",
   "politicaRetrospectiva": "somente rodadas com resultado pós-rodada explícito; rodada-alvo de mercado aberto fica fora automaticamente",
   "statusColeta": {
-    "rodadaAtual": 34,
-    "statusMercado": 2,
-    "bolaRolando": true
+    "rodadaAtual": 35,
+    "statusMercado": 1,
+    "bolaRolando": false
   },
-  "rodadaMaximaCandidata": 33,
+  "rodadaMaximaCandidata": 34,
   "rodadaMaximaProcessada": 25,
   "rodadaAtualIncluida": false,
   "rodadasIgnoradasPorResultadoIncompleto": [],

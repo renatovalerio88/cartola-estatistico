@@ -213,6 +213,15 @@
         "CA": 1,
         "FS": 1
       }
+    },
+    {
+      "rodada": 34,
+      "preco": null,
+      "media": null,
+      "pontos": 3,
+      "scouts": {
+        "DS": 2
+      }
     }
   ]
 }
