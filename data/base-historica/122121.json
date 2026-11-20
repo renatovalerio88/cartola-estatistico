@@ -147,6 +147,19 @@
         "FS": 1,
         "PC": 1
       }
+    },
+    {
+      "rodada": 35,
+      "preco": null,
+      "media": null,
+      "pontos": 6.4,
+      "scouts": {
+        "FD": 1,
+        "FF": 1,
+        "FS": 3,
+        "FT": 1,
+        "I": 1
+      }
     }
   ]
 }

@@ -132,6 +132,18 @@
         "FT": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 35,
+      "preco": null,
+      "media": null,
+      "pontos": 8.9,
+      "scouts": {
+        "DS": 2,
+        "FS": 2,
+        "I": 1,
+        "SG": 1
+      }
     }
   ]
 }

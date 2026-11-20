@@ -12,6 +12,16 @@
       "scouts": {
         "FS": 1
       }
+    },
+    {
+      "rodada": 35,
+      "preco": null,
+      "media": null,
+      "pontos": -3.3,
+      "scouts": {
+        "FC": 1,
+        "GC": 1
+      }
     }
   ]
 }

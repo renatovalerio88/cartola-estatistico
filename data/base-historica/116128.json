@@ -1,0 +1,18 @@
+{
+  "id": 116128,
+  "nome": null,
+  "posicao": "GOL",
+  "clube": "",
+  "historico": [
+    {
+      "rodada": 35,
+      "preco": null,
+      "media": null,
+      "pontos": 5.8,
+      "scouts": {
+        "DE": 6,
+        "GS": 2
+      }
+    }
+  ]
+}
