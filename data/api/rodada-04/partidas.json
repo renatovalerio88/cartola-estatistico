@@ -288,14 +288,14 @@
         "d",
         "d",
         "d",
-        "e"
+        "v"
       ],
       "aproveitamento_mandante": [
         "d",
         "v",
         "v",
         "d",
-        "e"
+        "v"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -312,7 +312,7 @@
       "partida_id": 346343,
       "clube_visitante_posicao": 5,
       "clube_visitante_id": 293,
-      "clube_casa_posicao": 9,
+      "clube_casa_posicao": 8,
       "clube_casa_id": 280,
       "timestamp": 1772056800,
       "campeonato_id": 26,
@@ -320,18 +320,18 @@
     },
     {
       "aproveitamento_visitante": [
-        "d",
         "v",
         "d",
         "v",
-        "d"
+        "d",
+        "e"
       ],
       "aproveitamento_mandante": [
         "d",
         "v",
         "d",
         "v",
-        "e"
+        "d"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -356,11 +356,11 @@
     },
     {
       "aproveitamento_visitante": [
-        "v",
         "e",
         "d",
         "e",
-        "d"
+        "d",
+        "e"
       ],
       "aproveitamento_mandante": [
         "d",
@@ -432,7 +432,7 @@
         "v",
         "v",
         "v",
-        "e"
+        "v"
       ],
       "aproveitamento_mandante": [
         "v",
@@ -471,10 +471,10 @@
         "e"
       ],
       "aproveitamento_mandante": [
-        "d",
         "v",
         "v",
         "d",
+        "e",
         "e"
       ],
       "transmissao": {
@@ -504,14 +504,14 @@
         "v",
         "v",
         "v",
-        "e"
+        "d"
       ],
       "aproveitamento_mandante": [
-        "v",
         "e",
         "e",
         "d",
-        "v"
+        "v",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -528,7 +528,7 @@
       "partida_id": 346339,
       "clube_visitante_posicao": 10,
       "clube_visitante_id": 267,
-      "clube_casa_posicao": 8,
+      "clube_casa_posicao": 9,
       "clube_casa_id": 277,
       "timestamp": 1772143200,
       "campeonato_id": 26,
@@ -573,17 +573,17 @@
     {
       "aproveitamento_visitante": [
         "e",
-        "e",
         "d",
         "d",
-        "v"
+        "v",
+        "e"
       ],
       "aproveitamento_mandante": [
-        "v",
         "d",
         "d",
         "v",
-        "d"
+        "d",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -612,7 +612,7 @@
         "d",
         "v",
         "e",
-        "e"
+        "d"
       ],
       "aproveitamento_mandante": [
         "v",

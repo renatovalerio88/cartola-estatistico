@@ -288,14 +288,14 @@
         "v",
         "d",
         "v",
-        "e"
+        "d"
       ],
       "aproveitamento_mandante": [
         "e",
         "d",
         "v",
         "e",
-        "e"
+        "d"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -327,11 +327,11 @@
         "e"
       ],
       "aproveitamento_mandante": [
-        "d",
         "v",
         "d",
         "v",
-        "d"
+        "d",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -367,7 +367,7 @@
         "v",
         "v",
         "v",
-        "e"
+        "v"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -400,10 +400,10 @@
       ],
       "aproveitamento_mandante": [
         "e",
-        "e",
         "d",
         "d",
-        "v"
+        "v",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -432,7 +432,7 @@
         "d",
         "d",
         "d",
-        "e"
+        "v"
       ],
       "aproveitamento_mandante": [
         "e",
@@ -500,18 +500,18 @@
     },
     {
       "aproveitamento_visitante": [
-        "d",
         "v",
         "v",
         "d",
+        "e",
         "e"
       ],
       "aproveitamento_mandante": [
-        "v",
         "d",
         "d",
         "v",
-        "d"
+        "d",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -536,18 +536,18 @@
     },
     {
       "aproveitamento_visitante": [
-        "v",
         "e",
         "e",
         "d",
-        "v"
+        "v",
+        "e"
       ],
       "aproveitamento_mandante": [
-        "v",
         "e",
         "d",
         "e",
-        "d"
+        "d",
+        "e"
       ],
       "transmissao": {
         "label": "saiba como foi",
@@ -562,7 +562,7 @@
       "placar_oficial_visitante": 2,
       "placar_oficial_mandante": 1,
       "partida_id": 346283,
-      "clube_visitante_posicao": 8,
+      "clube_visitante_posicao": 9,
       "clube_visitante_id": 277,
       "clube_casa_posicao": 12,
       "clube_casa_id": 276,
@@ -576,7 +576,7 @@
         "v",
         "v",
         "d",
-        "e"
+        "v"
       ],
       "aproveitamento_mandante": [
         "v",
@@ -598,7 +598,7 @@
       "placar_oficial_visitante": 0,
       "placar_oficial_mandante": 1,
       "partida_id": 346286,
-      "clube_visitante_posicao": 9,
+      "clube_visitante_posicao": 8,
       "clube_visitante_id": 280,
       "clube_casa_posicao": 7,
       "clube_casa_id": 282,
@@ -612,7 +612,7 @@
         "v",
         "v",
         "v",
-        "e"
+        "d"
       ],
       "aproveitamento_mandante": [
         "d",
