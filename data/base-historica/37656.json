@@ -348,6 +348,15 @@
       "scouts": {
         "SG": 1
       }
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 5,
+      "scouts": {
+        "SG": 1
+      }
     }
   ]
 }

@@ -293,6 +293,18 @@
       "media": null,
       "pontos": 0,
       "scouts": {}
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 6,
+      "scouts": {
+        "DS": 2,
+        "FD": 1,
+        "FF": 1,
+        "FS": 2
+      }
     }
   ]
 }

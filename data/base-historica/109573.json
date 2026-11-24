@@ -240,6 +240,13 @@
       "scouts": {
         "FD": 1
       }
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 0,
+      "scouts": {}
     }
   ]
 }

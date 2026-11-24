@@ -248,6 +248,16 @@
       "media": null,
       "pontos": 0,
       "scouts": {}
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 1.8,
+      "scouts": {
+        "FF": 1,
+        "FS": 2
+      }
     }
   ]
 }

@@ -300,6 +300,18 @@
         "I": 1,
         "SG": 1
       }
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 5.5,
+      "scouts": {
+        "A": 1,
+        "DS": 1,
+        "FC": 5,
+        "FS": 1
+      }
     }
   ]
 }

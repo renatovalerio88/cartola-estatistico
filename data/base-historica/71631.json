@@ -318,6 +318,17 @@
         "DE": 3,
         "SG": 1
       }
+    },
+    {
+      "rodada": 36,
+      "preco": null,
+      "media": null,
+      "pontos": 16.4,
+      "scouts": {
+        "DE": 8,
+        "FS": 2,
+        "SG": 1
+      }
     }
   ]
 }
